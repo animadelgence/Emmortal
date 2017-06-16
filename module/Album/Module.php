@@ -16,6 +16,8 @@ use Album\Model\mailconfirmation;
 use Album\Model\mailconfirmationTable;
 use Album\Model\friends;
 use Album\Model\friendsTable;
+use Album\Model\user;
+use Album\Model\userTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 

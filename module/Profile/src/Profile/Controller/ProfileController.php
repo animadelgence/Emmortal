@@ -73,28 +73,18 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $query = array('userid'=>1);
-        //$like = $_POST['like'];
-        $like = 'user';
-        $friendDetails = $modelPlugin->getfriendsTable()->fetchall($query);
+        $query = 1;
+        $friendDetails = $modelPlugin->getfriendsTable()->joinquery($query);
         $array = array();
         foreach ($friendDetails as $rSet) {
             $array[] = array(
-                'friendsid' => $rSet['friendsid']
+                'friendsid' => $rSet['friendsid'],
+                'friendsname' => $rSet['firstname']." ".$rSet['lastname']
             );
           }
-          $res['friendDetails'] = $array;
-          echo json_encode($res);
-          exit;
-        /*if(!empty($albumDetails)){
-            foreach($albumDetails as $result){
-                echo '<li class="frndlist-click" style="background: #aaa897;margin-bottom: 2px;" data-id="'.$result['friendsid'].'">'.$result['friendsid'].'</li>';
-            }
-        } else{
-            echo "";
-        }
-        //$albumDetails = $modelPlugin->getfriendsTable()->joinquery($query,$like);
-        exit;*/
+        $res['friendDetails'] = $array;
+        echo json_encode($res);
+        exit;
      }
      public function publishtextAction(){
     	$plugin = $this->routeplugin();

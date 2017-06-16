@@ -47,9 +47,10 @@ $(document).ready(function () {
                     var html = "";
                     for (i = 0; i < jsObject.friendDetails.length; i++) {
                         var id = jsObject.friendDetails[i].friendsid;
-                        if (id.indexOf(friendsid) > -1) {
+                        var friendsname = jsObject.friendDetails[i].friendsname.toLowerCase();
+                        if (friendsname.indexOf(friendsid.toLowerCase()) > -1) {
                             if ($.inArray(parseInt(id), frndDetails) == '-1') {
-                                html += '<li class="frndlist-click" style="background: #aaa897;margin-bottom: 2px;" data-id="' + jsObject.friendDetails[i].friendsid + '">' + jsObject.friendDetails[i].friendsid + '</li>';
+                                html += '<li class="frndlist-click" style="background: #aaa897;margin-bottom: 2px;" data-id="' + jsObject.friendDetails[i].friendsid + '">' + jsObject.friendDetails[i].friendsname + '</li>';
                             }
                         }
                     }

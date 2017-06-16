@@ -12,6 +12,23 @@ switch ($controller) {
                     ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
                 ;
                  break;
+             case 'termsandconditions':
+                $this->headLink()
+                    ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/termsconditions.css?version=' . $t)
+                ;
+            break;
+
+            case 'aboutus':
+                $this->headLink()
+                    ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/termsconditions.css?version=' . $t)
+                ;
+            break;
 		}
 		break;
 

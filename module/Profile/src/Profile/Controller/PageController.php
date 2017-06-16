@@ -11,7 +11,8 @@ use Zend\Session\SessionManager;
 class PageController extends AbstractActionController {
 
     public function indexAction() {
-        echo "work in progress";exit;
-
+        $modelPlugin = $this->modelplugin();
+        $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall();
+        print_r($pageDetails);exit;
        }
 }

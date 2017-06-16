@@ -44,8 +44,8 @@ class ProfileController extends AbstractActionController {
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
         $actionChecker = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier = $this->getEvent()->getRouteMatch()->getParam('pId');
-        //echo $actionChecker;exit;
         $key = '1234547890183420';
+
         if($actionChecker != "resetpassword")
         {
             //echo "inside if";
@@ -60,8 +60,15 @@ class ProfileController extends AbstractActionController {
             
 
         }else{
-            $decrypteduserId = $this->decrypt($useridentifier, $key);
-            //echo $actionChecker;
+            $serchArray = array('forgetpassword' => $useridentifier);
+            $FetchDetails = $modelPlugin->getuserTable()->fetchall($serchArray);
+            if (empty($FetchDetails)) {
+                    return $this->redirect()->toUrl($dynamicPath."/album/showalbum");
+            }
+            else{
+                $decrypteduserId = $FetchDetails[0]['userid'];
+            }
+            //echo intval($decrypteduserId);
 
         }
         return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));

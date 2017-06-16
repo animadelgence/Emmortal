@@ -9,7 +9,8 @@ switch ($controller) {
 
             case 'showalbum':
                 $this->headScript()
-                        
+
+                        ->prependFile($this->basePath() . '/js/Authorization/login.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Authorization/signup.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/index.js?version=' . $t)
@@ -30,7 +31,7 @@ switch ($controller) {
         break;
 }
 echo $this->headScript()
-        ->prependFile($this->basePath() . '/js/Album/resetpassword.js?version=' . $t)
+       // ->prependFile($this->basePath() . '/js/Album/resetpassword.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/jquery/jquery.form.js?version='.$t)
         ->prependFile($this->basePath() . '/js/bootstrap/bootstrap.min.js?version=' . $t)
         ->prependFile('//code.jquery.com/ui/1.11.3/jquery-ui.min.js')

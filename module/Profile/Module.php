@@ -12,6 +12,8 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Profile\Model\uploadDetails;
 use Profile\Model\uploadDetailsTable;
+use Profile\Model\pagedetails;
+use Profile\Model\pagedetailsTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -50,6 +52,17 @@ class Module
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new uploadDetails());
                     return new TableGateway('uploadDetails', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Profile\Model\pagedetailsTable' => function($sm) {
+                    $tableGateway = $sm->get('pagedetailsTableGateway');
+                    $table = new pagedetailsTable($tableGateway);
+                    return $table;
+                },
+                'pagedetailsTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new pagedetails());
+                    return new TableGateway('pagedetails', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );

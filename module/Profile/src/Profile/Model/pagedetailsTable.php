@@ -10,6 +10,16 @@
         {
             $this->tableGWay = $tableGateway;
         }
+        public function fetchall(){
+            $resultSet = $this->tableGWay->select();
+            $array = array();
+            foreach ($resultSet as $rSet) {
+                $array[] = array(
+                    'UID' => $rSet->UID,
+                    );
+            }
+            return $array;
+        }
 
     }
 ?>

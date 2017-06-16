@@ -22,8 +22,8 @@ return array(
                  'options' => array(
                      'route'    => '/profile[/:action][/:id][/:pId]',
                      'constraints' => array(
-                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                         
                      ),
                      'defaults' => array(
                          'controller' => 'Profile\Controller\Profile',

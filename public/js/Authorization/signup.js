@@ -58,7 +58,7 @@ $('#signupbutton').click(function(){
             return false;
 	} else if(!password.match(regexpassword)) {
 		$(".alertmesage_signup").css("color","Red");
-		$(".alertmesage_signup").text("Password should contain atleast one uppercae,one lowercase and minimum 8 characters.").show();
+		$(".alertmesage_signup").text("Password should contain atleast one uppercase,one lowercase and minimum 8 characters.").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
             }, 8000);

@@ -1,5 +1,5 @@
 <!-- line modal -->
-<div class="modal fade" id="photoInsertModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:visible !important;">
+<div class="modal fade" id="photoInsertModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:scroll !important;">
 	<div class="modal-dialog modal-box modal-photo">
 		<div class="modal-content modal-outer inner-modal-photo">
 			<div class="modal-header modal-headernew">
@@ -7,21 +7,21 @@
 				<h3 class="modal-title" id="lineModalLabel">Create new text entry</h3>
 			</div>
 			<div class="modal-body select-media-type-popup">
-				<form name="textAddForm" id="textAddForm" action="http://emmortal.localhost/profile/publishtext" method="POST" enctype="multipart/form-data">
+				<form name="textAddForm" id="textAddForm" action="" method="POST" enctype="multipart/form-data">
 					<div class="modal-body photo-popup">
 						<div class="row">
 							<div class="col-md-6">
-								<div class="ng-scope" ng-if="showCanvas">
+								<div class="ng-scope" >
 									<div class="image-form-field ng-isolate-scope" picture-name="photo" object="photo" height="360" field-name="image" errors="errors.image"></div>
-									<div class="image-select" ng-show="!object[fieldUrl]">
+									<div class="image-select">
 										<div class="img-input ng-isolate-scope" selected-image="object[field]" picture-name="photo" on-remove="removeImage" keep-aspect="keepAspect" height="height">
-											<div class="canvas-placeholder" ng-style="{ 'height': ((height || 300) + 'px') }" ng-show="!cropper.sourceImage" style="height: 360px;">
+											<div class="canvas-placeholder" style="height: 360px;">
 												<i class="fa fa-picture-o"></i>
 											</div>
-											<div class="btn e-btn btn-primary file-input-btn ng-scope" ng-if="!cropper.sourceImage">
+											<div class="btn e-btn btn-primary file-input-btn ng-scope" >
 												<i class="fa fa-upload"></i>
 												Choose
-												<span class="ng-binding" ng-bind="pictureName || 'image'">photo</span>
+												<span class="ng-binding">photo</span>
 												<input class="ng-isolate-scope" type="file" img-cropper-fileread="" image="cropper.sourceImage" accept="image/*">
 											</div>
 										</div>

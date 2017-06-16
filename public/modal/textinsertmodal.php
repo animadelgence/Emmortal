@@ -7,7 +7,7 @@
 				<h3 class="modal-title" id="lineModalLabel">Create new text entry</h3>
 			</div>
 			<div class="modal-body select-media-type-popup">
-				<form name="textAddForm" id="textAddForm" action="http://emmortal.localhost/profile/publishtext" method="POST" enctype="multipart/form-data">
+				<form name="textAddForm" id="textAddForm" action="/profile/publishtext" method="POST" enctype="multipart/form-data">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="form-group col-xs-12 col-sm-12">

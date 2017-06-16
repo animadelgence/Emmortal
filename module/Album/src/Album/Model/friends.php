@@ -13,7 +13,7 @@ class friends
     public $requestaccept;
     public $relationshipstatus;
     
-    public $emailid;
+    /*public $emailid;
     public $password;
     public $forgetpassword;
     public $firstname;
@@ -27,7 +27,7 @@ class friends
     public $seeme;
     public $findme;
     public $content;
-    public $activation;
+    public $activation;*/
 
 
     function exchangeArray($data)
@@ -39,7 +39,7 @@ class friends
         $this->requestaccept = (!empty($data['requestaccept'])) ? $data['requestaccept'] : null;
         $this->relationshipstatus = (!empty($data['relationshipstatus'])) ? $data['relationshipstatus'] : null;
         
-		$this->emailid = (!empty($data['emailid'])) ? $data['emailid'] : null;
+		/*$this->emailid = (!empty($data['emailid'])) ? $data['emailid'] : null;
 		$this->password = (!empty($data['password'])) ? $data['password'] : null;
         $this->forgetpassword = (!empty($data['forgetpassword'])) ? $data['forgetpassword'] : null;
         $this->firstname = (!empty($data['firstname'])) ? $data['firstname'] : null;
@@ -53,7 +53,7 @@ class friends
         $this->seeme = (!empty($data['seeme'])) ? $data['seeme'] : null;
         $this->findme = (!empty($data['findme'])) ? $data['findme'] : null;
         $this->content = (!empty($data['content'])) ? $data['content'] : null;
-        $this->activation = (!empty($data['activation'])) ? $data['activation'] : null;
+        $this->activation = (!empty($data['activation'])) ? $data['activation'] : null;*/
 
 	}
 

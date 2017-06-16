@@ -2,7 +2,7 @@
 .termsHeader{
     margin: 38px 245px 0 190px;
     text-align: center;
-    margin-top: 38px;
+    margin-top: 48px;
     padding: 15px 30px;
     border-bottom: 0;
     background: #aaa897;
@@ -12,7 +12,7 @@
 .termsBody{
     background-color: #fff;
     margin: 0 245px 0 190px;
-    max-height: 550px;
+    max-height: 540px;
     overflow-y: auto;
     color: #aaa897;
     border-bottom: 1px solid #aaa897;

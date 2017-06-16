@@ -15,7 +15,7 @@ var URL = document.URL;
 
         		
         		$("#savepassbutton").click(function(){
-
+        			//alert();
         			var forgetpassword = $('#forgetpassword').val(),
         			forgetconfirmPassword = $('#forgetconfirmPassword').val(),
         			regexpassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;

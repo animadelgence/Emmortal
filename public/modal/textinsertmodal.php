@@ -1,6 +1,6 @@
 <!-- line modal for text-->
 <div class="modal fade" id="textInsertModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:visible !important;">
-	<div class="modal-dialog modal-box">
+	<div class="modal-dialog modal-box text-nsert-modal">
 		<div class="modal-content modal-outer">
 			<div class="modal-header modal-headernew">
 				<button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
@@ -29,10 +29,10 @@
 								</div>
 							</div>
 							<div class="form-group col-xs-6 col-sm-5">
-								<div class="form-group col-xs-12 col-sm-12" id="append-div">
+								<div class="" id="append-div">
 									<input type="text" class="form-control" name="friendsid" id="friendsid" placeholder="Type Friend Name...">
 								</div>
-								<div class="col-xs-12 col-sm-12" style="margin: -40px;margin-top: -8px; width: 120%">
+								<div class="dropdown-div">
 									<ul style="list-style-type: none;z-index: 999999; position: relative; display:none;" id="frndlist">
 									</ul>
 								</div>

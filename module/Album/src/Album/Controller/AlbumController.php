@@ -40,12 +40,8 @@ class AlbumController extends AbstractActionController {
         $controller = @$href[3];
         $action = @$href[4];
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-        $actionChecker = $this->getEvent()->getRouteMatch()->getParam('id');
-        $useridentifier = $this->getEvent()->getRouteMatch()->getParam('pId');
-        if($actionChecker == "resetpassword")
-        {
-                echo $actionChecker;
-        }//exit;
+        //exit;
+        
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     /*public function allalbumAction(){
@@ -86,6 +82,12 @@ class AlbumController extends AbstractActionController {
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
-
+    public function decrypt($data, $key) {
+        $decode = base64_decode($data);
+        return mcrypt_decrypt(
+                MCRYPT_RIJNDAEL_128, $key, $decode, MCRYPT_MODE_CBC, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+        );
+    }
     
 }
+?>

@@ -99,20 +99,28 @@ $('#signupbutton').click(function(){
                     dob: dob
                 },
                 success: function (result) {
-                    //alert(result);return false;
+                    alert("welcome to emmortal");
+                    //return false;
                     
 
                 }
             });
 		}
 	});
-$("#signin").click(function(){
+/*$("#signin").click(function(){
 	$(".signin_popup").show();
 	$(".signup_popup").hide();
 	
-});
+});*/
 
 	
 
 
 });
+function showhide(){
+			
+			$('.close').trigger('click');
+			//$('#squarespaceModalemail').modal('toggle');
+			
+			
+		}

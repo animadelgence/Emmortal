@@ -36,8 +36,7 @@ return array(
                  'options' => array(
                      'route'    => '/album[/:action][/:id]',
                      'constraints' => array(
-                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
                      ),
                      'defaults' => array(
                          'controller' => 'Album\Controller\Album',
@@ -51,8 +50,8 @@ return array(
                  'options' => array(
                      'route'    => '/newsfeed[/:action][/:id]',
                      'constraints' => array(
-                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                         
                      ),
                      'defaults' => array(
                          'controller' => 'Album\Controller\Newsfeed',

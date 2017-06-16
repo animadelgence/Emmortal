@@ -9,7 +9,8 @@
 return array(
      'controllers' => array(
          'invokables' => array(
-             'Profile\Controller\Profile' => 'Profile\Controller\ProfileController'
+             'Profile\Controller\Profile' => 'Profile\Controller\ProfileController',
+             'Profile\Controller\Page' => 'Profile\Controller\PageController'
          ),
      ),
     // The following section is new and should be added to your file
@@ -21,11 +22,24 @@ return array(
                  'options' => array(
                      'route'    => '/profile[/:action][/:id][/:pId]',
                      'constraints' => array(
-                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                         
                      ),
                      'defaults' => array(
                          'controller' => 'Profile\Controller\Profile',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+            'Page' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/page[/:action][/:id][/:pId]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Profile\Controller\Page',
                          'action'     => 'index',
                      ),
                  ),
@@ -46,4 +60,3 @@ return array(
 
     )
  );
-  

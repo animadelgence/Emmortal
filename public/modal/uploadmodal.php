@@ -15,7 +15,7 @@
 							</a>
 						</div>
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer">
+							<a class="btn btn-default btn-media-type pointer" data-toggle="modal" data-target="#videoInsertModal" id="videoInsert">
 								<i class="fa fa-video-camera"></i>
 								<div class="text">Video</div>
 							</a>

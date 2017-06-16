@@ -53,7 +53,7 @@ var URL = document.URL;
 
 	        			$("#resetpassword_form").ajaxSubmit({
 			                data: {
-			                	encryptedmailid : encryptedmailid
+			                	encryptedmailid : encryptedmailid,
 			                    forgetpassword: forgetpassword
 			                },
 			                success: function (result) {

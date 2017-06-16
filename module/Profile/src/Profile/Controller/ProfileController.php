@@ -60,8 +60,8 @@ class ProfileController extends AbstractActionController {
             
 
         }else{
-
-            echo $actionChecker;
+            $decrypteduserId = $this->decrypt($useridentifier, $key);
+            //echo $actionChecker;
 
         }
         return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));

@@ -58,22 +58,27 @@ class AuthorizationloginController extends AbstractActionController {
         $jsonArray = $plugin->jsondynamic();
 
         $recoveryemail = $_POST['recoveryemail'];
-        $dataarrayforvalidation = array('emailid' => $loginemail);
+        $dataarrayforvalidation = array('emailid' => $recoveryemail);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
         $id = $contentDetails[0]["userid"];
-        $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
+        //echo $id;exit;
+        $fullname = $contentDetails[0]['firstname']." ".$contentDetails[0]['lastname'];
         $pass = password_hash($recoveryemail, PASSWORD_BCRYPT);
 
         $buttonclick = $dynamicPath . "/profile/newsfeed/resetpassword/" . $pass;
+        //echo $buttonclick;exit;
         $mail_link = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Reset password</div></a>";
         $subject = "[Emmortal] Set your password";
         $from = $jsonArray['sendgridaccount']['addfrom'];
         $keyArray = array('mailCatagory' => 'F_MAIL');
         $getMailStructure = $modelPlugin->getmailconfirmationTable()->fetchall($keyArray);
+        //print_r($getMailStructure);exit;
         $getmailbodyFromTable = $getMailStructure[0]['mailTemplate'];
         $mailLinkreplace = str_replace("|RECOVERYLINK|", $mail_link, $getmailbodyFromTable);
         $mailBody = str_replace("|FULLNAME|", $fullname, $mailLinkreplace);
-        $fogetPasswordMail = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
+        //print_r($mailBody);exit;
+        $fogetPasswordMail = $mailplugin->confirmationmail($recoveryemail, $from, $subject, $mailBody);
+       // echo $fogetPasswordMail;exit;
         $keyArray = array('userid' => $id);
         $dataForForget = array('forgetpassword' => $pass);
         $updateUser = $modelPlugin->getuserTable()->updateuser($dataForForget, $keyArray);

@@ -28,6 +28,20 @@ class ProfileController extends AbstractActionController {
         $query = array('UID'=>1);
         $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($query);
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails));
+    }
+    public function newsfeedAction(){
+    	$this->layout('layout/profilelayout.phtml');
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
         $actionChecker = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier = $this->getEvent()->getRouteMatch()->getParam('pId');
         //echo $actionChecker;exit;
@@ -50,20 +64,7 @@ class ProfileController extends AbstractActionController {
             echo $actionChecker;
 
         }
-        return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails));
-    }
-    public function newsfeedAction(){
-    	$this->layout('layout/profilelayout.phtml');
-    	$plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
-        $href = explode("/", $currentPageURL);
-        $controller = @$href[3];
-        $action = @$href[4];
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+        return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function getalbumAction(){
     	$plugin = $this->routeplugin();

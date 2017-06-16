@@ -50,7 +50,7 @@ $(document).ready(function () {
                         var friendsname = jsObject.friendDetails[i].friendsname.toLowerCase();
                         if (friendsname.indexOf(friendsid.toLowerCase()) > -1) {
                             if ($.inArray(parseInt(id), frndDetails) == '-1') {
-                                html += '<li class="frndlist-click" style="background: #aaa897;margin-bottom: 2px;" data-id="' + jsObject.friendDetails[i].friendsid + '">' + jsObject.friendDetails[i].friendsname + '</li>';
+                                html += '<li class="frndlist-click dropdown-li" data-id="' + jsObject.friendDetails[i].friendsid + '"><img src="/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg" class="img-circle frnd-image-class" alt="Cinque Terre" ><span class="frnd-list-name">' + jsObject.friendDetails[i].friendsname + '</span></li>';
                             }
                         }
                     }
@@ -66,7 +66,7 @@ $(document).ready(function () {
         var id = $(this).data("id");
         frndDetails.push(id);
         var name = $(this).text();
-        $('<span style="background: #aaa897;border: 1px rgba(29, 27, 9, 0.44) solid;color: white; margin-right: 5px;">' + name + '<i class="fa fa-times frnd-cancel" aria-hidden="true"></i><input type="hidden" name="frndId[]" value="' + id + '"></span>,').insertBefore('#append-div input[type="text"]');
+        $('<span class="frnd-span-class">' + name + '<i class="fa fa-times frnd-cancel frnd-cross-class" aria-hidden="true"></i><input type="hidden" name="frndId[]" value="' + id + '"></span>&#59;').insertBefore('#append-div input[type="text"]');
         $('#frndlist').hide();
         $('#friendsid').val('');
     });

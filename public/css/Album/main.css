@@ -404,7 +404,40 @@ button[disabled], html input[disabled] {
 .error-class{
     border: 1px red solid !important;
 }
-
+.text-nsert-modal {
+    width:70%;
+}
+.dropdown-div {
+    margin: -40px;
+    margin-top: 5px;
+    width: 103%;
+    position: absolute;
+}
+.dropdown-li {
+    background: #aaa897;
+    margin-bottom: 3px;
+    height: 35px;
+    cursor: pointer;
+}
+.frnd-image-class {
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+    margin-left: 10px;
+}
+.frnd-list-name {
+    margin-left: 5px;
+}
+.frnd-span-class {
+    background: #aaa897;
+    border: 1px rgba(29, 27, 9, 0.44) solid;
+    color: white;
+    margin-right: 5px;
+    padding: 5px;
+}
+.frnd-cross-class{
+    margin-left: 5px;
+}
 /**/
 .nav > li > a:focus,
 .nav > li > a:hover {

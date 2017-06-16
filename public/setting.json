@@ -1,0 +1,36 @@
+{
+    "domain": {
+	        "domain_name"     	: "13.58.221.178",
+	        "publish_domain" 	: "13.58.221.178",
+	        "home"          	: "/var/www/public",
+            	"master_domain" 	: "https://www.emmortal.com",
+            	"site_name"     : "emmortal"
+    },
+    "mandrillaccount": {
+	        "adddefaultto"   	: "koushik.roy@delgence.com",
+	        "addfrom"	 	: "info@smartfanpage.com",
+	        "username"   		: "info@smartfanpage.com",
+	        "password"   		: "fv7M_K1TFO9LgCaEdIVhgw",
+	        "parenthost"   		: "54.72.188.10",
+	        "supportTeam"   	: "support@smartfanpage.com",
+	        "footerNote"   		: "Smartfanpage Team",
+	        "hostKey"   		: "smartfanpage"
+    },
+   /* "sendgridaccount": {
+	        "adddefaultto"   	: "koushik.roy@delgence.com",
+	        "addfrom"	 		: "info@smartfanpage.com",
+	        "username"   		: "ArnabSmartfanpage",
+	        "password"   		: "Testing1@",
+	        "parenthost"   		: "54.72.188.10",
+	        "supportTeam"   	: "support@smartfanpage.com",
+	        "footerNote"   		: "Smartfanpage Team",
+	        "hostKey"   		: "smartfanpage"
+    },*/
+     "database": {
+	        "database_dsn"   		: "mysql:dbname=emmortal;host=localhost",
+	        "database_host"   		: "localhost",
+	        "database_name"			: "emmortal",
+	        "database_username"	  	: "root",
+	        "database_password"	 	: "Emmortal@1234"
+    }
+ }

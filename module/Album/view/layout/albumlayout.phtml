@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Show album">
+    <meta name="keyword" content="Show album, Show albums, album, albums">
+    <title>Show Album</title>
+     <!-- <link rel="shortcut icon" type="image/x-icon" href="" />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+
+        <!-- Place favicon.ico in the root directory -->
+        <!-- Google Fonts -->
+        <?php include 'albumcss.phtml'; ?>
+         <?php include 'albumjs.phtml'; ?>
+</head>
+<body>
+    <?php  $root = $_SERVER['DOCUMENT_ROOT'];
+            $root1 = explode("/public",$root);
+            $path = $root1[0]."/module/Album/view/layout/navbar.phtml";
+        include $path; ?>
+    <?php echo $this->content; ?>
+
+</body>
+</html>

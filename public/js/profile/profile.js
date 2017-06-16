@@ -47,6 +47,7 @@ $(document).ready(function () {
                 url: base_url_dynamic + '/profile/getfriends',
                 data: {},
                 success: function (res) {
+                    console.log(res);
                     jsObject = JSON.parse(res);
                     console.log(frndDetails);
                     var html = "";

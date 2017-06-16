@@ -2,7 +2,11 @@
 	namespace Album\Model;
     use Zend\Db\TableGateway\TableGateway;
     use Zend\Db\ResultSet\ResultSet;
+    use Zend\Session\Container;
     use Zend\Db\Sql\Sql;
+    use Zend\Db\Sql\Predicate;
+    use Zend\Db\Sql\Where;
+    use Zend\Db\Sql\Select;
     class friendsTable
     {
         protected $tableGateWay;
@@ -10,23 +14,57 @@
         {
             $this->tableGWay = $tableGateway;
         }
-        public function fetchall()
-        {
-            $resultSet = $this->tableGWay->select();
+        public function fetchall($query) {
+            $resultSet = $this->tableGWay->select($query);
             $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
-                    'UID' => $rSet->UID,
-                    'albumimagepath' => $rSet->albumimagepath,
+                    'id' => $rSet->id,
+                    'userid' => $rSet->userid,
                     'friendsid' => $rSet->friendsid,
-                    'title' => $rSet->title,
-                    'description' => $rSet->description,
-                    'color' => $rSet->color,
-                    'viewstatus' => $rSet->viewstatus,
-                    'creationdate' => $rSet->creationdate
+                    'friendshipdate' => $rSet->friendshipdate,
+                    'requestaccept' => $rSet->requestaccept,
+                    'relationshipstatus' => $rSet->relationshipstatus
                     );
             }
             return $array;
         }
+        public function joinquery($query,$like){
+           $sql = new Sql($this->tableGWay->adapter);
+           $select = $sql->select();
+           $select->from($this->tableGWay->getTable())
+                 ->join('user', 'friends.userid = user.userid', array('*'), 'left')
+                 ->where($query)
+                 ->where('user.name LIKE ?', $like.'%');
+            $result = $this->tableGWay->selectWith($select);
+            $data=array();
+		    foreach($result as $rset) {
+			         $data[]=array(
+                            'id' => $rSet->id,
+                            'userid' => $rSet->userid,
+                            'friendsid' => $rSet->friendsid,
+                            'friendshipdate' => $rSet->friendshipdate,
+                            'requestaccept' => $rSet->requestaccept,
+                            'relationshipstatus' => $rSet->relationshipstatus,
+                            'emailid' => $rSet->emailid,
+                            'password' => $rSet->password,
+                            'forgetpassword' => $rSet->forgetpassword,
+                            'firstname' => $rSet->firstname,
+                            'lastname' => $rSet->lastname,
+                            'profileimage' => $rSet->profileimage,
+                            'backgroundimage' => $rSet->backgroundimage,
+                            'signindate' => $rSet->signindate,
+                            'login' => $rSet->login,
+                            'lastlogout' => $rSet->lastlogout,
+                            'keepmelogin' => $rSet->keepmelogin,
+                            'seeme' => $rSet->seeme,
+                            'findme' => $rSet->findme,
+                            'content' => $rSet->content,
+                            'activation' => $rSet->activation
+			         );
+		   }
+           return $data;
+	    }
+
     }
 ?>

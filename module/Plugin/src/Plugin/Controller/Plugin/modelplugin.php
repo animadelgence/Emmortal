@@ -10,6 +10,7 @@ class modelplugin extends routeplugin {
     public $userTable;
     public $trackdetailsTable;
     public $mailconfirmationTable;
+    public $friendsTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {
@@ -50,6 +51,14 @@ class modelplugin extends routeplugin {
             $this->uploadDetailsTable = $sm->get('Profile\Model\uploadDetailsTable');
         }
         return $this->uploadDetailsTable;
+    }
+    public function getfriendsTable() {
+        if (!$this->friendsTable) {
+
+            $sm = $this->getController()->getServiceLocator();
+            $this->friendsTable = $sm->get('Album\Model\friendsTable');
+        }
+        return $this->friendsTable;
     }
 }
 

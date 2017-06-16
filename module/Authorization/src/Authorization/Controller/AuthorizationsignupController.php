@@ -2,9 +2,9 @@
 
 /*
  * @Author: Maitrayee 
- * @Date:   2017-05-14 11:46:35
+ * @Date:   2017-02-2 16:46:35
  * @Last Modified by: Maitrayee
- * @Last Modified time: 2017-05-15 12:11:26
+ * @Last Modified time: 2017-04-25 12:52:26
  * @version : 1.0.0
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,27 +23,22 @@ class AuthorizationsignupController extends AbstractActionController {
 
     
     public function signupAction() {
-        //echo "welcome from  authorizationsignup";exit;
+        
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $email = $_POST['email'];
         $getpassword =$_POST['password']; 
         $password = password_hash($getpassword, PASSWORD_BCRYPT); 
         $dob = $_POST['dob'];
-        //echo $firstName ."||".$lastName."||".$email."||".$getpassword."||".$password."||".$dob;exit;
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $mailplugin = $this->mailplugin();
         $dynamicPath = $plugin->dynamicPath();
-        //echo $dynamicPath;exit;
         $jsonArray = $plugin->jsondynamic();
       
         $keyArray = array('emailid'=>$email);
-
         $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'signindate' => date('Y-m-d'));
-        //print_r($insertedArray);exit;
         $albumFolder = $modelPlugin->getuserTable()->savedata($insertedArray,$keyArray);
-        print_r($albumFolder);exit;
         $albumDetails = $modelPlugin->getuserTable()->fetchall($keyArray);
         $usid= $albumDetails[0]['userid'];
         if($albumFolder == 1)
@@ -52,13 +47,17 @@ class AuthorizationsignupController extends AbstractActionController {
         	$key = '1234547890183420';
             $encrypted = $this->encrypt($usid, $key);
         	$buttonclick = $dynamicPath . "/album/showalbum/" . $encrypted;
-            //$activationLink = "<a href='".$buttonclick."' style='margin: 0; outline: none; padding: 15px; color: #ffffff; background-color: #04ad6a; border: 0px solid #919191; border-radius: 6px; font-family: Arial; font-size: 16px; display: inline-block; line-height: 1.1; text-align: center; text-decoration: none;'>Click here to activate</a>";
-            $activationlink = "<a href='".$buttonclick."' style='font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;box-sizing:border-box;font-size:14px;color:#fff;text-decoration:none;line-height:2em;font-weight:bold;text-align:center;display:inline-block;border-radius:5px;text-transform:capitalize;background-color:#579942;margin:0;border-color:#579942;border-style:solid;border-width:10px 20px'>Confirm email</a>";
+            $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
+            
+            $activationLink = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Confirm Email</div></a>";
+
+            
+
             $searchArray = array('mailCatagory' => 'C_MAIL');
             $getMailStructure = $modelPlugin->getmailconfirmationTable()->fetchall($searchArray);
             $getmailbodyFromTable = $getMailStructure[0]['mailTemplate'];
             $activationLinkreplace = str_replace("|ACTIVATIONLINK|", $activationLink, $getmailbodyFromTable);
-            $mailBody = str_replace("|DYNAMICPATH|", $dynamicPath, $activationLinkreplace);
+            $mailBody = str_replace("|FULLNAME|", $fullname, $activationLinkreplace);
             $subject = "Confirm your email address";
             $from = $jsonArray['sendgridaccount']['addfrom'];
         	$mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
@@ -71,7 +70,7 @@ class AuthorizationsignupController extends AbstractActionController {
             );
             $keyarray = array('userid' => $usid);
             $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $keyarray);
-            //echo $updatedValues;
+           
         }
         echo $albumFolder;exit;
     }

@@ -3,8 +3,6 @@
     use Zend\Db\TableGateway\TableGateway;
     use Zend\Db\ResultSet\ResultSet;
     use Zend\Db\Sql\Sql;
-    use Zend\Db\Sql\Insert;
-
     class userTable
     {
         protected $tableGateWay;
@@ -40,26 +38,18 @@
         }
         public function savedata($insertdataarray,$keyArray)
         {
-           // print_r($keyArray);//exit;
             $resultSet = $this->tableGWay->select($keyArray);
-            //print_r($resultSet);exit;
-            //echo count($resultSet);exit;
-            
             if(count($resultSet) == 0)
             {
-                //echo 1;
-                $rowset = $this->tableGWay->insert('emailid' => 'amsdhf@dg.cb','password' => 'dsfsdfsd');
-                echo $rowset;
+                $rowset = $this->tableGWay->insert($insertdataarray);
             }
             else
             {
                 $rowset = 0;
             }
-            echo $rowset;exit;
-            $rowset = $this->tableGWay->insert($insertdataarray);
+            //$rowset = $this->tableGWay->insert($insertdataarray);
             //$id = $this->tableGWay->lastInsertValue;
            // return $id;
-            echo $this->tableGWay->insert($insertdataarray);
             return $rowset;
         }
         public function updateuser($data,$marker)

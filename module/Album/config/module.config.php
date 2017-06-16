@@ -9,7 +9,9 @@
 return array(
      'controllers' => array(
          'invokables' => array(
-             'Album\Controller\Album' => 'Album\Controller\AlbumController'
+             'Album\Controller\Album' => 'Album\Controller\AlbumController',
+             'Album\Controller\Newsfeed' => 'Album\Controller\NewsfeedController'
+           
              
          ),
      ),
@@ -42,17 +44,32 @@ return array(
                      ),
                  ),
              ),
+             // this is for controller
+             'Newsfeed' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/newsfeed[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Album\Controller\Newsfeed',
+                         'action'     => 'news',
+                     ),
+                 ),
+             ),
             
          ),
      ),
     
 
      'view_manager' => array(
-		'template_map' => array(
-			'layout/layout' => __DIR__ . '/../view/layout/albumlayout.phtml',
-		),
-		'template_path_stack' => array(
-			__DIR__ . '/../view',
-		),
-	),
+        'template_map' => array(
+            'layout/layout' => __DIR__ . '/../view/layout/albumlayout.phtml',
+        ),
+        'template_path_stack' => array(
+            __DIR__ . '/../view',
+        ),
+    ),
 );

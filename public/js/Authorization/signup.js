@@ -14,6 +14,7 @@ $('#signupbutton').click(function(){
 	regexpassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
 	if(firstName == "")
 	{
+		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Enter your First name").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
@@ -23,6 +24,7 @@ $('#signupbutton').click(function(){
 	}
 	if(lastName == "")
 	{
+		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Enter your Last name").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
@@ -32,6 +34,7 @@ $('#signupbutton').click(function(){
 	}
 	if(email == "")
 	{
+		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Enter your email").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
@@ -39,6 +42,7 @@ $('#signupbutton').click(function(){
             return false;
 		
 	} else if(!email.match(regexemail)){
+		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Enter a valid email address").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
@@ -46,24 +50,28 @@ $('#signupbutton').click(function(){
             return false;
 	}
 	if(password == ""){
+		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Enter password").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
             }, 8000);
             return false;
 	} else if(!password.match(regexpassword)) {
+		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Password should contain atleast one uppercae,one lowercase and minimum 8 characters.").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
             }, 8000);
             return false;
 	} else if(confirmpassword == "") {
+		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Please enter the confirm pasword").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
             }, 8000);
             return false;
 	}else if(password !== confirmpassword){
+		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Password mismatch").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
@@ -71,6 +79,7 @@ $('#signupbutton').click(function(){
             return false;
 
 	}else if(dob == ''){
+		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("enter your date of birth").show();
 		 setTimeout(function () {
                 $(".alertmesage_signup").fadeOut(300, function () {});
@@ -90,7 +99,7 @@ $('#signupbutton').click(function(){
                     dob: dob
                 },
                 success: function (result) {
-                    alert(result);return false;
+                    //alert(result);return false;
                     
 
                 }
@@ -98,7 +107,7 @@ $('#signupbutton').click(function(){
 		}
 	});
 $("#signin").click(function(){
-	//$(".signin_popup").show();
+	$(".signin_popup").show();
 	$(".signup_popup").hide();
 	
 });

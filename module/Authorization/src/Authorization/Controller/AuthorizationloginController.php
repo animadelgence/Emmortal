@@ -23,28 +23,88 @@ class AuthorizationloginController extends AbstractActionController {
 
     
     public function loginAction() {
-        echo "welcome from  authorization";exit;
+
+       // echo "welcome from  authorization";exit;
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+    	$loginemail = $_POST['loginemail'];
+    	$loginpassword = $_POST['loginpassword'];
+
+    	$dataarrayforvalidation = array('emailid' => $loginemail);
+        $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
+        $passcheck = password_verify($loginpassword, $contentDetails[0]['password']);
+      	if($passcheck == 1 && $contentDetails[0]['activation'] == 1)
+        {
+        	$value = "live";    
+        }
+        else if($passcheck == 1 && $contentDetails[0]['activation'] == 0)
+        {
+        	$value = "not activate";   
+        }
+        else
+        {
+        	$value = "deactivate";  
+        }
+        	echo $value;
+        	exit;
 
     }
-    public function mailsendAction(){
- //echo "welcome from  authorization fdghfdhfgh";exit;
-    		$mailplugin = $this->mailplugin();
-    		$plugin = $this->routeplugin();
-    		$jsonArray = $plugin->jsondynamic();
-            $dynamicPath = $plugin->dynamicPath();
-            //echo $dynamicPath;exit;
-    		//$email = 'maitrayeedelgence@gmail.com';
-    		$email = 'anima.adhikary@delgence.com';
-            $mailBody = '<div class="container" style="width: 50%; margin-left: auto; margin-right: auto; font-family: verdana;"><div class="header" style="background-color: #B2AA93; padding: 2px; text-align: center; color: #fff;"><h3 style="font-size: 13px;">Emmortal</h3></div><div class="text-content" style="padding: 15px;"><p style="font-size: 13px;">Welcome on Emmortal, <span style="font-weight: 600;">Anima Adhikary</span></p><p style="font-size: 13px;">Before you start using Emmortal , you need to confirm your email address.
-                Click the link below: </p><a class="confirm-link" href="#" style="text-decoration: none;">
-                <div class="btn" style="width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;">Confirm Email</div></a><p style="font-size: 13px;">Best, your Emmortal Team</p></div></div>';
-            $subject = "Confirm your email address";
-            $from = $jsonArray['sendgridaccount']['addfrom'];
-           // echo $from;exit;
-        	$mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
-        	echo $mailfunction;exit;
-        	
+    public function recoverAction(){
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $mailplugin = $this->mailplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+
+        $recoveryemail = $_POST['recoveryemail'];
+        $dataarrayforvalidation = array('emailid' => $loginemail);
+        $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
+        $id = $contentDetails[0]["userid"];
+        $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
+        $pass = password_hash($recoveryemail, PASSWORD_BCRYPT);
+
+        $buttonclick = $dynamicPath . "/album/showalbum/resetpassword/" . $pass;
+        $mail_link = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Reset password</div></a>";
+        $subject = "[Emmortal] Set your password";
+        $from = $jsonArray['sendgridaccount']['addfrom'];
+        $keyArray = array('mailCatagory' => 'F_MAIL');
+        $getMailStructure = $modelPlugin->getmailconfirmationTable()->fetchall($keyArray);
+        $getmailbodyFromTable = $getMailStructure[0]['mailTemplate'];
+        $mailLinkreplace = str_replace("|RECOVERYLINK|", $mail_link, $getmailbodyFromTable);
+        $mailBody = str_replace("|FULLNAME|", $fullname, $mailLinkreplace);
+        $fogetPasswordMail = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
+        $keyArray = array('userid' => $id);
+        $dataForForget = array('forgetpassword' => $pass);
+        $updateUser = $modelPlugin->getuserTable()->updateuser($dataForForget, $keyArray);
+
+        echo $updateUser;exit;
     }
+    public function resetpasswordAction(){
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $encryptedmailid = $_POST['encryptedmailid'];
+        $forgetpassword = password_hash($_POST['forgetpassword'], PASSWORD_BCRYPT);
+        $key = '1234547890183420';
+        $decryptedmail = $this->decrypt($encryptedmailid, $key);
+        $dataarrayforvalidation = array('emailid' => $decryptedmail);
+        $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
+        $id = $contentDetails[0]["userid"];
+        $keyArray = array('userid' => $id);
+        $dataForForget = array('password' => $forgetpassword);
+        $updateUser = $modelPlugin->getuserTable()->updateuser($dataForForget, $keyArray);
+
+        echo $updateUser;exit;
+
+    }
+     public function decrypt($data, $key) {
+        $decode = base64_decode($data);
+        return mcrypt_decrypt(
+                MCRYPT_RIJNDAEL_128, $key, $decode, MCRYPT_MODE_CBC, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+        );
+    }
+    
     
 }
 

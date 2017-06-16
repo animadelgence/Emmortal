@@ -31,7 +31,7 @@ class AlbumController extends AbstractActionController {
     }
     public function showalbumAction(){
     	$this->layout('layout/albumlayout.phtml');
-    	$plugin = $this->routeplugin();
+        $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
         $jsonArray = $plugin->jsondynamic();
@@ -40,6 +40,12 @@ class AlbumController extends AbstractActionController {
         $controller = @$href[3];
         $action = @$href[4];
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        $actionChecker = $this->getEvent()->getRouteMatch()->getParam('id');
+        $useridentifier = $this->getEvent()->getRouteMatch()->getParam('pId');
+        if($actionChecker == "resetpassword")
+        {
+                echo $actionChecker;
+        }//exit;
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     /*public function allalbumAction(){

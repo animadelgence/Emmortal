@@ -482,8 +482,9 @@ button[disabled], html input[disabled] {
     margin-top: 60px;
 }
 .modal-footer {
-    	padding: 0;
-	}
+    border-top: 0px solid #e5e5e5 !important;
+    padding: 0;
+}
     
 .modal-footer .btn-group button {
 	height:40px;

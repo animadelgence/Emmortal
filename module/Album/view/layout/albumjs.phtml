@@ -9,6 +9,7 @@ switch ($controller) {
 
             case 'showalbum':
                 $this->headScript()
+                        ->prependFile($this->basePath() . '/js/Authorization/login.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Authorization/signup.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/index.js?version=' . $t)

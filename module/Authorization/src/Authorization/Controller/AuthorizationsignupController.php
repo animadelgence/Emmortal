@@ -46,7 +46,7 @@ class AuthorizationsignupController extends AbstractActionController {
         	
         	$key = '1234547890183420';
             $encrypted = $this->encrypt($usid, $key);
-        	$buttonclick = $dynamicPath . "/album/showalbum/" . $encrypted;
+        	$buttonclick = $dynamicPath . "/profile/showprofile/" . $encrypted;
             $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
             
             $activationLink = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Confirm Email</div></a>";
@@ -62,8 +62,8 @@ class AuthorizationsignupController extends AbstractActionController {
             $from = $jsonArray['sendgridaccount']['addfrom'];
         	$mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
         }
-        $output = json_decode($mailfunction);
-        if (trim($output->message) === 'success') {
+        //$output = json_decode($mailfunction);
+        /*if (trim($output->message) === 'success') {
 
             $updateArray = array(
                 'activation' => '1'
@@ -71,7 +71,7 @@ class AuthorizationsignupController extends AbstractActionController {
             $keyarray = array('userid' => $usid);
             $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $keyarray);
            
-        }
+        }*/
         echo $albumFolder;exit;
     }
     public function encrypt($data, $key){

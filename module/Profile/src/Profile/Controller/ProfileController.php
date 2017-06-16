@@ -28,7 +28,29 @@ class ProfileController extends AbstractActionController {
         $query = array('UID'=>1);
         $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($query);
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails));
+        $actionChecker = $this->getEvent()->getRouteMatch()->getParam('id');
+        $useridentifier = $this->getEvent()->getRouteMatch()->getParam('pId');
+        //echo $actionChecker;exit;
+        $key = '1234547890183420';
+        if($actionChecker != "resetpassword")
+        {
+            //echo "inside if";
+            $decrypteduserId = $this->decrypt($actionChecker, $key);
+            $searchkayarray = array('userid'=>$decrypteduserId);
+            $updateArray = array(
+                'activation' => '1'
+            );
+            $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
+            $user_session = new Container('userloginId');
+            $user_session->userloginId = $decrypteduserId;
+            
+
+        }else{
+
+            echo $actionChecker;
+
+        }
+        return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails));
     }
     public function newsfeedAction(){
     	$this->layout('layout/profilelayout.phtml');
@@ -125,6 +147,12 @@ class ProfileController extends AbstractActionController {
                       );
         $albumDetails = $modelPlugin->gettextdetailsTable()->insertText($data);
         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+    }
+    public function decrypt($data, $key) {
+        $decode = base64_decode($data);
+        return mcrypt_decrypt(
+                MCRYPT_RIJNDAEL_128, $key, $decode, MCRYPT_MODE_CBC, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+        );
     }
 
 }

@@ -64,7 +64,7 @@ class AuthorizationloginController extends AbstractActionController {
         $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
         $pass = password_hash($recoveryemail, PASSWORD_BCRYPT);
 
-        $buttonclick = $dynamicPath . "/album/showalbum/resetpassword/" . $pass;
+        $buttonclick = $dynamicPath . "/profile/showprofile/resetpassword/" . $pass;
         $mail_link = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Reset password</div></a>";
         $subject = "[Emmortal] Set your password";
         $from = $jsonArray['sendgridaccount']['addfrom'];

@@ -23,9 +23,8 @@ return array(
                  'options' => array(
                      'route'    => '/authlogin[/:action][/:id][/:pId][/:devId]',
                      'constraints' => array(
-                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                     ),
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                      ),
                      'defaults' => array(
                          'controller' => 'Authorization\Controller\Authorizationlogin',
                          'action'     => 'login',
@@ -37,9 +36,8 @@ return array(
                  'options' => array(
                      'route'    => '/authsignup[/:action][/:id][/:pId][/:devId]',
                      'constraints' => array(
-                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                     ),
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ),
                      'defaults' => array(
                          'controller' => 'Authorization\Controller\Authorizationsignup',
                          'action'     => 'signup',

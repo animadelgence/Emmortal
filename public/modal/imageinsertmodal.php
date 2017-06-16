@@ -1,5 +1,5 @@
 <!-- line modal -->
-<div class="modal fade" id="photoInsertModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:visible !important;">
+<div class="modal fade" id="photoInsertModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:scroll !important;">
 	<div class="modal-dialog modal-box modal-photo">
 		<div class="modal-content modal-outer inner-modal-photo">
 			<div class="modal-header modal-headernew">
@@ -7,36 +7,35 @@
 				<h3 class="modal-title" id="lineModalLabel">Create new text entry</h3>
 			</div>
 			<div class="modal-body select-media-type-popup">
-				<form name="textAddForm" id="textAddForm" action="http://emmortal.localhost/profile/publishtext" method="POST" enctype="multipart/form-data">
+				<form name="textAddForm" id="textAddForm" action="" method="POST" enctype="multipart/form-data">
 					<div class="modal-body photo-popup">
 						<div class="row">
 							<div class="col-md-6">
-								<div class="ng-scope" ng-if="showCanvas">
-									<div class="image-form-field ng-isolate-scope" picture-name="photo" object="photo" height="360" field-name="image" errors="errors.image"></div>
-									<div class="image-select" ng-show="!object[fieldUrl]">
-										<div class="img-input ng-isolate-scope" selected-image="object[field]" picture-name="photo" on-remove="removeImage" keep-aspect="keepAspect" height="height">
-											<div class="canvas-placeholder" ng-style="{ 'height': ((height || 300) + 'px') }" ng-show="!cropper.sourceImage" style="height: 360px;">
+								<div class="" >
+									<div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
+									<div class="image-select">
+										<div class="img-input">
+											<div class="canvas-placeholder" style="height: 360px;">
 												<i class="fa fa-picture-o"></i>
 											</div>
-											<div class="btn e-btn btn-primary file-input-btn ng-scope" ng-if="!cropper.sourceImage">
+											<div class="btn e-btn btn-primary file-input-btn ng-scope" >
 												<i class="fa fa-upload"></i>
 												Choose
-												<span class="ng-binding" ng-bind="pictureName || 'image'">photo</span>
-												<input class="ng-isolate-scope" type="file" img-cropper-fileread="" image="cropper.sourceImage" accept="image/*">
+												<span class="">photo</span>
+												<input class="" type="file">
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="m-t-20">
-									<div class="tags-input-wrapper ng-isolate-scope ng-valid" ng-model="photo.tagged_users" errors="errors['tags.user']">
-										<tags-input class="e-tags-input ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-max-tags ng-valid-min-tags ng-valid-leftover-text" placeholder="Type friend name..." ng-model="ngModel" min-length="1" display-property="first_name" add-from-autocomplete-only="true">
-											<div class="host" ti-transclude-append="" ng-click="eventHandlers.host.click()" tabindex="-1">
-												<div class="tags" ng-class="{focused: hasFocus}">
+									<div class="tags-input-wrapper" >
+										<tags-input class="e-tags-input " placeholder="Type friend name..." min-length="1" >
+											<div class="host">
+												<div class="tags">
 													<ul class="tag-list"></ul>
-													<input class="input ng-pristine ng-untouched ng-valid" type="text" ti-autosize="" ti-bind-attrs="{type: options.type, placeholder: options.placeholder, tabindex: options.tabindex, spellcheck: options.spellcheck}" ng-disabled="disabled" ng-class="{'invalid-tag': newTag.invalid}" ng-trim="false" ng-paste="eventHandlers.input.paste($event)" ng-blur="eventHandlers.input.blur($event)" ng-focus="eventHandlers.input.focus($event)" ng-keydown="eventHandlers.input.keydown($event)" ng-model-options="{getterSetter: true}" ng-model="newTag.text" autocomplete="off" placeholder="Type friend name..." style="width: 132px;" spellcheck="true">
+													<input class="input" type="text" autocomplete="off" placeholder="Type friend name..." style="width: 132px;" spellcheck="true">
 													<span class="input" style="visibility: hidden; width: auto; white-space: pre; display: none;">Type friend name...</span>
 												</div>
-												<auto-complete class="ng-scope ng-isolate-scope" template="directives/e-tags-input/template.html" source="getFriends($query)" min-length="1" load-on-down-arrow="true" debounce-delay="300"></auto-complete>
 											</div>
 										</tags-input>
 									</div>
@@ -44,10 +43,10 @@
 								</div>
 							</div>
 							<div class="col-md-6 m-t-xs-20">
-								<div class="m-b-10 ng-isolate-scope ng-valid" ng-class="{'has-error': errors.length}" placeholder="Title" ng-model="photo.title" errors="errors.title">
-									<input class="form-control ng-pristine ng-valid-maxlength ng-valid ng-valid-required ng-touched" type="text" placeholder="Title" ng-required="ngRequired" ng-model-options="{debounce: debounce}" ng-model="ngModel" ng-disabled="ngDisabled" ng-change="onChange()" min="min" maxlength="maxlength" max="max">
+								<div class="m-b-10">
+									<input class="form-control" type="text" placeholder="Title" >
 								</div>
-								<div class="m-b-20 m-t-20 ng-isolate-scope ng-valid" ng-class="{'has-error': errors.length}" ng-model="photo.description" errors="errors.description">
+								<div class="m-b-20 m-t-20" >
 									<text-angular class="ng-pristine ng-untouched ng-valid ng-isolate-scope ta-root" ng-model="ngModel">
 										<div class="ng-scope ng-isolate-scope ta-toolbar btn-toolbar" name="textAngularToolbar2402683519906137" text-angular-toolbar="">
 											<div class="btn-group">
@@ -92,16 +91,16 @@
 										</div>
 									</text-angular>
 								</div>
-								<div ng-if="!photo.id" class="row ng-scope">
+								<div class="row">
 									<div class="col-sm-5">
 										<div class="e-select">
-											<select ng-options="album.id as album.title for album in albums" ng-model="photo.album_id" e-select="" class="ng-pristine ng-untouched ng-valid">
+											<select>
 												<option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-sm-7 m-t-xs-20">
-										<div ng-click="createAlbumModal()" class="btn e-btn btn-brown ng-isolate-scope" target="photo" albums="albums">
+										<div class="btn e-btn btn-brown" >
 											<div class="fa fa-plus"></div> Add album
 										</div>
 									</div>
@@ -109,11 +108,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="modal-footer text-right"><!-- ngIf: !photo.id -->
-						<span ng-if="!photo.id" class="ng-scope">
-							<button type="button" ng-click="back()" class="btn e-btn btn-default">Back</button>
+					<div class="modal-footer text-right">
+						<span class="">
+							<button type="button" class="btn e-btn btn-default">Back</button>
 							<button type="submit" class="btn e-btn btn-primary">Publish</button>
-						</span><!-- end ngIf: !photo.id --><!-- ngIf: photo.id -->
+						</span>
 					</div>
 				</form>
 			</div>

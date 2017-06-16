@@ -11,6 +11,7 @@ class modelplugin extends routeplugin {
     public $trackdetailsTable;
     public $mailconfirmationTable;
     public $friendsTable;
+    public $pagedetailsTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {
@@ -59,6 +60,14 @@ class modelplugin extends routeplugin {
             $this->friendsTable = $sm->get('Album\Model\friendsTable');
         }
         return $this->friendsTable;
+    }
+    public function getpagedetailsTable() {
+        if (!$this->pagedetailsTable) {
+
+            $sm = $this->getController()->getServiceLocator();
+            $this->pagedetailsTable = $sm->get('Profile\Model\pagedetailsTable');
+        }
+        return $this->pagedetailsTable;
     }
 }
 

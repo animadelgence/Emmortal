@@ -28,17 +28,17 @@
             }
             return $array;
         }
-        public function insertText($data)
+        public function insertData($data)
         {
             return $rowset = $this->tableGWay->insert($data);
         }
-        public function updateText($data,$where)
+        public function updateData($data,$where)
         {
             $rowset = $this->tableGWay->select($where);
             $res = $this->tableGWay->update($data,$where);
             return $res;
         }
-        public function deleteSection($where)
+        public function deleteData($where)
         {
             $rowset = $this->tableGWay->select($where);
             $res = $this->tableGWay->delete($where);

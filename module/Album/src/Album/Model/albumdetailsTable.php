@@ -16,6 +16,7 @@
             $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
+                    'albumeid' => $rSet->albumeid,
                     'UID' => $rSet->UID,
                     'albumimagepath' => $rSet->albumimagepath,
                     'friendsid' => $rSet->friendsid,

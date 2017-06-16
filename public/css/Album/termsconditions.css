@@ -1,8 +1,8 @@
 
 .termsHeader{
-/*    margin: 38px 125px 0 115px;*/
+    margin: 38px 245px 0 190px;
     text-align: center;
-    margin-top: 38px;
+    margin-top: 48px;
     padding: 15px 30px;
     border-bottom: 0;
     background: #aaa897;
@@ -11,16 +11,15 @@
 
 .termsBody{
     background-color: #fff;
-/*
-    margin: 0 125px 0 115px;
-    max-height: 500px;
-*/
+    margin: 0 245px 0 190px;
+    max-height: 540px;
     overflow-y: auto;
     color: #aaa897;
     border-bottom: 1px solid #aaa897;
 }
 
 .inner_content{
-    margin-left: 10px !important;
+    margin: 20px !important;
     color: #aaa897 !important;
+    text-align: justify;
 }

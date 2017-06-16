@@ -24,8 +24,12 @@
                             <ul class="dropdown-menu topbar-dropdown drop-border drop-bg">
                                 <li><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block sign-up">Sign Up</button></li>
                                 <li><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">Sign In</button></li>
-                                <li><button data-toggle="modal" data-target="#squarespaceModal3" class="btn btn-primary center-block sign-up">About Us</button></li>
-                                <li><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up">Terms & Condisions</button></li>
+                                <li><?php if( strtolower($controller) == 'profile'){ ?>
+                                    <button data-toggle="modal" data-target="#squarespaceModal3" class="btn btn-primary center-block sign-up" onclick="location.href='/profile/newsfeed'">Newsfeed</button>
+                                <?php }?>
+                                </li>
+                                <li><button data-toggle="modal" data-target="#squarespaceModal3" class="btn btn-primary center-block sign-up" onclick="location.href='/album/aboutus'">About Us</button></li>
+                                <li><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up" onclick="location.href='/album/termsandconditions'">Terms & Conditions</button></li>
                             </ul>
                         </li>
                     </ul>

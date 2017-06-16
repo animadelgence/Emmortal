@@ -54,6 +54,32 @@ class AlbumController extends AbstractActionController {
     	return new ViewModel();
     	//exit;
     }*/
+    public function termsandconditionsAction(){
+    	$this->layout('layout/albumlayout.phtml');
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+    }
+    public function aboutusAction(){
+    	$this->layout('layout/albumlayout.phtml');
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+    }
 
     
 }

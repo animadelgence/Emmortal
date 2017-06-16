@@ -28,5 +28,18 @@ class ProfileController extends AbstractActionController {
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
+    public function newsfeedAction(){
+    	$this->layout('layout/profilelayout.phtml');
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+    }
 
 }

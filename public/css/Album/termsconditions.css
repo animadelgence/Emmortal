@@ -1,6 +1,6 @@
 
 .termsHeader{
-/*    margin: 38px 125px 0 115px;*/
+    margin: 38px 245px 0 190px;
     text-align: center;
     margin-top: 38px;
     padding: 15px 30px;
@@ -11,10 +11,8 @@
 
 .termsBody{
     background-color: #fff;
-/*
-    margin: 0 125px 0 115px;
-    max-height: 500px;
-*/
+    margin: 0 245px 0 190px;
+    max-height: 550px;
     overflow-y: auto;
     color: #aaa897;
     border-bottom: 1px solid #aaa897;

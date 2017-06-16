@@ -116,14 +116,14 @@ class ProfileController extends AbstractActionController {
         }
         $UID = 1;
         $addeddate = date('Y-m-d H:i:s');
-        $data =  array('title'=>$title,
-                      'description'=>$description,
-                      'UID'=>$UID,
+        $data =  array('UID'=>$UID,
+                      'uploadTitle'=>$title,
+                      'uploadDescription'=>$description,
                       'AID'=>$AID,
-                      'friendsid'=>$friendsid,
-                      'addeddate'=>$addeddate
+                      'FID'=>$friendsid,
+                      'TimeStamp'=>$addeddate
                       );
-        $albumDetails = $modelPlugin->gettextdetailsTable()->insertText($data);
+        $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($data);
         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
 

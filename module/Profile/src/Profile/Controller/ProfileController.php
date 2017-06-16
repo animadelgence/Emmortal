@@ -25,8 +25,10 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
+        $query = array('UID'=>1);
+        $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($query);
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails));
     }
     public function newsfeedAction(){
     	$this->layout('layout/profilelayout.phtml');
@@ -40,6 +42,89 @@ class ProfileController extends AbstractActionController {
         $action = @$href[4];
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+    }
+    public function getalbumAction(){
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        $query = array('UID'=>1);
+        $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($query);
+        echo '<option value="">My chronicles</option>';
+        if(!empty($albumDetails)){
+            foreach($albumDetails as $aResult){
+            $albumeid = $aResult['albumeid'];
+            $title = $aResult['title'];
+            echo '<option value="'.$albumeid.'">'.$title.'</option>';
+            }
+        }
+        exit;
+     }
+    public function getfriendsAction(){
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        $query = array('userid'=>1);
+        //$like = $_POST['like'];
+        $like = 'user';
+        $friendDetails = $modelPlugin->getfriendsTable()->fetchall($query);
+        $array = array();
+        foreach ($friendDetails as $rSet) {
+            $array[] = array(
+                'friendsid' => $rSet['friendsid']
+            );
+          }
+          $res['friendDetails'] = $array;
+          echo json_encode($res);
+          exit;
+        /*if(!empty($albumDetails)){
+            foreach($albumDetails as $result){
+                echo '<li class="frndlist-click" style="background: #aaa897;margin-bottom: 2px;" data-id="'.$result['friendsid'].'">'.$result['friendsid'].'</li>';
+            }
+        } else{
+            echo "";
+        }
+        //$albumDetails = $modelPlugin->getfriendsTable()->joinquery($query,$like);
+        exit;*/
+     }
+     public function publishtextAction(){
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        $title = $_POST['textTitle'];
+        $description = $_POST['textDescription'];
+        $AID = $_POST['AID'];
+        $frndId = $_POST['frndId'];
+        $ct = count($frndId);
+        $friendsid= '';
+        for($i=0;$i<$ct;$i++){
+          $friendsid = $friendsid.$frndId[$i].',';
+        }
+        $UID = 1;
+        $addeddate = date('Y-m-d H:i:s');
+        $data =  array('title'=>$title,
+                      'description'=>$description,
+                      'UID'=>$UID,
+                      'AID'=>$AID,
+                      'friendsid'=>$friendsid,
+                      'addeddate'=>$addeddate
+                      );
+        $albumDetails = $modelPlugin->gettextdetailsTable()->insertText($data);
+        return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
 
 }

@@ -1,0 +1,53 @@
+ <section class="top-bar">
+        <div class="container">
+            <div class="row">
+                 
+                <div>
+                <div class="col-lg-10">
+                    <a href="/album/showalbum" class="logo-style">Emmortal</a>
+                    <?php if( strtolower($controller) == 'profile'){ ?>
+                    <button class="btn btn-default dropdown-toggle down-arrow" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu profile-strip down-inner " aria-labelledby="dropdownMenu1">
+                        <li><a href="#"><span class="user-icon"><img src="/image/thumb_image_92326ed88b94b5f0.jpg.png"/></span>Maitrayee Bhaumik</a></li>
+                        <li><a href="#">Albums</a></li>
+                        <li><a href="#">Relationships</a></li>
+                        <li><a href="#">Tributes</a></li>
+                    </ul>
+                    <?php } ?>
+                </div>
+                <div class="col-lg-2">
+                    <ul class="nav navbar-nav hamburger-menu pull-right">
+                        <li class="dropdown hover-effect">
+                            <a href="#" class="dropdown-toggle drop-list-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-bars" aria-hidden="true"></i></span></a>
+                            <ul class="dropdown-menu topbar-dropdown drop-border drop-bg">
+                                <li><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block sign-up">Sign Up</button></li>
+                                <li><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">Sign In</button></li>
+                                <li><button data-toggle="modal" data-target="#squarespaceModal3" class="btn btn-primary center-block sign-up">About Us</button></li>
+                                <li><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up">Terms & Condisions</button></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <?php // echo "jksgdfrdhgtlgrtuhthtyhjty dsgdfhfh "; ?>
+                </div>
+                </div>
+                
+               <!--   <?php //if( strtolower($controller) == 'profile'){ ?>
+                <div>
+                    <button class="btn btn-default dropdown-toggle down-arrow" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu profile-strip down-inner " aria-labelledby="dropdownMenu1">
+                        <li><a href="#"><span class="user-icon"><img src="img/no_avatar-4a24e6328b8108841fcf2f92ebc22261.jpg"/></span>Swarnali Sardar</a></li>
+                        <li><a href="#">Albums</a></li>
+                        <li><a href="#">Relationships</a></li>
+                        <li><a href="#">Tributes</a></li>
+                    </ul>
+                
+                </div>-->
+                <?php //} ?> 
+
+            </div>
+        </div>
+    </section>

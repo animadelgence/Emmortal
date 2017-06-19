@@ -10,9 +10,13 @@ use Zend\Session\SessionManager;
 
 class PageController extends AbstractActionController {
 
-    public function indexAction() {
+
+    public function newpagecreateAction(){
         $modelPlugin = $this->modelplugin();
         $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall();
         print_r($pageDetails);exit;
-       }
+    }
+    public function selectpageAction(){
+
+    }
 }

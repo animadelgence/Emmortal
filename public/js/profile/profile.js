@@ -70,7 +70,7 @@ $(document).ready(function () {
         var id = $(this).data("id");
         frndDetails.push(id);
         var name = $(this).text();
-        $('<span class="frnd-span-class">' + name + '<i class="fa fa-times frnd-cancel frnd-cross-class" aria-hidden="true"></i><input type="hidden" name="frndId[]" value="' + id + '"></span>&#59;').insertBefore('#append-div input[type="text"]');
+        $('<span class="frnd-span-class">' + name + '<i class="fa fa-times frnd-cancel frnd-cross-class" aria-hidden="true"></i><input type="hidden" class = "frndId" name="frndId[]" value="' + id + '"></span>&#59;').insertBefore('#append-div input[type="text"]');
         $('.frndlist').hide();
         $('.friendsid').val('');
     });

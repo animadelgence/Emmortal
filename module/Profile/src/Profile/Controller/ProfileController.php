@@ -25,11 +25,12 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $query = array('UID'=>1);
-        $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($query);
+        $pageQuery = array('UID'=>1);
+        $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
+        $uploadQuery = array('UID'=>1,'PID'=>$pageDetails[0]['pageid']);
+        $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-        
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadQuery'=>$uploadQuery , 'pageDetails'=>$pageDetails));
     }
     public function newsfeedAction(){
     	$this->layout('layout/profilelayout.phtml');

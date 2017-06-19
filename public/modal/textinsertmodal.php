@@ -30,10 +30,10 @@
 							</div>
 							<div class="form-group col-xs-6 col-sm-5">
 								<div class="" id="append-div">
-									<input type="text" class="form-control" name="friendsid" id="friendsid" placeholder="Type Friend Name...">
+									<input type="text" class="form-control friendsid" name="friendsid" id="friendsid" placeholder="Type Friend Name...">
 								</div>
 								<div class="dropdown-div">
-									<ul style="list-style-type: none;z-index: 999999; position: relative; display:none;" id="frndlist">
+									<ul style="list-style-type: none;z-index: 999999; position: relative; display:none;" id="frndlist" class="frndlist">
 									</ul>
 								</div>
 							</div>

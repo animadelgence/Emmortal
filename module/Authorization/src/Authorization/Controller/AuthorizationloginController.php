@@ -34,6 +34,7 @@ class AuthorizationloginController extends AbstractActionController {
     	$dataarrayforvalidation = array('emailid' => $loginemail);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
         $passcheck = password_verify($loginpassword, $contentDetails[0]['password']);
+        //echo $contentDetails[0]['activation'];exit;
       	if($passcheck == 1 && $contentDetails[0]['activation'] == 1)
         {
         	$value = "live";    
@@ -42,7 +43,7 @@ class AuthorizationloginController extends AbstractActionController {
         {
         	$value = "not activate";   
         }
-        else
+        else if($passcheck == 0 && $contentDetails[0]['activation'] == 0)
         {
         	$value = "deactivate";  
         }

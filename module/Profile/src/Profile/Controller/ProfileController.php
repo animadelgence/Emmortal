@@ -60,8 +60,10 @@ class ProfileController extends AbstractActionController {
             
 
         }else{
+            //echo $useridentifier;exit;
             $serchArray = array('forgetpassword' => $useridentifier);
             $FetchDetails = $modelPlugin->getuserTable()->fetchall($serchArray);
+           // print_r($FetchDetails);exit;
             if (empty($FetchDetails)) {
                     return $this->redirect()->toUrl($dynamicPath."/album/showalbum");
             }

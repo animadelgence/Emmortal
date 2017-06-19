@@ -99,7 +99,12 @@ $('#signupbutton').click(function(){
                     dob: dob
                 },
                 success: function (result) {
-                    alert("welcome to emmortal");
+                	if(result == 1){
+                		alert("welcome to emmortal");
+                	}else {
+                		alert("Already have an account with this mail id");
+                	}
+                    
                     //return false;
                     
 

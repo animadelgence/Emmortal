@@ -10,6 +10,7 @@ class uploadDetails
     public $UID;
     public $uploadTitle;
     public $uploadDescription;
+    public $uploadType;
     public $AID;
     public $FID;
     public $PID;
@@ -21,10 +22,11 @@ class uploadDetails
 		$this->UID = (!empty($data['UID'])) ? $data['UID'] : null;
 		$this->uploadTitle = (!empty($data['uploadTitle'])) ? $data['uploadTitle'] : null;
         $this->uploadDescription = (!empty($data['uploadDescription'])) ? $data['uploadDescription'] : null;
+        $this->uploadType = (!empty($data['uploadType'])) ? $data['uploadType'] : null;
         $this->AID = (!empty($data['AID'])) ? $data['AID'] : null;
         $this->FID = (!empty($data['FID'])) ? $data['FID'] : null;
         $this->PID = (!empty($data['PID'])) ? $data['PID'] : null;
-        $this->TimeStamp = (!empty($data['TimeStamp'])) ? $data['TimeStamp'] : null;
+        
 	}
 
     public function getArrayCopy()

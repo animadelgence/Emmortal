@@ -1,7 +1,14 @@
- <?php $refererpageURL = $_SERVER['HTTP_REFERER']; 
-       $refererpage = explode("/",$refererpageURL);
-       $refercontroller = $refererpage[3];
-       $referaction = $refererpage[4];?>
+ <?php 
+//echo $_SERVER['REQUEST_URI'];exit;
+    if($_SERVER['REQUEST_URI'] != '/album/showalbum' ){
+        $refererpageURL = $_SERVER['HTTP_REFERER']; 
+        $refererpage = explode("/",$refererpageURL);
+        $refercontroller = $refererpage[3];
+        $referaction = $refererpage[4];
+    }else {
+        $refercontroller = "";
+        $referaction = "";
+        }?>
  <section class="top-bar navbar-fixed-top">
         <div class="container">
             <div class="row">

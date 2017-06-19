@@ -19,7 +19,7 @@
 								<span id="textDescriptionError" style="color:red;display:none;">Required</span>
 							</div>
 							<div class="form-group col-xs-6 col-sm-4">
-								<select name="AID" id="AID" class="form-control">
+								<select name="AID" id="AID" class="AID form-control">
 								</select>
 							</div>
 							<div class="form-group col-xs-6 col-sm-3">

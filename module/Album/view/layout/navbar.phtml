@@ -1,8 +1,24 @@
+ <?php $refererpageURL = $_SERVER['HTTP_REFERER']; 
+       $refererpage = explode("/",$refererpageURL);
+       $refercontroller = $refererpage[3];
+       $referaction = $refererpage[4];?>
  <section class="top-bar navbar-fixed-top">
         <div class="container">
             <div class="row">
                  
                 <div>
+<?php
+                if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
+                    <div class="welcome" style="display:block;">
+                        <div class="close-msg">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                            <span>Welcome!</span>
+                        
+                    </div>
+                <?php } ?>
                 <div class="col-lg-8">
                     <a href="/album/showalbum" class="logo-style">Emmortal</a>
                     <?php if( strtolower($controller) == 'profile'){ ?>
@@ -90,6 +106,7 @@
 
             </div>
         </div>
+
     </section>
 
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/uploadmodal.php"); ?>

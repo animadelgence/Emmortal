@@ -42,10 +42,11 @@ class AuthorizationsignupController extends AbstractActionController {
             if(count($usercheck) == 0){
                 $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'signindate' => date('Y-m-d'));
                 $albumFolder = $modelPlugin->getuserTable()->savedata($insertedArray,$keyArray);
-                $insrtArrayforpagetable =array('UID'=>$albumFolder, 'createddate' =>);
+                $insrtArrayforpagetable =array('UID'=>$albumFolder, 'createddate' =>date('Y-m-d H:i:s'));
+                $resultinsert = $modelPlugin->getpagedetailsTable()->insertData($insrtArrayforpagetable);
                 $albumDetails = $modelPlugin->getuserTable()->fetchall($keyArray);
                 $usid= $albumDetails[0]['userid'];
-                if($albumFolder == 1)
+                if($resultinsert == 1)
                 {
                     
                     $key = '1234547890183420';

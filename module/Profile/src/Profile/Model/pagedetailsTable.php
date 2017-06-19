@@ -20,6 +20,10 @@
             }
             return $array;
         }
+        public function insertData($data)
+        {
+            return $rowset = $this->tableGWay->insert($data);
+        }
 
     }
 ?>

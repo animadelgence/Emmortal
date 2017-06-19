@@ -26,22 +26,23 @@
 												Choose photo
 												<input name="file" type="file" id="imageArea1">
                                                 <input type = "hidden" id = "imagePath" value="">
-                                                <input type = "hidden" id= "aviaryPath" name= "action" value="1">
+                                                <input type = "hidden" id= "aviaryPath" name= "action" value="">
                                                 
 											</div>
+                                            <span id="imagePathError" style="color:red;display:none;">No image Selected</span>
 										</div>
 									</div>
 								</div>
                                 <div class="m-t-20 ">
 									<div class="tags-input-wrapper" >
-                                        <tags-input class="e-tags-input ">
+                                        <!--<tags-input class="e-tags-input ">-->
                                             <div class="host">
                                                 <div class="tags" id="div-editphoto">
                                                     <ul class="input tag-list"></ul>
                                                     <input id="imgbtnEditPhoto" type="image" src="http://advanced.aviary.com/images/feather/edit-photo.png" value="Edit photo" onclick="return launchEditor('profile_pic_thumb');" />
                                                 </div>
                                             </div>
-                                        </tags-input>
+                                        <!--</tags-input>-->
 									</div>
 
 								</div>
@@ -49,33 +50,42 @@
                                 </form>
 								<div class="m-t-20">
 									<div class="tags-input-wrapper" >
-										<tags-input class="e-tags-input " placeholder="Type friend name..." min-length="1" >
+										<!--<tags-input class="e-tags-input " placeholder="Type friend name..." min-length="1" >-->
 											<div class="host">
 												<div class="tags">
-													<ul class="tag-list"></ul>
-													<input class="input" type="text" autocomplete="off" placeholder="Type friend name..." style="width: 132px;" spellcheck="true">
-													<span class="input" style="visibility: hidden; width: auto; white-space: pre; display: none;">Type friend name...</span>
-												</div>
+													
+                                                    <div class="auto-listing-div" id="append-div">
+                                                        <input type="text" class="e-tags-input friendsid" name="friendsid" placeholder="Type Friend Name..." id ="imageFriend">
+                                                        <span id="imageFriendError" style="color:red;display:none;">Required</span>
+                                                    </div>
+                                                    <div class="dropdown-div">
+                                                        <ul style="list-style-type: none;z-index: 999999; position: relative; display:none; margin-top:4px; width:445px;" id="frndlist" class="frndlist spanClass">
+                                                        </ul>
+                                                    </div>
+                                                </div>
 											</div>
-										</tags-input>
+										<!--</tags-input>-->
 									</div>
 
 								</div>
 							</div>
 							<div class="col-md-6 m-t-xs-20">
 								<div class="m-b-10">
-									<input class="form-control" type="text" placeholder="Title" >
+									<input class="form-control" type="text" placeholder="Title" id="imageTitle">
+                                    <span id="imageTitleError" style="color:red;display:none;">Required</span>
 								</div>
 								<div class="m-b-20 m-t-20" >
 									<textarea name="imagetextDescription" id="imagetextDescription" class="form-control" style="height:353px;"></textarea>
 								    <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>
 								</div>
-								<div class="row" style="margin-top: 100px;">
+								<div class="row error-style" style="margin-top: 46px;">
 									<div class="col-sm-5">
 										<div class="e-select">
-											<select>
+											<!--<select>
 												<option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
-											</select>
+											</select>-->
+                                            <select name="AID" id="listing" class="AID">
+								            </select>
 										</div>
 									</div>
 									<div class="col-sm-7 m-t-xs-20">
@@ -90,7 +100,7 @@
 					<div class="modal-footer text-right">
 						<span class="">
 							<button type="button" class="btn e-btn btn-default" onclick="$('.close').trigger('click');" data-toggle="modal" data-target="#uploadModal">Back</button>
-							<button type="submit" class="btn e-btn btn-primary">Publish</button>
+							<button type="submit" class="btn e-btn btn-primary" id = "saveDetails">Publish</button>
 						</span>
 					</div>
 				<!--</form>-->

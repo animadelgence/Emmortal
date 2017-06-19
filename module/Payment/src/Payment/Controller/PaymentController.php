@@ -42,6 +42,20 @@ class PaymentController extends AbstractActionController {
         echo $imagePath ;
         exit;
     }
-  
+  public function saveImageDetailsAction() {
+    print_r($_POST); exit;
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        if($action == 'showprofile')
+        {
+            
+        }
+  }
 
 }

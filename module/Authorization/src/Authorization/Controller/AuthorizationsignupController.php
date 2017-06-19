@@ -38,7 +38,7 @@ class AuthorizationsignupController extends AbstractActionController {
       
         $keyArray = array('emailid'=>$email);
         $usercheck = $modelPlugin->getuserTable()->fetchall($keyArray);
-        {
+        
             if(count($usercheck) == 0){
                 $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'signindate' => date('Y-m-d'));
                 $albumFolder = $modelPlugin->getuserTable()->savedata($insertedArray,$keyArray);
@@ -69,25 +69,17 @@ class AuthorizationsignupController extends AbstractActionController {
                     $subject = "Confirm your email address";
                     $from = $jsonArray['sendgridaccount']['addfrom'];
                     $mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
+
                 }
+               // $resultinsertvalue = 1; 
 
             }else {
-                $resultinsert = 0;
+                $mailfunction = 0;
             }
 
-        }
-        
-        //$output = json_decode($mailfunction);
-        /*if (trim($output->message) === 'success') {
-
-            $updateArray = array(
-                'activation' => '1'
-            );
-            $keyarray = array('userid' => $usid);
-            $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $keyarray);
-           
-        }*/
-        echo $resultinsert;exit;
+        echo $mailfunction;exit;
+      
+       
     }
     public function encrypt($data, $key){
     return base64_encode(

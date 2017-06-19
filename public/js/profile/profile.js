@@ -44,13 +44,17 @@ $(document).ready(function () {
                 data: {},
                 success: function (res) {
                     jsObject = JSON.parse(res);
-                    var html = "";
+                    var html = "",
+                        profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg";
                     for (i = 0; i < jsObject.friendDetails.length; i++) {
                         var id = jsObject.friendDetails[i].friendsid;
                         var friendsname = jsObject.friendDetails[i].friendsname.toLowerCase();
                         if (friendsname.indexOf(friendsid.toLowerCase()) > -1) {
                             if ($.inArray(parseInt(id), frndDetails) == '-1') {
-                                html += '<li class="frndlist-click dropdown-li" data-id="' + jsObject.friendDetails[i].friendsid + '"><img src="/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg" class="img-circle frnd-image-class" alt="Cinque Terre" ><span class="frnd-list-name">' + jsObject.friendDetails[i].friendsname + '</span></li>';
+                                if (jsObject.friendDetails[i].profileimage != '') {
+                                    profileimage = jsObject.friendDetails[i].profileimage;
+                                }
+                                html += '<li class="frndlist-click dropdown-li" data-id="' + jsObject.friendDetails[i].friendsid + '"><img src="' + profileimage + '" class="img-circle frnd-image-class" alt="Cinque Terre" ><span class="frnd-list-name">' + jsObject.friendDetails[i].friendsname + '</span></li>';
                             }
                         }
                     }

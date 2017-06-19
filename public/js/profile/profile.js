@@ -35,7 +35,7 @@ $(document).ready(function () {
             }
         });
     });
-    $('body').on('keyup', '#friendsid', function () {
+    $('body').on('keyup', '.friendsid', function () {
         var friendsid = $(this).val().trim();
         if (friendsid != '') {
             $.ajax({
@@ -51,19 +51,19 @@ $(document).ready(function () {
                         var friendsname = jsObject.friendDetails[i].friendsname.toLowerCase();
                         if (friendsname.indexOf(friendsid.toLowerCase()) > -1) {
                             if ($.inArray(parseInt(id), frndDetails) == '-1') {
-                                if (jsObject.friendDetails[i].profileimage != '') {
+                                if (jsObject.friendDetails[i].profileimage != null) {
                                     profileimage = jsObject.friendDetails[i].profileimage;
                                 }
                                 html += '<li class="frndlist-click dropdown-li" data-id="' + jsObject.friendDetails[i].friendsid + '"><img src="' + profileimage + '" class="img-circle frnd-image-class" alt="Cinque Terre" ><span class="frnd-list-name">' + jsObject.friendDetails[i].friendsname + '</span></li>';
                             }
                         }
                     }
-                    $('#frndlist').html(html);
-                    $('#frndlist').show();
+                    $('.frndlist').html(html);
+                    $('.frndlist').show();
                 }
             });
         } else {
-            $('#frndlist').hide();
+            $('.frndlist').hide();
         }
     });
     $('body').on('click', '.frndlist-click', function () {
@@ -71,8 +71,8 @@ $(document).ready(function () {
         frndDetails.push(id);
         var name = $(this).text();
         $('<span class="frnd-span-class">' + name + '<i class="fa fa-times frnd-cancel frnd-cross-class" aria-hidden="true"></i><input type="hidden" name="frndId[]" value="' + id + '"></span>&#59;').insertBefore('#append-div input[type="text"]');
-        $('#frndlist').hide();
-        $('#friendsid').val('');
+        $('.frndlist').hide();
+        $('.friendsid').val('');
     });
     $('body').on('click', '.frnd-cancel', function () {
         var removeItem = $(this).next().val();

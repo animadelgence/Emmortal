@@ -33,6 +33,9 @@ class AuthorizationloginController extends AbstractActionController {
 
     	$dataarrayforvalidation = array('emailid' => $loginemail);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
+        $usid = $contentDetails[0]['userid'];
+        $user_session = new Container('userloginId');
+        $user_session->userloginId = $usid;
         $passcheck = password_verify($loginpassword, $contentDetails[0]['password']);
         //echo $contentDetails[0]['activation'];exit;
       	if($passcheck == 1 && $contentDetails[0]['activation'] == 1)

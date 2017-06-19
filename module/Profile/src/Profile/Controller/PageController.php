@@ -15,25 +15,25 @@ class PageController extends AbstractActionController {
         $this->sessionid = $userSession->offsetGet('userloginId');
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
-        if ($this->sessionid == "") {
+        /*if ($this->sessionid == "") {
             header("Location:" . $dynamicPath. "/profile/showprofile");
             exit;
-        }
+        }*/
     }
 
     public function newpagecreateAction(){
         $modelPlugin = $this->modelplugin();
-        $dynamicPath = $this->dynamicPath();
+        $dynamicPath = $modelPlugin->dynamicPath();
         $currentdatetime = date("Y-m-d h:i:sa");
-        $data = array("UID" => $this->sessionid , "createddate" =>$currentdatetime);
+        $data = array("UID" => "13" , "createddate" =>$currentdatetime);
         $pageinsertQuery = $modelPlugin->getpagedetailsTable()->insertData($data);
         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
     public function selectpageAction(){
         $id = $_GET['pageid'];
-        $data = array("UID" => $this->sessionid ,"PID"=>$id);
+        $data = array("UID" => "13" ,"PID"=>$id);
         $modelPlugin = $this->modelplugin();
-        $dynamicPath = $this->dynamicPath();
+        $dynamicPath = $modelPlugin->dynamicPath();
         $fetchDetailsOfPage = $modelPlugin->getuploadDetailsTable()->fetchall($data);
         if (count($fetchDetailsOfPage) > 0) {
             $response = json_encode($fetchDetailsOfPage);
@@ -41,7 +41,8 @@ class PageController extends AbstractActionController {
         }
         else
         {
-         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+            $response[0]['NoPage'] = 1;
+            echo json_encode($response);exit;
         }
     }
 

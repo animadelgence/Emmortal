@@ -9,14 +9,13 @@ switch ($controller) {
 
             case 'showalbum':
                 $this->headScript()
-                        
+                        ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t)
+                        ->prependFile($this->basePath() . '/js/ckeditor/ckeditor.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Authorization/signup.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/index.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/freewall.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/main.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/ckeditor/ckeditor.js?version=' . $t)
                         ;
 
                 break;
@@ -37,6 +36,7 @@ echo $this->headScript()
         ->prependFile('//code.jquery.com/jquery-1.12.4.js')
         ->prependFile('//code.jquery.com/ui/1.12.1/jquery-ui.js')
         ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+        ->prependFile('//feather.aviary.com/js/feather.js')
         ->prependFile('//code.jquery.com/jquery-1.11.0.min.js');
 ?>
 

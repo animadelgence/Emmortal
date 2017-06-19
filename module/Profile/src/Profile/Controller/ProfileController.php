@@ -47,13 +47,18 @@ class ProfileController extends AbstractActionController {
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
         $actionChecker = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier = $this->getEvent()->getRouteMatch()->getParam('pId');
-        $key = '1234547890183420';
 
+        $getfirstdecodeid = explode("#$#", base64_decode($actionChecker));
+                $getpubid = explode("###", base64_decode($getfirstdecodeid[1]));
+                $arrayid = base64_decode($getpubid[1]);
+       //$key = '123454789018420';
+       // echo $actionChecker;
         if($actionChecker != "resetpassword")
         {
             //echo "inside if";
-            $decrypteduserId = $this->decrypt($actionChecker, $key);
-            $searchkayarray = array('userid'=>$decrypteduserId);
+           // $decrypteduserId = $this->decrypt($actionChecker, $key);
+            //echo intval($decrypteduserId);
+            $searchkayarray = array('userid'=>$arrayid);
             $updateArray = array(
                 'activation' => '1'
             );

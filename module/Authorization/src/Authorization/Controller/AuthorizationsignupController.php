@@ -51,8 +51,9 @@ class AuthorizationsignupController extends AbstractActionController {
                 if($resultinsert == 1)
                 {
                     
-                    $key = '1234547890183420';
-                    $encrypted = $this->encrypt($usid, $key);
+                    //$key = '1234547890183420';
+                    //$encrypted = $this->encrypt($usid, $key);
+                    $encrypted = base64_encode("#$#" . base64_encode(base64_encode($usid . rand(10, 100)) . "###" . base64_encode($newUserId) . "###" . base64_encode($usid . rand(10, 100)) . "###" . base64_encode(base64_encode($usid . rand(10, 100)))) . "#$#");
                     $buttonclick = $dynamicPath . "/profile/newsfeed/" . $encrypted;
                     $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
                     

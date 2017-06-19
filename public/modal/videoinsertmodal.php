@@ -22,10 +22,12 @@
 											<div class="btn e-btn btn-primary file-input-btn" >
 												<i class="fa fa-upload"></i>
 												Choose
-												<span class="">photo</span>
+												<span class="">video</span>
 												<input class="" type="file" id="file" name="file">
 												
 											</div>
+												<div class="errormsgvideo" style="display:none;">
+								</div>
 										</div>
 									</div>
 								</div>
@@ -33,33 +35,41 @@
 							<form name="videodetailsupload" id="videodetailsupload" action="/video/videodetailssubmit" method="POST">
 								<div class="m-t-20">
 									<div class="tags-input-wrapper" >
-										<tags-input class="e-tags-input " placeholder="Type friend name..." min-length="1" >
+								
 											<div class="host">
 												<div class="tags">
-													<ul class="tag-list"></ul>
-													<input class="input" type="text" autocomplete="off" placeholder="Type friend name..." style="width: 132px;" spellcheck="true">
-													<span class="input" style="visibility: hidden; width: auto; white-space: pre; display: none;">Type friend name...</span>
+										
+											
+
+											<div id="append-div" class="">
+									<input type="text" placeholder="Type Friend Name..." class="friendsid" name="friendsid" class="form-control" style="width:100%;">
+								</div>
+								<div class="dropdown-div">
+									<ul class="frndlist" id="frndlist" style="list-style-type: none;z-index: 999999; position: relative; display:none;">
+									</ul>
+								</div>
 												</div>
 											</div>
-										</tags-input>
+									
 									</div>
 
 								</div>
 							</div>
 							<div class="col-md-6 m-t-xs-20">
 								<div class="m-b-10">
-									<input class="form-control" type="text" placeholder="Title" name="title">
+									<input class="form-control" type="text" placeholder="Title" name="title" id="title">
 								</div>
 								<div class="m-b-20 m-t-20" >
-									<input type="hidden" class="uploadedvideo" name="uploadedvideo">
+									<input type="hidden" class="uploadedvideo" name="uploadedvideo" id="uploadedvideo">
 									<textarea name="videoDescription" id="videoDescription" class="form-control" style="height:353px;"></textarea>
 								    <span id="videoDescriptionError" style="color:red;display:none;">Required</span>
+								</div>
+								<div class="errormsg" style="display:none;">
 								</div>
 								<div class="row">
 									<div class="col-sm-5">
 										<div class="e-select">
-											<select>
-												<option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
+											<select id="AID" class="AID form-control" name="AID">
 											</select>
 										</div>
 									</div>
@@ -75,7 +85,7 @@
 					<div class="modal-footer text-right">
 						<span class="">
 							<button type="button" class="btn e-btn btn-default">Back</button>
-							<button type="submit" class="btn e-btn btn-primary">Publish</button>
+							<button type="submit" class="btn e-btn btn-primary" id="publishid">Publish</button>
 						</span>
 					</div>
 				</form>

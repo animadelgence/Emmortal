@@ -25,11 +25,12 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $query = array('UID'=>1);
-        $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($query);
+        $pageQuery = array('UID'=>1);
+        $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
+        $uploadQuery = array('UID'=>1,'PID'=>$pageDetails[0]['pageid']);
+        $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-        
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadQuery'=>$uploadQuery , 'pageDetails'=>$pageDetails));
     }
     public function newsfeedAction(){
     	$this->layout('layout/profilelayout.phtml');
@@ -38,30 +39,40 @@ class ProfileController extends AbstractActionController {
         $dynamicPath = $plugin->dynamicPath();
         $jsonArray = $plugin->jsondynamic();
         $currentPageURL = $plugin->curPageURL();
+        //$previouspage = $_SERVER['HTTP_REFERER'];
+        //echo $previouspage;exit;
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
         $actionChecker = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier = $this->getEvent()->getRouteMatch()->getParam('pId');
-        $key = '1234547890183420';
 
+        $getfirstdecodeid = explode("#$#", base64_decode($actionChecker));
+                $getpubid = explode("###", base64_decode($getfirstdecodeid[1]));
+                $arrayid = base64_decode($getpubid[1]);
+       //$key = '123454789018420';
+       // echo $actionChecker;
         if($actionChecker != "resetpassword")
         {
             //echo "inside if";
-            $decrypteduserId = $this->decrypt($actionChecker, $key);
-            $searchkayarray = array('userid'=>$decrypteduserId);
+           // $decrypteduserId = $this->decrypt($actionChecker, $key);
+            //echo intval($decrypteduserId);
+            $decrypteduserId = $arrayid;
+            $searchkayarray = array('userid'=>$arrayid);
             $updateArray = array(
                 'activation' => '1'
             );
             $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
             $user_session = new Container('userloginId');
-            $user_session->userloginId = $decrypteduserId;
+            $user_session->userloginId = $arrayid;
             
 
         }else{
+            //echo $useridentifier;exit;
             $serchArray = array('forgetpassword' => $useridentifier);
             $FetchDetails = $modelPlugin->getuserTable()->fetchall($serchArray);
+           // print_r($FetchDetails);exit;
             if (empty($FetchDetails)) {
                     return $this->redirect()->toUrl($dynamicPath."/album/showalbum");
             }

@@ -1,0 +1,27 @@
+.profile-paginator {
+  position: fixed;
+  right: 19px;
+  top: 45%;
+}
+.profile-paginator > ul li {
+  background-color: #fff;
+  border-radius: 15px;
+  height: 16px;
+  list-style: outside none none;
+  margin-bottom: 12px;
+  width: 16px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.profile-paginator > ul {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 9px 8px;
+}
+.profile-paginator > ul li:last-child {
+   margin-bottom: 0px;
+}
+.profile-paginator > ul li:hover {
+    opacity: 1;
+
+}

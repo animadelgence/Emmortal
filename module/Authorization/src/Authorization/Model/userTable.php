@@ -48,9 +48,9 @@
                 $rowset = 0;
             }
             //$rowset = $this->tableGWay->insert($insertdataarray);
-            //$id = $this->tableGWay->lastInsertValue;
+            $id = $this->tableGWay->lastInsertValue;
            // return $id;
-            return $rowset;
+            return $id;
         }
         public function updateuser($data,$marker)
         {

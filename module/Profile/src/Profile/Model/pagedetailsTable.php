@@ -10,15 +10,20 @@
         {
             $this->tableGWay = $tableGateway;
         }
-        public function fetchall(){
-            $resultSet = $this->tableGWay->select();
+        public function fetchall($data){
+            $resultSet = $this->tableGWay->select($data);
             $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
                     'UID' => $rSet->UID,
+                    'pageid' =>$rSet->pageid
                     );
             }
             return $array;
+        }
+        public function insertData($data)
+        {
+            return $rowset = $this->tableGWay->insert($data);
         }
 
     }

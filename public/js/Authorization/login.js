@@ -14,7 +14,7 @@ $(document).ready(function (){
                 success: function (result) {
                 	//alert(result); return false;
                 	if(result == "live"){
-                		window.location.href = URL +"/newsfeed/news";
+                		window.location.href = URL +"/profile/newsfeed";
                 	}
                 	else if(result == "not activate"){
                 		$(".alertmesage_signin").css("color","Red");
@@ -74,7 +74,7 @@ $(document).ready(function (){
 	                    recoveryemail: recoveryemail
 	                },
 	                success: function (result) {
-	                	//alert(result);return false;
+	                	//alert(result);return false;  
 	                	$(".alertmesage_recovery").css("color","Red");
 						$(".alertmesage_recovery").text("a link has been sent to your mailid, Please click on that link to reset your password").show();
 						 setTimeout(function () {

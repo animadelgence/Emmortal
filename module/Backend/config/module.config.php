@@ -9,23 +9,24 @@
 return array(
      'controllers' => array(
          'invokables' => array(
-             'Backend\Controller\Backend' => 'Backend\Controller\BackendController'
+             'Backend\Controller\Adminlogin' => 'Backend\Controller\AdminloginController'
          ),
      ),
     // The following section is new and should be added to your file
      'router' => array(
          'routes' => array(
-             // this is for dashboard operation 
-             'Backend' => array(
+
+             // this is for Adminlogin operation
+             'adminlogin' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/backend[/:action][/:id][/:pId]',
+                     'route'    => '/adminlogin[/:action][/:id][/:pId]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                          'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                      ),
                      'defaults' => array(
-                         'controller' => 'Backend\Controller\Backend',
+                         'controller' => 'Backend\Controller\Adminlogin',
                          'action'     => 'index',
                      ),
                  ),

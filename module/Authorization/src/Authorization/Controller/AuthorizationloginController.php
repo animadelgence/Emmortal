@@ -92,10 +92,12 @@ class AuthorizationloginController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
         $encryptedmailid = $_POST['encryptedmailid'];
+        //echo $encryptedmailid;exit;
+        //echo $_POST['forgetpassword'];exit;
         $forgetpassword = password_hash($_POST['forgetpassword'], PASSWORD_BCRYPT);
-        $key = '1234547890183420';
-        $decryptedmail = $this->decrypt($encryptedmailid, $key);
-        $dataarrayforvalidation = array('emailid' => $decryptedmail);
+        ////$key = '1234547890183420';
+       // $decryptedmail = $this->decrypt($encryptedmailid, $key);
+        $dataarrayforvalidation = array('forgetpassword' => $encryptedmailid);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
         $id = $contentDetails[0]["userid"];
         $keyArray = array('userid' => $id);

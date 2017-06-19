@@ -10,9 +10,39 @@ use Zend\Session\SessionManager;
 
 class PageController extends AbstractActionController {
 
-    public function indexAction() {
+        public function __construct() {
+        $userSession = new Container('userloginId');
+        $this->sessionid = $userSession->offsetGet('userloginId');
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
+        if ($this->sessionid == "") {
+            header("Location:" . $dynamicPath. "/profile/showprofile");
+            exit;
+        }
+    }
+
+    public function newpagecreateAction(){
         $modelPlugin = $this->modelplugin();
-        $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall();
-        print_r($pageDetails);exit;
-       }
+        $dynamicPath = $this->dynamicPath();
+        $currentdatetime = date("Y-m-d h:i:sa");
+        $data = array("UID" => $this->sessionid , "createddate" =>$currentdatetime);
+        $pageinsertQuery = $modelPlugin->getpagedetailsTable()->insertData($data);
+        return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+    }
+    public function selectpageAction(){
+        $id = $_GET['pageid'];
+        $data = array("UID" => $this->sessionid ,"PID"=>$id);
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $this->dynamicPath();
+        $fetchDetailsOfPage = $modelPlugin->getuploadDetailsTable()->fetchall($data);
+        if (count($fetchDetailsOfPage) > 0) {
+            $response = json_encode($fetchDetailsOfPage);
+            echo $response;exit;
+        }
+        else
+        {
+         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+        }
+    }
+
 }

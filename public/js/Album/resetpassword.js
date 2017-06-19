@@ -10,7 +10,7 @@ var URL = document.URL;
              encryptedmailid = actionname[6];
             //alert(pathname);forgetpassword
         if(pathname == "resetpassword"){
-        	//alert(pathname);
+        	alert(pathname);
         		$('#squarespaceModalepassword').modal('show');
 
         		

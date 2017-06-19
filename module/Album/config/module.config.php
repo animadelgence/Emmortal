@@ -10,7 +10,8 @@ return array(
      'controllers' => array(
          'invokables' => array(
              'Album\Controller\Album' => 'Album\Controller\AlbumController',
-             'Album\Controller\Newsfeed' => 'Album\Controller\NewsfeedController'
+             'Album\Controller\Newsfeed' => 'Album\Controller\NewsfeedController',
+             'Album\Controller\Video' => 'Album\Controller\VideoController'
            
              
          ),
@@ -35,8 +36,7 @@ return array(
                  'options' => array(
                      'route'    => '/album[/:action][/:id]',
                      'constraints' => array(
-                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
                      ),
                      'defaults' => array(
                          'controller' => 'Album\Controller\Album',
@@ -50,11 +50,27 @@ return array(
                  'options' => array(
                      'route'    => '/newsfeed[/:action][/:id]',
                      'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                         
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Album\Controller\Newsfeed',
+                         'action'     => 'news',
+                     ),
+                 ),
+             ),
+
+              // this is for controller
+             'Video' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/video[/:action][/:id]',
+                     'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                          'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                      ),
                      'defaults' => array(
-                         'controller' => 'Album\Controller\Newsfeed',
+                         'controller' => 'Album\Controller\Video',
                          'action'     => 'news',
                      ),
                  ),

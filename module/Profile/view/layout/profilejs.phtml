@@ -28,9 +28,12 @@ switch ($controller) {
         break;
 }
 echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/Album/resetpassword.js?version=' . $t)
+        ->prependFile($this->basePath() . '/js/jquery/jquery.form.js?version='.$t)
         ->prependFile($this->basePath() . '/js/bootstrap/bootstrap.min.js?version=' . $t)
         ->prependFile('//code.jquery.com/ui/1.11.3/jquery-ui.min.js')
-        //->prependFile('//code.jquery.com/jquery-1.12.4.js')
+        ->prependFile('//code.jquery.com/jquery-1.12.4.js')
+        ->prependFile('//code.jquery.com/ui/1.12.1/jquery-ui.js')
         ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
         ->prependFile('//code.jquery.com/jquery-1.11.0.min.js');
 ?>

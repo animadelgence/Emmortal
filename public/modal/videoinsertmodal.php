@@ -1,5 +1,5 @@
 <!-- line modal -->
-<div class="modal fade" id="videoInsertModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:visible !important;">
+<div class="modal fade" id="videoInsertModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:scroll !important;">
 	<div class="modal-dialog modal-box modal-photo">
 		<div class="modal-content modal-outer inner-modal-photo">
 			<div class="modal-header modal-headernew">
@@ -7,49 +7,64 @@
 				<h3 class="modal-title" id="lineModalLabel">Add new Video</h3>
 			</div>
 			<div class="modal-body select-media-type-popup">
-				<form name="textAddForm" id="textAddForm" action="http://emmortal.localhost/profile/publishtext" method="POST" enctype="multipart/form-data">
+				<form name="videoupload" id="videoupload" action="/video/videosubmit" method="POST" enctype="multipart/form-data">
 					<div class="modal-body photo-popup">
 						<div class="row">
 							<div class="col-md-6">
-								<div class="ng-scope">
-									<div class="image-form-field ng-isolate-scope" height="360"></div>
+								<div class="" >
+									<div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
 									<div class="image-select">
-										<div class="img-input ng-isolate-scope">
-											<div class="canvas-placeholder" style="height: 360px;">
-												<i class="fa fa-picture-o"></i>
+										<div class="img-input">
+											<div class="canvas-placeholder" style="height: 230px;">
+
+												<i class="fa fa-video-camera"></i>
 											</div>
-											<div class="btn e-btn btn-primary file-input-btn ng-scope">
+											<div class="btn e-btn btn-primary file-input-btn" >
 												<i class="fa fa-upload"></i>
 												Choose
-												<span class="ng-binding">photo</span>
-												<input class="ng-isolate-scope" type="file">
+												<span class="">photo</span>
+												<input class="" type="file" id="file" name="file">
+												
 											</div>
 										</div>
 									</div>
 								</div>
+							</form>
+							<form name="videodetailsupload" id="videodetailsupload" action="/video/videodetailssubmit" method="POST">
 								<div class="m-t-20">
-									<div class="tags-input-wrapper ng-isolate-scope ng-valid">
-										
+									<div class="tags-input-wrapper" >
+										<tags-input class="e-tags-input " placeholder="Type friend name..." min-length="1" >
+											<div class="host">
+												<div class="tags">
+													<ul class="tag-list"></ul>
+													<input class="input" type="text" autocomplete="off" placeholder="Type friend name..." style="width: 132px;" spellcheck="true">
+													<span class="input" style="visibility: hidden; width: auto; white-space: pre; display: none;">Type friend name...</span>
+												</div>
+											</div>
+										</tags-input>
 									</div>
 
 								</div>
 							</div>
 							<div class="col-md-6 m-t-xs-20">
-									<input class="form-control ng-pristine ng-valid-maxlength ng-valid ng-valid-required ng-touched" type="text" placeholder="Title">
+								<div class="m-b-10">
+									<input class="form-control" type="text" placeholder="Title" name="title">
 								</div>
-								<div class="m-b-20 m-t-20 ng-isolate-scope ng-valid">
-									
+								<div class="m-b-20 m-t-20" >
+									<input type="hidden" class="uploadedvideo" name="uploadedvideo">
+									<textarea name="videoDescription" id="videoDescription" class="form-control" style="height:353px;"></textarea>
+								    <span id="videoDescriptionError" style="color:red;display:none;">Required</span>
 								</div>
-								<div class="row ng-scope">
+								<div class="row">
 									<div class="col-sm-5">
 										<div class="e-select">
-											<select class="ng-pristine ng-untouched ng-valid">
+											<select>
 												<option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-sm-7 m-t-xs-20">
-										<div class="btn e-btn btn-brown ng-isolate-scope" target="photo" albums="albums">
+										<div class="btn e-btn btn-brown" >
 											<div class="fa fa-plus"></div> Add album
 										</div>
 									</div>
@@ -58,7 +73,7 @@
 						</div>
 					</div>
 					<div class="modal-footer text-right">
-						<span class="ng-scope">
+						<span class="">
 							<button type="button" class="btn e-btn btn-default">Back</button>
 							<button type="submit" class="btn e-btn btn-primary">Publish</button>
 						</span>

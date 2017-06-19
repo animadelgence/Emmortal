@@ -10,12 +10,12 @@ var URL = document.URL;
              encryptedmailid = actionname[6];
             //alert(pathname);forgetpassword
         if(pathname == "resetpassword"){
-        	//alert(pathname);
+        	alert(pathname);
         		$('#squarespaceModalepassword').modal('show');
 
         		
         		$("#savepassbutton").click(function(){
-
+        			//alert();
         			var forgetpassword = $('#forgetpassword').val(),
         			forgetconfirmPassword = $('#forgetconfirmPassword').val(),
         			regexpassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;

@@ -29,16 +29,15 @@
             }
             return $array;
         }
-        public function joinquery($query,$like){
+        public function joinquery($query){
            $sql = new Sql($this->tableGWay->adapter);
            $select = $sql->select();
            $select->from($this->tableGWay->getTable())
-                 ->join('user', 'friends.userid = user.userid', array('*'), 'left')
-                 ->where($query)
-                 ->where('user.name LIKE ?', $like.'%');
+                 ->join('user', 'friends.friendsid = user.userid')
+                 ->where("friends.userid='$query'");
             $result = $this->tableGWay->selectWith($select);
             $data=array();
-		    foreach($result as $rset) {
+		    foreach($result as $rSet) {
 			         $data[]=array(
                             'id' => $rSet->id,
                             'userid' => $rSet->userid,
@@ -63,6 +62,7 @@
                             'activation' => $rSet->activation
 			         );
 		   }
+
            return $data;
 	    }
 

@@ -99,7 +99,8 @@ $('#signupbutton').click(function(){
                     dob: dob
                 },
                 success: function (result) {
-                	//alert(result);return false;
+                	alert(result);
+                	//return false;
                 	if(result == 1){
                 		alert("welcome to emmortal,please check your mail and confirm the link to logged in");
                 	}else {

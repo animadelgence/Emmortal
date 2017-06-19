@@ -35,7 +35,8 @@ class mailplugin extends routeplugin {
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($session);
         curl_close($session);
-        return $response;
+        $responseGet = 1;
+        return $responseGet;
     }
 
 }

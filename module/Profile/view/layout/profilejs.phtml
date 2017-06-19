@@ -19,6 +19,11 @@ switch ($controller) {
                         ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t);
 
                 break;
+                case 'newsfeed':
+                $this->headScript()
+                        ->prependFile($this->basePath() . '/js/profile/alerthideshow.js?version=' . $t);
+
+                break;
 
             default:
                 break;
@@ -29,6 +34,7 @@ switch ($controller) {
         break;
 }
 echo $this->headScript()
+        
         ->prependFile($this->basePath() . '/js/Album/resetpassword.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/jquery/jquery.form.js?version='.$t)
         ->prependFile($this->basePath() . '/js/bootstrap/bootstrap.min.js?version=' . $t)

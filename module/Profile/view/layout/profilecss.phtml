@@ -31,6 +31,7 @@ switch ($controller) {
 		break;
 }
 echo $this->headLink()
+        ->prependStylesheet($this->basePath() . '/css/Album/navbar.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/bootstrap/bootstrap.min.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     	->prependStylesheet($this->basePath() . '//fonts.googleapis.com/css?family=Oxygen:400,700' );

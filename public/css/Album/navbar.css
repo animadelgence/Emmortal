@@ -1,0 +1,19 @@
+.welcome {
+    height: 75px;
+    width: 100px;
+    background: #fff;
+    position: fixed;
+    right: 50px;
+    top: 45px;
+    border-bottom: 8px solid green;
+    text-align: center;
+    font-weight: 600;
+}
+.close-msg {
+    text-align: right;
+    padding-top: 3px;
+    padding-bottom: 6px;
+}
+.close-msg a {
+    margin-right: 4px;
+}

@@ -38,6 +38,8 @@ class ProfileController extends AbstractActionController {
         $dynamicPath = $plugin->dynamicPath();
         $jsonArray = $plugin->jsondynamic();
         $currentPageURL = $plugin->curPageURL();
+        //$previouspage = $_SERVER['HTTP_REFERER'];
+        //echo $previouspage;exit;
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];

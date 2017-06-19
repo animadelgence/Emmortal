@@ -31,7 +31,7 @@ $(document).ready(function () {
             url: base_url_dynamic + '/profile/getalbum',
             data: {},
             success: function (res) {
-                $('#AID').html(res);
+                $('.AID').html(res);
             }
         });
     });

@@ -14,7 +14,7 @@ $(document).ready(function (){
                 success: function (result) {
                 	//alert(result); return false;
                 	if(result == "live"){
-                		window.location.href = URL +"/newsfeed/news";
+                		window.location.href = URL +"/profile/newsfeed";
                 	}
                 	else if(result == "not activate"){
                 		$(".alertmesage_signin").css("color","Red");

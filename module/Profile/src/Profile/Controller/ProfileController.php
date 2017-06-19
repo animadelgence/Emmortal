@@ -25,9 +25,9 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $pageQuery = array('UID'=>1);
+        $pageQuery = array('UID'=>2);
         $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
-        $uploadQuery = array('UID'=>1,'PID'=>$pageDetails[0]['pageid']);
+        $uploadQuery = array('UID'=>2,'PID'=>$pageDetails[0]['pageid']);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadQuery'=>$uploadQuery , 'pageDetails'=>$pageDetails));

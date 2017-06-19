@@ -11,7 +11,8 @@ return array(
          'invokables' => array(
              'Album\Controller\Album' => 'Album\Controller\AlbumController',
              'Album\Controller\Newsfeed' => 'Album\Controller\NewsfeedController',
-             'Album\Controller\Video' => 'Album\Controller\VideoController'
+             'Album\Controller\Video' => 'Album\Controller\VideoController',
+             'Album\Controller\Image' => 'Album\Controller\ImageController'
            
              
          ),
@@ -72,6 +73,20 @@ return array(
                      'defaults' => array(
                          'controller' => 'Album\Controller\Video',
                          'action'     => 'news',
+                     ),
+                 ),
+             ),
+             'Image' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/image[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Album\Controller\Image',
+                         'action'     => 'index',
                      ),
                  ),
              ),

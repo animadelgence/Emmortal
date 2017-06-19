@@ -42,8 +42,10 @@ class AuthorizationsignupController extends AbstractActionController {
             if(count($usercheck) == 0){
                 $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'signindate' => date('Y-m-d'));
                 $albumFolder = $modelPlugin->getuserTable()->savedata($insertedArray,$keyArray);
-                $insrtArrayforpagetable =array('UID'=>$albumFolder, 'createddate' =>date('Y-m-d H:i:s'));
+                $insrtArrayforpagetable =array('UID'=>$albumFolder, 'createddate' =>date('Y-m-d'));
+                //print_r($insrtArrayforpagetable);exit;
                 $resultinsert = $modelPlugin->getpagedetailsTable()->insertData($insrtArrayforpagetable);
+                
                 $albumDetails = $modelPlugin->getuserTable()->fetchall($keyArray);
                 $usid= $albumDetails[0]['userid'];
                 if($resultinsert == 1)
@@ -69,7 +71,7 @@ class AuthorizationsignupController extends AbstractActionController {
                 }
 
             }else {
-                $albumFolder = 0;
+                $resultinsert = 0;
             }
 
         }
@@ -84,7 +86,7 @@ class AuthorizationsignupController extends AbstractActionController {
             $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $keyarray);
            
         }*/
-        echo $albumFolder;exit;
+        echo $resultinsert;exit;
     }
     public function encrypt($data, $key){
     return base64_encode(

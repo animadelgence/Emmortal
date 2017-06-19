@@ -58,13 +58,14 @@ class ProfileController extends AbstractActionController {
             //echo "inside if";
            // $decrypteduserId = $this->decrypt($actionChecker, $key);
             //echo intval($decrypteduserId);
+            $decrypteduserId = $arrayid;
             $searchkayarray = array('userid'=>$arrayid);
             $updateArray = array(
                 'activation' => '1'
             );
             $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
             $user_session = new Container('userloginId');
-            $user_session->userloginId = $decrypteduserId;
+            $user_session->userloginId = $arrayid;
             
 
         }else{

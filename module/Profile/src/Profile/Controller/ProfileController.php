@@ -10,7 +10,11 @@ use Zend\Session\SessionManager;
 
 class ProfileController extends AbstractActionController {
 
-    
+    public function __construct() {
+
+        $userSession = new Container('userloginId');
+        $this->sessionid = $userSession->offsetGet('userloginId');
+    }
     public function indexAction() {
         echo "work in progress";exit;
 
@@ -64,8 +68,8 @@ class ProfileController extends AbstractActionController {
                 'activation' => '1'
             );
             $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
-            $user_session = new Container('userloginId');
-            $user_session->userloginId = $arrayid;
+            /*$user_session = new Container('userloginId');
+            $user_session->userloginId = $arrayid;*/
             
 
         }else{
@@ -85,6 +89,7 @@ class ProfileController extends AbstractActionController {
         return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function getalbumAction(){
+        
     	$plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();

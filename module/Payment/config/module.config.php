@@ -9,7 +9,7 @@
 return array(
      'controllers' => array(
          'invokables' => array(
-             'Payment\Controller\Payments' => 'Payment\Controller\PaymentsController'
+             'Payment\Controller\Payment' => 'Payment\Controller\PaymentController'
              
          ),
      ),
@@ -17,7 +17,7 @@ return array(
      'router' => array(
          'routes' => array(
              // this is for paymentsfp controller
-             'Payments' => array(
+             'Payment' => array(
                  'type'    => 'segment',
                  'options' => array(
                      'route'    => '/payment[/:action][/:id]',
@@ -26,7 +26,7 @@ return array(
                          'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                      ),
                      'defaults' => array(
-                         'controller' => 'Payment\Controller\Payments',
+                         'controller' => 'Payment\Controller\Payment',
                          'action'     => 'index',
                      ),
                  ),

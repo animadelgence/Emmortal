@@ -22,7 +22,7 @@
 											<div class="btn e-btn btn-primary file-input-btn" >
 												<i class="fa fa-upload"></i>
 												Choose
-												<span class="">photo</span>
+												<span class="">video</span>
 												<input class="" type="file" id="file" name="file">
 												
 											</div>
@@ -37,8 +37,11 @@
 											<div class="host">
 												<div class="tags">
 													<ul class="tag-list"></ul>
-													<input class="input" type="text" autocomplete="off" placeholder="Type friend name..." style="width: 132px;" spellcheck="true">
-													<span class="input" style="visibility: hidden; width: auto; white-space: pre; display: none;">Type friend name...</span>
+											
+
+											<div id="append-div" class="">
+									<input type="text" placeholder="Type Friend Name..." class="friendsid" name="friendsid" class="form-control">
+								</div>
 												</div>
 											</div>
 										</tags-input>

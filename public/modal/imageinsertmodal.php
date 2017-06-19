@@ -7,26 +7,46 @@
 				<h3 class="modal-title" id="lineModalLabel">Create new text entry</h3>
 			</div>
 			<div class="modal-body select-media-type-popup">
-				<form name="textAddForm" id="textAddForm" action="" method="POST" enctype="multipart/form-data">
+				<!--<form name="textAddForm" id="textAddForm" action="" method="POST" enctype="multipart/form-data">-->
 					<div class="modal-body photo-popup">
 						<div class="row">
 							<div class="col-md-6">
+                                <form action="/payment/saveimage" method="post" enctype="multipart/form-data" name="form1" id="imageuploadform">
+                                <div class="aviary-div">
 								<div class="" >
 									<div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
 									<div class="image-select">
 										<div class="img-input">
 											<div class="canvas-placeholder" style="height: 360px;">
-												<i class="fa fa-picture-o"></i>
+												<i class="fa fa-picture-o remove-fa-picture-icon"></i>
+                                                <!--<img id= 'profile_pic_thumb'/>-->
 											</div>
 											<div class="btn e-btn btn-primary file-input-btn" >
 												<i class="fa fa-upload"></i>
-												Choose
-												<span class="">photo</span>
-												<input class="" type="file">
+												Choose photo
+												<input name="file" type="file" id="imageArea1">
+                                                <input type = "hidden" id = "imagePath" value="">
+                                                <input type = "hidden" id= "aviaryPath" name= "action" value="1">
+                                                
 											</div>
 										</div>
 									</div>
 								</div>
+                                <div class="m-t-20 ">
+									<div class="tags-input-wrapper" >
+                                        <tags-input class="e-tags-input ">
+                                            <div class="host">
+                                                <div class="tags" id="div-editphoto">
+                                                    <ul class="input tag-list"></ul>
+                                                    <input id="imgbtnEditPhoto" type="image" src="http://advanced.aviary.com/images/feather/edit-photo.png" value="Edit photo" onclick="return launchEditor('profile_pic_thumb');" />
+                                                </div>
+                                            </div>
+                                        </tags-input>
+									</div>
+
+								</div>
+                                </div>
+                                </form>
 								<div class="m-t-20">
 									<div class="tags-input-wrapper" >
 										<tags-input class="e-tags-input " placeholder="Type friend name..." min-length="1" >
@@ -50,7 +70,7 @@
 									<textarea name="imagetextDescription" id="imagetextDescription" class="form-control" style="height:353px;"></textarea>
 								    <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>
 								</div>
-								<div class="row">
+								<div class="row" style="margin-top: 100px;">
 									<div class="col-sm-5">
 										<div class="e-select">
 											<select>
@@ -69,11 +89,11 @@
 					</div>
 					<div class="modal-footer text-right">
 						<span class="">
-							<button type="button" class="btn e-btn btn-default">Back</button>
+							<button type="button" class="btn e-btn btn-default" onclick="$('.close').trigger('click');" data-toggle="modal" data-target="#uploadModal">Back</button>
 							<button type="submit" class="btn e-btn btn-primary">Publish</button>
 						</span>
 					</div>
-				</form>
+				<!--</form>-->
 			</div>
 		</div>
 	</div>

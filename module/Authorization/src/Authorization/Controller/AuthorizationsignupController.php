@@ -37,31 +37,42 @@ class AuthorizationsignupController extends AbstractActionController {
         $jsonArray = $plugin->jsondynamic();
       
         $keyArray = array('emailid'=>$email);
-        $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'signindate' => date('Y-m-d'));
-        $albumFolder = $modelPlugin->getuserTable()->savedata($insertedArray,$keyArray);
-        $albumDetails = $modelPlugin->getuserTable()->fetchall($keyArray);
-        $usid= $albumDetails[0]['userid'];
-        if($albumFolder == 1)
+        $usercheck = $modelPlugin->getuserTable()->fetchall($keyArray);
         {
-        	
-        	$key = '1234547890183420';
-            $encrypted = $this->encrypt($usid, $key);
-        	$buttonclick = $dynamicPath . "/profile/newsfeed/" . $encrypted;
-            $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
-            
-            $activationLink = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Confirm Email</div></a>";
+            if(count($usercheck) == 0){
+                $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'signindate' => date('Y-m-d'));
+                $albumFolder = $modelPlugin->getuserTable()->savedata($insertedArray,$keyArray);
+                $insrtArrayforpagetable =array('UID'=>$albumFolder, 'createddate' =>);
+                $albumDetails = $modelPlugin->getuserTable()->fetchall($keyArray);
+                $usid= $albumDetails[0]['userid'];
+                if($albumFolder == 1)
+                {
+                    
+                    $key = '1234547890183420';
+                    $encrypted = $this->encrypt($usid, $key);
+                    $buttonclick = $dynamicPath . "/profile/newsfeed/" . $encrypted;
+                    $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
+                    
+                    $activationLink = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Confirm Email</div></a>";
 
-            
+                    
 
-            $searchArray = array('mailCatagory' => 'C_MAIL');
-            $getMailStructure = $modelPlugin->getmailconfirmationTable()->fetchall($searchArray);
-            $getmailbodyFromTable = $getMailStructure[0]['mailTemplate'];
-            $activationLinkreplace = str_replace("|ACTIVATIONLINK|", $activationLink, $getmailbodyFromTable);
-            $mailBody = str_replace("|FULLNAME|", $fullname, $activationLinkreplace);
-            $subject = "Confirm your email address";
-            $from = $jsonArray['sendgridaccount']['addfrom'];
-        	$mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
+                    $searchArray = array('mailCatagory' => 'C_MAIL');
+                    $getMailStructure = $modelPlugin->getmailconfirmationTable()->fetchall($searchArray);
+                    $getmailbodyFromTable = $getMailStructure[0]['mailTemplate'];
+                    $activationLinkreplace = str_replace("|ACTIVATIONLINK|", $activationLink, $getmailbodyFromTable);
+                    $mailBody = str_replace("|FULLNAME|", $fullname, $activationLinkreplace);
+                    $subject = "Confirm your email address";
+                    $from = $jsonArray['sendgridaccount']['addfrom'];
+                    $mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
+                }
+
+            }else {
+                $albumFolder = 0;
+            }
+
         }
+        
         //$output = json_decode($mailfunction);
         /*if (trim($output->message) === 'success') {
 

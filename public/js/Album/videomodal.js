@@ -7,7 +7,6 @@
                         file: 'file'
                     },
                     success: function (result) {
-
 						var response = JSON.parse(result);
                         if (response.error == 0 || response.error == 1) {
                         	alert("wrong");return false;

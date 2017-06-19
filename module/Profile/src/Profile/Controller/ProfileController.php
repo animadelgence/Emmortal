@@ -10,11 +10,14 @@ use Zend\Session\SessionManager;
 
 class ProfileController extends AbstractActionController {
 
-    
+    public function __construct() {
+
+        $userSession = new Container('userloginId');
+        $this->sessionid = $userSession->offsetGet('userloginId');
+    }
     public function indexAction() {
         echo "work in progress";exit;
-
-       }
+    }
     public function showprofileAction(){
     	$this->layout('layout/profilelayout.phtml');
     	$plugin = $this->routeplugin();
@@ -25,9 +28,9 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $pageQuery = array('UID'=>2);
+        $pageQuery = array('UID'=>13);
         $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
-        $uploadQuery = array('UID'=>2,'PID'=>$pageDetails[0]['pageid']);
+        $uploadQuery = array('UID'=>13,'PID'=>$pageDetails[0]['pageid']);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadQuery'=>$uploadQuery , 'pageDetails'=>$pageDetails));
@@ -64,8 +67,8 @@ class ProfileController extends AbstractActionController {
                 'activation' => '1'
             );
             $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
-            $user_session = new Container('userloginId');
-            $user_session->userloginId = $arrayid;
+            /*$user_session = new Container('userloginId');
+            $user_session->userloginId = $arrayid;*/
             
 
         }else{
@@ -85,6 +88,7 @@ class ProfileController extends AbstractActionController {
         return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function getalbumAction(){
+        
     	$plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();

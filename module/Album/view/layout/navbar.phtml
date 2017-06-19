@@ -14,18 +14,24 @@
             <div class="row">
                  
                 <div>
-<?php
-                if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
-                    <div class="welcome" style="display:block;">
-                        <div class="close-msg">
+                    <div class="welcome" style="display:none;">
+                          <div class="close-msg">
                             <a href="#">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         </div>
+                         <div class="showmsg">
+<?php
+                if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
+                    
+                     
                             <span>Welcome!</span>
+
                         
-                    </div>
+                   
                 <?php } ?>
+                 </div>
+                 </div>
                 <div class="col-lg-8">
                     <a href="/album/showalbum" class="logo-style">Emmortal</a>
                     <?php if( strtolower($controller) == 'profile'){ ?>

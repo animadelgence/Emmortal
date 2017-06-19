@@ -46,11 +46,12 @@
                     success: function (result) {
 						var response = JSON.parse(result);
                         if (response.error == 0 || response.error == 1) {
-                        	 $(".errormsgvideo").html('<p style="color:red;">Please select video</p>');
-                             $(".errormsgvideo").show();return false;
-                           
-                        } else {
-                            $(".errormsgvideo").hide();
+                        	 $(".welcome").show();
+                             $(".showmsg").html("<span>plwase select a video</span>");
+                                  
+                                    }
+                          else {
+                           // $(".errormsgvideo").hide();
                         	$("#videoId").show();
                         	$(".canvas-placeholder").html('<video controls="controls" name="Video Name" id="videoId" src="/video/'+response.filePath+'" style="width:100%;height:100%;"></video>');
                         	$(".uploadedvideo").val(response.filePath);

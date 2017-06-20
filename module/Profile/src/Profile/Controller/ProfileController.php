@@ -20,11 +20,10 @@ class ProfileController extends AbstractActionController {
     }
     public function showprofileAction(){
     	$this->layout('layout/profilelayout.phtml');
-    	$plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
+    	$modelPlugin = $this->modelplugin();
+        $dynamicPath = $modelPlugin->dynamicPath();
+        $jsonArray = $modelPlugin->jsondynamic();
+        $currentPageURL = $modelPlugin->curPageURL();
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
@@ -37,11 +36,10 @@ class ProfileController extends AbstractActionController {
     }
     public function newsfeedAction(){
     	$this->layout('layout/profilelayout.phtml');
-    	$plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
+    	$modelPlugin = $this->modelplugin();
+        $dynamicPath = $modelPlugin->dynamicPath();
+        $jsonArray = $modelPlugin->jsondynamic();
+        $currentPageURL = $modelPlugin->curPageURL();
         //$previouspage = $_SERVER['HTTP_REFERER'];
         //echo $previouspage;exit;
         $href = explode("/", $currentPageURL);

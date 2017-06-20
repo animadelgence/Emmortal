@@ -45,13 +45,12 @@ class VideoController extends AbstractActionController {
            $plugin               = $this->routeplugin();
            $modelPlugin          = $this->modelplugin();
            $dynamicPath          = $plugin->dynamicPath();
-           $modelPlugin          =    $this->modelplugin();
            $title                = $_POST['title'];
            $videoDescription     = $_POST['videoDescription'];
            $uploadedvideo        = $_POST['uploadedvideo'];
-           $frndId               = $_POST['friendsId'];
-           if($frndId){
-           $friendId             =  implode(",",$frndId);
+           $frndIdValue               = $_POST['friendsId'];
+           if($frndIdValue){
+           $friendId             =  implode(",",$frndIdValue);
             } else{
               $friendId = "";
             }
@@ -60,7 +59,7 @@ class VideoController extends AbstractActionController {
            $currentPageIdValue = $_POST['currentPageId'];
            if(!$currentPageIdValue){
             $where              = array('UID'=>$UID);
-            $pageDetails        = $modelPlugin->getpagedetailsTable()->fetchPageId($where);
+            $pageDetails        = $modelPlugin->getpagedetailsTable()->fetchall($where);
             $currentPageId      = $pageDetails[0]['pageid'];
            } else{
             $currentPageId = $currentPageIdValue;

@@ -19,12 +19,12 @@ class ImageController extends AbstractActionController {
     public function __construct() {
         $userSession = new Container('userloginId');
         $this->sessionid = $userSession->offsetGet('userloginId');
-        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+       /* $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
             header("Location:" . $dynamicPath. "/profile/showprofile");
             exit;
-        }
+        }*/
     }
 
     public function indexAction() {
@@ -32,6 +32,7 @@ class ImageController extends AbstractActionController {
         
     }
     public function saveimageAction() {
+        //echo 1; exit;
         $request1 = $this->getRequest()->getPost();
         $filename = $request1['filename'];
         $request = $this->getRequest();
@@ -55,31 +56,40 @@ class ImageController extends AbstractActionController {
         echo $imagePath ;
         exit;
     }
-  public function saveImageDetailsAction() {
-        echo $this->sessionid;exit;
-        //print_r($_POST); exit;
-        $imageTitle = $_POST['imageTitle'];
-        $imagePath = $_POST['imagePath'];
-        $imagefriendsId = $_POST['imagefriendsId'];
-        $imageDescription = $_POST['imageDescription'];
-        $currentPageId = $_POST['pageId'];
+    public function saveImageDetailsAction() {
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
-        $href = explode("/", $currentPageURL);
-        $controller = @$href[3];
-        $action = @$href[4];
-      //echo $action;exit;
-        $ct = count($imagefriendsId);
+        $imageTitle = $_POST['imageTitle'];
+        $imagePath = $_POST['imagePath'];
+        $imagefriendsId = '';
         $friendsid= '';
-        for($i=0;$i<$ct;$i++){
-          $friendsid = $friendsid.$imagefriendsId[$i].',';
-        }
-        if($action == 'showprofile')
+        if($_POST['imagefriendsId'])
         {
-            $uploadQuery = array(
+            $imagefriendsId = $_POST['imagefriendsId'];
+            $ct = count($imagefriendsId);
+            for($i=0;$i<$ct;$i++){
+                $friendsid = $friendsid.$imagefriendsId[$i].',';
+            }
+        }
+        $imageDescription = $_POST['imageDescription'];
+        $currentPageId = '';
+        if($_POST['pageId'])
+        {
+            $currentPageId = $_POST['pageId'];
+        }
+
+      //echo $action;exit;
+        $addeddate = date('Y-m-d H:i:s');
+        if(!$currentPageId)
+        {
+            $where              = array('UID'=>$this->sessionid);
+            $pageDetails        = $modelPlugin->getpagedetailsTable()->fetchall($where);
+            //print_r($pageDetails);exit;
+            $currentPageId      = $pageDetails[0]['pageid'];
+            echo $currentPageId;
+            exit;
+        }
+        $uploadQuery = array(
                             'UID'=>2,
                             'PID'=>$currentPageId,
                             'uploadTitle'=>$imageTitle,
@@ -92,8 +102,7 @@ class ImageController extends AbstractActionController {
                             );
             $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($uploadQuery);
             echo $albumDetails;exit;
-            return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
-        }
-  }
+            //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+    }
 
 }

@@ -22,7 +22,7 @@ namespace Backend\Controller;
 				'action' => 'userdetails'));
 		}
 		else{
-			$this->layout('layout/adminloginlayout');
+			$this->layout('layout/loginlayout');
 			$plugin = $this->routeplugin();
 		    $currentPageURL = $plugin->curPageURL();
 			$href = explode("/", $currentPageURL);

@@ -20,6 +20,7 @@ class ProfileController extends AbstractActionController {
         echo "work in progress";exit;
     }
     public function showprofileAction(){
+        //echo $this->sessionid;exit;
     	$this->layout('layout/profilelayout.phtml');
     	$modelPlugin = $this->modelplugin();
         $dynamicPath = $modelPlugin->dynamicPath();

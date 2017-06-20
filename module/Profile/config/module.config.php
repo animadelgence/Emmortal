@@ -11,7 +11,8 @@ return array(
          'invokables' => array(
              'Profile\Controller\Profile' => 'Profile\Controller\ProfileController',
              'Profile\Controller\Page' => 'Profile\Controller\PageController',
-             'Profile\Controller\Account' => 'Profile\Controller\AccountController'
+             'Profile\Controller\Account' => 'Profile\Controller\AccountController',
+             'Profile\Controller\Friendrequests' => 'Profile\Controller\FriendrequestsController'
          ),
      ),
     // The following section is new and should be added to your file
@@ -55,6 +56,19 @@ return array(
                      'defaults' => array(
                          'controller' => 'Profile\Controller\Account',
                          'action'     => 'myaccount',
+                     ),
+                 ),
+             ),
+             'Friendrequests' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/friendrequests[/:action][/:id][/:pId]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Profile\Controller\Friendrequests',
+                         'action'     => 'index',
                      ),
                  ),
              ),

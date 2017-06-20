@@ -46,7 +46,7 @@ print_r($_POST);
     	$dataarrayforvalidation = array('emailid' => $loginemail);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
         $usid = $contentDetails[0]['userid'];
-     echo $contentDetails[0]['activation'];exit;
+     print_r($contentDetails);;exit;
 
         $user_session = new Container('userloginId');
         $user_session->userloginId = $usid;

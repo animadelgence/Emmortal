@@ -10,24 +10,24 @@ switch ($controller) {
                      //->prependFile($this->basePath() . '/js/editor/jquery.form.js?version='.$t)
 				    ->prependFile($this->basePath() . '/js/backend/adminlogin.js?version='.$t);
             break;
-		    }
+         }
     break;
-//    case 'userregistration':
-//        switch($action) {
-//            case 'userdetails':
-//                 $this->headScript()
+    case 'usermanage':
+        switch($action) {
+            case 'userdetails':
+                 $this->headScript()
 //                ->prependFile($this->basePath() . '/js/admin/jquery.js')
 //                ->prependFile($this->basePath() . '/js/admin/jquery.validate.min.js')
 //                ->prependFile($this->basePath() . '/js/admin/csvupload.js')
-//                ->prependFile($this->basePath() . '/js/admin/useredit.js')
+                ->prependFile($this->basePath() . '/js/backend/useredit.js')
 //				->prependFile($this->basePath() . '/js/admin/search-user.js')
-//				->prependFile($this->basePath() . '/js/admin/sorttable.js');
-//            break;
-//            case 'useredit':
-//                 $this->headScript()
-//                ->prependFile($this->basePath() . '/js/admin/useredit.js')
+				->prependFile($this->basePath() . '/js/backend/sorttable.js');
+            break;
+            case 'useredit':
+                 $this->headScript()
+                ->prependFile($this->basePath() . '/js/backend/useredit.js');
 //                ->prependFile($this->basePath() . '/js/admin/settings.js');
-//            break;
+            break;
 //            case 'adduser':
 //                 $this->headScript()
 //                ->prependFile($this->basePath() . '/js/admin/useredit.js');
@@ -37,8 +37,8 @@ switch ($controller) {
 //                ->prependFile($this->basePath() . '/js/admin/useredit.js')
 //                ->prependFile($this->basePath() . '/js/admin/sorttable.js');
 //            break;
-//        }
-//    break;
+        }
+    break;
 //    case 'template':
 //		switch ($action) {
 //            case 'templateview':
@@ -93,7 +93,7 @@ switch ($controller) {
 //                    ->prependFile($this->basePath() . '/js/admin/editSection.js');
 //            break;
 //		    }
-//    break;
+    break;
 
 	default:
 		break;

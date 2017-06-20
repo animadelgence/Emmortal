@@ -12,7 +12,7 @@
         }
         public function fetchall($query)
         {
-            //print_r($query);
+            //print_r($query); exit;
             if (empty($query)){
             $resultSet = $this->tableGWay->select();
             }else{

@@ -37,13 +37,14 @@ var Script = (function () {
             part4 = parts[3],
             part5 = parts[4];
 
-//        if (pathname === '/userregistration/userdetails') {
-//            $('.common_class').removeClass('active');
-//            $('.userreg').addClass('active');
-//        } else if (pathname === '/userregistration/useredit/' + part4) {
-//            $('.common_class').removeClass('active');
-//            $('.userreg').addClass('active');
-//        } else if (pathname === '/userregistration/userbackupdet') {
+        if (pathname === '/usermanage/userdetails') {
+            $('.common_class').removeClass('active');
+            $('.usermanage').addClass('active');
+        } else if (pathname === '/usermanage/useredit/' + part4) {
+            $('.common_class').removeClass('active');
+            $('.usermanage').addClass('active');
+        }
+//        else if (pathname === '/userregistration/userbackupdet') {
 //            $('.common_class').removeClass('active');
 //            $('.userreg').addClass('active');
 //        } else if (pathname === '/userregistration/adduser') {
@@ -87,17 +88,17 @@ var Script = (function () {
 //            $('.section').addClass('active');
 //        }
 //
-//        $('ul').on('click', 'li', function () {
-//
-//            if ($('ul').children('li').hasClass('active')) {
-//                $('ul').children('li').removeClass('active');
-//            }
-//            $(this).addClass('active');
-//            var className = $(this).attr('class');
-//
-//            if (className === 'userreg common_class active') {
-//                window.location.href = baseUrl + '/userregistration/userdetails';
-//            }
+        $('ul').on('click', 'li', function () {
+
+            if ($('ul').children('li').hasClass('active')) {
+                $('ul').children('li').removeClass('active');
+            }
+            $(this).addClass('active');
+            var className = $(this).attr('class');
+
+            if (className === 'usermanage common_class active') {
+                window.location.href = baseUrl + '/usermanage/userdetails';
+            }
 //            if (className === 'template common_class active') {
 //                window.location.href = baseUrl + '/template/templateview';
 //            }
@@ -111,7 +112,7 @@ var Script = (function () {
 //                window.location.href = baseUrl + '/Sectionmanage/viewsection';
 //            }
 //
-//        });
+        });
     });
 
     //    sidebar toggle

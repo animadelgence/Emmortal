@@ -11,7 +11,7 @@
 					<div class="modal-body photo-popup">
 						<div class="row">
 							<div class="col-md-6">
-                                <form action="/payment/saveimage" method="post" enctype="multipart/form-data" name="form1" id="imageuploadform">
+                                <form action="/image/saveimage" method="post" enctype="multipart/form-data" name="form1" id="imageuploadform">
                                 <div class="aviary-div">
 								<div class="" >
 									<div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>

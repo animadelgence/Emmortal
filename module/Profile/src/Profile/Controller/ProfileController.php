@@ -17,8 +17,7 @@ class ProfileController extends AbstractActionController {
     }
     public function indexAction() {
         echo "work in progress";exit;
-
-       }
+    }
     public function showprofileAction(){
     	$this->layout('layout/profilelayout.phtml');
     	$plugin = $this->routeplugin();

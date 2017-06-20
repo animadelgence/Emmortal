@@ -46,6 +46,8 @@ $(document).ready(function () {
         var editor = CKEDITOR.instances['imagetextDescription'];
         var imageDescription = CKEDITOR.instances['imagetextDescription'].getData();
         var friendsId = [];
+        var pageId = $('#currentPageId').val();
+        //alert(pageId);
 //var users = $('input:text.frndId').serialize();
 /*var values = [];
 $("input[name='frndId[]']").each(function() {
@@ -64,7 +66,7 @@ $("input[name='frndId[]']").each(function() {
         {
             friendsId = '';
         }
-        alert(friendsId);
+        //alert(friendsId);
         if (imageTitle == '') {
             flag = 1;
             $('#imageTitle').addClass('error-class');
@@ -97,7 +99,7 @@ $("input[name='frndId[]']").each(function() {
         }
         if (imageDescription == '' && imageTitle == '') {
             $('.error-style').css('margin-top','-12px');
-            flag = 0;    
+            flag = 1;    
         }
         if (imageDescription != '' && imageTitle != '') {
             $('.error-style').css('margin-top','46px');
@@ -115,12 +117,13 @@ $("input[name='frndId[]']").each(function() {
         if (flag == 0) {
             $.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
-                url: base_url_dynamic + '/payment/saveImageDetails',
+                url: base_url_dynamic + '/image/saveImageDetails',
                 data: {
                     imageTitle : imageTitle,
                     imagePath : imagePath,
                     imageDescription : imageDescription,
-                    imagefriendsId : friendsId
+                    imagefriendsId : friendsId,
+                    pageId : pageId
                 },
                 success: function (res) {
                     alert(res);
@@ -156,7 +159,7 @@ var featherEditor = new Aviary.Feather({
         var originalFile = $('#imagePath').val();
         $.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
-                url: base_url_dynamic + '/payment/removeimage',
+                url: base_url_dynamic + '/image/removeimage',
                 data: {
                     removeimage : originalFile
                 },

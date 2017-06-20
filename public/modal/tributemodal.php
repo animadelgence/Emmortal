@@ -10,11 +10,12 @@
             <h3 class="modal-title" id="lineModalLabel">Create new tribute</h3>
          </div>
          <div class="modal-body select-media-type-popup">
+         	<form name="tributecreate" id="tributecreate" action="/tribute/tributesubmit" method="POST">
             <div class="m-t-20">
                <div class="tags-input-wrapper" >
                   <div class="host">
                      <div class="tags">
-                        <div id="append-div-video" class="">
+                        <div id="append-div-tribute" class="">
                            <input type="text" placeholder="Type Friend Name..." class="friendsids" id="friendsidtribute" name="friendsidtribute" class="form-control" style="width:100%;">
                         </div>
                         <div class="dropdown-div">
@@ -27,13 +28,15 @@
             </div>
             <div class="m-b-20 m-t-20" >
                <textarea name="tributeDescription" id="tributeDescription" class="form-control" style="height:353px;"></textarea>
-               <span id="videoDescriptionError" style="color:red;display:none;">Required</span>
+               <span id="tributeDescription" style="color:red;display:none;">Required</span>
             </div>
+                 </form>
          </div>
+
          <div class="modal-footer text-right">
             <span class="">
             <button type="button" class="btn e-btn btn-default">Back</button>
-            <button type="submit" class="btn e-btn btn-primary" id="publishid">Publish</button>
+            <button type="submit" class="btn e-btn btn-primary" id="publishidtribute">Publish</button>
             </span>
          </div>
       </div>

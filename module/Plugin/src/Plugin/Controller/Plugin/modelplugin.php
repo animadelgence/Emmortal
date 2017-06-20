@@ -12,6 +12,7 @@ class modelplugin extends routeplugin {
     public $mailconfirmationTable;
     public $friendsTable;
     public $pagedetailsTable;
+    public $adminTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {
@@ -68,6 +69,14 @@ class modelplugin extends routeplugin {
             $this->pagedetailsTable = $sm->get('Profile\Model\pagedetailsTable');
         }
         return $this->pagedetailsTable;
+    }
+    public function getadminTable() {
+        if (!$this->adminTable) {
+
+            $sm = $this->getController()->getServiceLocator();
+            $this->adminTable = $sm->get('Backend\Model\adminTable');
+        }
+        return $this->adminTable;
     }
 }
 

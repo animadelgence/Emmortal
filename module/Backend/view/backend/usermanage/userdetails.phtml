@@ -1,0 +1,194 @@
+<section id="main-content">
+	<section class="wrapper">
+		<h3>
+			<i class="fa fa-angle-right"></i>Smartfanpage User Details
+		</h3>
+		<div class="col-sm-12"
+			style="margin-bottom: 20px; padding: 0 !important">
+
+			<h1 id="csv_title" style="display: none;">Smartfanpage User Details</h1>
+			<a class="download-report export dwnload_csv" href="javascript:void(0)" download="Participant-Details.csv" title="Download CSV in excel">Download CSV</a>
+				<a href="/userregistration/adduser" class="new_user" title="Add user">New User</a>
+				<a href="/userregistration/userbackupdet" class="user_backup" title="User backup details"><i class="fa fa-recycle fa-3x" aria-hidden="true"></i></a>
+
+
+		</div>
+
+		<div class="row mt">
+			<div class="col-md-12">
+				<div class="content-panel" style="padding-top: 5px;">
+                    <div class="col-sm-12" style="margin-bottom: 20px; padding: 0 !important">
+                        <select class="form-control" id="nominee_Cat" name="nominee_Cat" style="width: 195px; float: left; height: 45px; margin-left: 10px;" title="Displays the list of users according to the selected option">
+				            <option value="" selected disabled>Select</option>
+                            <option value="">Show All</option>
+                            <option value="Deactivated">Deactivated</option>
+                            <option value="1">Activated</option>
+                            <option value="Free trial">Free trial</option>
+                            <option value="Standard">Standard</option>
+                            <option value="Professional">Professional</option>
+                            <option value="Yearly">subscription(Yearly)</option>
+                            <option value="Monthly">subscription(Monthly)</option>
+			            </select>
+                    </div>
+                       <div class="col-md-12" style="padding: 0px 10px;">
+                            <!-- Search bar here -->
+                            <div class="search-bar clearfix" style="margin-bottom: 10px">
+                                <input class="form-control" id="registeredtableSearch" type="text" placeholder="Search here" name="search" style="width: 100%; height: 35px;">
+                            </div>
+                            <!-- Search bar end -->
+                       </div>
+				       <div class="col-md-12" style="padding: 0px 10px;">
+                            <!-- No. of Users here -->
+                            <div class="numberclasscheck" style="margin-bottom: 10px">Number Of User(s) :
+                                <?php if(!empty($publisherdet)){
+								    $user = count($publisherdet);
+                                    echo $user;  } ?>
+                            </div>
+                            <!-- No. of Users end -->
+                       </div>
+                        <table class="table table-striped table-advance table-hover tbody userDetails datatable sortable" name="userDetails" id="userDetails">
+
+						<thead>
+							<tr class="show_rows">
+								<td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
+									class="fa fa-bookmark"></i> Name</td>
+								<td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
+									class="fa fa-bookmark"></i> Email</td>
+								<td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
+									class="fa fa-bookmark"></i> Subscription type / plan</td>
+								<td class="hidden-phone" style="cursor: pointer; font-weight: bold;"><i
+									class="fa fa-bookmark"></i> Status</td>
+                                <td style="cursor: pointer; font-weight: bold;"><i
+									class="fa fa-bookmark"></i> Registration Date</td>
+								<td style="cursor: pointer; font-weight: bold;"><i
+									class="fa fa-bookmark"></i> Subscription Start Date</td>
+								<td style="cursor: pointer; font-weight: bold;"><i
+									class="fa fa-bookmark"></i> Subscription End Date</td>
+								<td style="cursor: pointer; font-weight: bold;"><i
+									class="fa fa-bookmark"></i> Refer From</td>
+								<td style="cursor: pointer; font-weight: bold;" class="sorttable_nosort"><i
+									class="fa fa-bookmark"></i> Action</td>
+							</tr>
+						</thead>
+
+						<tbody class="my_size">
+							<?php if(!empty($publisherdet)){
+								foreach($publisherdet as $key => $val)
+					               { ?>
+
+							<tr	class="manageAll catId show_rows">
+								<td class="hidden-phone"><?php if(!empty($val['fname'])){
+                                    echo strip_tags($val['fname']);} else{ echo "N/A"; }
+                                    ?></td>
+								<td class="hidden-phone email-width"><span class=""
+									style=""><?php echo strtolower($val['email']); ?>
+								</span></td>
+								<td class="hidden-phone"><span class=""
+									style="width: 80%; display: inline-block;" value="<?php if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>"><?php if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>
+								</span></td>
+								<td class="hidden-phone"><span class=""
+									style="width: 80%; display: inline-block;" value="<?php if(($val['status']) == 'Activated'){ echo "1";} elseif(($val['status']) == 'Deactivated'){ echo "0";}?>"><?php echo $val['status']; ?>
+								</span></td>
+                                <td class="hidden-phone"><span class=""
+									style="width: 80%; display: inline-block;"><?php echo $val['regTime'];?>
+								</span></td>
+								<td class="hidden-phone"><span class=""
+									style="width: 80%; display: inline-block;"><?php echo $val['Subscriptiondate'];?>
+								</span></td>
+								<td class="hidden-phone"><span class=""
+									style="width: 80%; display: inline-block;"><?php echo $val['expireDate'];?>
+								</span></td>
+								<td class="hidden-phone"><span class=""
+									style="width: 80%; display: inline-block;"><?php if ($val['checksum']== 1){                   echo "From Friend";
+                                } else{
+                                echo "From SFP";
+                                } ?>
+								</span></td>
+								<input type="hidden"  class="hidden_class" value="<?php echo $val['publisherId']; ?>" />
+								<td class="sorttable_nosort">
+                                    <a href="<?php echo '/userregistration/loginasuser/'.$val['publisherId']; ?>" target="_blank" title="Login as user">
+                                            <button class="btn btn-primary btn-xs login_user">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                            </button>
+                                    </a>
+                                    <a href="<?php echo '/userregistration/useredit/'.$val['publisherId']; ?>" title="Edit user details">
+                                            <button class="btn btn-primary btn-xs edit_user">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+                                    </a>
+									        <button class="btn btn-danger btn-xs dlt_nom deleteUser" title="Delete user">
+										        <i class="fa fa-trash-o"></i>
+									        </button> <br/>
+                                            <?php $exp= strtotime($val['expireDate']); $curr= strtotime(date('Y-m-d')); $secs = $exp - $curr; $chk=$secs/86400;?>
+                                            <button class="btn btn-danger btn-xs blink_me invoiceSend" title="Send invoice" <?php if($chk<=10){echo 'style="display: block; margin-top: 12px;"';}else{echo 'style="display: none; margin-top: 12px;"';} ?>>Send invoice
+                                            </button>
+
+								</td>
+							</tr>
+							<tr id="hidden_tr" style="display: none;" class="for_search">
+								<th style="border-bottom: 0px !important;">No records found</th>
+							</tr>
+							<?php }
+                            }
+							else
+							{
+							   echo "No records found...";
+							}?>
+						</tbody>
+					</table>
+				</div>
+				<!-- /content-panel -->
+
+			</div>
+			<!-- /col-md-12 -->
+		</div>
+		<!-- /row -->
+
+	</section>
+	<!-- /wrapper -->
+
+	<!--delete popup -->
+<!--
+	<section id="dynamicpagecreatepopup" class="popupFormForDynamicPage chang_PPopup_conta">
+	<div id="" class="chang_PPopup">
+    <div class="tab-content" style="border:0px solid;width:490px;">
+		<form class="form-popup" style="margin-top: 0px;" method="POST" enctype="multipart/form-data">
+			 <a class="close" href="javascript:void(0)" onclick="$('#dynamicpagecreatepopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
+			<h2 class="form-login-heading">Delete User</h2>
+			<div class="login-wrap" style="overflow:hidden;text-align:center;">
+				<input type="hidden" name="hidden_id" value="" id="hidden_userid" class="hidden_id" />
+				<h4 class="form-login-heading">Are you sure you want to delete this user?</h4>
+				<div style="overflow:hidden;display:inline-block;">
+                    <input type="button" class="popup_cancel" onclick="$('#dynamicpagecreatepopup').hide();" id="btn" value="CANCEL"/>
+                    <input type="button" class="popup_cancel" id="delUser" value="OK"/>
+				</div>
+			</div>
+		</form>
+-->
+    <!-- /delete popup-->
+
+    <!--publish-campaign status popup -->
+<!--
+	<section id="pubStatusPopup" class="popupFormForDynamicPage chang_PPopup_conta">
+	<div id="" class="chang_PPopup">
+    <div class="tab-content" style="border:0px solid;width:490px;">
+		<form class="form-popup" style="margin-top: 0px;" method="POST" enctype="multipart/form-data">
+			 <a class="close" href="javascript:void(0)" onclick="$('#pubStatusPopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
+			<h2 class="form-login-heading">Set Publish Status</h2>
+			<div class="login-wrap" style="overflow:hidden;text-align:center;">
+				<input type="hidden" name="hidden_uId" value="" id="hidden_uId" class="hidden_id" />
+				<h4 class="form-login-heading">Set status of the published campigns of the chosen user</h4>
+				<div style="overflow:hidden;display:inline-block;">
+                    <input type="button" class="popup_cancel" id="activBtn" value="ACTIVATE"/>
+                    <input type="button" class="popup_cancel" id="deactivBtn" value="DEACTIVATE"/>
+				</div>
+			</div>
+		</form>
+	</div>tab-content
+    </div>
+    </section>
+-->
+    <!-- /publish-campaign status popup -->
+
+</section>
+<!-- /MAIN CONTENT -->

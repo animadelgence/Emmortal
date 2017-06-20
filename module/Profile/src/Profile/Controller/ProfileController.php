@@ -54,35 +54,31 @@ class ProfileController extends AbstractActionController {
         $getfirstdecodeid = explode("#$#", base64_decode($actionChecker));
                 $getpubid = explode("###", base64_decode($getfirstdecodeid[1]));
                 $arrayid = base64_decode($getpubid[1]);
-       //$key = '123454789018420';
-       // echo $actionChecker;
+       
         if($actionChecker != "resetpassword")
         {
-            //echo "inside if";
-           // $decrypteduserId = $this->decrypt($actionChecker, $key);
-            //echo intval($decrypteduserId);
+            
             $decrypteduserId = $arrayid;
             $searchkayarray = array('userid'=>$arrayid);
             $updateArray = array(
                 'activation' => '1'
             );
             $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
-            /*$user_session = new Container('userloginId');
-            $user_session->userloginId = $arrayid;*/
+            
             
 
         }else{
-            //echo $useridentifier;exit;
+            
             $serchArray = array('forgetpassword' => $useridentifier);
             $FetchDetails = $modelPlugin->getuserTable()->fetchall($serchArray);
-           // print_r($FetchDetails);exit;
+           
             if (empty($FetchDetails)) {
                     return $this->redirect()->toUrl($dynamicPath."/album/showalbum");
             }
             else{
                 $decrypteduserId = $FetchDetails[0]['userid'];
             }
-            //echo intval($decrypteduserId);
+            
 
         }
         return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));

@@ -26,6 +26,19 @@ switch ($controller) {
              break;
 		}
 		break;
+        case 'account':
+        switch ($action) {   
+             case 'myaccount':
+                $this->headLink()
+                    ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
+                ;
+                 break;
+        }
+        break;
 
 	default:
 		break;

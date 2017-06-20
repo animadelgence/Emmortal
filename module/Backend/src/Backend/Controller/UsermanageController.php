@@ -18,7 +18,7 @@ namespace Backend\Controller;
 		}
      }
      public function userdetailsAction(){
-              $this->layout('layout/adminlayout');
+              $this->layout('layout/backendlayout');
               $modelPlugin = $this->modelplugin();
               $plugin = $this->routeplugin();
 		      $currentPageURL = $plugin->curPageURL();
@@ -26,7 +26,8 @@ namespace Backend\Controller;
 		      $controller = @$href[3];
               $action = @$href[4];
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
-              $userdata = $modelPlugin->getuserTable()->fetchall();
+              $data = array();
+              $userdata = $modelPlugin->getuserTable()->fetchall($data);
 		      return new ViewModel(array('userdata'=>$userdata));
      }
 

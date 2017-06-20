@@ -27,6 +27,7 @@
                     'signindate' => $rSet->signindate,
                     'login' => $rSet->login,
                     'lastlogout' => $rSet->lastlogout,
+                    'dateofbirth'=>$rSet->dateofbirth,
                     'keepmelogin' => $rSet->keepmelogin,
                     'seeme' => $rSet->seeme,
                     'findme' => $rSet->findme,

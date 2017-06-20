@@ -11,63 +11,62 @@ namespace Backend\Controller;
  {
 
     public function loginAction(){
-//        echo '1'."<br />"; //WORKS
-//		$userSessionAdmin 	= 	new Container('username');
-//		$sessionidAdmin 	= 	$userSessionAdmin->offsetGet('adminID');
+		$userSessionAdmin 	= 	new Container('username');
+		$sessionidAdmin 	= 	$userSessionAdmin->offsetGet('adminID');
+        //echo $sessionidAdmin; exit;
         $plugin = $this->routeplugin();
 		$dynamicPath = $plugin->dynamicPath();
-//        echo $dynamicPath; exit; //WORKS
-//        if($sessionidAdmin != "")
-//		{
-//			 return $this->redirect()->toRoute('userregistration', array(
-//				'controller' => 'userregistration',
-//				'action' => 'userdetails'));
-//		}
-//		else{
+        if($sessionidAdmin != "")
+		{
+			 return $this->redirect()->toRoute('usermanage', array(
+				'controller' => 'usermanage',
+				'action' => 'userdetails'));
+		}
+		else{
 			$this->layout('layout/adminloginlayout');
-			//$plugin = $this->routeplugin();
-           // print_r($plugin)."<br />"; exit; //WORKS
+			$plugin = $this->routeplugin();
 		    $currentPageURL = $plugin->curPageURL();
-            //echo $currentPageURL; exit; //WORKS
 			$href = explode("/", $currentPageURL);
 			$controller = @$href[3];
 			$action = @$href[4];
-			//$this->layout()->setVariables(array('controller'=>$controller,'action'=>$action,'dynamicPath' => $dynamicPath));
-            $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
+			$this->layout()->setVariables(array('controller'=>$controller,'action'=>$action,'dynamicPath' => $dynamicPath));
 			return new ViewModel();
 		}
-//    }
-//    public function submitAction()
-//	{
-//        $modelPlugin = $this->modelplugin();
-//        $phpprenevt = $this->phpinjectionpreventplugin();
-//		$userName = $phpprenevt->stringReplace($_POST['userId']);
-//        $password = $phpprenevt->stringReplace($_POST['password']);
-//        $query = array('username'=>$userName,'password'=>$password);
-//		$checkLogin = $modelPlugin->getadminTable()->loginsubmit($query);
-//        if(!empty($checkLogin)){
-//		  if(isset($checkLogin[0]['adminID'])) {
-//			 $userSessionAdmin 			    = 	new Container('username');
-//             $userSessionAdmin->username 	= 	$checkLogin[0]['username'];
-//			 $userSessionAdmin->adminID 	= 	$checkLogin[0]['adminID'];
-//          }
-//            echo 'ok';
-//		}
-//        else {
-//            echo 'error';
-//         }
-//        exit;
-//	}
-//    public function logoutAction()
-//	{
-//        $userSessionAdmin  = 	new Container('username');
-//		$userSessionAdmin->getManager()->destroy();
-//		unset($userSessionAdmin->adminID);
-//		return $this->redirect()->toRoute('adminlogin', array(
-//					'controller' => 'adminlogin',
-//					'action' => 'login'
-//			));
-//	}
+    }
+    public function submitAction()
+	{
+        //echo 1; exit;
+        $modelPlugin = $this->modelplugin();
+        //$phpprenevt = $this->phpinjectionpreventplugin();
+		//$userName = $phpprenevt->stringReplace($_POST['userId']);
+        //$password = $phpprenevt->stringReplace($_POST['password']);
+        $userName = $_POST['userId'];
+        $password = $_POST['password'];
+        $query = array('username'=>$userName,'password'=>$password);
+		$checkLogin = $modelPlugin->getadminTable()->loginsubmit($query);
+        if(!empty($checkLogin)){
+		  if(isset($checkLogin[0]['adminId'])) {
+			 $userSessionAdmin 			    = 	new Container('username');
+             $userSessionAdmin->username 	= 	$checkLogin[0]['username'];
+			 $userSessionAdmin->adminID 	= 	$checkLogin[0]['adminId'];
+          }
+            echo 'ok';
+		}
+        else {
+            echo 'error';
+         }
+        exit;
+	}
+    public function logoutAction()
+	{
+        $userSessionAdmin  = 	new Container('username');
+		$userSessionAdmin->getManager()->destroy();
+		unset($userSessionAdmin->adminID);
+		return $this->redirect()->toRoute('adminlogin', array(
+					'controller' => 'adminlogin',
+					'action' => 'login'
+			));
+	}
 
 
 

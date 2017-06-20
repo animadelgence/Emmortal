@@ -27,10 +27,23 @@ class PageController extends AbstractActionController {
         $currentdatetime = date("Y-m-d h:i:sa");
         $data = array("UID" => $this->sessionid , "createddate" =>$currentdatetime);
         $pageinsertQuery = $modelPlugin->getpagedetailsTable()->insertData($data);
-        return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+        $currentPageURL = $modelPlugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        if($controller=="profile"&&$action=="showprofile"){
+          $response['noredirect'] = 1;
+        }
+        else
+        {
+          $response['noredirect'] = 0;
+          $response['gotostep'] = $pageinsertQuery;
+        }
+        $response = json_encode($response);
+        echo $response;exit;
     }
     public function selectpageAction(){
-        $id = $_GET['pageid'];
+        $id = $_POST['pageid'];
         $data = array("UID" => $this->sessionid ,"PID"=>$id);
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $modelPlugin->dynamicPath();

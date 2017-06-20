@@ -1,3 +1,7 @@
+<?php
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$protocolPath = $protocol . $_SERVER['HTTP_HOST'];
+?>
 <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-box">
 		<div class="modal-content modal-outer">
@@ -41,7 +45,7 @@
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 add-page-section">
 						<div class="add-page-wrapper">
-							<a class="btn btn-default btn-media-type pointer add-page-btn">
+							<a class="btn btn-default btn-media-type pointer add-page-btn" href="<?php echo $protocolPath."/page/newpagecreate";?>">
 								<i class="fa fa-plus"></i>
 								<div class="text">Create new page</div>
 							</a>

@@ -6,11 +6,14 @@
  * and open the template in the editor.
  */
 
+/*
 namespace Payment\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
+use Zend\Session\Config\StandardConfig;
+use Zend\Session\SessionManager;
 
 class PaymentController extends AbstractActionController {
 
@@ -42,6 +45,21 @@ class PaymentController extends AbstractActionController {
         echo $imagePath ;
         exit;
     }
-  
+  public function saveImageDetailsAction() {
+    echo $print_r($_POST); exit;
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        if($action == 'showprofile')
+        {
+            
+        }
+  }
 
 }
+*/

@@ -20,6 +20,7 @@
                     'UID' => $rSet->UID,
                     'uploadTitle' => $rSet->uploadTitle,
                     'uploadDescription' => $rSet->uploadDescription,
+                    'uploadType' => $rSet->uploadType,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,

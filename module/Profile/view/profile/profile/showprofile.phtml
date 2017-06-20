@@ -1,54 +1,22 @@
-<?php //echo "jksgdfrdhgtlgrtuhthtyhjty dsgdfhfh "; ?>
+
     <section class="photo-collage">
         <div class="container">
             <div class="row">
     
                 <div class="layout">
 
-                    <div class="free-wall">
-                        <div class="size320" data-nested=".level-1" data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                            <div class="brick level-1 size24"></div>
-                            <div class="brick level-1 size24"></div>
-                        </div>
-                        <div class="size320" data-nested=".level-1"  data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                            <div class="brick level-1 size42"></div>
-                            <div class="brick level-1 size42"></div>
-                        </div>
-                        <div class="size320" data-nested=".level-1"  data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                            <div class="brick level-1 size108"></div>
-                            <div class="brick level-1 size108"></div>
-                        </div>
-                        <div class="size320" data-nested=".level-1"  data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                            <div class="brick level-1 size24"></div>
-                            <div class="brick level-1 size22"></div>
-                            <div class="brick level-1 size22"></div>
-                        </div>
-                        <div class="size320" data-nested=".level-1" data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                            <div class="brick level-1 size42"></div>
-                            <div class="brick level-1 size22"></div>
-                            <div class="brick level-1 size22"></div>
-                        </div>
-                        <div class="size320" data-nested=".level-1"  data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                            <div class="brick level-1 size22"></div>
-                            <div class="brick level-1 size24"></div>
-                            <div class="brick level-1 size22"></div>
-                        </div>
-                        <div class="size320" data-nested=".level-1"  data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                            <div class="brick level-1 size22"></div>
-                            <div class="brick level-1 size22"></div>
-                            <div class="brick level-1 size22"></div>
-                            <div class="brick level-1 size22"></div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
+       <?php if(count($pageDetails)>1){ ?> 
         <div class="profile-paginator">
             <ul>
-                <li></li>
-                <li></li>
+                <?php foreach($pageDetails as $Page){ echo "<li class='profile-paginator__click' data-fetch-id='".$Page['pageid']."'></li>";}?>
             </ul>
         </div>
+        <?php } ?>
+        <input type="hidden" id="currentPageId" value="<?php echo $pageDetails[0]['pageid']; ?>">
     </section>
     
 

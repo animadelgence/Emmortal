@@ -38,6 +38,13 @@ body {
 	width: 900px;
 }
 /******************************************************   meeeee  ***************************/
+.spanClass  li span{
+   color: black; 
+}
+.auto-listing-div .frnd-span-class {
+
+}
+
 .e-modal .modal-body {
     padding: 15px;
 }
@@ -143,7 +150,7 @@ tags-input *, tags-input *::after, tags-input *::before {
 *::before, *::after {
     box-sizing: border-box;
 }
-.tags-input-wrapper .e-tags-input .host {
+.tags-input-wrapper .e-tags-input{
     margin: 0;
 }
 tags-input .host {
@@ -155,12 +162,15 @@ tags-input .host {
 tags-input *, tags-input *::after, tags-input *::before {
     box-sizing: border-box;
 }
-.tags-input-wrapper .e-tags-input .tags {
+.tags-input-wrapper .e-tags-input {
     border: 1px solid #aaa897;
     border-radius: 0;
     box-shadow: none;
     color: #aaa897;
     padding: 1px;
+    height: 34px;
+    width:  405px;
+    margin-top: 21px;
 }
 tags-input .tags {
     -moz-appearance: textfield;
@@ -364,7 +374,7 @@ button[disabled], html input[disabled] {
     white-space: normal;
 }
 
-/****************/
+/*************************************************************************************/
 .e-menu li a{
     padding: 13px 15px;
     color: #fff;

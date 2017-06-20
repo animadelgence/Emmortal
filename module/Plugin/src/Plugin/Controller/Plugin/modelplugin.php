@@ -48,7 +48,6 @@ class modelplugin extends routeplugin {
     }
 	public function getuploadDetailsTable() {
         if (!$this->uploadDetailsTable) {
-
             $sm = $this->getController()->getServiceLocator();
             $this->uploadDetailsTable = $sm->get('Profile\Model\uploadDetailsTable');
         }

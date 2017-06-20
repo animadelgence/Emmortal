@@ -10,11 +10,14 @@ use Zend\Session\SessionManager;
 
 class ProfileController extends AbstractActionController {
 
-    
+    public function __construct() {
+
+        $userSession = new Container('userloginId');
+        $this->sessionid = $userSession->offsetGet('userloginId');
+    }
     public function indexAction() {
         echo "work in progress";exit;
-
-       }
+    }
     public function showprofileAction(){
     	$this->layout('layout/profilelayout.phtml');
     	$plugin = $this->routeplugin();
@@ -25,11 +28,12 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $query = array('UID'=>1);
-        $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($query);
+        $pageQuery = array('UID'=>13);
+        $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
+        $uploadQuery = array('UID'=>13,'PID'=>$pageDetails[0]['pageid']);
+        $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-        
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadQuery'=>$uploadQuery , 'pageDetails'=>$pageDetails));
     }
     public function newsfeedAction(){
     	$this->layout('layout/profilelayout.phtml');
@@ -50,40 +54,37 @@ class ProfileController extends AbstractActionController {
         $getfirstdecodeid = explode("#$#", base64_decode($actionChecker));
                 $getpubid = explode("###", base64_decode($getfirstdecodeid[1]));
                 $arrayid = base64_decode($getpubid[1]);
-       //$key = '123454789018420';
-       // echo $actionChecker;
+       
         if($actionChecker != "resetpassword")
         {
-            //echo "inside if";
-           // $decrypteduserId = $this->decrypt($actionChecker, $key);
-            //echo intval($decrypteduserId);
+            
             $decrypteduserId = $arrayid;
             $searchkayarray = array('userid'=>$arrayid);
             $updateArray = array(
                 'activation' => '1'
             );
             $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
-            $user_session = new Container('userloginId');
-            $user_session->userloginId = $arrayid;
+            
             
 
         }else{
-            //echo $useridentifier;exit;
+            
             $serchArray = array('forgetpassword' => $useridentifier);
             $FetchDetails = $modelPlugin->getuserTable()->fetchall($serchArray);
-           // print_r($FetchDetails);exit;
+           
             if (empty($FetchDetails)) {
                     return $this->redirect()->toUrl($dynamicPath."/album/showalbum");
             }
             else{
                 $decrypteduserId = $FetchDetails[0]['userid'];
             }
-            //echo intval($decrypteduserId);
+            
 
         }
         return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function getalbumAction(){
+        
     	$plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();

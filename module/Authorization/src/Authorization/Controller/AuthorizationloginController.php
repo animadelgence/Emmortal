@@ -21,6 +21,19 @@ use Zend\Session\Container;
 
 class AuthorizationloginController extends AbstractActionController {
 
+     protected $sessionid;
+
+    public function __construct() {
+
+        $userSession = new Container('loginId');
+        $this->sessionid = $userSession->offsetGet('loginId');
+        /*$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
+        if ($this->sessionid == "") {
+            header("Location:" . $dynamicPath);
+            exit;
+        }*/
+    }
     
     public function loginAction() {
 
@@ -33,7 +46,11 @@ class AuthorizationloginController extends AbstractActionController {
 
     	$dataarrayforvalidation = array('emailid' => $loginemail);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
+        $usid = $contentDetails[0]['userid'];
+        $user_session = new Container('userloginId');
+        $user_session->userloginId = $usid;
         $passcheck = password_verify($loginpassword, $contentDetails[0]['password']);
+        //echo $contentDetails[0]['activation'];exit;
       	if($passcheck == 1 && $contentDetails[0]['activation'] == 1)
         {
         	$value = "live";    
@@ -42,7 +59,7 @@ class AuthorizationloginController extends AbstractActionController {
         {
         	$value = "not activate";   
         }
-        else
+        else if($passcheck == 0 && $contentDetails[0]['activation'] == 0)
         {
         	$value = "deactivate";  
         }

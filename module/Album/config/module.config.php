@@ -12,7 +12,9 @@ return array(
              'Album\Controller\Album' => 'Album\Controller\AlbumController',
              'Album\Controller\Newsfeed' => 'Album\Controller\NewsfeedController',
              'Album\Controller\Video' => 'Album\Controller\VideoController',
-             'Album\Controller\Image' => 'Album\Controller\ImageController'
+             'Album\Controller\Image' => 'Album\Controller\ImageController',
+             'Album\Controller\Tribute' => 'Album\Controller\TributeController'
+
            
              
          ),
@@ -76,6 +78,21 @@ return array(
                      ),
                  ),
              ),
+             'Tribute' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/tribute[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Album\Controller\Tribute',
+                         'action'     => 'news',
+                     ),
+                 ),
+             ),
+
              'Image' => array(
                  'type'    => 'segment',
                  'options' => array(

@@ -12,10 +12,38 @@
 /*jslint devel: true */
 /*jslint eqeq: true*/
 $(function () {
+    var baseUrl = window.location.origin;
+    $("body").on("click",".add-page-btn",function(){
+        $.ajax({
+          type: "POST",
+          url: baseUrl + "/page/newpagecreate",
+          success:function (result) {
+              var jsObject = JSON.parse(result);
+              $(".close-new").trigger("click");
+              if(jsObject.noredirect==1){
+                  window.location.href( baseUrl + "/profile/showprofile");
+              }
+              else{
+                  $(".profile-paginator ul").append('<li class="profile-paginator__click" data-fetch-id="'+jsObject.gotostep+'"></li>');
+                  $(".profile-paginator ul li:last").trigger("click");
+              }
+          }
+
+        });
+    });
     $("body").on("click",".profile-paginator__click",function(){
-        var getClickedId = $(this).attr("data-fetch-id"),
-            baseUrl = window.location.origin;
-        $.get(baseUrl+"/page/selectpage", { pageid:getClickedId });
+        var getClickedId = $(this).attr("data-fetch-id");
+        $.ajax({
+          type: "POST",
+          data:{pageid:getClickedId}
+          url: baseUrl + "/page/selectpage",
+          success:function (result) {
+              var jsObject = JSON.parse(result);
+              console.log(jsObject);
+          }
+
+        });
+
     });
 
 });

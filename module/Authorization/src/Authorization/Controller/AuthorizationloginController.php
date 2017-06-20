@@ -36,18 +36,14 @@ class AuthorizationloginController extends AbstractActionController {
     }
     
     public function loginAction() {
- error_reporting(E_ALL); ini_set('display_errors', 1);
-      $plugin = $this->routeplugin();
+        $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
     	$loginemail = $_POST['loginemail'];
     	$loginpassword = $_POST['loginpassword'];
-print_r($_POST);
-    	$dataarrayforvalidation = array('emailid' => $loginemail);
+        $dataarrayforvalidation = array('emailid' => $loginemail);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
         $usid = $contentDetails[0]['userid'];
-     print_r($contentDetails);exit;
-
         $user_session = new Container('userloginId');
         $user_session->userloginId = $usid;
 

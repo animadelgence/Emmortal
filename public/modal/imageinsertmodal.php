@@ -17,7 +17,7 @@
 									<div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
 									<div class="image-select">
 										<div class="img-input">
-											<div class="canvas-placeholder" style="height: 360px;">
+											<div class="canvas-placeholder" id="canvasPlaceholdeId" style="height: 360px;">
 												<i class="fa fa-picture-o remove-fa-picture-icon"></i>
                                                 <!--<img id= 'profile_pic_thumb'/>-->
 											</div>
@@ -54,12 +54,12 @@
 											<div class="host">
 												<div class="tags">
 													
-                                                    <div class="auto-listing-div" id="append-div">
-                                                        <input type="text" class="e-tags-input friendsid" name="friendsid" placeholder="Type Friend Name..." id ="imageFriend">
-                                                        <span id="imageFriendError" style="color:red;display:none;">Required</span>
+                                                    <div class="auto-listing-div" id="append-div-image">
+                                                        <input type="text" class="e-tags-input friendsids" name="friendsid" placeholder="Type Friend Name..." id ="imageFriend">
+                                                        <!--<span id="imageFriendError" style="color:red;display:none;">Required</span>-->
                                                     </div>
                                                     <div class="dropdown-div">
-                                                        <ul style="list-style-type: none;z-index: 999999; position: relative; display:none; margin-top:4px; width:445px;" id="frndlist" class="frndlist spanClass">
+                                                        <ul style="list-style-type: none;z-index: 999999; position: relative; display:none; margin-top:4px; width:445px;" id="frndlistImage" class="frndlist spanClass">
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -72,8 +72,9 @@
 							<div class="col-md-6 m-t-xs-20">
 								<div class="m-b-10">
 									<input class="form-control" type="text" placeholder="Title" id="imageTitle">
-                                    <span id="imageTitleError" style="color:red;display:none;">Required</span>
+
 								</div>
+                                <span id="imageTitleError" style="color:red;display:none;">Required</span>
 								<div class="m-b-20 m-t-20" >
 									<textarea name="imagetextDescription" id="imagetextDescription" class="form-control" style="height:353px;"></textarea>
 								    <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>

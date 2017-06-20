@@ -25,8 +25,8 @@ namespace Admin\Controller;
 		      $controller = @$href[3];
               $action = @$href[4];
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
-              $publisherdet = $modelPlugin->getpublisherTable()->joinquery();
-		      return new ViewModel(array('publisherdet'=>$publisherdet));
+              $userdata = $modelPlugin->getuserTable()->fetchall();
+		      return new ViewModel(array('userdata'=>$userdata));
      }
 
  }

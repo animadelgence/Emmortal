@@ -72,46 +72,46 @@
 						</thead>
 
 						<tbody class="my_size">
-							<?php if(!empty($publisherdet)){
-								foreach($publisherdet as $key => $val)
+							<?php if(!empty($userdata)){
+								foreach($userdata as $key => $val)
 					               { ?>
 
 							<tr	class="manageAll catId show_rows">
 								<td class="hidden-phone"><?php if(!empty($val['fname'])){
-                                    echo strip_tags($val['fname']);} else{ echo "N/A"; }
+                                    echo strip_tags($val['firstname'])." ".strip_tags($val['lastname']);} else{ echo "N/A"; }
                                     ?></td>
 								<td class="hidden-phone email-width"><span class=""
-									style=""><?php echo strtolower($val['email']); ?>
+									style=""><?php echo strtolower($val['emailid']); ?>
 								</span></td>
 								<td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;" value="<?php if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>"><?php if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>
 								</span></td>
 								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;" value="<?php if(($val['status']) == 'Activated'){ echo "1";} elseif(($val['status']) == 'Deactivated'){ echo "0";}?>"><?php echo $val['status']; ?>
+									style="width: 80%; display: inline-block;" value="<?php //if(($val['status']) == 'Activated'){ echo "1";} //elseif(($val['status']) == 'Deactivated'){ echo "0";}?>"><?php //echo $val['status']; ?>
 								</span></td>
                                 <td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;"><?php echo $val['regTime'];?>
+									style="width: 80%; display: inline-block;"><?php echo $val['signindate'];?>
 								</span></td>
 								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;"><?php echo $val['Subscriptiondate'];?>
+									style="width: 80%; display: inline-block;"><?php //echo $val['Subscriptiondate'];?>
 								</span></td>
 								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;"><?php echo $val['expireDate'];?>
+									style="width: 80%; display: inline-block;"><?php //echo $val['expireDate'];?>
 								</span></td>
 								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;"><?php if ($val['checksum']== 1){                   echo "From Friend";
+									style="width: 80%; display: inline-block;"><?php //if ($val['checksum']== 1){                   echo "From Friend";
                                 } else{
-                                echo "From SFP";
+                                //echo "From SFP";
                                 } ?>
 								</span></td>
-								<input type="hidden"  class="hidden_class" value="<?php echo $val['publisherId']; ?>" />
+								<input type="hidden"  class="hidden_class" value="<?php echo $val['userid']; ?>" />
 								<td class="sorttable_nosort">
-                                    <a href="<?php echo '/userregistration/loginasuser/'.$val['publisherId']; ?>" target="_blank" title="Login as user">
+                                    <a href="<?php echo '/usermanage/loginasuser/'.$val['publisherId']; ?>" target="_blank" title="Login as user">
                                             <button class="btn btn-primary btn-xs login_user">
                                                 <i class="fa fa-user" aria-hidden="true"></i>
                                             </button>
                                     </a>
-                                    <a href="<?php echo '/userregistration/useredit/'.$val['publisherId']; ?>" title="Edit user details">
+                                    <a href="<?php echo '/usermanage/useredit/'.$val['publisherId']; ?>" title="Edit user details">
                                             <button class="btn btn-primary btn-xs edit_user">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </button>
@@ -119,8 +119,8 @@
 									        <button class="btn btn-danger btn-xs dlt_nom deleteUser" title="Delete user">
 										        <i class="fa fa-trash-o"></i>
 									        </button> <br/>
-                                            <?php $exp= strtotime($val['expireDate']); $curr= strtotime(date('Y-m-d')); $secs = $exp - $curr; $chk=$secs/86400;?>
-                                            <button class="btn btn-danger btn-xs blink_me invoiceSend" title="Send invoice" <?php if($chk<=10){echo 'style="display: block; margin-top: 12px;"';}else{echo 'style="display: none; margin-top: 12px;"';} ?>>Send invoice
+                                            <?php //$exp= strtotime($val['expireDate']); $curr= strtotime(date('Y-m-d')); $secs = $exp - $curr; $chk=$secs/86400;?>
+                                            <button class="btn btn-danger btn-xs blink_me invoiceSend" title="Send invoice" <?php //if($chk<=10){echo 'style="display: block; margin-top: 12px;"';}else{echo 'style="display: none; margin-top: 12px;"';} ?>>Send invoice
                                             </button>
 
 								</td>

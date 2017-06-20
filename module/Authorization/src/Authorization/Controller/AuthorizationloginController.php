@@ -42,7 +42,7 @@ class AuthorizationloginController extends AbstractActionController {
         $dynamicPath = $plugin->dynamicPath();
     	$loginemail = $_POST['loginemail'];
     	$loginpassword = $_POST['loginpassword'];
-
+print_r($_POST);
     	$dataarrayforvalidation = array('emailid' => $loginemail);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
         $usid = $contentDetails[0]['userid'];

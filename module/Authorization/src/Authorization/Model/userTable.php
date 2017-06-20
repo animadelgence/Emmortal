@@ -12,7 +12,7 @@
         }
         public function fetchall($query)
         {
-            print_r($query);
+            print_r($query); exit;
             $resultSet = $this->tableGWay->select($query);
             $array = array();
             foreach ($resultSet as $rSet) {

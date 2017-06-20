@@ -1,5 +1,5 @@
 <?php
-namespace Admin\Model;
+namespace Backend\Model;
 
 class admin
 {

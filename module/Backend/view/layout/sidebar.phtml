@@ -1,0 +1,36 @@
+<aside>
+	<div id="sidebar" class="nav-collapse ">
+		<!-- sidebar menu start-->
+		<ul class="sidebar-menu" id="nav-accordion">
+			<p class="centered">
+				<a class='logo_class'><img src="../../img/backend/user.png"
+					class="img-circle" width="60">
+				</a>
+			</p>
+			<h5 class="centered">
+				<?php if($Admin!=""){
+					echo $Admin;
+				}else{echo "Admin";
+				} ?></h5>
+
+			<li class='userreg common_class'><a title="Details of Smartfanpage Users"
+				class="common_class userreg"> <i class="fa fa-user"></i> <span>User management</span>
+			</a></li>
+<!--
+			<li class='template common_class'><a title="Details of Smartfanpage Templates"
+				class="common_class template"> <i class="fa fa-desktop"></i> <span>Template management</span>
+			</a></li>
+			<li class='language common_class'><a title="Language Management"
+				class="common_class language"> <i class="fa fa-file"></i> <span>Language management</span>
+			</a></li>
+			<li class='tag common_class'><a title="Details of Smartfanpage Tags"
+				class="common_class tag"> <i class="fa fa-list-alt"></i> <span>Tag management</span>
+			</a></li>
+			<li class='section common_class'><a title="Details of Smartfanpage Section"
+				class="common_class section"> <i class="fa fa-list-alt"></i> <span>Section management</span>
+			</a></li>
+-->
+			<!-- sidebar menu end-->
+        </ul>
+	</div>
+</aside>

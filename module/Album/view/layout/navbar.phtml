@@ -1,6 +1,6 @@
  <?php 
 //echo $_SERVER['REQUEST_URI'];exit;
-    if($_SERVER['REQUEST_URI'] != '/album/showalbum' ){
+    if($_SERVER['REQUEST_URI'] == '/profile/newsfeed' ){
         $refererpageURL = $_SERVER['HTTP_REFERER']; 
         $refererpage = explode("/",$refererpageURL);
         $refercontroller = $refererpage[3];
@@ -35,7 +35,7 @@
                  </div>
                 <div class="col-lg-8">
                     <a href="/album/showalbum" class="logo-style">Emmortal</a>
-                    <?php if( strtolower($controller) == 'profile'){ ?>
+                    <?php if( strtolower($controller) == 'profile' || strtolower($controller) == 'account'){ ?>
                     <button class="btn btn-default dropdown-toggle down-arrow" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <span class="caret"></span>
                     </button>
@@ -56,12 +56,12 @@
                                 </li>
                                 <li><?php if(strtolower ($controller) == 'album'){ ?><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">Sign In</button><?php }?>
                                 </li>
-                                <li><?php if(strtolower ($controller) == 'profile'){ ?><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">My profile</button><?php }?>
+                                <li><?php if(strtolower ($controller) == 'profile' || strtolower($controller) == 'account'){ ?><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">My profile</button><?php }?>
                                 </li>
-                                <li><?php if( strtolower($controller) == 'profile'){ ?>
+                                <li><?php if( strtolower($controller) == 'profile' || strtolower($controller) == 'account'){ ?>
                                     <button data-toggle="modal" data-target="#squarespaceModal3" class="btn btn-primary center-block sign-up" onclick="location.href='/profile/newsfeed'">Newsfeed</button><?php }?>
                                 </li>
-                                <li><?php if(strtolower ($controller) == 'profile'){ ?><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">Settings</button><?php }?>
+                                <li><?php if(strtolower ($controller) == 'profile' || strtolower($controller) == 'account'){ ?><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">Settings</button><?php }?>
                                 </li>
                                 <li><button data-toggle="modal" data-target="#squarespaceModal3" class="btn btn-primary center-block sign-up" onclick="location.href='/album/aboutus'">About Us</button></li>
                                 <li><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up" onclick="location.href='/album/termsandconditions'">Terms & Conditions</button></li>
@@ -71,7 +71,7 @@
                         </li>
                     </ul>
                 </div>
-            <?php if (strtolower($controller) == 'profile'){ ?>
+            <?php if (strtolower($controller) == 'profile' || strtolower($controller) == 'account'){ ?>
                 <div class="col-lg-0.5">
 				<ul class="nav navbar-nav hamburger-menu pull-right">
 					<li class="dropdown hover-effect">

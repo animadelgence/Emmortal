@@ -1,12 +1,12 @@
 <section id="main-content">
 	<section class="wrapper">
 		<h3>
-			<i class="fa fa-angle-right"></i>Smartfanpage User Details
+			<i class="fa fa-angle-right"></i>Emmortal User Details
 		</h3>
 		<div class="col-sm-12"
 			style="margin-bottom: 20px; padding: 0 !important">
 
-			<h1 id="csv_title" style="display: none;">Smartfanpage User Details</h1>
+			<h1 id="csv_title" style="display: none;">Emmortal User Details</h1>
 			<a class="download-report export dwnload_csv" href="javascript:void(0)" download="Participant-Details.csv" title="Download CSV in excel">Download CSV</a>
 				<a href="/userregistration/adduser" class="new_user" title="Add user">New User</a>
 				<a href="/userregistration/userbackupdet" class="user_backup" title="User backup details"><i class="fa fa-recycle fa-3x" aria-hidden="true"></i></a>
@@ -40,8 +40,8 @@
 				       <div class="col-md-12" style="padding: 0px 10px;">
                             <!-- No. of Users here -->
                             <div class="numberclasscheck" style="margin-bottom: 10px">Number Of User(s) :
-                                <?php if(!empty($publisherdet)){
-								    $user = count($publisherdet);
+                                <?php if(!empty($userdata)){
+								    $user = count($userdata);
                                     echo $user;  } ?>
                             </div>
                             <!-- No. of Users end -->
@@ -71,26 +71,27 @@
 							</tr>
 						</thead>
 
+<!--
 						<tbody class="my_size">
-							<?php if(!empty($userdata)){
-								foreach($userdata as $key => $val)
-					               { ?>
+							<?php //if(!empty($userdata)){ print_r($userdata) ; exit;
+								//foreach($userdata as $key => $val)
+					             //  { ?>
 
 							<tr	class="manageAll catId show_rows">
-								<td class="hidden-phone"><?php if(!empty($val['fname'])){
-                                    echo strip_tags($val['firstname'])." ".strip_tags($val['lastname']);} else{ echo "N/A"; }
+								<td class="hidden-phone"><?php //if(!empty($val['fname'])){
+                                    //echo strip_tags($val['firstname'])." ".strip_tags($val['lastname']);} else{ echo "N/A"; }
                                     ?></td>
 								<td class="hidden-phone email-width"><span class=""
-									style=""><?php echo strtolower($val['emailid']); ?>
+									style=""><?php //echo strtolower($val['emailid']); ?>
 								</span></td>
 								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;" value="<?php if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>"><?php if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>
+									style="width: 80%; display: inline-block;" value="<?php //if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>"><?php //if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>
 								</span></td>
 								<td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;" value="<?php //if(($val['status']) == 'Activated'){ echo "1";} //elseif(($val['status']) == 'Deactivated'){ echo "0";}?>"><?php //echo $val['status']; ?>
 								</span></td>
                                 <td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;"><?php echo $val['signindate'];?>
+									style="width: 80%; display: inline-block;"><?php //echo $val['signindate'];?>
 								</span></td>
 								<td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;"><?php //echo $val['Subscriptiondate'];?>
@@ -100,18 +101,18 @@
 								</span></td>
 								<td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;"><?php //if ($val['checksum']== 1){                   echo "From Friend";
-                                } else{
+                               // } else{
                                 //echo "From SFP";
-                                } ?>
+                               // } ?>
 								</span></td>
-								<input type="hidden"  class="hidden_class" value="<?php echo $val['userid']; ?>" />
+								<input type="hidden"  class="hidden_class" value="<?php //echo $val['userid']; ?>" />
 								<td class="sorttable_nosort">
-                                    <a href="<?php echo '/usermanage/loginasuser/'.$val['publisherId']; ?>" target="_blank" title="Login as user">
+                                    <a href="<?php //echo '/usermanage/loginasuser/'.$val['publisherId']; ?>" target="_blank" title="Login as user">
                                             <button class="btn btn-primary btn-xs login_user">
                                                 <i class="fa fa-user" aria-hidden="true"></i>
                                             </button>
                                     </a>
-                                    <a href="<?php echo '/usermanage/useredit/'.$val['publisherId']; ?>" title="Edit user details">
+                                    <a href="<?php //echo '/usermanage/useredit/'.$val['publisherId']; ?>" title="Edit user details">
                                             <button class="btn btn-primary btn-xs edit_user">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </button>
@@ -128,13 +129,14 @@
 							<tr id="hidden_tr" style="display: none;" class="for_search">
 								<th style="border-bottom: 0px !important;">No records found</th>
 							</tr>
-							<?php }
-                            }
-							else
-							{
-							   echo "No records found...";
-							}?>
+							<?php// }
+                           // }
+							//else
+							//{
+							  // echo "No records found...";
+							//}?>
 						</tbody>
+-->
 					</table>
 				</div>
 				<!-- /content-panel -->

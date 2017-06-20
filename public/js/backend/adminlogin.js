@@ -35,7 +35,7 @@ $(document).ready(function () {
                         $('#errormsg').html("<font color='red'> Please enter correct User ID / Password </font>");
                         return false;
                     } else {
-                        window.location = baseUrl + '/userregistration/userdetails';
+                        window.location = baseUrl + '/usermanage/userdetails';
                     }
                 }
             });

@@ -9,7 +9,8 @@
 return array(
      'controllers' => array(
          'invokables' => array(
-             'Backend\Controller\Adminlogin' => 'Backend\Controller\AdminloginController'
+             'Backend\Controller\Adminlogin' => 'Backend\Controller\AdminloginController',
+             'Backend\Controller\Usermanage' => 'Backend\Controller\UsermanageController'
          ),
      ),
     // The following section is new and should be added to your file
@@ -32,6 +33,22 @@ return array(
                  ),
              ),
              
+             // this is for Usermanage operation
+             'usermanage' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/usermanage[/:action][/:id][/:pId]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Backend\Controller\Usermanage',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+
          ),
      ),
     

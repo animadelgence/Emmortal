@@ -12,6 +12,7 @@ class user
     public $forgetpassword;
     public $firstname;
     public $lastname;
+    public $dateofbirth;
     public $profileimage;
     public $backgroundimage;
     public $signindate;
@@ -31,6 +32,7 @@ class user
         $this->forgetpassword = (!empty($data['forgetpassword'])) ? $data['forgetpassword'] : null;
         $this->firstname = (!empty($data['firstname'])) ? $data['firstname'] : null;
         $this->lastname = (!empty($data['lastname'])) ? $data['lastname'] : null;
+        $this->dateofbirth = (!empty($data['dateofbirth'])) ? $data['dateofbirth'] : null;
         $this->profileimage = (!empty($data['profileimage'])) ? $data['profileimage'] : null;
         $this->backgroundimage = (!empty($data['backgroundimage'])) ? $data['backgroundimage'] : null;
         $this->signindate = (!empty($data['signindate'])) ? $data['signindate'] : null;

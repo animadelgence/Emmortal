@@ -13,7 +13,6 @@
         public function fetchall($query)
         {
             $resultSet = $this->tableGWay->select($query);
-            $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
                     'userid' => $rSet->userid,
@@ -27,6 +26,7 @@
                     'signindate' => $rSet->signindate,
                     'login' => $rSet->login,
                     'lastlogout' => $rSet->lastlogout,
+                    'dateofbirth'=>$rSet->dateofbirth,
                     'keepmelogin' => $rSet->keepmelogin,
                     'seeme' => $rSet->seeme,
                     'findme' => $rSet->findme,

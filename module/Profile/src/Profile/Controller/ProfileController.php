@@ -10,6 +10,7 @@ use Zend\Session\SessionManager;
 
 class ProfileController extends AbstractActionController {
 
+    
     public function __construct() {
 
         $userSession = new Container('userloginId');
@@ -20,28 +21,27 @@ class ProfileController extends AbstractActionController {
     }
     public function showprofileAction(){
     	$this->layout('layout/profilelayout.phtml');
-    	$plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
+    	$modelPlugin = $this->modelplugin();
+        $dynamicPath = $modelPlugin->dynamicPath();
+        $jsonArray = $modelPlugin->jsondynamic();
+        $currentPageURL = $modelPlugin->curPageURL();
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $pageQuery = array('UID'=>13);
+        $pageQuery = array('UID'=>$this->sessionid);
         $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
-        $uploadQuery = array('UID'=>13,'PID'=>$pageDetails[0]['pageid']);
+        $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $uploadQuery = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadQuery'=>$uploadQuery , 'pageDetails'=>$pageDetails));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
     }
     public function newsfeedAction(){
     	$this->layout('layout/profilelayout.phtml');
-    	$plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
+    	$modelPlugin = $this->modelplugin();
+        $dynamicPath = $modelPlugin->dynamicPath();
+        $jsonArray = $modelPlugin->jsondynamic();
+        $currentPageURL = $modelPlugin->curPageURL();
         //$previouspage = $_SERVER['HTTP_REFERER'];
         //echo $previouspage;exit;
         $href = explode("/", $currentPageURL);

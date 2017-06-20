@@ -1,9 +1,10 @@
 <?php
-namespace Admin\Controller;
+namespace Backend\Controller;
  use Zend\Mvc\Controller\AbstractActionController;
  use Zend\View\Model\ViewModel;
  use Zend\Session\Container;
- class UserregistrationController extends AbstractActionController
+
+ class UsermanageController extends AbstractActionController
  {
      public function __construct() {
         $userSessionAdmin 	= 	new Container('username');
@@ -17,7 +18,7 @@ namespace Admin\Controller;
 		}
      }
      public function userdetailsAction(){
-              $this->layout('layout/adminlayout');
+              $this->layout('layout/backendlayout');
               $modelPlugin = $this->modelplugin();
               $plugin = $this->routeplugin();
 		      $currentPageURL = $plugin->curPageURL();
@@ -25,7 +26,8 @@ namespace Admin\Controller;
 		      $controller = @$href[3];
               $action = @$href[4];
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
-              $userdata = $modelPlugin->getuserTable()->fetchall();
+              $data = array();
+              $userdata = $modelPlugin->getuserTable()->fetchall($data);
 		      return new ViewModel(array('userdata'=>$userdata));
      }
 

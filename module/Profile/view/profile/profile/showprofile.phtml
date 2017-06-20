@@ -1,11 +1,31 @@
-
-    <section class="photo-collage">
+<section class="photo-collage">
         <div class="container">
             <div class="row">
-    
                 <div class="layout">
-
-                    
+                        <div class="content-wrapper user_profile_section">
+                            <div class="user_profile_image_section"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
+                    echo $userDetails[0]['profileimage'];
+                } else {
+                    echo "/image/profile-deafult-avatar.jpg";
+                }?>"></div>
+                            <div class="user_profile_name_section"><span><?php echo $userDetails[0]['dateofbirth']?></span><span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname']?></span></div>
+                            <div class="user_upload_part_section">
+                                <?php
+                                    if(count($uploadDetails)>1){
+                                                        foreach($uploadDetails as $upload){
+                                                                echo $upload['uploadPath'];
+                                                        }
+                                    }else{?><div class="">
+                                            <div class="">
+                                                <div class="fa fa-plus"></div>
+                                            </div>
+                                            <div class="">
+                                                <p>Add your Life moments: upload photos and videos.</p>
+                                                <p>Create Albums, Tributes and add valuable texts.</p>
+                                                <p>"Add" button is always accessible on right top menu.</p>
+                                            </div>
+                                        </div><?php } ?></div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -17,7 +37,7 @@
         </div>
         <?php } ?>
         <input type="hidden" id="currentPageId" value="<?php echo $pageDetails[0]['pageid']; ?>">
-    </section>
+</section>
     
 
 

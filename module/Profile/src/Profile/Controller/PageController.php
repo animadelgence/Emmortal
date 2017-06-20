@@ -25,13 +25,13 @@ class PageController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $modelPlugin->dynamicPath();
         $currentdatetime = date("Y-m-d h:i:sa");
-        $data = array("UID" => "13" , "createddate" =>$currentdatetime);
+        $data = array("UID" => $this->sessionid , "createddate" =>$currentdatetime);
         $pageinsertQuery = $modelPlugin->getpagedetailsTable()->insertData($data);
         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
     public function selectpageAction(){
         $id = $_GET['pageid'];
-        $data = array("UID" => "13" ,"PID"=>$id);
+        $data = array("UID" => $this->sessionid ,"PID"=>$id);
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $modelPlugin->dynamicPath();
         $fetchDetailsOfPage = $modelPlugin->getuploadDetailsTable()->fetchall($data);

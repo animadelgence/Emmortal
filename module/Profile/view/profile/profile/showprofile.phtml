@@ -3,9 +3,24 @@
             <div class="row">
                 <div class="layout">
                         <div class="content-wrapper user_profile_section">
-                            <div class="user_profile_image_section"><img src="<?php ?>"></div>
-                            <div class="user_profile_name_section"><span>DOB</span><span>Name</span></div>
-                            <div class="user_upload_part_section"><?php ?></div>
+                            <div class="user_profile_image_section"><img src="<?php $userDetails[0]['profileimage']?>"></div>
+                            <div class="user_profile_name_section"><span><?php $userDetails[0]['dateofbirth']?></span><span><?php $userDetails[0]['firstname']." ".$userDetails[0]['firstname']?></span></div>
+                            <div class="user_upload_part_section">
+                                <?php
+                                    if(count($uploadDetails)>1){
+                                                        foreach($uploadDetails as $upload){
+                                                                echo $upload['uploadPath'];
+                                                        }
+                                    }else{?><div class="">
+                                            <div class="">
+                                                <div class="fa fa-plus"></div>
+                                            </div>
+                                            <div class="">
+                                                <p>Add your Life moments: upload photos and videos.</p>
+                                                <p>Create Albums, Tributes and add valuable texts.</p>
+                                                <p>"Add" button is always accessible on right top menu.</p>
+                                            </div>
+                                        </div><?php } ?></div>
                         </div>
                 </div>
             </div>

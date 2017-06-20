@@ -8,7 +8,7 @@ switch ($controller) {
             case 'login':
 				 $this->headScript()
                      //->prependFile($this->basePath() . '/js/editor/jquery.form.js?version='.$t)
-				    ->prependFile($this->basePath() . '/js/admin/adminlogin.js?version='.$t);
+				    ->prependFile($this->basePath() . '/js/backend/adminlogin.js?version='.$t);
             break;
 		    }
     break;
@@ -101,8 +101,8 @@ switch ($controller) {
 echo $this->headScript()
 //    ->prependFile($this->basePath() . '/js/editor/jquery.form.js?version='.$t)
 //    ->prependFile($this->basePath() . '/js/admin/logout.popup.js?version='.$t)
-//    ->prependFile($this->basePath() . '/js/admin/common-scripts.js?version='.$t)
-//    ->prependFile($this->basePath() . '/js/admin/jquery.nicescroll.js')
+    ->prependFile($this->basePath() . '/js/backend/common-scripts.js?version='.$t)
+    ->prependFile($this->basePath() . '/js/backend/jquery.nicescroll.js')
 //    ->prependFile($this->basePath() . '/js/admin/jquery.dcjqaccordion.2.7.js')
 //    ->prependFile($this->basePath() . '/js/bootstrap/bootstrap.min.js')
     ->prependFile('//code.jquery.com/ui/1.9.2/jquery-ui.js')

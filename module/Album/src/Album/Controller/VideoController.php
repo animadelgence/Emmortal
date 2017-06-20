@@ -33,12 +33,16 @@ class VideoController extends AbstractActionController {
 }
     public function videodetailssubmitAction(){
            $modelPlugin        =    $this->modelplugin();
+           $plugin = $this->routeplugin();
+           $modelPlugin = $this->modelplugin();
+           $dynamicPath = $plugin->dynamicPath();
            $title                = $_POST['title'];
            $videoDescription     = $_POST['videoDescription'];
            $uploadedvideo        = $_POST['uploadedvideo'];
-           $frndId               = $_POST['frndId'];
+           $frndId               = $_POST['friendsId'];
            $friendId             =  implode(",",$frndId);
-           $albumId                  = $_POST['AID'];
+           $albumId                  = $_POST['albumId'];
+           $currentPageId = $_POST['currentPageId'];
            $UID = 1;
            $addeddate = date('Y-m-d H:i:s');
            $data =  array('UID'=>$UID,
@@ -48,11 +52,12 @@ class VideoController extends AbstractActionController {
                       'FID'=>$friendId,
                       'TimeStamp'=>$addeddate,
                       'uploadPath'=>'/video/'.$uploadedvideo,
-                      'uploadType'=>'video'
+                      'uploadType'=>'video',
+                      'PID'=>$currentPageId,
 
                       );
            $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($data);
-           return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+            echo $albumDetails;
            
     }
 }

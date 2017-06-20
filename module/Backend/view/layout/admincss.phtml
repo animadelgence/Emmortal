@@ -33,8 +33,8 @@ switch ($controller) {
 }
 echo $this->headLink()
 ->prependStylesheet('//fonts.googleapis.com/css?family=Ruda:400,700,900')
-->prependStylesheet($this->basePath() . '/css/admin/style_temp.css?version='.$t)
-->prependStylesheet($this->basePath() . '/css/admin/style.css?version='.$t)
+->prependStylesheet($this->basePath() . '/css/backend/style_temp.css?version='.$t)
+->prependStylesheet($this->basePath() . '/css/backend/style.css?version='.$t)
 ->prependStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-->prependStylesheet($this->basePath() . '/css/admin/bootstrap.css');
+->prependStylesheet($this->basePath() . '/css/backend/bootstrap.css');
 ?>

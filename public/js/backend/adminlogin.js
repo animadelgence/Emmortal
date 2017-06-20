@@ -31,7 +31,6 @@ $(document).ready(function () {
                     password: passwrd
                 },
                 success: function (response) {
-                    console.log(response); return false;
                     if (response.trim() === "error") {
                         $('#errormsg').html("<font color='red'> Please enter correct User ID / Password </font>");
                         return false;

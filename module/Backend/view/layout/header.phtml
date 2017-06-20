@@ -1,0 +1,33 @@
+<header class="header black-bg">
+	<div class="sidebar-toggle-box">
+		<div class="fa fa-bars tooltips" data-placement="right"
+			data-original-title="Toggle Navigation" title="Toggle sidebar"></div>
+	</div>
+	<!--logo start-->
+	<a class="logo"><b>Emmortal Backend</b> </a>
+	<!--logo end-->
+
+	<div class="top-menu">
+		<ul class="nav pull-right top-menu">
+			<li><a class="logout logout_popup" title="Logout">Logout</a></li>
+		</ul>
+	</div>
+	<section id="dynamicpagecreatepopuppopup" class="popupFormForDynamicPage chang_PPopup_conta">
+		<div id="" class=" chang_PPopup">
+		<div class="tab-content" style="border:0px solid;width:490px;">
+			<form class="form-popup" style="margin-top: 0px;" method="POST" action="/adminlogin/logout" enctype="multipart/form-data">
+				 <a class="close" href="javascript:void(0)" onclick="$('#dynamicpagecreatepopuppopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
+				<h2 class="form-login-heading">Logout</h2>
+				<div class="login-wrap" style="overflow:hidden;text-align:center;">
+					<input type="hidden" name="hidden_id" value="" class="hidden_id" id="hidden_id">
+					<h4 class="form-login-heading">Are you sure you want to logout?</h4>
+					<div style="overflow:hidden;display:inline-block;">
+						<input type="button" onclick="$('#dynamicpagecreatepopuppopup').hide();" id="btn" style="font-family: ubunturegular;background-color: #04ad6a;border: medium none;border-radius: 3px;color: #fff;float: left;font-size: 15px;margin-right: 10px;font-weight: 700;padding: 8px 25px;line-height:normal;" value="CANCEL"/>
+						<input type="submit" style="font-family: ubunturegular;background-color: #04ad6a;border: medium none;border-radius: 3px;color: #fff;float: left;font-size: 15px;font-weight: 700;padding: 8px 25px;line-height:normal;" value="OK"/>
+					</div>
+				</div>
+			</form>
+		</div><!--tab-content-->
+		</div>
+	</section>
+</header>

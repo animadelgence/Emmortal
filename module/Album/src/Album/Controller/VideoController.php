@@ -15,6 +15,16 @@ use Zend\Session\Config\StandardConfig;
 use Zend\Session\SessionManager;
 
 class VideoController extends AbstractActionController {
+   public function __construct() {
+        $userSession = new Container('userloginId');
+        $this->sessionid = $userSession->offsetGet('userloginId');
+        // $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        // $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
+        // if ($this->sessionid == "") {
+        //     header("Location:" . $dynamicPath. "/profile/showprofile");
+        //     exit;
+        // }
+    }
 
     public function videosubmitAction(){
         $request1           =    $this->getRequest()->getPost();
@@ -32,20 +42,31 @@ class VideoController extends AbstractActionController {
         
 }
     public function videodetailssubmitAction(){
-           $modelPlugin        =    $this->modelplugin();
-           $plugin = $this->routeplugin();
-           $modelPlugin = $this->modelplugin();
-           $dynamicPath = $plugin->dynamicPath();
+           $plugin               = $this->routeplugin();
+           $modelPlugin          = $this->modelplugin();
+           $dynamicPath          = $plugin->dynamicPath();
+           $modelPlugin          =    $this->modelplugin();
            $title                = $_POST['title'];
            $videoDescription     = $_POST['videoDescription'];
            $uploadedvideo        = $_POST['uploadedvideo'];
            $frndId               = $_POST['friendsId'];
+           if($frndId){
            $friendId             =  implode(",",$frndId);
-           $albumId                  = $_POST['albumId'];
-           $currentPageId = $_POST['currentPageId'];
-           $UID = 1;
-           $addeddate = date('Y-m-d H:i:s');
-           $data =  array('UID'=>$UID,
+            } else{
+              $friendId = "";
+            }
+           $albumId              = $_POST['albumId'];
+           $UID                  = $this->sessionid;
+           $currentPageIdValue = $_POST['currentPageId'];
+           if(!$currentPageIdValue){
+            $where              = array('UID'=>$UID);
+            $pageDetails        = $modelPlugin->getpagedetailsTable()->fetchPageId($where);
+            $currentPageId      = $pageDetails[0]['pageid'];
+           } else{
+            $currentPageId = $currentPageIdValue;
+           }
+           $addeddate             = date('Y-m-d H:i:s');
+           $data                  =  array('UID'=>$UID,
                       'uploadTitle'=>$title,
                       'uploadDescription'=>$videoDescription,
                       'AID'=>$albumId,
@@ -56,8 +77,8 @@ class VideoController extends AbstractActionController {
                       'PID'=>$currentPageId,
 
                       );
-           $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($data);
-            echo $albumDetails;
+           $albumDetails         = $modelPlugin->getuploadDetailsTable()->insertData($data);
+           echo $albumDetails;exit;
            
     }
 }

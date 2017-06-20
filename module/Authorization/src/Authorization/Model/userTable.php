@@ -13,7 +13,6 @@
         public function fetchall($query)
         {
             $resultSet = $this->tableGWay->select($query);
-            $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
                     'userid' => $rSet->userid,

@@ -1,5 +1,5 @@
 <?php
-	namespace Admin\Model;
+	namespace Backend\Model;
     use Zend\Db\TableGateway\TableGateway;
     use Zend\Db\ResultSet\ResultSet;
     use Zend\Session\Container;

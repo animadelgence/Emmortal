@@ -18,7 +18,6 @@ namespace Backend\Controller;
 		}
      }
      public function userdetailsAction(){
-              echo 1; exit;
               $this->layout('layout/adminlayout');
               $modelPlugin = $this->modelplugin();
               $plugin = $this->routeplugin();

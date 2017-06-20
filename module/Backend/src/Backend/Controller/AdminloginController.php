@@ -13,7 +13,6 @@ namespace Backend\Controller;
     public function loginAction(){
 		$userSessionAdmin 	= 	new Container('username');
 		$sessionidAdmin 	= 	$userSessionAdmin->offsetGet('adminID');
-        //echo $sessionidAdmin; exit;
         $plugin = $this->routeplugin();
 		$dynamicPath = $plugin->dynamicPath();
         if($sessionidAdmin != "")
@@ -35,7 +34,6 @@ namespace Backend\Controller;
     }
     public function submitAction()
 	{
-        //echo 1; exit;
         $modelPlugin = $this->modelplugin();
         //$phpprenevt = $this->phpinjectionpreventplugin();
 		//$userName = $phpprenevt->stringReplace($_POST['userId']);
@@ -45,10 +43,10 @@ namespace Backend\Controller;
         $query = array('username'=>$userName,'password'=>$password);
 		$checkLogin = $modelPlugin->getadminTable()->loginsubmit($query);
         if(!empty($checkLogin)){
-		  if(isset($checkLogin[0]['adminId'])) {
+		  if(isset($checkLogin[0]['adminID'])) {
 			 $userSessionAdmin 			    = 	new Container('username');
              $userSessionAdmin->username 	= 	$checkLogin[0]['username'];
-			 $userSessionAdmin->adminID 	= 	$checkLogin[0]['adminId'];
+			 $userSessionAdmin->adminID 	= 	$checkLogin[0]['adminID'];
           }
             echo 'ok';
 		}

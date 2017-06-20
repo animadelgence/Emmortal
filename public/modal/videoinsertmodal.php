@@ -15,7 +15,7 @@
 									<div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
 									<div class="image-select">
 										<div class="img-input">
-											<div class="canvas-placeholder" style="height: 230px;">
+											<div class="canvas-placeholder"  id="canvas-placeholderid" style="height: 230px;">
 
 												<i class="fa fa-video-camera"></i>
 											</div>
@@ -32,7 +32,7 @@
 									</div>
 								</div>
 							</form>
-							<form name="videodetailsupload" id="videodetailsupload" action="/video/videodetailssubmit" method="POST">
+						
 								<div class="m-t-20">
 									<div class="tags-input-wrapper" >
 								
@@ -41,11 +41,11 @@
 										
 											
 
-											<div id="append-div" class="">
-									<input type="text" placeholder="Type Friend Name..." class="friendsid" name="friendsid" class="form-control" style="width:100%;">
+											<div id="append-div-video" class="">
+									<input type="text" placeholder="Type Friend Name..." class="friendsids" id="friendsidvideo" name="friendsid" class="form-control" style="width:100%;">
 								</div>
 								<div class="dropdown-div">
-									<ul class="frndlist" id="frndlist" style="list-style-type: none;z-index: 999999; position: relative; display:none;">
+									<ul class="frndlists" id="frndlistvideo" style="list-style-type: none;z-index: 999999; position: relative; display:none;">
 									</ul>
 								</div>
 												</div>
@@ -58,6 +58,7 @@
 							<div class="col-md-6 m-t-xs-20">
 								<div class="m-b-10">
 									<input class="form-control" type="text" placeholder="Title" name="title" id="title">
+									<span id="videoTitleError" style="color:red;display:none;">Required</span>
 								</div>
 								<div class="m-b-20 m-t-20" >
 									<input type="hidden" class="uploadedvideo" name="uploadedvideo" id="uploadedvideo">
@@ -69,7 +70,7 @@
 								<div class="row">
 									<div class="col-sm-5">
 										<div class="e-select">
-											<select id="AID" class="AID form-control" name="AID">
+											<select id="AID" class="AID-class form-control" name="AID">
 											</select>
 										</div>
 									</div>
@@ -88,7 +89,7 @@
 							<button type="submit" class="btn e-btn btn-primary" id="publishid">Publish</button>
 						</span>
 					</div>
-				</form>
+				
 			</div>
 		</div>
 	</div>

@@ -16,6 +16,8 @@ use Album\Model\mailconfirmation;
 use Album\Model\mailconfirmationTable;
 use Album\Model\friends;
 use Album\Model\friendsTable;
+use Album\Model\tributedetails;
+use Album\Model\tributedetailsTable;
 use Album\Model\user;
 use Album\Model\userTable;
 use Zend\Db\ResultSet\ResultSet;
@@ -78,6 +80,17 @@ class Module
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new friends());
                     return new TableGateway('friends', $dbAdapter, null, $resultSetPrototype);
+                },
+                  'Album\Model\tributedetailsTable' => function($sm) {
+                    $tableGateway = $sm->get('tributedetailsTableGateway');
+                    $table = new tributedetailsTable($tableGateway);
+                    return $table;
+                },
+                'tributedetailsTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new tributedetails());
+                    return new TableGateway('tributedetails', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );

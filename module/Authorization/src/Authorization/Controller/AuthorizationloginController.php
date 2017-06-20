@@ -49,8 +49,9 @@ class AuthorizationloginController extends AbstractActionController {
         $usid = $contentDetails[0]['userid'];
         $user_session = new Container('userloginId');
         $user_session->userloginId = $usid;
+         echo $contentDetails[0]['activation'];exit;
         $passcheck = password_verify($loginpassword, $contentDetails[0]['password']);
-       echo $contentDetails[0]['activation']."--".$passcheck;exit;
+
       	if($passcheck == 1 && $contentDetails[0]['activation'] == 1)
         {
         	$value = "live";    

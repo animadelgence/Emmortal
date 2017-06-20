@@ -37,7 +37,7 @@ class AuthorizationloginController extends AbstractActionController {
     
     public function loginAction() {
 
-       // echo "welcome from  authorization";exit;
+       echo "welcome from  authorization";exit;
     	$plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();

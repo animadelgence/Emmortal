@@ -43,7 +43,9 @@ use Zend\Db\Sql\Select;
         }
         public function insertData($data)
         {
-            return $rowset = $this->tableGWay->insert($data);
+            $rowset = $this->tableGWay->insert($data);
+            $id = $this->tableGWay->lastInsertValue;
+            return $id;
         }
 
     }

@@ -45,7 +45,7 @@ $protocolPath = $protocol . $_SERVER['HTTP_HOST'];
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 add-page-section">
 						<div class="add-page-wrapper">
-							<a class="btn btn-default btn-media-type pointer add-page-btn" href="<?php echo $protocolPath."/page/newpagecreate";?>">
+							<a class="btn btn-default btn-media-type pointer add-page-btn" href="javascript:void(0);">
 								<i class="fa fa-plus"></i>
 								<div class="text">Create new page</div>
 							</a>

@@ -25,3 +25,47 @@
     opacity: 1;
 
 }
+
+.user_profile_image_section {
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    display: inline-block;
+    float: left;
+}
+
+.user_profile_image_section > img {
+    border-radius: 5px;
+}
+
+.user_profile_name_section {
+    background: rgb(255, 255, 255) none repeat scroll 0 0;
+    border-radius: 10px;
+    display: inline-block;
+    float: left;
+    height: 150px;
+    margin-left: 15px;
+    padding: 20px;
+    width: 34%;
+}
+
+.user_profile_name_section > span {
+    color: rgb(170, 168, 151);
+    font-size: 20x;
+}
+
+.add-page-plus-icon{
+    background: #AAA897;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    margin-bottom: 13px;
+    padding: 11px;
+}
+.user_upload_part_section {
+    background: rgb(255, 255, 255) none repeat scroll 0 0;
+    border-radius: 10px;
+    color: rgb(170, 168, 151);
+    display: inline-block;
+    float: right;
+    padding: 20px 10px;
+    text-align: center;
+}

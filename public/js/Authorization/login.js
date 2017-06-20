@@ -12,7 +12,6 @@ $(document).ready(function (){
                     loginpassword: loginpassword
                 },
                 success: function (result) {
-                	console.log(result); return false;
                 	if(result == "live"){
                 		window.location.href = URL +"/profile/newsfeed";
                 	}

@@ -5,10 +5,10 @@ $con = mysqli_connect($json['database']["database_host"],$json['database']["data
 $sql = "INSERT INTO user (emailid)
 VALUES ('john@example.com')";
 
-if (mysqli_query($conn, $sql)) {
+if (mysqli_query($con, $sql)) {
     echo "New record created successfully";
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: " . $sql . "<br>" . mysqli_error($con);
 }
 
 

@@ -13,6 +13,7 @@ class modelplugin extends routeplugin {
     public $friendsTable;
     public $pagedetailsTable;
     public $adminTable;
+    public $uploadDetailsTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {

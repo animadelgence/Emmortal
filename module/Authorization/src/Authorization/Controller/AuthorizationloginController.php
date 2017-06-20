@@ -36,7 +36,7 @@ class AuthorizationloginController extends AbstractActionController {
     }
     
     public function loginAction() {
-
+ error_reporting(E_ALL); ini_set('display_errors', 1);
       $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();

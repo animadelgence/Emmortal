@@ -17,8 +17,8 @@ namespace Backend\Controller;
 		$dynamicPath = $plugin->dynamicPath();
         if($sessionidAdmin != "")
 		{
-			 return $this->redirect()->toRoute('userregistration', array(
-				'controller' => 'userregistration',
+			 return $this->redirect()->toRoute('usermanage', array(
+				'controller' => 'usermanage',
 				'action' => 'userdetails'));
 		}
 		else{
@@ -35,9 +35,11 @@ namespace Backend\Controller;
     public function submitAction()
 	{
         $modelPlugin = $this->modelplugin();
-        $phpprenevt = $this->phpinjectionpreventplugin();
-		$userName = $phpprenevt->stringReplace($_POST['userId']);
-        $password = $phpprenevt->stringReplace($_POST['password']);
+        //$phpprenevt = $this->phpinjectionpreventplugin();
+		//$userName = $phpprenevt->stringReplace($_POST['userId']);
+        //$password = $phpprenevt->stringReplace($_POST['password']);
+        $userName = $_POST['userId'];
+        $password = $_POST['password'];
         $query = array('username'=>$userName,'password'=>$password);
 		$checkLogin = $modelPlugin->getadminTable()->loginsubmit($query);
         if(!empty($checkLogin)){

@@ -1,9 +1,10 @@
 <?php
-namespace Admin\Controller;
+namespace Backend\Controller;
  use Zend\Mvc\Controller\AbstractActionController;
  use Zend\View\Model\ViewModel;
  use Zend\Session\Container;
- class UserregistrationController extends AbstractActionController
+
+ class UsermanageController extends AbstractActionController
  {
      public function __construct() {
         $userSessionAdmin 	= 	new Container('username');

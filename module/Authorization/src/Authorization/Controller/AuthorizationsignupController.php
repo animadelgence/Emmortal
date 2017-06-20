@@ -53,7 +53,7 @@ class AuthorizationsignupController extends AbstractActionController {
         $usercheck = $modelPlugin->getuserTable()->fetchall($keyArray);
         
             if(count($usercheck) == 0){
-                $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'signindate' => date('Y-m-d'));
+                $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'dateofbirth'=>$dob,'signindate' => date('Y-m-d'));
                 $albumFolder = $modelPlugin->getuserTable()->savedata($insertedArray,$keyArray);
                 $insrtArrayforpagetable =array('UID'=>$albumFolder, 'createddate' =>date('Y-m-d'));
                 //print_r($insrtArrayforpagetable);exit;
@@ -67,7 +67,7 @@ class AuthorizationsignupController extends AbstractActionController {
                     //$key = '1234547890183420';
                     //$encrypted = $this->encrypt($usid, $key);
                     $encrypted = base64_encode("#$#" . base64_encode(base64_encode($usid . rand(10, 100)) . "###" . base64_encode($usid) . "###" . base64_encode($usid . rand(10, 100)) . "###" . base64_encode(base64_encode($usid . rand(10, 100)))) . "#$#");
-                    $buttonclick = $dynamicPath . "/profile/newsfeed/" . $encrypted;
+                    $buttonclick = $dynamicPath . "/account/myaccount/" . $encrypted;
                     $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
                     
                     $activationLink = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Confirm Email</div></a>";

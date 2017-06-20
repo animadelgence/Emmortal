@@ -10,6 +10,7 @@ use Zend\Session\SessionManager;
 
 class ProfileController extends AbstractActionController {
 
+    
     public function __construct() {
 
         $userSession = new Container('userloginId');

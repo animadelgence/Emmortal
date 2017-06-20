@@ -98,7 +98,6 @@ $(document).ready(function () {
         if (pageURL.indexOf('profile/showprofile') > -1) {
           var currentPageId = $("#currentPageId").val();
         } else {
-          //return false;
             var currentPageId = '';
         }
         if($('#photoInsertModal').find('input.frndId').length !== 0)
@@ -116,22 +115,32 @@ $(document).ready(function () {
         //alert(friendsId);
         if (imageTitle == '') {
             flag = 1;
-            $('#imageTitle').addClass('error-class');
+            //$('#imageTitle').addClass('error-class');
             $('#imageTitleError').css('display','block');
             $('.error-style').css('margin-top','28px');
+            $("#uploadModal").hide();
+            $("#photoInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            $(".welcome").show();
+            $(".showmsg").html("<span>please fill title field</span>");
         } else {
             $('#imageTitleError').css('display','none');
-            $('#imageTitle').removeClass('error-class');
+            //$('#imageTitle').removeClass('error-class');
             flag= 0;
         }
         if (imageDescription == '') {
             flag = 1;
-            $('#cke_textDescription').addClass('error-class');
+            //$('#cke_textDescription').addClass('error-class');
             $('#imagetextDescriptionError').css('display','block');
             $('.error-style').css('margin-top','28px');
+            $("#uploadModal").hide();
+            $("#photoInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            $(".welcome").show();
+            $(".showmsg").html("<span>please fill description field</span>");
         } else {
             $('#imagetextDescriptionError').css('display','none');
-            $('#imagetextDescriptionError').removeClass('error-class');
+            //$('#imagetextDescriptionError').removeClass('error-class');
             flag = 0;
         }
         /*if (friendsId == '')
@@ -157,10 +166,13 @@ $(document).ready(function () {
         {
             flag = 1;
             $('#imagePathError').css('display','block');
+            $("#uploadModal").hide();
+            $("#photoInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            $(".welcome").show();
+            $(".showmsg").html("<span>please select one image</span>");
         }
         if (flag == 0) {
-            //alert('ready for saving the details');
-            //alert(imageDescription);
             $.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
                 url: base_url_dynamic + '/image/saveImageDetails',
@@ -175,9 +187,6 @@ $(document).ready(function () {
                     alert(res);
                 }
         });
-        }
-        else{
-            alert("no data");
         }
     })
 
@@ -196,6 +205,12 @@ $(document).ready(function () {
 			}
 		});
 	});
+    $(".closebtn").click(function(){
+        $(".welcome").hide();
+        $("#uploadModal").show();
+        $("#photoInsertModal").css("z-index","1305");
+        $(".modal-backdrop").css("z-index","1040");
+    });
     
 });
 var featherEditor = new Aviary.Feather({

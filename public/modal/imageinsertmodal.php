@@ -72,8 +72,9 @@
 							<div class="col-md-6 m-t-xs-20">
 								<div class="m-b-10">
 									<input class="form-control" type="text" placeholder="Title" id="imageTitle">
-                                    <span id="imageTitleError" style="color:red;display:none;">Required</span>
+                                    
 								</div>
+                                <span id="imageTitleError" style="color:red;display:none;">Required</span>
 								<div class="m-b-20 m-t-20" >
 									<textarea name="imagetextDescription" id="imagetextDescription" class="form-control" style="height:353px;"></textarea>
 								    <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>

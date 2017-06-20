@@ -56,10 +56,10 @@ class ImageController extends AbstractActionController {
         echo $imagePath ;
         exit;
     }
-  public function saveImageDetailsAction() {
-        //echo $this->sessionid;exit;
-        //print_r($_POST); exit;
-        /*$imageTitle = $_POST['imageTitle'];
+    public function saveImageDetailsAction() {
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $imageTitle = $_POST['imageTitle'];
         $imagePath = $_POST['imagePath'];
         $imagefriendsId = '';
         $friendsid= '';
@@ -76,18 +76,19 @@ class ImageController extends AbstractActionController {
         if($_POST['pageId'])
         {
             $currentPageId = $_POST['pageId'];
-        }*/
-        $plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
+        }
+        
       //echo $action;exit;
         $addeddate = date('Y-m-d H:i:s');
-        /*if(!$currentPageId)
-        {*/
+        if(!$currentPageId)
+        {
             $where              = array('UID'=>$this->sessionid);
-            $pageDetails        = $modelPlugin->getpagedetailsTable()->fetchPageId($where);
+            $pageDetails        = $modelPlugin->getpagedetailsTable()->fetchall($where);
+            //print_r($pageDetails);exit;
             $currentPageId      = $pageDetails[0]['pageid'];
-            echo $currentPageId;exit;
-        //}
+            echo $currentPageId; 
+            exit;
+        }
         $uploadQuery = array(
                             'UID'=>2,
                             'PID'=>$currentPageId,
@@ -102,6 +103,6 @@ class ImageController extends AbstractActionController {
             $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($uploadQuery);
             echo $albumDetails;exit;
             //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
-  }
+    }
 
 }

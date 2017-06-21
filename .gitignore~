@@ -1,5 +1,7 @@
 .gitignore
 vendor/*
+public/video/*
+public/image/*
 public/setting.json
 public/database.php
 public/maitrayee.php

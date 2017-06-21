@@ -163,10 +163,22 @@
             $(".welcome").show();
             $(".showmsg").html("<span>please fill description field</span>");
         } else {
-            $('#videoDescription').hide();
+            $('#videoDescriptionError').hide();
             $('#videoDescription').removeClass('error-class');
         }
-        
+        if(uploadedvideo == ''){
+            flag = 1;
+            $('#file').addClass('error-class');
+            $('#videouploaderror').show();
+            $("#uploadModal").hide();
+            $("#videoInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            $(".welcome").show();
+            $(".showmsg").html("<span>please fill description field</span>");
+        } else{
+            $('#videouploaderror').hide();
+            $('#file').removeClass('error-class');
+        }
       
         if (flag == 0) {
             $.ajax({                     

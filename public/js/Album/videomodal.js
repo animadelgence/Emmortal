@@ -1,29 +1,29 @@
  $(document).ready(function () {
     var baseURL = window.location.origin;
 
-    CKEDITOR.replace('videoDescription', {
-        toolbar: [
+    // CKEDITOR.replace('videoDescription', {
+    //     toolbar: [
 
-            {
-                name: 'others',
-                items: ['-']
-            },
-            '/',
-            {
-                name: 'basicstyles',
-                groups: ['basicstyles', 'cleanup'],
-                items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
-            },
+    //         {
+    //             name: 'others',
+    //             items: ['-']
+    //         },
+    //         '/',
+    //         {
+    //             name: 'basicstyles',
+    //             groups: ['basicstyles', 'cleanup'],
+    //             items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+    //         },
 
-            {
-                name: 'links',
-                items: ['Link', 'Unlink', 'Anchor']
-            }
+    //         {
+    //             name: 'links',
+    //             items: ['Link', 'Unlink', 'Anchor']
+    //         }
 
 
-        ]
-    });
-    CKEDITOR.disableAutoInline = true;
+    //     ]
+    // });
+    // CKEDITOR.disableAutoInline = true;
 
     $("#videoInsert").click(function(){
             $.ajax({
@@ -163,10 +163,22 @@
             $(".welcome").show();
             $(".showmsg").html("<span>please fill description field</span>");
         } else {
-            $('#videoDescription').hide();
+            $('#videoDescriptionError').hide();
             $('#videoDescription').removeClass('error-class');
         }
-        
+        if(uploadedvideo == ''){
+            flag = 1;
+            $('#file').addClass('error-class');
+            $('#videouploaderror').show();
+            $("#uploadModal").hide();
+            $("#videoInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            $(".welcome").show();
+            $(".showmsg").html("<span>please fill description field</span>");
+        } else{
+            $('#videouploaderror').hide();
+            $('#file').removeClass('error-class');
+        }
       
         if (flag == 0) {
             $.ajax({                     

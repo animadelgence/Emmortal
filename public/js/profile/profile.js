@@ -1,6 +1,23 @@
+/*
+ * @Author: Shubhadip
+ * @Date:   2017-06-14 17:46:35
+ * @Last Modified by:   Shubhadip
+ * @Last Modified time: 2017-06-19 10:52:26
+ */
+/*jslint browser: true */
+/*global $, jQuery, alert */
+/*jslint plusplus: true */
+/*jshint -W065 */
+/*jshint -W030 */
+/*jslint eqeq: true */
+/*global radix:true */
 var base_url_dynamic = window.location.origin,
-    frndDetails = [];
+    frndDetails = [],
+    CKEDITOR = "",
+    jsObject = "",
+    i = "0";
 $(document).ready(function () {
+    "use strict";
     CKEDITOR.replace('textDescription', {
         toolbar: [
             {
@@ -45,12 +62,14 @@ $(document).ready(function () {
                 success: function (res) {
                     jsObject = JSON.parse(res);
                     var html = "",
+                        id = "",
+                        friendsname = "",
                         profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg";
                     for (i = 0; i < jsObject.friendDetails.length; i++) {
-                        var id = jsObject.friendDetails[i].friendsid;
-                        var friendsname = jsObject.friendDetails[i].friendsname.toLowerCase();
+                        id = jsObject.friendDetails[i].friendsid;
+                        friendsname = jsObject.friendDetails[i].friendsname.toLowerCase();
                         if (friendsname.indexOf(friendsid.toLowerCase()) > -1) {
-                            if ($.inArray(parseInt(id), frndDetails) == '-1') {
+                            if ($.inArray(parseInt(id, 10), frndDetails) == '-1') {
                                 if (jsObject.friendDetails[i].profileimage != null) {
                                     profileimage = jsObject.friendDetails[i].profileimage;
                                 }
@@ -67,9 +86,10 @@ $(document).ready(function () {
         }
     });
     $('body').on('click', '.frndlist-click', function () {
-        var id = $(this).data("id");
+        var id = $(this).data("id"),
+            name = $(this).text();
         frndDetails.push(id);
-        var name = $(this).text();
+
         $('<span class="frnd-span-class">' + name + '<i class="fa fa-times frnd-cancel frnd-cross-class" aria-hidden="true"></i><input type="hidden" class = "frndId" name="frndId[]" value="' + id + '"></span>&#59;').insertBefore('#append-div input[type="text"]');
         $('.frndlist').hide();
         $('.friendsid').val('');
@@ -82,10 +102,16 @@ $(document).ready(function () {
         $(this).parent().remove();
     });
     $('body').on('click', '#textPublishBtn', function () {
-        var flag = 0;
-        var textTitle = $('#textTitle').val();
-        var editor = CKEDITOR.instances['textDescription'];
-        var textDescription = CKEDITOR.instances['textDescription'].getData();
+        var flag = 0,
+            currentPageId = "",
+            textTitle = $('#textTitle').val(),
+            editor = CKEDITOR.instances.textDescription,
+            textDescription = CKEDITOR.instances.textDescription.getData(),
+            pageURL = $(location).attr("href");
+        if (pageURL.indexOf('profile/showprofile') > -1) {
+            currentPageId = $("#currentPageId").val();
+            $('#currentPage').val(currentPageId);
+        }
         if (textTitle == '') {
             flag = 1;
             $('#textTitle').addClass('error-class');
@@ -105,5 +131,5 @@ $(document).ready(function () {
         if (flag == 0) {
             $('#textAddForm').submit();
         }
-    })
-})
+    });
+});

@@ -152,12 +152,21 @@ class ProfileController extends AbstractActionController {
         for($i=0;$i<$ct;$i++){
           $friendsid = $friendsid.$frndId[$i].',';
         }
-        $UID = 1;
+        $UID = $this->sessionid;
+        $currentPageIdValue = $_POST['currentPage'];
+           if(!$currentPageIdValue){
+            $where              = array('UID'=>$UID);
+            $pageDetails        = $modelPlugin->getpagedetailsTable()->fetchall($where);
+            $currentPageId      = $pageDetails[0]['pageid'];
+           } else{
+            $currentPageId = $currentPageIdValue;
+           }
         $addeddate = date('Y-m-d H:i:s');
         $data =  array('UID'=>$UID,
                       'uploadTitle'=>$title,
                       'uploadDescription'=>$description,
                       'AID'=>$AID,
+                      'PID'=>$currentPageId,
                       'FID'=>$friendsid,
                       'TimeStamp'=>$addeddate
                       );

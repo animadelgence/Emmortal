@@ -12,8 +12,9 @@
         }
         public function fetchall($query)
         {
+
             $resultSet = $this->tableGWay->select($query);
-            $array = "";
+            $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
                     'userid' => $rSet->userid,
@@ -37,14 +38,10 @@
                 }
                 return $array;
         }
-        public function fetchallnew($query)
+        public function fetchallnew()
         {
-            //print_r($query); exit;
-            if (empty($query)){
                 $resultSet = $this->tableGWay->select();
-            }else{
-
-                $resultSet = $this->tableGWay->select($query);
+                $array = array();
                 foreach ($resultSet as $rSet) {
                     $array[] = array(
                         'userid' => $rSet->userid,
@@ -67,7 +64,7 @@
                         );
                 }
                 return $array;
-            }
+
         }
         public function savedata($insertdataarray,$keyArray)
         {

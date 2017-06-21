@@ -31,7 +31,19 @@ $(function () {
         });
     });
     $("body").on("click", ".profile-paginator__click", function () {
-        var getClickedId = $(this).attr("data-fetch-id");
+        var getClickedId = $(this).attr("data-fetch-id"),
+            prevSelection = $(".profile-paginator__click").parent('ul').find('.active').index(),
+            currentClicked = $(this).index(),
+            fadeOUT = { opacity: 0, transition: 'opacity 0.5s' },
+            fadeIN = { opacity: 1, transition: 'opacity 0.5s' };
+        if(currentClicked > prevSelection) {
+                   $(".container-of-sections").css(fadeOUT).slideDown(1500).remove();
+                }
+                else {
+                    $(".container-of-sections").css(fadeOUT).slideUp(1500).remove();
+                }
+        $(".profile-paginator__click").removeClass('active');
+        $(this).addClass('active');
         $.ajax({
             type: "POST",
             data: {
@@ -41,7 +53,7 @@ $(function () {
             success: function (result) {
                 var jsObject = JSON.parse(result),
                     i = 0,
-                    appendHtml = "";
+                    appendHtml = "<div class='container-of-sections' style='opacity:0;'>";
                 if (jsObject.defaultPage == 1) {
                     appendHtml += '<div class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></div><div class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></div>';
                 }
@@ -54,7 +66,22 @@ $(function () {
                         }
                     appendHtml+= '</div>';
                 }
-                $(".user_profile_section").html(appendHtml);
+                appendHtml += "</div>";
+                
+                if(currentClicked > prevSelection) {
+                    $(".user_profile_section").prepend(appendHtml);
+                    $(".container-of-sections:eq(0)").css(fadeIN).slideDown(1500);
+                        
+                }
+                else {
+                    $(".user_profile_section").prepend(appendHtml);
+                    $(".container-of-sections:eq(0)").css(fadeIN).slideUp   (1500);
+                }
+                /*$(".user_profile_section .container-of-sections").css(fadeOUT).slideUp(1500, function() {
+                    $(".user_profile_section").html(appendHtml);
+                    $(".user_profile_section .container-of-sections").css(fadeIN).slideUp(1000);
+                });*/
+                
             }
 
         });

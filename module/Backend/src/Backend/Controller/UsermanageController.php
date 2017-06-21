@@ -27,7 +27,7 @@ namespace Backend\Controller;
               $action = @$href[4];
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
               //$data = array();
-              $userdata = $modelPlugin->getuserTable()->fetchall();
+              $userdata = $modelPlugin->getuserTable()->fetchallnew(); //fetchall();
 		      return new ViewModel(array('userdata'=>$userdata));
      }
      public function usereditAction(){
@@ -59,12 +59,21 @@ namespace Backend\Controller;
               $activation = $_POST['activation'];
               $fileupload = $_POST['fileupload'];
               $where = array('userid'=>$userid);
+              $fname = array('firstname'=>$userfName);
+              $lname = array('lastname'=>$userlName);
+              $fetchFname = $modelPlugin->getuserTable()->fetchall($fname);
+              $fetchLname = $modelPlugin->getuserTable()->fetchall($lname);
+
+              print_r($fetchFname); exit;
+              if(empty($fetchuserdet)){
              // $fetchquery= $modelPlugin->getsubscriptionDetailsTable()->fetchall($query);
-              $data = array('emailid'=>$userEmail,'firstname'=>$userfName,'lastname'=>$userlName,'profileimage'=>$fileupload,'activation'=>$activation);
-              $updatedata = $modelPlugin->getuserTable()->updateuser($data,$where);
-               return $this->redirect()->toRoute('usermanage', array(
-				'controller' => 'usermanage',
-				'action' => 'userdetails'));
+                  $data = array('emailid'=>$userEmail,'firstname'=>$userfName,'lastname'=>$userlName,'profileimage'=>$fileupload,'activation'=>$activation);
+                  $updatedata = $modelPlugin->getuserTable()->updateuser($data,$where);
+                  echo "ok";
+              }else{
+                  echo "error";
+              }
+         exit;
 
      }
 

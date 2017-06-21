@@ -12,6 +12,7 @@
         }
         public function fetchall($query)
         {
+
             $resultSet = $this->tableGWay->select($query);
             $array = "";
             foreach ($resultSet as $rSet) {
@@ -68,6 +69,9 @@
                 }
                 return $array;
             }
+
+
+
         }
         public function savedata($insertdataarray,$keyArray)
         {

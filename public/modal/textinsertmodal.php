@@ -18,6 +18,7 @@
 								<textarea name="textDescription" id="textDescription" class="form-control" style="height:200px;"></textarea>
 								<span id="textDescriptionError" style="color:red;display:none;">Required</span>
 							</div>
+							<input type="hidden" name="currentPage" id="currentPage" value="">
 							<div class="form-group col-xs-6 col-sm-4">
 								<select name="AID" id="AID" class="AID form-control">
 								</select>

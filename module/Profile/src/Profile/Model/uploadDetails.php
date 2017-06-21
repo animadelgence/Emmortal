@@ -46,6 +46,7 @@ class uploadDetails
         $this->FID = (!empty($data['FID'])) ? $data['FID'] : null;
         $this->uploadPath = (!empty($data['uploadPath'])) ? $data['uploadPath'] : null;
         $this->PID = (!empty($data['PID'])) ? $data['PID'] : null;
+        $this->TimeStamp = (!empty($data['TimeStamp'])) ? $data['TimeStamp'] : null;
         
         $this->userid = (!empty($data['userid'])) ? $data['userid'] : null;
 		$this->emailid = (!empty($data['emailid'])) ? $data['emailid'] : null;

@@ -75,7 +75,8 @@ class AlbumdetailsController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
         $jsonArray = $plugin->jsondynamic();
-        $uploadId = $_POST['uploadId'];
+        $uploadId = 1;
+        //$uploadId = $_POST['uploadId'];
         $where = array("uploadId"=>$uploadId);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->joinquery($uploadId);
         $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);

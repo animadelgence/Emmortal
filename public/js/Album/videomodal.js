@@ -102,7 +102,6 @@
                                   
                                     }
                           else {
-                        	$("#videoId").show();
                         	$("#canvas-placeholderid").html('<video controls="controls" name="Video Name" id="videoId" src="/video/'+response.filePath+'" style="width:100%;height:100%;"></video>');
                         	$(".uploadedvideo").val(response.filePath);
                           }
@@ -194,7 +193,7 @@
                 },
                 success: function (res) {
                     if(res == 1){
-                        alert("success");
+                         window.location.href = baseURL + "/profile/showprofile";
                     }
                   //  alert(res);
                 }

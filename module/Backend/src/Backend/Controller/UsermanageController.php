@@ -41,17 +41,13 @@ namespace Backend\Controller;
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
               $userid = $this->getEvent()->getRouteMatch()->getParam('id');
               $userdata = $modelPlugin->getuserTable()->fetchall(array('userid'=>$userid));
+              //print_r($userdata); exit;
 		      return new ViewModel(array('userdata'=>$userdata));
      }
      public function usereditsubmitAction(){
               $modelPlugin = $this->modelplugin();
               $plugin = $this->routeplugin();
               $dynamicPath = $plugin->dynamicPath();
-//              $phpprenevt = $this->phpinjectionpreventplugin();
-//              $userid = $phpprenevt->stringReplace($_POST['userid']);
-//              $userEmail = $phpprenevt->stringReplace($_POST['userEmail']);
-//              $userStatus = $phpprenevt->stringReplace($_POST['userStatus']);
-//              $checkbox = $phpprenevt->stringReplace($_POST['checkbox']);
               $userid = $_POST['userid'];
               $userfName = $_POST['userfName'];
               $userlName = $_POST['userlName'];
@@ -59,23 +55,11 @@ namespace Backend\Controller;
               $activation = $_POST['activation'];
               $fileupload = $_POST['fileupload'];
               $where = array('userid'=>$userid);
-              $fname = array('firstname'=>$userfName);
-              $lname = array('lastname'=>$userlName);
-              $fetchUserData = $modelPlugin->getuserTable()->fetchall($fname);
-              $chekid = $fetchUserData[0]['userid'];
-                  if ($chekid == $id || empty($chekname)){
-
-              
-              //print_r($fetchUserData); exit;
-              if(empty($fetchuserdet)){
-             // $fetchquery= $modelPlugin->getsubscriptionDetailsTable()->fetchall($query);
-                  $data = array('emailid'=>$userEmail,'firstname'=>$userfName,'lastname'=>$userlName,'profileimage'=>$fileupload,'activation'=>$activation);
-                  $updatedata = $modelPlugin->getuserTable()->updateuser($data,$where);
-                  echo "ok";
-              }else{
-                  echo "error";
-              }
-         exit;
+              $data = array('emailid'=>$userEmail,'firstname'=>$userfName,'lastname'=>$userlName,'profileimage'=>$fileupload,'activation'=>$activation);
+              $updatedata = $modelPlugin->getuserTable()->updateuser($data,$where);
+              return $this->redirect()->toRoute('usermanage', array(
+				'controller' => 'usermanage',
+				'action' => 'userdetails'));
 
      }
 

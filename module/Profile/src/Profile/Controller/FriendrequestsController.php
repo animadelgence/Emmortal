@@ -39,4 +39,11 @@ class FriendrequestsController extends AbstractActionController {
         echo json_encode($res);
         exit;
     }
+    public function sendingrequestAction()
+    {
+        $userId = $_POST['userId'];
+        echo $userId;
+        echo "livw";
+        exit;
+    }
 }

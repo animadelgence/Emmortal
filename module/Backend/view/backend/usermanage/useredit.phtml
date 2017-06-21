@@ -49,9 +49,8 @@
 									id="fileupload" style='height: 30%;' required />
 								<div id="upload_prev" class="upload_prev">
 									<?php if(!empty($val['profileimage'])){?>
-									<img class="image" src="<?php echo $val['profileimage'] ?>" onerror="this.src='<?php //echo $dynamicPath; ?>/template/demo.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
+									<img class="image" src="<?php echo $val['profileimage'] ?>"  height="100px" width="100px" style="margin: 5px 12em 0 0;" /><!--(after src tag)onerror="this.src='<?php //echo $dynamicPath; ?>/template/demo.jpg'"-->
 									<?php } else{ ?>
-
                                      <img src=""  height="100px" />
                                     <?php }?>
 								</div>
@@ -67,14 +66,14 @@
 							<div class="col-sm-4 radio">
 								<label class='radio_class'>
 								    <input type="radio"
-									name="activation" id="zero" value="zero" <?php if(($val['activation'] == "0")) echo "checked"; ?>>0
+									name="activation" id="zero" value="0" <?php if(($val['activation'] != "1")) echo "checked"; ?>>0
 								</label>
 								 <label class='radio_class'>
 								    <input type="radio"
-									name="activation" id="one" value="one" <?php if(($val['activation'] == "1")) echo "checked"; ?>>1
+									name="activation" id="one" value="1" <?php if(($val['activation'] == "1")) echo "checked"; ?>>1
 								 </label>
 								<input type="hidden" name="optionsRadios"
-									id="optionsRadios" value="<?php echo $val['activation']; ?>">
+									id="optionsActvtn" value="<?php echo $val['activation']; ?>">
 							</div>
 						  </div>
 

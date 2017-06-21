@@ -18,6 +18,9 @@
     animation-duration: 1s;
     animation-fill-mode: both;
 }
+.displayTab {
+    display: none;
+}
 /*.container {
     width: 1170px;
 }

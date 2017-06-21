@@ -8,6 +8,7 @@ switch ($controller) {
 		switch ($action) {   
              case 'showprofile':
                 $this->headLink()
+                    ->prependStylesheet($this->basePath() . '/css/album/like.css?version=' . $t)
                     ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t)
                     ->prependStylesheet($this->basePath() . '/css/profile/searchfriends.css?version=' . $t);
                  break;

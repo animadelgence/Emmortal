@@ -57,15 +57,15 @@
                                 </li>
                                 <li><?php if($sessionid == ""){ ?><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">Sign In</button><?php }?>
                                 </li>
-                                <li><?php if($sessionid != ""){ ?><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up" onclick="location.href='/profile/showprofile'">My profile</button><?php }?>
+                                <li><?php if($sessionid != ""){ ?><button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/showprofile'">My profile</button><?php }?>
                                 </li>
                                 <li><?php if($sessionid != ""){ ?>
-                                    <button data-toggle="modal" data-target="#squarespaceModal3" class="btn btn-primary center-block sign-up" onclick="location.href='/profile/newsfeed'">Newsfeed</button><?php }?>
+                                    <button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/newsfeed'">Newsfeed</button><?php }?>
                                 </li>
-                                <?php if($sessionid != ""){ ?><li><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">Settings</button>
+                                <?php if($sessionid != ""){ ?><li><button class="btn btn-primary center-block sign-up" onclick="location.href='/settings/general'">Settings</button>
                                 </li><?php }?>
-                                <li><button data-toggle="modal" data-target="#squarespaceModal3" class="btn btn-primary center-block sign-up" onclick="location.href='/album/aboutus'">About Us</button></li>
-                                <li><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up" onclick="location.href='/album/termsandconditions'">Terms & Conditions</button></li>
+                                <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/aboutus'">About Us</button></li>
+                                <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/termsandconditions'">Terms & Conditions</button></li>
                                 <li><?php if( $sessionid != ""){ ?><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up" onclick="location.href='/album/showalbum'">Logout</button><?php }?>
                                 </li>
                             </ul>
@@ -90,7 +90,11 @@
 			<div class="col-lg-0.5">
 				<ul class="nav navbar-nav hamburger-menu pull-right">
 					<li class="dropdown hover-effect">
-						<a href="#" class="dropdown-toggle drop-list-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-comments" aria-hidden="true"></i></span></a>
+						<a href="#" class="dropdown-toggle drop-list-icon" data-toggle="modal" data-target="#tributeAddModal">
+						    <span class="glyphicon glyphicon-user menu-icon pull-right">
+						        <i class="fa fa-comments" aria-hidden="true"></i>
+						    </span>
+				        </a>
 					</li>
 				</ul>
 			</div>
@@ -133,5 +137,6 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/textpreviewmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/imagepreviewmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/videopreviewmodal.php"); ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/tributeaddmodal.php"); ?>
 
 

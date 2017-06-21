@@ -125,5 +125,5 @@ function sendFriendRequest()
         }
     });
 
-
 }
+

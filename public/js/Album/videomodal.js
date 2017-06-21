@@ -195,14 +195,12 @@
                     if(res == 1){
 
 
-
                          if (pageURL.indexOf('profile/showprofile') > -1) {
                              $('.modal').modal('hide');
                               $(".profile-paginator__click.active").trigger("click");
                             } else{
                                 window.location.href = baseURL + "/profile/showprofile";
                             }
-
 
                     }
                   //  alert(res);

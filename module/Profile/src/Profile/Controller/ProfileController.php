@@ -100,7 +100,7 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $query = array('UID'=>1);
+        $query = array('UID'=>$this->sessionid);
         $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($query);
         echo '<option value="">My chronicles</option>';
         if(!empty($albumDetails)){
@@ -121,7 +121,7 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $query = 1;
+        $query = $this->sessionid;
         $friendDetails = $modelPlugin->getfriendsTable()->joinquery($query);
         $array = array();
         foreach ($friendDetails as $rSet) {

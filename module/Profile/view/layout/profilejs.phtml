@@ -27,7 +27,7 @@ switch ($controller) {
         }
         break;
 
-        case 'account':
+    case 'account':
         switch ($action) {
 
             case 'myaccount':
@@ -35,8 +35,12 @@ switch ($controller) {
 
                         ->prependFile($this->basePath() . '/js/profile/changedetails.js?version=' . $t);
 
-                break;
+                 break;
 
+            default:
+                break;
+        }
+        break;
     case 'settings':
         switch ($action) {
 

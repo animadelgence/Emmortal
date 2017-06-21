@@ -12,7 +12,8 @@ return array(
              'Profile\Controller\Profile' => 'Profile\Controller\ProfileController',
              'Profile\Controller\Page' => 'Profile\Controller\PageController',
              'Profile\Controller\Account' => 'Profile\Controller\AccountController',
-             'Profile\Controller\Friendrequests' => 'Profile\Controller\FriendrequestsController'
+             'Profile\Controller\Friendrequests' => 'Profile\Controller\FriendrequestsController',
+             'Profile\Controller\Usersetting' => 'Profile\Controller\UsersettingController',
          ),
      ),
     // The following section is new and should be added to your file
@@ -68,6 +69,19 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Profile\Controller\Friendrequests',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+            'Usersetting' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/settings[/:action][/:id][/:pId]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Profile\Controller\Usersetting',
                          'action'     => 'index',
                      ),
                  ),

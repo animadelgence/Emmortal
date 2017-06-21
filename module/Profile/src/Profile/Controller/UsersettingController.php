@@ -28,7 +28,8 @@ class UsersettingController extends AbstractActionController {
             $href = explode("/", $currentPageURL);
             $controller = @$href[3];
             $action = @$href[4];
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-            return new ViewModel(array('dynamicPath' => $dynamicPath));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'userDetails'=>$userDetails));
         }
 }

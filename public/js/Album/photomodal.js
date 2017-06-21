@@ -10,7 +10,6 @@
 /*jshint -W065 */
 var base_url_dynamic = window.location.origin;
 $(document).ready(function () {
-    //alert();
     $('#div-editphoto').hide();
     CKEDITOR.replace('imagetextDescription', {
         toolbar: [

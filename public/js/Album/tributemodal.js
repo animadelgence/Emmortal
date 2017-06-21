@@ -25,6 +25,7 @@
     });
     CKEDITOR.disableAutoInline = true;
 
+
     $('body').on('keyup', '#friendsidtribute', function () {
         var friendsid = $(this).val().trim();
         if (friendsid != '') {
@@ -78,26 +79,38 @@
             var editor = CKEDITOR.instances['tributeDescription'];
             var tributeDescription = CKEDITOR.instances['tributeDescription'].getData();
             if($("#append-div-tribute").find(".frnd-span-class").length > 0){
+                $('#tributefriendError').hide();
+                $('#friendsidtribute').removeClass('error-class');
             } else{
                             flag = 1;
-                           // $("#uploadModal").hide();
-                           //  $("#tributemodal").css("z-index","0");
-                           //  $(".modal-backdrop").css("z-index","0");
-                           //  $(".welcome").show();
-                           //  $(".showmsg").html("<span>please select your friend</span>");
+                            $('#friendsidtribute').addClass('error-class');
+                            $('#tributefriendError').show();
+                            $("#uploadModal").hide();
+                            $("#tributemodal").css("z-index","0");
+                            $(".modal-backdrop").css("z-index","0");
+                            $(".welcome").show();
+                            $(".showmsg").html("<span>please select your friend</span>");
             }
             if(tributeDescription == ""){
                             flag = 1;
-                            // $("#uploadModal").hide();
-                            // $("#tributemodal").css("z-index","0");
-                            // $(".modal-backdrop").css("z-index","0");
-                            // $(".welcome").show();
-                            // $(".showmsg").html("<span>please put the Description</span>");
+                            $('#tributeDescription').addClass('error-class');
+                            $('#tributeDescriptionError').show();
+                            $("#uploadModal").hide();
+                            $("#tributemodal").css("z-index","0");
+                            $(".modal-backdrop").css("z-index","0");
+                            $(".welcome").show();
+                            $(".showmsg").html("<span>please put the Description</span>");
 
+            } else {
+                $('#tributeDescriptionError').hide();
+                $('#tributeDescription').removeClass('error-class');
             }
             if(flag == 0 ){
                 $('#tributecreate').submit();
 
+            }
+            else{
+                return false;
             }
 
      });

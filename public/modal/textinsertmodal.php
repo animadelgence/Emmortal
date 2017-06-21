@@ -1,5 +1,5 @@
 <!-- line modal for text-->
-<div class="modal fade" id="textInsertModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:visible !important;">
+<div class="modal fade" id="textInsertModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; ">
 	<div class="modal-dialog modal-box text-nsert-modal">
 		<div class="modal-content modal-outer">
 			<div class="modal-header modal-headernew">
@@ -39,13 +39,15 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left: 71%;">
-							<button class="btn btn-default" type="button" onclick="$('.close').trigger('click');" data-toggle="modal" data-target="#uploadModal" >Back</button>
-							<button class="btn btn-primary" type="button" id="textPublishBtn">Publish</button>
-						</div>
 					</div>
 				</form>
 			</div>
+			<div class="modal-footer text-right" style="margin-bottom: 20px;">
+						<span class="" style="padding:30px">
+							<button type="button" class="btn e-btn btn-default" onclick="$('.close').trigger('click');" data-toggle="modal" data-target="#uploadModal">Back</button>
+							<button type="submit" class="btn e-btn btn-primary" id="textPublishBtn">Publish</button>
+						</span>
+					</div>
 		</div>
 	</div>
 </div>

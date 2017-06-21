@@ -3,6 +3,7 @@
   $(function(){
 
 
+
 var URL = document.URL;
            // alert(document.URL);return false;
             var actionname = URL.split("/"),

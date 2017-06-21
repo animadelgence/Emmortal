@@ -127,6 +127,7 @@ $(document).ready(function () {
                     fileupload: 'fileupload'
                 },
                 success: function (response) {
+                    console.log(response); return false;
                     if (response.trim() === "error") {
                         $('#errorName').html("<font color='red'> Invalid! Template name already exists </font>");
                         return false; //error message

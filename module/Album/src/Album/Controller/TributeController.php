@@ -47,7 +47,7 @@ class TributeController extends AbstractActionController {
                       );
         $tributeDetails             = $modelPlugin->gettributedetailsTable()->insertData($data);
         if($tributeDetails == 1){
-            return $this->redirect()->toUrl($dynamicPath . "/album/showalbum");
+            return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
         }
 
 

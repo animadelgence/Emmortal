@@ -23,16 +23,19 @@ class FriendrequestsController extends AbstractActionController {
     {
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
-        $userdetails = $modelPlugin->getuserTable()->fetchall();
+        $query = array();
+        $userdetails = $modelPlugin->getuserTable()->fetchall($query);
         $array = array();
         foreach ($userdetails as $rSet) {
             $array[] = array(
-                'friendsid' => $rSet['friendsid'],
+                'friendsid' => $rSet['userid'],
+                'emailid' => $rSet['emailid'],
                 'friendsname' => $rSet['firstname']." ".$rSet['lastname'],
                 'profileimage'=>$rSet['profileimage']
             );
           }
-        $res['friendDetails'] = $array;
+        //print_r($array);exit;
+        $res['userDetails'] = $array;
         echo json_encode($res);
         exit;
     }

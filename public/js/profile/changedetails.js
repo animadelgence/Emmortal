@@ -12,9 +12,9 @@ $(function(){
         var file = this.files[0],
             filesize = file.size / 1024,
             sFileName = file.name;
-           
-           
-        
+
+
+
             if (filesize < 5120) {
                 $("#profileimagechangeform").ajaxSubmit({
                     data: {
@@ -26,14 +26,14 @@ $(function(){
                         if (response.error == 0 || response.error == 1) {
                         	 $(".welcome").show();
                              $(".showmsg").html("<span>please select an image</span>");
-                                  
+
                                     }
                           else {
                            // $(".errormsgvideo").hide();
                         	//$("#pfimgId").show();
                         	/*<img id="pfimgId" style="width:100%;height:100%;" src="" name="Image Name" controls="controls"></video>*/
                         	$("#canvas-placeholderpfimage").html('<img name="image Name" id="pfimgId" src="/image/profileImage/'+response.filePath+'" style="width:100%;height:100%;">');
-                        	
+
                         	$("#pfimagePath").val(response.filePath);
                           }
                     }
@@ -44,7 +44,7 @@ $(function(){
                 $('.message-error').html(sFileName + " size is more than 5MB. Please upload an image less than 1MB");
                 $('body').css('overflow-y', 'hidden');
             }
-        
+
 
     });
 });

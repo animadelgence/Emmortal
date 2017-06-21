@@ -59,6 +59,7 @@
     font-size: 25px;
     margin-bottom: 13px;
     padding: 11px;
+    cursor: pointer;
 }
 .user_upload_part_section {
     background: rgb(255, 255, 255) none repeat scroll 0 0;

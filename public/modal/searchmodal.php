@@ -7,27 +7,27 @@
             </div>
             <ul class="nav nav-pills nav-justified e-nav-pills">
                 <li class="active">
-                    <a class="e-brown pointer">All</a>
+                    <a class="e-brown pointer" id="allTab">All</a>
                 </li>
                 <li>
-                    <a class="e-brown pointer">Relationships</a>
+                    <a class="e-brown pointer" id="relationshipTab">Relationships</a>
                 </li>
                 <li>
-                    <a class="e-brown pointer">Incoming</a>
+                    <a class="e-brown pointer" id="incomingTab">Incoming</a>
                 </li>
                 <li>
-                    <a class="e-brown pointer">Outgoing</a>
+                    <a class="e-brown pointer" id="outgoingTab">Outgoing</a>
                 </li>
             </ul>
             <div class="users-section animated fadeIn">
                 <div infinite-scroll="friendsLoader.nextPage()" >
                     <div class="m-t-15 search-divider e-brown p-l-10 animated fadeIn">My Relationships
                     </div>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn">There are no relationships yet</h2>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn">There are no incoming relationships requests</h2>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn">There are no outgoing relationships requests</h2>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn">You have no relationships yet</h2>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn">
+                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="allTabShow">There are no relationships yet</h2>
+                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="incomingTabShow">There are no incoming relationships requests</h2>
+                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="outgoingTabshow">There are no outgoing relationships requests</h2>
+                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow">You have no relationships yet</h2>
+                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab">
                         <span>Rajyasree</span>
                         <span>Das</span> has no relationships yet
                     </h2>

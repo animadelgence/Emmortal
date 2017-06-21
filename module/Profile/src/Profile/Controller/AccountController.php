@@ -63,7 +63,7 @@ class AccountController extends AbstractActionController {
         $fileType = $files[$filename]['type'];
         $fileType = strtolower($fileType);
         $fileSize = ($files[$filename]['size'] / 1024) / 1024;
-       
+
             $userID = $this->sessionid;
             if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/image/profileImage/' . $userID)) {
                 @mkdir($_SERVER['DOCUMENT_ROOT'] . '/image/profileImage/' . $userID, 0777, true);

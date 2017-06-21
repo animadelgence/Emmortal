@@ -37,7 +37,7 @@ class AccountController extends AbstractActionController {
         $controller = @$href[3];
         $action = @$href[4];
 
-		$this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+		$this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
         return new ViewModel(array('userid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
 	}
 	public function profileimageAction(){
@@ -65,9 +65,9 @@ class AccountController extends AbstractActionController {
         $fileSize = ($files[$filename]['size'] / 1024) / 1024;
 
             $userID = $this->sessionid;
-            if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/image/profileImage/' . $userID)) {
-                @mkdir($_SERVER['DOCUMENT_ROOT'] . '/image/profileImage/' . $userID, 0777, true);
-                chmod($_SERVER['DOCUMENT_ROOT'] . '/image/profileImage/' . $userID, 0777);
+            if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID)) {
+                @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID, 0777, true);
+                chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID, 0777);
             }
             $newfolderName =  $userID ;
         	$result = $uploadPlugin->upload($tmp_name , $fileName,$newfolderName);

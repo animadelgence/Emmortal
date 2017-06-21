@@ -1,5 +1,4 @@
 <?php
-
 $controller = strtolower($controller);
 $action = strtolower($action);
 $t = time();
@@ -11,6 +10,7 @@ switch ($controller) {
                 $this->headScript()
 
                         ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
+                        ->prependFile($this->basePath() . '/js/profile/tributeAdd.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/index.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/freewall.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/main.js?version=' . $t);
@@ -19,6 +19,35 @@ switch ($controller) {
                 case 'newsfeed':
                 $this->headScript()
                 ->prependFile($this->basePath() . '/js/profile/alerthideshow.js?version=' . $t);
+
+                break;
+
+            default:
+                break;
+        }
+        break;
+
+    case 'account':
+        switch ($action) {
+
+            case 'myaccount':
+                $this->headScript()
+                        ->prependFile($this->basePath() . '/js/profile/changedetails.js?version=' . $t);
+
+
+                 break;
+
+
+            default:
+                break;
+        }
+        break;
+    case 'settings':
+        switch ($action) {
+
+            case 'general':
+                $this->headScript()
+                        ->prependFile($this->basePath() . '/js/profile/settings.js?version=' . $t);
 
                 break;
 
@@ -49,6 +78,3 @@ echo $this->headScript()
         ->prependFile('//feather.aviary.com/js/feather.js')
         ->prependFile('//code.jquery.com/jquery-1.11.0.min.js');
 ?>
-
-
-

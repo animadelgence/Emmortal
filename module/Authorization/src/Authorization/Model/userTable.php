@@ -13,7 +13,6 @@
         public function fetchall($query)
         {
 
-            //print_r($query); exit;
             if (empty($query)){
                 $resultSet = $this->tableGWay->select();
             }else{
@@ -41,6 +40,8 @@
                     );
             }
             return $array;
+            }
+
         }
         public function savedata($insertdataarray,$keyArray)
         {

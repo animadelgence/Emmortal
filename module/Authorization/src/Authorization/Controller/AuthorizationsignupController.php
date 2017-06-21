@@ -25,14 +25,14 @@ class AuthorizationsignupController extends AbstractActionController {
 
     public function __construct() {
 
-        $userSession = new Container('loginId');
-        $this->sessionid = $userSession->offsetGet('loginId');
-        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $userSession = new Container('userloginId');
+        $this->sessionid = $userSession->offsetGet('userloginId');
+        /*$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
             header("Location:" . $dynamicPath);
             exit;
-        }
+        }*/
     }
     
     public function signupAction() {

@@ -199,6 +199,9 @@ a {
 .m-t-15 {
     margin-top: 15px !important;
 }
+.m-t-25 {
+    margin-top: 40px !important;
+}
 .relationships-page .users-section .user-field {
     border-radius: 0;
     padding: 10px;
@@ -223,6 +226,7 @@ a {
 .relationships-page .users-section .user-field img.user-img {
     border-radius: 50%;
     width: 80px;
+    height: 80px;
 }
 .media-object {
     display: block;
@@ -242,6 +246,7 @@ img {
 }
 .media-body {
     width: 10000px;
+    padding: 25px 20px;
 }
 .media, .media-body {
     overflow: hidden;
@@ -268,4 +273,67 @@ a {
 }
 .media-right, .media > .pull-right {
     padding-left: 10px;
+}
+.e-btn.btn-info, .open > .dropdown-toggle.btn-info {
+    border-color: #2f6d6b;
+    color: #2f6d6b;
+}
+.relationship-btn .e-btn {
+    width: 150px;
+    margin-top: 20px;
+}
+.e-btn, .open > .dropdown-toggle {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid;
+    border-radius: 0;
+    transition: background 0.2s ease 0s, color 0.2s ease 0s;
+    white-space: normal;
+}
+.btn-info {
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    color: #fff;
+}
+.btn {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+}
+button, select {
+    text-transform: none;
+}
+button {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+.e-btn.btn-info:hover, .e-btn.btn-info:focus, .e-btn.btn-info.full, .e-btn.btn-info:active, .open > .dropdown-toggle.btn-info:hover, .open > .dropdown-toggle.btn-info:focus, .open > .dropdown-toggle.btn-info.full, .open > .dropdown-toggle.btn-info:active {
+    background: #2f6d6b none repeat scroll 0 0;
+    color: #fff;
+}
+.e-btn.btn-info, .open > .dropdown-toggle.btn-info {
+    border-color: #2f6d6b;
+    color: #2f6d6b;
 }

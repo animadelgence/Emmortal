@@ -5,7 +5,7 @@
  * @Last Modified time: 2017-06-19 10:52:26
  */
 /*jslint browser: true */
-/*global $, jQuery, alert */
+/*global $, jQuery, alert,CKEDITOR */
 /*jslint plusplus: true */
 /*jshint -W065 */
 /*jshint -W030 */
@@ -13,7 +13,6 @@
 /*global radix:true */
 var base_url_dynamic = window.location.origin,
     frndDetails = [],
-    CKEDITOR = "",
     jsObject = "",
     i = "0";
 $(document).ready(function () {

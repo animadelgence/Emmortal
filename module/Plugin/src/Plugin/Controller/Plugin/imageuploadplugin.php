@@ -19,7 +19,7 @@ class imageuploadplugin extends AbstractPlugin {
             $returnImage = $newfoldername."/".$savedate."_".$uploadfilename;
             $newfilename = $_SERVER['DOCUMENT_ROOT'].'/image/profileImage/'.$newfoldername."/".($savedate."_".$uploadfilename);
            // chmod($_SERVER['DOCUMENT_ROOT'] . '/image/profileImage/' . $newfoldername, 0777);
-            
+
                 if (move_uploaded_file($tmp_name, $newfilename)){
                    $res['filePath'] = $returnImage;
                 }else {
@@ -34,6 +34,6 @@ class imageuploadplugin extends AbstractPlugin {
 
 
      }
-	 
+
 }
 ?>

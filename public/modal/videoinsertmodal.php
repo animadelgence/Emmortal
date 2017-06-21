@@ -25,9 +25,9 @@
                                     Choose
                                     <span class="">video</span>
                                     <input class="" type="file" id="file" name="file">
+                                    
                                  </div>
-                                 <div class="errormsgvideo" style="display:none;">
-                                 </div>
+                                <span id="videouploaderror" style="color:red;display:none;">Required</span>
                               </div>
                            </div>
                         </div>

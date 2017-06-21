@@ -1,0 +1,91 @@
+<div class="container animated fadeIn p-t-100 p-b-100">
+    <div>
+        <div class="album-inside">
+            <div class="e-container">
+                <div class="e-brown m-b-5">
+                    <div class="show-adds-btns pull-right">
+                        <div class="e-like btn e-btn btn-round full liked likeClick" style="background-color: rgb(180, 80, 78);" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php echo $likeCount; ?>
+                        </div>
+                        <div class="btn e-btn btn-brown btn-round full" style="background-color: rgb(180, 80, 78);">0
+                        </div>
+                    </div>
+                    <div class="album-header-title inline">
+                        <!-- ngIf: !album.invisible_for_you -->
+                        <div class="btn e-btn btn-round full btn-brown m-r-10" style="background: rgb(180, 80, 78);">0
+                        </div>
+                        <h3 class="inline text-capitalize"style="color: rgb(180, 80, 78);"><?php if(!empty($albumDetails[0]['title'])){ echo $albumDetails[0]['title'];}?></h3>
+                    </div>
+                    <div class="m-t-10">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 cover-tagged">
+                        <div class="cover-wrapper">
+                            <img class="img-responsive" src="<?php if(!empty($albumDetails[0]['albumimagepath'])){ echo $albumDetails[0]['albumimagepath'];}?>">
+                        </div>
+                    </div>
+                </div>
+                <div class="content m-t-30 p-t-10">
+                    <div class="sortable-container">
+                        <div class="records-wrapper">
+                         <?php $uploadCount = count($uploadDetails);
+                            if($uploadCount>0){
+                            foreach($uploadDetails as $upResult){
+                            if($upResult['uploadType'] == 'text'){   
+                            ?>
+                            <div class="record-wrapper text">
+                            <?php } else{ ?>
+                            <div class="record-wrapper">
+                            <?php }?>
+                               <div class="record pointer animated previewUploadedFile" style="border-color: rgb(180, 80, 78);"  data-toggle="modal" <?php if($upResult['uploadType'] == 'text'){ echo 'data-target="#textPreviewModal" data-cmd="text"'; } else if($upResult['uploadType'] == 'image'){ echo 'data-target="#imagePreviewModal" data-cmd="image"'; } else if($upResult['uploadType'] == 'video'){ echo 'data-target="#videoPreviewModal" data-cmd="video"'; }?>  data-id="<?php echo $upResult['uploadId']; ?>">
+                                   <div class="tile-edit-buttons">
+                                      <?php if($upResult['uploadType'] == 'image' || $upResult['uploadType'] == 'text'){?>
+                                       <i class="fa fa-cog e-dropdown dropdown white-dropdown dropdown-toggle" onclick="$(this).children().slideToggle();">
+                                       <ul class="dropdown-menu text-left tile-dropdown" role="menu">
+                                       <li>
+                                           <label class="e-brown m-b-0">
+                                               <label class="e-checkbox">
+                                                   <input e-checkbox="" type="checkbox">
+                                                   <span></span>
+                                                </label> Show comments
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="e-brown m-b-0">
+                                                <label class="e-checkbox">
+                                                    <input e-checkbox="" type="checkbox">
+                                                    <span></span>
+                                                </label> Show tags
+                                            </label>
+                                        </li>
+                                        </ul>
+                                        </i>
+                                        <?php } ?>
+                                        <i class="fa fa-trash"></i>
+                                        <i class="fa fa-pencil edit-button"></i>
+                                        <i class="fa fa-thumb-tack" style="color: rgb(180, 80, 78);"></i>
+                                        <i class="fa fa-arrows drag-handle" ></i>
+                                    </div>
+                                    <div class="record-content">
+                                       <?php if($upResult['uploadType'] == 'image'){?>
+                                        <img class="img-responsive" src="<?php echo $upResult['uploadPath'];?>">
+                                        <?php } else if($upResult['uploadType'] == 'video'){?>
+                                        <div class="video-preview-placeholder"></div>
+                                        <i class="fa fa-play-circle-o play-sign e-white ng-scope"></i>
+                                        <?php } else if($upResult['uploadType'] == 'text'){?>
+                                        <div class="e-brown text-left ta-bind"style="color: rgb(180, 80, 78);">
+                                        <p><?php echo $upResult['uploadDescription']; ?></p>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                         <?php } } ?>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

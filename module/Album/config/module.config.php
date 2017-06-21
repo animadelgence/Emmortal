@@ -13,6 +13,7 @@ return array(
              'Album\Controller\Newsfeed' => 'Album\Controller\NewsfeedController',
              'Album\Controller\Video' => 'Album\Controller\VideoController',
              'Album\Controller\Image' => 'Album\Controller\ImageController',
+             'Album\Controller\Albumdetails' => 'Album\Controller\AlbumdetailsController',
              'Album\Controller\Tribute' => 'Album\Controller\TributeController'
 
            
@@ -103,6 +104,20 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Album\Controller\Image',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+             'Albumdetails' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/albumdetails[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Album\Controller\Albumdetails',
                          'action'     => 'index',
                      ),
                  ),

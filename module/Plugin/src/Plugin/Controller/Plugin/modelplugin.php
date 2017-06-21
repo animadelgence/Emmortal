@@ -15,6 +15,7 @@ class modelplugin extends routeplugin {
     public $adminTable;
     public $uploadDetailsTable;
     public $tributedetailsTable;
+    public $likesdetailsTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {
@@ -87,6 +88,14 @@ class modelplugin extends routeplugin {
             $this->tributedetailsTable = $sm->get('Album\Model\tributedetailsTable');
         }
         return $this->tributedetailsTable;
+    }
+    public function getlikesdetailsTable() {
+        if (!$this->likesdetailsTable) {
+
+            $sm = $this->getController()->getServiceLocator();
+            $this->likesdetailsTable = $sm->get('Album\Model\likesdetailsTable');
+        }
+        return $this->likesdetailsTable;
     }
 }
 

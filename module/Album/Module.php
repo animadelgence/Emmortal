@@ -20,6 +20,8 @@ use Album\Model\tributedetails;
 use Album\Model\tributedetailsTable;
 use Album\Model\user;
 use Album\Model\userTable;
+use Album\Model\likesdetails;
+use Album\Model\likesdetailsTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -81,7 +83,7 @@ class Module
                     $resultSetPrototype->setArrayObjectPrototype(new friends());
                     return new TableGateway('friends', $dbAdapter, null, $resultSetPrototype);
                 },
-                  'Album\Model\tributedetailsTable' => function($sm) {
+                'Album\Model\tributedetailsTable' => function($sm) {
                     $tableGateway = $sm->get('tributedetailsTableGateway');
                     $table = new tributedetailsTable($tableGateway);
                     return $table;
@@ -91,6 +93,17 @@ class Module
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new tributedetails());
                     return new TableGateway('tributedetails', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Album\Model\likesdetailsTable' => function($sm) {
+                    $tableGateway = $sm->get('likesdetailsTableGateway');
+                    $table = new likesdetailsTable($tableGateway);
+                    return $table;
+                },
+                'likesdetailsTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new likesdetails());
+                    return new TableGateway('likesdetails', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );

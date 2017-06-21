@@ -194,9 +194,8 @@
                 success: function (res) {
                     if(res == 1){
                          if (pageURL.indexOf('profile/showprofile') > -1) {
-                              var currentPageId = $("#currentPageId").val();
-                              $('.modal').modal('hide');
-                              $(".profile-paginator ul li:last").trigger("click");
+                             $('.modal').modal('hide');
+                              $(".profile-paginator__click.active").trigger("click");
                             } else{
                                 window.location.href = baseURL + "/profile/showprofile";
                             }

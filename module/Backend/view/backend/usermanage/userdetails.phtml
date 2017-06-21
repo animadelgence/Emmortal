@@ -56,6 +56,8 @@
 									class="fa fa-bookmark"></i> Name</td>
 								<td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
 									class="fa fa-bookmark"></i> Email</td>
+                                <td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
+									class="fa fa-bookmark"></i> Profile image</td>
 <!--
 								<td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
 									class="fa fa-bookmark"></i> Subscription type / plan</td>
@@ -91,6 +93,9 @@
 								<td class="hidden-phone email-width"><span class=""
 									style=""><?php echo strtolower($val['emailid']); ?>
 								</span></td>
+                                <td class="hidden-phone profileImg"><span class="profileImg"
+									style="padding: 5px; font-weight: bold;"><img src="<?php echo $val['profileimage'] ?>"  height="100px" width="100px" /><!--(after src tag) onerror="this.src='<?php echo $dynamicPath; ?>/template/demo.jpg'"-->
+								</span></td>
 <!--
 								<td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;" value="<?php //if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>"><?php //if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>
@@ -111,19 +116,10 @@
 								<td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;"><?php //echo $val['expireDate'];?>
 								</span></td>
-								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;"><?php //if ($val['checksum']== 1){ echo "From Friend";} else{ echo "From SFP"; } ?>
-								</span></td>
 -->
 								<input type="hidden"  class="hidden_class" value="<?php echo $val['userid']; ?>" />
 								<td class="sorttable_nosort">
-<!--
-                                    <a href="<?php //echo '/usermanage/loginasuser/'.$val['userid']; ?>" target="_blank" title="Login as user">
-                                            <button class="btn btn-primary btn-xs login_user">
-                                                <i class="fa fa-user" aria-hidden="true"></i>
-                                            </button>
-                                    </a>
--->
+
                                     <a href="<?php echo '/usermanage/useredit/'.$val['userid']; ?>" title="Edit user details">
                                             <button class="btn btn-primary btn-xs edit_user">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -132,11 +128,6 @@
 									        <button class="btn btn-danger btn-xs dlt_nom deleteUser" title="Delete user">
 										        <i class="fa fa-trash-o"></i>
 									        </button> <br/>
-                                            <?php //$exp= strtotime($val['expireDate']); $curr= strtotime(date('Y-m-d')); $secs = $exp - $curr; $chk=$secs/86400;?>
-<!--
-                                            <button class="btn btn-danger btn-xs blink_me invoiceSend" title="Send invoice" <?php //if($chk<=10){echo 'style="display: block; margin-top: 12px;"';}else{echo 'style="display: none; margin-top: 12px;"';} ?>>Send invoice
-                                            </button>
--->
 
 								</td>
 							</tr>
@@ -163,10 +154,9 @@
 	<!-- /wrapper -->
 
 	<!--delete popup -->
-<!--
 	<section id="dynamicpagecreatepopup" class="popupFormForDynamicPage chang_PPopup_conta">
-	<div id="" class="chang_PPopup">
-    <div class="tab-content" style="border:0px solid;width:490px;">
+	 <div id="" class="chang_PPopup">
+     <div class="tab-content" style="border:0px solid;width:490px;">
 		<form class="form-popup" style="margin-top: 0px;" method="POST" enctype="multipart/form-data">
 			 <a class="close" href="javascript:void(0)" onclick="$('#dynamicpagecreatepopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
 			<h2 class="form-login-heading">Delete User</h2>
@@ -179,8 +169,9 @@
 				</div>
 			</div>
 		</form>
--->
-    <!-- /delete popup-->
+     </div><!--/tab-content-->
+     </div>
+    </section><!-- /delete popup-->
 
     <!--publish-campaign status popup -->
 <!--

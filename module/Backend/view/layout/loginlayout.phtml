@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,13 +15,14 @@
     ?>
 
 </head>
-<body>
+<body style="background: url(<?php echo $dynamicPath; ?>/image/backend/home_transfer_main_banner.jpg) no-repeat; height: 100%; background-size: cover;">
+<div>
+ <a href="<?php echo $dynamicPath; ?>"><img src="<?php echo $dynamicPath; ?>/img/backend/logo.png" ></a>
 	<section id="container">
-		<?php include 'header.phtml';
-           include_once('sidebar.phtml');
+		<?php
 	       echo $this->content;
+           include_once('adminjs.phtml');
 	 ?>
 	</section>
-	<?php include_once('adminjs.phtml');?>
+</div>
 </body>
-</html>

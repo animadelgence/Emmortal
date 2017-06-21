@@ -14,7 +14,7 @@ return array(
              'Album\Controller\Video' => 'Album\Controller\VideoController',
              'Album\Controller\Image' => 'Album\Controller\ImageController',
              'Album\Controller\Tribute' => 'Album\Controller\TributeController'
-             
+
            
              
          ),

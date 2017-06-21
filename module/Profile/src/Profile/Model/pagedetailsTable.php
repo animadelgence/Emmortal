@@ -25,22 +25,6 @@ use Zend\Db\Sql\Select;
             return $array;
         }
 
-        public function fetchPageId($data){
-            $sql = new Sql($this->tableGWay->adapter);
-            $select = $sql->select();
-            $select->from($this->tableGWay->getTable())
-                ->where($data);
-            $select->order('createddate ASC');
-            $resultSet = $this->tableGWay->selectWith($select);
-            $array = array();
-            foreach ($resultSet as $rSet) {
-                $array[] = array(
-                    'UID' => $rSet->UID,
-                    'pageid' =>$rSet->pageid
-                    );
-            }
-            return $array;
-        }
         public function insertData($data)
         {
             $rowset = $this->tableGWay->insert($data);

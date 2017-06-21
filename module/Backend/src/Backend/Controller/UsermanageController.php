@@ -30,6 +30,37 @@ namespace Backend\Controller;
               $userdata = $modelPlugin->getuserTable()->fetchall($data);
 		      return new ViewModel(array('userdata'=>$userdata));
      }
+     public function usereditAction(){
+              $this->layout('layout/backendlayout');
+              $modelPlugin = $this->modelplugin();
+              $plugin = $this->routeplugin();
+		      $currentPageURL = $plugin->curPageURL();
+		      $href = explode("/", $currentPageURL);
+		      $controller = @$href[3];
+              $action = @$href[4];
+		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
+              $userid = $this->getEvent()->getRouteMatch()->getParam('id');
+              $userdata = $modelPlugin->getuserTable()->fetchall(array('userid'=>$userid));
+		      return new ViewModel(array('userdata'=>$userdata));
+     }
+     public function usereditsubmitAction(){
+              $modelPlugin = $this->modelplugin();
+              $plugin = $this->routeplugin();
+              $dynamicPath = $plugin->dynamicPath();
+//              $phpprenevt = $this->phpinjectionpreventplugin();
+//              $userid = $phpprenevt->stringReplace($_POST['userid']);
+//              $userEmail = $phpprenevt->stringReplace($_POST['userEmail']);
+//              $userStatus = $phpprenevt->stringReplace($_POST['userStatus']);
+//              $checkbox = $phpprenevt->stringReplace($_POST['checkbox']);
+              $userid = $_POST['userid'];
+              $userfName = $_POST['userfName'];
+              $userlName = $_POST['userlName'];
+              $userEmail = $_POST['userEmail'];
+              $query = array('userid'=>$userid);
+             // $fetchquery= $modelPlugin->getsubscriptionDetailsTable()->fetchall($query);
+              $unpubdata = array('publishStatus'=>'unpublished');
+              $unpublish = $modelPlugin->getuserTemplateTable()->updateUserTemplate($unpubdata,$where);
+     }
 
  }
 ?>

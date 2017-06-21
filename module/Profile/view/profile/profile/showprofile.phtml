@@ -9,24 +9,27 @@
                     echo "/image/profile-deafult-avatar.jpg";
                 }?>"></div>
                             <div class="user_profile_name_section"><span><?php echo $userDetails[0]['dateofbirth']?></span><br><span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname']?></span></div>
+                             <?php  if(count($uploadDetails)>1){
+                                        echo '<div class="user_upload_part_section_content">';
+                                        foreach($uploadDetails as $upload){
+                                             echo '<div class="user_upload_part_section_content--inside"><span>'.$upload['uploadPath'].'</span><span>'.$upload['uploadType'].'</span></div>';
+                                        }
+                                        echo "</div>";
+                                    }else{ ?>
                             <div class="user_upload_part_section">
-                                <?php
-                                    if(count($uploadDetails)>1){
-                                                        foreach($uploadDetails as $upload){
-                                                                echo $upload['uploadPath'];
-                                                        }
-                                    }else{?><div class="fa fa-plus add-page-plus-icon"></div>
-
-                                            <div class="">
-                                                <p>Add your Life moments: upload photos and videos.</p>
-                                                <p>Create Albums, Tributes and add valuable texts.</p>
-                                                <p>"Add" button is always accessible on right top menu.</p>
-                                            </div>
-                                        </div><?php } ?></div>
-                        </div>
+                                <div class="fa fa-plus add-page-plus-icon"></div>
+                                <div class="">
+                                    <p>Add your Life moments: upload photos and videos.</p>
+                                    <p>Create Albums, Tributes and add valuable texts.</p>
+                                    <p>"Add" button is always accessible on right top menu.</p>
+                                </div>
+                            </div>
+                            <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
+
        <?php if(count($pageDetails)>1){ ?> 
         <div class="profile-paginator">
             <ul>

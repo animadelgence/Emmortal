@@ -18,6 +18,7 @@
                 $array[] = array(
                     'uploadId' => $rSet->uploadId,
                     'UID' => $rSet->UID,
+                    'uploadPath'=>$rSet->uploadPath,
                     'uploadTitle' => $rSet->uploadTitle,
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,

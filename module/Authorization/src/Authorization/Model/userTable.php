@@ -12,6 +12,11 @@
         }
         public function fetchall($query)
         {
+
+            if (empty($query)){
+                $resultSet = $this->tableGWay->select();
+            }else{
+
             $resultSet = $this->tableGWay->select($query);
             foreach ($resultSet as $rSet) {
                 $array[] = array(
@@ -35,6 +40,8 @@
                     );
             }
             return $array;
+            }
+
         }
         public function savedata($insertdataarray,$keyArray)
         {

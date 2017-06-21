@@ -44,7 +44,8 @@ return array(
             'routeplugin' => 'Plugin\Controller\Plugin\routeplugin',
             'modelplugin' => 'Plugin\Controller\Plugin\modelplugin',
             'mailplugin' => 'Plugin\Controller\Plugin\mailplugin',
-            'videouploadplugin' => 'Plugin\Controller\Plugin\videouploadplugin'
+            'videouploadplugin' => 'Plugin\Controller\Plugin\videouploadplugin',
+            'imageuploadplugin' =>'Plugin\Controller\Plugin\imageuploadplugin'
             
         )
     ),

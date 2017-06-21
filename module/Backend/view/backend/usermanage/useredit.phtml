@@ -1,0 +1,128 @@
+<!--main content start-->
+<section id="main-content">
+	<section class="wrapper">
+		<h3>
+			<i class="fa fa-angle-right"></i>Edit User Details
+		</h3>
+
+		<!-- BASIC FORM ELELEMNTS -->
+		<div class="row mt">
+			<div class="col-lg-12">
+				<div class="form-panel">
+					<form class="form-horizontal style-form" id='userFormEdit'
+						method="post"
+						action="/usermanage/usereditsubmit"
+						 enctype="multipart/form-data">
+
+						 <?php if(!empty($userdata)){
+								foreach($userdata as $key => $val)
+					               { ?>
+					    <input type="hidden" name="userid" value="<?php echo $val['userid'];?>">
+                        <div class="form-group">
+							<label class="col-sm-4 control-label">First name :</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" id="userfName"
+									name='userfName' value="<?php echo strip_tags($val['firstname']);?>" />
+								<span class="help-block" style="display:none;" id="errorFname"></span>
+							</div>
+						</div>
+                        <div class="form-group">
+							<label class="col-sm-4 control-label">Last name :</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" id="userlName"
+									name='userlName' value="<?php echo strip_tags($val['lastname']);?>" />
+								<span class="help-block" style="display:none;" id="errorLname"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Email :</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" id="userEmail"
+									name='userEmail' value="<?php echo $val['emailid'];?>" readonly />
+							</div>
+						</div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Screenshot Image : <label><label class="col-sm-12"></label><small>(Image should not be more than 1MB or 640 X 480 in size and should be of type gif/png/jpg/jpeg only)</small></label>
+                            </label>
+							<div class="col-sm-6">
+								<input type="file" class="form-control" name="fileupload"
+									id="fileupload" style='height: 30%;' required />
+								<div id="upload_prev" class="upload_prev">
+									<?php if(!empty($val['profileimage'])){?>
+									<img class="image" src="<?php echo $val['profileimage'] ?>" onerror="this.src='<?php //echo $dynamicPath; ?>/template/demo.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
+									<?php } else{ ?>
+
+                                     <img src=""  height="100px" />
+                                    <?php }?>
+								</div>
+								<label id="errorImg1" style="margin-right: 10em;"></label><!--img extnsn valid-->
+								<label id="errorImg2" style="margin-right: 10em;"></label><!--img size(>1MB) valid-->
+								<label id="errorImg3" style="margin-right: 10em;"></label><!--blank image valid-->
+								<input type="hidden" name="tempFolder" id="tempFolder" value="<?php //echo $templatedet[0]['templateFolder'];?>" />
+							</div>
+
+						</div>
+                        <div class="form-group hide_on_check common">
+							<label class="col-sm-4 control-label">Activation :</label>
+							<div class="col-sm-4 radio">
+								<label class='radio_class'>
+								    <input type="radio"
+									name="activation" id="zero" value="zero" <?php if(($val['activation'] == "0")) echo "checked"; ?>>0
+								</label>
+								 <label class='radio_class'>
+								    <input type="radio"
+									name="activation" id="one" value="one" <?php if(($val['activation'] == "1")) echo "checked"; ?>>1
+								 </label>
+								<input type="hidden" name="optionsRadios"
+									id="optionsRadios" value="<?php echo $val['activation']; ?>">
+							</div>
+						  </div>
+
+
+						<div class="btndiv_cls">
+                            <button class="btn_cls" type="button" id='btnSave' value="Save and Continue">Save and Continue</button>
+						</div>
+
+                    <?php }
+                            }
+							else
+							{
+							   echo "No records found...";
+							}?>
+					</form>
+				</div>
+				<!-- /form-panel -->
+			</div>
+			<!-- /col-lg-12 -->
+
+
+		</div>
+		<!-- /row -->
+	</section>
+	<!--wrapper -->
+
+	<!--unpublish popup -->
+<!--
+	<section id="dynamicunpublishpopup" class="popupFormForDynamicPage chang_PPopup_conta">
+	<div id="" class="chang_PPopup">
+    <div class="tab-content" style="border:0px solid;width:490px;">
+		<form class="form-popup" style="margin-top: 0px;" action="" enctype="multipart/form-data">
+			 <a class="close" href="javascript:void(0)" onclick="$('#dynamicunpublishpopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
+			<h2 class="form-login-heading">Deactivate User</h2>
+			<div class="login-wrap" style="overflow:hidden;text-align:center;">
+				<input type="hidden" name="hidden_id" value="" id="hidden_userid" class="hidden_id" />
+				<h4 class="form-login-heading">Upon deactivating this account, all the related published templates will be unpublished, and the end user will no longer be able to see the related published templates.<br><br> Are you sure you want to deactivate this account?</h4>
+				<div style="overflow:hidden;display:inline-block;">
+                    <input type="button" class="popup_cancel" onclick="$('#dynamicunpublishpopup').hide();" id="btn" value="CANCEL"/>
+                    <input type="button" class="popup_cancel" onclick="$('#dynamicunpublishpopup').hide();" id="btn" value="OK"/>
+				</div>
+			</div>
+		</form>
+	</div>tab-content
+    </div>
+    </section>
+-->
+    <!-- /unpublish popup-->
+
+</section>
+<!-- /MAIN CONTENT -->

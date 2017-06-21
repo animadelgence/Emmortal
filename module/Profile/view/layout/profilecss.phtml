@@ -8,22 +8,12 @@ switch ($controller) {
              case 'showprofile':
                 $this->headLink()
                     ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/profile/searchfriends.css?version=' . $t)
-                ;
+                    ->prependStylesheet($this->basePath() . '/css/profile/searchfriends.css?version=' . $t);
                  break;
 
              case 'newsfeed':
                 $this->headLink()
-                    ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/termsconditions.css?version=' . $t)
-                ;
+                   ->prependStylesheet($this->basePath() . '/css/Album/termsconditions.css?version=' . $t);
              break;
 		}
 		break;
@@ -31,20 +21,26 @@ switch ($controller) {
         switch ($action) {   
              case 'myaccount':
                 $this->headLink()
-                    ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
-                ;
+                    ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t);
                  break;
         }
         break;
-
+    case 'settings':
+        switch ($action) {   
+             case 'general':
+                $this->headLink()
+                    ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t);
+                 break;
+        }
+        break;
 	default:
 		break;
 }
 echo $this->headLink()
+      ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
+      ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
+       ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
+       ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/navbar.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/bootstrap/bootstrap.min.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')

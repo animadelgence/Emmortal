@@ -1,7 +1,7 @@
 <!-- line modal for text-->
 <div class="modal fade" id="tributeAddModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:visible !important;">
 <div role="dialog" class="modal fade offCanvas animated in" style="z-index: 1050; display: block;">
-	<div class="modal-dialog" onblur="alert();$('#tributeAddModal').hide(); $('#modal-backdrop fade in').remove();">
+	<div class="modal-dialog">
 	    <div class="modal-content">
 	        <div class="offcanvas-comments animated">
 	            <div class="offcanvas-comments-header">

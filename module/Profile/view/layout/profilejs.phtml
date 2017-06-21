@@ -11,6 +11,7 @@ switch ($controller) {
                 $this->headScript()
 
                         ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
+                        ->prependFile($this->basePath() . '/js/profile/tributeAdd.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/index.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/freewall.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/main.js?version=' . $t);

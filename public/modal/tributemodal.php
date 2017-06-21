@@ -10,7 +10,7 @@
             <form name="tributecreate" id="tributecreate" action="/tribute/tributesubmit" method="POST" enctype="multipart/form-data">
                <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                   <div class="form-group col-xs-12 col-sm-12">  
+                   <div class="form-group col-xs-12 col-sm-12">
             <div id="append-div-tribute" class="">
             <input type="text" placeholder="Type Friend Name..." class="friendsids" id="friendsidtribute" name="friendsid" class="form-control" style="width:100%;">
             </div>
@@ -18,10 +18,10 @@
             <ul class="frndlists" id="frndlisttribute" style="list-style-type: none;z-index: 999999; position: relative; display:none;">
             </ul>
             </div>
-            
+
             <span id="tributefriendError" style="color:red;display:none;">Required</span>
          </div>
-            
+
                      <div class="form-group col-xs-12 col-sm-12">
                         <textarea name="tributeDescription" id="tributeDescription" class="form-control" style="height:200px;"></textarea>
                         <span id="tributeDescriptionError" style="color:red;display:none;">Required</span>

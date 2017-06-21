@@ -23,12 +23,13 @@ class UsersettingController extends AbstractActionController {
         public function generalAction(){
             $this->layout('layout/profilelayout.phtml');
             $modelPlugin = $this->modelplugin();
-            $dynamicPath = $modelPlugin->dynamicPath(); 
+            $dynamicPath = $modelPlugin->dynamicPath();
             $currentPageURL = $modelPlugin->curPageURL();
             $href = explode("/", $currentPageURL);
             $controller = @$href[3];
             $action = @$href[4];
-            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-            return new ViewModel(array('dynamicPath' => $dynamicPath));
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'userDetails'=>$userDetails));
         }
 }

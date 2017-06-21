@@ -22,14 +22,17 @@
                         <div class="aviary-div">
                            
                               <div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
+
                               <div class="image-select">
+                                <div class="row">
+                                    <div class="col-lg-6">
                                  <div class="img-input">
-                                    <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 120px; width: 360px;">
+                                    <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 120px;">
 
                                        <i class="fa fa-picture-o remove-fa-picture-icon"></i>
                                        <!--<img id= 'profile_pic_thumb'/>-->
                                     </div>
-                                    <div class="btn e-btn btn-primary file-input-btn" style="width: 360px;">
+                                    <div class="btn e-btn btn-primary file-input-btn" >
                                        <i class="fa fa-upload"></i>
                                        Choose photo
                                        <input name="profileimage" type="file" id="profileimagechange">
@@ -38,13 +41,15 @@
                                     </div>
 
                                  </div>
+                                 </div>
+                                 <div class="col-lg-6">
                                  <div class="img-input">
-                                    <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 120px; width: 360px;">
+                                    <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 120px;">
 
                                        <i class="fa fa-picture-o remove-fa-picture-icon"></i>
                                        <!--<img id= 'profile_pic_thumb'/>-->
                                     </div>
-                                    <div class="btn e-btn btn-primary file-input-btn" style="width: 360px;">
+                                    <div class="btn e-btn btn-primary file-input-btn" >
                                        <i class="fa fa-upload"></i>
                                        Choose photo
                                        <input name="backgroundimage" type="file" id="backgroundimagechange">
@@ -52,7 +57,19 @@
                                        <!--<input type = "hidden" id= "aviaryPath" name= "action" value=""> -->
                                     </div>
                                  </div>
+                                 </div>
+                                 </div>
+<<<<<<< HEAD
+
                                  <span id="imagePathError" style="color:red;display:none;">No image Selected</span>
+
+
+=======
+
+                                 <span id="imagePathError" style="color:red;display:none;">No image Selected</span>
+
+
+>>>>>>> origin/master
                               </div>
                            </div>
                         
@@ -85,11 +102,12 @@
                      </form>
                      </div> -->
             <div class="modal-footersec">
-
+              <div class="row">
                 <span class="">
                <button type="button" class="btn e-btn btn-default" onclick="$('.close').trigger('click');" data-toggle="modal" data-target="#uploadModal">skip</button>
                <button type="submit" class="btn e-btn btn-primary" id = "saveimageDetails">save</button>
                </span>
+                </div>
             </div>
     </div>
   </div>

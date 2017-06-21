@@ -101,13 +101,10 @@ $(document).ready(function () {
 
  /* Useredit form submit */
     $('body').on('click', '#btnSave', function () {
-        var userid = $('#userid').val(),
-            userfName = $('#userfName').val(),
-            userlName = $('#userlName').val(),
-            activation = $('#activation').val();
+        var userfName = $('#userfName').val(),
+               userlName = $('#userlName').val();
 
-
-        if (userfName === '') { //template name field
+        if (userfName === '') {
             $('#errorLname,#errorEmail,#errorImg3,#errorImg1,#errorImg2').css('display', 'none');
             $('#errorFname').css('display', 'block');
             $('#errorFname').html("<font color='red'> Please enter the first name of user </font>");
@@ -118,25 +115,7 @@ $(document).ready(function () {
             $('#errorLname').html("<font color='red'> Please enter the last name of user </font>");
             return false;
         }else {
-            $("#userFormEdit").ajaxSubmit({
-                data: {
-                    userid: userid,
-                    userfName: userfName,
-                    userlName: userlName,
-                    activation: activation,
-                    fileupload: 'fileupload'
-                },
-                success: function (response) {
-                    console.log(response); return false;
-                    if (response.trim() === "error") {
-                        $('#errorName').html("<font color='red'> Invalid! Template name already exists </font>");
-                        return false; //error message
-                    } else {
-                        $('#errorName').css('display', 'none');
-                        window.location = baseUrl + '/usermanage/userdetails';
-                    }
-                }
-            });
+            $("#userFormEdit").submit();
 
         }
     });
@@ -191,13 +170,13 @@ $(document).ready(function () {
 //
 });
 
-///*Popup Appear When clicked on Delete User Icon*/
-//$(".deleteUser").on('click', function (event) {
-//    "use strict";
-//    var userId = $(this).parent().prev().val();
-//    $('#hidden_userid').val(userId);
-//    $("#dynamicpagecreatepopup").fadeIn();
-//});
+/*Popup Appear When clicked on Delete User Icon*/
+$(".deleteUser").on('click', function (event) {
+    "use strict";
+    var userId = $(this).parent().prev().val();
+    $('#hidden_userid').val(userId);
+    $("#dynamicpagecreatepopup").fadeIn();
+});
 //
 ///*Popup appear when clicked on 'OK' of Delete User*/
 //$("#delUser").on('click', function (event) {

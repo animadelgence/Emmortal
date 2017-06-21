@@ -39,10 +39,11 @@ class ProfileController extends AbstractActionController {
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
         $uploadQuery = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
+        return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
     }
     public function newsfeedAction(){
+       // echo $this->sessionid;exit;
     	$this->layout('layout/profilelayout.phtml');
     	$modelPlugin = $this->modelplugin();
         $dynamicPath = $modelPlugin->dynamicPath();
@@ -53,7 +54,7 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'sessionid'=>$this->sessionid));
         $actionChecker = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier = $this->getEvent()->getRouteMatch()->getParam('pId');
 
@@ -87,7 +88,7 @@ class ProfileController extends AbstractActionController {
             
 
         }
-        return new ViewModel(array('session_id'=>$decrypteduserId,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function getalbumAction(){
         

@@ -55,8 +55,9 @@ $(document).ready(function () {
         $('#incomingTabShow').css('display', 'none');
     });
     $('body').on('keyup', '#searchText', function () {
+        $('#globalSearch').css('display','block');
         var friendsid = $(this).val().trim();
-        alert(friendsid);
+        //alert(friendsid);
         if (friendsid != '') { // jshint ignore:line
             $.ajax({
                 type: "POST",
@@ -76,13 +77,18 @@ $(document).ready(function () {
                                 if (jsObject.userDetails[i].profileimage != null) {
                                     profileimage = jsObject.userDetails[i].profileimage;
                                 }
-                                html += '<li class="frndlist-click-class dropdown-li" id="frndlist-click-image" data-id="' + jsObject.userDetails[i].friendsid + '"><img src="' + profileimage + '" class="img-circle frnd-image-class" alt="Cinque Terre" ><span class="frnd-list-name" id="frnd-list-name-id">' + jsObject.userDetails[i].friendsname + '</span></li>';
+                                //html += '<li class="frndlist-click-class dropdown-li" id="frndlist-click-image" data-id="' + jsObject.userDetails[i].friendsid + '"><img src="' + profileimage + '" class="img-circle frnd-image-class" alt="Cinque Terre" ><span class="frnd-list-name" id="frnd-list-name-id">' + jsObject.userDetails[i].friendsname + '</span></li>';
+                                
+                                
+                                
+                                html += '<div class="user-field m-t-25 animated fadeIn"><div class="media">   <div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div>   <div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + jsObject.userDetails[i].friendsname + '</span></a></h3></div>  <div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" ><button class="btn e-btn btn-info"><div class="fa fa-plus"></div> Connect</button></div></div>   </div></div>';
                             }
                         }
                     }
-                    alert(html);
-                    /*$('#frndlistImage').html(html);
-                    $('#frndlistImage').show();*/
+                    //alert(html);
+                    
+                    $('#searchResults').html(html);
+                    $('#searchResults').show();
                 }
             });
         }

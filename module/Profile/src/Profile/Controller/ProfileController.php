@@ -12,9 +12,14 @@ class ProfileController extends AbstractActionController {
 
     
     public function __construct() {
-
         $userSession = new Container('userloginId');
         $this->sessionid = $userSession->offsetGet('userloginId');
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
+        if ($this->sessionid == "") {
+            header("Location:" . $dynamicPath. "/album/showalbum");
+            exit;
+        }
     }
     public function indexAction() {
         echo "work in progress";exit;

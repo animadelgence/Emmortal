@@ -12,12 +12,8 @@
         }
         public function fetchall($query)
         {
-
-            if (empty($query)){
-                $resultSet = $this->tableGWay->select();
-            }else{
-
             $resultSet = $this->tableGWay->select($query);
+            $array = "";
             foreach ($resultSet as $rSet) {
                 $array[] = array(
                     'userid' => $rSet->userid,
@@ -40,8 +36,6 @@
                     );
             }
             return $array;
-            }
-
         }
         public function savedata($insertdataarray,$keyArray)
         {

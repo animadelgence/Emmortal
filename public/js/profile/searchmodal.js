@@ -83,7 +83,7 @@ $(document).ready(function () {
                                 if (jsObject.userDetails[i].profileimage != null) { // jshint ignore:line
                                     profileimage = jsObject.userDetails[i].profileimage;
                                 }
-                                html += '<div class="user-field m-t-25 animated fadeIn"><div class="media">   <div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div>   <div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + jsObject.userDetails[i].friendsname + '</span><input type="hidden" id="userId" value="' + jsObject.userDetails[i].friendsid + '"></a></h3></div>  <div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" ><button class="btnn e-btn btn-info" id=""><div class="fa fa-plus"></div> Connect</button></div></div></div></div>';
+                                html += '<div class="user-field m-t-25 animated fadeIn"><form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data"><div class="media">   <div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div>   <div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + jsObject.userDetails[i].friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + jsObject.userDetails[i].friendsid + '"></a></h3></div>  <div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" ><button class="btnn e-btn btn-info" id="requestbtn' + jsObject.userDetails[i].friendsid + '" onclick="sendFriendRequest()"><div class="fa fa-plus"></div> Connect</button></div></div></div></form></div>';
                             }
                         }
                     }
@@ -93,4 +93,37 @@ $(document).ready(function () {
             });
         }
     });
+    $('body').on('click', '#userId', function () {
+        /*var userid = $('#userid').val();
+        alert(userid);
+        $("#requestform").ajaxSubmit({
+            data: {
+                userid: userid
+            },
+            success: function (result) {
+                alert(result);
+                alert("jftrdrtu");
+                return false;
+            }
+        });*/
+    });
 });
+function sendFriendRequest()
+{
+    alert();
+    //$('#userId').trigger('click');
+    var userid = $('#userid').val();
+    alert(userid);
+    $("#requestform").ajaxSubmit({
+        data: {
+            userid: userid
+        },
+        success: function (result) {
+            alert(result);
+            alert("jftrdrtu");
+            return false;
+        }
+    });
+    
+    
+}

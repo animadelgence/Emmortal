@@ -14,10 +14,10 @@
                         <div class="col-lg-6">
                             <h3>Personal information</h3>
                             <form action="/action_page.php">
-                                <input class="gen-input" type="text" name="fname" placeholder="First name">
-                                <input class="gen-input" type="text" name="lname" placeholder="Last name">
-                                <input class="gen-input-mail" type="text" name="lname" placeholder="E-mail">
-                                <input type="text" class="form-control " id="exampleInputPassword1" placeholder="">
+                                <input class="gen-input" type="text" name="fname" value="<?php echo $userDetails[0]['firstname'];?>">
+                                <input class="gen-input" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
+                                <input class="gen-input-mail" type="text" readonly name="email" value="<?php echo $userDetails[0]['emailid'];?>">
+                                <input type="text" class="form-control" id="exampleInputPassword1" value="<?php echo $userDetails[0]['dateofbirth'];?>">
                                 <div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
                             </form>
                         </div>
@@ -53,7 +53,6 @@
 
                     <!--<div id="perchase" class="tabcontent">
                         <h3>Purchasing</h3>
-
                     </div>-->
                     <div id="Privacy" class="tabcontent">
                         <div class="col-lg-6">

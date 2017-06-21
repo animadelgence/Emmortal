@@ -1,0 +1,5 @@
+.gitignore
+vendor/*
+public/setting.json
+public/database.php
+public/maitrayee.php

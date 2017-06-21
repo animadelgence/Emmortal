@@ -12,6 +12,8 @@
         }
         public function fetchall($query)
         {
+            //print_r($query); exit;
+
             $resultSet = $this->tableGWay->select($query);
             foreach ($resultSet as $rSet) {
                 $array[] = array(
@@ -33,8 +35,40 @@
                     'content' => $rSet->content,
                     'activation' => $rSet->activation
                     );
+                }
+                return $array;
+        }
+        public function fetchallnew($query)
+        {
+            //print_r($query); exit;
+            if (empty($query)){
+                $resultSet = $this->tableGWay->select();
+            }else{
+
+                $resultSet = $this->tableGWay->select($query);
+                foreach ($resultSet as $rSet) {
+                    $array[] = array(
+                        'userid' => $rSet->userid,
+                        'emailid' => $rSet->emailid,
+                        'password' => $rSet->password,
+                        'forgetpassword' => $rSet->forgetpassword,
+                        'firstname' => $rSet->firstname,
+                        'lastname' => $rSet->lastname,
+                        'profileimage' => $rSet->profileimage,
+                        'backgroundimage' => $rSet->backgroundimage,
+                        'signindate' => $rSet->signindate,
+                        'login' => $rSet->login,
+                        'lastlogout' => $rSet->lastlogout,
+                        'dateofbirth'=>$rSet->dateofbirth,
+                        'keepmelogin' => $rSet->keepmelogin,
+                        'seeme' => $rSet->seeme,
+                        'findme' => $rSet->findme,
+                        'content' => $rSet->content,
+                        'activation' => $rSet->activation
+                        );
+                }
+                return $array;
             }
-            return $array;
         }
         public function savedata($insertdataarray,$keyArray)
         {

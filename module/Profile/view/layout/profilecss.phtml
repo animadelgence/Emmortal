@@ -2,6 +2,7 @@
 $controller = strtolower($controller);
 $action = strtolower($action);
 $t = time();
+
 switch ($controller) {
 	case 'profile':
 		switch ($action) {   
@@ -30,6 +31,7 @@ switch ($controller) {
         switch ($action) {
              case 'general':
                 $this->headLink()
+                    ->prependStylesheet($this->basePath() . '/css/profile/setting.css?version=' . $t)
                     ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t);
                  break;
         }

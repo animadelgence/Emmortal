@@ -27,7 +27,7 @@ namespace Backend\Controller;
               $action = @$href[4];
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
               //$data = array();
-              $userdata = $modelPlugin->getuserTable()->fetchall();
+              $userdata = $modelPlugin->getuserTable()->fetchallnew(); //fetchall();
 		      return new ViewModel(array('userdata'=>$userdata));
      }
      public function usereditAction(){

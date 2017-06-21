@@ -17,7 +17,8 @@
                     <div class="welcome" style="display:none;">
                           <div class="close-msg">
                             <a href="#">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <i class="fa fa-times closebtn" aria-hidden="true"></i>
+
                             </a>
                         </div>
                          <div class="showmsg">
@@ -81,7 +82,7 @@
 			<div class="col-lg-0.5">
 				<ul class="nav navbar-nav hamburger-menu pull-right">
 					<li class="dropdown hover-effect">
-						<a href="#" class="dropdown-toggle drop-list-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+						<a href="#" class="dropdown-toggle drop-list-icon" data-toggle="modal" data-target="#searchmodal"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-search" aria-hidden="true"></i></span></a>
 					</li>
 				</ul>
 			</div>
@@ -126,5 +127,7 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/textinsertmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/imageinsertmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/videoinsertmodal.php"); ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/tributemodal.php"); ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/searchmodal.php"); ?>
 
 

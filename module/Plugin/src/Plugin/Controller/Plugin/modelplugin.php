@@ -14,6 +14,7 @@ class modelplugin extends routeplugin {
     public $pagedetailsTable;
     public $adminTable;
     public $uploadDetailsTable;
+    public $tributedetailsTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {
@@ -77,6 +78,15 @@ class modelplugin extends routeplugin {
             $this->adminTable = $sm->get('Backend\Model\adminTable');
         }
         return $this->adminTable;
+    }
+
+    public function gettributedetailsTable() {
+        if (!$this->tributedetailsTable) {
+
+            $sm = $this->getController()->getServiceLocator();
+            $this->tributedetailsTable = $sm->get('Album\Model\tributedetailsTable');
+        }
+        return $this->tributedetailsTable;
     }
 }
 

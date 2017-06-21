@@ -12,12 +12,14 @@
         }
         public function fetchall($query)
         {
-            //print_r($query);
+<<<<<<< HEAD
+            //print_r($query); exit;
             if (empty($query)){
             $resultSet = $this->tableGWay->select();
             }else{
+=======
+>>>>>>> origin/master
             $resultSet = $this->tableGWay->select($query);
-            }
             foreach ($resultSet as $rSet) {
                 $array[] = array(
                     'userid' => $rSet->userid,

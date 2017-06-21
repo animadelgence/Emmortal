@@ -11,6 +11,7 @@ class uploadDetails
     public $uploadTitle;
     public $uploadDescription;
     public $uploadType;
+    public $uploadPath;
     public $AID;
     public $FID;
     public $PID;
@@ -25,6 +26,7 @@ class uploadDetails
         $this->uploadType = (!empty($data['uploadType'])) ? $data['uploadType'] : null;
         $this->AID = (!empty($data['AID'])) ? $data['AID'] : null;
         $this->FID = (!empty($data['FID'])) ? $data['FID'] : null;
+        $this->uploadPath = (!empty($data['uploadPath'])) ? $data['uploadPath'] : null;
         $this->PID = (!empty($data['PID'])) ? $data['PID'] : null;
         
 	}

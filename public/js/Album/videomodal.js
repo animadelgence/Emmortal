@@ -94,12 +94,14 @@
                     success: function (result) {
 						var response = JSON.parse(result);
                         if (response.error == 0 || response.error == 1) {
-                        	 $(".welcome").show();
-                             $(".showmsg").html("<span>please select a video</span>");
+                            $("#uploadModal").hide();
+                            $("#videoInsertModal").css("z-index","0");
+                            $(".modal-backdrop").css("z-index","0");
+                        	$(".welcome").show();
+                            $(".showmsg").html("<span>please select a video</span>");
                                   
                                     }
                           else {
-                           // $(".errormsgvideo").hide();
                         	$("#videoId").show();
                         	$("#canvas-placeholderid").html('<video controls="controls" name="Video Name" id="videoId" src="/video/'+response.filePath+'" style="width:100%;height:100%;"></video>');
                         	$(".uploadedvideo").val(response.filePath);
@@ -117,13 +119,12 @@
        var editor = CKEDITOR.instances['videoDescription'];
             var videoDescription = CKEDITOR.instances['videoDescription'].getData();
         var friendsId = [];
-        var pageId = $('#currentPageId').val();
         var albumId = $(".AID-class" ).val();
             var pageURL = $(location).attr("href");
             if (pageURL.indexOf('profile/showprofile') > -1) {
                   var currentPageId = $("#currentPageId").val();
-                } else {
-                  //return false;
+                } else{
+                    var currentPageId = "";
                 }
    
         if($('#videoInsertModal').find('input.frndId').length !== 0)
@@ -142,9 +143,13 @@
             flag = 1;
             $('#title').addClass('error-class');
             $('#videoTitleError').show();
-           // $('.error-style').css('margin-top','28px');
+            $("#uploadModal").hide();
+            $("#videoInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            $(".welcome").show();
+            $(".showmsg").html("<span>please fill title field</span>");
         } else {
-            $('#title').hide();
+            $('#videoTitleError').hide();
             $('#title').removeClass('error-class');
            
         }
@@ -152,7 +157,11 @@
             flag = 1;
             $('#videoDescription').addClass('error-class');
             $('#videoDescriptionError').show();
-            //$('.error-style').css('margin-top','28px');
+            $("#uploadModal").hide();
+            $("#videoInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            $(".welcome").show();
+            $(".showmsg").html("<span>please fill description field</span>");
         } else {
             $('#videoDescription').hide();
             $('#videoDescription').removeClass('error-class');
@@ -168,7 +177,6 @@
                     uploadedvideo : uploadedvideo,
                     videoDescription : videoDescription,
                     friendsId : friendsId,
-                    pageId : pageId,
                     albumId: albumId,
                     currentPageId :currentPageId
                 },
@@ -186,6 +194,11 @@
 
 
     });
-
+$(".closebtn").click(function(){
+    $(".welcome").hide();
+    $("#uploadModal").show();
+    $("#videoInsertModal").css("z-index","1305");
+    $(".modal-backdrop").css("z-index","1040");
+})
 
 });

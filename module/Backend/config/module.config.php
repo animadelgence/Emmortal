@@ -40,7 +40,6 @@ return array(
                      'route'    => '/usermanage[/:action][/:id][/:pId]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                      ),
                      'defaults' => array(
                          'controller' => 'Backend\Controller\Usermanage',

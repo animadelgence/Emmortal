@@ -10,10 +10,14 @@
                     echo "/image/profile-deafult-avatar.jpg";
                 }?>"></div>
                             <div class="user_profile_name_section"><span><?php echo $userDetails[0]['dateofbirth']?></span><br><span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname']?></span></div>
-                             <?php  if(count($uploadDetails)>1){
-                                        echo '<div class="user_upload_part_section_content">';
+                             <?php  if(count($uploadDetails)>0){
+                                        echo '<div class="user_upload_part_section_content" style="display:table;">';
                                         foreach($uploadDetails as $upload){
+                                          if($upload['uploadType'] == "video"){
+                                            echo '<div class="user_upload_part_section_content--inside"><span><video controls="controls" name="Video Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></video></span></div>';
+                                          }else{
                                              echo '<div class="user_upload_part_section_content--inside"><span>'.$upload['uploadPath'].'</span><span>'.$upload['uploadType'].'</span></div>';
+                                           }
                                         }
                                         echo "</div>";
                                     }else{ ?>

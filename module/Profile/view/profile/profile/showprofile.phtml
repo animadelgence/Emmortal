@@ -13,8 +13,14 @@
                              <?php  if(count($uploadDetails)>0){
                                         echo '<div class="user_upload_part_section_content" style="display:table;">';
                                         foreach($uploadDetails as $upload){
+                                          print_r($upload['uploadType']);
                                           if($upload['uploadType'] == "video"){
                                             echo '<div class="user_upload_part_section_content--inside"><span><video controls="controls" name="Video Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></video></span></div>';
+                                          } else if($upload['uploadType'] == "image"){
+                                            echo '<div class="user_upload_part_section_content--inside"><span><img name="Image Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></span></div>';
+                                          }
+                                          else if($upload['uploadType'] == "text"){
+                                            echo '<div class="user_upload_part_section_content--inside"><span><label name="text Name">'.$upload['uploadTitle'].'</label></span></div>';
                                           }else{
                                              echo '<div class="user_upload_part_section_content--inside"><span>'.$upload['uploadPath'].'</span><span>'.$upload['uploadType'].'</span></div>';
                                            }

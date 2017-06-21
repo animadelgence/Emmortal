@@ -30,6 +30,33 @@ switch ($controller) {
                 break;
         }
         break;
+        case 'albumdetails':
+        switch ($action) {
+
+            case 'albumpage':
+                $this->headScript()
+
+                        ->prependFile($this->basePath() . '/js/Album/like.js?version=' . $t)
+                        ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t)
+                        ->prependFile($this->basePath() . '/js/ckeditor/ckeditor.js?version=' . $t)
+                         ->prependFile($this->basePath() . '/js/Album/tributemodal.js?version=' . $t)
+
+
+                        ->prependFile($this->basePath() . '/js/Authorization/login.js?version=' . $t)
+
+                        ->prependFile($this->basePath() . '/js/Authorization/signup.js?version=' . $t)
+                        ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
+                        ->prependFile($this->basePath() . '/js/Album/index.js?version=' . $t)
+                        ->prependFile($this->basePath() . '/js/Album/freewall.js?version=' . $t)
+                        ->prependFile($this->basePath() . '/js/Album/main.js?version=' . $t)
+                        ;
+
+                break;
+
+            default:
+                break;
+        }
+        break;
 
     default:
         break;

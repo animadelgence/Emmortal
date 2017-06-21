@@ -31,6 +31,18 @@ switch ($controller) {
             break;
 		}
 		break;
+        case 'albumdetails':
+		switch ($action) {
+             case 'albumpage':
+                $this->headLink()
+                    ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/Album/like.css?version=' . $t)
+                ;
+                 break;
+		}
+		break;
 
 	default:
 		break;

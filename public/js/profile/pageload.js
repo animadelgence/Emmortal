@@ -25,6 +25,7 @@ $(function () {
                 } else {
                     $(".profile-paginator ul").append('<li class="profile-paginator__click" data-fetch-id="' + jsObject.gotostep + '"></li>');
                     $(".profile-paginator ul li:last").trigger("click");
+                    $("#currentPageId").val(jsObject.gotostep);
                 }
             }
 
@@ -36,6 +37,7 @@ $(function () {
             currentClicked = $(this).index(),
             fadeOUT = { opacity: 0, transition: 'opacity 0.5s' },
             fadeIN = { opacity: 1, transition: 'opacity 0.5s' };
+        $("#currentPageId").val(getClickedId);
         if(currentClicked > prevSelection) {
                    $(".container-of-sections").css(fadeOUT).slideDown(1500).remove();
                 }

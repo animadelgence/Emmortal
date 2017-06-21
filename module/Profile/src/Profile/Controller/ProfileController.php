@@ -169,6 +169,7 @@ class ProfileController extends AbstractActionController {
                       'AID'=>$AID,
                       'PID'=>$currentPageId,
                       'FID'=>$friendsid,
+                      'uploadType'=>'text',
                       'TimeStamp'=>$addeddate
                       );
         $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($data);

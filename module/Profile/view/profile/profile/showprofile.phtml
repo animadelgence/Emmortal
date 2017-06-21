@@ -3,6 +3,7 @@
             <div class="row">
                 <div class="layout">
                         <div class="content-wrapper user_profile_section">
+                            <div class="container-of-sections">
                             <div class="user_profile_image_section"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
                     echo $userDetails[0]['profileimage'];
                 } else {
@@ -25,6 +26,7 @@
                                 </div>
                             </div>
                             <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,7 +35,13 @@
        <?php if(count($pageDetails)>1){ ?> 
         <div class="profile-paginator">
             <ul>
-                <?php foreach($pageDetails as $Page){ echo "<li class='profile-paginator__click' data-fetch-id='".$Page['pageid']."'></li>";}?>
+                <?php foreach($pageDetails as $key => $Page) { 
+                    if($key == 0) {
+                        echo "<li class='profile-paginator__click active' data-fetch-id='".$Page['pageid']."'></li>";
+                    } else {
+                        echo "<li class='profile-paginator__click ' data-fetch-id='".$Page['pageid']."'></li>";                        
+                    }
+                }?>
             </ul>
         </div>
         <?php } ?>

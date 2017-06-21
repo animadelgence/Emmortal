@@ -26,6 +26,19 @@ switch ($controller) {
                 break;
         }
         break;
+    case 'settings':
+        switch ($action) {
+
+            case 'general':
+                $this->headScript()
+                        ->prependFile($this->basePath() . '/js/profile/settings.js?version=' . $t);
+
+                break;
+
+            default:
+                break;
+        }
+        break;
 
     default:
         break;

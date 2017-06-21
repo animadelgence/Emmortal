@@ -61,10 +61,12 @@ namespace Backend\Controller;
               $where = array('userid'=>$userid);
               $fname = array('firstname'=>$userfName);
               $lname = array('lastname'=>$userlName);
-              $fetchFname = $modelPlugin->getuserTable()->fetchall($fname);
-              $fetchLname = $modelPlugin->getuserTable()->fetchall($lname);
+              $fetchUserData = $modelPlugin->getuserTable()->fetchall($fname);
+              $chekid = $fetchUserData[0]['userid'];
+                  if ($chekid == $id || empty($chekname)){
 
-              print_r($fetchFname); exit;
+              
+              //print_r($fetchUserData); exit;
               if(empty($fetchuserdet)){
              // $fetchquery= $modelPlugin->getsubscriptionDetailsTable()->fetchall($query);
                   $data = array('emailid'=>$userEmail,'firstname'=>$userfName,'lastname'=>$userlName,'profileimage'=>$fileupload,'activation'=>$activation);

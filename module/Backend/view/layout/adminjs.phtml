@@ -20,7 +20,7 @@ switch ($controller) {
 //                ->prependFile($this->basePath() . '/js/admin/jquery.validate.min.js')
 //                ->prependFile($this->basePath() . '/js/admin/csvupload.js')
                 ->prependFile($this->basePath() . '/js/backend/useredit.js')
-//				->prependFile($this->basePath() . '/js/admin/search-user.js')
+				->prependFile($this->basePath() . '/js/backend/search-user.js')
 				->prependFile($this->basePath() . '/js/backend/sorttable.js');
             break;
             case 'useredit':
@@ -99,8 +99,8 @@ switch ($controller) {
 		break;
 }
 echo $this->headScript()
-//    ->prependFile($this->basePath() . '/js/editor/jquery.form.js?version='.$t)
-//    ->prependFile($this->basePath() . '/js/admin/logout.popup.js?version='.$t)
+    ->prependFile($this->basePath() . '/js/jquery/jquery.form.js?version='.$t)
+    ->prependFile($this->basePath() . '/js/backend/logout.popup.js?version='.$t)
     ->prependFile($this->basePath() . '/js/backend/common-scripts.js?version='.$t)
     ->prependFile($this->basePath() . '/js/backend/jquery.nicescroll.js')
 //    ->prependFile($this->basePath() . '/js/admin/jquery.dcjqaccordion.2.7.js')

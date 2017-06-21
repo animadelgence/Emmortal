@@ -17,6 +17,16 @@ use Zend\Session\SessionManager;
 class AlbumController extends AbstractActionController {
 
     //protected $albumdetailsTable;
+    public function __construct() {
+        $userSession = new Container('userloginId');
+        $this->sessionid = $userSession->offsetGet('userloginId');
+        /*$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
+        if ($this->sessionid == "") {
+            header("Location:" . $dynamicPath. "/album/showalbum");
+            exit;
+        }*/
+    }
     public function indexAction() {
        // echo "welcome from album module";exit;
     	$this->layout('layout/albumlayout.phtml');
@@ -39,10 +49,15 @@ class AlbumController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action));
         //exit;
-        
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+        if($this->sessionid == "")
+        {
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+        }
+        else{
+            return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+        }
     }
     /*public function allalbumAction(){
     	$this->layout('layout/albumlayout.phtml');
@@ -66,7 +81,7 @@ class AlbumController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        $this->layout()->setVariables(array( 'sessionid'=>$this->sessionid,'controller' => $controller, 'action' => $action));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function aboutusAction(){
@@ -79,7 +94,7 @@ class AlbumController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        $this->layout()->setVariables(array( 'sessionid'=>$this->sessionid,'controller' => $controller, 'action' => $action));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function decrypt($data, $key) {

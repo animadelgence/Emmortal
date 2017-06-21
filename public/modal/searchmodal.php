@@ -33,8 +33,9 @@
                     </h2>
                 </div>
                 <div class="">
-                    <div class="m-t-50 search-divider e-brown p-l-10">Global search</div>
-                        <div class="user-field m-t-25 animated fadeIn">
+                    <div class="m-t-50 search-divider e-brown p-l-10" id="globalSearch" style="display:none;">Global search</div>
+                    <div id="searchResults">
+                        <!--<div class="user-field m-t-25 animated fadeIn">
                             <div class="media">
                                 <div class="media-left media-middle">
                                     <img class="media-object user-img" >
@@ -75,6 +76,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>-->
                         </div>
                     </div>
             </div>

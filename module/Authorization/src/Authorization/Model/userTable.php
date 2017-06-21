@@ -18,6 +18,7 @@
             }else{
 
             $resultSet = $this->tableGWay->select($query);
+            $array = "";
             foreach ($resultSet as $rSet) {
                 $array[] = array(
                     'userid' => $rSet->userid,

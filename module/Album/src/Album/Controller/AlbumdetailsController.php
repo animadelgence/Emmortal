@@ -15,6 +15,16 @@ use Zend\Session\Config\StandardConfig;
 use Zend\Session\SessionManager;
 
 class AlbumdetailsController extends AbstractActionController {
+    public function __construct() {
+        $userSession = new Container('userloginId');
+        $this->sessionid = $userSession->offsetGet('userloginId');
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
+        if ($this->sessionid == "") {
+            header("Location:" . $dynamicPath. "/album/showalbum");
+            exit;
+        }
+    }
     public function albumpageAction(){
     	$this->layout('layout/albumlayout.phtml');
         $plugin = $this->routeplugin();
@@ -42,7 +52,7 @@ class AlbumdetailsController extends AbstractActionController {
         $jsonArray = $plugin->jsondynamic();
         $type = $_POST['datacmd'];
         $id = $_POST['id'];
-        $UID = 1;
+        $UID = $this->sessionid;
         if($type == 'album'){
             $where = array('AID'=>$id,'UID'=>$UID);
             $data = array(
@@ -75,8 +85,7 @@ class AlbumdetailsController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
         $jsonArray = $plugin->jsondynamic();
-        $uploadId = 1;
-        //$uploadId = $_POST['uploadId'];
+        $uploadId = $_POST['uploadId'];
         $where = array("uploadId"=>$uploadId);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->joinquery($uploadId);
         $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);

@@ -1,5 +1,6 @@
  $(document).ready(function () {
     var baseURL = window.location.origin;
+       var frndDetails =[];
 
     CKEDITOR.replace('videoDescription', {
         toolbar: [

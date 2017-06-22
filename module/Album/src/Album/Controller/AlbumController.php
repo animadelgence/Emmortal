@@ -97,6 +97,7 @@ class AlbumController extends AbstractActionController {
         $this->layout()->setVariables(array( 'sessionid'=>$this->sessionid,'controller' => $controller, 'action' => $action));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
+
     public function decrypt($data, $key) {
         $decode = base64_decode($data);
         return mcrypt_decrypt(

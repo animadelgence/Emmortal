@@ -1,9 +1,3 @@
-/*
- * @Author: Maitrayee
- * @Date:   2017-06-19 16:46:35
- * @Last Modified by: Maitrayee
- * @Last Modified time: 2017-04-24 18:52:26
- */
 
 <?php
 namespace Profile\Controller;
@@ -96,20 +90,17 @@ class AccountController extends AbstractActionController {
 	}
     public function savebothAction(){
 
-        $plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $backgroundimage = $_POST['backgroundimageName'];
-        $profileimage = $_POST['profileimageNmae'];
+        $plugin              = $this->routeplugin();
+        $modelPlugin         = $this->modelplugin();
+        $dynamicPath         = $plugin->dynamicPath();
+        $backgroundimage     = $_POST['backgroundimageName'];
+        $profileimage        = $_POST['profileimageNmae'];
         $backgroundimageName = $dynamicPath."/upload/backgroundImage/".$backgroundimage;
-        $profileimageNmae = $dynamicPath."/upload/profileImage/".$profileimage;
+        $profileimageNmae    = $dynamicPath."/upload/profileImage/".$profileimage;
         
-        $searchkayarray = array('userid'=>$this->sessionid);
-        $updateArray = array(
-                'profileimage' => $profileimageNmae,
-                'backgroundimage' => $backgroundimageName
-        );
-        $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
+        $searchkayarray      = array('userid'=>$this->sessionid);
+        $updateArray         = array('profileimage' => $profileimageNmae, 'backgroundimage' => $backgroundimageName);
+        $updatedValues       = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
             
         echo $updatedValues;
         exit;

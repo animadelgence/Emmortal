@@ -27,7 +27,7 @@ $(document).ready(function (){
                     loginpassword: loginpassword
                 },
                 success: function (result) {
-                	alert(result);return false;
+                	//alert(result);return false;
                 	if(result == "live"){
                 		window.location.href = URL +"/profile/newsfeed";
                 	}

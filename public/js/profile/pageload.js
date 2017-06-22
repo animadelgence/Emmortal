@@ -81,11 +81,13 @@ $(function () {
                 appendHtml += "</div>";
                 
                 if(currentClicked > prevSelection) {
+					$(".container-of-sections").remove();
                     $(".user_profile_section").prepend(appendHtml);
 
                         
                 }
                 else {
+					$(".container-of-sections").remove();
                     $(".user_profile_section").prepend(appendHtml);
 
                 }

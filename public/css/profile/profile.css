@@ -114,3 +114,87 @@
   padding: 20px;
   position: relative;
 }
+
+/* Animaton in page movement */
+/* Safari 4.0 - 8.0 */
+.classuptodownvisible {
+	-webkit-animation-name: uptodownvisible; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    animation-name: uptodownvisible;
+	animation-duration: 5s;
+}
+.classuptodownhide {
+	-webkit-animation-name: uptodownhide; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    animation-name: uptodownhide;
+	animation-duration: 5s;
+}
+.classdowntouphide {
+	-webkit-animation-name: downtouphide; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    animation-name: downtouphide;
+	animation-duration: 5s;
+}
+.classdowntoupvisible {
+	-webkit-animation-name: downtoupvisible; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    animation-name: downtoupvisible;
+	animation-duration: 5s;
+}
+
+
+@-webkit-keyframes uptodownvisible {
+    from {top: -200px;}
+    to {top: 0px;}
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes uptodownvisible {
+    from {top: -200px;}
+    to {top: 0px;}
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-webkit-keyframes uptodownhide {
+    from {top: 0px;}
+    to {top: 200px;}
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes uptodownhide {
+    from {top: 0px;}
+    to {top: 200px;}
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@-webkit-keyframes downtouphide {
+    from {top: 0px;}
+    to {top: -200px;}
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes downtouphide {
+    from {top: 0px;}
+    to {top: -200px;}
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@-webkit-keyframes downtoupvisible {
+    from {top: 0px;}
+    to {top: -200px;}
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes downtoupvisible {
+    from {top: 0px;}
+    to {top: -200px;}
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

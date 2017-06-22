@@ -36,7 +36,13 @@ $(document).ready(function () {
         ]
     });
     CKEDITOR.disableAutoInline = true;
-   // $( ".resizable" ).resizable();
+   // $(".resizable").resizable("option","minHeight",parseInt($(".resizable").height(),10));
+    $( ".resizable" ).resizable({
+         maxHeight: 250,
+      maxWidth: 350,
+      minHeight: 150,
+      minWidth: 200
+    });
     $('body').on('click', '#textInsert', function () {
         $('.close').trigger('click');
         $('#textTitleError').hide();

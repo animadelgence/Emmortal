@@ -1,14 +1,15 @@
 /*
  * @Author: Rituparna
- * @Date:   2017-02-8 17:46:35
- * @Last Modified by:   Rajyasree
- * @Last Modified time: 2017-06-12 18:52:26
+ * @Date:   2017-06-22 17:46:35
+ * @Last Modified by: Rituparna
+ * @Last Modified time: 2017-06-22 18:52:26
  */
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 /*jslint plusplus: true */
 /*jshint -W065 */
 /*jslint eqeq: true*/
+
 function searchregisterTable(inputVal) {
     "use strict";
 	$("#userDetails").addClass("new_new");
@@ -16,7 +17,8 @@ function searchregisterTable(inputVal) {
         check = false,
         allCells = '',
         hidden_cnt = '',
-        i = 0;
+        i = 0,
+        numOfVisibleRows = '';
 	table.find('tr.show_rows').each(function (index, row) {
 		$(row).removeClass("for_search");
 		allCells = $(row).find('td');
@@ -52,10 +54,13 @@ function searchregisterTable(inputVal) {
 	if (check == false) {  // jshint ignore:line
 		$('#hidden_tr').show();
 		$('.hidden_head').hide();
+        $('.numberclasscheck').text("Number Of User(s) :0"); //when no rows match
 
 	} else {
 		$('#hidden_tr').hide();
 		$('.hidden_head').hide();
+        numOfVisibleRows = ($('tr:visible').length); //when rows match
+        $('.numberclasscheck').text("Number Of User(s) :" + numOfVisibleRows); //when rows match
 	}
 }
 

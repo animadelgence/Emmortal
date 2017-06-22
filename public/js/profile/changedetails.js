@@ -99,6 +99,5 @@ $(function(){
                 alert(result);return false;
             }
         });
-
     });
 });

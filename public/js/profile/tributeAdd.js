@@ -2,7 +2,7 @@
  * @Author: Shubhadip
  * @Date:   2017-06-14 17:46:35
  * @Last Modified by:   Shubhadip
- * @Last Modified time: 2017-06-22 13:57:26
+ * @Last Modified time: 2017-06-22 17:34:26
  */
 /*jslint browser: true */
 /*global $, jQuery, alert,CKEDITOR */
@@ -55,7 +55,7 @@ $(document).ready(function () {
             $('#cke_friendtributeDescription').removeClass('error-class');
         }
         if (flag == 0) {
-            getAlbum(frndId, textDescription);
+            getAlbum(frndId, textDescription, '');
             $('.close').trigger('click');
         }
     });

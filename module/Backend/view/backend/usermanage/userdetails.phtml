@@ -157,7 +157,7 @@
 	<section id="dynamicpagecreatepopup" class="popupFormForDynamicPage chang_PPopup_conta">
 	 <div id="" class="chang_PPopup">
      <div class="tab-content" style="border:0px solid;width:490px;">
-		<form class="form-popup" style="margin-top: 0px;" method="POST" enctype="multipart/form-data">
+		<form class="form-popup" style="margin-top: 0px;" method="POST" action="/usermanage/userbackup" enctype="multipart/form-data">
 			 <a class="close" href="javascript:void(0)" onclick="$('#dynamicpagecreatepopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
 			<h2 class="form-login-heading">Delete User</h2>
 			<div class="login-wrap" style="overflow:hidden;text-align:center;">
@@ -165,7 +165,7 @@
 				<h4 class="form-login-heading">Are you sure you want to delete this user?</h4>
 				<div style="overflow:hidden;display:inline-block;">
                     <input type="button" class="popup_cancel" onclick="$('#dynamicpagecreatepopup').hide();" id="btn" value="CANCEL"/>
-                    <input type="button" class="popup_cancel" id="delUser" value="OK"/>
+                    <input type="submit" class="popup_cancel" id="delUser" value="OK"/>
 				</div>
 			</div>
 		</form>

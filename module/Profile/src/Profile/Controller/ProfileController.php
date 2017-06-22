@@ -42,7 +42,7 @@ class ProfileController extends AbstractActionController {
         $uploadQuery    = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
         $uploadDetails  = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
 
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid,'userDetails' => $userDetails));
 
         return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
     }
@@ -58,7 +58,7 @@ class ProfileController extends AbstractActionController {
         $controller       = @$href[3];
         $action           = @$href[4];
 
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'sessionid'=>$this->sessionid));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails));
         $actionChecker    = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier   = $this->getEvent()->getRouteMatch()->getParam('pId');
 

@@ -71,7 +71,7 @@ class VideoController extends AbstractActionController {
                       'AID'=>$albumId,
                       'FID'=>$friendId,
                       'TimeStamp'=>$addeddate,
-                      'uploadPath'=>'/video/'.$uploadedvideo,
+                      'uploadPath'=>'/upload/video/'.$uploadedvideo,
                       'uploadType'=>'video',
                       'PID'=>$currentPageId,
 

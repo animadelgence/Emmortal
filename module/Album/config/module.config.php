@@ -23,7 +23,7 @@ return array(
     // The following section is new and should be added to your file
      'router' => array(
          'routes' => array(
-            /*'home' => array(
+            'home' => array(
                 'type' => 'Literal',
                 'options' => array(
                     'route'    => '/',
@@ -33,7 +33,7 @@ return array(
                         'action'     => 'showalbum',
                     ),
                 ),
-            ),*/          
+            ),
              // this is for controller
              'Album' => array(
                  'type'    => 'segment',

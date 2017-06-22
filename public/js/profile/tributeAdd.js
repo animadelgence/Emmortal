@@ -59,6 +59,9 @@ $(document).ready(function () {
             $('.close').trigger('click');
         }
     });
+    $("#friendTributeAddModal").on("hidden.bs.modal", function () {
+        $('#tributeAddModal').css('z-index', '99999');
+    });
 
     function getAlbum(frndId, textDescription) {
         $.ajax({
@@ -69,6 +72,7 @@ $(document).ready(function () {
                 frndId: frndId
             },
             success: function (res) {
+                $('.offcanvas-comments').css("height", "100%");
                 jsObject = JSON.parse(res);
                 $('#totalTribute').html(jsObject.tributeDetails.length);
                 if (jsObject.tributeDetails.length > 0) {

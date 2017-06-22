@@ -34,7 +34,8 @@ $(document).ready(function () {
         ]
     });
     CKEDITOR.disableAutoInline = true;
-    //$('body').on('click', '#photoInsertModal', function () {
+    //$('body').on('click', '#photoInsert', function () {
+    $("#photoInsert").click(function(){
         $.ajax({
             type: "POST",
             url: base_url_dynamic + '/profile/getalbum',
@@ -43,7 +44,7 @@ $(document).ready(function () {
                 $('#listing').html(res);
             }
         });
-   // });
+    });
     /*$('body').on('change', '#imageFriend', function () {
         alert();
         $('#imageFriendError').css('display','none');

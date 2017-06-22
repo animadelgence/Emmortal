@@ -33,7 +33,7 @@ class VideoController extends AbstractActionController {
         $files              =    $request->getFiles()->toArray();
         $plugin             =    $this->routeplugin();
         $videouploadplugin  =    $this->videouploadplugin();
-        $folderName         =    '/video/';
+        $folderName         =    '/upload/video/';
         $tmp_name           =    $files ['file']['tmp_name'];
         $uploadfilename     =    $files ['file']['name'];
         $videoupload        =    $videouploadplugin->videoupload($tmp_name,$uploadfilename,$folderName);

@@ -92,6 +92,7 @@
                         file: 'file'
                     },
                     success: function (result) {
+
 						var response = JSON.parse(result);
                         if (response.error == 0 || response.error == 1) {
                             $("#uploadModal").hide();
@@ -102,7 +103,7 @@
                                   
                                     }
                           else {
-                        	$("#canvas-placeholderid").html('<video controls="controls" name="Video Name" id="videoId" src="/video/'+response.filePath+'" style="width:100%;height:100%;"></video>');
+                        	$("#canvas-placeholderid").html('<video controls="controls" name="Video Name" id="videoId" src="/upload/video/'+response.filePath+'" style="width:100%;height:100%;"></video>');
                         	$(".uploadedvideo").val(response.filePath);
                           }
                      

@@ -19,7 +19,8 @@
                 <div class="offcanvas-comments-content">
                     <h2 class="text-center e-brown">There are no tributes yet.</h2>
                     <div>
-                    <div>
+                    <div id="tributeAppend">
+                       
                         <div class="e-comment">
                             <div class="e-comment-header m-b-10">
                                 <div class="e-likes-wrapper pull-right">
@@ -51,6 +52,7 @@
                                 <div class="clearfix"></div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

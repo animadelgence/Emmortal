@@ -66,7 +66,7 @@
                                 </li><?php }?>
                                 <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/aboutus'">About Us</button></li>
                                 <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/termsandconditions'">Terms & Conditions</button></li>
-                                <li><?php if( $sessionid != ""){ ?><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up" onclick="location.href='/album/showalbum'">Logout</button><?php }?>
+                                <li><?php if( $sessionid != ""){ ?><form class="form-horizontal style-form" id='userFormEdit' method="post"	action="/profile/logoutuser" enctype="multipart/form-data"><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up" >Logout</button></form><?php }?><!--onclick="location.href='/album/showalbum'"-->
                                 </li>
                             </ul>
                         </li>

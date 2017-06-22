@@ -26,6 +26,7 @@ class FriendrequestsController extends AbstractActionController {
         $query = array();
         $userdetails = $modelPlugin->getuserTable()->fetchall($query);
         $array = array();
+        $userid = $this->sessionid;
         foreach ($userdetails as $rSet) {
             $array[] = array(
                 'friendsid' => $rSet['userid'],
@@ -34,16 +35,48 @@ class FriendrequestsController extends AbstractActionController {
                 'profileimage'=>$rSet['profileimage']
             );
           }
-        //print_r($array);exit;
+        print_r($array);//exit;
+        $noOfUsers = count($array);
+        for($i=0;$i<$noOfUsers;$i++) {
+            $query = array('userid'=>$userid,
+                           'friendsid'=>$array[$i]['friendsid']);
+            print_r($query);
+            $friendDetails = $modelPlugin->getfriendsTable()->fetchall($query);
+        }
+        print_r($friendDetails);exit;
         $res['userDetails'] = $array;
         echo json_encode($res);
         exit;
     }
     public function sendingrequestAction()
     {
-        $userId = $_POST['userId'];
-        echo $userId;
-        echo "livw";
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $friendsId = $_POST['userID'];
+        $userid = $this->sessionid;
+        //echo $friendsId;
+        //echo $userid;
+        $query = array('userid'=>$userid,
+                      'friendsid'=>$friendsId);
+        $friendDetails = $modelPlugin->getfriendsTable()->fetchall($query);
+        if(empty($friendDetails)) {
+            $newQuery  =  array('userid'=>$userid,
+                                'friendsid'=>$friendsId,
+                                'friendshipdate'=>date('Y-m-d H:i:s'),
+                                'relationshipstatus'=>'outgoing',
+                               'requestaccept'=>0);
+            $friendDetails = $modelPlugin->getfriendsTable()->insertFirend($newQuery);
+            if($friendDetails == 1) {
+                $res['status'] = 'Request sent';
+            }
+            else {
+                $res['status'] = 'Request could not be sent';
+            }
+        }
+        else {
+            $res['status'] = 'Request already sent';
+        }
+        echo json_encode($res);
         exit;
     }
 }

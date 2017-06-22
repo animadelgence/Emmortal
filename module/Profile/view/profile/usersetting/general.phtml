@@ -38,12 +38,13 @@
                     <div id="security" class="tabcontent">
                         <div class="col-lg-12">
                             <h3>Change password</h3>
-                            <form action="/action_page.php">
-                                <input type="password" class="form-control " id="exampleInputPassword1" placeholder="Current password">
-                                <input type="password" class="form-control " id="exampleInputPassword1" placeholder="New password">
-                                <input type="password" class="form-control " id="exampleInputPassword1" placeholder="Password confirmation">
+                            <form method="post" action="/settings/changepassword" enctype="multipart/form-data" id="form__changepassword">
+                                <input type="password" class="form-control " id="acc-cur-pass" placeholder="Current password">
+                                <input type="password" class="form-control " id="acc-pass" placeholder="New password">
+                                <input type="password" class="form-control " id="acc-pass-rep" placeholder="Password confirmation">
                             </form>
-                            <a class="save-new" href="javascript:void(0)">Save</a>
+                            <a class="save-new" href="javascript:void(0)" id="password_save">Save</a>
+                            <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
                             <div>
                                 <hr>
                             </div>

@@ -71,8 +71,8 @@ $(document).ready(function () {
                 url: base_url_dynamic + '/friendrequests/searchfriends',
                 data: {},
                 success: function (res) {
-                   // console.log(res);
-                    //return false;
+                    console.log(res);
+                    return false;
                     jsObject = JSON.parse(res);
                     profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg";
                     for (i = 0; i < jsObject.userDetails.length; i++) {
@@ -83,7 +83,7 @@ $(document).ready(function () {
                                 if (jsObject.userDetails[i].profileimage != null) { // jshint ignore:line
                                     profileimage = jsObject.userDetails[i].profileimage;
                                 }
-                                html += '<div class="user-field m-t-25 animated fadeIn"><form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data"><div class="media">   <div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div>   <div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + jsObject.userDetails[i].friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + jsObject.userDetails[i].friendsid + '"></a></h3></div>  <div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" ><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + jsObject.userDetails[i].friendsid + '"><div class="fa fa-plus"></div> Connect</button></div></div></div></form></div>';
+                                html += '<div class="user-field m-t-25 animated fadeIn"><form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data"><div class="media">   <div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div>   <div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + jsObject.userDetails[i].friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + jsObject.userDetails[i].friendsid + '"></a></h3></div>  <div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" data-folder-target-id="' + jsObject.userDetails[i].friendsid + '"><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + jsObject.userDetails[i].friendsid + '"><div class="fa fa-plus"></div> Connect</button></div></div></div></form></div>';
                             }
                         }
                     }
@@ -108,20 +108,27 @@ $(document).ready(function () {
         });*/
     });
     $('body').on('click', '.sendFriendRequest', function (e) {
-  e.preventDefault();
-    var userid = $('#userid').val();
-    alert(userid);
-    $("#requestform").ajaxSubmit({
-        data: {
-            userid: userid
-        },
-        success: function (result) {
-            alert(result);
-            alert("jftrdrtu");
-            return false;
-        }
-    });
-    return false;
+        e.preventDefault();
+        var userID = $(this).parents('.relationship-btn').attr('data-folder-target-id'),
+            value = $(this);
+        alert(userID);
+        //return false;
+        $("#requestform").ajaxSubmit({
+            data: {
+                userID: userID
+            },
+            success: function (result) {
+                
+                jsObject = JSON.parse(result);
+                console.log(jsObject);
+                if(jsObject.status == 'Request sent') {
+                    //if($(".relationship-btn").attr('data-folder-target-id') == userID)
+                    value.text('Request sent');
+                }
+                return false;
+            }
+        });
+        return false;
     });
 });
 

@@ -24,7 +24,10 @@ $(document).ready(function () {
                 frndId: frndId
             },
             success: function (res) {
-
+                jsObject = JSON.parse(res);
+                for (i = 0; i < jsObject.friendDetails.length; i++) {
+                    
+                }
             }
         });
     });

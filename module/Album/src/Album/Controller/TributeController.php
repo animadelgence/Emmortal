@@ -53,6 +53,56 @@ class TributeController extends AbstractActionController {
 
     }
 
+    public function gettributeAction(){
+    	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        $userid = $this->sessionid;
+        $friendId = $_POST['frndId'];
+        $description = $_POST['description'];
+        if(!empty($description)){
+            $value = array(
+                        'UID'=>$userid,
+                        'description'=>$description,
+                        'friendsid'=>$friendId,
+                        'addeddate'=>date("Y-m-d H:i:s")
+                    );
+            $tribute = $modelPlugin->gettributedetailsTable()->insertData($value);
+        }
+        $where = array('tributedetails.UID'=>$userid);
+        $tributeDetails = $modelPlugin->gettributedetailsTable()->joinquery($where);
+        $array = array();
+        foreach ($tributeDetails as $rSet) {
+            $friendsid = explode(",",$rSet['friendsid']);
+            if (in_array($friendId, $friendsid))
+            {
+                $where = array('TID'=>$rSet['tributesid']);
+                $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+                $like = count($likeDetails);
+                $array[] = array(
+                    'tributesid' => $rSet['tributesid'],
+                    'UID' => $rSet['UID'],
+                    'friendsname' => $rSet['firstname']." ".$rSet['lastname'],
+                    'profileimage'=>$rSet['profileimage'],
+                    'description'=>$rSet['description'],
+                    'shortDescription'=>substr($rSet['description'],0,20).'...',
+                    'friendsid'=>$rSet['friendsid'],
+                    'like'=>$like,
+                    'addeddate'=>date("m/d/Y",strtotime($rSet['addeddate']))
+                );
+            }
+        }
+        $res['tributeDetails'] = $array;
+        echo json_encode($res);
+        exit;
+     }
+
+    
     
 }
 ?>

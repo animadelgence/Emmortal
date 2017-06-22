@@ -68,7 +68,7 @@ class AlbumdetailsController extends AbstractActionController {
                 'UID'=>$UID,
                 'likedate'=> date("Y-m-d H:i:s")
             );
-            $query = array('uploadId'=>$id);
+            $query = array('TID'=>$id);
         } else{
             $where = array('uploadId'=>$id,'UID'=>$UID);
             $data = array(
@@ -76,7 +76,7 @@ class AlbumdetailsController extends AbstractActionController {
                 'UID'=>$UID,
                 'likedate'=> date("Y-m-d H:i:s")
             );
-            $query = array('TID'=>$id);
+            $query = array('uploadId'=>$id);
         }
         $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);
         if(count($likeDetails)>0){

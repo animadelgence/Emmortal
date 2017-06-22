@@ -60,6 +60,7 @@ switch ($controller) {
         break;
 }
 echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/Album/like.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/profile/profile.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/profile/pageload.js?version=' . $t)

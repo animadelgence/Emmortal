@@ -41,7 +41,6 @@ namespace Backend\Controller;
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
               $userid = $this->getEvent()->getRouteMatch()->getParam('id');
               $userdata = $modelPlugin->getuserTable()->fetchall(array('userid'=>$userid));
-              //print_r($userdata); exit;
 		      return new ViewModel(array('userdata'=>$userdata));
      }
      public function usereditsubmitAction(){

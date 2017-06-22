@@ -64,7 +64,19 @@ $(function () {
                 } else {
                    appendHtml += '<div class="user_upload_part_section_content">';
                     for (i = 0; i < jsObject.uploaddetails.length; i++) {
-                        appendHtml +='<div class="user_upload_part_section_content--inside"><span>'+jsObject.uploaddetails[i].uploadPath+'</span><span>'+jsObject.uploaddetails[i].uploadType+'</span></div>';
+                        if(jsObject.uploaddetails[i].uploadType == "video"){
+                            appendHtml +='<div class="user_upload_part_section_content--inside"><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span></div>';
+
+                        } else if(jsObject.uploaddetails[i].uploadType == "image"){
+                            appendHtml +='<div class="user_upload_part_section_content--inside"><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span></div>';
+
+                        } else if(jsObject.uploaddetails[i].uploadType == "text"){
+                            appendHtml +='<div class="user_upload_part_section_content--inside"><span><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></span></div>';
+
+                        } else{
+
+                        }
+                        
                         }
                     appendHtml+= '</div>';
                 }

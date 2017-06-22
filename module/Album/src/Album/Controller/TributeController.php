@@ -47,11 +47,12 @@ class TributeController extends AbstractActionController {
                       );
         $tributeDetails             = $modelPlugin->gettributedetailsTable()->insertData($data);
         if($tributeDetails == 1){
-            return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+            return new ViewModel(array('sessionid'=>$UID,'dynamicPath' => $dynamicPath,'tributeDescription'=>$tributeDescription));
         }
 
 
     }
+
     public function gettributeAction(){
     	$plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
@@ -100,6 +101,7 @@ class TributeController extends AbstractActionController {
         echo json_encode($res);
         exit;
      }
+
     
     
 }

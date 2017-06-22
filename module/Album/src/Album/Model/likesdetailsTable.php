@@ -19,6 +19,7 @@
                     'likeid' => $rSet->likeid,
                     'UID' => $rSet->UID,
                     'AID' => $rSet->AID,
+                    'TID' => $rSet->TID,
                     'uploadId' => $rSet->uploadId,
                     'likedate' => $rSet->likedate
                     );

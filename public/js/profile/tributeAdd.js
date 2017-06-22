@@ -15,16 +15,19 @@ var base_url_dynamic = window.location.origin,
     jsObject = "";
 $(document).ready(function () {
     "use strict";
-    $('body').on('blur', '.modal-dialog', function () {
-        alert();
-        /*$.ajax({
+    $('body').on('click', '.getTribute', function () {
+        var frndId = $(this).data("id");
+        alert(frndId);
+        $.ajax({
             type: "POST",
-            url: base_url_dynamic + '/profile/getalbum',
-            data: {},
+            url: base_url_dynamic + '/tribute/gettribute',
+            data: {
+                frndId: frndId
+            },
             success: function (res) {
-                $('.AID').html(res);
+
             }
-        });*/
+        });
     });
 
 });

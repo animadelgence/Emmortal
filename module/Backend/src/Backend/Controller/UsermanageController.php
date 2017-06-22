@@ -68,21 +68,36 @@ namespace Backend\Controller;
               $where = array('userid'=>$userid);
 
               $fetchdata = $modelPlugin->getuserTable()->fetchall($where);
-              print_r($fetchdata); exit;
               if(empty($fetchdata[0]['content'])){
                  $fetchdata[0]['content'] = "0";
-              }else if(empty($fetchdata[0]['keepmelogin'])){
+              }
+              if(empty($fetchdata[0]['keepmelogin'])){
                  $fetchdata[0]['keepmelogin'] = "0";
-              }else if(empty($fetchdata[0]['activation'])){
+              }
+              if(empty($fetchdata[0]['activation'])){
                  $fetchdata[0]['activation'] = "0";
               }
-              $data = array('userid'=>$fetchpubdetails[0]['userid'],'emailid'=>$fetchpubdetails[0]['emailid'],'password'=>$fetchpubdetails[0]['password'],'forgetpassword'=>$fetchpubdetails[0]['forgetpassword'],'firstname'=>$fetchpubdetails[0]['firstname'],'lastname'=>$fetchpubdetails[0]['lastname'],'dateofbirth'=>$fetchpubdetails[0]['dateofbirth'],'profileimage'=>$fetchpubdetails[0]['profileimage'],'backgroundimage'=>$fetchpubdetails[0]['backgroundimage'],'signindate'=>$fetchpubdetails[0]['signindate'],'login'=>$fetchpubdetails[0]['login'],'lastlogout'=>$fetchpubdetails[0]['lastlogout'],'keepmelogin'=>$fetchpubdetails[0]['keepmelogin'],'seeme'=>$fetchpubdetails[0]['seeme'],'findme'=>$fetchpubdetails[0]['findme'],'content'=>$fetchpubdetails[0]['content'],'activation'=>$fetchpubdetails[0]['activation'],'flag'=>'deleted by Admin');
-              $savedeldetails = $modelPlugin->getpublisherbackupTable()->insertdeluser($publisherdet);
+              $data = array('userid'=>$fetchdata[0]['userid'],'emailid'=>$fetchdata[0]['emailid'],'password'=>$fetchdata[0]['password'],'forgetpassword'=>$fetchdata[0]['forgetpassword'],'firstname'=>$fetchdata[0]['firstname'],'lastname'=>$fetchdata[0]['lastname'],'dateofbirth'=>$fetchdata[0]['dateofbirth'],'profileimage'=>$fetchdata[0]['profileimage'],'backgroundimage'=>$fetchdata[0]['backgroundimage'],'signindate'=>$fetchdata[0]['signindate'],'login'=>$fetchdata[0]['login'],'lastlogout'=>$fetchdata[0]['lastlogout'],'keepmelogin'=>$fetchdata[0]['keepmelogin'],'seeme'=>$fetchdata[0]['seeme'],'findme'=>$fetchdata[0]['findme'],'content'=>$fetchdata[0]['content'],'activation'=>$fetchdata[0]['activation'],'flag'=>'deleted by Admin');
+              $savedetails = $modelPlugin->getuserbackupTable()->insertdata($data);
 
-              $deleteuser = $modelPlugin->getpublisherTable()->deletePublisher(array('publisherId'=>$userid));
-              return $this->redirect()->toRoute('userregistration', array(
-				      'controller' => 'userregistration',
+              $deleteuser = $modelPlugin->getuserTable()->deleteuser($where);
+              return $this->redirect()->toRoute('usermanage', array(
+				      'controller' => 'usermanage',
 				      'action'     => 'userdetails'));
+     }
+
+     public function userbackupdetAction(){
+              $this->layout('layout/backendlayout');
+              $modelPlugin = $this->modelplugin();
+              $plugin = $this->routeplugin();
+              $currentPageURL = $plugin->curPageURL();
+              $href = explode("/", $currentPageURL);
+              $controller = @$href[3];
+              $action = @$href[4];
+              $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
+              $backupdata = $modelPlugin->getuserbackupTable()->fetchallnew();
+              //print_r($backupdata); exit;
+              return new ViewModel(array('backupdata'=>$backupdata));
      }
 
 

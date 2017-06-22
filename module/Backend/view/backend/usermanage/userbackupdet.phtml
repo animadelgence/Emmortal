@@ -1,0 +1,128 @@
+<section id="main-content">
+	<section class="wrapper">
+		<h3>
+			<i class="fa fa-angle-right"></i>Deleted User Details
+		</h3>
+		<div class="row mt">
+			<div class="col-md-12">
+				   <div class="col-md-12" style="padding: 0px 10px;">
+                        <!-- No. of Users here -->
+                        <div class="numberclasscheck" style="margin-bottom: 10px">Number Of User(s) :
+                            <?php if(!empty($backupdata)){
+								$user = count($backupdata);
+                                echo $user;  } ?>
+                        </div>
+                        <!-- No. of Users end -->
+                    </div>
+
+					<table
+						class="table table-striped table-advance table-hover tbody datatable sortable "
+						name="userDetails" id="userDetails" class="new_new">
+
+						<thead>
+							<tr>
+								<td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
+									class="fa fa-bookmark"></i> Name</td>
+								<td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
+									class="fa fa-bookmark"></i> Email</td>
+								<td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
+									class="fa fa-bookmark"></i> Profile image</td>
+								<td style="cursor: pointer; font-weight: bold;"><i
+									class="fa fa-bookmark"></i> Deleted Date</td>
+								<td style="cursor: pointer; font-weight: bold;"><i
+									class="fa fa-bookmark"></i> Deleted By</td>
+								<td style="cursor: pointer; font-weight: bold;" class="sorttable_nosort"><i
+									class="fa fa-bookmark"></i> Action</td>
+							</tr>
+						</thead>
+						<tbody class="my_size">
+							<?php if(!empty($backupdata)){
+								foreach($backupdata as $key => $val)
+					               { ?>
+							<tr	class="manageAll catId">
+								<td class="hidden-phone"><?php if(!empty($val['firstname']) || !empty($val['lastname'])){
+                                    echo strip_tags($val['firstname'])." ".strip_tags($val['lastname']);} else{ echo "N/A"; }
+                                    ?></td>
+								<td class="hidden-phone email-width"><span class=""
+									style=""><?php echo strtolower($val['emailid']); ?>
+								</span></td>
+                                <td class="hidden-phone profileImg"><span class="profileImg"
+									style="padding: 5px; font-weight: bold;"><img src="<?php echo $val['profileimage'] ?>"  height="100px" width="100px" />
+								</span></td>
+								<td class="hidden-phone"><span class=""
+									style="width: 80%; display: inline-block;"><?php echo $val['deletedate'];?>
+								</span></td>
+								<td class="hidden-phone"><span class=""
+									style="width: 80%; display: inline-block;"><?php echo $val['flag'];?>
+								</span></td>
+								<input type="hidden"  class="hidden_class restoreId" id="restoreId" value="<?php echo $val['deleteId']; ?>" />
+								<td>
+                                            <button class="btn btn-primary btn-xs restoreUser">
+                                                <i class="fa fa-undo" aria-hidden="true"></i>
+                                            </button>
+                                </td>
+							</tr>
+							<?php }
+                            }
+							else
+							{
+							   echo "No records found...";
+							}?>
+						</tbody>
+					</table>
+			</div>
+			<!-- /col-md-12 -->
+		</div>
+		<!-- /row -->
+
+	</section>
+	<!--wrapper -->
+
+    <!--alert popup -->
+<!--
+	<section id="dynamicalertpopup" class="popupFormForDynamicPage chang_PPopup_conta">
+	<div id="" class="chang_PPopup">
+    <div class="tab-content" style="border:0px solid;width:490px;">
+		<form class="form-popup" style="margin-top: 0px;" enctype="multipart/form-data">
+			 <a class="close" href="javascript:void(0)" onclick="$('#dynamicalertpopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
+			<h2 class="form-login-heading">Email Already Exists</h2>
+			<div class="login-wrap" style="overflow:hidden;text-align:center;">
+				<input type="hidden" name="hidden_id" value="" id="hidden_userid" class="hidden_id" />
+				<h4 class="form-login-heading">Unable to restore! Email already exists</h4>
+				<div style="overflow:hidden;display:inline-block;">
+                    <input type="button" class="popup_cancel" onclick="$('#dynamicalertpopup').hide();" id="btn" value="CANCEL"/>
+                    <input type="button" class="popup_cancel" onclick="$('#dynamicalertpopup').hide();" id="btn" value="OK"/>
+				</div>
+			</div>
+		</form>
+	</div>tab-content
+    </div>
+    </section>
+-->
+    <!-- /alert popup-->
+
+    <!--usertemplate restore popup -->
+<!--
+	<section id="templateRestorePopup" class="popupFormForDynamicPage chang_PPopup_conta">
+	<div id="" class="chang_PPopup">
+    <div class="tab-content" style="border:0px solid;width:490px;">
+		<form class="form-popup" style="margin-top: 0px;" enctype="multipart/form-data">
+			 <a class="close" href="javascript:void(0);" onclick="$('#templateRestorePopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
+			<h2 class="form-login-heading">Restore All Usertemplates</h2>
+			<div class="login-wrap" style="overflow:hidden;text-align:center;">
+				<input type="hidden" name="hidden_id" value="" id="hidden_resid" class="hidden_id" />
+				<h4 class="form-login-heading">Do you want to restore all the usertemplates of this user?</h4>
+				<div style="overflow:hidden;display:inline-block;">
+                    <input type="button" class="popup_cancel" id="cancelRestore" value="NO"/>
+                    <input type="button" class="popup_cancel" id="restoreTemp" value="YES"/>
+				</div>
+			</div>
+		</form>
+	</div>tab-content
+    </div>
+    </section>
+-->
+    <!-- /usertemplate restore popup-->
+
+</section>
+<!-- /MAIN CONTENT -->

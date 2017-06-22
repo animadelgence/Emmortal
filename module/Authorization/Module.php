@@ -16,6 +16,10 @@ use Authorization\Model\trackdetails;
 use Authorization\Model\trackdetailsTable;
 use Authorization\Model\trackdetailsafterlogin;
 use Authorization\Model\trackdetailsafterloginTable;
+
+use Authorization\Model\userbackup;
+use Authorization\Model\userbackupTable;
+
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -54,6 +58,19 @@ class Module
                     $resultSetPrototype->setArrayObjectPrototype(new user());
                     return new TableGateway('user', $dbAdapter, null, $resultSetPrototype);
                 },
+
+                'Authorization\Model\userbackupTable' => function($sm) {
+                    $tableGateway = $sm->get('userbackupTableGateway');
+                    $table = new userbackupTable($tableGateway);
+                    return $table;
+                },
+                'userbackupTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new userbackup());
+                    return new TableGateway('userbackup', $dbAdapter, null, $resultSetPrototype);
+                },
+
                 'Authorization\Model\trackdetailsTable' => function($sm) {
                     $tableGateway = $sm->get('trackdetailsTableGateway');
                     $table = new trackdetailsTable($tableGateway);

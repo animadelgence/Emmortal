@@ -3,7 +3,7 @@
     use Zend\Db\TableGateway\TableGateway;
     use Zend\Db\ResultSet\ResultSet;
     use Zend\Db\Sql\Sql;
-    class userTable
+    class userbackupTable
     {
         protected $tableGateWay;
         public function __construct(TableGateway $tableGateway)
@@ -16,6 +16,7 @@
             $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
+                    'deleteId' => $rSet->deleteId,
                     'userid' => $rSet->userid,
                     'emailid' => $rSet->emailid,
                     'password' => $rSet->password,
@@ -32,7 +33,9 @@
                     'seeme' => $rSet->seeme,
                     'findme' => $rSet->findme,
                     'content' => $rSet->content,
-                    'activation' => $rSet->activation
+                    'activation' => $rSet->activation,
+                    'deletedate' => $rSet->deletedate,
+                    'flag' => $rSet->flag,
                     );
                 }
                 return $array;
@@ -43,6 +46,7 @@
                 $array = array();
                 foreach ($resultSet as $rSet) {
                     $array[] = array(
+                        'deleteId' => $rSet->deleteId,
                         'userid' => $rSet->userid,
                         'emailid' => $rSet->emailid,
                         'password' => $rSet->password,
@@ -59,27 +63,20 @@
                         'seeme' => $rSet->seeme,
                         'findme' => $rSet->findme,
                         'content' => $rSet->content,
-                        'activation' => $rSet->activation
+                        'activation' => $rSet->activation,
+                        'deletedate' => $rSet->deletedate,
+                        'flag' => $rSet->flag
                         );
                 }
                 return $array;
 
         }
-        public function savedata($insertdataarray,$keyArray)
+        public function insertdata($insertdataarray)
         {
-            $resultSet = $this->tableGWay->select($keyArray);
-            if(count($resultSet) == 0)
-            {
-                $rowset = $this->tableGWay->insert($insertdataarray);
-            }
-            else
-            {
-                $rowset = 0;
-            }
-            //$rowset = $this->tableGWay->insert($insertdataarray);
+            $rowset = $this->tableGWay->insert($insertdataarray);
             $id = $this->tableGWay->lastInsertValue;
-           // return $id;
             return $id;
+            return $rowset;
         }
         public function updateuser($data,$marker)
         {

@@ -53,7 +53,14 @@ $(function () {
             success: function (result) {
                 var jsObject = JSON.parse(result),
                     i = 0,
-                    appendHtml = "<div class='container-of-sections'>";
+                    appendHtml = "";
+
+				if(currentClicked > prevSelection) {
+					appendHtml = "<div class='container-of-sections classuptodownvisible'>";
+				} else {
+					appendHtml = "<div class='container-of-sections classdowntoupvisible'>";
+				}
+
                 if (jsObject.defaultPage == 1) {
                     appendHtml += '<div class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></div><div class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></div>';
                 }
@@ -79,18 +86,9 @@ $(function () {
                     appendHtml+= '</div>';
                 }
                 appendHtml += "</div>";
-                
-                if(currentClicked > prevSelection) {
-					$(".container-of-sections").remove();
+                $(".container-of-sections").remove();
                     $(".user_profile_section").prepend(appendHtml);
 
-                        
-                }
-                else {
-					$(".container-of-sections").remove();
-                    $(".user_profile_section").prepend(appendHtml);
-
-                }
                 /*$(".user_profile_section .container-of-sections").css(fadeOUT).slideUp(1500, function() {
                     $(".user_profile_section").html(appendHtml);
                     $(".user_profile_section .container-of-sections").css(fadeIN).slideUp(1000);

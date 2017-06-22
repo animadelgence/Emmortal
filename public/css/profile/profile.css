@@ -83,6 +83,12 @@
 }
 .user_profile_section {
     min-height: 182px;
+	position: relative;
+}
+.container-of-sections  {
+	display: block;
+    position: absolute;
+    width: 100%;
 }
 .vid-sec {
   float: left;
@@ -119,27 +125,27 @@
 /* Safari 4.0 - 8.0 */
 .classuptodownvisible {
 	-webkit-animation-name: uptodownvisible; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
     animation-name: uptodownvisible;
-	animation-duration: 5s;
+	animation-duration: 1s;
 }
 .classuptodownhide {
 	-webkit-animation-name: uptodownhide; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
     animation-name: uptodownhide;
-	animation-duration: 5s;
+	animation-duration: 1s;
 }
 .classdowntouphide {
 	-webkit-animation-name: downtouphide; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
     animation-name: downtouphide;
-	animation-duration: 5s;
+	animation-duration: 1s;
 }
 .classdowntoupvisible {
 	-webkit-animation-name: downtoupvisible; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
     animation-name: downtoupvisible;
-	animation-duration: 5s;
+	animation-duration: 1s;
 }
 
 

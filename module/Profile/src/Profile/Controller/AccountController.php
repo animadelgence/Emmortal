@@ -1,3 +1,10 @@
+/*
+ * @Author: Maitrayee
+ * @Date:   2017-06-19 16:46:35
+ * @Last Modified by: Maitrayee
+ * @Last Modified time: 2017-04-24 18:52:26
+ */
+
 <?php
 namespace Profile\Controller;
 
@@ -12,10 +19,10 @@ class AccountController extends AbstractActionController {
 	protected $sessionid;
 	public function __construct() {
 
-        $userSession = new Container('userloginId');
+        $userSession     = new Container('userloginId');
         $this->sessionid = $userSession->offsetGet('userloginId');
         /*$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";*/
-        $dynamicPath = "http://". $_SERVER['HTTP_HOST'];
+        $dynamicPath     = "http://". $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
             header("Location:" . $dynamicPath."/album/showalbum");
             exit;
@@ -27,47 +34,49 @@ class AccountController extends AbstractActionController {
 //echo "hi from account controller";exit;changedetails
 
     	$this->layout('layout/profilelayout.phtml');
-    	$plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $uploadPlugin = $this->imageuploadplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
+    	$plugin         = $this->routeplugin();
+        $modelPlugin    = $this->modelplugin();
+        $uploadPlugin   = $this->imageuploadplugin();
+        $dynamicPath    = $plugin->dynamicPath();
+        $jsonArray      = $plugin->jsondynamic();
         $currentPageURL = $plugin->curPageURL();
-        $href = explode("/", $currentPageURL);
-        $controller = @$href[3];
-        $action = @$href[4];
+        $href           = explode("/", $currentPageURL);
+        $controller     = @$href[3];
+        $action         = @$href[4];
 
 		$this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
         return new ViewModel(array('userid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
 	}
 	public function profileimageAction(){
-		$plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $uploadPlugin = $this->imageuploadplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
-        $href = explode("/", $currentPageURL);
-        $controller = @$href[3];
-        $action = @$href[4];
 
-        $res = array();
-        $request1 = $this->getRequest()->getPost();
-        $filename = $request1['filename'];
-        $value = $request1['value'];
-        //echo $value;exit;
+		$plugin            = $this->routeplugin();
+        $modelPlugin       = $this->modelplugin();
+        $uploadPlugin      = $this->imageuploadplugin();
+        $dynamicPath       = $plugin->dynamicPath();
+        $jsonArray         = $plugin->jsondynamic();
+        $currentPageURL    = $plugin->curPageURL();
+        $href              = explode("/", $currentPageURL);
+        $controller        = @$href[3];
+        $action            = @$href[4];
+
+        $res               = array();
+        $request1          = $this->getRequest()->getPost();
+        $filename          = $request1['filename'];
+        $value             = $request1['value'];
+        //echo $filename;exit;
         //$getParam = $request1['param'];
-        $request = $this->getRequest();
-        $files = $request->getFiles()->toArray();
-        $tmp_name = $files [$filename]['tmp_name'];
-        $fileName = $files[$filename]['name'];
+        $request           = $this->getRequest();
+        $files             = $request->getFiles()->toArray();
+        $tmp_name          = $files [$filename]['tmp_name'];
+        $fileNamewithspace = $files[$filename]['name'];
+        $fileName          = str_replace("","_",$fileNamewithspace);
         //print_r($fileName);exit;
-        $fileType = $files[$filename]['type'];
-        $fileType = strtolower($fileType);
-        $fileSize = ($files[$filename]['size'] / 1024) / 1024;
+        $fileType          = $files[$filename]['type'];
+        $fileType          = strtolower($fileType);
+        $fileSize          = ($files[$filename]['size'] / 1024) / 1024;
+        $userID            = $this->sessionid;
 
-            $userID = $this->sessionid;
-        if($value == "profile"){
+        if($value == "profile") {
             if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID)) {
                 @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID, 0777, true);
                 chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID, 0777);
@@ -79,22 +88,32 @@ class AccountController extends AbstractActionController {
                 chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/backgroundImage/' . $userID, 0777);
             }
         }
-
-
-            $newfolderName =  $userID ;
-        	$result = $uploadPlugin->upload($tmp_name , $fileName,$newfolderName,$value);
-            //$input = json_decode($result, true);
-
-            /*if($input['exterror'] == "0"){
-                $data = array('profileImage' => $input['originalPath']);
-                $sid = array('publisherId' => $PID);
-                $updatedimage = $modelPlugin->getpublisherTable()->updateuser($data, $sid);
-                $res['imagepath'] = $input['originalPath'];
-            }
-            $res['exterror'] = $input['exterror'];*/
-            echo $result;
+        $newfolderName      =  $userID ;
+        $result             = $uploadPlugin->upload($tmp_name , $fileName,$newfolderName,$value);
+        echo $result;
 
         exit;
 	}
+    public function savebothAction(){
+
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $backgroundimage = $_POST['backgroundimageName'];
+        $profileimage = $_POST['profileimageNmae'];
+        $backgroundimageName = $dynamicPath."/upload/backgroundImage/".$backgroundimage;
+        $profileimageNmae = $dynamicPath."/upload/profileImage/".$profileimage;
+        
+        $searchkayarray = array('userid'=>$this->sessionid);
+        $updateArray = array(
+                'profileimage' => $profileimageNmae,
+                'backgroundimage' => $backgroundimageName
+        );
+        $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
+            
+        echo $updatedValues;
+        exit;
+
+    }
 
 }

@@ -34,15 +34,13 @@ $(function () {
     $("body").on("click", ".profile-paginator__click", function () {
         var getClickedId = $(this).attr("data-fetch-id"),
             prevSelection = $(".profile-paginator__click").parent('ul').find('.active').index(),
-            currentClicked = $(this).index(),
-            fadeOUT = { opacity: 0, transition: 'opacity 0.5s' },
-            fadeIN = { opacity: 1, transition: 'opacity 0.5s' };
+            currentClicked = $(this).index();
         $("#currentPageId").val(getClickedId);
         if(currentClicked > prevSelection) {
-                   $(".container-of-sections").css(fadeOUT).slideDown(1500).remove();
+                   $(".container-of-sections").addClass('classuptodownhide');
                 }
                 else {
-                    $(".container-of-sections").css(fadeOUT).slideUp(1500).remove();
+					$(".container-of-sections").addClass('classdowntouphide');
                 }
         $(".profile-paginator__click").removeClass('active');
         $(this).addClass('active');
@@ -55,7 +53,7 @@ $(function () {
             success: function (result) {
                 var jsObject = JSON.parse(result),
                     i = 0,
-                    appendHtml = "<div class='container-of-sections' style='opacity:0;'>";
+                    appendHtml = "<div class='container-of-sections'>";
                 if (jsObject.defaultPage == 1) {
                     appendHtml += '<div class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></div><div class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></div>';
                 }
@@ -84,12 +82,12 @@ $(function () {
                 
                 if(currentClicked > prevSelection) {
                     $(".user_profile_section").prepend(appendHtml);
-                    $(".container-of-sections:eq(0)").css(fadeIN).slideDown(1500);
+
                         
                 }
                 else {
                     $(".user_profile_section").prepend(appendHtml);
-                    $(".container-of-sections:eq(0)").css(fadeIN).slideUp   (1500);
+
                 }
                 /*$(".user_profile_section .container-of-sections").css(fadeOUT).slideUp(1500, function() {
                     $(".user_profile_section").html(appendHtml);

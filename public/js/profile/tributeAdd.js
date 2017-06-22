@@ -17,7 +17,6 @@ $(document).ready(function () {
     "use strict";
     $('body').on('click', '.getTribute', function () {
         var frndId = $(this).data("id");
-        alert(frndId);
         $.ajax({
             type: "POST",
             url: base_url_dynamic + '/tribute/gettribute',

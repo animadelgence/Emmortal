@@ -1,4 +1,3 @@
-
 <?php
 namespace Profile\Controller;
 
@@ -97,10 +96,10 @@ class AccountController extends AbstractActionController {
         $profileimage        = $_POST['profileimageNmae'];
         $backgroundimageName = $dynamicPath."/upload/backgroundImage/".$backgroundimage;
         $profileimageNmae    = $dynamicPath."/upload/profileImage/".$profileimage;
-        
+        //echo $backgroundimageName."----".$profileimageNmae;exit;
         $searchkayarray      = array('userid'=>$this->sessionid);
         $updateArray         = array('profileimage' => $profileimageNmae, 'backgroundimage' => $backgroundimageName);
-        $updatedValues       = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
+        $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
             
         echo $updatedValues;
         exit;

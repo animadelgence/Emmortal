@@ -12,7 +12,7 @@ class videouploadplugin extends AbstractPlugin{
         $value =  pathinfo($uploadfilename, PATHINFO_EXTENSION);
         if ($value == 'webm' || $value == 'mp4' || $value == 'ogv' || $value == 'mov') {
 	        $returnImage = $savedate."_".$uploadfilename;
-	        $newfilename = $_SERVER['DOCUMENT_ROOT'].'/video/'.($savedate."_".$uploadfilename);
+	        $newfilename = $_SERVER['DOCUMENT_ROOT'].'/upload/video/'.($savedate."_".$uploadfilename);
 		        if (move_uploaded_file($tmp_name, $newfilename)){
 		           $res['filePath'] = $returnImage;
 		    	}else {

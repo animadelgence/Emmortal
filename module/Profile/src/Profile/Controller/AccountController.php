@@ -73,14 +73,14 @@ class AccountController extends AbstractActionController {
                 chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID, 0777);
             }
         } else if($value == "background") {
-           
+
             if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/backgroundImage/' . $userID)) {
                 @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/backgroundImage/' . $userID, 0777, true);
                 chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/backgroundImage/' . $userID, 0777);
             }
         }
 
-        
+
             $newfolderName =  $userID ;
         	$result = $uploadPlugin->upload($tmp_name , $fileName,$newfolderName,$value);
             //$input = json_decode($result, true);

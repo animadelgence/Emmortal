@@ -36,6 +36,7 @@ $(document).ready(function () {
         ]
     });
     CKEDITOR.disableAutoInline = true;
+   // $( ".resizable" ).resizable();
     $('body').on('click', '#textInsert', function () {
         $('.close').trigger('click');
         $('#textTitleError').hide();

@@ -1,132 +1,118 @@
  <?php 
- //echo $sessionid;exit;
-//echo $_SERVER['REQUEST_URI'];exit;
-    if($_SERVER['REQUEST_URI'] == '/profile/newsfeed' ){
-        $refererpageURL = $_SERVER['HTTP_REFERER']; 
-        $refererpage = explode("/",$refererpageURL);
+    if($_SERVER['REQUEST_URI'] == '/profile/newsfeed' ) {
+
+        $refererpageURL  = $_SERVER['HTTP_REFERER']; 
+        $refererpage     = explode("/",$refererpageURL);
         $refercontroller = $refererpage[3];
-        $referaction = $refererpage[4];
+        $referaction     = $refererpage[4];
+
     }else {
+
+        $refererpage     = "";
+        $refererpageURL  = "";
         $refercontroller = "";
-        $referaction = "";
-        }?>
- <section class="top-bar navbar-fixed-top">
-        <div class="container">
-            <div class="row">
-                 
-                <div>
-                    <div class="welcome" style="display:none;">
-                          <div class="close-msg">
-                            <a href="#">
-                                <i class="fa fa-times closebtn" aria-hidden="true"></i>
+        $referaction     = "";
+        
+    }?>
 
-                            </a>
-                        </div>
-                         <div class="showmsg">
-<?php
-                if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
-                    
-                     
-                            <span>Welcome!</span>
-
-                        
-                   
-                <?php } ?>
-                 </div>
-                 </div>
-                <div class="col-lg-8">
-                    <a href="/album/showalbum" class="logo-style">Emmortal</a>
-                    <?php if( $sessionid != ""){ ?>
-                    <button class="btn btn-default dropdown-toggle down-arrow" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu profile-strip down-inner " aria-labelledby="dropdownMenu1">
-                        <li><a href="#"><span class="user-icon"><img src="/image/thumb_image_92326ed88b94b5f0.jpg.png"/></span>Maitrayee Bhaumik</a></li>
-                        <li><a href="#">Albums</a></li>
-                        <li><a href="#">Relationships</a></li>
-                        <li><a href="#">Tributes</a></li>
-                    </ul>
-                    <?php } ?>
-                </div>
-                <div class="col-lg-0.5">
-                    <ul class="nav navbar-nav hamburger-menu pull-right">
-                        <li class="dropdown hover-effect">
-                            <a href="#" class="dropdown-toggle drop-list-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-bars" aria-hidden="true"></i></span></a>
-                            <ul class="dropdown-menu topbar-dropdown drop-border drop-bg">
-                                <li><?php if($sessionid == ""){ ?><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block sign-up">Sign Up</button><?php }?>
-                                </li>
-                                <li><?php if($sessionid == ""){ ?><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">Sign In</button><?php }?>
-                                </li>
-                                <li><?php if($sessionid != ""){ ?><button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/showprofile'">My profile</button><?php }?>
-                                </li>
-                                <li><?php if($sessionid != ""){ ?>
-                                    <button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/newsfeed'">Newsfeed</button><?php }?>
-                                </li>
-                                <?php if($sessionid != ""){ ?><li><button class="btn btn-primary center-block sign-up" onclick="location.href='/settings/general'">Settings</button>
-                                </li><?php }?>
-                                <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/aboutus'">About Us</button></li>
-                                <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/termsandconditions'">Terms & Conditions</button></li>
-                                <li><?php if( $sessionid != ""){ ?><form class="form-horizontal style-form" id='userLogout' method="post"	action="/profile/logoutuser" enctype="multipart/form-data"><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up" >Logout</button></form><?php }?><!--onclick="location.href='/album/showalbum'"-->
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            <?php if ($sessionid != ""){ ?>
-                <div class="col-lg-0.5">
-				<ul class="nav navbar-nav hamburger-menu pull-right">
-					<li class="dropdown hover-effect">
-						<a href="#" class="dropdown-toggle drop-list-icon" data-toggle="modal" data-target="#uploadModal"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-lg-0.5">
-				<ul class="nav navbar-nav hamburger-menu pull-right">
-					<li class="dropdown hover-effect">
-						<a href="#" class="dropdown-toggle drop-list-icon" data-toggle="modal" data-target="#searchmodal"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-search" aria-hidden="true"></i></span></a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-lg-0.5">
-				<ul class="nav navbar-nav hamburger-menu pull-right">
-					<li class="dropdown hover-effect">
-						<a href="#" class="dropdown-toggle drop-list-icon getTribute" data-toggle="modal" data-target="#tributeAddModal" data-id="1">
-						    <span class="glyphicon glyphicon-user menu-icon pull-right">
-						        <i class="fa fa-comments" aria-hidden="true"></i>
-						    </span>
-				        </a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-lg-0.5">
-				<ul class="nav navbar-nav hamburger-menu pull-right">
-					<li class="dropdown hover-effect">
-						<a href="#" class="dropdown-toggle drop-list-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-bell" aria-hidden="true"></i></span></a>
-					</li>
-				</ul>
-			</div>
-            <?php }?>
-                </div>
-                
-               <!--   <?php //if( strtolower($controller) == 'profile'){ ?>
-                <div>
-                    <button class="btn btn-default dropdown-toggle down-arrow" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu profile-strip down-inner " aria-labelledby="dropdownMenu1">
-                        <li><a href="#"><span class="user-icon"><img src="img/no_avatar-4a24e6328b8108841fcf2f92ebc22261.jpg"/></span>Swarnali Sardar</a></li>
-                        <li><a href="#">Albums</a></li>
-                        <li><a href="#">Relationships</a></li>
-                        <li><a href="#">Tributes</a></li>
-                    </ul>
-                
-                </div>-->
-                <?php //} ?> 
-
+<section class="top-bar navbar-fixed-top">
+   <div class="container">
+      <div class="row">
+         <div>
+            <div class="welcome" style="display:none;">
+               <div class="close-msg">
+                  <a href="#">
+                  <i class="fa fa-times closebtn" aria-hidden="true"></i>
+                  </a>
+               </div>
+               <div class="showmsg">
+                  <?php
+                     if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
+                  <span>Welcome!</span>
+                  <?php } ?>
+               </div>
             </div>
-        </div>
-
-    </section>
+            <div class="col-lg-8">
+               <a href="/album/showalbum" class="logo-style">Emmortal</a>
+               <?php if( $sessionid != ""){ ?>
+               <button class="btn btn-default dropdown-toggle down-arrow" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+               <span class="caret"></span>
+               </button>
+               <ul class="dropdown-menu profile-strip down-inner " aria-labelledby="dropdownMenu1">
+                  <li><a href="#"><span class="user-icon"><img src="/image/thumb_image_92326ed88b94b5f0.jpg.png"/></span>Maitrayee Bhaumik</a></li>
+                  <li><a href="#">Albums</a></li>
+                  <li><a href="#">Relationships</a></li>
+                  <li><a href="#">Tributes</a></li>
+               </ul>
+               <?php } ?>
+            </div>
+            <div class="col-lg-0.5">
+               <ul class="nav navbar-nav hamburger-menu pull-right">
+                  <li class="dropdown hover-effect">
+                     <a href="#" class="dropdown-toggle drop-list-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-bars" aria-hidden="true"></i></span></a>
+                     <ul class="dropdown-menu topbar-dropdown drop-border drop-bg">
+                        <li><?php if($sessionid == ""){ ?><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block sign-up">Sign Up</button><?php }?>
+                        </li>
+                        <li><?php if($sessionid == ""){ ?><button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary center-block sign-up">Sign In</button><?php }?>
+                        </li>
+                        <li><?php if($sessionid != ""){ ?><button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/showprofile'">My profile</button><?php }?>
+                        </li>
+                        <li><?php if($sessionid != ""){ ?>
+                           <button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/newsfeed'">Newsfeed</button><?php }?>
+                        </li>
+                        <?php if($sessionid != ""){ ?>
+                        <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/settings/general'">Settings</button>
+                        </li>
+                        <?php }?>
+                        <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/aboutus'">About Us</button></li>
+                        <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/termsandconditions'">Terms & Conditions</button></li>
+                        <li>
+                           <?php if( $sessionid != ""){ ?>
+                           <form class="form-horizontal style-form" id='userLogout' method="post"   action="/profile/logoutuser" enctype="multipart/form-data"><button data-toggle="modal" data-target="#squarespaceModal4" class="btn btn-primary center-block sign-up" >Logout</button></form>
+                           <?php }?><!--onclick="location.href='/album/showalbum'"-->
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+            <?php if ($sessionid != ""){ ?>
+            <div class="col-lg-0.5">
+               <ul class="nav navbar-nav hamburger-menu pull-right">
+                  <li class="dropdown hover-effect">
+                     <a href="#" class="dropdown-toggle drop-list-icon" data-toggle="modal" data-target="#uploadModal"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
+                  </li>
+               </ul>
+            </div>
+            <div class="col-lg-0.5">
+               <ul class="nav navbar-nav hamburger-menu pull-right">
+                  <li class="dropdown hover-effect">
+                     <a href="#" class="dropdown-toggle drop-list-icon" data-toggle="modal" data-target="#searchmodal"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+                  </li>
+               </ul>
+            </div>
+            <div class="col-lg-0.5">
+               <ul class="nav navbar-nav hamburger-menu pull-right">
+                  <li class="dropdown hover-effect">
+                     <a href="#" class="dropdown-toggle drop-list-icon getTribute" data-toggle="modal" data-target="#tributeAddModal" data-id="1">
+                     <span class="glyphicon glyphicon-user menu-icon pull-right">
+                     <i class="fa fa-comments" aria-hidden="true"></i>
+                     </span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <div class="col-lg-0.5">
+               <ul class="nav navbar-nav hamburger-menu pull-right">
+                  <li class="dropdown hover-effect">
+                     <a href="#" class="dropdown-toggle drop-list-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-user menu-icon pull-right"><i class="fa fa-bell" aria-hidden="true"></i></span></a>
+                  </li>
+               </ul>
+            </div>
+            <?php }?>
+         </div>
+      </div>
+   </div>
+</section>
 
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/uploadmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/textinsertmodal.php"); ?>

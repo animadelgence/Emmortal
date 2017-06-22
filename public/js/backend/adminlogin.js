@@ -1,14 +1,15 @@
 /*
  * @Author: Rituparna
- * @Date:   2017-02-8 17:46:35
- * @Last Modified by:   Rituparna
- * @Last Modified time: 2017-04-24 18:52:26
+ * @Date:   2017-06-22 17:46:35
+ * @Last Modified by: Rituparna
+ * @Last Modified time: 2017-06-22 18:52:26
  */
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 /*jslint plusplus: true */
 /*jshint -W065 */
 /*global baseUrl*/
+
 $(document).ready(function () {
     "use strict";
 

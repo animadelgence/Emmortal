@@ -2,6 +2,14 @@ $(document).ready(function () {
 
 	$('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
 
+$('#signupidenter').keypress(function (e) {
+        if (e.which == 13) { 
+
+            $("#signupbutton").trigger("click");
+            return false;
+        }
+    });
+
 $('#signupbutton').click(function(){
 
 	var firstName = $("#fname").val(),

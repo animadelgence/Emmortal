@@ -58,7 +58,7 @@ class ProfileController extends AbstractActionController {
         $controller       = @$href[3];
         $action           = @$href[4];
 
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'sessionid'=>$this->sessionid));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails));
         $actionChecker    = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier   = $this->getEvent()->getRouteMatch()->getParam('pId');
 

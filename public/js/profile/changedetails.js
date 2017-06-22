@@ -32,7 +32,7 @@ $(function(){
                            // $(".errormsgvideo").hide();
                         	//$("#pfimgId").show();
                         	/*<img id="pfimgId" style="width:100%;height:100%;" src="" name="Image Name" controls="controls"></video>*/
-                        	$("#canvas-placeholderpfimage").html('<img name="image Name" id="pfimgId" src="/image/profileImage/'+response.filePath+'" style="width:100%;height:100%;">');
+                        	$("#canvas-placeholderpfimage").html('<img name="image Name" id="pfimgId" src="/upload/profileImage/'+response.filePath+'" style="width:100%;height:100%;">');
 
                         	$("#pfimagePath").val(response.filePath);
                           }

@@ -1,6 +1,6 @@
 var URL = window.location.origin;
 $(document).ready(function (){
-
+s
 
 	$('#signinbutton').click(function(){
 		var loginemail = $("#loginemail").val(),

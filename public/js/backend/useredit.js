@@ -1,8 +1,8 @@
 /*
  * @Author: Rituparna
- * @Date:   2017-02-8 17:46:35
- * @Last Modified by:   Rajyasree
- * @Last Modified time: 2017-06-12 18:52:26
+ * @Date:   2017-06-22 17:46:35
+ * @Last Modified by: Rituparna
+ * @Last Modified time: 2017-06-22 18:52:26
  */
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
@@ -177,16 +177,8 @@ $(".deleteUser").on('click', function (event) {
     $('#hidden_userid').val(userId);
     $("#dynamicpagecreatepopup").fadeIn();
 });
-//
-///*Popup appear when clicked on 'OK' of Delete User*/
-//$("#delUser").on('click', function (event) {
-//    "use strict";
-//    var deleteId = $('#hidden_userid').val();
-//    $('#hidden_uId').val(deleteId);
-//    $("#dynamicpagecreatepopup").fadeOut();
-//    $("#pubStatusPopup").fadeIn();
-//});
-//
+
+
 ///*Popup Appear When clicked on Restore User Icon*/
 //$(".restoreUser").on('click', function (event) {
 //    "use strict";

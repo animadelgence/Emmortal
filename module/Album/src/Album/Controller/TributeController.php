@@ -47,11 +47,12 @@ class TributeController extends AbstractActionController {
                       );
         $tributeDetails             = $modelPlugin->gettributedetailsTable()->insertData($data);
         if($tributeDetails == 1){
-            return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+            return new ViewModel(array('sessionid'=>$UID,'dynamicPath' => $dynamicPath,'tributeDescription'=>$tributeDescription));
         }
 
 
     }
+
     public function gettributeAction(){
     	$plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
@@ -61,35 +62,47 @@ class TributeController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $userid = 26;
-        //$userid = $this->sessionid;
-        //$friendId = $_POST['frndId'];
-        $friendId = 3;
+        $userid = $this->sessionid;
+        $friendId = $_POST['frndId'];
+        $description = $_POST['description'];
+        if(!empty($description)){
+            $value = array(
+                        'UID'=>$userid,
+                        'description'=>$description,
+                        'friendsid'=>$friendId,
+                        'addeddate'=>date("Y-m-d H:i:s")
+                    );
+            $tribute = $modelPlugin->gettributedetailsTable()->insertData($value);
+        }
         $where = array('tributedetails.UID'=>$userid);
-        //$where = array('tributedetails.UID'=>$userid,'tributedetails.friendsid'=>$friendId);
-        //$tributeDetails = $modelPlugin->gettributedetailsTable()->fetchall($where);
         $tributeDetails = $modelPlugin->gettributedetailsTable()->joinquery($where);
-        //print_r($tributeDetails); exit;
         $array = array();
         foreach ($tributeDetails as $rSet) {
             $friendsid = explode(",",$rSet['friendsid']);
             if (in_array($friendId, $friendsid))
             {
+                $where = array('TID'=>$rSet['tributesid']);
+                $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+                $like = count($likeDetails);
                 $array[] = array(
                     'tributesid' => $rSet['tributesid'],
                     'UID' => $rSet['UID'],
                     'friendsname' => $rSet['firstname']." ".$rSet['lastname'],
                     'profileimage'=>$rSet['profileimage'],
                     'description'=>$rSet['description'],
+                    'shortDescription'=>substr($rSet['description'],0,20).'...',
                     'friendsid'=>$rSet['friendsid'],
+                    'like'=>$like,
                     'addeddate'=>date("m/d/Y",strtotime($rSet['addeddate']))
                 );
             }
         }
-        $res['$tributeDetails'] = $array;
+        $res['tributeDetails'] = $array;
         echo json_encode($res);
         exit;
      }
+
+    
     
 }
 ?>

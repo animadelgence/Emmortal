@@ -35,7 +35,7 @@
                    <div class="modal-footer text-right">
                <span class="">
                <button type="button" class="btn e-btn btn-default">Back</button>
-               <button type="submit" id="publishidtribute" class="btn e-btn btn-primary" id="publishid">Publish</button>
+               <button type="submit" id="publishidtribute" class="btn e-btn btn-primary">Publish</button>
                </span>
             </div>
                </div>

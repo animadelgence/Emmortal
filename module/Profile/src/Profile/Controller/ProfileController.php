@@ -175,6 +175,18 @@ class ProfileController extends AbstractActionController {
         $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($data);
         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
+
+    public function logoutuserAction() {
+        $user_session->loginId = ($_SESSION['userloginId']);
+        $user_session = new \Zend\Session\Container('userloginId');
+        unset($user_session->userloginId);
+        //setcookie('siteAuth', '', time() - 1, '/');
+        $plugin = $this->routeplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        return $this->redirect()->toUrl($dynamicPath . "/album/showalbum");
+        //exit;
+    }
+
     public function decrypt($data, $key) {
         $decode = base64_decode($data);
         return mcrypt_decrypt(

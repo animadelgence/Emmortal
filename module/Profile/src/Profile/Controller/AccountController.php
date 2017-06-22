@@ -14,12 +14,12 @@ class AccountController extends AbstractActionController {
 
         $userSession = new Container('userloginId');
         $this->sessionid = $userSession->offsetGet('userloginId');
-        /*$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
+        /*$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";*/
+        $dynamicPath = "http://". $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
-            header("Location:" . $dynamicPath);
+            header("Location:" . $dynamicPath."/album/showalbum");
             exit;
-        }*/
+        }
     }
 
 
@@ -54,6 +54,8 @@ class AccountController extends AbstractActionController {
         $res = array();
         $request1 = $this->getRequest()->getPost();
         $filename = $request1['filename'];
+        $value = $request1['value'];
+        //echo $value;exit;
         //$getParam = $request1['param'];
         $request = $this->getRequest();
         $files = $request->getFiles()->toArray();
@@ -65,12 +67,22 @@ class AccountController extends AbstractActionController {
         $fileSize = ($files[$filename]['size'] / 1024) / 1024;
 
             $userID = $this->sessionid;
+        if($value == "profile"){
             if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID)) {
                 @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID, 0777, true);
                 chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/profileImage/' . $userID, 0777);
             }
+        } else if($value == "background") {
+
+            if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/backgroundImage/' . $userID)) {
+                @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/backgroundImage/' . $userID, 0777, true);
+                chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/backgroundImage/' . $userID, 0777);
+            }
+        }
+
+
             $newfolderName =  $userID ;
-        	$result = $uploadPlugin->upload($tmp_name , $fileName,$newfolderName);
+        	$result = $uploadPlugin->upload($tmp_name , $fileName,$newfolderName,$value);
             //$input = json_decode($result, true);
 
             /*if($input['exterror'] == "0"){

@@ -24,17 +24,20 @@ class FriendrequestsController extends AbstractActionController {
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $query = $this->sessionid;
-        $userdetails = $modelPlugin->getuserTable()->joinquery($query);
+        $userdetails = $modelPlugin->getuserTable()->fetchallData($query);
+        //print_r($userdetails);exit;
         $array = array();
         $userid = $this->sessionid;
         foreach ($userdetails as $rSet) {
-            $array[] = array(
+            /*$array[] = array(
                 'friendsid' => $rSet['userid'],
                 'emailid' => $rSet['emailid'],
                 'friendsname' => $rSet['firstname']." ".$rSet['lastname'],
                 'profileimage'=>$rSet['profileimage']
-            );
+            );*/
+           
           }
+        exit;
         //print_r($array);//exit;
         $noOfUsers = count($array);
         echo $noOfUsers;

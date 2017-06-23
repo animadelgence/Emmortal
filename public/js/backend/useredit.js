@@ -2,7 +2,7 @@
  * @Author: Rituparna
  * @Date:   2017-06-22 17:46:35
  * @Last Modified by: Rituparna
- * @Last Modified time: 2017-06-22 18:52:26
+ * @Last Modified time: 2017-06-23 18:52:26
  */
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
@@ -85,7 +85,6 @@ $(document).ready(function () {
             $('#errorRate,#errorLink,#errorName,#errorImg1,#errorImg3,#upload_prev').css('display', 'none'); // hides image along with other error messages
             $('#errorImg2').css('display', 'block');
             $('#errorImg2').html("<font color='red'> Invalid Image Format! Maximum File Size Limit is 1MB </font>");
-            //($('.upload_prev').children('img').attr('src')) === "";
             $('.upload_prev').children('img').attr('src', '');
             $('#btnSave').attr("disabled", true);
             return false;

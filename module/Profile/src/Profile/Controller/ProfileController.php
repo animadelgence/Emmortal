@@ -138,7 +138,7 @@ class ProfileController extends AbstractActionController {
         foreach ($recfrndDetails as $rset) {
             $array[] = array(
                 'friendsid'     => $rset['userid'],
-                'friendsname'   => $rset['firstname']." ".$rSet['lastname'],
+                'friendsname'   => $rset['firstname']." ".$rset['lastname'],
                 'profileimage'  => $rset['profileimage']
             );
         }

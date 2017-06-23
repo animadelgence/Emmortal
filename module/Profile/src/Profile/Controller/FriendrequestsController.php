@@ -25,21 +25,56 @@ class FriendrequestsController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $query = $this->sessionid;
         $userdetails = $modelPlugin->getuserTable()->fetchallData($query);
-        //print_r($userdetails);exit;
+        //print_r(); exit;
         $array = array();
         $userid = $this->sessionid;
+        $i= 0;
         foreach ($userdetails as $rSet) {
-            /*$array[] = array(
-                'friendsid' => $rSet['userid'],
-                'emailid' => $rSet['emailid'],
-                'friendsname' => $rSet['firstname']." ".$rSet['lastname'],
-                'profileimage'=>$rSet['profileimage']
-            );*/
-           
+            //echo 1; 
+            $frndid = $rSet['userid'];
+            $sendfrndCon     = array('friends.userid'=>$userid,'friends.friendsid'=>$frndid);
+            $sendfrndJoin    = "friends.friendsid = user.userid";
+            $sendfrndDetails = $modelPlugin->getfriendsTable()->joinquery($sendfrndCon,$sendfrndJoin);
+            $recfrndCon      = array('friends.friendsid'=>$userid,'friends.userid'=>$frndid);
+            $recfrndJoin     = "friends.userid = user.userid";
+            $recfrndDetails  = $modelPlugin->getfriendsTable()->joinquery($recfrndCon,$recfrndJoin);
+            if(count($sendfrndDetails)>0){
+                if($sendfrndDetails[0]['requestaccept'] == 1){
+                    $status = "Accepted";
+                } else{
+                    $status = "Outgoing";
+                }
+                $array[] = array(
+                    'friendsid'     => $sendfrndDetails[0]['friendsid'],
+                    'friendsname'   => $sendfrndDetails[0]['firstname']." ".$sendfrndDetails[0]['lastname'],
+                    'profileimage'  => $sendfrndDetails[0]['profileimage'],
+                    'status'        => $status
+                );
+            } else if(count($recfrndDetails)>0){
+                if($recfrndDetails[0]['requestaccept'] == 1){
+                    $status = "Accepted";
+                } else{
+                    $status = "Incoming";
+                }
+                $array[] = array(
+                    'friendsid'     => $recfrndDetails[0]['userid'],
+                    'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
+                    'profileimage'  => $recfrndDetails[0]['profileimage'],
+                    'status'        => $status
+                );
+            } else{
+                $array[] = array(
+                    'friendsid'     => $rSet['userid'],
+                    'friendsname'   => $rSet['firstname']." ".$rSet['lastname'],
+                    'profileimage'  => $rSet['profileimage'],
+                    'status'        => 'New'
+                );
+            }
+           $i++;
           }
-        exit;
-        //print_r($array);//exit;
-        $noOfUsers = count($array);
+        //exit;
+        //print_r($array); exit;
+        /*$noOfUsers = count($array);
         echo $noOfUsers;
         for($i=0;$i<$noOfUsers;$i++) {
             $query = array('userid'=>$userid,
@@ -48,7 +83,7 @@ class FriendrequestsController extends AbstractActionController {
             $friendDetails = $modelPlugin->getfriendsTable()->fetchall($query);
             print_r($friendDetails);exit;
         }
-        
+        */
         $res['userDetails'] = $array;
         echo json_encode($res);
         exit;

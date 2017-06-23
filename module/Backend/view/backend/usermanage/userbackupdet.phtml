@@ -55,9 +55,9 @@
 								<td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;"><?php echo $val['flag'];?>
 								</span></td>
-								<input type="hidden"  class="hidden_class restoreId" id="restoreId" value="<?php echo $val['deleteId']; ?>" />
+								<input type="hidden"  class="hidden_class restoreId" id="restoreId" name="restoreId" value="<?php echo $val['deleteId']; ?>" />
 								<td>
-                                            <button class="btn btn-primary btn-xs restoreUser">
+                                            <button class="btn btn-primary btn-xs restoreUser" title="restore user">
                                                 <i class="fa fa-undo" aria-hidden="true"></i>
                                             </button>
                                 </td>
@@ -79,7 +79,6 @@
 	<!--wrapper -->
 
     <!--alert popup -->
-<!--
 	<section id="dynamicalertpopup" class="popupFormForDynamicPage chang_PPopup_conta">
 	<div id="" class="chang_PPopup">
     <div class="tab-content" style="border:0px solid;width:490px;">
@@ -95,10 +94,9 @@
 				</div>
 			</div>
 		</form>
-	</div>tab-content
+	</div><!--/tab-content-->
     </div>
     </section>
--->
     <!-- /alert popup-->
 
     <!--usertemplate restore popup -->

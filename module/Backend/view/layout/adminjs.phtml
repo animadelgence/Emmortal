@@ -28,15 +28,15 @@ switch ($controller) {
                 ->prependFile($this->basePath() . '/js/backend/useredit.js');
 //                ->prependFile($this->basePath() . '/js/admin/settings.js');
             break;
-//            case 'adduser':
-//                 $this->headScript()
-//                ->prependFile($this->basePath() . '/js/admin/useredit.js');
-//            break;
-//            case 'userbackupdet':
-//                 $this->headScript()
-//                ->prependFile($this->basePath() . '/js/admin/useredit.js')
-//                ->prependFile($this->basePath() . '/js/admin/sorttable.js');
-//            break;
+            case 'adduser':
+                 $this->headScript()
+                ->prependFile($this->basePath() . '/js/admin/useredit.js');
+            break;
+            case 'userbackupdet':
+                 $this->headScript()
+                ->prependFile($this->basePath() . '/js/backend/useredit.js')
+                ->prependFile($this->basePath() . '/js/backend/sorttable.js');
+            break;
         }
     break;
 //    case 'template':

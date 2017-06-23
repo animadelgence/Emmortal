@@ -41,7 +41,12 @@
         }
         public function fetchallnew()
         {
-                $resultSet = $this->tableGWay->select();
+//                $resultSet = $this->tableGWay->select();
+                $sql = new Sql($this->tableGWay->adapter);
+		          $select = $sql->select();
+                  $select->from($this->tableGWay->getTable())
+                         ->order('userid DESC');
+                $resultSet = $this->tableGWay->selectWith($select);
                 $array = array();
                 foreach ($resultSet as $rSet) {
                     $array[] = array(
@@ -69,6 +74,7 @@
         }
         public function savedata($insertdataarray,$keyArray)
         {
+            //print_r($insertdataarray); exit;
             $resultSet = $this->tableGWay->select($keyArray);
             if(count($resultSet) == 0)
             {
@@ -82,6 +88,9 @@
             $id = $this->tableGWay->lastInsertValue;
            // return $id;
             return $id;
+        }
+        public function saverestore($query) {
+            return $rowset = $this->tableGWay->insert($query);
         }
         public function updateuser($data,$marker)
         {

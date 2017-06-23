@@ -92,10 +92,9 @@
 }
 .vid-sec {
   float: left;
-  height: 184px;
   margin: 0 10px 10px;
   position: relative;
-  width: 15%;
+  
 }
 .outer-wrap{
   padding: 0;

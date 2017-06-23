@@ -112,26 +112,36 @@ class ProfileController extends AbstractActionController {
      }
     public function getfriendsAction(){
 
-    	$plugin         = $this->routeplugin();
-        $modelPlugin    = $this->modelplugin();
-        $dynamicPath    = $plugin->dynamicPath();
-        $jsonArray      = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
-        $href           = explode("/", $currentPageURL);
-        $controller     = @$href[3];
-        $action         = @$href[4];
-        $query          = $this->sessionid;
-        $friendDetails  = $modelPlugin->getfriendsTable()->joinquery($query);
-        $array          = array();
-
-        foreach ($friendDetails as $rSet) {
+    	$plugin          = $this->routeplugin();
+        $modelPlugin     = $this->modelplugin();
+        $dynamicPath     = $plugin->dynamicPath();
+        $jsonArray       = $plugin->jsondynamic();
+        $currentPageURL  = $plugin->curPageURL();
+        $href            = explode("/", $currentPageURL);
+        $controller      = @$href[3];
+        $action          = @$href[4];
+        $userid          = $this->sessionid;
+        $sendfrndCon     = array('friends.userid'=>$userid,'friends.requestaccept'=>1);
+        $sendfrndJoin    = "friends.friendsid = user.userid";
+        $sendfrndDetails = $modelPlugin->getfriendsTable()->joinquery($sendfrndCon,$sendfrndJoin);
+        $recfrndCon      = array('friends.friendsid'=>$userid,'friends.requestaccept'=>1);
+        $recfrndJoin     = "friends.userid = user.userid";
+        $recfrndDetails  = $modelPlugin->getfriendsTable()->joinquery($recfrndCon,$recfrndJoin);
+        $array           = array();
+        foreach ($sendfrndDetails as $rSet) {
             $array[] = array(
                 'friendsid'     => $rSet['friendsid'],
                 'friendsname'   => $rSet['firstname']." ".$rSet['lastname'],
-                'profileimage'  =>$rSet['profileimage']
+                'profileimage'  => $rSet['profileimage']
             );
-          }
-
+        }
+        foreach ($recfrndDetails as $rset) {
+            $array[] = array(
+                'friendsid'     => $rset['userid'],
+                'friendsname'   => $rset['firstname']." ".$rSet['lastname'],
+                'profileimage'  => $rset['profileimage']
+            );
+        }
         $res['friendDetails'] = $array;
         echo json_encode($res);
         exit;
@@ -182,6 +192,24 @@ class ProfileController extends AbstractActionController {
         $albumDetails       = $modelPlugin->getuploadDetailsTable()->insertData($data);
 
         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+    }
+    public function savefilestatusAction(){
+        $plugin             = $this->routeplugin();
+        $modelPlugin        = $this->modelplugin();
+        $dynamicPath        = $plugin->dynamicPath();
+        $style = $_POST['style'];
+        $uploadId = $_POST['uploadId'];
+        $data = array('filestatus'=>$style
+                              );
+        $where = array('uploadId'=>$uploadId
+                              );
+
+
+        $savefilestatus       = $modelPlugin->getuploadDetailsTable()->updateData($data,$where);
+        echo $savefilestatus;exit;
+
+
+
     }
 
     public function logoutuserAction() {

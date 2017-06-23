@@ -16,6 +16,7 @@ class modelplugin extends routeplugin {
     public $uploadDetailsTable;
     public $tributedetailsTable;
     public $likesdetailsTable;
+    public $userbackupTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {
@@ -32,6 +33,14 @@ class modelplugin extends routeplugin {
             $this->userTable = $sm->get('Authorization\Model\userTable');
         }
         return $this->userTable;
+    }
+    public function getuserbackupTable() {
+        if (!$this->userbackupTable) {
+
+            $sm = $this->getController()->getServiceLocator();
+            $this->userbackupTable = $sm->get('Authorization\Model\userbackupTable');
+        }
+        return $this->userbackupTable;
     }
     public function gettrackdetailsTable() {
         if (!$this->trackdetailsTable) {

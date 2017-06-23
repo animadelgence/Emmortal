@@ -2,7 +2,7 @@
  * @Author: Shubhadip
  * @Date:   2017-06-14 17:46:35
  * @Last Modified by:   Shubhadip
- * @Last Modified time: 2017-06-22 13:57:26
+ * @Last Modified time: 2017-06-22 17:34:26
  */
 /*jslint browser: true */
 /*global $, jQuery, alert,CKEDITOR */
@@ -55,9 +55,12 @@ $(document).ready(function () {
             $('#cke_friendtributeDescription').removeClass('error-class');
         }
         if (flag == 0) {
-            getAlbum(frndId, textDescription);
+            getAlbum(frndId, textDescription, '');
             $('.close').trigger('click');
         }
+    });
+    $("#friendTributeAddModal").on("hidden.bs.modal", function () {
+        $('#tributeAddModal').css('z-index', '99999');
     });
 
     function getAlbum(frndId, textDescription) {
@@ -69,6 +72,7 @@ $(document).ready(function () {
                 frndId: frndId
             },
             success: function (res) {
+                $('.offcanvas-comments').css("height", "100%");
                 jsObject = JSON.parse(res);
                 $('#totalTribute').html(jsObject.tributeDetails.length);
                 if (jsObject.tributeDetails.length > 0) {
@@ -78,7 +82,7 @@ $(document).ready(function () {
                         if (jsObject.tributeDetails[i].profileimage != null) {
                             profileimage = jsObject.tributeDetails[i].profileimage;
                         }
-                        html += '<div class="e-comment"><div class="e-comment-header m-b-10"><div class="e-likes-wrapper pull-right"><div class="e-like btn e-btn btn-round full likeClick" data-id="' + jsObject.tributeDetails[i].tributesid + '" data-cmd="tribute">' + jsObject.tributeDetails[i].like + '</div></div><div class="user-wrapper"><img class="img-responsive m-r-5" src="' + profileimage + '"><a class="user-names pointer" href="#">' + jsObject.tributeDetails[i].friendsname + '</a></div><div class="e-comment-title"><p>' + jsObject.tributeDetails[i].shortDescription + '</p></div></div><div class="e-comment-body"><div class="e-comment-content"><div><p>' + jsObject.tributeDetails[i].description + '</p></div><div class="m-t-5 text-right"><div class="btn e-btn btn-brown">Show attachments</div></div></div><div class="e-comment-info"><a class="e-link pointer" href="#">View profile page</a><div class="e-brown"><small>' + jsObject.tributeDetails[i].addeddate + '</small></div></div><div class="clearfix"></div></div></div>';
+                        html += '<div class="e-comment"><div class="e-comment-header m-b-10"><div class="e-likes-wrapper pull-right"><div class="e-like btn e-btn btn-round full likeClick" data-id="' + jsObject.tributeDetails[i].tributesid + '" data-cmd="tribute">' + jsObject.tributeDetails[i].like + '</div></div><div class="user-wrapper"><img class="img-responsive m-r-5" src="' + profileimage + '"><a class="user-names pointer" href="#">' + jsObject.tributeDetails[i].friendsname + '</a></div><div class="e-comment-title"><p>' + jsObject.tributeDetails[i].shortDescription + '</p></div></div><div class="e-comment-body"><div class="e-comment-content"><div><p>' + jsObject.tributeDetails[i].description + '</p></div></div><div class="e-comment-info"><a class="e-link pointer" href="#">View profile page</a><div class="e-brown"><small>' + jsObject.tributeDetails[i].addeddate + '</small></div></div><div class="clearfix"></div></div></div>';
                     }
                     $('#tributeAppend').html(html);
                 } else {

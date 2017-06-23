@@ -14,6 +14,14 @@ var URL = document.URL;
         	//alert(pathname);
         		$('#squarespaceModalepassword').modal('show');
         		//alert("hello");
+        		$('#recoverypasswordid').keypress(function (e) {
+			        if (e.which == 13) { 
+
+			            $("#savepassbutton").trigger("click");
+			            return false;
+			        }
+			    });
+			    
         		
         		$("#savepassbutton").click(function(){
         			//alert();

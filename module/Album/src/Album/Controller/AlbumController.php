@@ -47,8 +47,8 @@ class AlbumController extends AbstractActionController {
         $jsonArray = $plugin->jsondynamic();
         $currentPageURL = $plugin->curPageURL();
         $href = explode("/", $currentPageURL);
-        $controller = @$href[3];
-        $action = @$href[4];
+        $controller = 'album';
+		$action = $this->params('action');
         $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action));
         //exit;
         if($this->sessionid == "")

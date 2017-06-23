@@ -1,7 +1,7 @@
 /*
  * @Author: Rituparna
- * @Date:   2017-02-8 17:46:35
- * @Last Modified by:   Rituparna
+ * @Date:   2017-06-22 17:46:35
+ * @Last Modified by: Rituparna
  * @Last Modified time: 2017-04-25 19:21:42
  */
 /*jslint browser: true*/
@@ -43,11 +43,11 @@ var Script = (function () {
         } else if (pathname === '/usermanage/useredit/' + part4) {
             $('.common_class').removeClass('active');
             $('.usermanage').addClass('active');
+        } else if (pathname === '/usermanage/userbackupdet') {
+            $('.common_class').removeClass('active');
+            $('.usermanage').addClass('active');
         }
-//        else if (pathname === '/userregistration/userbackupdet') {
-//            $('.common_class').removeClass('active');
-//            $('.userreg').addClass('active');
-//        } else if (pathname === '/userregistration/adduser') {
+//        else if (pathname === '/userregistration/adduser') {
 //            $('.common_class').removeClass('active');
 //            $('.userreg').addClass('active');
 //        } else if (pathname === '/template/templateview') {

@@ -19,7 +19,7 @@
                 <div class="modal-footer text-right">
                    <span class="">
                        <button type="button" class="btn e-btn btn-default" onclick="$('.close').trigger('click');$('#tributeAddModal').css('z-index','1042');">Back</button>
-                       <button type="submit" id="publishFriendTribute" class="btn e-btn btn-primary" id="publishid">Publish</button>
+                       <button type="button" id="publishFriendTribute" class="btn e-btn btn-primary">Publish</button>
                    </span>
                </div>
          </div>

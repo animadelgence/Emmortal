@@ -144,7 +144,7 @@ $(document).ready(function () {
     $('body').on('click', '#saveQuestion', function () {
         var questionDetails = $('#questionDetails').val();
         if (questionDetails.trim() === "") {
-            $(".div--error_secondmsg").html('Enter Your First Name').css('display', 'block');
+            $(".div--error_secondmsg").html('Enter Your Question').css('display', 'block');
             setTimeout(function () {
                 $(".div--error_secondmsg").fadeOut(300, function () {});
             }, 6000);
@@ -170,7 +170,7 @@ $(document).ready(function () {
     $('body').on('change', '#profileView', function () {
         var optionValue = $(this).val(),
             type = 'profile';
-        alert(optionValue);
+        //alert(optionValue);
         $.ajax({
             url: base_url_dynamic + "/settings/viewProfilePermission",
             type: "POST",
@@ -179,7 +179,8 @@ $(document).ready(function () {
                 type: type
             },
             success: function (result) {
-                console.log(result);return false;
+                console.log(result);
+                return false;
 
             }
 
@@ -187,8 +188,8 @@ $(document).ready(function () {
     });
     $('body').on('change', '#nameView', function () {
         var optionValue = $(this).val(),
-            type = 'name';;
-        alert(optionValue);
+            type = 'name';
+        //alert(optionValue);
         $.ajax({
             url: base_url_dynamic + "/settings/viewProfilePermission",
             type: "POST",
@@ -197,7 +198,8 @@ $(document).ready(function () {
                 type: type
             },
             success: function (result) {
-                console.log(result);return false;
+                console.log(result);
+                return false;
 
             }
 

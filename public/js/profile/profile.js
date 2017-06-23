@@ -45,17 +45,16 @@ $(document).ready(function () {
 
     });
     $('.vid-sec').mouseup(function(){
-        alert();
-        // var style = $(this).attr("style");
-        // var uploadId = $(this).find(".uploadId").val();
-        //    $.ajax({
-        //         type: "POST",
-        //         url: base_url_dynamic + '/profile/savefilestatus',
-        //         data: {style:style,uploadId:uploadId},
-        //         success: function (res) {
-        //         alert(res);
-        //         }
-        //     });
+        var style = $(this).attr("style");
+        var uploadId = $(this).find(".uploadId").val();
+           $.ajax({
+                type: "POST",
+                url: base_url_dynamic + '/profile/savefilestatus',
+                data: {style:style,uploadId:uploadId},
+                success: function (res) {
+                alert(res);
+                }
+            });
 
         
     });

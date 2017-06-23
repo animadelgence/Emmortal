@@ -23,7 +23,16 @@ class user
     public $findme;
     public $content;
     public $activation;
+    public $viewprofile;
+    public $viewname;
 
+    public $id;
+    //public $userid;
+    public $friendsid;
+    public $friendshipdate;
+    public $requestaccept;
+    public $relationshipstatus;
+    
     function exchangeArray($data)
 	{
 		$this->userid = (!empty($data['userid'])) ? $data['userid'] : null;
@@ -43,6 +52,15 @@ class user
         $this->findme = (!empty($data['findme'])) ? $data['findme'] : null;
         $this->content = (!empty($data['content'])) ? $data['content'] : null;
         $this->activation = (!empty($data['activation'])) ? $data['activation'] : null;
+        $this->viewprofile = (!empty($data['viewprofile'])) ? $data['viewprofile'] : null;
+        $this->viewname = (!empty($data['viewname'])) ? $data['viewname'] : null;
+        
+        $this->id = (!empty($data['id'])) ? $data['id'] : null;
+		//$this->userid = (!empty($data['userid'])) ? $data['userid'] : null;
+		$this->friendsid = (!empty($data['friendsid'])) ? $data['friendsid'] : null;
+        $this->friendshipdate = (!empty($data['friendshipdate'])) ? $data['friendshipdate'] : null;
+        $this->requestaccept = (!empty($data['requestaccept'])) ? $data['requestaccept'] : null;
+        $this->relationshipstatus = (!empty($data['relationshipstatus'])) ? $data['relationshipstatus'] : null;
 	}
 
     public function getArrayCopy()

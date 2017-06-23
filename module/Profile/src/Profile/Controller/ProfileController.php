@@ -32,15 +32,16 @@ class ProfileController extends AbstractActionController {
         $dynamicPath    = $modelPlugin->dynamicPath();
         $jsonArray      = $modelPlugin->jsondynamic();
         $currentPageURL = $modelPlugin->curPageURL();
-        $href           = explode("/", $currentPageURL);
-        $controller     = @$href[3];
-        $action         = @$href[4];
 
-        $pageQuery      = array('UID'=>$this->sessionid);
-        $pageDetails    = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
-        $userDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
-        $uploadQuery    = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
-        $uploadDetails  = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
+        $pageQuery = array('UID'=>$this->sessionid);
+        $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
+        $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $uploadQuery = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
+        $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
+        //print_r($uploadDetails);exit;
 
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
 

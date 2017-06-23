@@ -4,7 +4,7 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\Validator\Digits;
-class user
+class userbackup
 {
     public $deleteId;
 	public $userid;
@@ -24,6 +24,7 @@ class user
     public $findme;
     public $content;
     public $activation;
+    public $deletedate;
     public $flag;
 
     function exchangeArray($data)
@@ -46,6 +47,7 @@ class user
         $this->findme = (!empty($data['findme'])) ? $data['findme'] : null;
         $this->content = (!empty($data['content'])) ? $data['content'] : null;
         $this->activation = (!empty($data['activation'])) ? $data['activation'] : null;
+        $this->deletedate = (!empty($data['deletedate'])) ? $data['deletedate'] : null;
         $this->flag = (!empty($data['flag'])) ? $data['flag'] : null;
 	}
 

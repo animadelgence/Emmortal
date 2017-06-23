@@ -65,6 +65,8 @@
 
            return $data;
 	    }
-
+        public function insertFirend($query){
+            return $rowset = $this->tableGWay->insert($query);
+        }
     }
 ?>

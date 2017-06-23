@@ -43,9 +43,9 @@ var Script = (function () {
         } else if (pathname === '/usermanage/useredit/' + part4) {
             $('.common_class').removeClass('active');
             $('.usermanage').addClass('active');
-        } else if (pathname === '/userregistration/userbackupdet') {
+        } else if (pathname === '/usermanage/userbackupdet') {
             $('.common_class').removeClass('active');
-            $('.userreg').addClass('active');
+            $('.usermanage').addClass('active');
         }
 //        else if (pathname === '/userregistration/adduser') {
 //            $('.common_class').removeClass('active');

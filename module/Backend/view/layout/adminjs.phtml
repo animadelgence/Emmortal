@@ -7,7 +7,6 @@ switch ($controller) {
 		switch ($action) {
             case 'login':
 				 $this->headScript()
-                     //->prependFile($this->basePath() . '/js/editor/jquery.form.js?version='.$t)
 				    ->prependFile($this->basePath() . '/js/backend/adminlogin.js?version='.$t);
             break;
          }
@@ -26,11 +25,6 @@ switch ($controller) {
             case 'useredit':
                  $this->headScript()
                 ->prependFile($this->basePath() . '/js/backend/useredit.js');
-//                ->prependFile($this->basePath() . '/js/admin/settings.js');
-            break;
-            case 'adduser':
-                 $this->headScript()
-                ->prependFile($this->basePath() . '/js/admin/useredit.js');
             break;
             case 'userbackupdet':
                  $this->headScript()
@@ -38,61 +32,6 @@ switch ($controller) {
                 ->prependFile($this->basePath() . '/js/backend/sorttable.js');
             break;
         }
-    break;
-//    case 'template':
-//		switch ($action) {
-//            case 'templateview':
-//				 $this->headScript()
-//                    ->prependFile($this->basePath() . '/js/admin/migrate-template.js')
-//                    ->prependFile($this->basePath() . '/js/admin/template-edit.js')
-//				    ->prependFile($this->basePath() . '/js/admin/sorttable.js');
-//            break;
-//            case 'templateedit':
-//				 $this->headScript()
-//                    ->prependFile($this->basePath() . '/js/admin/template-edit.js');
-//            break;
-//		    }
-//    break;
-//    case 'tag':
-//		switch ($action) {
-//            case 'viewtag':
-//				 $this->headScript()
-//                    ->prependFile($this->basePath() . '/js/admin/migrate-template.js')
-//				    ->prependFile($this->basePath() . '/js/admin/sorttable.js');
-//            break;
-//            case 'edittag':
-//				 $this->headScript()
-//                    ->prependFile($this->basePath() . '/js/admin/migrate-template.js');
-//            break;
-//            case 'addtag':
-//				 $this->headScript()
-//                    ->prependFile($this->basePath() . '/js/admin/migrate-template.js');
-//            break;
-//		    }
-//    break;
-//        case 'sectionmanage':
-//		switch ($action) {
-//            case 'viewsection':
-//				 $this->headScript()
-//				    ->prependFile($this->basePath() . '/js/admin/viewSection.js');
-//            break;
-//            case 'editsection':
-//				 $this->headScript()
-//                    ->prependFile($this->basePath() . '/js/admin/editSection.js');
-//            break;
-//            case 'addsection':
-//				 $this->headScript()
-//                    ->prependFile($this->basePath() . '/js/admin/addSection.js');
-//            break;
-//            case 'addcategory':
-//				 $this->headScript()
-//                    ->prependFile($this->basePath() . '/js/admin/addSection.js');
-//            break;
-//            case 'editcategory':
-//				 $this->headScript()
-//                    ->prependFile($this->basePath() . '/js/admin/editSection.js');
-//            break;
-//		    }
     break;
 
 	default:

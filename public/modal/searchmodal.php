@@ -35,50 +35,8 @@
                 <div class="">
                     <div class="m-t-50 search-divider e-brown p-l-10" id="globalSearch" style="display:none;">Global search</div>
                     <div id="searchResults">
-                        <!--<div class="user-field m-t-25 animated fadeIn">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <img class="media-object user-img" >
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h3 class="m-t-0">
-                                        <a class="e-brown e-link" >
-                                            <span class="">shilpita Chatterjee</span>
-                                        </a>
-                                    </h3>
-                                </div>
-                                <div class="media-right media-middle btn-section">
-                                    <div class="relationship-btn" user="client" >
-                                        <button class="btn e-btn btn-warning full">
-                                            <div class="fa fa-clock-o"></div> Request sent
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-field m-t-25 animated fadeIn">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <img class="media-object user-img" >
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h3 class="m-t-0">
-                                        <a ui-sref="app.user.show({user_id: client.id})" class="e-brown e-link" href="/users/61/profile">
-                                            <span class="">shilpita chatterjee</span>
-                                        </a>
-                                    </h3>
-                                </div>
-                                <div class="media-right media-middle btn-section">
-                                    <div class="relationship-btn" >
-                                        <button class="btn e-btn btn-info">
-                                            <div class="fa fa-plus"></div> Connect
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
-                        </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>

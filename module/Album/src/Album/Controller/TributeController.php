@@ -29,6 +29,10 @@ class TributeController extends AbstractActionController {
         $plugin                     = $this->routeplugin();
         $modelPlugin                = $this->modelplugin();
         $dynamicPath                = $plugin->dynamicPath();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
+        $action = @$href[4];
         $tributeDescription         = $_POST['tributeDescription'];
         $frndIdValue                = $_POST['frndId'];
         if($frndIdValue){
@@ -38,6 +42,7 @@ class TributeController extends AbstractActionController {
             }
            // echo $friendId;exit;
         $UID                        = $this->sessionid;
+        $this->layout()->setVariables(array('sessionid'=> $UID,'controller' => $controller, 'action' => $action));
         $addeddate                  = date('Y-m-d H:i:s');
         $data                       =  array('UID'=>$UID,
                       'description'=>$tributeDescription,
@@ -46,8 +51,12 @@ class TributeController extends AbstractActionController {
 
                       );
         $tributeDetails             = $modelPlugin->gettributedetailsTable()->insertData($data);
+        $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$UID));
+        $recfrndCon      = array('friends.friendsid'=>$friendId,'friends.requestaccept'=>1);
+        $recfrndJoin     = "friends.friendsid = user.userid";
+        $recfrndDetails  = $modelPlugin->getfriendsTable()->joinquery($recfrndCon,$recfrndJoin);
         if($tributeDetails == 1){
-            return new ViewModel(array('sessionid'=>$UID,'dynamicPath' => $dynamicPath,'tributeDescription'=>$tributeDescription));
+            return new ViewModel(array('sessionid'=>$UID,'dynamicPath' => $dynamicPath,'tributeDescription'=>$tributeDescription, 'tributeDescription'=>$tributeDescription,'recfrndDetails'=>$recfrndDetails,'userDetails'=>$userDetails));
         }
 
 

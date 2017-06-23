@@ -44,7 +44,20 @@ $(document).ready(function () {
       minWidth: 200
 
     });
-    $('.vid-sec').mouseup(function(){
+    $('.vid-sec').resize(function(){
+        var style = $(this).attr("style");
+        var uploadId = $(this).find(".uploadId").val();
+           $.ajax({
+                type: "POST",
+                async:false,
+                url: base_url_dynamic + '/profile/savefilestatus',
+                data: {style:style,uploadId:uploadId},
+                success: function (res) {
+                //alert(res);
+                }
+            });
+    });
+    /*$('.vid-sec').mouseup(function(){
         var style = $(this).attr("style");
         var uploadId = $(this).find(".uploadId").val();
            $.ajax({
@@ -57,7 +70,7 @@ $(document).ready(function () {
             });
 
         
-    });
+    });*/
     $('body').on('click', '#textInsert', function () {
         $('.close').trigger('click');
         $('#textTitleError').hide();

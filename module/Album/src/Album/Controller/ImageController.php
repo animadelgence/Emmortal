@@ -42,7 +42,6 @@ class ImageController extends AbstractActionController {
         $filename = date("Y-m-d h:i:sa").' image'.$imageName;
         $filename = str_replace(' ', '_', $filename);
         $newfilename = $_SERVER['DOCUMENT_ROOT'].'/upload/uploadimage/'.$filename;
-
         if(move_uploaded_file($temp_name, $newfilename))
         {
             echo '/upload/uploadimage/'.$filename;

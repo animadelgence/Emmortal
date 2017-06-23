@@ -183,5 +183,21 @@
     margin: 12px 0;
     padding: 7px;
     text-align: center;
-    width: 30%;
+    width: 50%;
+}
+.drop {
+    -moz-user-select: none;
+    background-image: none;
+    /*border: 1px solid transparent;*/
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
 }

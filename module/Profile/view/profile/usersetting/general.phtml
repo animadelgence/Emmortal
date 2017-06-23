@@ -14,12 +14,13 @@
                         <div class="col-lg-6">
                             <h3>Personal information</h3>
                             <form action="/action_page.php">
-                                <input class="gen-input" type="text" name="fname" value="<?php echo $userDetails[0]['firstname'];?>">
-                                <input class="gen-input" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
-                                <input class="gen-input-mail" type="text" readonly name="email" value="<?php echo $userDetails[0]['emailid'];?>">
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="<?php echo $userDetails[0]['dateofbirth'];?>">
-                                <div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                <input class="gen-input" type="text" name="fname" id="acc-name" value="<?php echo $userDetails[0]['firstname'];?>">
+                                <input class="gen-input" id="acc-lastname" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
+                                <input class="gen-input-mail" id="acc-email" type="text" readonly name="email" value="<?php echo $userDetails[0]['emailid'];?>">
+                                <input type="text" class="form-control datepicker" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
+                                <!--<div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>-->
                             </form>
+                            <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
                         </div>
                         <div class="col-lg-6">
                             <div class="col-lg-6 no-padding">
@@ -30,7 +31,7 @@
                                 <img class="right-contant" src="/image/img444.jpg" />
                                 <a class="avatar" href="javascript:void(0)">Choose avatar</a>
                             </div>
-                            <a class="save" href="javascript:void(0)">Save</a>
+                            <a class="save" id="changePersonalDetails" href="javascript:void(0)">Save</a>
                         </div>
 
 
@@ -43,7 +44,7 @@
                                 <input type="password" class="form-control " id="acc-pass" placeholder="New password">
                                 <input type="password" class="form-control " id="acc-pass-rep" placeholder="Password confirmation">
                             </form>
-                            <a class="save-new" href="javascript:void(0)" id="password_save">Save</a>
+                            <a class="save-new" href="javascript:void(0)" id="password_save" style="cursor:pointer;">Save</a>
                             <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
                             <div>
                                 <hr>
@@ -60,22 +61,31 @@
                             <h3>Privacy settings</h3>
                             <p class="sub-text">Who can see my Emmortal profile?</p>
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
-                                    <span class="caret drop-icon"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)">For AllL</a></li>
+                                <select name="AID" id="profileView" class="drop dropdown-toggle drop-down "  data-toggle="dropdown">
+                                    <option value="0">For All</option>
+                                    <option value="1">For Friend</option>
+								</select>
+                                <!--<button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
+                                    <span class="caret drop-icon"></span>
+                                </button>-->
+                                <!--<ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0)">For All</a></li>
                                     <li><a href="javascript:void(0)">For Friend</a></li>
-                                </ul>
+                                </ul>-->
                             </div>
                             <br>
                             <p class="sub-text">Who can find me?</p>
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
+                                <select name="AID" id="nameView" class="drop dropdown-toggle drop-down "  data-toggle="dropdown">
+                                    <option value="all">For All</option>
+                                    <option value="friend">For Friend</option>
+								</select>
+                                <!--<button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
                                     <span class="caret drop-icon"></span></button>
                                 <ul class="dropdown-menu">
                                     <li><a href="javascript:void(0)">For AllL</a></li>
                                     <li><a href="javascript:void(0)">For Friend</a></li>
-                                </ul>
+                                </ul>-->
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -94,10 +104,11 @@
                     <div id="support" class="tabcontent">
                         <div class="col-lg-7">
                             <h3>Send us your question</h3>
-                            <textarea rows="4" cols="50">
+                            <textarea rows="4" cols="50" id="questionDetails">
 
                             </textarea>
-                            <a class="save-new" href="javascript:void(0)">Send</a>
+                            <a class="save-new" href="javascript:void(0)" style="cursor:pointer;" id="saveQuestion">Send</a>
+                            <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
                         </div>
 
                     </div>

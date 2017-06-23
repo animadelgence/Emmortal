@@ -91,7 +91,7 @@ class ImageController extends AbstractActionController {
             exit;
         }
         $uploadQuery = array(
-                            'UID'=>2,
+                            'UID'=>$this->sessionid,
                             'PID'=>$currentPageId,
                             'uploadTitle'=>$imageTitle,
                             'uploadDescription'=>$imageDescription,

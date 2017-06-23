@@ -31,6 +31,10 @@ function openCity(evt, cityName) {
 }
 
 $(document).ready(function () {
+    "use strict";
+	$(".datepicker").datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
     $('body').on('click', '#password_save', function () {
         var regexpassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/,
             currentPassword = $("#acc-cur-pass").val(),
@@ -87,7 +91,7 @@ $(document).ready(function () {
             success: function (result) {
                 //console.log(result);
                 
-                jsObject = JSON.parse(result);
+                var jsObject = JSON.parse(result);
                 //console.log(jsObject);
                 //return false;
                 $(".div--error_secondmsg").html(jsObject.Message).css('display', 'block');
@@ -98,5 +102,105 @@ $(document).ready(function () {
             }
         });
         
+    });
+    $("#changePersonalDetails").click(function (e) {
+
+        e.preventDefault();
+        var accountFirstName = $("#acc-name").val(),
+            accountLastName = $("#acc-lastname").val(),
+            accountDOB = $("#acc-dob").val();
+        if (accountFirstName.trim() === "") {
+            $(".div--error_secondmsg").html('Enter Your First Name').css('display', 'block');
+            setTimeout(function () {
+                $(".div--error_secondmsg").fadeOut(300, function () {});
+            }, 6000);
+        } else if ((accountLastName.trim === "")) {
+            $(".div--error_secondmsg").html('Enter Your Last Name').css('display', 'block');
+            setTimeout(function () {
+                $(".div--error_secondmsg").fadeOut(300, function () {});
+            }, 6000);
+        } else {
+            $.ajax({
+                url: base_url_dynamic + "/settings/changedetails",
+                type: "POST",
+                data: {
+                    accountFirstName: accountFirstName,
+                    accountLastName: accountLastName,
+                    accountDOB: accountDOB
+                },
+                success: function (result) {
+                    //console.log(result);return false;
+                    $(".div--error_secondmsg").html('Account details updated').css('display', 'block');
+                    setTimeout(function () {
+                        $(".div--error_secondmsg").fadeOut(300, function () {});
+                    }, 6000);
+                    return false;
+                }
+
+            });
+        }
+        
+    });
+    $('body').on('click', '#saveQuestion', function () {
+        var questionDetails = $('#questionDetails').val();
+        if (questionDetails.trim() === "") {
+            $(".div--error_secondmsg").html('Enter Your First Name').css('display', 'block');
+            setTimeout(function () {
+                $(".div--error_secondmsg").fadeOut(300, function () {});
+            }, 6000);
+        } else {
+            $.ajax({
+                url: base_url_dynamic + "/settings/sendQuestion",
+                type: "POST",
+                data: {
+                    questionDetails: questionDetails
+                },
+                success: function (result) {
+                    console.log(result);//return false;
+                    $(".div--error_secondmsg").html('Query sent').css('display', 'block');
+                    setTimeout(function () {
+                        $(".div--error_secondmsg").fadeOut(300, function () {});
+                    }, 6000);
+                    return false;
+                }
+
+            });
+        }
+    });
+    $('body').on('change', '#profileView', function () {
+        var optionValue = $(this).val(),
+            type = 'profile';
+        alert(optionValue);
+        $.ajax({
+            url: base_url_dynamic + "/settings/viewProfilePermission",
+            type: "POST",
+            data: {
+                optionValue: optionValue,
+                type: type
+            },
+            success: function (result) {
+                console.log(result);return false;
+
+            }
+
+        });
+    });
+    $('body').on('change', '#nameView', function () {
+        var optionValue = $(this).val(),
+            type = 'name';;
+        alert(optionValue);
+        $.ajax({
+            url: base_url_dynamic + "/settings/viewProfilePermission",
+            type: "POST",
+            data: {
+                optionValue: optionValue,
+                type: type
+            },
+            success: function (result) {
+                console.log(result);return false;
+
+            }
+
+        });
     });
 });

@@ -88,5 +88,41 @@
             exit;
 
         }
+        public function joinquery($query){
+           $sql = new Sql($this->tableGWay->adapter);
+           $select = $sql->select();
+           $select->from($this->tableGWay->getTable())
+                 ->join('friends', 'user.userid = friends.userid')
+                 ->where("user.userid='$query'");
+            $result = $this->tableGWay->selectWith($select);
+            $data=array();
+		    foreach($result as $rSet) {
+			         $data[]=array(
+                            'id' => $rSet->id,
+                            'userid' => $rSet->userid,
+                            'friendsid' => $rSet->friendsid,
+                            'friendshipdate' => $rSet->friendshipdate,
+                            'requestaccept' => $rSet->requestaccept,
+                            'relationshipstatus' => $rSet->relationshipstatus,
+                            'emailid' => $rSet->emailid,
+                            'password' => $rSet->password,
+                            'forgetpassword' => $rSet->forgetpassword,
+                            'firstname' => $rSet->firstname,
+                            'lastname' => $rSet->lastname,
+                            'profileimage' => $rSet->profileimage,
+                            'backgroundimage' => $rSet->backgroundimage,
+                            'signindate' => $rSet->signindate,
+                            'login' => $rSet->login,
+                            'lastlogout' => $rSet->lastlogout,
+                            'keepmelogin' => $rSet->keepmelogin,
+                            'seeme' => $rSet->seeme,
+                            'findme' => $rSet->findme,
+                            'content' => $rSet->content,
+                            'activation' => $rSet->activation
+			         );
+		   }
+            print_r($data);exit;
+           return $data;
+	    }
     }
 ?>

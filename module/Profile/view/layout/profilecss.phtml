@@ -32,7 +32,8 @@ switch ($controller) {
              case 'general':
                 $this->headLink()
                     ->prependStylesheet($this->basePath() . '/css/profile/setting.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t);
+                    ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t)
+                    ->prependStylesheet('//code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css');
                  break;
         }
         break;

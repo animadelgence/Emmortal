@@ -44,7 +44,7 @@ class UsersettingController extends AbstractActionController {
         //if ($publisherDetails[0]['password'] != $pass) {
         if ($passcheck == false) {
             $response['error'] = 1;
-            $response['Message'] = "You current password is wrong";
+            $response['Message'] = "Your current password is wrong";
         } else {
             //$passnew = $plugin->encrypt_decrypt('encrypt', $_POST['newPassword']);
             $passnew = password_hash(($_POST['newPassword']), PASSWORD_BCRYPT);
@@ -59,4 +59,65 @@ class UsersettingController extends AbstractActionController {
         echo json_encode($response);
         exit;
     }
+    public function changedetailsAction() {
+
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $firstName = $_POST['accountFirstName'];
+        $lastName = $_POST['accountLastName'];
+        //$accountEmail = $_POST['accountEmail'];
+        $accountDOB = $_POST['accountDOB'];
+        $conditionpublisherarray = array('userid' => $this->sessionid);
+        
+        $data = array(
+
+            'firstname' => $firstName,
+            'lastname' => $lastName,
+            'dateofbirth' => $accountDOB
+            //'emailid' =>$accountEmail
+        );
+        $updateUserData = $modelPlugin->getuserTable()->updateuser($data, $conditionpublisherarray);
+       
+        
+        exit;
+    }
+    public function sendQuestionAction() {
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $mailplugin = $this->mailplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $questionDetails = $_POST['questionDetails'];
+        $keyArray = array('userid'=>$this->sessionid);
+        $usercheck = $modelPlugin->getuserTable()->fetchall($keyArray);
+        $fullname = $usercheck[0]['firstname']." ".$usercheck[0]['lastname'];
+        $searchArray = array('mailCatagory' => 'Q_MAIL');
+        $getMailStructure = $modelPlugin->getmailconfirmationTable()->fetchall($searchArray);
+        $getmailbodyFromTable = $getMailStructure[0]['mailTemplate'];
+        $activationLinkreplace = str_replace("|QUERY|", $questionDetails, $getmailbodyFromTable);
+        $email = 'rajyasree.delgence@gmail.com';
+        $mailBody = str_replace("|FULLNAME|", $fullname, $activationLinkreplace);
+        $subject = "Query to be answered";
+        $from = $jsonArray['sendgridaccount']['addfrom'];
+        echo $mailBody;exit;
+        $mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
+        echo $mailfunction;exit;
+    }
+    public function viewProfilePermissionAction() {
+        $optionValue = $_POST['optionValue'];
+        $typeValue = $_POST['type'];
+        $modelPlugin = $this->modelplugin();
+        $conditionData = array('userid' => $this->sessionid);
+        if($typeValue == 'name')
+        {
+            $data = array('viewname' => $optionValue);
+        }
+        else
+        {
+            $data = array('viewprofile' => $optionValue);
+        }
+        $updateData = $modelPlugin->getuserTable()->updateuser($data, $conditionData);
+        echo $updateData;exit;
+    }
+    
 }

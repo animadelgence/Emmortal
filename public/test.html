@@ -1,0 +1,27 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://dev2.scampaigns.com/usertemplate/132594ce0f10c79a7-GiveAway/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function(){
+		$('.btn').on('click', function() {
+			//alert();
+			var $this = $(this);
+			//console.log($this);
+			$this.button('loading');
+			setTimeout(function() {
+				//alert();
+			   $this.button('reset');
+		   }, 8000);
+		});
+	});
+    </script>
+</head>
+<div style="margin:3em;">
+<button type="button" class="btn btn-primary btn-lg " id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">Submit Order</button>
+<br>
+  <br>
+<button type="button" class="btn btn-primary btn-lg" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">Submit Order</button>
+</div>

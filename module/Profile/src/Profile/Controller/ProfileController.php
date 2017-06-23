@@ -183,6 +183,24 @@ class ProfileController extends AbstractActionController {
 
         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
+    public function savefilestatusAction(){
+        $plugin             = $this->routeplugin();
+        $modelPlugin        = $this->modelplugin();
+        $dynamicPath        = $plugin->dynamicPath();
+        $style = $_POST['style'];
+        $uploadId = $_POST['uploadId'];
+        $data = array('filestatus'=>$style
+                              );
+        $where = array('uploadId'=>$uploadId
+                              );
+
+
+        $savefilestatus       = $modelPlugin->getuploadDetailsTable()->updateData($data,$where);
+        echo $savefilestatus;exit;
+
+
+
+    }
 
     public function logoutuserAction() {
 

@@ -64,13 +64,14 @@
         var name = $(this).text();
         //alert($("#append-div-tribute").children().find(".frnd-span-class").length);
         if($("#append-div-tribute").children().html() == "" ){
-            $('<span class="frnd-span-class">' + name + '<i class="fa fa-times frnd-cancel frnd-cross-class" aria-hidden="true"></i><input type="hidden" class = "frndId" name="frndId[]" value="' + id + '"></span>&#59;').insertBefore('#append-div-tribute input[type="text"]');
+            $('<span class="frnd-span-class">' + name + '<i class="fa fa-times frnd-cancel frnd-cross-class" id="idvalue_'+id+'" aria-hidden="true"></i><input type="hidden" class = "frndId" name="frndId[]" value="' + id + '"></span>&#59;').insertBefore('#append-div-tribute input[type="text"]');
         }else{
            var prevId = $("#append-div-tribute").find(".frndId").val();
-            frndDetails.pop(prevId);
+            frndDetails.pop();
+            $("#idvalue_"+prevId).trigger("click");
+             $('<span class="frnd-span-class">' + name + '<i class="fa fa-times frnd-cancel frnd-cross-class" id="idvalue_'+id+'" aria-hidden="true"></i><input type="hidden" class = "frndId" name="frndId[]" value="' + id + '"></span>&#59;').insertBefore('#append-div-tribute input[type="text"]');
+            
         }
-       
-       // $(".frnd-cancel").trigger("click");
         $('#frndlisttribute').hide();
         $('#friendsidtribute').val('');
     });

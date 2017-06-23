@@ -1,6 +1,6 @@
-.welcome {
+/*.welcome {
     height: 75px;
-   /* width: 100px;*/
+    width: 100px;
     background: #fff;
     position: fixed;
     right: 50px;
@@ -8,6 +8,18 @@
     border-bottom: 8px solid green;
     text-align: center;
     font-weight: 600;
+}*/
+
+.welcome {
+    background: #fff;
+    position: relative;
+    border-bottom: 8px solid green;
+    text-align: center;
+    font-weight: 600;
+    z-index: 99999;
+    float: right;
+    top: -76px;
+    margin-right: 15px;
 }
 .close-msg {
     text-align: right;

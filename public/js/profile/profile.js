@@ -36,13 +36,41 @@ $(document).ready(function () {
         ]
     });
     CKEDITOR.disableAutoInline = true;
-   // $(".resizable").resizable("option","minHeight",parseInt($(".resizable").height(),10));
     $( ".resizable" ).resizable({
-         maxHeight: 250,
-      maxWidth: 350,
+          
+      maxHeight: 250,
+      maxWidth: 355,
       minHeight: 150,
       minWidth: 200
+
     });
+    $('.vid-sec').resize(function(){
+        var style = $(this).attr("style");
+        var uploadId = $(this).find(".uploadId").val();
+           $.ajax({
+                type: "POST",
+                async:false,
+                url: base_url_dynamic + '/profile/savefilestatus',
+                data: {style:style,uploadId:uploadId},
+                success: function (res) {
+                //alert(res);
+                }
+            });
+    });
+    /*$('.vid-sec').mouseup(function(){
+        var style = $(this).attr("style");
+        var uploadId = $(this).find(".uploadId").val();
+           $.ajax({
+                type: "POST",
+                url: base_url_dynamic + '/profile/savefilestatus',
+                data: {style:style,uploadId:uploadId},
+                success: function (res) {
+                alert(res);
+                }
+            });
+
+        
+    });*/
     $('body').on('click', '#textInsert', function () {
         $('.close').trigger('click');
         $('#textTitleError').hide();

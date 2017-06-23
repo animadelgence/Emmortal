@@ -22,6 +22,7 @@
                     'uploadTitle' => $rSet->uploadTitle,
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
+                    'filestatus' => $rSet->filestatus,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,
@@ -36,7 +37,7 @@
         }
         public function updateData($data,$where)
         {
-            $rowset = $this->tableGWay->select($where);
+            //$rowset = $this->tableGWay->select($where);
             $res = $this->tableGWay->update($data,$where);
             return $res;
         }

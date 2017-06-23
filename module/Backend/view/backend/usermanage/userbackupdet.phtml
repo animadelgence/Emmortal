@@ -55,9 +55,9 @@
 								<td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;"><?php echo $val['flag'];?>
 								</span></td>
-								<input type="hidden"  class="hidden_class restoreId" id="restoreId" value="<?php echo $val['deleteId']; ?>" />
+								<input type="hidden"  class="hidden_class restoreId" id="restoreId" name="restoreId" value="<?php echo $val['deleteId']; ?>" />
 								<td>
-                                            <button class="btn btn-primary btn-xs restoreUser">
+                                            <button class="btn btn-primary btn-xs restoreUser" title="restore user">
                                                 <i class="fa fa-undo" aria-hidden="true"></i>
                                             </button>
                                 </td>
@@ -79,7 +79,6 @@
 	<!--wrapper -->
 
     <!--alert popup -->
-<!--
 	<section id="dynamicalertpopup" class="popupFormForDynamicPage chang_PPopup_conta">
 	<div id="" class="chang_PPopup">
     <div class="tab-content" style="border:0px solid;width:490px;">
@@ -95,34 +94,10 @@
 				</div>
 			</div>
 		</form>
-	</div>tab-content
+	</div><!--/tab-content-->
     </div>
     </section>
--->
     <!-- /alert popup-->
-
-    <!--usertemplate restore popup -->
-<!--
-	<section id="templateRestorePopup" class="popupFormForDynamicPage chang_PPopup_conta">
-	<div id="" class="chang_PPopup">
-    <div class="tab-content" style="border:0px solid;width:490px;">
-		<form class="form-popup" style="margin-top: 0px;" enctype="multipart/form-data">
-			 <a class="close" href="javascript:void(0);" onclick="$('#templateRestorePopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
-			<h2 class="form-login-heading">Restore All Usertemplates</h2>
-			<div class="login-wrap" style="overflow:hidden;text-align:center;">
-				<input type="hidden" name="hidden_id" value="" id="hidden_resid" class="hidden_id" />
-				<h4 class="form-login-heading">Do you want to restore all the usertemplates of this user?</h4>
-				<div style="overflow:hidden;display:inline-block;">
-                    <input type="button" class="popup_cancel" id="cancelRestore" value="NO"/>
-                    <input type="button" class="popup_cancel" id="restoreTemp" value="YES"/>
-				</div>
-			</div>
-		</form>
-	</div>tab-content
-    </div>
-    </section>
--->
-    <!-- /usertemplate restore popup-->
 
 </section>
 <!-- /MAIN CONTENT -->

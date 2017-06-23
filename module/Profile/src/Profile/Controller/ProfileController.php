@@ -138,7 +138,7 @@ class ProfileController extends AbstractActionController {
         foreach ($recfrndDetails as $rset) {
             $array[] = array(
                 'friendsid'     => $rset['userid'],
-                'friendsname'   => $rset['firstname']." ".$rSet['lastname'],
+                'friendsname'   => $rset['firstname']." ".$rset['lastname'],
                 'profileimage'  => $rset['profileimage']
             );
         }
@@ -192,6 +192,24 @@ class ProfileController extends AbstractActionController {
         $albumDetails       = $modelPlugin->getuploadDetailsTable()->insertData($data);
 
         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+    }
+    public function savefilestatusAction(){
+        $plugin             = $this->routeplugin();
+        $modelPlugin        = $this->modelplugin();
+        $dynamicPath        = $plugin->dynamicPath();
+        $style = $_POST['style'];
+        $uploadId = $_POST['uploadId'];
+        $data = array('filestatus'=>$style
+                              );
+        $where = array('uploadId'=>$uploadId
+                              );
+
+
+        $savefilestatus       = $modelPlugin->getuploadDetailsTable()->updateData($data,$where);
+        echo $savefilestatus;exit;
+
+
+
     }
 
     public function logoutuserAction() {

@@ -29,6 +29,7 @@ namespace Backend\Controller;
               //$data = array();
               $userdata = $modelPlugin->getuserTable()->fetchallnew(); //fetchall();
 		      return new ViewModel(array('userdata'=>$userdata));
+
      }
      public function usereditAction(){
               $this->layout('layout/backendlayout');
@@ -42,6 +43,7 @@ namespace Backend\Controller;
               $userid = $this->getEvent()->getRouteMatch()->getParam('id');
               $userdata = $modelPlugin->getuserTable()->fetchall(array('userid'=>$userid));
 		      return new ViewModel(array('userdata'=>$userdata));
+
      }
      public function usereditsubmitAction(){
               $modelPlugin = $this->modelplugin();
@@ -61,8 +63,7 @@ namespace Backend\Controller;
 				'action' => 'userdetails'));
 
      }
-
-     public function userbackupAction(){
+     public function userdeleteAction(){
               $modelPlugin = $this->modelplugin();
               $userid = $_POST['hidden_id'];
               $where = array('userid'=>$userid);
@@ -84,8 +85,8 @@ namespace Backend\Controller;
               return $this->redirect()->toRoute('usermanage', array(
 				      'controller' => 'usermanage',
 				      'action'     => 'userdetails'));
-     }
 
+     }
      public function userbackupdetAction(){
               $this->layout('layout/backendlayout');
               $modelPlugin = $this->modelplugin();
@@ -96,8 +97,45 @@ namespace Backend\Controller;
               $action = @$href[4];
               $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
               $backupdata = $modelPlugin->getuserbackupTable()->fetchallnew();
-              //print_r($backupdata); exit;
               return new ViewModel(array('backupdata'=>$backupdata));
+
+     }
+     public function restoreuserAction(){
+              $plugin = $this->routeplugin();
+              $modelPlugin = $this->modelplugin();
+              $id = $this->getEvent()->getRouteMatch()->getParam('id');
+
+              $data=array('deleteId'=>$id);
+              $fetchuserdata = $modelPlugin->getuserbackupTable()->fetchall($data);
+              $userid = $fetchuserdata[0]['userid'];
+
+              $datainsert=array('emailid'=>$fetchuserdata[0]['emailid'],'password'=>$fetchuserdata[0]['password'],'forgetpassword'=>$fetchuserdata[0]['forgetpassword'],'firstname'=>$fetchuserdata[0]['firstname'],'lastname'=>$fetchuserdata[0]['lastname'],'dateofbirth'=>$fetchuserdata[0]['dateofbirth'],'profileimage'=>$fetchuserdata[0]['profileimage'],'signindate'=>date('Y-m-d h:i:s'));
+
+              $insertuser = $modelPlugin->getuserTable()->saverestore($datainsert);
+              $delbackup = $modelPlugin->getuserbackupTable()->deleteuser($data);
+
+              return $this->redirect()->toRoute('usermanage', array(
+				      'controller' => 'usermanage',
+				      'action'     => 'userdetails'));
+
+     }
+     public function emailcheckAction(){
+              $plugin = $this->routeplugin();
+              $modelPlugin = $this->modelplugin();
+              $id = $_POST['deleteId'];
+              $data=array('deleteId'=>$id);
+              //check if email already exists(start)
+              $fetchuserdata = $modelPlugin->getuserbackupTable()->fetchall($data);
+              $email = array('emailid'=>$fetchuserdata[0]['emailid']);
+              $chkemail = $modelPlugin->getuserTable()->fetchall($email);
+              if(empty($chkemail)){
+              //check if email already exists(end)
+                  echo "success";
+              }
+              else{
+                  echo "error";
+              }
+              exit;
      }
 
 

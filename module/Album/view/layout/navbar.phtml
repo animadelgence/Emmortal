@@ -19,7 +19,7 @@
    <div class="container">
       <div class="row">
          <div>
-            <div class="welcome" style="display:none;">
+            <!--<div class="welcome" style="display:none;">
                <div class="close-msg">
                   <a href="#">
                   <i class="fa fa-times closebtn" aria-hidden="true"></i>
@@ -27,11 +27,11 @@
                </div>
                <div class="showmsg" style="margin:5px;">
                   <?php
-                     if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
+                     //if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
                   <span>Welcome!</span>
-                  <?php } ?>
+                  <?php //} ?>
                </div>
-            </div>
+            </div>-->
             <div class="col-lg-8">
                <a href="/album/showalbum" class="logo-style">Emmortal</a>
                <?php if( $sessionid != ""){ ?>
@@ -113,7 +113,19 @@
       </div>
    </div>
 </section>
-
+<div class="welcome" style="display:none;">
+   <div class="close-msg">
+      <a href="#">
+      <i class="fa fa-times closebtn" aria-hidden="true"></i>
+      </a>
+   </div>
+   <div class="showmsg" style="margin:5px;">
+      <?php
+         if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
+      <span>Welcome!</span>
+      <?php } ?>
+   </div>
+</div>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/uploadmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/textinsertmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/imageinsertmodal.php"); ?>

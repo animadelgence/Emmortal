@@ -8,7 +8,6 @@
 
 			<h1 id="csv_title" style="display: none;">Emmortal User Details</h1>
 			<a class="download-report export dwnload_csv" href="javascript:void(0)" download="Participant-Details.csv" title="Download CSV in excel">Download CSV</a>
-				<a href="/usermanage/adduser" class="new_user" title="Add user">New User</a>
 				<a href="/usermanage/userbackupdet" class="user_backup" title="User backup details"><i class="fa fa-recycle fa-3x" aria-hidden="true"></i></a>
 
 
@@ -44,24 +43,8 @@
 									class="fa fa-bookmark"></i> Email</td>
                                 <td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
 									class="fa fa-bookmark"></i> Profile image</td>
-<!--
-								<td style="cursor: pointer; font-weight: bold;" class="hidden-phone"><i
-									class="fa fa-bookmark"></i> Subscription type / plan</td>
-								<td class="hidden-phone" style="cursor: pointer; font-weight: bold;"><i
-									class="fa fa-bookmark"></i> Status</td>
--->
                                 <td style="cursor: pointer; font-weight: bold;"><i
 									class="fa fa-bookmark"></i> Registration Date</td>
-<!--
-								<td style="cursor: pointer; font-weight: bold;"><i
-									class="fa fa-bookmark"></i> Subscription Start Date</td>
-								<td style="cursor: pointer; font-weight: bold;"><i
-									class="fa fa-bookmark"></i> Subscription End Date</td>
--->
-<!--
-								<td style="cursor: pointer; font-weight: bold;"><i
-									class="fa fa-bookmark"></i> Refer From</td>
--->
 								<td style="cursor: pointer; font-weight: bold;" class="sorttable_nosort"><i
 									class="fa fa-bookmark"></i> Action</td>
 							</tr>
@@ -82,27 +65,10 @@
                                 <td class="hidden-phone profileImg"><span class="profileImg"
 									style="padding: 5px; font-weight: bold;"><img src="<?php echo $val['profileimage'] ?>"  height="100px" width="100px" /><!--(after src tag) onerror="this.src='<?php //echo $dynamicPath; ?>/template/demo.jpg'"-->
 								</span></td>
-<!--
-								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;" value="<?php //if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>"><?php //if(($val['subscriptionType']) == ""){ echo "Monthly"." / "."Free Trial";} else{ echo $val['subscriptionType']." / ".$val['licensePlan'];} ?>
-								</span></td>
--->
-<!--
-								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;" value="<?php //if(($val['status']) == 'Activated'){ echo "1";} //elseif(($val['status']) == 'Deactivated'){ echo "0";}?>"><?php //echo $val['status']; ?>
-								</span></td>
--->
                                 <td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;"><?php echo $val['signindate'];?>
 								</span></td>
-<!--
-								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;"><?php //echo $val['Subscriptiondate'];?>
-								</span></td>
-								<td class="hidden-phone"><span class=""
-									style="width: 80%; display: inline-block;"><?php //echo $val['expireDate'];?>
-								</span></td>
--->
+
 								<input type="hidden"  class="hidden_class" value="<?php echo $val['userid']; ?>" />
 								<td class="sorttable_nosort">
 
@@ -143,7 +109,7 @@
 	<section id="dynamicpagecreatepopup" class="popupFormForDynamicPage chang_PPopup_conta">
 	 <div id="" class="chang_PPopup">
      <div class="tab-content" style="border:0px solid;width:490px;">
-		<form class="form-popup" style="margin-top: 0px;" method="POST" action="/usermanage/userbackup" enctype="multipart/form-data">
+		<form class="form-popup" style="margin-top: 0px;" method="POST" action="/usermanage/userdelete" enctype="multipart/form-data">
 			 <a class="close" href="javascript:void(0)" onclick="$('#dynamicpagecreatepopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
 			<h2 class="form-login-heading">Delete User</h2>
 			<div class="login-wrap" style="overflow:hidden;text-align:center;">
@@ -158,29 +124,6 @@
      </div><!--/tab-content-->
      </div>
     </section><!-- /delete popup-->
-
-    <!--publish-campaign status popup -->
-<!--
-	<section id="pubStatusPopup" class="popupFormForDynamicPage chang_PPopup_conta">
-	<div id="" class="chang_PPopup">
-    <div class="tab-content" style="border:0px solid;width:490px;">
-		<form class="form-popup" style="margin-top: 0px;" method="POST" enctype="multipart/form-data">
-			 <a class="close" href="javascript:void(0)" onclick="$('#pubStatusPopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
-			<h2 class="form-login-heading">Set Publish Status</h2>
-			<div class="login-wrap" style="overflow:hidden;text-align:center;">
-				<input type="hidden" name="hidden_uId" value="" id="hidden_uId" class="hidden_id" />
-				<h4 class="form-login-heading">Set status of the published campigns of the chosen user</h4>
-				<div style="overflow:hidden;display:inline-block;">
-                    <input type="button" class="popup_cancel" id="activBtn" value="ACTIVATE"/>
-                    <input type="button" class="popup_cancel" id="deactivBtn" value="DEACTIVATE"/>
-				</div>
-			</div>
-		</form>
-	</div>tab-content
-    </div>
-    </section>
--->
-    <!-- /publish-campaign status popup -->
 
 </section>
 <!-- /MAIN CONTENT -->

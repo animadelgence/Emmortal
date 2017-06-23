@@ -50,13 +50,19 @@ $(document).ready(function () {
             flag = 1;
             $('#cke_friendtributeDescription').addClass('error-class');
             $('#friendtributeDescriptionError').show();
+            $(".welcome").show();
+            $(".closebtn").css('color','red');
+            $(".showmsg").html("<span style='color:red;'><strong>Text</strong>:Required</span>");
         } else {
             $('#friendtributeDescriptionError').hide();
             $('#cke_friendtributeDescription').removeClass('error-class');
         }
         if (flag == 0) {
-            getAlbum(frndId, textDescription, '');
+            getAlbum(frndId, textDescription);
             $('.close').trigger('click');
+            $(".welcome").show();
+            $(".closebtn").css('color','green');
+            $(".showmsg").html("<span>Tribute record was successfully added</span>");
         }
     });
     $("#friendTributeAddModal").on("hidden.bs.modal", function () {

@@ -41,7 +41,6 @@
         }
         public function fetchallnew()
         {
-//                $resultSet = $this->tableGWay->select();
                 $sql = new Sql($this->tableGWay->adapter);
 		          $select = $sql->select();
                   $select->from($this->tableGWay->getTable())

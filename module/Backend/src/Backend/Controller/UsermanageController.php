@@ -63,62 +63,7 @@ namespace Backend\Controller;
 				'action' => 'userdetails'));
 
      }
-     public function adduserAction(){
-              $this->layout('layout/backendlayout');
-              $modelPlugin = $this->modelplugin();
-              $plugin = $this->routeplugin();
-              $currentPageURL = $plugin->curPageURL();
-              $href = explode("/", $currentPageURL);
-              $controller = @$href[3];
-              $action = @$href[4];
-              $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
-              return new ViewModel();
-
-     }
-     public function saveuserAction(){
-              $plugin = $this->routeplugin();
-              $modelPlugin = $this->modelplugin();
-              $mailplugin = $this->mailplugin();
-              $jsonArray = $plugin->jsondynamic();
-              $phpprenevt = $this->phpinjectionpreventplugin();
-              $email =  $phpprenevt->stringReplace(trim($_POST['email']));
-              $password = $phpprenevt->stringReplace(trim($_POST['password']));
-              $password = password_hash($password,PASSWORD_BCRYPT);
-              $usermailArray = array('email' => $email);
-              $chekmail = $modelPlugin->getpublisherTable()->selectEmail($usermailArray);
-              if (count($chekmail) == 0){
-                   $startDate = date('Y-m-d');
-                   $date = strtotime($startDate);
-                   $endDate = date("Y-m-d", strtotime("+14 days", $date));
-                   $datapub=array('email'=>$email, 'password'=>$password, 'fname'=>'Emmortaluser', 'sfpuser'=>"1",'regTime'=>date('Y-m-d h:i:s'), 'Walkthrough'=>"0", 'mailSendFlag'=>"1");
-                   $lastinsertid = $modelPlugin->getpublisherTable()->saveAll($datapub);
-                   $datasub=array('PID'=>$lastinsertid,'licensePlan'=>'Free Trial','subscriptionType'=>'Monthly','status'=>"Activated", 'Subscriptiondate'=>$startDate,'Subscriptiontime'=>date('h:i:s'),'expireDate'=>$endDate);
-                   $insertsub = $modelPlugin->getsubscriptionDetailsTable()->saveAll($datasub);
-                  $coockievalue = password_hash($lastinsertid, PASSWORD_BCRYPT);
-                  $cookieArray = array('cookievalue' => $coockievalue,"chkcookie"=> strrev($coockievalue));
-                  $updateId = array('publisherId' => $lastinsertid);
-                  $contentone = $modelPlugin->getpublisherTable()->updateuser($cookieArray, $updateId);
-                   $dynamicPath = "http://" . $jsonArray['domain']['domain_name'];
-                   $from = $jsonArray['sendgridaccount']['addfrom'];
-                   $checknewmail = $modelPlugin->getpublisherTable()->selectEmail($usermailArray);
-                   if (count($checknewmail) == 1){
-                      $encryptedPassword = base64_encode("#$#" . base64_encode(base64_encode($lastinsertid . rand(10, 100)) . "###" . base64_encode($lastinsertid) . "###" . base64_encode($userid . rand(10, 100)) . "###" . base64_encode(base64_encode($lastinsertid . rand(10, 100)))) . "#$#");
-                      $buttonclick = $dynamicPath . "/Gallery/galleryview/" . $encryptedPassword;
-                      $activationLink = "<a href='".$buttonclick."' style='margin: 0; outline: none; padding: 15px; color: #ffffff; background-color: #04ad6a; border: 0px solid #919191; border-radius: 6px; font-family: Arial; font-size: 16px; display: inline-block; line-height: 1.1; text-align: center; text-decoration: none;'>Click here to activate</a>";
-                      $keyArray = array('mailCatagory' => 'R_MAIL');
-                      $getMailStructure = $modelPlugin->getconfirmMailTable()->fetchall($keyArray);
-                      $getmailbodyFromTable = $getMailStructure[0]['mailTemplate'];
-                      $activationLinkreplace = str_replace("|ACTIVATIONLINK|", $activationLink, $getmailbodyFromTable);
-                      $mailBody = str_replace("|DYNAMICPATH|", $dynamicPath, $activationLinkreplace);
-                      $subject = "Confirm your email address";
-                      $mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
-                    }
-              }
-              else{
-                      echo "error";
-              }
-              exit;
-     public function userbackupAction(){
+     public function userdeleteAction(){
               $modelPlugin = $this->modelplugin();
               $userid = $_POST['hidden_id'];
               $where = array('userid'=>$userid);

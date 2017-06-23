@@ -2,7 +2,7 @@
  * @Author: Rituparna
  * @Date:   2017-06-22 17:46:35
  * @Last Modified by: Rituparna
- * @Last Modified time: 2017-04-25 19:21:42
+ * @Last Modified time: 2017-06-22 19:21:42
  */
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
@@ -50,44 +50,8 @@ var Script = (function () {
             $('.common_class').removeClass('active');
             $('.userreg').addClass('active');
         }
-//            else if (pathname === '/template/templateview') {
-//            $('.common_class').removeClass('active');
-//            $('.template').addClass('active');
-//        } else if (pathname === '/template/templateedit/' + part4) {
-//            $('.common_class').removeClass('active');
-//            $('.template').addClass('active');
-//        } else if (pathname === '/language/index') {
-//            $('.common_class').removeClass('active');
-//            $('.language').addClass('active');
-//        } else if (pathname === '/tag/viewtag') {
-//            $('.common_class').removeClass('active');
-//            $('.tag').addClass('active');
-//        } else if (pathname === '/tag/edittag/' + part4) {
-//            $('.common_class').removeClass('active');
-//            $('.tag').addClass('active');
-//        } else if (pathname === '/tag/addtag') {
-//            $('.common_class').removeClass('active');
-//            $('.tag').addClass('active');
-//        } else if (pathname === '/Sectionmanage/viewsection') {
-//            $('.common_class').removeClass('active');
-//            $('.section').addClass('active');
-//        } else if (pathname === '/Sectionmanage/addsection') {
-//            $('.common_class').removeClass('active');
-//            $('.section').addClass('active');
-//        } else if (pathname === '/Sectionmanage/editsection/' + part4) {
-//            $('.common_class').removeClass('active');
-//            $('.section').addClass('active');
-//        } else if (pathname === '/Sectionmanage/viewcategory') {
-//            $('.common_class').removeClass('active');
-//            $('.section').addClass('active');
-//        } else if (pathname === '/Sectionmanage/addcategory') {
-//            $('.common_class').removeClass('active');
-//            $('.section').addClass('active');
-//        } else if (pathname === '/Sectionmanage/editcategory/' + part4) {
-//            $('.common_class').removeClass('active');
-//            $('.section').addClass('active');
-//        }
-//
+
+
         $('ul').on('click', 'li', function () {
 
             if ($('ul').children('li').hasClass('active')) {
@@ -99,20 +63,9 @@ var Script = (function () {
             if (className === 'usermanage common_class active') {
                 window.location.href = baseUrl + '/usermanage/userdetails';
             }
-//            if (className === 'template common_class active') {
-//                window.location.href = baseUrl + '/template/templateview';
-//            }
-//            if (className === 'language common_class active') {
-//                window.location.href = baseUrl + '/language/index';
-//            }
-//            if (className === 'tag common_class active') {
-//                window.location.href = baseUrl + '/tag/viewtag';
-//            }
-//            if (className === 'section common_class active') {
-//                window.location.href = baseUrl + '/Sectionmanage/viewsection';
-//            }
-//
+
         });
+
     });
 
     //    sidebar toggle

@@ -120,54 +120,54 @@ $(document).ready(function () {
         }
     });
 
-// /* Validation of (Add New User) User Registration Page */
-//    $('#regSave').click(function () {
-//        var email = $('#emailReg').val(),
-//            password = $('#passReg').val(),
-//            pattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[#$@!%&*?]).{8,20}$/,// for password
-//
-//
-//            expr = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/; // for email
-//
-//        if (email == "") { // jshint ignore:line
-//            $('#errorReg').css('display', 'block');
-//            $('#errorReg').html("Please enter an Email");
-//            $('#errorPass').css('display', 'none');
-//            return false;
-//        } else if (!expr.test(email)) { // regex validation for email
-//            $('#errorReg').css('display', 'block');
-//            $('#errorReg').html("Please enter a valid Email");
-//            $('#errorPass').css('display', 'none');
-//            return false;
-//        } else if (password == "") { // jshint ignore:line
-//            $('#errorPass').css('display', 'block');
-//            $('#errorPass').html("Please enter a password");
-//            $('#errorReg').css('display', 'none');
-//            return false;
-//        } else if (!pattern.test(password)) { // regex validation for password
-//            $('#errorPass').css('display', 'block');
-//            $('#errorPass').html("Password should contain minimum 8 characters - at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character");
-//            $('#errorReg').css('display', 'none');
-//            return false;
-//        } else {
-//
-//            $.ajax({
-//                type: "POST",
-//                url: baseUrl + '/usermanage/saveuser',
-//                data : { email : email, password: password},
-//                success: function (response) {
-//                    if (response.trim() == "error") {
-//                        $('#errorReg').html("<font color='red'> Invalid! Email already exists </font>");
-//                        return false; //error message
-//                    } else {
-//                        window.location = baseUrl + '/usermanage/userdetails';
-//                    }
-//                }
-//            });
-//
-//        }
-//    });
-//
+ /* Validation of (Add New User) User Registration Page */
+    $('#regSave').click(function () {
+        var email = $('#emailReg').val(),
+            password = $('#passReg').val(),
+            pattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[#$@!%&*?]).{8,20}$/,// for password
+
+
+            expr = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/; // for email
+
+        if (email == "") { // jshint ignore:line
+            $('#errorReg').css('display', 'block');
+            $('#errorReg').html("Please enter an Email");
+            $('#errorPass').css('display', 'none');
+            return false;
+        } else if (!expr.test(email)) { // regex validation for email
+            $('#errorReg').css('display', 'block');
+            $('#errorReg').html("Please enter a valid Email");
+            $('#errorPass').css('display', 'none');
+            return false;
+        } else if (password == "") { // jshint ignore:line
+            $('#errorPass').css('display', 'block');
+            $('#errorPass').html("Please enter a password");
+            $('#errorReg').css('display', 'none');
+            return false;
+        } else if (!pattern.test(password)) { // regex validation for password
+            $('#errorPass').css('display', 'block');
+            $('#errorPass').html("Password should contain minimum 8 characters - at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character");
+            $('#errorReg').css('display', 'none');
+            return false;
+        } else {
+
+            $.ajax({
+                type: "POST",
+                url: baseUrl + '/usermanage/saveuser',
+                data : { email : email, password: password},
+                success: function (response) {
+                    if (response.trim() == "error") {
+                        $('#errorReg').html("<font color='red'> Invalid! Email already exists </font>");
+                        return false; //error message
+                    } else {
+                        window.location = baseUrl + '/usermanage/userdetails';
+                    }
+                }
+            });
+
+        }
+    });
+
 });
 
 /*Popup Appear When clicked on Delete User Icon*/
@@ -178,24 +178,24 @@ $(".deleteUser").on('click', function (event) {
     $("#dynamicpagecreatepopup").fadeIn();
 });
 
+/*Popup Appear When clicked on Restore User Icon*/
+$(".restoreUser").on('click', function (event) {
+    "use strict";
+    var deleteId = $(this).parent().prev().val();
+    $('#hidden_userid').val(deleteId);
 
-///*Popup Appear When clicked on Restore User Icon*/
-//$(".restoreUser").on('click', function (event) {
-//    "use strict";
-//    var deleteId = $(this).parent().prev().val();
-//    $('#hidden_userid').val(deleteId);
-//
-//    $.ajax({
-//        type: "POST",
-//        url: baseUrl + '/userregistration/emailcheck',
-//        data : { deleteId: deleteId},
-//        success: function (response) {
-//            if (response.trim() == "error") {
-//                $("#dynamicalertpopup").fadeIn();
-//                return false; //error message
-//            } else {
-//                $("#templateRestorePopup").fadeIn();
-//            }
-//        }
-//    });
-//});
+    $.ajax({
+        type: "POST",
+        url: baseUrl + '/usermanage/emailcheck',
+        data : { deleteId: deleteId},
+        success: function (response) {
+            console.log(response);
+            if (response.trim() == "error") {
+                $("#dynamicalertpopup").fadeIn();
+                return false; //error message
+            } else {
+                window.location = baseUrl + '/usermanage/restoreuser/' + deleteId;
+            }
+        }
+    });
+});

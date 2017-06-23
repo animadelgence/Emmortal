@@ -46,11 +46,11 @@ var Script = (function () {
         } else if (pathname === '/usermanage/userbackupdet') {
             $('.common_class').removeClass('active');
             $('.usermanage').addClass('active');
+        } else if (pathname === '/userregistration/adduser') {
+            $('.common_class').removeClass('active');
+            $('.userreg').addClass('active');
         }
-//        else if (pathname === '/userregistration/adduser') {
-//            $('.common_class').removeClass('active');
-//            $('.userreg').addClass('active');
-//        } else if (pathname === '/template/templateview') {
+//            else if (pathname === '/template/templateview') {
 //            $('.common_class').removeClass('active');
 //            $('.template').addClass('active');
 //        } else if (pathname === '/template/templateedit/' + part4) {

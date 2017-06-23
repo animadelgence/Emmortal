@@ -36,7 +36,7 @@
         }
         public function updateData($data,$where)
         {
-            $rowset = $this->tableGWay->select($where);
+            //$rowset = $this->tableGWay->select($where);
             $res = $this->tableGWay->update($data,$where);
             return $res;
         }

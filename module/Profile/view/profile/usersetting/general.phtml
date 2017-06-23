@@ -57,13 +57,13 @@
                         <h3>Purchasing</h3>
                     </div>-->
                     <div id="Privacy" class="tabcontent">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6"> 
                             <h3>Privacy settings</h3>
                             <p class="sub-text">Who can see my Emmortal profile?</p>
                             <div class="dropdown">
                                 <select name="AID" id="profileView" class="drop dropdown-toggle drop-down "  data-toggle="dropdown">
-                                    <option value="0">For All</option>
-                                    <option value="1">For Friend</option>
+                                    <option value="0" <?php if($userDetails[0]['viewprofile'] == 0){echo "selected"; }?>>For All</option>
+                                    <option value="1" <?php if($userDetails[0]['viewprofile'] == 1){echo "selected"; }?>>For Friend</option>
 								</select>
                                 <!--<button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
                                     <span class="caret drop-icon"></span>
@@ -77,8 +77,8 @@
                             <p class="sub-text">Who can find me?</p>
                             <div class="dropdown">
                                 <select name="AID" id="nameView" class="drop dropdown-toggle drop-down "  data-toggle="dropdown">
-                                    <option value="all">For All</option>
-                                    <option value="friend">For Friend</option>
+                                    <option value="0" <?php if($userDetails[0]['viewname'] == 0){echo "selected"; }?>>For All</option>
+                                    <option value="1" <?php if($userDetails[0]['viewname'] == 1){echo "selected"; }?>>For Friend</option>
 								</select>
                                 <!--<button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
                                     <span class="caret drop-icon"></span></button>

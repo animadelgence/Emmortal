@@ -32,7 +32,9 @@
                     'seeme' => $rSet->seeme,
                     'findme' => $rSet->findme,
                     'content' => $rSet->content,
-                    'activation' => $rSet->activation
+                    'activation' => $rSet->activation,
+                    'viewprofile' => $rSet->viewprofile,
+                    'viewname' => $rSet->viewname
                     );
                 }
                 return $array;

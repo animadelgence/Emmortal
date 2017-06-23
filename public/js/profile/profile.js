@@ -152,6 +152,10 @@ $(document).ready(function () {
         }
         if (flag == 0) {
             $('#textAddForm').submit();
+            $('.close').trigger('click');
+            $(".welcome").show();
+            $(".closebtn").css('color','green');
+            $(".showmsg").html("<span>Text record was successfully added</span>");
         }
     });
 });

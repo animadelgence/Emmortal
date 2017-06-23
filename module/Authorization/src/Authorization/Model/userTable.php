@@ -129,11 +129,42 @@
 	    }
 
         public function deleteuser($query) {
-                $rowset = $this->tableGWay->select($query);
-                $resultset = $this->tableGWay->delete($query);
-                return $resultset;
+            $rowset = $this->tableGWay->select($query);
+            $resultset = $this->tableGWay->delete($query);
+            return $resultset;
         }
-
+        public function fetchallData($query) {
+            $sql = new Sql($this->tableGWay->adapter);
+            $select = $sql->select();
+            $select ->from($this->tableGWay->getTable())
+                    ->where("userid != '$query'");
+            $resultSet = $this->tableGWay->selectWith($select);
+            $array = array();
+            foreach ($resultSet as $rSet) {
+                $array[] = array(
+                    'userid' => $rSet->userid,
+                    'emailid' => $rSet->emailid,
+                    'password' => $rSet->password,
+                    'forgetpassword' => $rSet->forgetpassword,
+                    'firstname' => $rSet->firstname,
+                    'lastname' => $rSet->lastname,
+                    'profileimage' => $rSet->profileimage,
+                    'backgroundimage' => $rSet->backgroundimage,
+                    'signindate' => $rSet->signindate,
+                    'login' => $rSet->login,
+                    'lastlogout' => $rSet->lastlogout,
+                    'dateofbirth'=>$rSet->dateofbirth,
+                    'keepmelogin' => $rSet->keepmelogin,
+                    'seeme' => $rSet->seeme,
+                    'findme' => $rSet->findme,
+                    'content' => $rSet->content,
+                    'activation' => $rSet->activation,
+                    'viewprofile' => $rSet->viewprofile,
+                    'viewname' => $rSet->viewname
+                    );
+                }
+                return $array;
+        }
 
     }
 ?>

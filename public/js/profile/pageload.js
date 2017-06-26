@@ -65,7 +65,7 @@ $(function () {
 				} else {
 					appendHtml = "<div class='container-of-sections classdowntoupvisible'>";
 				}
-                appendHtml = "<ul class='outer-wrap'>";
+                appendHtml += "<ul class='outer-wrap'>";
 
                 if (jsObject.defaultPage == 1) {
                     appendHtml += '<li class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></div><div class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></li>';

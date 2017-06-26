@@ -23,7 +23,12 @@ $(function () {
                 if (jsObject.noredirect == 1) {
                     window.location.href(baseUrl + "/profile/showprofile");
                 } else {
+                    if($(".profile-paginator").length){
                     $(".profile-paginator ul").append('<li class="profile-paginator__click" data-fetch-id="' + jsObject.gotostep + '"></li>');
+                    }
+                    else{
+                        $(".user_profile_section").append('<div class="profile-paginator"><ul><li data-fetch-id="'+$("#currentPageId").val()+'" class="profile-paginator__click"></li><li data-fetch-id="'+jsObject.gotostep+'" class="profile-paginator__click "></li></ul></div>');
+                    }
                     $(".profile-paginator ul li:last").trigger("click");
                     $("#currentPageId").val(jsObject.gotostep);
                 }
@@ -60,10 +65,10 @@ $(function () {
 				} else {
 					appendHtml = "<div class='container-of-sections classdowntoupvisible'>";
 				}
-                appendHtml = "<ul class='outer-wrap'>";
+                appendHtml += "<ul class='outer-wrap'>";
 
                 if (jsObject.defaultPage == 1) {
-                    appendHtml += '<li class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></div><div class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></li>';
+                    appendHtml += '<li class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></li><li class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></li>';
                 }
                 if (jsObject.NoPage == 1) {
                     appendHtml += '<li class="user_upload_part_section"><div data-target="#uploadModal" data-toggle="modal"  class="fa fa-plus add-page-plus-icon"></div><div class=""><p>Add your Life moments: upload photos and videos.</p><p>Create Albums, Tributes and add valuable texts.</p><p>"Add" button is always accessible on right top menu.</p></div></li>';

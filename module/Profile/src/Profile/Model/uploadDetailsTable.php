@@ -32,6 +32,37 @@
             }
             return $array;
         }
+
+        public function fetchAllData($offsetvalues) {
+        $sql = new Sql($this->tableGWay->adapter);
+        $select = $sql->select();
+        $select->from($this->tableGWay->getTable());
+                    
+        if (!empty($offsetvalues)) {
+            $select->limit(15)
+                    ->offset($offsetvalues);
+            $result = $this->tableGWay->selectWith($select);
+        }
+        $array = array();
+        foreach ($result as $rSet) {
+              $array[] = array(
+                    'uploadId' => $rSet->uploadId,
+                    'UID' => $rSet->UID,
+                    'uploadPath'=>$rSet->uploadPath,
+                    'uploadTitle' => $rSet->uploadTitle,
+                    'uploadDescription' => $rSet->uploadDescription,
+                    'uploadType' => $rSet->uploadType,
+                    'filestatus' => $rSet->filestatus,
+                    'AID' => $rSet->AID,
+                    'FID' => $rSet->FID,
+                    'PID' => $rSet->PID,
+                    'TimeStamp' => $rSet->TimeStamp
+                    );
+        }
+        return $array;
+        //print_r($array);exit;
+    }
+
         public function insertData($data)
         {
             return $rowset = $this->tableGWay->insert($data);

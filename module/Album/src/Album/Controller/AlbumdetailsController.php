@@ -21,7 +21,8 @@ class AlbumdetailsController extends AbstractActionController {
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
-            header("Location:" . $dynamicPath. "/album/showalbum");
+            //header("Location:" . $dynamicPath. "/album/showalbum");
+            header("Location:" . $dynamicPath);
             exit;
         }
     }
@@ -69,6 +70,14 @@ class AlbumdetailsController extends AbstractActionController {
                 'likedate'=> date("Y-m-d H:i:s")
             );
             $query = array('TID'=>$id);
+        } else if($type == 'friend'){
+            $where = array('FID'=>$id,'UID'=>$UID);
+            $data = array(
+                'FID'=>$id,
+                'UID'=>$UID,
+                'likedate'=> date("Y-m-d H:i:s")
+            );
+            $query = array('FID'=>$id);
         } else{
             $where = array('uploadId'=>$id,'UID'=>$UID);
             $data = array(

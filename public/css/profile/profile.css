@@ -1,58 +1,62 @@
 .profile-paginator {
-  position: fixed;
-  right: 19px;
-  top: 45%;
+    position: fixed;
+    right: 19px;
+    top: 45%;
 }
+
 .profile-paginator > ul li {
-  background-color: #fff;
-  border-radius: 15px;
-  height: 16px;
-  list-style: outside none none;
-  margin-bottom: 12px;
-  width: 16px;
-  opacity: 0.5;
-  cursor: pointer;
+    background-color: #fff;
+    border-radius: 15px;
+    height: 16px;
+    list-style: outside none none;
+    margin-bottom: 12px;
+    width: 16px;
+    opacity: 0.5;
+    cursor: pointer;
 }
+
 .profile-paginator > ul {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  padding: 9px 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 9px 8px;
 }
+
 .profile-paginator > ul li:last-child {
-   margin-bottom: 0px;
+    margin-bottom: 0px;
 }
+
 .profile-paginator > ul li:hover {
     opacity: 1;
-
 }
 
 .user_profile_image_section {
-  border: 5px solid rgb(255, 255, 255);
-  border-radius: 10px;
-  display: inline-block;
-  float: left;
-  height: 384px;
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 29%;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    display: inline-block;
+    float: left;
+    height: 384px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 29%;
 }
+
 .user_profile_image_section > img {
-  border-radius: 5px;
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
+    border-radius: 5px;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
 }
 
 .user_profile_name_section {
-  background: rgb(255, 255, 255) none repeat scroll 0 0;
-  border-radius: 10px;
-  display: inline-block;
-  float: left;
-  height: 183px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 20px;
-  width: 32%;
+    background: rgb(255, 255, 255) none repeat scroll 0 0;
+    border-radius: 10px;
+    display: inline-block;
+    float: left;
+    height: 183px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    width: 32%;
 }
 
 .user_profile_name_section > span {
@@ -60,7 +64,7 @@
     font-size: 20x;
 }
 
-.add-page-plus-icon{
+.add-page-plus-icon {
     background: #AAA897;
     color: rgb(255, 255, 255);
     font-size: 25px;
@@ -68,6 +72,7 @@
     padding: 11px;
     cursor: pointer;
 }
+
 .user_upload_part_section {
     background: rgb(255, 255, 255) none repeat scroll 0 0;
     border-radius: 10px;
@@ -77,129 +82,214 @@
     padding: 20px 10px;
     text-align: center;
 }
+
 .profile-paginator > ul li.active {
     opacity: 1;
     pointer-events: none;
 }
+
 .user_profile_section {
     min-height: 182px;
-	position: relative;
+    position: relative;
 }
-.container-of-sections  {
-	display: block;
+
+.container-of-sections {
+    display: block;
     position: absolute;
     width: 100%;
 }
+
 .vid-sec {
   float: left;
-  margin: 0 10px 10px;
+  margin: 0 28px 50px;
   position: relative;
-  
+
 }
-.outer-wrap{
-  padding: 0;
-  list-style-type: none;
+
+.outer-wrap {
+    padding: 0;
+    list-style-type: none;
 }
+
 .inner-box {
-  background: #b4504e none repeat scroll 0 0;
-  border: 3px solid #fff;
-  bottom: 0;
-  color: #fff;
-  height: 35px;
-  left: 0;
-  padding: 5px 0 0;
-  position: absolute;
-  text-align: center;
-  width: 29%;
+    background: #b4504e none repeat scroll 0 0;
+    border: 3px solid #fff;
+    bottom: 0;
+    color: #fff;
+    height: 35px;
+    left: 0;
+    padding: 5px 0 0;
+    position: absolute;
+    text-align: center;
+    width: 29%;
 }
+
 .text-sec {
-  background: #fff none repeat scroll 0 0;
-  border-radius: 5px;
-  height: 184px;
-  padding: 20px;
-  position: relative;
+    background: #fff none repeat scroll 0 0;
+    border-radius: 5px;
+    height: 184px;
+    padding: 20px;
+    position: relative;
 }
+
 
 /* Animaton in page movement */
+
+
 /* Safari 4.0 - 8.0 */
+
 .classuptodownvisible {
-	-webkit-animation-name: uptodownvisible; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-name: uptodownvisible;
+    /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 2s;
+    /* Safari 4.0 - 8.0 */
     animation-name: uptodownvisible;
-	animation-duration: 1s;
-}
-.classuptodownhide {
-	-webkit-animation-name: uptodownhide; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
-    animation-name: uptodownhide;
-	animation-duration: 1s;
-}
-.classdowntouphide {
-	-webkit-animation-name: downtouphide; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
-    animation-name: downtouphide;
-	animation-duration: 1s;
-}
-.classdowntoupvisible {
-	-webkit-animation-name: downtoupvisible; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
-    animation-name: downtoupvisible;
-	animation-duration: 1s;
+    animation-duration: 2s;
 }
 
+.classuptodownhide {
+    -webkit-animation-name: uptodownhide;
+    /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 2s;
+    /* Safari 4.0 - 8.0 */
+    animation-name: uptodownhide;
+    animation-duration: 2s;
+}
+
+.classdowntouphide {
+    -webkit-animation-name: downtouphide;
+    /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 2s;
+    /* Safari 4.0 - 8.0 */
+    animation-name: downtouphide;
+    animation-duration: 2s;
+}
+
+.classdowntoupvisible {
+    -webkit-animation-name: downtoupvisible;
+    /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 2s;
+    /* Safari 4.0 - 8.0 */
+    animation-name: downtoupvisible;
+    animation-duration: 2s;
+}
 
 @-webkit-keyframes uptodownvisible {
-    from {top: -200px;}
-    to {top: 0px;}
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {
+        top: -200px;
+    }
+    to {
+        top: 0px;
+    }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes uptodownvisible {
-    from {top: -200px;}
-    to {top: 0px;}
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {
+        top: -200px;
+    }
+    to {
+        top: 0px;
+    }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @-webkit-keyframes uptodownhide {
-    from {top: 0px;}
-    to {top: 200px;}
-    from {opacity: 1;}
-    to {opacity: 0;}
+    from {
+        top: 0px;
+    }
+    to {
+        top: 200px;
+    }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 @keyframes uptodownhide {
-    from {top: 0px;}
-    to {top: 200px;}
-    from {opacity: 1;}
-    to {opacity: 0;}
+    from {
+        top: 0px;
+    }
+    to {
+        top: 200px;
+    }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 @-webkit-keyframes downtouphide {
-    from {top: 0px;}
-    to {top: -200px;}
-    from {opacity: 1;}
-    to {opacity: 0;}
+    from {
+        top: 0px;
+    }
+    to {
+        top: -200px;
+    }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 @keyframes downtouphide {
-    from {top: 0px;}
-    to {top: -200px;}
-    from {opacity: 1;}
-    to {opacity: 0;}
+    from {
+        top: 0px;
+    }
+    to {
+        top: -200px;
+    }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 @-webkit-keyframes downtoupvisible {
-    from {top: 0px;}
-    to {top: -200px;}
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {
+        top: 200px;
+    }
+    to {
+        top: 0px;
+    }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes downtoupvisible {
-    from {top: 0px;}
-    to {top: -200px;}
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {
+        top: 200px;
+    }
+    to {
+        top: 0px;
+    }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

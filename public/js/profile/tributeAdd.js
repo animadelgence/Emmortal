@@ -2,7 +2,7 @@
  * @Author: Shubhadip
  * @Date:   2017-06-14 17:46:35
  * @Last Modified by:   Shubhadip
- * @Last Modified time: 2017-06-22 17:34:26
+ * @Last Modified time: 2017-06-26 17:34:26
  */
 /*jslint browser: true */
 /*global $, jQuery, alert,CKEDITOR */
@@ -38,8 +38,12 @@ $(document).ready(function () {
     $('body').on('click', '.getTribute', function () {
         var frndId = $(this).data("id"),
             textDescription = "";
-        $('#friendId').val(frndId);
-        getAlbum(frndId, textDescription);
+        if (frndId != '') {
+            $('#friendId').val(frndId);
+            getAlbum(frndId, textDescription);
+        } else {
+            $('#tribute-add-btn').hide();
+        }
     });
     $('body').on('click', '#publishFriendTribute', function () {
         var flag = 0,
@@ -51,7 +55,7 @@ $(document).ready(function () {
             $('#cke_friendtributeDescription').addClass('error-class');
             $('#friendtributeDescriptionError').show();
             $(".welcome").show();
-            $(".closebtn").css('color','red');
+            $(".closebtn").css('color', 'red');
             $(".showmsg").html("<span style='color:red;'><strong>Text</strong>:Required</span>");
         } else {
             $('#friendtributeDescriptionError').hide();
@@ -61,7 +65,7 @@ $(document).ready(function () {
             getAlbum(frndId, textDescription);
             $('.close').trigger('click');
             $(".welcome").show();
-            $(".closebtn").css('color','green');
+            $(".closebtn").css('color', 'green');
             $(".showmsg").html("<span>Tribute record was successfully added</span>");
         }
     });
@@ -81,6 +85,10 @@ $(document).ready(function () {
                 $('.offcanvas-comments').css("height", "100%");
                 jsObject = JSON.parse(res);
                 $('#totalTribute').html(jsObject.tributeDetails.length);
+                if(jsObject.tributeDetails.length>0){
+                    $('#totalTribute').css('background','rgb(47, 109, 107)');
+                    $('.offcanvas-comments-title').css('color','rgb(47, 109, 107)');
+                }
                 if (jsObject.tributeDetails.length > 0) {
                     var html = "",
                         profileimage = "/image/profile-deafult-avatar.jpg";
@@ -88,9 +96,10 @@ $(document).ready(function () {
                         if (jsObject.tributeDetails[i].profileimage != null) {
                             profileimage = jsObject.tributeDetails[i].profileimage;
                         }
-                        html += '<div class="e-comment"><div class="e-comment-header m-b-10"><div class="e-likes-wrapper pull-right"><div class="e-like btn e-btn btn-round full likeClick" data-id="' + jsObject.tributeDetails[i].tributesid + '" data-cmd="tribute">' + jsObject.tributeDetails[i].like + '</div></div><div class="user-wrapper"><img class="img-responsive m-r-5" src="' + profileimage + '"><a class="user-names pointer" href="#">' + jsObject.tributeDetails[i].friendsname + '</a></div><div class="e-comment-title"><p>' + jsObject.tributeDetails[i].shortDescription + '</p></div></div><div class="e-comment-body"><div class="e-comment-content"><div><p>' + jsObject.tributeDetails[i].description + '</p></div></div><div class="e-comment-info"><a class="e-link pointer" href="#">View profile page</a><div class="e-brown"><small>' + jsObject.tributeDetails[i].addeddate + '</small></div></div><div class="clearfix"></div></div></div>';
+                        html += '<div class="e-comment"><div class="e-comment-header m-b-10"><div class="e-likes-wrapper pull-right"><div class="e-like btn e-btn btn-round full likeClick" data-id="' + jsObject.tributeDetails[i].tributesid + '" data-cmd="tribute" data-toggle="tooltip" data-placement="bottom" title="Like">' + jsObject.tributeDetails[i].like + '</div></div><div class="user-wrapper"><img class="img-responsive m-r-5" src="' + profileimage + '"><a class="user-names pointer" href="#">' + jsObject.tributeDetails[i].friendsname + '</a></div><div class="e-comment-title"><p>' + jsObject.tributeDetails[i].shortDescription + '</p></div></div><div class="e-comment-body"><div class="e-comment-content"><div><p>' + jsObject.tributeDetails[i].description + '</p></div></div><div class="e-comment-info"><a class="e-link pointer" href="#">View profile page</a><div class="e-brown"><small>' + jsObject.tributeDetails[i].addeddate + '</small></div></div><div class="clearfix"></div></div></div>';
                     }
                     $('#tributeAppend').html(html);
+                    $('[data-toggle="tooltip"]').tooltip();
                 } else {
                     $('#tributeAppend').html('<h2 class="text-center e-brown">There are no tributes yet.</h2>');
                 }

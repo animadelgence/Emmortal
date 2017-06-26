@@ -4,7 +4,7 @@
 		<div class="modal-content modal-outer inner-modal-photo">
 			<div class="modal-header modal-headernew">
 				<button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-				<h3 class="modal-title" id="lineModalLabel">Create new text entry</h3>
+				<h3 class="modal-title" id="lineModalLabel">Create new image</h3>
 			</div>
 			<div class="modal-body select-media-type-popup">
 				<!--<form name="textAddForm" id="textAddForm" action="" method="POST" enctype="multipart/form-data">-->
@@ -33,19 +33,7 @@
 										</div>
 									</div>
 								</div>
-                                <div class="m-t-20 ">
-									<div class="tags-input-wrapper" >
-                                        <!--<tags-input class="e-tags-input ">-->
-                                            <div class="host">
-                                                <div class="tags" id="div-editphoto">
-                                                    <ul class="input tag-list"></ul>
-                                                    <input id="imgbtnEditPhoto" type="image" src="http://advanced.aviary.com/images/feather/edit-photo.png" value="Edit photo" onclick="return launchEditor('profile_pic_thumb');" />
-                                                </div>
-                                            </div>
-                                        <!--</tags-input>-->
-									</div>
-
-								</div>
+                                
                                 </div>
                                 </form>
 								<div class="m-t-20">
@@ -80,7 +68,20 @@
 								    <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>
 								</div>
 								<div class="row error-style" style="margin-top: 46px;">
-									<div class="col-sm-5">
+									<div class="col-sm-4 ">
+                                        <div class="hostt" id="div-editphoto">
+                                            <!--<tags-input class="e-tags-input ">-->
+                                                
+                                                <div class="tags" style = "margin-top: -5px;">
+                                                    <ul class="input"></ul>
+                                                    <input id="imgbtnEditPhoto" type="image" src="http://advanced.aviary.com/images/feather/edit-photo.png" value="Edit photo" onclick="return launchEditor('profile_pic_thumb');" style="padding: 10px;"/>
+                                                </div>
+                                                
+                                            <!--</tags-input>-->
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-4">
 										<div class="e-select">
 											<!--<select>
 												<option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
@@ -89,7 +90,7 @@
 								            </select>
 										</div>
 									</div>
-									<div class="col-sm-7 m-t-xs-20">
+									<div class="col-sm-4 m-t-xs-20">
 										<div class="btn e-btn btn-brown" >
 											<div class="fa fa-plus"></div> Add album
 										</div>

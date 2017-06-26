@@ -1,16 +1,84 @@
-<?php //echo "jksgdfrdhgtlgrtuhthtyhjty dsgdfhfh "; ?>
+<!--line modal-->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-box signup_popup">
+      <div class="modal-content modal-outer">
+         <div class="modal-header modal-headernew">
+            <button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title" id="lineModalLabel">Create a Profile and Become Emmortal</h3>
+         </div>
+         <div class="modal-body">
+            <!-- content goes here -->
+            <div class="signupidenter">
+            <form method="post" action="/authsignup/signup" enctype="multipart/form-data" name="nameform" id="signup_form">
+               <div class="form-group input-box">
+                  <input type="text" class="form-control" id="fname" placeholder="First Name">
+               </div>
+               <div class="form-group input-box">
+                  <input type="text" class="form-control" id="lname" placeholder="Last Name">
+               </div>
+               <div class="form-group  full-width">
+                  <input type="text" class="form-control" id="email" placeholder="Email">
+               </div>
+               <div class="form-group full-width">
+                  <input type="password" class="form-control" id="password" placeholder="Password">
+               </div>
+               <div class="form-group full-width">
+                  <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+               </div>
+               <div class="form-group full-width date-picker" id='datetimepicker2'>
+                  <input type="text" class="form-control " id="datepicker" placeholder="Date of Birthday">
+               </div>
+               <button type="submit" value="Submit" style="display:none;">Sign Up</button>
+            </form>
+            <div class="modal-footersec">
+               <p>By clicking Sign Up, you agree to our <a href="#" class="link-color">Terms and conditions</a></p>
+               <a class="modal-button" id="signupbutton">Sign Up</a>
+               <div class="alertmesage_signup" style="display: none;"></div>
+               <p>Already have an account? Please, <a id="signin" class="link-color" data-toggle="modal" data-target="#squarespaceModal2">Sign In</a></p>
+            </div>
+          </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--/line modal-->
 
-<!-- line modal 4-->
-<!--
-<div class="modal fade" id="squarespaceModal4" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-box">
-	<div class="modal-content modal-outer">
-		<div class="modal-header modal-headernew">
-			<button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-			<h3 class="modal-title" id="lineModalLabel">EMMORTAL TERMS AND CONDITIONS</h3>
-		</div>
-		<div class="modal-body terms-body">
--->
+<!-- line modal 2-->
+<div class="modal fade" id="squarespaceModal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-box signin_popup">
+      <div class="modal-content modal-outer">
+         <div class="modal-header modal-headernew">
+            <button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title" id="lineModalLabel">Sign In</h3>
+         </div>
+         <div class="modal-body">
+            <!-- content goes here -->
+            <div class="loginid">
+               <form method="post" action="/authlogin/login" enctype="multipart/form-data" name="nameform" id="login_form">
+                  <div class="form-group  full-width">
+                     <input type="text" class="form-control" id="loginemail" placeholder="Email">
+                  </div>
+                  <div class="form-group full-width">
+                     <input type="password" class="form-control" id="loginpassword" placeholder="Password">
+                  </div>
+                  <a data-toggle="modal" data-target="#squarespaceModalemail" class="link-color use-margin" id="forgotmail" onclick="showhide();">Forgot Password?</a>
+                  <button type="submit" value="Submit" style="display:none;"></button>
+               </form>
+               <div class="modal-footersec">
+                  <div class="button-div">
+                     <a class="modal-button" id="signinbutton">Sign IN</a>
+                     <div class="alertmesage_signin" style="display: none;"></div>
+                  </div>
+                  <p>Don't have an account? Please,  <a id="signup" class="link-color" data-toggle="modal" data-target="#squarespaceModal">Sign Up</a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--/line modal 2-->
+
+<!--main section-->
  <div class="main_section">
         <h3 class="termsHeader" id="termsConditions">EMMORTAL TERMS AND CONDITIONS</h3>
             <!-- content goes here -->
@@ -93,19 +161,6 @@
               </div><!--/inner_content-->
 
             </div> <!--/termsBody-->
-<!--
-		</div>
-        <div class="modal-footer close-area">
-			<div class="btn-group btn-group-justified button-style" role="group" aria-label="group button">
-				<div class="btn-group cancel-button" role="group">
-					<button type="button" class="btn btn-default main-button" data-dismiss="modal"  role="button">Close</button>
-				</div>
-				<div class="btn-group btn-delete hidden" role="group">
-					<button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
-				</div>
-			</div>
-		</div>
-	</div>
-  </div>
-</div>-->
-</div> <!--/main_section-->
+
+</div>
+<!--/main_section-->

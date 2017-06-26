@@ -57,7 +57,6 @@
                           </ul>
 
 							</div>
-   <?php if(count($pageDetails)>1){ ?> 
    <div class="profile-paginator">
       <ul>
          <?php foreach($pageDetails as $key => $Page) { 
@@ -69,7 +68,11 @@
             }?>
       </ul>
    </div>
-   <?php } ?>
+
+                    </div>
+                </div>
+            </div>
+    </div>
    <input type="hidden" id="currentPageId" value="<?php echo $pageDetails[0]['pageid']; ?>">
 </section>
 <!-- line modal -->

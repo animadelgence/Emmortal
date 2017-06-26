@@ -61,13 +61,13 @@ class AuthorizationsignupController extends AbstractActionController {
                 
                 $albumDetails = $modelPlugin->getuserTable()->fetchall($keyArray);
                 $usid= $albumDetails[0]['userid'];
-                if($resultinsert == 1)
+                if($resultinsert)
                 {
                     
                     //$key = '1234547890183420';
                     //$encrypted = $this->encrypt($usid, $key);
                     $encrypted = base64_encode("#$#" . base64_encode(base64_encode($usid . rand(10, 100)) . "###" . base64_encode($usid) . "###" . base64_encode($usid . rand(10, 100)) . "###" . base64_encode(base64_encode($usid . rand(10, 100)))) . "#$#");
-                    $buttonclick = $dynamicPath . "/account/myaccount/" . $encrypted;
+                    $buttonclick = $dynamicPath . "/authsignup/confirmmail/" . $encrypted;
                     $fullname = $albumDetails[0]['firstname']." ".$albumDetails[0]['lastname'];
                     
                     $activationLink = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Confirm Email</div></a>";
@@ -82,7 +82,7 @@ class AuthorizationsignupController extends AbstractActionController {
                     $subject = "Confirm your email address";
                     $from = $jsonArray['sendgridaccount']['addfrom'];
                     $mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
-
+                    $mailfunction = 1;
                 }
                // $resultinsertvalue = 1; 
 
@@ -93,6 +93,37 @@ class AuthorizationsignupController extends AbstractActionController {
         echo $mailfunction;exit;
       
        
+    }
+    public function confirmmailAction() //added by me
+    {
+        $modelPlugin      = $this->modelplugin();
+        $dynamicPath      = $modelPlugin->dynamicPath();
+        $actionChecker    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $useridentifier   = $this->getEvent()->getRouteMatch()->getParam('pId');
+
+        $getfirstdecodeid = explode("#$#", base64_decode($actionChecker));
+                $getpubid = explode("###", base64_decode($getfirstdecodeid[1]));
+                $arrayid  = base64_decode($getpubid[1]);
+
+        if($actionChecker != "resetpassword") {
+            $decrypteduserId = $arrayid;
+            $searchkayarray  = array('userid'=>$arrayid);
+            $updateArray     = array('activation' => '1');
+            $updatedValues   = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
+            $user_session = new Container('userloginId');
+            $user_session->userloginId = $arrayid;
+        } else {
+
+            $serchArray     = array('forgetpassword' => $useridentifier);
+            $FetchDetails   = $modelPlugin->getuserTable()->fetchall($serchArray);
+
+            if (empty($FetchDetails)) {
+                    return $this->redirect()->toUrl($dynamicPath."/album/showalbum");
+            } else {
+                $decrypteduserId = $FetchDetails[0]['userid'];
+            }
+        }
+        return $this->redirect()->toUrl($dynamicPath . "/profile/newsfeed");
     }
     public function encrypt($data, $key){
     return base64_encode(

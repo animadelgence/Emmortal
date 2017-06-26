@@ -147,7 +147,7 @@ function friendlist(param,search)
                 } else if(jsObject.userDetails[i].status == 'Accepted'){
                     buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Accepted </button>';
                 } else{
-                   formhtml +='<form name="requestform" id="requestform" action="/friendrequests/responserequest" method="POST" enctype="multipart/form-data">';
+                   formhtml +='<form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data">';
                    buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Connect</button>'; 
                 }
                 if(chk == '1'){

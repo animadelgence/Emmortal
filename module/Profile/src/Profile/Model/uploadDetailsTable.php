@@ -37,7 +37,7 @@
         $sql = new Sql($this->tableGWay->adapter);
         $select = $sql->select();
         $select->from($this->tableGWay->getTable());
-                    
+
         if (!empty($offsetvalues)) {
             $select->limit(15)
                     ->offset($offsetvalues);

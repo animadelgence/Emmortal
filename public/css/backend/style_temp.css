@@ -797,6 +797,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     cursor: pointer;
     display: inline-block;
     font-size: 20px;
+    color: #ffffff;
 }
 
 
@@ -2499,7 +2500,7 @@ label {
 	margin: 0;
 	padding: 15px 78px;
 	text-align: center;
-	background: #04ad6a;
+	background: #827657;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	color: #fff;

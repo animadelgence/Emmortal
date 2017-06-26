@@ -9,7 +9,7 @@ switch ($controller) {
              case 'showprofile':
                 $this->headLink()
                     ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t)
-                    ->prependStylesheet($this->basePath() . '/css/profile/searchfriends.css?version=' . $t);
+                    ;
                  break;
 
              case 'newsfeed':
@@ -40,6 +40,7 @@ switch ($controller) {
 		break;
 }
 echo $this->headLink()
+        ->prependStylesheet($this->basePath() . '/css/profile/searchfriends.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/album/like.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)

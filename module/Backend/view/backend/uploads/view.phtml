@@ -56,9 +56,11 @@
 								<td class="hidden-phone email-width"><span class=""
 									style=""><?php echo strip_tags($val['uploadDescription']); ?>
 								</span></td>
-                                <td class="hidden-phone uploadPath"><span class="uploadPath"
-									style="padding: 5px; font-weight: bold;"><img src="<?php echo $val['uploadPath'] ?>"  height="100px" width="100px" />
-								</span></td>
+                                <td class="hidden-phone uploadPath">
+                                    <?php if(($val['uploadType'] == "image") || ($val['uploadType'] == "video")){ ?><span class="uploadPath" style="padding: 5px; font-weight: bold;"><img src="<?php echo $val['uploadPath'] ?>"  height="100px" width="100px" />
+								    </span> <?php } else{?>
+                                    <span class="uploadPath"><div style="margin-left: 5px; height: 100px; width: 100px;font-size: 9px; border: 1px solid lightgray; background-color: #fff; color: #AA97A8 !important;"><?php echo strip_tags($val['uploadTitle'])."<br/>"."<br/>".strip_tags($val['uploadDescription']);?></div></span><?php }?>
+                                </td>
                                 <td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;"><?php echo $val['uploadType'];?>
 								</span></td>
@@ -68,16 +70,9 @@
 
 								<input type="hidden"  class="hidden_class" value="<?php echo $val['userid']; ?>" />
 								<td class="sorttable_nosort">
-
-                                    <a href="<?php echo '/usermanage/useredit/'.$val['userid']; ?>" title="Edit user details">
-                                            <button class="btn btn-primary btn-xs edit_user">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                            </button>
-                                    </a>
-									        <button class="btn btn-danger btn-xs dlt_nom deleteUser" title="Delete user">
+									        <button class="btn btn-danger btn-xs dlt_nom deleteUser" title="Delete upload">
 										        <i class="fa fa-trash-o"></i>
 									        </button> <br/>
-
 								</td>
 							</tr>
 							<tr id="hidden_tr" style="display: none;" class="for_search">

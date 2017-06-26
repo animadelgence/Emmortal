@@ -60,7 +60,7 @@ class ProfileController extends AbstractActionController {
         $action           = @$href[4];
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));  //added by me
 
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails));
         /*$actionChecker    = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier   = $this->getEvent()->getRouteMatch()->getParam('pId');
 

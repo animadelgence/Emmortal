@@ -49,11 +49,13 @@ class AlbumController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = 'album';
 		$action = $this->params('action');
+        $uploadQuery = array();
+        $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action));
         //exit;
         if($this->sessionid == "")
         {
-            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails));
         }
         else{
             return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");

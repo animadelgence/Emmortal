@@ -21,8 +21,8 @@ class AlbumdetailsController extends AbstractActionController {
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
-            //header("Location:" . $dynamicPath. "/album/showalbum");
-            header("Location:" . $dynamicPath);
+            header("Location:" . $dynamicPath. "/album/showalbum");
+           // header("Location:" . $dynamicPath);
             exit;
         }
     }

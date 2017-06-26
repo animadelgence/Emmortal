@@ -221,7 +221,7 @@ class ProfileController extends AbstractActionController {
         
         $plugin                 = $this->routeplugin();
         $dynamicPath            = $plugin->dynamicPath();
-        return $this->redirect()->toUrl($dynamicPath . "/album/showalbum");
+        return $this->redirect()->toUrl($dynamicPath);
        
     }
 

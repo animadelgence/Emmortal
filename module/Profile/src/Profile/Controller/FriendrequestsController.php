@@ -25,12 +25,10 @@ class FriendrequestsController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $query = $this->sessionid;
         $userdetails = $modelPlugin->getuserTable()->fetchallData($query);
-        //print_r(); exit;
         $array = array();
         $userid = $this->sessionid;
-        $i= 0;
+        $param = $_POST['param'];
         foreach ($userdetails as $rSet) {
-            //echo 1; 
             $frndid = $rSet['userid'];
             $sendfrndCon     = array('friends.userid'=>$userid,'friends.friendsid'=>$frndid);
             $sendfrndJoin    = "friends.friendsid = user.userid";
@@ -44,46 +42,42 @@ class FriendrequestsController extends AbstractActionController {
                 } else{
                     $status = "Outgoing";
                 }
+                if(($param=='AllFriend') || ($param=='Outgoing' && $status == "Outgoing") || ($param=='All')){
                 $array[] = array(
                     'friendsid'     => $sendfrndDetails[0]['friendsid'],
                     'friendsname'   => $sendfrndDetails[0]['firstname']." ".$sendfrndDetails[0]['lastname'],
                     'profileimage'  => $sendfrndDetails[0]['profileimage'],
                     'status'        => $status
                 );
+                }
             } else if(count($recfrndDetails)>0){
                 if($recfrndDetails[0]['requestaccept'] == 1){
                     $status = "Accepted";
                 } else{
                     $status = "Incoming";
                 }
+                if(($param=='AllFriend') || ($param=='Incoming' && $status == "Incoming") || ($param=='All')){
                 $array[] = array(
                     'friendsid'     => $recfrndDetails[0]['userid'],
                     'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
                     'profileimage'  => $recfrndDetails[0]['profileimage'],
                     'status'        => $status
                 );
+                }
             } else{
+                if($param=='All'){
                 $array[] = array(
                     'friendsid'     => $rSet['userid'],
                     'friendsname'   => $rSet['firstname']." ".$rSet['lastname'],
                     'profileimage'  => $rSet['profileimage'],
                     'status'        => 'New'
                 );
+                }
             }
-           $i++;
           }
-        //exit;
-        //print_r($array); exit;
-        /*$noOfUsers = count($array);
-        echo $noOfUsers;
-        for($i=0;$i<$noOfUsers;$i++) {
-            $query = array('userid'=>$userid,
-                           'friendsid'=>$array[$i]['friendsid']);
-            print_r($query);
-            $friendDetails = $modelPlugin->getfriendsTable()->fetchall($query);
-            print_r($friendDetails);exit;
+        if(count($array)<1){
+            $array = array();
         }
-        */
         $res['userDetails'] = $array;
         echo json_encode($res);
         exit;

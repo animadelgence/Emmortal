@@ -119,6 +119,14 @@
   padding: 20px;
   position: relative;
 }
+.e-container {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+  background: #fff none repeat scroll 0 0;
+  color: #aaa897;
+  padding: 15px;
+}
 
 /* Animaton in page movement */
 /* Safari 4.0 - 8.0 */

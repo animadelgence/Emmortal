@@ -60,31 +60,54 @@ $(function () {
 				} else {
 					appendHtml = "<div class='container-of-sections classdowntoupvisible'>";
 				}
+                appendHtml = "<ul class='outer-wrap'>";
 
                 if (jsObject.defaultPage == 1) {
-                    appendHtml += '<div class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></div><div class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></div>';
+                    appendHtml += '<li class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></div><div class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></li>';
                 }
                 if (jsObject.NoPage == 1) {
-                    appendHtml += '<div class="user_upload_part_section"><div data-target="#uploadModal" data-toggle="modal"  class="fa fa-plus add-page-plus-icon"></div><div class=""><p>Add your Life moments: upload photos and videos.</p><p>Create Albums, Tributes and add valuable texts.</p><p>"Add" button is always accessible on right top menu.</p></div></div>';
+                    appendHtml += '<li class="user_upload_part_section"><div data-target="#uploadModal" data-toggle="modal"  class="fa fa-plus add-page-plus-icon"></div><div class=""><p>Add your Life moments: upload photos and videos.</p><p>Create Albums, Tributes and add valuable texts.</p><p>"Add" button is always accessible on right top menu.</p></div></li>';
                 } else {
-                   appendHtml += '<div class="user_upload_part_section_content">';
+                  // appendHtml += '<div class="user_upload_part_section_content">';
                     for (i = 0; i < jsObject.uploaddetails.length; i++) {
                         if(jsObject.uploaddetails[i].uploadType == "video"){
-                            appendHtml +='<div class="user_upload_part_section_content--inside"><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span></div>';
+                             if(jsObject.uploaddetails[i].filestatus != ""){
+                                appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="'+jsObject.uploaddetails[i].filestatus+'"><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+                             }
+                                else{
+                                    appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="style="height:184px;width:15%;""><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+                                }
+                            
 
                         } else if(jsObject.uploaddetails[i].uploadType == "image"){
-                            appendHtml +='<div class="user_upload_part_section_content--inside"><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span></div>';
+                            if(jsObject.uploaddetails[i].filestatus != ""){
+                                 appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="'+jsObject.uploaddetails[i].filestatus+'"><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+
+                            } else {
+                                 appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="style="height:184px;width:15%;""><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+
+                            }
+                           
 
                         } else if(jsObject.uploaddetails[i].uploadType == "text"){
-                            appendHtml +='<div class="user_upload_part_section_content--inside"><span><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></span></div>';
+                            if(jsObject.uploaddetails[i].filestatus != ""){
+                                appendHtml +='<li class="user_upload_part_section_content--inside vid-sec text-sec resizable" style="'+jsObject.uploaddetails[i].filestatus+'"><span><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+
+                            } else {
+                                appendHtml +='<li class="user_upload_part_section_content--inside vid-sec text-sec resizable" style="style="height:184px;width:15%;""><span><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+
+                            }
+                            
 
                         } else{
 
                         }
                         
                         }
-                    appendHtml+= '</div>';
+                       
+                    //appendHtml+= '</div>';
                 }
+                 appendHtml+= '</ul>';
                 appendHtml += "</div>";
                 $(".container-of-sections").remove();
                     $(".user_profile_section").prepend(appendHtml);

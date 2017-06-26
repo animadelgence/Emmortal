@@ -10,14 +10,17 @@
 /*jshint -W065 */
 /*global baseUrl*/
 /*jslint eqeq: true*/
-var base_url_dynamic = window.location.origin,
-    html = '';
+var base_url_dynamic = window.location.origin;
 $(document).ready(function () {
-    outgoingfriendlist();
-    
     "use strict";
+    $('body').on('click','#searchfriend',function(){
+        $('#searchResults').html('');
+        friendlist('AllFriend','');
+    });
     $('#allTabShow').css('display', 'block');
     $('body').on('click', '#allTab', function () {
+        $('#searchResults').html('');
+        friendlist('AllFriend','');
         $("#li-allTab").addClass("active");
         $("#li-relationshipTab").removeClass("active");
         $("#li-incomingTab").removeClass("active");
@@ -38,7 +41,8 @@ $(document).ready(function () {
         $('#outgoingTabshow').css('display', 'none');
     });
     $('body').on('click', '#incomingTab', function () {
-        incomigFriendList();
+        $('#searchResults').html('');
+        friendlist('Incoming','');
         $("#li-incomingTab").addClass("active");
         $("#li-allTab").removeClass("active");
         $("#li-relationshipTab").removeClass("active");
@@ -50,7 +54,7 @@ $(document).ready(function () {
     });
     $('body').on('click', '#outgoingTab', function () {
         $('#searchResults').html('');
-        outgoingfriendlist();
+        friendlist('Outgoing','');
         $("#li-outgoingTab").addClass("active");
         $("#li-allTab").removeClass("active");
         $("#li-incomingTab").removeClass("active");
@@ -62,50 +66,10 @@ $(document).ready(function () {
     });
     $('body').on('keyup', '#searchText', function () {
         $('#globalSearch').css('display', 'block');
-        var friendsid = $(this).val().trim(),
-            jsObject = '',
-            html = '',
-            i = '',
-            id = '',
-            friendsname = '',
-            profileimage = '',
-            frndDetails = [];
-        //alert(friendsid);
-        if (friendsid != '') { // jshint ignore:line
-            $.ajax({
-                type: "POST",
-                url: base_url_dynamic + '/friendrequests/searchfriends',
-                data: {},
-                success: function (res) {
-                    /**/
-                    jsObject = JSON.parse(res);
-                    /*console.log(jsObject);
-                    return false;*/
-                    profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg";
-                    for (i = 0; i < jsObject.userDetails.length; i++) {
-                        id = jsObject.userDetails[i].friendsid;
-                        friendsname = jsObject.userDetails[i].friendsname.toLowerCase();
-                        if (friendsname.indexOf(friendsid.toLowerCase()) > -1) {
-                            if ($.inArray(parseInt(id), frndDetails) == '-1') {
-                                if (jsObject.userDetails[i].profileimage != null) { // jshint ignore:line
-                                    profileimage = jsObject.userDetails[i].profileimage;
-                                }
-                                if ((jsObject.userDetails[i].status) != 'Incoming') { // jshint ignore:line
-                                    html += '<div class="user-field m-t-25 animated fadeIn"><form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data"><div class="media">   <div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div>   <div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + jsObject.userDetails[i].friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + jsObject.userDetails[i].friendsid + '"></a></h3></div><div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" data-folder-target-id="' + jsObject.userDetails[i].friendsid + '"><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + jsObject.userDetails[i].friendsid + '">';
-
-                                    if ((jsObject.userDetails[i].status) == 'Outgoing') {
-                                        html += '<div class="fa fa-plus"></div> Request sent</button></div></div></div></form></div>';
-                                    } else if ((jsObject.userDetails[i].status) == 'New') {
-                                        html += '<div class="fa fa-plus"></div> Connect</button></div></div></div></form></div>';
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    $('#searchResults').html(html);
-                    $('#searchResults').show();
-                }
-            });
+        var friendsid = $(this).val().trim();
+        $('#searchResults').html('');
+        if(friendsid != ''){
+            friendlist('All',friendsid);
         }
     });
     $('body').on('click', '#userId', function () {
@@ -146,71 +110,56 @@ $(document).ready(function () {
         return false;
     });
 });
-function outgoingfriendlist()
+function friendlist(param,search)
 {
-    $('#searchResults').html('');
     $.ajax({
         type: "POST",
         url: base_url_dynamic + '/friendrequests/searchfriends',
-        data: {},
+        data: {
+            param:param
+        },
         success: function (res) {
-            /**/
             jsObject = JSON.parse(res);
-            /*console.log(res);
-            return false;*/
-            profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg";
+            var html ="";
+           var profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg";
             for (i = 0; i < jsObject.userDetails.length; i++) {
-                id = jsObject.userDetails[i].friendsid;
-                friendsname = jsObject.userDetails[i].friendsname.toLowerCase();
-                //if (friendsname.indexOf(friendsid.toLowerCase()) > -1) {
-                 //   if ($.inArray(parseInt(id), frndDetails) == '-1') {
-                        if (jsObject.userDetails[i].profileimage != null) { // jshint ignore:line
-                            profileimage = jsObject.userDetails[i].profileimage;
-                        }
-                        if ((jsObject.userDetails[i].status) == 'Outgoing') { // jshint ignore:line
-                            $('#allTabShow').css('display', 'none');
-                            $('#outgoingTabshow').css('display', 'none');
-                            html += '<div class="user-field m-t-25 animated fadeIn"><form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data"><div class="media">   <div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div>   <div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + jsObject.userDetails[i].friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + jsObject.userDetails[i].friendsid + '"></a></h3></div><div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" data-folder-target-id="' + jsObject.userDetails[i].friendsid + '"><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + jsObject.userDetails[i].friendsid + '"><div class="fa fa-plus"></div> Request sent</button></div></div></div></form></div>';
-                        }
-                        
-                 //   }
-               // }
+                var chk = 0;
+                var id = jsObject.userDetails[i].friendsid;
+                var friendsname = jsObject.userDetails[i].friendsname;
+                var frndname = friendsname.toLowerCase();
+                if (jsObject.userDetails[i].profileimage != null) { // jshint ignore:line
+                    profileimage = jsObject.userDetails[i].profileimage;
+                }
+                var formhtml="";
+                var buttonhtml= "";
+                if(search != ''){
+                    if (frndname.indexOf(search.toLowerCase()) > -1) {
+                        chk = 1;
+                    }
+                } else{
+                    chk = 1;
+                }
+                if(jsObject.userDetails[i].status == 'Outgoing'){
+                    buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Request sent</button>';
+                } else if(jsObject.userDetails[i].status == 'Incoming'){
+                    formhtml +='<form name="requestform" id="requestform" action="/friendrequests/responserequest" method="POST" enctype="multipart/form-data">';
+                    buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> accept/decline </button>';
+                } else if(jsObject.userDetails[i].status == 'Accepted'){
+                    buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Accepted </button>';
+                } else{
+                   formhtml +='<form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data">';
+                   buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Connect</button>'; 
+                }
+                if(chk == '1'){
+                 html += '<div class="user-field m-t-25 animated fadeIn">'+formhtml+'<div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3></div><div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" data-folder-target-id="' + id + '">'+buttonhtml+'</div></div></form></div>';
+                }
+                
             }
+            
             $('#searchResults').html(html);
             $('#searchResults').show();
         }
     });
 }
-function incomigFriendList() {
-    $('#searchResults').html();
-    $.ajax({
-        type: "POST",
-        url: base_url_dynamic + '/friendrequests/searchfriends',
-        data: {},
-        success: function (res) {
-            /**/
-            jsObject = JSON.parse(res);
-            /*console.log(jsObject);
-            return false;*/
-            profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg";
-            for (i = 0; i < jsObject.userDetails.length; i++) {
-                id = jsObject.userDetails[i].friendsid;
-                friendsname = jsObject.userDetails[i].friendsname.toLowerCase();
-               // if (friendsname.indexOf(friendsid.toLowerCase()) > -1) {
-                    //if ($.inArray(parseInt(id), frndDetails) == '-1') {
-                        if (jsObject.userDetails[i].profileimage != null) { // jshint ignore:line
-                            profileimage = jsObject.userDetails[i].profileimage;
-                        }
-                        if ((jsObject.userDetails[i].status) == 'Incoming') { // jshint ignore:line
-                            $('#incomingTabShow').css('display', 'none');
-                            html += '<div class="user-field m-t-25 animated fadeIn"><form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data"><div class="media">   <div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div>   <div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + jsObject.userDetails[i].friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + jsObject.userDetails[i].friendsid + '"></a></h3></div><div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" data-folder-target-id="' + jsObject.userDetails[i].friendsid + '"><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + jsObject.userDetails[i].friendsid + '"><div class="fa fa-plus"></div> Accept/ Decline</button></div></div></div></form></div>';
-                        }
-                   // }
-               // }
-            }
-            $('#searchResults').html(html);
-            $('#searchResults').show();
-        }
-    });
-}
+
 

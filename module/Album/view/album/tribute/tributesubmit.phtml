@@ -1,1 +1,20 @@
-<?php echo 1;exit;?>
+<section class="photo-collage">
+
+        <div class="container">
+            <div class="row">
+                <div class="layout">
+                        <div class="content-wrapper user_profile_section">
+                          <div class="e-container tribute-page ng-scope"><div class="e-brown m-b-25 album-title"><div class="show-adds-btns pull-right"><div class="m-r-5 e-like btn e-btn btn-round full ng-binding ng-isolate-scope" type="tribute" target="tribute">0</div><div class="m-r-5 btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope">0</div><div class="edit-menu-wrapper"><div><i class="fa fa-cog cog-menu-icon"></i><ul><li class="ng-scope"><i class="fa fa-pencil m-r-5"></i>Edit</li></ul></div></div></div><h3 class="inline text-capitalize"><span>Tribute for</span> <span class="ng-binding"><?php echo $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'];?></span></h3></div><div class="row"><div class="col-lg-3 col-md-4 col-sm-4 text-center"><div class="inline tribute-user-image-wrapper"><div class="user_profile_image_section"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
+                    echo $userDetails[0]['profileimage'];
+                } else {
+                    echo "/image/profile-deafult-avatar.jpg";
+                }?>"></div></div></div><div class="col-lg-9 col-md-8 col-sm-8"><div class="tribute-description ng-pristine ng-untouched ng-valid ta-bind"><p><?php echo $tributeDescription;?><br></p></div></div></div></div>
+                      </div>
+
+</section>
+<!-- line modal -->
+
+<!-- line modal 3-->
+
+<!-- line modal 4-->
+

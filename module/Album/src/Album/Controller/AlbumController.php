@@ -62,7 +62,8 @@ class AlbumController extends AbstractActionController {
 
         }
         else{
-            $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller, 'action' => $action));
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+            $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'action' => $action));
            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails));
         }
     }

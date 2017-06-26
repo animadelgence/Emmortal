@@ -266,12 +266,12 @@ hr {
     width: 210px;
     height: 100%;
     position: fixed;
-    background: #827657;
+    background: #fff;
     z-index: 1001;
 }
 
 #sidebar h5 {
-	color: #f2f2f2;
+	color: #579942;
 	font-weight: 700;
 }
 

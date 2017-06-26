@@ -536,7 +536,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 .logout, .savetemplate{
     background: #827657 none repeat scroll 0 0;
-    border: 1px solid #64c3c2 !important;
+/*    border: 1px solid #64c3c2 !important;*/
     border-radius: 4px !important;
     color: #f2f2f2 !important;
     font-size: 12px !important;

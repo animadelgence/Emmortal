@@ -59,13 +59,16 @@
 							</div>
    <div class="profile-paginator">
       <ul>
-         <?php foreach($pageDetails as $key => $Page) { 
+
+         <?php if(count($pageDetails)>1){
+                foreach($pageDetails as $key => $Page) {
             if($key == 0) {
                 echo "<li class='profile-paginator__click active' data-fetch-id='".$Page['pageid']."'></li>";
             } else {
                 echo "<li class='profile-paginator__click ' data-fetch-id='".$Page['pageid']."'></li>";                        
             }
-            }?>
+          }
+        }?>
       </ul>
    </div>
 

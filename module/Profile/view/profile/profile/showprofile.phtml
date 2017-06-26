@@ -57,18 +57,21 @@
                           </ul>
 
 							</div>
+                            <?php if(count($pageDetails)>1){ ?>
    <div class="profile-paginator">
       <ul>
-         <?php foreach($pageDetails as $key => $Page) { 
+
+
+                <?php foreach($pageDetails as $key => $Page) {
             if($key == 0) {
                 echo "<li class='profile-paginator__click active' data-fetch-id='".$Page['pageid']."'></li>";
             } else {
                 echo "<li class='profile-paginator__click ' data-fetch-id='".$Page['pageid']."'></li>";                        
             }
-            }?>
-      </ul>
+          }?>
+       </ul>
    </div>
-
+ <?php }?>
                     </div>
                 </div>
             </div>

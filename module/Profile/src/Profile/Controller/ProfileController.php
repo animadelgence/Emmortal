@@ -17,7 +17,7 @@ class ProfileController extends AbstractActionController {
         $protocol        = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath     = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
-            header("Location:" . $dynamicPath. "/album/showalbum");
+            header("Location:" . $dynamicPath);
             exit;
         }
     }
@@ -43,7 +43,7 @@ class ProfileController extends AbstractActionController {
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         //print_r($uploadDetails);exit;
 
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid, 'userDetails'=>$userDetails));
 
         return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
     }

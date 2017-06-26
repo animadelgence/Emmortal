@@ -86,8 +86,8 @@ class ImageController extends AbstractActionController {
             $pageDetails        = $modelPlugin->getpagedetailsTable()->fetchall($where);
             //print_r($pageDetails);exit;
             $currentPageId      = $pageDetails[0]['pageid'];
-            echo $currentPageId;
-            exit;
+            //echo $currentPageId;
+            //exit;
         }
         $uploadQuery = array(
                             'UID'=>$this->sessionid,
@@ -100,8 +100,12 @@ class ImageController extends AbstractActionController {
                             'FID'=>$friendsid,
                             'TimeStamp'=>$addeddate
                             );
-            $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($uploadQuery);
-            echo $albumDetails;exit;
+        $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($uploadQuery);
+        if($albumDetails)
+        {
+            $result = 1;
+        }
+        echo $result; exit;
             //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
 

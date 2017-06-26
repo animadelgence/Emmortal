@@ -20,6 +20,7 @@
                     'UID' => $rSet->UID,
                     'AID' => $rSet->AID,
                     'TID' => $rSet->TID,
+                    'FID' => $rSet->FID,
                     'uploadId' => $rSet->uploadId,
                     'likedate' => $rSet->likedate
                     );

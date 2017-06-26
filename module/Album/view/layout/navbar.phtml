@@ -39,7 +39,11 @@
                <span class="caret"></span>
                </button>
                <ul class="dropdown-menu profile-strip down-inner " aria-labelledby="dropdownMenu1">
-                  <li><a href="#"><span class="user-icon"><img src="<?php echo $userDetails[0]['profileimage'];?>"/></span><?php echo $userDetails[0]['firstname'];?></a></li>
+                  <li><a class="profile-image-name-menu" href="javascript:void(0)" onclick="location.href='/profile/showprofile'"><span class="user-icon"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
+                    echo $userDetails[0]['profileimage'];
+                } else {
+                    echo "/image/profile-deafult-avatar.jpg";
+                }?>"/></span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname'];?></a></li>
                   <li><a href="#">Albums</a></li>
                   <li><a href="#">Relationships</a></li>
                   <li><a href="#">Tributes</a></li>

@@ -9,9 +9,9 @@
                                 <span class="fa fa-chevron-left"></span>
                             </div>
                         </div>
-                        <div class="comments-count" id="totalTribute">0</div>
+                        <div class="comments-count" id="totalTribute"></div>
                         <div class="offcanvas-comments-title">Tributes</div>
-                        <div class="pull-right btn-wrapper">
+                        <div class="pull-right btn-wrapper" id="tribute-add-btn">
                             <div class="btn e-btn btn-brown" data-toggle="modal" data-target="#friendTributeAddModal" onclick="$('#tributeAddModal').css('z-index','0');">Add tribute</div>
                         </div>
                     </div>

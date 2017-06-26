@@ -140,18 +140,18 @@ function friendlist(param,search)
                     chk = 1;
                 }
                 if(jsObject.userDetails[i].status == 'Outgoing'){
-                    buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Request sent</button>';
+                    buttonhtml +='<div class="relationship-btn" user="client" data-folder-target-id="' + id + '"><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Request sent</button></div>';
                 } else if(jsObject.userDetails[i].status == 'Incoming'){
                     formhtml +='<form name="requestform" id="requestform" action="/friendrequests/responserequest" method="POST" enctype="multipart/form-data">';
-                    buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> accept/decline </button>';
+                    buttonhtml +='<div class="relationship-btn" user="client" data-folder-target-id="' + id + '"><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> accept/decline </button></div>';
                 } else if(jsObject.userDetails[i].status == 'Accepted'){
-                    buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Accepted </button>';
+                    buttonhtml +='<div class="relationship-btn" user="client" data-folder-target-id="' + id + '"><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Accepted </button>';
                 } else{
                    formhtml +='<form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data">';
-                   buttonhtml +='<button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Connect</button>'; 
+                   buttonhtml +='<div class="relationship-btn" user="client" data-folder-target-id="' + id + '"><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Connect</button></div>'; 
                 }
                 if(chk == '1'){
-                 html += '<div class="user-field m-t-25 animated fadeIn">'+formhtml+'<div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3></div><div class="media-right media-middle btn-section"><div class="relationship-btn" user="client" data-folder-target-id="' + id + '">'+buttonhtml+'</div></div></form></div>';
+                 html += '<div class="user-field m-t-25 animated fadeIn">'+formhtml+'<div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3></div><div class="media-right media-middle btn-section">'+buttonhtml+'</div></form></div>';
                 }
                 
             }

@@ -26,8 +26,8 @@
 			         </div>
 			     </div>
 			     <div class="show-adds-btns left">
-			         <div class="btn e-btn btn-round full" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" title="Tribute">0</div>
-			         <div class="e-like btn e-btn btn-round full likeClick" style="background-color: rgb(180, 80, 78);" data-cmd="video" id="videoLikeCount" data-toggle="tooltip" title="Like">0</div>
+			         <div class="btn e-btn btn-round full" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Tribute">0</div>
+			         <div class="e-like btn e-btn btn-round full likeClick" style="background-color: rgb(180, 80, 78);" data-cmd="video" id="videoLikeCount" data-toggle="tooltip" data-placement="bottom" title="Like">0</div>
 			     </div>
 			     <div class="show-date" id="videoUploadedDate"></div>
 			 </div>

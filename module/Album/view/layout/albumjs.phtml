@@ -31,18 +31,17 @@ switch ($controller) {
 
             case 'albumpage':
                 $this->headScript()
-                ->prependFile($this->basePath() . '/js/Album/tributemodal.js?version=' . $t)
-                 ->prependFile($this->basePath() . '/js/Album/videomodal.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/ckeditor/ckeditor.js?version=' . $t)
-                         
-                        ->prependFile($this->basePath() . '/js/Authorization/login.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/Authorization/signup.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/Album/index.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/Album/freewall.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/Album/main.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/Album/like.js?version=' . $t);
+                    ->prependFile($this->basePath() . '/js/Album/tributemodal.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/Album/videomodal.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/ckeditor/ckeditor.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/Authorization/login.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/Authorization/signup.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/Album/index.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/Album/freewall.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/Album/main.js?version=' . $t)
+                    ->prependFile($this->basePath() . '/js/Album/like.js?version=' . $t);
                 break;
 
             default:
@@ -54,6 +53,7 @@ switch ($controller) {
         break;
 }
 echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/profile/tributeAdd.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/profile/profile.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/like.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/resetpassword.js?version=' . $t)

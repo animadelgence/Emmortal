@@ -29,3 +29,12 @@
 .close-msg a {
     margin-right: 4px;
 }
+.arrow-toggle .fa-chevron-up,
+    .arrow-toggle.collapsed .fa-chevron-down {
+        display: inline-block;
+    }
+
+    .arrow-toggle.collapsed .fa-chevron-up,
+    .arrow-toggle .fa-chevron-down {
+        display: none;
+    }

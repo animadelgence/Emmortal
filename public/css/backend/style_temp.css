@@ -266,7 +266,7 @@ hr {
     width: 210px;
     height: 100%;
     position: fixed;
-    background: #fff;
+    background: #f1f1f1;
     z-index: 1001;
 }
 

@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 	$('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
 
-$('#signupidenter').keypress(function (e) {
+$('.signupidenter').keypress(function (e) {
         if (e.which == 13) { 
 
             $("#signupbutton").trigger("click");
@@ -30,7 +30,7 @@ $('#signupbutton').click(function(){
             return false;
 		
 	}
-	if(lastName == "")
+	else if(lastName == "")
 	{
 		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Enter your Last name").show();
@@ -40,7 +40,7 @@ $('#signupbutton').click(function(){
             return false;
 		
 	}
-	if(email == "")
+	else if(email == "")
 	{
 		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Enter your email").show();
@@ -57,7 +57,7 @@ $('#signupbutton').click(function(){
             }, 8000);
             return false;
 	}
-	if(password == ""){
+	else if(password == ""){
 		$(".alertmesage_signup").css("color","Red");
 		$(".alertmesage_signup").text("Enter password").show();
 		 setTimeout(function () {
@@ -111,11 +111,12 @@ $('#signupbutton').click(function(){
                 	//return false;
                 	if(result == 1){
                 		alert("welcome to emmortal,please check your mail and confirm the link to logged in");
+                        $('.close').trigger('click');
                 	}else {
                 		alert("Already have an account with this mail id");
                 	}
                     
-                    //return false;
+                    return false;
                     
 
                 }

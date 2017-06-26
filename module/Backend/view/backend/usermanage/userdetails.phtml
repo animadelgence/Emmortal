@@ -1,7 +1,7 @@
 <section id="main-content">
 	<section class="wrapper">
-		<h3>
-			<i class="fa fa-angle-right"></i>Emmortal User Details
+		<h3 style="text-align:center;">
+			Emmortal User Details
 		</h3>
 		<div class="col-sm-12"
 			style="margin-bottom: 20px; padding: 0 !important">
@@ -63,7 +63,11 @@
 									style=""><?php echo strtolower($val['emailid']); ?>
 								</span></td>
                                 <td class="hidden-phone profileImg"><span class="profileImg"
-									style="padding: 5px; font-weight: bold;"><img src="<?php echo $val['profileimage'] ?>"  height="100px" width="100px" /><!--(after src tag) onerror="this.src='<?php //echo $dynamicPath; ?>/template/demo.jpg'"-->
+									style="padding: 5px; font-weight: bold;"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
+                    echo $userDetails[0]['profileimage'];
+                } else {
+                    echo "/image/profile-deafult-avatar.jpg";
+                }?>"  height="100px" width="100px" /><!--(after src tag) onerror="this.src='<?php //echo $dynamicPath; ?>/template/demo.jpg'"-->
 								</span></td>
                                 <td class="hidden-phone"><span class=""
 									style="width: 80%; display: inline-block;"><?php echo $val['signindate'];?>

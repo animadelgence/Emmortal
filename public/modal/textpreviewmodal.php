@@ -16,8 +16,8 @@
 			         <p id="textTitleDescription"></p>
 			         </div>
 			         <div class="show-adds-btns">
-			             <div class="btn e-btn btn-round full" style="background-color: rgb(180, 80, 78);">0</div>
-			             <div class="e-like btn e-btn btn-round full likeClick" style="background-color: rgb(180, 80, 78);" data-cmd="text" id="TextLikeCount"></div>
+			             <div class="btn e-btn btn-round full" style="background-color: rgb(180, 80, 78);"  data-toggle="tooltip" data-placement="bottom" title="Tribute">0</div>
+			             <div class="e-like btn e-btn btn-round full likeClick" style="background-color: rgb(180, 80, 78);" data-cmd="text" id="TextLikeCount" data-toggle="tooltip" data-placement="bottom" title="Like"></div>
 			         </div>
 			         <div class="show-date" id="textUploadedDate" ></div>
 			     </div>

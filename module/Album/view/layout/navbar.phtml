@@ -26,20 +26,20 @@
                   </a>
                </div>
                <div class="showmsg" style="margin:5px;">
-                  <?php
+                  <?php 
                      //if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
                   <span>Welcome!</span>
                   <?php //} ?>
                </div>
             </div>-->
             <div class="col-lg-8">
-               <a href="/album/showalbum" class="logo-style">Emmortal</a>
+               <a href="<?php echo $dynamicPath;?>" class="logo-style">Emmortal</a>
                <?php if( $sessionid != ""){ ?>
                <button class="btn btn-default dropdown-toggle down-arrow" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                <span class="caret"></span>
                </button>
                <ul class="dropdown-menu profile-strip down-inner " aria-labelledby="dropdownMenu1">
-                  <li><a href="#"><span class="user-icon"><img src="/image/thumb_image_92326ed88b94b5f0.jpg.png"/></span>Maitrayee Bhaumik</a></li>
+                  <li><a href="#"><span class="user-icon"><img src="<?php echo $userDetails[0]['profileimage'];?>"/></span><?php echo $userDetails[0]['firstname'];?></a></li>
                   <li><a href="#">Albums</a></li>
                   <li><a href="#">Relationships</a></li>
                   <li><a href="#">Tributes</a></li>

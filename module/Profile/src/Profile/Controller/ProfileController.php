@@ -17,7 +17,7 @@ class ProfileController extends AbstractActionController {
         $protocol        = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath     = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
-            header("Location:" . $dynamicPath. "/album/showalbum");
+            header("Location:" . $dynamicPath);
             exit;
         }
     }
@@ -43,7 +43,7 @@ class ProfileController extends AbstractActionController {
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         //print_r($uploadDetails);exit;
 
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid, 'userDetails'=>$userDetails));
 
         return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
     }
@@ -58,14 +58,15 @@ class ProfileController extends AbstractActionController {
         $href             = explode("/", $currentPageURL);
         $controller       = @$href[3];
         $action           = @$href[4];
+        $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));  //added by me
 
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails));
-        $actionChecker    = $this->getEvent()->getRouteMatch()->getParam('id');
+        /*$actionChecker    = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier   = $this->getEvent()->getRouteMatch()->getParam('pId');
 
         $getfirstdecodeid = explode("#$#", base64_decode($actionChecker));
-                $getpubid = explode("###", base64_decode($getfirstdecodeid[1]));
-                $arrayid  = base64_decode($getpubid[1]);
+                $getpubid = explode("###", base64_decode($getfirstdecodeid[0])); //($getfirstdecodeid[1])
+                $arrayid  = base64_decode($getpubid[0]); //($getpubid[1])
        
         if($actionChecker != "resetpassword") { 
             $decrypteduserId = $arrayid;
@@ -82,7 +83,7 @@ class ProfileController extends AbstractActionController {
             } else {
                 $decrypteduserId = $FetchDetails[0]['userid'];
             }
-        }
+        }*/
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function getalbumAction(){

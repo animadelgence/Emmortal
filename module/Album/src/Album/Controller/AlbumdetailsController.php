@@ -21,7 +21,8 @@ class AlbumdetailsController extends AbstractActionController {
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
-            header("Location:" . $dynamicPath. "/album/showalbum");
+            //header("Location:" . $dynamicPath. "/album/showalbum");
+            header("Location:" . $dynamicPath);
             exit;
         }
     }
@@ -35,7 +36,7 @@ class AlbumdetailsController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
         $query = array('albumeid'=>1);
         $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($query);
         $where = array('AID'=>1);
@@ -43,7 +44,7 @@ class AlbumdetailsController extends AbstractActionController {
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($where);
         //print_r($uploadDetails); exit;
         $likeCount = count($likeDetails);
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails,'likeCount'=>$likeCount,'uploadDetails'=>$uploadDetails));
+        return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails'=>$albumDetails,'likeCount'=>$likeCount,'uploadDetails'=>$uploadDetails));
     }
     public function likesaveAction(){
         $plugin = $this->routeplugin();

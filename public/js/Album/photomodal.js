@@ -194,7 +194,18 @@ $(document).ready(function () {
                     pageId : currentPageId
                 },
                 success: function (res) {
-                    alert(res);
+                    //alert(res);
+                    if(res == 1){
+
+
+                         if (pageURL.indexOf('profile/showprofile') > -1) {
+                             $('.modal').modal('hide');
+                              $(".profile-paginator__click.active").trigger("click");
+                            } else{
+                                window.location.href = baseURL + "/profile/showprofile";
+                            }
+
+                    }
                 }
         });
         }
@@ -239,7 +250,7 @@ var featherEditor = new Aviary.Feather({
                     removeimage : originalFile
                 },
                 success: function (res) {
-                    alert('removed image');
+                    console.log('removed image');
                 }
         });
     }

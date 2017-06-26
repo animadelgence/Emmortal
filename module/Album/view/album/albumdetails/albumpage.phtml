@@ -1,17 +1,35 @@
-<div class="container animated fadeIn p-t-100 p-b-100">
+<div class="container animated fadeIn p-t-100 p-b-100" style="padding-top:80px;">
     <div>
         <div class="album-inside">
             <div class="e-container">
                 <div class="e-brown m-b-5">
                     <div class="show-adds-btns pull-right">
-                        <div class="e-like btn e-btn btn-round full liked likeClick" style="background-color: rgb(180, 80, 78);" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php echo $likeCount; ?>
+                        <div class="e-like btn e-btn btn-round full liked likeClick" style="background-color: rgb(180, 80, 78);" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album" data-toggle="tooltip" data-placement="bottom" title="Like"><?php echo $likeCount; ?>
                         </div>
-                        <div class="btn e-btn btn-brown btn-round full" style="background-color: rgb(180, 80, 78);">0
+                        <div class="btn e-btn btn-brown btn-round full" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Tribute">0
+                        </div>
+                        <div class="edit-menu-wrapper">
+                            <div class="edit-menu e-dropdown dropdown white-dropdown dropdown-toggle" aria-haspopup="true" aria-expanded="false" style="background: rgb(180, 80, 78);" onclick="$('.setting-drop-down').slideToggle();">
+                                <i class="fa fa-cog cog-menu-icon"></i>
+                                <ul class="setting-drop-down dropdown-menu text-left">
+                                    <li style="color: rgb(180, 80, 78);">
+                                        <i class="fa fa-trash m-r-5"></i>Remove
+                                    </li>
+                                    <li style="color: rgb(180, 80, 78);">
+                                        <i class="fa fa-pencil m-r-5"></i>Edit
+                                    </li>
+                                    <li style="color: rgb(180, 80, 78);">
+                                        <i class="fa fa-thumb-tack m-r-5 font-bold e-red"></i>
+                                        <span class="font-bold e-red">Pinned</span>
+                                        <span>Pin</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="album-header-title inline">
                         <!-- ngIf: !album.invisible_for_you -->
-                        <div class="btn e-btn btn-round full btn-brown m-r-10" style="background: rgb(180, 80, 78);">0
+                        <div class="btn e-btn btn-round full btn-brown m-r-10" style="background: rgb(180, 80, 78);"><?php echo count($uploadDetails);?>
                         </div>
                         <h3 class="inline text-capitalize"style="color: rgb(180, 80, 78);"><?php if(!empty($albumDetails[0]['title'])){ echo $albumDetails[0]['title'];}?></h3>
                     </div>

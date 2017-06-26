@@ -14,7 +14,8 @@ return array(
              'Album\Controller\Video' => 'Album\Controller\VideoController',
              'Album\Controller\Image' => 'Album\Controller\ImageController',
              'Album\Controller\Albumdetails' => 'Album\Controller\AlbumdetailsController',
-             'Album\Controller\Tribute' => 'Album\Controller\TributeController'
+             'Album\Controller\Tribute' => 'Album\Controller\TributeController',
+             'Album\Controller\Lazyload' => 'Album\Controller\LazyloadController'
 
            
              
@@ -118,6 +119,21 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Album\Controller\Albumdetails',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+             
+                  'Lazyload' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/lazyload[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Album\Controller\Lazyload',
                          'action'     => 'index',
                      ),
                  ),

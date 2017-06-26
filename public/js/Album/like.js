@@ -14,6 +14,7 @@
 var base_url_dynamic = window.location.origin;
 $(document).ready(function () {
     "use strict";
+    $('[data-toggle="tooltip"]').tooltip();
     $('body').on('click', '.likeClick', function () {
         var datacmd = $(this).attr('data-cmd'),
             id = $(this).data('id'),

@@ -10,9 +10,12 @@ return array(
      'controllers' => array(
          'invokables' => array(
              'Backend\Controller\Adminlogin' => 'Backend\Controller\AdminloginController',
-             'Backend\Controller\Usermanage' => 'Backend\Controller\UsermanageController'
+             'Backend\Controller\Usermanage' => 'Backend\Controller\UsermanageController',
+             'Backend\Controller\Seomanage' => 'Backend\Controller\SeomanageController',
+             'Backend\Controller\Uploads' => 'Backend\Controller\UploadsController'
          ),
      ),
+
     // The following section is new and should be added to your file
      'router' => array(
          'routes' => array(
@@ -47,6 +50,37 @@ return array(
                      ),
                  ),
              ),
+
+             // this is for Seomanage operation
+             'seomanage' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/seomanage[/:action][/:id][/:pId]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Backend\Controller\Seomanage',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+
+              // this is for Uploads-manage operation
+             'uploads' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/uploads[/:action][/:id][/:pId]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Backend\Controller\Uploads',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+
 
          ),
      ),

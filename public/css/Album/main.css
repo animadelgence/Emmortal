@@ -9,7 +9,7 @@ body {
 }
 .top-bar {
   background: rgba(86, 67, 17, 0.45) none repeat scroll 0 0;
-  height: 38px;
+  height: 40px;
   position: fixed;
   top: 0;
   width: 100%;

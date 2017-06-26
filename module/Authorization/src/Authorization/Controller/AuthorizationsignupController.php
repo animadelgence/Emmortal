@@ -104,19 +104,19 @@ class AuthorizationsignupController extends AbstractActionController {
         $getfirstdecodeid = explode("#$#", base64_decode($actionChecker));
                 $getpubid = explode("###", base64_decode($getfirstdecodeid[1]));
                 $arrayid  = base64_decode($getpubid[1]);
-       
-        if($actionChecker != "resetpassword") { 
+
+        if($actionChecker != "resetpassword") {
             $decrypteduserId = $arrayid;
             $searchkayarray  = array('userid'=>$arrayid);
             $updateArray     = array('activation' => '1');
             $updatedValues   = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
             $user_session = new Container('userloginId');
-            $user_session->userloginId = $arrayid; 
+            $user_session->userloginId = $arrayid;
         } else {
-            
+
             $serchArray     = array('forgetpassword' => $useridentifier);
             $FetchDetails   = $modelPlugin->getuserTable()->fetchall($serchArray);
-           
+
             if (empty($FetchDetails)) {
                     return $this->redirect()->toUrl($dynamicPath."/album/showalbum");
             } else {

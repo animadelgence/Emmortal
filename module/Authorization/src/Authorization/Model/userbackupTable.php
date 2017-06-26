@@ -46,6 +46,7 @@
 		          $select = $sql->select();
                   $select->from($this->tableGWay->getTable())
                          ->order('userid DESC');
+                $resultSet = $this->tableGWay->selectWith($select);
                 $array = array();
                 foreach ($resultSet as $rSet) {
                     $array[] = array(

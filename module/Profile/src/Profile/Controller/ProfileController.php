@@ -58,16 +58,15 @@ class ProfileController extends AbstractActionController {
         $href             = explode("/", $currentPageURL);
         $controller       = @$href[3];
         $action           = @$href[4];
-        
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));  //added by me
-        
+
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails));
         /*$actionChecker    = $this->getEvent()->getRouteMatch()->getParam('id');
         $useridentifier   = $this->getEvent()->getRouteMatch()->getParam('pId');
 
         $getfirstdecodeid = explode("#$#", base64_decode($actionChecker));
-                $getpubid = explode("###", base64_decode($getfirstdecodeid[1]));
-                $arrayid  = base64_decode($getpubid[1]);
+                $getpubid = explode("###", base64_decode($getfirstdecodeid[0])); //($getfirstdecodeid[1])
+                $arrayid  = base64_decode($getpubid[0]); //($getpubid[1])
        
         if($actionChecker != "resetpassword") { 
             $decrypteduserId = $arrayid;

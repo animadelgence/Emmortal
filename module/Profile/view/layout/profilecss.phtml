@@ -8,7 +8,6 @@ switch ($controller) {
 		switch ($action) {   
              case 'showprofile':
                 $this->headLink()
-                    ->prependStylesheet($this->basePath() . '/css/album/like.css?version=' . $t)
                     ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t)
                     ->prependStylesheet($this->basePath() . '/css/profile/searchfriends.css?version=' . $t);
                  break;
@@ -41,10 +40,11 @@ switch ($controller) {
 		break;
 }
 echo $this->headLink()
-      ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
-      ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
-       ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
-       ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
+        ->prependStylesheet($this->basePath() . '/css/album/like.css?version=' . $t)
+        ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
+        ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
+        ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
+        ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/navbar.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
         ->prependStylesheet($this->basePath() . '/css/bootstrap/bootstrap.min.css?version=' . $t)

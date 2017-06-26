@@ -19,8 +19,8 @@
                <a href="<?php echo $dynamicPath;?>" class="logo-style">Emmortal</a>
                <?php if( $sessionid != ""){ ?>
                <button class="btn btn-default dropdown-toggle down-arrow arrow-toggle collapsed" type="button" id="dropdownMenu1" data-toggle="collapse" data-target="#dropped_ui" >
-                   <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                   <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                   <i class="fa fa-chevron-up" aria-hidden="true" style= "padding-bottom: 3px;"></i>
+                   <i class="fa fa-chevron-down" aria-hidden="true" style= "padding-bottom: 3px;"></i>
                </button>
                <ul class="dropdown-menu profile-strip down-inner collapse" aria-labelledby="dropdownMenu1" id="dropped_ui">
                   <li><a class="profile-image-name-menu" href="javascript:void(0)" onclick="location.href='/profile/showprofile'"><span class="user-icon"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {

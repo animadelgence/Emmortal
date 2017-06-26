@@ -30,6 +30,10 @@ body {
     font-size: 18px;
      padding: 5px 2px;
 }
+.logo-style:hover {
+    color: #fff;
+    text-decoration: none;
+}
 /* added by shubhadip*/
 .modal-photo {
 	width: 75%;

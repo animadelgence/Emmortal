@@ -2056,6 +2056,17 @@ label {
     font-weight: 114px;
     padding: 12px;
 }
+.dwnload_csv:hover{
+    background: #827657 none repeat scroll 0 0 !important;
+    color: #fff; float: right !important;
+    font-size: 15px !important;
+    font-weight: 114px !important;
+    padding: 12px !important;
+}
+.user_backup:hover{
+    color: #827657;
+    float: right !important;
+}
 .new_user{
     background: #04ad6a none repeat scroll 0 0;
     color: #fff;

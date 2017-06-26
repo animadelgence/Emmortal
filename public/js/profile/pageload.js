@@ -23,7 +23,12 @@ $(function () {
                 if (jsObject.noredirect == 1) {
                     window.location.href(baseUrl + "/profile/showprofile");
                 } else {
+                    if($(".profile-paginator").length){
                     $(".profile-paginator ul").append('<li class="profile-paginator__click" data-fetch-id="' + jsObject.gotostep + '"></li>');
+                    }
+                    else{
+                        $(".user_profile_section").append('<div class="profile-paginator"><ul><li data-fetch-id="'+$("#currentPageId").val()+'" class="profile-paginator__click"></li><li data-fetch-id="'+jsObject.gotostep+'" class="profile-paginator__click "></li></ul></div>');
+                    }
                     $(".profile-paginator ul li:last").trigger("click");
                     $("#currentPageId").val(jsObject.gotostep);
                 }

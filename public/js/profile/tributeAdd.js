@@ -39,7 +39,9 @@ $(document).ready(function () {
         var frndId = $(this).data("id"),
             textDescription = "";
         $('#tributeAddModal').modal('show');
-        $("#searchmodal").css('z-index', 0);
+        if ($("#searchmodal").is(':visible') == true) {
+            $('#searchmodal').css('z-index', '0');
+        }
         if (frndId != '') {
             $('#friendId').val(frndId);
             getAlbum(frndId, textDescription);

@@ -266,7 +266,7 @@ hr {
     width: 210px;
     height: 100%;
     position: fixed;
-    background: #424a5d;
+    background: #827657;
     z-index: 1001;
 }
 
@@ -535,7 +535,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .logout, .savetemplate{
-    background: #04ad6a none repeat scroll 0 0;
+    background: #827657 none repeat scroll 0 0;
     border: 1px solid #64c3c2 !important;
     border-radius: 4px !important;
     color: #f2f2f2 !important;
@@ -2050,7 +2050,7 @@ label {
     padding: 15px 35px !important;
 }
 .dwnload_csv{
-    background: #04ad6a none repeat scroll 0 0;
+    background: #827657 none repeat scroll 0 0;
     color: #fff; float: right;
     font-size: 15px;
     font-weight: 114px;
@@ -2078,7 +2078,7 @@ label {
     float: right;
     padding-right: 15px;
     padding-top: 5px;
-    color: #04ad6a;
+    color: #827657;
 }
 
 /*Template Edit Button*/

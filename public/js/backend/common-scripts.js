@@ -2,7 +2,7 @@
  * @Author: Rituparna
  * @Date:   2017-06-22 17:46:35
  * @Last Modified by: Rituparna
- * @Last Modified time: 2017-06-22 19:21:42
+ * @Last Modified time: 2017-06-26 19:21:42
  */
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
@@ -49,6 +49,12 @@ var Script = (function () {
         } else if (pathname === '/userregistration/adduser') {
             $('.common_class').removeClass('active');
             $('.userreg').addClass('active');
+        } else if (pathname === '/seomanage/seoview') {
+            $('.common_class').removeClass('active');
+            $('.seomanage').addClass('active');
+        }  else if (pathname === '/uploads/view') {
+            $('.common_class').removeClass('active');
+            $('.uploads').addClass('active');
         }
 
 
@@ -62,6 +68,10 @@ var Script = (function () {
 
             if (className === 'usermanage common_class active') {
                 window.location.href = baseUrl + '/usermanage/userdetails';
+            } else if (className === 'seomanage common_class active'){
+                window.location.href = baseUrl + '/seomanage/seoview';
+            } else if (className === 'uploads common_class active'){
+                window.location.href = baseUrl + '/uploads/view';
             }
 
         });

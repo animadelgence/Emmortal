@@ -10,8 +10,9 @@
         {
             $this->tableGWay = $tableGateway;
         }
-        public function fetchall($query)
+        public function fetchall($query=null)
         {
+
             $resultSet = $this->tableGWay->select($query);
             $array = array();
             foreach ($resultSet as $rSet) {

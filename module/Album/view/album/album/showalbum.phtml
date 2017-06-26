@@ -3,33 +3,51 @@
    <div class="container">
       <div class="row">
          <div class="layout">
-            <div class="free-wall">
-                  <?php  if(count($uploadDetails)>0){
-                                        foreach($uploadDetails as $upload){
-                                          if($upload['uploadType'] == "text"){
-                                             echo ' <div class="size320" data-nested=".level-1" data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                  <div class="brick level-1 size24">'.$upload['uploadTitle'].'</div>
-                  <div class="brick level-1 size24">'.$upload['uploadDescription'].'</div>
-               </div>';
+            <div id='loader-icon' style="display: none;">
+    <img src='<?php echo $dynamicPath; ?>/image/load3.gif' alt="loader" />
+</div>
+<input type="hidden" id="isAjaxStart" value=0 />
+<input type="hidden" id="checker" value=1 />
+<input type="hidden" id="counterOfTheTemplate" value=0 />
+            <div class="content-wrapper user_profile_section">
+               <div class="container-of-sections ">
+                            
+                  <?php  
+                   $u = count($uploadDetails);
+                   if($u>0){?>
+                        <input type='hidden' id ='noOfTemplates' value="<?php echo $u; ?>" >
+                <input type ="hidden" value="1" id="valuetobeIncremented">
+                                       <?php 
+                                       if ($u < 15) {
+                        $no = $u;
+                    } else {
+                        $no = 15;
+                    } ?>
+                      <ul class="outer-wrap" id="outer-wrap">
+                        <?php for ($i = 0; $i < $no; $i++) {
+
+
+                                          if($uploadDetails[$i]['uploadType'] == "text"){
+                                             echo ' <li class="user_upload_part_section_content--inside vid-sec text-sec" style="height:220px;width:20%;">
+                  <span><label name="text Name">'.$uploadDetails[$i]['uploadTitle'].'<p>'.$uploadDetails[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> 0 </div>
+               </li>';
                                           }
 
-                                          else if($upload['uploadType'] == "image"){
-                                              echo '<div class="size320" data-nested=".level-1" data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                  <div class="brick level-1 size24">'.$upload['uploadTitle'].'</div>
-                  <div class="brick level-1 size24"><img name="Image Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></div>
-               </div>';
+                                          else if($uploadDetails[$i]['uploadType'] == "image"){
+                                              echo ' <li class="user_upload_part_section_content--inside vid-sec" style="height:220px;width:20%;">
+                  <span><img name="Image Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div>
+               </li>';
 
                                           }
-                                           else if($upload['uploadType'] == "video"){
-                                                echo '<div class="size320" data-nested=".level-1" data-gutterX=10 data-gutterY=10 data-cellW=0.5 data-cellH=0.5 >
-                  <div class="brick level-1 size24">'.$upload['uploadTitle'].'</div>
-                  <div class="brick level-1 size24"><video controls="controls" name="Video Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></video></div>
-               </div>';
+                                           else if($uploadDetails[$i]['uploadType'] == "video"){
+                                                echo ' <li class="user_upload_part_section_content--inside vid-sec" style="height:220px;width:20%;">
+                  <span><video controls="controls" name="Video Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div>
+               </li>';
 
 
                                            }
                                            else{
-                                             
+
                                            }
                                         }
                                      }?>
@@ -67,7 +85,10 @@
                   <div class="brick level-1 size22"></div>
                   <div class="brick level-1 size22"></div>
                </div> -->
+                </ul>
             </div>
+        
+         </div>
          </div>
       </div>
    </div>

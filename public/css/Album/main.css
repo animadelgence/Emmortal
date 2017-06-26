@@ -1,5 +1,5 @@
 body {
-    background: rgba(0, 0, 0, 0) url("/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg") no-repeat scroll 0 0 / cover;
+    background: rgba(0, 0, 0, 0) url("/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg") scroll 0 0 / cover;
     width: 100%;
     font-family: 'Oxygen', sans-serif;
 }

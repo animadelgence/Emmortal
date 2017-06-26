@@ -708,6 +708,57 @@ button[disabled], html input[disabled] {
 .photo-collage {
   margin: 81px 0;
 }
+.e-container {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+  background: #fff none repeat scroll 0 0;
+  color: #aaa897;
+  padding: 15px;
+}
+.tribute-description p {
+  color:#ABA897;
+  }
+  .tribute-description.ng-pristine.ng-untouched.ng-valid.ta-bind {
+  margin-left: 90px;
+}
+.show-adds-btns {
+  height: 60px;
+  margin-top: 4px;
+}
+.show-adds-btns .btn {
+  border: 4px solid #fff;
+  height: 60px;
+  padding: 9px;
+  vertical-align: middle;
+  width: 60px;
+}
+.e-btn.btn-round, .open > .dropdown-toggle.btn-round {
+  border-radius: 0;
+  font-size: 24px;
+  height: 40px;
+  padding: 3px;
+  width: 40px;
+}
+.e-like.e-btn {
+  background: #aaa897 none repeat scroll 0 0;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 24px;
+  height: 40px;
+  padding: 3px;
+  text-align: center;
+  width: 40px;
+}
+.e-btn, .open > .dropdown-toggle {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid;
+  border-radius: 0;
+  transition: background 0.2s ease 0s, color 0.2s ease 0s;
+  white-space: normal;
+}
+
 #photos {
   /* Prevent vertical gaps */
   line-height: 0;

@@ -38,6 +38,8 @@ $(document).ready(function () {
     $('body').on('click', '.getTribute', function () {
         var frndId = $(this).data("id"),
             textDescription = "";
+        $('#tributeAddModal').modal('show');
+        $("#searchmodal").css('z-index', 0);
         if (frndId != '') {
             $('#friendId').val(frndId);
             getAlbum(frndId, textDescription);
@@ -69,6 +71,13 @@ $(document).ready(function () {
             $(".showmsg").html("<span>Tribute record was successfully added</span>");
         }
     });
+    $("#tributeAddModal").on("hidden.bs.modal", function () {
+        if ($("#searchmodal").is(':visible') == true) {
+            $('#searchmodal').css('z-index', '99999');
+            $('#searchmodal').css('position', 'absolute');
+            $('#searchmodal').css('overflow', 'visible');
+        }
+    });
     $("#friendTributeAddModal").on("hidden.bs.modal", function () {
         $('#tributeAddModal').css('z-index', '99999');
     });
@@ -85,9 +94,9 @@ $(document).ready(function () {
                 $('.offcanvas-comments').css("height", "100%");
                 jsObject = JSON.parse(res);
                 $('#totalTribute').html(jsObject.tributeDetails.length);
-                if(jsObject.tributeDetails.length>0){
-                    $('#totalTribute').css('background','rgb(47, 109, 107)');
-                    $('.offcanvas-comments-title').css('color','rgb(47, 109, 107)');
+                if (jsObject.tributeDetails.length > 0) {
+                    $('#totalTribute').css('background', 'rgb(47, 109, 107)');
+                    $('.offcanvas-comments-title').css('color', 'rgb(47, 109, 107)');
                 }
                 if (jsObject.tributeDetails.length > 0) {
                     var html = "",

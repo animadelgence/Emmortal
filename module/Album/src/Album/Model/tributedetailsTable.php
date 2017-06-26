@@ -14,7 +14,7 @@
         {
              return $rowset = $this->tableGWay->insert($data);
         }
-        public function fetchall($query)
+        public function fetchall($query=null)
         {
             $resultSet = $this->tableGWay->select($query);
             $array = array();
@@ -29,11 +29,11 @@
             }
             return $array;
         }
-        public function joinquery($where){
+        public function joinquery($where,$join){
            $sql = new Sql($this->tableGWay->adapter);
            $select = $sql->select();
            $select->from($this->tableGWay->getTable())
-                 ->join('user', 'tributedetails.UID = user.userid')
+                 ->join('user', $join)
                  ->where($where);
             $result = $this->tableGWay->selectWith($select);
             $data=array();

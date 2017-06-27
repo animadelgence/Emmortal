@@ -777,6 +777,43 @@ button[disabled], html input[disabled] {
   white-space: normal;
 }
 
+.modaldescripton {
+  overflow: hidden;
+}
+.modaldescripton > span {
+  display: inline-block;
+  float: right;
+}
+.moodal-text {
+  color: #aaa897;
+  margin-top: 38px;
+}
+.modal-value {
+  background-color: #fff;
+  bottom: 46px;
+  list-style-type: none;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  width: 33%;
+}
+.datetime {
+  border: 19px none;
+  bottom: 23px;
+  color: #000;
+  position: absolute;
+  right: 22px;
+}
+.modal-value li {
+  background-color: #ccc;
+  cursor: pointer;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 13px 20px;
+}
+
 #photos {
   /* Prevent vertical gaps */
   line-height: 0;

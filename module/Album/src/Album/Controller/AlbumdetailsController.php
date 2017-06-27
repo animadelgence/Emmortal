@@ -70,6 +70,14 @@ class AlbumdetailsController extends AbstractActionController {
                 'likedate'=> date("Y-m-d H:i:s")
             );
             $query = array('TID'=>$id);
+        } else if($type == 'friend'){
+            $where = array('FID'=>$id,'UID'=>$UID);
+            $data = array(
+                'FID'=>$id,
+                'UID'=>$UID,
+                'likedate'=> date("Y-m-d H:i:s")
+            );
+            $query = array('FID'=>$id);
         } else{
             $where = array('uploadId'=>$id,'UID'=>$UID);
             $data = array(

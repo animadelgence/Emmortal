@@ -72,6 +72,9 @@ $(document).ready(function () {
             }
         });
     });
+    $("#textInsertModal").on("hidden.bs.modal", function () {
+        $('#uploadModal').modal();
+    });
     $('body').on('keyup', '.friendsid', function () {
         var friendsid = $(this).val().trim();
         if (friendsid != '') {

@@ -10,6 +10,7 @@ class likesdetails
     public $UID;
     public $AID;
     public $TID;
+    public $FID;
     public $uploadId;
     public $likedate;
 
@@ -19,6 +20,7 @@ class likesdetails
 		$this->UID = (!empty($data['UID'])) ? $data['UID'] : null;
 		$this->AID = (!empty($data['AID'])) ? $data['AID'] : null;
 		$this->TID = (!empty($data['TID'])) ? $data['TID'] : null;
+		$this->FID = (!empty($data['FID'])) ? $data['FID'] : null;
         $this->uploadId = (!empty($data['uploadId'])) ? $data['uploadId'] : null;
         $this->likedate = (!empty($data['likedate'])) ? $data['likedate'] : null;
 	}

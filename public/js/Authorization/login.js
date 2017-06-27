@@ -1,7 +1,7 @@
 var URL = window.location.origin;
 $(document).ready(function (){
 	
-	$('#loginid').keypress(function (e) {
+	$('.loginid').keypress(function (e) {
         if (e.which == 13) { 
 
             $("#signinbutton").trigger("click");

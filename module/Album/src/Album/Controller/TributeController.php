@@ -83,27 +83,50 @@ class TributeController extends AbstractActionController {
                     );
             $tribute = $modelPlugin->gettributedetailsTable()->insertData($value);
         }
-        $where = array('tributedetails.UID'=>$userid);
-        $tributeDetails = $modelPlugin->gettributedetailsTable()->joinquery($where);
-        $array = array();
+        $tributeDetails = $modelPlugin->gettributedetailsTable()->fetchall();
         foreach ($tributeDetails as $rSet) {
-            $friendsid = explode(",",$rSet['friendsid']);
-            if (in_array($friendId, $friendsid))
-            {
-                $where = array('TID'=>$rSet['tributesid']);
-                $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);
-                $like = count($likeDetails);
-                $array[] = array(
-                    'tributesid' => $rSet['tributesid'],
-                    'UID' => $rSet['UID'],
-                    'friendsname' => $rSet['firstname']." ".$rSet['lastname'],
-                    'profileimage'=>$rSet['profileimage'],
-                    'description'=>$rSet['description'],
-                    'shortDescription'=>substr($rSet['description'],0,20).'...',
-                    'friendsid'=>$rSet['friendsid'],
-                    'like'=>$like,
-                    'addeddate'=>date("m/d/Y",strtotime($rSet['addeddate']))
-                );
+            if(($userid == $rSet['UID']) && ($friendId == $rSet['friendsid'])){
+                if ($friendId == $rSet['friendsid'])
+                {
+                    $where = array('TID'=>$rSet['tributesid']);
+                    $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+                    $join = 'tributedetails.UID = user.userid';
+                    $condition = array('tributedetails.tributesid'=>$rSet['tributesid']);
+                    $tribute = $modelPlugin->gettributedetailsTable()->joinquery($condition,$join);
+                    $like = count($likeDetails);
+                    $array[] = array(
+                        'tributesid' => $tribute[0]['tributesid'],
+                        'UID' => $tribute[0]['UID'],
+                        'friendsname' => $tribute[0]['firstname']." ".$tribute[0]['lastname'],
+                        'profileimage'=>$tribute[0]['profileimage'],
+                        'description'=>$tribute[0]['description'],
+                        'shortDescription'=>substr($tribute[0]['description'],0,20).'...',
+                        'friendsid'=>$tribute[0]['friendsid'],
+                        'like'=>$like,
+                        'addeddate'=>date("m/d/Y",strtotime($tribute[0]['addeddate']))
+                    );
+                }
+            } else if($friendId == $rSet['UID'] && $userid == $rSet['friendsid']){
+                if ($friendId == $rSet['friendsid'])
+                {
+                    $where = array('TID'=>$rSet['tributesid']);
+                    $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+                    $join = 'tributedetails.UID = user.userid';
+                    $condition = array('tributedetails.tributesid'=>$rSet['tributesid']);
+                    $tribute = $modelPlugin->gettributedetailsTable()->joinquery($condition,$join);
+                    $like = count($likeDetails);
+                    $array[] = array(
+                        'tributesid' => $tribute[0]['tributesid'],
+                        'UID' => $tribute[0]['UID'],
+                        'friendsname' => $tribute[0]['firstname']." ".$tribute[0]['lastname'],
+                        'profileimage'=>$tribute[0]['profileimage'],
+                        'description'=>$rSet['description'],
+                        'shortDescription'=>substr($tribute[0]['description'],0,20).'...',
+                        'friendsid'=>$tribute[0]['friendsid'],
+                        'like'=>$like,
+                        'addeddate'=>date("m/d/Y",strtotime($tribute[0]['addeddate']))
+                    );
+                }
             }
         }
         $res['tributeDetails'] = $array;

@@ -199,10 +199,10 @@ $(document).ready(function () {
 
 
                          if (pageURL.indexOf('profile/showprofile') > -1) {
-                             $('.modal').modal('hide');
-                              $(".profile-paginator__click.active").trigger("click");
+                                $('.modal').modal('hide');
+                                $(".profile-paginator__click").trigger("click");
                             } else{
-                                window.location.href = baseURL + "/profile/showprofile";
+                                window.location.href = base_url_dynamic + "/profile/showprofile";
                             }
 
                     }

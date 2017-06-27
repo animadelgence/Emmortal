@@ -135,7 +135,8 @@ $(document).ready(function () {
                 },
                 success: function (result) {
                     //console.log(result);return false;
-                    $(".profile-image-name-menu").reload();
+                    //$(".profile-image-name-menu").reload();
+                    $('#secondnavbarimage').load(document.URL +  ' #secondnavbarimage');
                     $(".div--error_secondmsg").html('Account details updated').css('display', 'block');
                     setTimeout(function () {
                         $(".div--error_secondmsg").fadeOut(300, function () {});

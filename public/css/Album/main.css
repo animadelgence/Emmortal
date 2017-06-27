@@ -92,6 +92,10 @@ body {
     border-color: #579942;
     color: #579942;
 }
+.removeavtr{
+    border-color: #b4504e ! important;
+    color: #b4504e ! important;
+}
 .e-btn, .open > .dropdown-toggle {
     background: #fff none repeat scroll 0 0;
     border: 1px solid;

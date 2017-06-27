@@ -38,3 +38,20 @@
     .arrow-toggle .fa-chevron-down {
         display: none;
     }
+
+.sectionnavber li {
+    display:inline-block;
+    border-left:2px solid;
+    color:#ffffff;
+    content: "";
+    height: 20px;
+    position: relative;
+    top: 10px;
+}
+
+.sectionnavber li:first-child {
+    border-left:none;
+}
+.allicon {
+    top: 6px !important;
+}

@@ -3,7 +3,7 @@
     border: medium none;
     border-radius: 0;
     box-shadow: none;
-    height: 36px;
+    height: 41px;
     left: -129px;
     margin: 0;
     padding: 0;
@@ -44,10 +44,12 @@
 .down-inner li a {
     background-color: transparent;
     color: rgb(255, 255, 255);
-    padding: 8px 15px;
+    padding: 0px 15px;
 }
 .profile-image-name-menu {
   padding: 2px 15px !important;
+  bottom: 8px;
+  position: relative;
 }
 .down-inner li a:hover {
     background-color: #fff;
@@ -62,4 +64,7 @@
 }
 .menu-icon { 
     top: 10px;
+}
+.bellblush{
+    text-shadow: 0 0 3px #fff;
 }

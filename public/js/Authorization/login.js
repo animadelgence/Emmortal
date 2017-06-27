@@ -9,7 +9,7 @@ $(document).ready(function (){
         }
     });
     
-    $('#recoverymailid').keypress(function (e) {
+    $('.recoverymailid').keypress(function (e) {
         if (e.which == 13) { 
 
             $("#recoverybutton").trigger("click");

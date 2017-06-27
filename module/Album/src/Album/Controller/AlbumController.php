@@ -53,6 +53,7 @@ class AlbumController extends AbstractActionController {
 
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         
+        
        
         //exit;
         if($this->sessionid == "")

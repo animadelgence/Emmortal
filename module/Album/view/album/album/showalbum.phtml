@@ -11,7 +11,10 @@
 <input type="hidden" id="counterOfTheTemplate" value=0 />
             <div class="content-wrapper user_profile_section">
                <div class="container-of-sections ">
-                            
+                           
+
+
+ 
                   <?php  
                    $u = count($uploadDetails);
                    if($u>0){?>
@@ -35,7 +38,7 @@
 
                                           else if($uploadDetails[$i]['uploadType'] == "image"){
                                               echo ' <li class="user_upload_part_section_content--inside vid-sec" style="height:220px;width:20%;">
-                  <span><img name="Image Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div>
+                  <span><img name="Image Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" data-lightbox="image-1" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div>
                </li>';
 
                                           }

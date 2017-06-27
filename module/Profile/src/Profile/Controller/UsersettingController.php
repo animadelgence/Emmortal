@@ -63,17 +63,22 @@ class UsersettingController extends AbstractActionController {
 
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
         $firstName = $_POST['accountFirstName'];
         $lastName = $_POST['accountLastName'];
         //$accountEmail = $_POST['accountEmail'];
         $accountDOB = $_POST['accountDOB'];
+        $profileimageNmae = $dynamicPath."/upload/profileImage/".$_POST['profileimageNmae'];
+        $backgroundimageName = $dynamicPath."/upload/backgroundImage/".$_POST['backgroundimageName']; 
         $conditionpublisherarray = array('userid' => $this->sessionid);
         
         $data = array(
 
             'firstname' => $firstName,
             'lastname' => $lastName,
-            'dateofbirth' => $accountDOB
+            'dateofbirth' => $accountDOB,
+            'profileimage' => $profileimageNmae,
+            'backgroundimage' => $backgroundimageName
             //'emailid' =>$accountEmail
         );
         $updateUserData = $modelPlugin->getuserTable()->updateuser($data, $conditionpublisherarray);

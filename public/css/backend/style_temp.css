@@ -400,7 +400,7 @@ ul.sidebar-menu li a{
 }
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
-/*    background: #68dff0;*/
+    border: 1px solid #579942;
     background: #F1F1F1;
     color: #579942;
     display: block;

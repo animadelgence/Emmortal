@@ -177,7 +177,7 @@ $(".deleteUser").on('click', function (event) {
     $("#dynamicpagecreatepopup").fadeIn();
 });
 
-/*Popup Appear When clicked on Restore User Icon*/
+/*Popup Appear when Email exists for Restore User Icon*/
 $(".restoreUser").on('click', function (event) {
     "use strict";
     var deleteId = $(this).parent().prev().val();

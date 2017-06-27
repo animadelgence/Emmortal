@@ -14,6 +14,7 @@ class modelplugin extends routeplugin {
     public $pagedetailsTable;
     public $adminTable;
     public $uploadDetailsTable;
+    public $uploadBackupTable;
     public $tributedetailsTable;
     public $likesdetailsTable;
     public $userbackupTable;
@@ -64,6 +65,13 @@ class modelplugin extends routeplugin {
             $this->uploadDetailsTable = $sm->get('Profile\Model\uploadDetailsTable');
         }
         return $this->uploadDetailsTable;
+    }
+    public function getuploadBackupTable() {
+        if (!$this->uploadBackupTable) {
+            $sm = $this->getController()->getServiceLocator();
+            $this->uploadBackupTable = $sm->get('Profile\Model\uploadBackupTable');
+        }
+        return $this->uploadBackupTable;
     }
     public function getfriendsTable() {
         if (!$this->friendsTable) {

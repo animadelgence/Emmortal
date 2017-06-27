@@ -23,14 +23,45 @@
                             <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
                         </div>
                         <div class="col-lg-6">
-                            <div class="col-lg-6 no-padding">
+                            <form action="/account/profileimage" method="post" enctype="multipart/form-data" name="form1" id="profileimagechangeform" style="padding-top: 70px;"><div class="col-lg-6 no-padding">
+                                 <div class="img-input">
+                                    <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 104px;">
+                                       <i class="fa fa-picture-o remove-fa-picture-icon"></i>
+                                       <!--<img id= 'profile_pic_thumb'/>-->
+                                    </div>
+                                    <div class="btn e-btn btn-primary file-input-btn" >
+                                       <i class="fa fa-upload"></i>
+                                       Choose photo
+                                       <input name="profileimage" type="file" id="profileimagechange">
+                                       <input type = "hidden" id = "pfimagePath" value="">
+                                       <!--<input type = "hidden" id= "aviaryPath" name= "action" value=""> -->
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-lg-6 no-padding">
+                                 <div class="img-input">
+                                    <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 104px;">
+                                       <i class="fa fa-picture-o remove-fa-picture-icon"></i>
+                                       <!--<img id= 'profile_pic_thumb'/>-->
+                                    </div>
+                                    <div class="btn e-btn btn-primary file-input-btn" >
+                                       <i class="fa fa-upload"></i>
+                                       Choose photo
+                                       <input name="backgroundimage" type="file" id="backgroundimagechange">
+                                       <input type = "hidden" id = "bkimagePath" value="">
+                                       <!--<input type = "hidden" id= "aviaryPath" name= "action" value=""> -->
+                                    </div>
+                                 </div>
+                              </div>
+                              </form>
+                            <!-- <div class="col-lg-6 no-padding">
                                 <img class="right-contant" src="/image/img444.jpg" />
                                 <a class="avatar" href="javascript:void(0)">Choose avatar</a>
                             </div>
                             <div class="col-lg-6 no-padding">
                                 <img class="right-contant" src="/image/img444.jpg" />
                                 <a class="avatar" href="javascript:void(0)">Choose avatar</a>
-                            </div>
+                            </div> -->
                             <a class="save" id="changePersonalDetails" href="javascript:void(0)">Save</a>
                         </div>
 

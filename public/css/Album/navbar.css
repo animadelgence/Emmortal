@@ -32,9 +32,28 @@
 .arrow-toggle .fa-chevron-up,
     .arrow-toggle.collapsed .fa-chevron-down {
         display: inline-block;
+        transform: rotate(180deg);
     }
 
     .arrow-toggle.collapsed .fa-chevron-up,
     .arrow-toggle .fa-chevron-down {
         display: none;
+        transform: rotate(180deg);
     }
+
+.sectionnavber li {
+    display:inline-block;
+    border-left:2px solid;
+    color:#ffffff;
+    content: "";
+    height: 20px;
+    position: relative;
+    top: 10px;
+}
+
+.sectionnavber li:first-child {
+    border-left:none;
+}
+.allicon {
+    top: 6px !important;
+}

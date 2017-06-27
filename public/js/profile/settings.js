@@ -108,7 +108,10 @@ $(document).ready(function () {
         e.preventDefault();
         var accountFirstName = $("#acc-name").val(),
             accountLastName = $("#acc-lastname").val(),
-            accountDOB = $("#acc-dob").val();
+            accountDOB = $("#acc-dob").val(),
+            profileimageNmae    = $("#pfimagePath").val(),
+            backgroundimageName = $("#bkimagePath").val();
+            
         if (accountFirstName.trim() === "") {
             $(".div--error_secondmsg").html('Enter Your First Name').css('display', 'block');
             setTimeout(function () {
@@ -126,7 +129,9 @@ $(document).ready(function () {
                 data: {
                     accountFirstName: accountFirstName,
                     accountLastName: accountLastName,
-                    accountDOB: accountDOB
+                    accountDOB: accountDOB,
+                    profileimageNmae    : profileimageNmae,
+                    backgroundimageName : backgroundimageName
                 },
                 success: function (result) {
                     //console.log(result);return false;

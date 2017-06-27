@@ -7,7 +7,7 @@
          </div>
          <div class="modal-body">
             <!-- content goes here -->
-            <div id="recoverymailid">
+            <div class="recoverymailid">
                <form method="post" action="/authlogin/recover" enctype="multipart/form-data" name="nameform" id="recovery_form">
                   <div class="form-group  full-width">
                      <input type="text" class="form-control" id="recoveryemail" placeholder="Email">

@@ -135,11 +135,13 @@ $(document).ready(function () {
                 },
                 success: function (result) {
                     //console.log(result);return false;
+                    $(".profile-image-name-menu").reload();
                     $(".div--error_secondmsg").html('Account details updated').css('display', 'block');
                     setTimeout(function () {
                         $(".div--error_secondmsg").fadeOut(300, function () {});
                     }, 6000);
                     return false;
+
                 }
 
             });

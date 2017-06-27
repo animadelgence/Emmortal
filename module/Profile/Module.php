@@ -12,6 +12,8 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Profile\Model\uploadDetails;
 use Profile\Model\uploadDetailsTable;
+use Profile\Model\uploadBackup;
+use Profile\Model\uploadBackupTable;
 use Profile\Model\pagedetails;
 use Profile\Model\pagedetailsTable;
 use Zend\Db\ResultSet\ResultSet;
@@ -53,6 +55,17 @@ class Module
                     $resultSetPrototype->setArrayObjectPrototype(new uploadDetails());
                     return new TableGateway('uploadDetails', $dbAdapter, null, $resultSetPrototype);
                 },
+                'Profile\Model\uploadBackupTable' => function($sm) {
+                    $tableGateway = $sm->get('uploadBackupTableGateway');
+                    $table = new uploadBackupTable($tableGateway);
+                    return $table;
+                },
+                'uploadBackupTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new uploadBackup());
+                    return new TableGateway('uploadBackup', $dbAdapter, null, $resultSetPrototype);
+                },
                 'Profile\Model\pagedetailsTable' => function($sm) {
                     $tableGateway = $sm->get('pagedetailsTableGateway');
                     $table = new pagedetailsTable($tableGateway);
@@ -64,6 +77,7 @@ class Module
                     $resultSetPrototype->setArrayObjectPrototype(new pagedetails());
                     return new TableGateway('pagedetails', $dbAdapter, null, $resultSetPrototype);
                 },
+
             ),
         );
     }

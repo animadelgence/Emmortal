@@ -32,11 +32,13 @@
 .arrow-toggle .fa-chevron-up,
     .arrow-toggle.collapsed .fa-chevron-down {
         display: inline-block;
+        transform: rotate(180deg);
     }
 
     .arrow-toggle.collapsed .fa-chevron-up,
     .arrow-toggle .fa-chevron-down {
         display: none;
+        transform: rotate(180deg);
     }
 
 .sectionnavber li {

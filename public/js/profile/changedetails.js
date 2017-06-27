@@ -29,7 +29,7 @@ $(function(){
                     
                     } else {
                            
-                        $("#canvas-placeholderpfimage").html('<img name="image Name" id="pfimgId" src="/upload/profileImage/'+response.filePath+'" style="width:100%;height:100%;">');
+                        $("#canvas-placeholderpfimage").html('<img name="image Name" id="pfimgId" src="/upload/profileImage/'+response.filePath+'" style="width:100%;height:120px;">');
                         $("#pfimagePath").val(response.filePath);
 
                     }
@@ -69,7 +69,7 @@ $(function(){
 
                     } else {
                            
-                        $("#canvas-placeholderbkimage").html('<img name="image Name" id="bkimgId" src="/upload/backgroundImage/'+response.filePath+'" style="width:100%;height:100%;">');
+                        $("#canvas-placeholderbkimage").html('<img name="image Name" id="bkimgId" src="/upload/backgroundImage/'+response.filePath+'" style="width:100%;height:120px;">');
                         $("#bkimagePath").val(response.filePath);
                     }
                 }
@@ -100,4 +100,5 @@ $(function(){
             }
         });
     });
+    $("#")
 });

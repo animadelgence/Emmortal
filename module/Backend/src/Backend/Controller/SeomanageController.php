@@ -60,6 +60,18 @@ namespace Backend\Controller;
 				      'action'     => 'seoview'));
 
      }
+     public function bgeditAction(){
+              $this->layout('layout/backendlayout');
+              $modelPlugin = $this->modelplugin();
+              $plugin = $this->routeplugin();
+		      $currentPageURL = $plugin->curPageURL();
+		      $href = explode("/", $currentPageURL);
+		      $controller = @$href[3];
+              $action = @$href[4];
+		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
+		      return new ViewModel();
+
+     }
 
  }
 

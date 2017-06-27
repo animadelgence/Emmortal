@@ -56,14 +56,17 @@ $(document).ready(function () {
                     $('#textUploadedDate').text(jsObject.uploadDetails[0].dateTime);
                     $('#TextLikeCount').text(jsObject.uploadDetails[0].likeCount);
                     $('#TextLikeCount').attr('data-id', uploadId);
+                    $('#textPreviewModal').modal('show');
                 } else if (uploadType == 'image') {
                     $('#imagelink').attr('src', jsObject.uploadDetails[0].uploadPath);
+                    $(".fancyboxanchor").attr('href', jsObject.uploadDetails[0].uploadPath);
                     $('#imageTitleLabel').text(jsObject.uploadDetails[0].uploadTitle);
                     $('#imageuploadedBy').text(jsObject.uploadDetails[0].username);
                     $('#imageDescription').html(jsObject.uploadDetails[0].uploadDescription);
                     $('#imageUploadedDate').text(jsObject.uploadDetails[0].dateTime);
                     $('#ImageLikeCount').text(jsObject.uploadDetails[0].likeCount);
                     $('#ImageLikeCount').attr('data-id', uploadId);
+                    $('#imagePreviewModal').modal('show');
                 } else if (uploadType == 'video') {
                     $('#videolink').attr('src', jsObject.uploadDetails[0].uploadPath);
                     $('#videoTitleLabel').text(jsObject.uploadDetails[0].uploadTitle);
@@ -72,9 +75,21 @@ $(document).ready(function () {
                     $('#videoUploadedDate').text(jsObject.uploadDetails[0].dateTime);
                     $('#videoLikeCount').text(jsObject.uploadDetails[0].likeCount);
                     $('#videoLikeCount').attr('data-id', uploadId);
+                    $('#videoPreviewModal').modal('show');
                 }
             }
         });
     });
+
+
+ $('body').on('click', '.imagepreview', function () {
+
+var imageSrc = $(this).parents().find("#imagelink").attr("src");
+
+$(".showmodalimagepreview").attr("src", imageSrc);
+
+
+ });
+
 
 });

@@ -37,11 +37,11 @@ $(document).ready(function () {
     });
     CKEDITOR.disableAutoInline = true;
     $( ".resizable" ).resizable({
-          
-      maxHeight: 250,
-      maxWidth: 355,
-      minHeight: 150,
-      minWidth: 200
+      
+      maxHeight: 364,
+      maxWidth: 364,
+      minHeight: 172,
+      minWidth: 172
 
     });
     $('.vid-sec').mouseup(function(){

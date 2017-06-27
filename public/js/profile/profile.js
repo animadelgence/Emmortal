@@ -159,4 +159,21 @@ $(document).ready(function () {
             $(".showmsg").html("<span>Text record was successfully added</span>");
         }
     });
+    $(".rotate").click(function(){
+ $(this).toggleClass("down"); 
+ if($(".rotate").hasClass("down"))
+ {
+    setTimeout(function () {
+                 $("#dropped_ui").show();
+            }, 500);
+   
+ }
+ else{
+    setTimeout(function () {
+                 $("#dropped_ui").hide();
+            }, 500);
+    
+ }
+ 
+});
 });

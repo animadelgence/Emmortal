@@ -100,5 +100,23 @@ $(function(){
             }
         });
     });
-    $("#")
+    $(".removeavtr").click(function(){
+        var pfimage = $("#canvas-placeholderpfimage").find('img').attr("src");
+        //alert(pfimage);
+        $.ajax({
+            type : "POST",
+            Url  : Url + "/settings/removeavatar",
+            data : {
+                imageNmae    : pfimage,
+                imageCategory : "profileimage"
+            },
+            success: function (result) {
+                //lert(result);return false;
+                if(result == 1)
+                {
+                    $("#canvas-placeholderpfimage").load(document.URL +  ' #canvas-placeholderpfimage');
+                }
+            }
+        });
+    });
 });

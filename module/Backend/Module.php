@@ -14,6 +14,8 @@ use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Backend\Model\admin;
 use Backend\Model\adminTable;
+use Backend\Model\seo;
+use Backend\Model\seoTable;
 
 class Module
 {
@@ -51,6 +53,17 @@ class Module
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new admin());
                     return new TableGateway('admin', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Backend\Model\seoTable' => function($sm) {
+                    $tableGateway = $sm->get('seoTableGateway');
+                    $table = new seoTable($tableGateway);
+                    return $table;
+                },
+                'seoTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new seo());
+                    return new TableGateway('seo', $dbAdapter, null, $resultSetPrototype);
                 },
            ),
 

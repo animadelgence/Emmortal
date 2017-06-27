@@ -1,9 +1,9 @@
 <?php
-	namespace Profile\Model;
+	namespace Backend\Model;
     use Zend\Db\TableGateway\TableGateway;
     use Zend\Db\ResultSet\ResultSet;
     use Zend\Db\Sql\Sql;
-    class uploadBackupTable
+    class seoTable
     {
         protected $tableGateWay;
         public function __construct(TableGateway $tableGateway)
@@ -18,20 +18,12 @@
             $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
-                    'delid' => $rSet->delid,
-                    'uploadid' => $rSet->uploadid,
-                    'userid' => $rSet->userid,
-                    'uploadPath'=>$rSet->uploadPath,
-                    'uploadTitle' => $rSet->uploadTitle,
-                    'uploadDescription' => $rSet->uploadDescription,
-                    'uploadType' => $rSet->uploadType,
-                    'filestatus' => $rSet->filestatus,
-                    'sizeX' => $rSet->sizeX,
-                    'sizeY' => $rSet->sizeY,
-                    'AID' => $rSet->AID,
-                    'FID' => $rSet->FID,
-                    'PID' => $rSet->PID,
-                    'deletedate' => $rSet->deletedate
+                    'seoid' => $rSet->seoid,
+                    'seopagetitle' => $rSet->seopagetitle,
+                    'seometadescription' => $rSet->seometadescription,
+                    'seoOGimagepath'=>$rSet->seoOGimagepath,
+                    'seoFaviconimagepath' => $rSet->seoFaviconimagepath,
+                    'creationDate' => $rSet->creationDate
                     );
             }
             return $array;

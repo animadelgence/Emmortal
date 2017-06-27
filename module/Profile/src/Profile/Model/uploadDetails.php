@@ -13,6 +13,8 @@ class uploadDetails
     public $uploadType;
     public $uploadPath;
     public $filestatus;
+    public $sizeX;
+    public $sizeY;
     public $AID;
     public $FID;
     public $PID;
@@ -44,6 +46,8 @@ class uploadDetails
         $this->uploadDescription = (!empty($data['uploadDescription'])) ? $data['uploadDescription'] : null;
         $this->uploadType = (!empty($data['uploadType'])) ? $data['uploadType'] : null;
         $this->filestatus = (!empty($data['filestatus'])) ? $data['filestatus'] : null;
+        $this->sizeX = (!empty($data['sizeX'])) ? $data['sizeX'] : null;
+        $this->sizeY = (!empty($data['sizeY'])) ? $data['sizeY'] : null;
         $this->AID = (!empty($data['AID'])) ? $data['AID'] : null;
         $this->FID = (!empty($data['FID'])) ? $data['FID'] : null;
         $this->uploadPath = (!empty($data['uploadPath'])) ? $data['uploadPath'] : null;

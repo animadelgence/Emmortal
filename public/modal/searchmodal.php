@@ -34,6 +34,9 @@
                 </div>
                 <div class="">
                     <div class="m-t-50 search-divider e-brown p-l-10" id="globalSearch" style="display:none;">Global search</div>
+                    <div style="display:none;" id="loader">
+                        <img src ="/image/loading.gif"/ style=" height: 160px; padding-left: 450px;">
+                    </div>
                     <div id="searchResults">
                     </div>
                 </div>

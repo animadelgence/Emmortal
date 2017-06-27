@@ -63,17 +63,22 @@ class UsersettingController extends AbstractActionController {
 
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
         $firstName = $_POST['accountFirstName'];
         $lastName = $_POST['accountLastName'];
         //$accountEmail = $_POST['accountEmail'];
         $accountDOB = $_POST['accountDOB'];
+        $profileimageNmae = $dynamicPath."/upload/profileImage/".$_POST['profileimageNmae'];
+        $backgroundimageName = $dynamicPath."/upload/backgroundImage/".$_POST['backgroundimageName']; 
         $conditionpublisherarray = array('userid' => $this->sessionid);
         
         $data = array(
 
             'firstname' => $firstName,
             'lastname' => $lastName,
-            'dateofbirth' => $accountDOB
+            'dateofbirth' => $accountDOB,
+            'profileimage' => $profileimageNmae,
+            'backgroundimage' => $backgroundimageName
             //'emailid' =>$accountEmail
         );
         $updateUserData = $modelPlugin->getuserTable()->updateuser($data, $conditionpublisherarray);
@@ -118,6 +123,22 @@ class UsersettingController extends AbstractActionController {
         }
         $updateData = $modelPlugin->getuserTable()->updateuser($data, $conditionData);
         echo $updateData;exit;
+    }
+    public function removeavatarAction(){
+
+        $modelPlugin = $this->modelplugin();
+        $imageNmae = $_POST['imageNmae'];
+        $imageCategory = $_POST['imageCategory'];
+        $conditionData = array('userid' => $this->sessionid);
+        if($imageCategory == "profileimage")
+        {
+            $updatedArray = array('profileimage'=> "");
+        }else{
+            $updatedArray = array('backgroundimage'=> "");
+        }
+        $updateData = $modelPlugin->getuserTable()->updateuser($data, $conditionData);
+        echo $updateData;exit;
+
     }
     
 }

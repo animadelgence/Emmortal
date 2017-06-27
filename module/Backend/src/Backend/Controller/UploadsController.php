@@ -30,6 +30,22 @@ namespace Backend\Controller;
               $uploaddata = $modelPlugin->getuploadDetailsTable()->fetchall();
 		      return new ViewModel(array('uploaddata'=>$uploaddata));
      }
+     public function deluploadAction(){
+              $modelPlugin = $this->modelplugin();
+              $plugin = $this->routeplugin();
+		      $currentPageURL = $plugin->curPageURL();
+		      $uploadId = $_POST['hidden_upid'];
+              $where = array('uploadId'=>$uploadId);
+              $fetch = $modelPlugin->getuploadDetailsTable()->fetchall($where);
+
+              $data = array('uploadid'=>$fetch[0]['uploadId'],'userid'=>$fetch[0]['UID'],'uploadTitle'=>$fetch[0]['uploadTitle'],'uploadDescription'=>$fetch[0]['uploadDescription'],'uploadPath'=>$fetch[0]['uploadPath'],'uploadType'=>$fetch[0]['uploadType'],'filestatus'=>$fetch[0]['filestatus'],'AID'=>$fetch[0]['AID'],'FID'=>$fetch[0]['FID'],'PID'=>$fetch[0]['PID']);
+              $savedetails = $modelPlugin->getuploadBackupTable()->insertdata($data);
+              $delupload = $modelPlugin->getuploadDetailsTable()->deleteData($where);
+
+		      return $this->redirect()->toRoute('uploads', array(
+				'controller' => 'uploads',
+				'action' => 'view'));
+     }
 
  }
 

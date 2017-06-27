@@ -27,7 +27,9 @@ namespace Backend\Controller;
 		      $controller = @$href[3];
               $action = @$href[4];
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
-		      return new ViewModel();
+              $seodata = $modelPlugin->getseoTable()->fetchall();
+              //print_r($seodata); exit;
+		      return new ViewModel(array('seodata'=>$seodata));
      }
 
  }

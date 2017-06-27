@@ -29,7 +29,7 @@ $(function(){
                     
                     } else {
                            
-                        $("#canvas-placeholderpfimage").html('<img name="image Name" id="pfimgId" src="/upload/profileImage/'+response.filePath+'" style="width:100%;height:100%;">');
+                        $("#canvas-placeholderpfimage").html('<img name="image Name" id="pfimgId" src="/upload/profileImage/'+response.filePath+'" style="width:100%;height:120px;">');
                         $("#pfimagePath").val(response.filePath);
 
                     }
@@ -69,7 +69,7 @@ $(function(){
 
                     } else {
                            
-                        $("#canvas-placeholderbkimage").html('<img name="image Name" id="bkimgId" src="/upload/backgroundImage/'+response.filePath+'" style="width:100%;height:100%;">');
+                        $("#canvas-placeholderbkimage").html('<img name="image Name" id="bkimgId" src="/upload/backgroundImage/'+response.filePath+'" style="width:100%;height:120px;">');
                         $("#bkimagePath").val(response.filePath);
                     }
                 }
@@ -97,6 +97,25 @@ $(function(){
             },
             success: function (result) {
                 alert(result);return false;
+            }
+        });
+    });
+    $(".removeavtr").click(function(){
+        var pfimage = $("#canvas-placeholderpfimage").find('img').attr("src");
+        //alert(pfimage);
+        $.ajax({
+            type : "POST",
+            Url  : Url + "/settings/removeavatar",
+            data : {
+                imageNmae    : pfimage,
+                imageCategory : "profileimage"
+            },
+            success: function (result) {
+                //lert(result);return false;
+                if(result == 1)
+                {
+                    $("#canvas-placeholderpfimage").load(document.URL +  ' #canvas-placeholderpfimage');
+                }
             }
         });
     });

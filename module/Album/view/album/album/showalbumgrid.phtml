@@ -11,16 +11,16 @@
 <input type="hidden" id="counterOfTheTemplate" value=0 />
             <div class="content-wrapper user_profile_section">
                <div class="container-of-sections ">
-                           
 
 
- 
-                  <?php  
+
+
+                  <?php
                    $u = count($uploadDetails);
                    if($u>0){?>
                         <input type='hidden' id ='noOfTemplates' value="<?php echo $u; ?>" >
                 <input type ="hidden" value="1" id="valuetobeIncremented">
-                                       <?php 
+                                       <?php
                                        if ($u < 15) {
                         $no = $u;
                     } else {
@@ -56,10 +56,10 @@
                                         }
                                      }?>
 
-          
+
                 </ul>
             </div>
-        
+
          </div>
          </div>
       </div>
@@ -141,7 +141,7 @@
 </div>
 
 <!-- photo modal hover-->
-<?php 
+<?php
 $totalupload = count($uploadDetails);
 for ($i = 0; $i < $totalupload; $i++) {
                            $uploadId = $uploadDetails[$i]['uploadId'];
@@ -150,19 +150,19 @@ for ($i = 0; $i < $totalupload; $i++) {
                            $uploadPath = $uploadDetails[$i]['uploadPath'];
                            $TimeStamp = $uploadDetails[$i]['TimeStamp'];
                            $uploadType = $uploadDetails[$i]['uploadType'];
-                           
+
 echo '<div class="modal fade" id="showmodal_'.$uploadId.'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
    <div class="modal-dialog modal-box">
       <div class="modal-content modal-outer" style="height:575px;">
-         
+
             <button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>';
-           
-      
+
+
          if($uploadType == "text"){
             echo '<div class="modal-header modal-headernew">'.$uploadTitle.'</div>';
          }
         echo '<div class="modal-body" style="overflow:hidden;">';
-          
+
          if($uploadType == "text"){
             echo '<div class="modaldescripton"><span>by shilpita</span><p class="moodal-text">'.$uploadDescription.'</p></div>';
          }
@@ -175,8 +175,8 @@ echo '<div class="modal fade" id="showmodal_'.$uploadId.'" tabindex="-1" role="d
          } else {
 
          }
-            
-            
+
+
 
         echo '</div>
          <div class="modal-footer close-area">

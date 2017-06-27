@@ -92,6 +92,10 @@ body {
     border-color: #579942;
     color: #579942;
 }
+.removeavtr{
+    border-color: #b4504e ! important;
+    color: #b4504e ! important;
+}
 .e-btn, .open > .dropdown-toggle {
     background: #fff none repeat scroll 0 0;
     border: 1px solid;
@@ -107,7 +111,7 @@ body {
     width: 100%;
 }
 .btn {
-    -moz-user-select: none;
+     -moz-user-select: none;
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
@@ -328,9 +332,9 @@ button[disabled], html input[disabled] {
     cursor: default;
 }
 .btn-default {
-    background-color: #fff;
-    border-color: #ccc;
-    color: #333;
+  background-color: #fff !important;
+  border-color: #ccc;
+  color: #333;
 }
 .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
@@ -775,6 +779,43 @@ button[disabled], html input[disabled] {
   border-radius: 0;
   transition: background 0.2s ease 0s, color 0.2s ease 0s;
   white-space: normal;
+}
+
+.modaldescripton {
+  overflow: hidden;
+}
+.modaldescripton > span {
+  display: inline-block;
+  float: right;
+}
+.moodal-text {
+  color: #aaa897;
+  margin-top: 38px;
+}
+.modal-value {
+  background-color: #fff;
+  bottom: 46px;
+  list-style-type: none;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  width: 33%;
+}
+.datetime {
+  border: 19px none;
+  bottom: 23px;
+  color: #000;
+  position: absolute;
+  right: 22px;
+}
+.modal-value li {
+  background-color: #ccc;
+  cursor: pointer;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 13px 20px;
 }
 
 #photos {

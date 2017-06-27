@@ -7,7 +7,7 @@
 			style="margin-bottom: 20px; padding: 0 !important">
 
 			<h1 id="csv_title" style="display: none;">Emmortal Upload Details</h1>
-				<a href="/usermanage/userbackupdet" class="user_backup" title="User backup details"><i class="fa fa-recycle fa-3x" aria-hidden="true"></i></a>
+<!--				<a href="/usermanage/uploadbackup" class="user_backup" title="Upload backup details"><i class="fa fa-recycle fa-3x" aria-hidden="true"></i></a>-->
 
 
 		</div>
@@ -69,9 +69,9 @@
 									style="width: 80%; display: inline-block;"><?php echo $val['TimeStamp'];?>
 								</span></td>
 
-								<input type="hidden"  class="hidden_class" value="<?php echo $val['userid']; ?>" />
+								<input type="hidden"  class="hidden_class" value="<?php echo $val['uploadId']; ?>" />
 								<td class="sorttable_nosort">
-									        <button class="btn btn-danger btn-xs dlt_nom deleteUser" title="Delete upload">
+									        <button class="btn btn-danger btn-xs dlt_nom delUpload" title="Delete upload">
 										        <i class="fa fa-trash-o"></i>
 									        </button> <br/>
 								</td>
@@ -106,7 +106,7 @@
 			 <a class="close" href="javascript:void(0)" onclick="$('#dynamicdeluploadpopup').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
 			<h2 class="form-login-heading">Delete Upload</h2>
 			<div class="login-wrap" style="overflow:hidden;text-align:center;">
-				<input type="hidden" name="hidden_upid" value="" id="hidden_uploadid" class="hidden_upid" />
+				<input type="hidden" name="hidden_upid" id="hidden_uploadid" class="hidden_upid" />
 				<h4 class="form-login-heading">Are you sure you want to delete this upload?</h4>
 				<div style="overflow:hidden;display:inline-block;">
                     <input type="button" class="popup_cancel" onclick="$('#dynamicdeluploadpopup').hide();" id="btn" value="CANCEL"/>

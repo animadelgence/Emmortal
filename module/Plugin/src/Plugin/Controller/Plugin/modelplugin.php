@@ -14,9 +14,11 @@ class modelplugin extends routeplugin {
     public $pagedetailsTable;
     public $adminTable;
     public $uploadDetailsTable;
+    public $uploadBackupTable;
     public $tributedetailsTable;
     public $likesdetailsTable;
     public $userbackupTable;
+    public $seoTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {
@@ -65,6 +67,13 @@ class modelplugin extends routeplugin {
         }
         return $this->uploadDetailsTable;
     }
+    public function getuploadBackupTable() {
+        if (!$this->uploadBackupTable) {
+            $sm = $this->getController()->getServiceLocator();
+            $this->uploadBackupTable = $sm->get('Profile\Model\uploadBackupTable');
+        }
+        return $this->uploadBackupTable;
+    }
     public function getfriendsTable() {
         if (!$this->friendsTable) {
 
@@ -105,6 +114,14 @@ class modelplugin extends routeplugin {
             $this->likesdetailsTable = $sm->get('Album\Model\likesdetailsTable');
         }
         return $this->likesdetailsTable;
+    }
+    public function getseoTable() {
+        if (!$this->seoTable) {
+
+            $sm = $this->getController()->getServiceLocator();
+            $this->seoTable = $sm->get('Backend\Model\seoTable');
+        }
+        return $this->seoTable;
     }
 }
 

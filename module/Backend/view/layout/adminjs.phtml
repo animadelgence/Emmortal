@@ -33,6 +33,14 @@ switch ($controller) {
             break;
         }
     break;
+    case 'uploads':
+        switch($action) {
+            case 'view':
+                 $this->headScript()
+                ->prependFile($this->basePath() . '/js/backend/delupload.js');
+            break;
+        }
+    break;
 
 	default:
 		break;

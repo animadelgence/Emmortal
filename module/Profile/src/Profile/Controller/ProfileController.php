@@ -198,9 +198,11 @@ class ProfileController extends AbstractActionController {
         $plugin             = $this->routeplugin();
         $modelPlugin        = $this->modelplugin();
         $dynamicPath        = $plugin->dynamicPath();
-        $style = $_POST['style'];
+        $sizeX = $_POST['sizeX'];
+        $sizeY = $_POST['sizeY'];
         $uploadId = $_POST['uploadId'];
-        $data = array('filestatus'=>$style
+        
+        $data = array('sizeX'=>$sizeX ,'sizeY'=>$sizeY
                               );
         $where = array('uploadId'=>$uploadId
                               );

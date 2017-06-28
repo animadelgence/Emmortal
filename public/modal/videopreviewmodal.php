@@ -1,5 +1,5 @@
 <!-- line modal for text-->
-<div class="modal fade" id="videoPreviewModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important;">
+<div class="modal fade previewmodal" id="videoPreviewModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important;">
 	<div class="modal-dialog modal-box">
 		<div class="modal-content modal-outer">
 			<div class="" style="background-color: rgb(180, 80, 78);">

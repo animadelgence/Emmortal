@@ -85,7 +85,7 @@ $(document).ready(function () {
  $('body').on('click', '.imagepreview', function () {
 
 var imageSrc = $(this).parents().find("#imagelink").attr("src");
-
+$(".previewmodal").modal('hide');
 $(".showmodalimagepreview").attr("src", imageSrc);
 
 

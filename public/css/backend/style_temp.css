@@ -135,8 +135,8 @@ div#undo-n-redo-wrap a.redo_btn_vc{
 
 .btn-theme {
   color: #fff;
-  background-color: #04ad6a;
-  border-color: #48bcb4;
+  background-color: #827657;
+  border-color: #666666;
 }
 .btn-theme:hover,
 .btn-theme:focus,
@@ -144,8 +144,8 @@ div#undo-n-redo-wrap a.redo_btn_vc{
 .btn-theme.active,
 .open .dropdown-toggle.btn-theme {
   color: #fff;
-  background-color: #48bcb4;
-  border-color: #48bcb4;
+  background-color: #827657;
+  border-color: #b6b6b6;
 }
 
 .btn-theme02 {
@@ -2056,26 +2056,34 @@ label {
     font-size: 15px;
     font-weight: 114px;
     padding: 12px;
+    border: 1px solid #666666;
 }
 .dwnload_csv:hover{
     background: #827657 none repeat scroll 0 0 !important;
-    color: #fff; float: right !important;
+    color: #fff;
+    float: right !important;
     font-size: 15px !important;
     font-weight: 114px !important;
     padding: 12px !important;
+    border-color: #b6b6b6;
 }
 .user_backup:hover{
-    color: #827657;
+    color: #666666;
     float: right !important;
 }
 .new_user{
-    background: #04ad6a none repeat scroll 0 0;
+    background: #827657 none repeat scroll 0 0;
     color: #fff;
     font-size: 15px;
     font-weight: 114px;
     padding: 12px;
     margin-right: 20px;
     float: right;
+    border: 1px solid #666666;
+}
+.new_user:hover{
+    border-color: #b6b6b6;
+    color: #fff !important;
 }
 .new_tag{
     background: #04ad6a none repeat scroll 0 0;

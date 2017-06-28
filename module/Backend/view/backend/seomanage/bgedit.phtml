@@ -9,14 +9,23 @@
 
         <!-- add user layout -->
 				<div class="container">
-                    <form class="form-login reg-form" id='editCatForm' method="post" action="/Sectionmanage/editsubmitcategory" enctype="multipart/form-data">
+                    <form class="form-login reg-form" id='bgimgEditForm' method="post" action="/seomanage/bgeditsubmit" enctype="multipart/form-data">
                     <h2 class="form-login-heading">Edit Background Image</h2>
                         <div class="reg-wrap">
-                            <input type="hidden" id="categoryId" name="categoryId" value="<?php if($catData[0]['categoryId']){ echo $catData[0]['categoryId']; }?>">
-                            <input type="text" name="catNewName" id="catNewName" class="form-control" value="<?php echo $catData[0]['categoryName']; ?>" placeholder="Enter new category name" autofocus>
-                            <span id="errorNewName" style="color: red; margin-left: 125px;"></span>
+                            <input type="hidden" id="seoid" name="seoid" value="<?php echo $bgimg[0]['seoid']; ?>">
+								<div id="upload_prev" class="upload_prev" style="margin-left: 12em; padding-bottom: 10px;">
+									<?php if(!empty($bgimg[0]['bgimage'])){ ?>
+									<img class="image" src="<?php echo $bgimg[0]['bgimage'] ?>" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
+									<?php } else{ ?><img class="image" src="<?php echo $bgimg[0]['bgimage'] ?>" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
+                                    <?php }?>
+
+								</div>
+                                <label id="errorImg1" style="margin-left: 10px;"></label><!--img extnsn valid-->
+								<label id="errorImg2" style="margin-left: 70px;"></label><!--img size(>1MB) valid-->
+                                <input type="file" class="form-control" name="fileupload" id="fileupload" style='height: 30%;' required />
+
                             <br>
-                            <input type="button" class="btn btn-theme btn-block" id="catBtnSave" value="Save and Continue">
+                            <input type="button" class="btn btn-theme btn-block" id="bgImgSave" value="Save and Continue">
                         </div>
                     </form>
                 </div>

@@ -41,7 +41,7 @@ class ProfileController extends AbstractActionController {
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
         $uploadQuery = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
-        //print_r($uploadDetails);exit;
+       //print_r($uploadDetails);exit;
 
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid, 'userDetails'=>$userDetails));
 

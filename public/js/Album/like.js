@@ -82,14 +82,31 @@ $(document).ready(function () {
     });
 
 
- $('body').on('click', '.imagepreview', function () {
+    $('body').on('click', '.imagepreview', function () {
+                  var imageSrc = $(this).parents().find("#imagelink").attr("src");
+                  $(".previewmodal").modal('hide');
+                  $(".showmodalimagepreview").attr("src", imageSrc);
+        });
 
-var imageSrc = $(this).parents().find("#imagelink").attr("src");
-$(".previewmodal").modal('hide');
-$(".showmodalimagepreview").attr("src", imageSrc);
+    $('body').on('click', '.tributeUpdatemodal', function () {
+        var friendId = $(".friendId").val();
+        var tributedescription = $(".tributedescription").val();
+        //  $.ajax({
+        //     type: "POST",
+        //     url: base_url_dynamic + '/tribute/getupload',
+        //     data: {
+        //         uploadId: uploadId
+        //     },
+        //     success: function (res) {
+        //     }
+        // });
+                $("#tributeDescription").val(tributedescription);
+                $(".friendname").val(friendId);
+
+                  $("#tributeUpdatemodal").modal('show');
+        });
 
 
- });
 
 
 });

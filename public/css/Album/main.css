@@ -35,6 +35,29 @@ body {
     color: #fff;
     text-decoration: none;
 }
+.tribute-page .show-adds-btns .edit-menu-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+.tribute-page .show-adds-btns .edit-menu-wrapper .edit-menu {
+  border: 4px solid #fff;
+  height: 60px;
+  width: 60px;
+}
+.edit-menu {
+  background: #aaa897 none repeat scroll 0 0;
+  cursor: pointer;
+  display: table;
+  height: 40px;
+  text-align: center;
+  width: 40px;
+}
+.edit-menu .cog-menu-icon {
+  color: #fff;
+  display: table-cell;
+  font-size: 24px;
+  vertical-align: middle;
+}
 /* added by shubhadip*/
 .modal-photo {
 	width: 75%;

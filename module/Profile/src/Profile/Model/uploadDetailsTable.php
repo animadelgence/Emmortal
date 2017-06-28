@@ -1,8 +1,11 @@
 <?php
-	namespace Profile\Model;
+    namespace Profile\Model;
     use Zend\Db\TableGateway\TableGateway;
     use Zend\Db\ResultSet\ResultSet;
     use Zend\Db\Sql\Sql;
+    use Zend\Db\Sql\Predicate;
+    use Zend\Db\Sql\Where;
+    use Zend\Db\Sql\Select;
     class uploadDetailsTable
     {
         protected $tableGateWay;
@@ -12,8 +15,17 @@
         }
         public function fetchall($query=null)
         {
+        $sql = new Sql($this->tableGWay->adapter);
+        $select = $sql->select();
+        $select->from($this->tableGWay->getTable())
+                ->where($query);
+        $select->order('uploadId DESC');
+        $resultSet = $this->tableGWay->selectWith($select);
+       
+        $array = array();
 
-            $resultSet = $this->tableGWay->select($query);
+
+           // $resultSet = $this->tableGWay->select($query);
             $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
@@ -23,7 +35,6 @@
                     'uploadTitle' => $rSet->uploadTitle,
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
-                    'filestatus' => $rSet->filestatus,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,
@@ -37,6 +48,7 @@
         $sql = new Sql($this->tableGWay->adapter);
         $select = $sql->select();
         $select->from($this->tableGWay->getTable());
+        $select->order('uploadId DESC');
 
         if (!empty($offsetvalues)) {
             $select->limit(15)
@@ -87,8 +99,8 @@
                  ->where("uploadDetails.uploadId='$query'");
             $result = $this->tableGWay->selectWith($select);
             $data=array();
-		    foreach($result as $rSet) {
-			         $data[]=array(
+            foreach($result as $rSet) {
+                     $data[]=array(
                             'uploadId' => $rSet->uploadId,
                             'UID' => $rSet->UID,
                             'uploadTitle' => $rSet->uploadTitle,
@@ -116,10 +128,10 @@
                             'findme' => $rSet->findme,
                             'content' => $rSet->content,
                             'activation' => $rSet->activation
-			         );
-		   }
+                     );
+           }
 
            return $data;
-	    }
+        }
     }
 ?>

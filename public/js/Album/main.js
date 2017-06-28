@@ -1,6 +1,19 @@
 function getRandomSize(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
+var gridster = [];
+
+    $(function () {
+
+        gridster[0] = $(".gridster ul").gridster({
+            namespace: '.gridster',
+            widget_base_dimensions: [182,181],
+            widget_margins: [5, 5],
+            max_cols:6
+        }).data('gridster').disable();
+
+
+    });
 /*
 
 for (var i = 0; i < 25; i++) {

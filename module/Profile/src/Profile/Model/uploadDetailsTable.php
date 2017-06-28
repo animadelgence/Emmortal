@@ -16,6 +16,14 @@
             $resultSet = $this->tableGWay->select($query);
             $array = array();
             foreach ($resultSet as $rSet) {
+                if($rSet->sizeX=="H")
+                    $sizeX = 2;
+                else
+                    $sizeX = 1;
+                 if($rSet->sizeY=="W")
+                    $sizeY = 1;
+                else
+                    $sizeY = 2;
                 $array[] = array(
                     'uploadId' => $rSet->uploadId,
                     'UID' => $rSet->UID,
@@ -24,6 +32,8 @@
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
                     'filestatus' => $rSet->filestatus,
+                    'sizeX' => $sizeX,
+                    'sizeY' => $sizeY,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,
@@ -53,6 +63,8 @@
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
                     'filestatus' => $rSet->filestatus,
+                    'sizeX' => $rSet->sizeX,
+                    'sizeY' => $rSet->sizeY,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,

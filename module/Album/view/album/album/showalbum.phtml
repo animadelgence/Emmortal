@@ -9,8 +9,7 @@
 <input type="hidden" id="isAjaxStart" value=0 />
 <input type="hidden" id="checker" value=1 />
 <input type="hidden" id="counterOfTheTemplate" value=0 />
-            <div class="content-wrapper user_profile_section">
-               <div class="container-of-sections ">
+           <div class="gridster ready">
                            
 
 
@@ -26,26 +25,29 @@
                     } else {
                         $no = 15;
                     } ?>
-                      <ul class="outer-wrap" id="outer-wrap">
+                      <ul id="outer-wrap">
                         <?php for ($i = 0; $i < $no; $i++) {
                            $uploadId = $uploadDetails[$i]['uploadId'];
 
 
                                           if($uploadDetails[$i]['uploadType'] == "text"){
-                                             echo ' <li class="user_upload_part_section_content--inside vid-sec text-sec" style="height:220px;width:20%;" data-target="#showmodal_'.$uploadId.'" data-toggle="modal">
-                  <span><label name="text Name">'.$uploadDetails[$i]['uploadTitle'].'<p>'.$uploadDetails[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> 0 </div>
+                                             echo ' <li class="gs-w" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                             <span><label name="text Name">'.$uploadDetails[$i]['uploadTitle'].'<p>'.$uploadDetails[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> 0 </div>
+
                </li>';
                                           }
 
                                           else if($uploadDetails[$i]['uploadType'] == "image"){
-                                              echo ' <li class="user_upload_part_section_content--inside vid-sec" style="height:220px;width:20%;" data-target="#showmodal_'.$uploadId.'" data-toggle="modal">
-                  <span><img name="Image Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div>
+                                              echo ' <li class="gs-w" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                              <span><img name="Image Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div>
+
                </li>';
 
                                           }
                                            else if($uploadDetails[$i]['uploadType'] == "video"){
-                                                echo ' <li class="user_upload_part_section_content--inside vid-sec" style="height:220px;width:20%;" data-target="#showmodal_'.$uploadId.'" data-toggle="modal">
-                  <span><video controls="controls" name="Video Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div>
+                                               echo ' <li class="gs-w" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                                <span><video controls="controls" name="Video Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div>
+
                </li>';
 
 

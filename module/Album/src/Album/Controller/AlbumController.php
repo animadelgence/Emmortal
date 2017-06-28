@@ -52,8 +52,6 @@ class AlbumController extends AbstractActionController {
         $uploadQuery = array();
 
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
-        
-        
        
         //exit;
         if($this->sessionid == "")
@@ -84,11 +82,10 @@ class AlbumController extends AbstractActionController {
     }*/
     public function showalbumgridAction(){
     	$this->layout('layout/albumlayout.phtml');
-        $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
+        $dynamicPath = $modelPlugin->dynamicPath();
+        $jsonArray = $modelPlugin->jsondynamic();
+        $currentPageURL = $modelPlugin->curPageURL();
         $href = explode("/", $currentPageURL);
         $controller = 'album';
 		$action = $this->params('action');
@@ -96,9 +93,6 @@ class AlbumController extends AbstractActionController {
 
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
 
-
-
-        //exit;
         if($this->sessionid == "")
         {
             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));

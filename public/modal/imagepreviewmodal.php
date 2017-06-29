@@ -11,9 +11,9 @@
 			             <div class="col-sm-6 full-height col-xs-12">
                              <div class="show-photo-wrapper full-height">
                                  <div class="image-show-wrapper">
-                                 	
+
                                      <img src="" id="imagelink">
-                                 
+
                                      <div class="placeholder-wrapper">
                                          <div class="text-wrapper">
                                              <div class="text"><a class="imagepreview" data-target="#showimagepreview"  data-toggle="modal">Click to See Larger</a></div>

@@ -72,6 +72,6 @@
             //$rowset = $this->tableGWay->select($where);
             $res = $this->tableGWay->update($data,$where);
             return $res;
-        } 
+        }
     }
 ?>

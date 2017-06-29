@@ -56,7 +56,7 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Profile\Controller\Account',
-                         'action'     => 'myaccount',
+                         'action'     => 'profileimage',
                      ),
                  ),
              ),
@@ -82,7 +82,8 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Profile\Controller\Usersetting',
-                         'action'     => 'index',
+                         //'action'     => 'index',
+                         'action'     => 'general',
                      ),
                  ),
              ),

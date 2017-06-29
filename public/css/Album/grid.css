@@ -1,0 +1,28 @@
+
+ul, ol {
+
+ list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+.gridster {
+margin:0 auto;
+  width: 1170px;
+}
+
+.gridster .gs-w {
+  background: #fff none repeat scroll 0 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+	padding:5px;
+overflow:hidden;
+}
+.gs-w img{
+ height: 100%;
+    object-fit: cover;
+    width: 100%;
+}

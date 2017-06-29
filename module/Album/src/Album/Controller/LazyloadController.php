@@ -45,8 +45,13 @@ class LazyloadController extends AbstractActionController {
                                           }
 
                                            else if($uploadAll[$i]['uploadType'] == "image"){
+                                                if (@getimagesize($uploadAll[$i]['uploadPath'])) {
+                                                  $uploadedImage = $uploadAll[$i]['uploadPath'];
+                                              }else{
+                                                  $uploadedImage = $dynamicPath."/image/NoPhotoDefault.png";
+                                              }
                                               $galleryStruct .= ' <li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
-                                              <span><img name="Image Name" id="" src="'.$uploadAll[$i]['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div></li>';
+                                              <span><img name="Image Name" id="" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div></li>';
 
                                           }
                                            else if($uploadAll[$i]['uploadType'] == "video"){

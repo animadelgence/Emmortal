@@ -18,6 +18,27 @@ function albummodalopen(){
         $('body').append(result);
         // open modal
         $('#textInsertModal').modal('show');
+        if($('#textDescription').length) {
+            CKEDITOR.replace('textDescription', {
+                toolbar: [
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
 
     });
 
@@ -28,6 +49,31 @@ function imagemodalopen(){
         $('body').append(result);
         // open modal
         $('#photoInsertModal').modal('show');
+        if($('#imagetextDescription').length) {
+            CKEDITOR.replace('imagetextDescription', {
+                toolbar: [
+
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+
+
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
 
     });
 

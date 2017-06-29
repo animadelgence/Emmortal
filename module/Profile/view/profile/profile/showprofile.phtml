@@ -6,12 +6,13 @@
                         <div class="content-wrapper user_profile_section">
                             <div class="container-of-sections ">
                               <ul class="outer-wrap">
+                                  <?php if (!@getimagesize($userDetails[0]['profileimage'])) { ?>
                             <li class="user_profile_image_section"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
                     echo $userDetails[0]['profileimage'];
                 } else {
                     echo "/image/profile-deafult-avatar.jpg";
                 }?>"></li>
-                            <li class="user_profile_name_section"><span><?php echo $userDetails[0]['dateofbirth']?></span><br><span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname']?></span></li>
+                            <li class="user_profile_name_section"><span><?php echo $userDetails[0]['dateofbirth']?></span><br><span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname']?></span></li><?php }?>
                              <?php  if(count($uploadDetails)>0){
                                         //echo '<div class="user_upload_part_section_content" style="display:table;">';
                                         foreach($uploadDetails as $upload){

@@ -19,6 +19,7 @@ class modelplugin extends routeplugin {
     public $likesdetailsTable;
     public $userbackupTable;
     public $seoTable;
+    public $bgimageTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {
@@ -122,6 +123,14 @@ class modelplugin extends routeplugin {
             $this->seoTable = $sm->get('Backend\Model\seoTable');
         }
         return $this->seoTable;
+    }
+    public function getbgimageTable() {
+        if (!$this->bgimageTable) {
+
+            $sm = $this->getController()->getServiceLocator();
+            $this->bgimageTable = $sm->get('Backend\Model\bgimageTable');
+        }
+        return $this->bgimageTable;
     }
 }
 

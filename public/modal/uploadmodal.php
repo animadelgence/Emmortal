@@ -31,7 +31,7 @@ $protocolPath = $protocol . $_SERVER['HTTP_HOST'];
 							</a>
 						</div>
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer">
+							<a class="btn btn-default btn-media-type pointer" onclick="modalopen();" href="#">
 								<i class="fa fa-book"></i>
 								<div class="text">Album</div>
 							</a>

@@ -9,6 +9,7 @@ class seo
     public $seoOGimagepath;
     public $seoFaviconimagepath;
     public $creationDate;
+    public $bgimage;
 
 	function exchangeArray($data)
 	{
@@ -18,6 +19,7 @@ class seo
 		$this->seoOGimagepath = (!empty($data['seoOGimagepath'])) ? $data['seoOGimagepath'] : null;
 		$this->seoFaviconimagepath = (!empty($data['seoFaviconimagepath'])) ? $data['seoFaviconimagepath'] : null;
 		$this->creationDate = (!empty($data['creationDate'])) ? $data['creationDate'] : null;
+		$this->bgimage = (!empty($data['bgimage'])) ? $data['bgimage'] : null;
 	}
 
     public function getArrayCopy()

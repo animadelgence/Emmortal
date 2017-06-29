@@ -37,7 +37,7 @@ $(document).ready(function () {
     });
     CKEDITOR.disableAutoInline = true;
     $( ".resizable" ).resizable({
-      
+
       maxHeight: 364,
       maxWidth: 364,
       minHeight: 172,
@@ -71,10 +71,10 @@ $(document).ready(function () {
                 url: base_url_dynamic + '/profile/savefilestatus',
                 data: {sizeX:sizeX,sizeY:sizeY,uploadId:uploadId},
                 success: function (res) {
-              
+
                 }
             });
-    
+
     }
 
     });
@@ -214,20 +214,20 @@ $(document).ready(function () {
         }
     });
     $(".rotate").click(function(){
- $(this).toggleClass("down"); 
+ $(this).toggleClass("down");
  if($(".rotate").hasClass("down"))
  {
     setTimeout(function () {
                  $("#dropped_ui").show();
             }, 500);
-   
+
  }
  else{
     setTimeout(function () {
                  $("#dropped_ui").hide();
             }, 500);
-    
+
  }
- 
+
 });
 });

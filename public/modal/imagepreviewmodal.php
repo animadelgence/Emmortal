@@ -11,9 +11,9 @@
 			             <div class="col-sm-6 full-height col-xs-12">
                              <div class="show-photo-wrapper full-height">
                                  <div class="image-show-wrapper">
-                                 	
+
                                      <img src="" id="imagelink">
-                                 
+
                                      <div class="placeholder-wrapper">
                                          <div class="text-wrapper">
                                              <div class="text"><a class="imagepreview" data-target="#showimagepreview"  data-toggle="modal">Click to See Larger</a></div>
@@ -34,7 +34,7 @@
 			             </div>
 			         </div>
 			         <div class="show-adds-btns bottom">
-			             <div class="btn e-btn btn-round full"style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" data-placement="bottom" title="Tribute">0</div>
+			             <div class="btn e-btn btn-round full" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" data-placement="bottom" title="Tribute">0</div>
 			             <div class="e-like btn e-btn btn-round full likeClick" style="background-color: rgb(180, 80, 78);" data-cmd="image" id="ImageLikeCount" data-toggle="tooltip" data-placement="bottom" data-placement="bottom" title="Like">0</div>
 			         </div>
 			         <div class="show-date e-brown" id="imageUploadedDate"></div>

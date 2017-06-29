@@ -26,8 +26,6 @@
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
                     'filestatus' => $rSet->filestatus,
-                    'sizeX' => $rSet->sizeX,
-                    'sizeY' => $rSet->sizeY,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,

@@ -1,5 +1,6 @@
 body {
-    background: rgba(0, 0, 0, 0) url("/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg") no-repeat scroll 0 0 / cover;
+   /* background: rgba(0, 0, 0, 0) url("/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg") no-repeat scroll 0 0 / cover;
+   */
     width: 100%;
     font-family: 'Oxygen', sans-serif;
 }
@@ -118,6 +119,10 @@ body {
 .removeavtr{
     border-color: #b4504e ! important;
     color: #b4504e ! important;
+}
+.removeavtr:hover{
+    background: #b4504e ! important;
+    color: #ffffff ! important;
 }
 .e-btn, .open > .dropdown-toggle {
     background: #fff none repeat scroll 0 0;

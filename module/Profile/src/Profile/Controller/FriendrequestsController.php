@@ -180,6 +180,6 @@ class FriendrequestsController extends AbstractActionController {
                         'friendsid'=>$userid);
         $friendDetails = $modelPlugin->getfriendsTable()->updateData($updatedArray,$where);
         echo $friendDetails;exit;
-        
+
     }
 }

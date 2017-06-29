@@ -55,7 +55,7 @@ class PageController extends AbstractActionController {
         {
           $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
           if (@getimagesize($userDetails[0]['profileimage'])) {
-                    $response['profileImage']  = $userDetails[0]['profileimage'];
+                    $response['profileImage']  = 1;
                 } else {
                 $response['profileImage']  = $dynamicPath."/image/profile-deafult-avatar.jpg";
                 }

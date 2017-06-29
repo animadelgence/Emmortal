@@ -17,6 +17,7 @@ var base_url_dynamic = window.location.origin,
     i = "0";
 $(document).ready(function () {
     "use strict";
+    if($('#textDescription').length) {
     CKEDITOR.replace('textDescription', {
         toolbar: [
             {
@@ -36,6 +37,7 @@ $(document).ready(function () {
         ]
     });
     CKEDITOR.disableAutoInline = true;
+    }
     $( ".resizable" ).resizable({
 
       maxHeight: 364,

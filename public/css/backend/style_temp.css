@@ -790,7 +790,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 .sidebar-toggle-box {
     float: left;
     padding-right: 11px;
-    margin-top: 20px;
+    margin-top: 11px;
 }
 
 .sidebar-toggle-box .fa-bars {

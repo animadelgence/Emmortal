@@ -1,157 +1,154 @@
 <section class="setting-contant">
-        <div class="container">
-            <div class="inner-contant">
-                <div class="tab">
-                    <h2>Settings</h2>
-                    <button class="tablinks" onclick="openCity(event, 'gen')" id="defaultOpen">General</button>
-                    <button class="tablinks" onclick="openCity(event, 'security')">Security</button>
-                    <!--<button class="tablinks" onclick="openCity(event, 'perchase')">Purchasing</button>-->
-                    <button class="tablinks" onclick="openCity(event, 'Privacy')" id="defaultOpen">Privacy</button>
-                    <button class="tablinks" onclick="openCity(event, 'support')">Support</button>
-                </div>
-                <div>
-                    <div id="gen" class="tabcontent">
-                        <div class="col-lg-6">
-                            <h3>Personal information</h3>
-                            <form action="/action_page.php">
-                                <input class="gen-input" type="text" name="fname" id="acc-name" value="<?php echo $userDetails[0]['firstname'];?>">
-                                <input class="gen-input" id="acc-lastname" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
-                                <input class="gen-input-mail" id="acc-email" type="text" readonly name="email" value="<?php echo $userDetails[0]['emailid'];?>">
-                                <input type="text" class="form-control datepicker" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
-                                <!--<div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>-->
-                            </form>
-                            <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
+   <div class="container" id="totalwrapcontainer">
+   <div class="inner-contant">
+   <div class="tab">
+      <h2>Settings</h2>
+      <button class="tablinks" onclick="openCity(event, 'gen')" id="defaultOpen">General</button>
+      <button class="tablinks" onclick="openCity(event, 'security')">Security</button>
+      <!--<button class="tablinks" onclick="openCity(event, 'perchase')">Purchasing</button>-->
+      <button class="tablinks" onclick="openCity(event, 'Privacy')" id="defaultOpen">Privacy</button>
+      <button class="tablinks" onclick="openCity(event, 'support')">Support</button>
+   </div>
+   <div>
+      <div id="gen" class="tabcontent">
+         <div class="col-lg-6">
+            <h3>Personal information</h3>
+            <form action="/action_page.php">
+               <input class="gen-input" type="text" name="fname" id="acc-name" value="<?php echo $userDetails[0]['firstname'];?>">
+               <input class="gen-input" id="acc-lastname" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
+               <input class="gen-input-mail" id="acc-email" type="text" readonly name="email" value="<?php echo $userDetails[0]['emailid'];?>">
+               <input type="text" class="form-control datepicker" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
+               <!--<div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>-->
+            </form>
+            <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
+         </div>
+         <div class="col-lg-6">
+            <form action="/account/profileimage" method="post" enctype="multipart/form-data" name="profileimagechangeform" id="profileimagechangeform" style="padding-top: 70px;">
+               <div class="col-lg-6 no-padding">
+                  <div class="img-input">
+                     <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 104px;">
+                        <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
+                        <img src="<?php echo $userDetails[0]['profileimage'];?>" style="height:120px; width:160px;" >
+                        <?php }else{ ?>
+                        <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
+                        <!--<img id= 'profile_pic_thumb'/>-->
+                     </div>
+                     <div id="reloaddiv">
+                        <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
+                        <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removeavtr">
+                           <i class="fa fa-times-circle"></i>
+                           Remove avatar
+                        <?php }else{ ?>
+                        <div class="btn e-btn btn-primary file-input-btn" >
+                              <i class="fa fa-upload"></i>
+                              Choose avatar
+                              <input name="profileimage" type="file" id="profileimagechange"> 
+                        <?php } ?>
+                              <input type = "hidden" id = "pfimagePath" value="">
+                           </div>
                         </div>
-                        <div class="col-lg-6">
-                            <form action="/account/profileimage" method="post" enctype="multipart/form-data" name="form1" id="profileimagechangeform" style="padding-top: 70px;"><div class="col-lg-6 no-padding">
-                                 <div class="img-input">
-                                    <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 104px;">
-                                    <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
-                                        <img src="<?php echo $userDetails[0]['profileimage'];?>" style="height:120px; width:auto;" >
-                                        <?php }else{ ?>
-                                       <i class="fa fa-picture-o remove-fa-picture-icon"></i><?php } ?>
-                                       <!--<img id= 'profile_pic_thumb'/>-->
-                                    </div>
-                                    <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
-                                    <div class="btn e-btn btn-primary file-input-btn removeavtr" >
-                                    <i class="fa fa-times-circle" style="color:#b4504e;"></i>
-                                       Remove avatar<?php }else{ ?>
-                                        <div class="btn e-btn btn-primary file-input-btn" >
-                                       <i class="fa fa-upload"></i>
-                                       Choose avatar <?php } ?>
-                                       <input name="profileimage" type="file" id="profileimagechange">
-                                       <input type = "hidden" id = "pfimagePath" value="">
-                                       <!--<input type = "hidden" id= "aviaryPath" name= "action" value=""> -->
-                                    </div>
-                                 </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-6 no-padding">
+                     <div class="img-input">
+                        <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 104px;">
+                           <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
+                           <img src="<?php echo $userDetails[0]['backgroundimage'];?>" style="height:120px; width:160px;" >
+                           <?php }else{ ?>
+                           <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
+                           <!--<img id= 'profile_pic_thumb'/>-->
+                        </div>
+                        <div id="reloaddivbk">
+                           <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
+                           <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removebgavtr">
+                              <i class="fa fa-times-circle"></i>
+                              Remove avatar<?php }else{ ?>
+                              <div class="btn e-btn btn-primary file-input-btn" >
+                                 <i class="fa fa-upload"></i>
+                                 Choose photo
+                                 <input name="backgroundimage" type="file" id="backgroundimagechange"><?php } ?>
+                                 <input type = "hidden" id = "bkimagePath" value="">
                               </div>
-                              <div class="col-lg-6 no-padding">
-                                 <div class="img-input">
-                                    <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 104px;">
-                                       <i class="fa fa-picture-o remove-fa-picture-icon"></i>
-                                       <!--<img id= 'profile_pic_thumb'/>-->
-                                    </div>
-                                    <div class="btn e-btn btn-primary file-input-btn" >
-                                       <i class="fa fa-upload"></i>
-                                       Choose photo
-                                       <input name="backgroundimage" type="file" id="backgroundimagechange">
-                                       <input type = "hidden" id = "bkimagePath" value="">
-                                       <!--<input type = "hidden" id= "aviaryPath" name= "action" value=""> -->
-                                    </div>
-                                 </div>
-                              </div>
-                              </form>
-                            <!-- <div class="col-lg-6 no-padding">
-                                <img class="right-contant" src="/image/img444.jpg" />
-                                <a class="avatar" href="javascript:void(0)">Choose avatar</a>
-                            </div>
-                            <div class="col-lg-6 no-padding">
-                                <img class="right-contant" src="/image/img444.jpg" />
-                                <a class="avatar" href="javascript:void(0)">Choose avatar</a>
-                            </div> -->
-                            <a class="save" id="changePersonalDetails" href="javascript:void(0)">Save</a>
+                           </div>
                         </div>
-
-
-                    </div>
-                    <div id="security" class="tabcontent">
-                        <div class="col-lg-12">
-                            <h3>Change password</h3>
-                            <form method="post" action="/settings/changepassword" enctype="multipart/form-data" id="form__changepassword">
-                                <input type="password" class="form-control " id="acc-cur-pass" placeholder="Current password">
-                                <input type="password" class="form-control " id="acc-pass" placeholder="New password">
-                                <input type="password" class="form-control " id="acc-pass-rep" placeholder="Password confirmation">
-                            </form>
-                            <a class="save-new" href="javascript:void(0)" id="password_save" style="cursor:pointer;">Save</a>
-                            <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
-                            <div>
-                                <hr>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!--<div id="perchase" class="tabcontent">
-                        <h3>Purchasing</h3>
-                    </div>-->
-                    <div id="Privacy" class="tabcontent">
-                        <div class="col-lg-6"> 
-                            <h3>Privacy settings</h3>
-                            <p class="sub-text">Who can see my Emmortal profile?</p>
-                            <div class="dropdown">
-                                <select name="AID" id="profileView" class="drop dropdown-toggle drop-down "  data-toggle="dropdown">
-                                    <option value="0" <?php if($userDetails[0]['viewprofile'] == 0){echo "selected"; }?>>For All</option>
-                                    <option value="1" <?php if($userDetails[0]['viewprofile'] == 1){echo "selected"; }?>>For Friend</option>
-								</select>
-                                <!--<button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
-                                    <span class="caret drop-icon"></span>
-                                </button>-->
-                                <!--<ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)">For All</a></li>
-                                    <li><a href="javascript:void(0)">For Friend</a></li>
-                                </ul>-->
-                            </div>
-                            <br>
-                            <p class="sub-text">Who can find me?</p>
-                            <div class="dropdown">
-                                <select name="AID" id="nameView" class="drop dropdown-toggle drop-down "  data-toggle="dropdown">
-                                    <option value="0" <?php if($userDetails[0]['viewname'] == 0){echo "selected"; }?>>For All</option>
-                                    <option value="1" <?php if($userDetails[0]['viewname'] == 1){echo "selected"; }?>>For Friend</option>
-								</select>
-                                <!--<button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
-                                    <span class="caret drop-icon"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)">For AllL</a></li>
-                                    <li><a href="javascript:void(0)">For Friend</a></li>
-                                </ul>-->
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="right-area">
-                                <p class="sub-text">Content</p>
-                                <form action="/action_page.php" method="get">
-                                    <input type="checkbox" name="" value=""> Place all Tributes on my page automatically
-                                    <br>
-                                    <input type="checkbox" name="" value="" checked>Place all new content on my page automatically
-                                    <br>
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="support" class="tabcontent">
-                        <div class="col-lg-7">
-                            <h3>Send us your question</h3>
-                            <textarea rows="4" cols="50" id="questionDetails">
+                     </div>
+            </form>
+            <a class="save" id="changePersonalDetails" href="javascript:void(0)">Save</a>
+            </div>
+            </div>
+            <div id="security" class="tabcontent">
+               <div class="col-lg-12">
+                  <h3>Change password</h3>
+                  <form method="post" action="/settings/changepassword" enctype="multipart/form-data" id="form__changepassword">
+                     <input type="password" class="form-control " id="acc-cur-pass" placeholder="Current password">
+                     <input type="password" class="form-control " id="acc-pass" placeholder="New password">
+                     <input type="password" class="form-control " id="acc-pass-rep" placeholder="Password confirmation">
+                  </form>
+                  <a class="save-new" href="javascript:void(0)" id="password_save" style="cursor:pointer;">Save</a>
+                  <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
+                  <div>
+                     <hr>
+                  </div>
+               </div>
+            </div>
+            <!--<div id="perchase" class="tabcontent">
+               <h3>Purchasing</h3>
+               </div>-->
+            <div id="Privacy" class="tabcontent">
+               <div class="col-lg-6">
+                  <h3>Privacy settings</h3>
+                  <p class="sub-text">Who can see my Emmortal profile?</p>
+                  <div class="dropdown">
+                     <select name="AID" id="profileView" class="drop dropdown-toggle drop-down "  data-toggle="dropdown">
+                        <option value="0" <?php if($userDetails[0]['viewprofile'] == 0){echo "selected"; }?>>For All</option>
+                        <option value="1" <?php if($userDetails[0]['viewprofile'] == 1){echo "selected"; }?>>For Friend</option>
+                     </select>
+                     <!--<button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
+                        <span class="caret drop-icon"></span>
+                        </button>-->
+                     <!--<ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">For All</a></li>
+                        <li><a href="javascript:void(0)">For Friend</a></li>
+                        </ul>-->
+                  </div>
+                  <br>
+                  <p class="sub-text">Who can find me?</p>
+                  <div class="dropdown">
+                     <select name="AID" id="nameView" class="drop dropdown-toggle drop-down "  data-toggle="dropdown">
+                        <option value="0" <?php if($userDetails[0]['viewname'] == 0){echo "selected"; }?>>For All</option>
+                        <option value="1" <?php if($userDetails[0]['viewname'] == 1){echo "selected"; }?>>For Friend</option>
+                     </select>
+                     <!--<button class="btn btn-primary dropdown-toggle drop-down" type="button" data-toggle="dropdown">For All
+                        <span class="caret drop-icon"></span></button>
+                        <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">For AllL</a></li>
+                        <li><a href="javascript:void(0)">For Friend</a></li>
+                        </ul>-->
+                  </div>
+               </div>
+               <div class="col-lg-6">
+                  <div class="right-area">
+                     <p class="sub-text">Content</p>
+                     <form action="/action_page.php" method="get">
+                        <input type="checkbox" name="" value=""> Place all Tributes on my page automatically
+                        <br>
+                        <input type="checkbox" name="" value="" checked>Place all new content on my page automatically
+                        <br>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <div id="support" class="tabcontent">
+               <div class="col-lg-7">
+                  <h3>Send us your question</h3>
+                  <textarea rows="4" cols="50" id="questionDetails">
 
                             </textarea>
-                            <a class="save-new" href="javascript:void(0)" style="cursor:pointer;" id="saveQuestion">Send</a>
-                            <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
-                        </div>
-
-                    </div>
-                </div>
+                  <a class="save-new" href="javascript:void(0)" style="cursor:pointer;" id="saveQuestion">Send</a>
+                  <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
+               </div>
             </div>
-        </div>
-
-    </section>
+         </div>
+      </div>
+   </div>
+</section>

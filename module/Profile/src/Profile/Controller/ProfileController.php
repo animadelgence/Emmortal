@@ -61,29 +61,7 @@ class ProfileController extends AbstractActionController {
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));  //added by me
 
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails));
-        /*$actionChecker    = $this->getEvent()->getRouteMatch()->getParam('id');
-        $useridentifier   = $this->getEvent()->getRouteMatch()->getParam('pId');
-
-        $getfirstdecodeid = explode("#$#", base64_decode($actionChecker));
-                $getpubid = explode("###", base64_decode($getfirstdecodeid[0])); //($getfirstdecodeid[1])
-                $arrayid  = base64_decode($getpubid[0]); //($getpubid[1])
        
-        if($actionChecker != "resetpassword") { 
-            $decrypteduserId = $arrayid;
-            $searchkayarray  = array('userid'=>$arrayid);
-            $updateArray     = array('activation' => '1');
-            $updatedValues   = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
-        } else {
-            
-            $serchArray     = array('forgetpassword' => $useridentifier);
-            $FetchDetails   = $modelPlugin->getuserTable()->fetchall($serchArray);
-           
-            if (empty($FetchDetails)) {
-                    return $this->redirect()->toUrl($dynamicPath."/album/showalbum");
-            } else {
-                $decrypteduserId = $FetchDetails[0]['userid'];
-            }
-        }*/
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function getalbumAction(){

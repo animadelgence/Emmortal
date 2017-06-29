@@ -135,13 +135,21 @@ $(document).ready(function () {
                 },
                 success: function (result) {
                     //console.log(result);return false;
-                    //$(".profile-image-name-menu").reload();
-                    $('#secondnavbarimage').load(document.URL +  ' #secondnavbarimage');
+                    window.location.reload();
                     $(".div--error_secondmsg").html('Account details updated').css('display', 'block');
                     setTimeout(function () {
                         $(".div--error_secondmsg").fadeOut(300, function () {});
                     }, 6000);
                     return false;
+
+                    // trying to load a single div but not happening need to recheck
+                    /*$('#secondnavbarimage').load(document.URL +'#secondnavbarimage');
+                    $("#canvas-placeholderpfimage").html("<img src='"+profileimageNmae+" style='height:120px; width:160px;'>");
+                    $("#canvas-placeholderbkimage").html("<img src='"+backgroundimageName+" style='height:120px; width:160px;'>");
+                    $("#reloaddiv").html("<div class='btn e-btn btn-primary file-input-btn removeavtr' id='removeavtr'><i class='fa fa-times-circle'></i><input type = 'hidden' id = 'pfimagePath' value=''></div>");
+                    $("#reloaddivbk").html("<div class='btn e-btn btn-primary file-input-btn removeavtr' id='removebgavtr'><i class='fa fa-times-circle'></i><input type = 'hidden' id = 'bkimagePath' value=''></div>");*/
+                    
+                   
 
                 }
 
@@ -213,4 +221,43 @@ $(document).ready(function () {
 
         });
     });
+
+
+    $('body').on('click', '#removeavtr', function() {
+
+        var pfimage = $("#canvas-placeholderpfimage").find('img').attr("src");
+        $.post(base_url_dynamic + "/settings/removeallavatar", {
+                imageName: pfimage,
+                imageCategory: "profileimage"
+            })
+            .done(function(data) {
+                if (data == 1) {
+                    window.location.reload();
+                    // trying to load a single div but not happening need to recheck
+                   /* $("#canvas-placeholderpfimage").html("<i class='fa fa-picture-o remove-fa-picture-icon' style='height:120px; width:160px;'></i>");
+                    $("#reloaddiv").html("<div class='btn e-btn btn-primary file-input-btn'><i class='fa fa-upload'></i>Choose avatar<input name='profileimage' type='file' id='profileimagechange'><input type = 'hidden' id = 'pfimagePath' value=''></div>");*/
+                    
+                }
+
+            });    
+    });
+    $('body').on('click', '#removebgavtr', function() {
+
+        var bkimage = $("#canvas-placeholderbkimage").find('img').attr("src");
+        $.post(base_url_dynamic + "/settings/removeallavatar", {
+                imageName: bkimage,
+                imageCategory: "backgroundimage"
+            })
+            .done(function(data) {
+                if (data == 1) {
+                    window.location.reload();
+                    // trying to load a single div but not happening need to recheck
+                    /*$("#canvas-placeholderbkimage").html("<i class='fa fa-picture-o remove-fa-picture-icon' style='height:120px; width:160px;'></i>");
+                    $("#reloaddiv").html("<div class='btn e-btn btn-primary file-input-btn'><i class='fa fa-upload'></i>Choose avatar<input name='backgroundimage' type='file' id='backgroundimagechange'><input type = 'hidden' id = 'bkimagePath' value=''></div>");*/
+                    
+                }
+
+            });
+    });
 });
+

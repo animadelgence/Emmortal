@@ -68,10 +68,31 @@ class UsersettingController extends AbstractActionController {
         $lastName = $_POST['accountLastName'];
         //$accountEmail = $_POST['accountEmail'];
         $accountDOB = $_POST['accountDOB'];
-        $profileimageNmae = $dynamicPath."/upload/profileImage/".$_POST['profileimageNmae'];
-        $backgroundimageName = $dynamicPath."/upload/backgroundImage/".$_POST['backgroundimageName']; 
-        $conditionpublisherarray = array('userid' => $this->sessionid);
         
+        $conditionpublisherarray = array('userid' => $this->sessionid);
+        $checkArray = $modelPlugin->getuserTable()->fetchall($conditionpublisherarray);
+        //print_r($checkArray);exit;
+        if($checkArray[0]['profileimage'] != "")
+        {
+            if($_POST['profileimageNmae'] != "") {
+                $profileimageNmae = $dynamicPath."/upload/profileImage/".$_POST['profileimageNmae']; 
+            } else {
+                 $profileimageNmae = $checkArray[0]['profileimage'];
+            }
+        } else {
+
+            $profileimageNmae = $dynamicPath."/upload/profileImage/".$_POST['profileimageNmae'];
+        }
+        if($checkArray[0]['backgroundimage'] != "")
+        {
+            if($_POST['backgroundimageName'] != "") {
+                $backgroundimageName = $dynamicPath."/upload/backgroundImage/".$_POST['backgroundimageName']; 
+            } else {
+                 $backgroundimageName = $checkArray[0]['backgroundimage'];
+            }
+        } else {
+            $backgroundimageName = $dynamicPath."/upload/backgroundImage/".$_POST['backgroundimageName']; 
+        }
         $data = array(
 
             'firstname' => $firstName,
@@ -124,11 +145,14 @@ class UsersettingController extends AbstractActionController {
         $updateData = $modelPlugin->getuserTable()->updateuser($data, $conditionData);
         echo $updateData;exit;
     }
-    public function removeavatarAction(){
+    public function removeallavatarAction(){
+        //echo 1; exit;
 
         $modelPlugin = $this->modelplugin();
-        $imageNmae = $_POST['imageNmae'];
+        $imageName = $_POST['imageName'];
+        //echo $imageName;exit;
         $imageCategory = $_POST['imageCategory'];
+        
         $conditionData = array('userid' => $this->sessionid);
         if($imageCategory == "profileimage")
         {
@@ -136,7 +160,7 @@ class UsersettingController extends AbstractActionController {
         }else{
             $updatedArray = array('backgroundimage'=> "");
         }
-        $updateData = $modelPlugin->getuserTable()->updateuser($data, $conditionData);
+        $updateData = $modelPlugin->getuserTable()->updateuser($updatedArray, $conditionData);
         echo $updateData;exit;
 
     }

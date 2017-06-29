@@ -17,27 +17,20 @@
                                         foreach($uploadDetails as $upload){
                                            // print_r($upload);
                                           if($upload['uploadType'] == "text"){
-                                            if($upload['filestatus'] != ""){
-                                              echo '<li class="user_upload_part_section_content--inside vid-sec text-sec resizable" style="'.$upload['filestatus'].'"><span><label name="text Name">'.$upload['uploadTitle'].'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'.$upload['uploadId'].'"></li>';
 
-                                            } else {
-                                             echo '<li class="user_upload_part_section_content--inside vid-sec text-sec resizable" style="height:184px;width:15%;"><span><label name="text Name">'.$upload['uploadTitle'].'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'.$upload['uploadId'].'"></li>';
-                                           }
+                                              echo '<li class="user_upload_part_section_content--inside vid-sec text-sec resizable" style="height:172px;width:172px;"><span><label name="text Name">'.$upload['uploadTitle'].'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'.$upload['uploadId'].'"></li>';
+
+
                                           
                                           } else if($upload['uploadType'] == "image"){
-                                            if($upload['filestatus'] != ""){ 
-                                              echo '<li class="user_upload_part_section_content--inside vid-sec resizable" style="'.$upload['filestatus'].'"><span><img name="Image Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'.$upload['uploadId'].'"></li>';
-                                            }
-                                            else {
-                                            echo '<li class="user_upload_part_section_content--inside vid-sec resizable" style="height:184px;width:15%;"><span><img name="Image Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'.$upload['uploadId'].'"></li>';
-                                          }
+
+                                              echo '<li class="user_upload_part_section_content--inside vid-sec resizable" style="height:172px;width:172px;"><span><img name="Image Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'.$upload['uploadId'].'"></li>';
+
                                           }
                                           else if($upload['uploadType'] == "video"){
-                                             if($upload['filestatus'] != ""){ 
-                                                echo '<li class="user_upload_part_section_content--inside vid-sec resizable" style="'.$upload['filestatus'].'"><span><video controls="controls" name="Video Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'.$upload['uploadId'].'"></li>';
-                                             } else {
-                                              echo '<li class="user_upload_part_section_content--inside vid-sec resizable" style="height:184px;width:15%;"><span><video controls="controls" name="Video Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'.$upload['uploadId'].'"></li>';
-                                            }
+
+                                                echo '<li class="user_upload_part_section_content--inside vid-sec resizable" style="height:172px;width:172px;"><span><video controls="controls" name="Video Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'.$upload['uploadId'].'"></li>';
+
                                            
                                           }else{
                                             

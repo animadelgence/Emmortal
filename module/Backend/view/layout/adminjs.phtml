@@ -41,6 +41,14 @@ switch ($controller) {
             break;
         }
     break;
+    case 'seomanage':
+        switch($action) {
+            case 'editseo':
+                 $this->headScript()
+                ->prependFile($this->basePath() . '/js/backend/seo.js');
+            break;
+        }
+    break;
 
 	default:
 		break;

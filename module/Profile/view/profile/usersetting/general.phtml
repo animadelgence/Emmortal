@@ -26,12 +26,19 @@
                             <form action="/account/profileimage" method="post" enctype="multipart/form-data" name="form1" id="profileimagechangeform" style="padding-top: 70px;"><div class="col-lg-6 no-padding">
                                  <div class="img-input">
                                     <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 104px;">
-                                       <i class="fa fa-picture-o remove-fa-picture-icon"></i>
+                                    <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
+                                        <img src="<?php echo $userDetails[0]['profileimage'];?>" style="height:120px; width:auto;" >
+                                        <?php }else{ ?>
+                                       <i class="fa fa-picture-o remove-fa-picture-icon"></i><?php } ?>
                                        <!--<img id= 'profile_pic_thumb'/>-->
                                     </div>
-                                    <div class="btn e-btn btn-primary file-input-btn" >
+                                    <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
+                                    <div class="btn e-btn btn-primary file-input-btn removeavtr" >
+                                    <i class="fa fa-times-circle" style="color:#b4504e;"></i>
+                                       Remove avatar<?php }else{ ?>
+                                        <div class="btn e-btn btn-primary file-input-btn" >
                                        <i class="fa fa-upload"></i>
-                                       Choose photo
+                                       Choose avatar <?php } ?>
                                        <input name="profileimage" type="file" id="profileimagechange">
                                        <input type = "hidden" id = "pfimagePath" value="">
                                        <!--<input type = "hidden" id= "aviaryPath" name= "action" value=""> -->

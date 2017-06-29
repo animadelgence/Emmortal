@@ -124,5 +124,21 @@ class UsersettingController extends AbstractActionController {
         $updateData = $modelPlugin->getuserTable()->updateuser($data, $conditionData);
         echo $updateData;exit;
     }
+    public function removeavatarAction(){
+
+        $modelPlugin = $this->modelplugin();
+        $imageNmae = $_POST['imageNmae'];
+        $imageCategory = $_POST['imageCategory'];
+        $conditionData = array('userid' => $this->sessionid);
+        if($imageCategory == "profileimage")
+        {
+            $updatedArray = array('profileimage'=> "");
+        }else{
+            $updatedArray = array('backgroundimage'=> "");
+        }
+        $updateData = $modelPlugin->getuserTable()->updateuser($data, $conditionData);
+        echo $updateData;exit;
+
+    }
     
 }

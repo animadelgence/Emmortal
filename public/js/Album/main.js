@@ -5,14 +5,17 @@ var gridster = [];
 
     $(function () {
 
-        gridster[0] = $(".gridster ul").gridster({
+
+$(".clickme").click(function(){
+    alert("cc")
+     gridster[0] = $(".gridster ul").gridster({
             namespace: '.gridster',
             widget_base_dimensions: [182,181],
             widget_margins: [5, 5],
             max_cols:6
         }).data('gridster').disable();
-
-
+    });
+$(".clickme").trigger("click");
     });
 /*
 

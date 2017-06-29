@@ -246,7 +246,7 @@ img {
 }
 .media-body {
     width: 10000px;
-    padding: 25px 20px;
+    padding: 16px 20px;
 }
 .media, .media-body {
     overflow: hidden;
@@ -331,4 +331,63 @@ button, input, optgroup, select, textarea {
 .e-btn.btn-info, .open > .dropdown-toggle.btn-info {
     border-color: #2f6d6b;
     color: #2f6d6b;
+}
+.pending-actions-btn {
+    width: 220px;
+}
+.text-right {
+    text-align: right;
+}
+.pending-actions-btn .e-btn {
+    width: 100px;
+}
+.e-btn.btn-primary, .open > .dropdown-toggle.btn-primary {
+    border-color: #579942;
+    color: #579942;
+}
+.e-btn.btn-danger, .open > .dropdown-toggle.btn-danger {
+    border-color: #b4504e;
+    color: #b4504e;
+}
+.e-btn.btn-danger:hover, .e-btn.btn-danger:focus, .e-btn.btn-danger.full, .e-btn.btn-danger:active, .open > .dropdown-toggle.btn-danger:hover, .open > .dropdown-toggle.btn-danger:focus, .open > .dropdown-toggle.btn-danger.full, .open > .dropdown-toggle.btn-danger:active {
+    background: #b4504e none repeat scroll 0 0;
+    color: #fff;
+}
+.e-btn.btn-primary:hover, .e-btn.btn-primary:focus, .e-btn.btn-primary.full, .e-btn.btn-primary:active, .open > .dropdown-toggle.btn-primary:hover, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary.full, .open > .dropdown-toggle.btn-primary:active {
+    background: #579942 none repeat scroll 0 0;
+    color: #fff;
+}
+.e-btn.btn-warning, .open > .dropdown-toggle.btn-warning {
+    border-color: #b3b04d;
+    color: #b3b04d;
+}
+.e-btn.btn-warning:hover, .e-btn.btn-warning:focus, .e-btn.btn-warning.full, .e-btn.btn-warning:active, .open > .dropdown-toggle.btn-warning:hover, .open > .dropdown-toggle.btn-warning:focus, .open > .dropdown-toggle.btn-warning.full, .open > .dropdown-toggle.btn-warning:active {
+    background: #b3b04d none repeat scroll 0 0;
+    color: #fff;
+}
+.show-adds-btns .btn {
+    margin-left: 3px;
+}
+.e-btn.btn-brown:hover, .e-btn.btn-brown:focus, .e-btn.btn-brown.active, .e-btn.btn-brown.full, .open > .dropdown-toggle.btn-brown:hover, .open > .dropdown-toggle.btn-brown:focus, .open > .dropdown-toggle.btn-brown.active, .open > .dropdown-toggle.btn-brown.full {
+    background: #aaa897 none repeat scroll 0 0;
+    color: #fff;
+}
+.show-adds-btns .btn {
+    border: 4px solid #fff;
+    height: 60px;
+    padding: 9px;
+    vertical-align: middle;
+    width: 60px;
+}
+.inline {
+    display: inline-block;
+}
+.pointer {
+    cursor: pointer;
+}
+.e-link {
+    color: #aaa897;
+}
+.e-link:hover, .e-link:active, .e-link:focus {
+    color: #aaa897;
 }

@@ -1,0 +1,32 @@
+<section id="main-content">
+	<section class="wrapper">
+		<h3>
+			<i class="fa fa-angle-right"></i>Background Image Edit
+		</h3>
+		<!-- BASIC FORM ELELEMNTS -->
+		<div class="row mt">
+			<div class="col-lg-12">
+
+        <!-- add user layout -->
+				<div class="container">
+                    <form class="form-login reg-form" id='editCatForm' method="post" action="/Sectionmanage/editsubmitcategory" enctype="multipart/form-data">
+                    <h2 class="form-login-heading">Edit Background Image</h2>
+                        <div class="reg-wrap">
+                            <input type="hidden" id="categoryId" name="categoryId" value="<?php if($catData[0]['categoryId']){ echo $catData[0]['categoryId']; }?>">
+                            <input type="text" name="catNewName" id="catNewName" class="form-control" value="<?php echo $catData[0]['categoryName']; ?>" placeholder="Enter new category name" autofocus>
+                            <span id="errorNewName" style="color: red; margin-left: 125px;"></span>
+                            <br>
+                            <input type="button" class="btn btn-theme btn-block" id="catBtnSave" value="Save and Continue">
+                        </div>
+                    </form>
+                </div>
+                <!-- /add user layout -->
+
+			</div>
+			<!-- /col-lg-12 -->
+	</div>
+		<!-- /row -->
+	</section>
+	<!--/wrapper -->
+</section>
+<!-- /MAIN CONTENT -->

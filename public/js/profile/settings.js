@@ -222,6 +222,7 @@ $(document).ready(function () {
         });
     });
 
+
     $('body').on('click', '#removeavtr', function() {
 
         var pfimage = $("#canvas-placeholderpfimage").find('img').attr("src");
@@ -259,3 +260,4 @@ $(document).ready(function () {
             });
     });
 });
+

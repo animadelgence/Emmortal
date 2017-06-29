@@ -4,18 +4,20 @@
             <div class="row">
                 <div class="layout">
                         <div class="content-wrapper user_profile_section">
-                          <div class="e-container tribute-page ng-scope"><div class="e-brown m-b-25 album-title"><div class="show-adds-btns pull-right"><div class="m-r-5 e-like btn e-btn btn-round full ng-binding ng-isolate-scope" type="tribute" target="tribute">0</div><div class="m-r-5 btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope">0</div><div class="edit-menu e-dropdown dropdown white-dropdown ng-isolate-scope dropdown-toggle"><div><i class="fa fa-cog cog-menu-icon"></i><ul><li class="ng-scope"><i class="fa fa-pencil m-r-5"></i>Edit</li></ul></div></div></div><h3 class="inline text-capitalize"><span>Tribute for</span> <span class="ng-binding"><?php echo $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'];?></span></h3></div>
+                          <div class="e-container tribute-page ng-scope"><div class="e-brown m-b-25 album-title"><div class="show-adds-btns pull-right"><div tooltip-placement="bottom" tooltip="Likes" class="m-r-5 e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="m-r-5 btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope">0</div><div class="edit-menu-wrapper"><div data-toggle="modal" dropdown="" class="edit-menu e-dropdown dropdown white-dropdown tributeUpdatemodal ng-isolate-scope dropdown-toggle" aria-expanded="false" ><i class="fa fa-cog cog-menu-icon"></i><ul role="menu" class="dropdown-menu text-left" aria-labelledby="single-button"><li ng-click="onEdit()" class="ng-scope"><i class="fa fa-pencil m-r-5"></i>Edit</li></ul></div></div></div>
+
+
+<h3 class="inline text-capitalize"><span>Tribute for</span> <span class="ng-binding"><?php echo $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'];?></span></h3>
+
+                        </div>
                           <div class="row"><div class="col-lg-3 col-md-4 col-sm-4 text-center"><div class="inline tribute-user-image-wrapper"><div class="user_profile_image_section"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
                     echo $userDetails[0]['profileimage'];
                 } else {
                     echo "/image/profile-deafult-avatar.jpg";
                 }?>"></div></div></div><div class="col-lg-9 col-md-8 col-sm-8"><div class="tribute-description ng-pristine ng-untouched ng-valid ta-bind"><p><?php echo $tributeDescription;?><br></p></div></div></div></div>
                       </div>
+                      <input type="hidden" class="friendId" value="<?php echo $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'];?>">
+                       <input type="hidden" class="tributedescription" value="<?php echo $tributeDescription;?>">
 
 </section>
-<!-- line modal -->
-
-<!-- line modal 3-->
-
-<!-- line modal 4-->
-
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/updatetributemodal.php"); ?>

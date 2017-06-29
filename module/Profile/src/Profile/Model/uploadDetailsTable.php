@@ -1,8 +1,11 @@
 <?php
-	namespace Profile\Model;
+    namespace Profile\Model;
     use Zend\Db\TableGateway\TableGateway;
     use Zend\Db\ResultSet\ResultSet;
     use Zend\Db\Sql\Sql;
+    use Zend\Db\Sql\Predicate;
+    use Zend\Db\Sql\Where;
+    use Zend\Db\Sql\Select;
     class uploadDetailsTable
     {
         protected $tableGateWay;
@@ -12,10 +15,27 @@
         }
         public function fetchall($query=null)
         {
+        $sql = new Sql($this->tableGWay->adapter);
+        $select = $sql->select();
+        $select->from($this->tableGWay->getTable())
+                ->where($query);
+        $select->order('uploadId DESC');
+        $resultSet = $this->tableGWay->selectWith($select);
 
-            $resultSet = $this->tableGWay->select($query);
+        $array = array();
+
+
+           // $resultSet = $this->tableGWay->select($query);
             $array = array();
             foreach ($resultSet as $rSet) {
+                if($rSet->sizeX=="H")
+                    $sizeX = 2;
+                else
+                    $sizeX = 1;
+                 if($rSet->sizeY=="W")
+                    $sizeY = 1;
+                else
+                    $sizeY = 2;
                 $array[] = array(
                     'uploadId' => $rSet->uploadId,
                     'UID' => $rSet->UID,
@@ -24,6 +44,8 @@
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
                     'filestatus' => $rSet->filestatus,
+                    'sizeX' => $sizeX,
+                    'sizeY' => $sizeY,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,
@@ -37,6 +59,7 @@
         $sql = new Sql($this->tableGWay->adapter);
         $select = $sql->select();
         $select->from($this->tableGWay->getTable());
+        $select->order('uploadId DESC');
 
         if (!empty($offsetvalues)) {
             $select->limit(15)
@@ -45,6 +68,14 @@
         }
         $array = array();
         foreach ($result as $rSet) {
+             if($rSet->sizeX=="H")
+                    $sizeX = 2;
+                else
+                    $sizeX = 1;
+                 if($rSet->sizeY=="W")
+                    $sizeY = 1;
+                else
+                    $sizeY = 2;
               $array[] = array(
                     'uploadId' => $rSet->uploadId,
                     'UID' => $rSet->UID,
@@ -53,6 +84,8 @@
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
                     'filestatus' => $rSet->filestatus,
+                    'sizeX' => $sizeX,
+                    'sizeY' => $sizeY,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,
@@ -87,8 +120,8 @@
                  ->where("uploadDetails.uploadId='$query'");
             $result = $this->tableGWay->selectWith($select);
             $data=array();
-		    foreach($result as $rSet) {
-			         $data[]=array(
+            foreach($result as $rSet) {
+                     $data[]=array(
                             'uploadId' => $rSet->uploadId,
                             'UID' => $rSet->UID,
                             'uploadTitle' => $rSet->uploadTitle,
@@ -116,10 +149,10 @@
                             'findme' => $rSet->findme,
                             'content' => $rSet->content,
                             'activation' => $rSet->activation
-			         );
-		   }
+                     );
+           }
 
            return $data;
-	    }
+        }
     }
 ?>

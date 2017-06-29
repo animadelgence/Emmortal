@@ -69,9 +69,23 @@ namespace Backend\Controller;
 		      $controller = @$href[3];
               $action = @$href[4];
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
-		      return new ViewModel();
+              $bgimg = $modelPlugin->getseoTable()->fetchall();
+		      return new ViewModel(array('bgimg'=>$bgimg));
+
+     }
+     public function bgeditsubmitAction(){
+              $modelPlugin = $this->modelplugin();
+              $plugin = $this->routeplugin();
+		      $currentPageURL = $plugin->curPageURL();
+              $id = $_POST['seoid'];
+              $fileupload = $_FILES['fileupload']['name'];
+              $where = array('seoid'=>$id);
+              $data = array('bgimage'=>$fileupload);
+              $imgUpdate = $modelPlugin->getseoTable()->updateData($data,$where);
+              return $this->redirect()->toRoute('seomanage', array(
+				      'controller' => 'seomanage',
+				      'action'     => 'seoview'));
 
      }
 
  }
-

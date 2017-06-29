@@ -12,7 +12,7 @@
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                      <div class="form-group col-xs-12 col-sm-12">
                         <div id="append-div-tribute" class="">
-                           <input type="text" placeholder="Type Friend Name..." class="friendsids" id="friendsidtribute" name="friendsid" class="form-control" style="width:100%;">
+                           <input type="text" placeholder="Type Friend Name..." class="friendsids form-control" id="friendsidtribute" name="friendsid"  style="width:100%;">
                         </div>
                         <div class="dropdown-div">
                            <ul class="frndlists" id="frndlisttribute" style="list-style-type: none;z-index: 999999; position: relative; display:none;">
@@ -36,8 +36,7 @@
                   <button type="submit" id="publishidtribute" class="btn e-btn btn-primary">Publish</button>
                   </span>
                </div>
-         </div>
-         </form>
+          </form>
       </div>
    </div>
 </div>

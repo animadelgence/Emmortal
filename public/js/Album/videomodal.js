@@ -1,7 +1,7 @@
  $(document).ready(function () {
     var baseURL = window.location.origin;
        var frndDetails =[];
-
+     if($('#imagetextDescription').length) {
     CKEDITOR.replace('videoDescription', {
         toolbar: [
 
@@ -25,7 +25,7 @@
         ]
     });
     CKEDITOR.disableAutoInline = true;
-
+     }
     $("#videoInsert").click(function(){
             $.ajax({
             type: "POST",

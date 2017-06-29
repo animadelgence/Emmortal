@@ -23,9 +23,18 @@ ol {
     border-radius: 10px;
 }
 
-.gs-w img ,.gs-w video ,.gs-w label {
+.gs-w img,
+.gs-w video,
+.gs-w label {
     height: 100%;
     object-fit: cover;
     width: 100%;
     border-radius: 10px;
+}
+
+.gs-w label {
+    color: #aaa897;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    overflow: hidden;
 }

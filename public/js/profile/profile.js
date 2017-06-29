@@ -41,22 +41,76 @@ $(document).ready(function () {
       maxHeight: 364,
       maxWidth: 364,
       minHeight: 172,
-      minWidth: 172
+      minWidth: 172,
 
-    });
-    $('.vid-sec').mouseup(function(){
-        var style = $(this).attr("style");
-        var uploadId = $(this).find(".uploadId").val();
+       stop : function(event,ui) {
+       var height = $(this).height();
+        var width = $(this).width();
+        var sizeX = "";
+        var sizeY = "";
+        if(height > 257){
+            height = 364;
+            sizeX = "W";
+        } else {
+             height = 172;
+             sizeX = "H";
+        }
+        if(width > 257){
+            width = 364;
+            sizeY = "W";
+        } else {
+             width = 172;
+             sizeY = "H";
+        }
+       $(this).css('height',height);
+       $(this).css('width',width);
+       var uploadId = $(this).find(".uploadId").val();
            $.ajax({
                 type: "POST",
                 //async:false,
                 url: base_url_dynamic + '/profile/savefilestatus',
-                data: {style:style,uploadId:uploadId},
+                data: {sizeX:sizeX,sizeY:sizeY,uploadId:uploadId},
                 success: function (res) {
-                //alert(res);
+
                 }
             });
+
+    }
+
     });
+    // $('.resizable').on('mouseup' , function(){
+    //    // alert(1)
+    //     var height = $(this).height();
+    //     var width = $(this).width();
+    //     var H = "";
+    //     var W = "";
+    //     if(height > 257){
+    //         height = 364;
+    //         H = "H1";
+    //     } else {
+    //          height = 172;
+    //          H = "H0";
+    //     }
+    //     if(width > 257){
+    //         width = 364;
+    //         W = "W1";
+    //     } else {
+    //          width = 172;
+    //          W = "W0";
+    //     }
+    //    $(this).css('height',height);
+    //    $(this).css('width',width);
+    //     var uploadId = $(this).find(".uploadId").val();
+    //        // $.ajax({
+    //        //      type: "POST",
+    //        //      //async:false,
+    //        //      url: base_url_dynamic + '/profile/savefilestatus',
+    //        //      data: {H:H,W:W,uploadId:uploadId},
+    //        //      success: function (res) {
+    //        //      alert(res);
+    //        //      }
+    //        //  });
+    // });
     $('body').on('click', '#textInsert', function () {
         $('.close').trigger('click');
         $('#textTitleError').hide();

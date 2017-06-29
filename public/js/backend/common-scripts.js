@@ -52,7 +52,10 @@ var Script = (function () {
         } else if (pathname === '/seomanage/seoview') {
             $('.common_class').removeClass('active');
             $('.seomanage').addClass('active');
-        }  else if (pathname === '/uploads/view') {
+        }  else if (pathname === '/seomanage/bgedit') {
+            $('.common_class').removeClass('active');
+            $('.seomanage').addClass('active');
+        } else if (pathname === '/uploads/view') {
             $('.common_class').removeClass('active');
             $('.uploads').addClass('active');
         }

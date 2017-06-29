@@ -50,10 +50,7 @@ class AlbumController extends AbstractActionController {
         $controller = 'album';
 		$action = $this->params('action');
         $uploadQuery = array();
-
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
-       
-        //exit;
         if($this->sessionid == "")
         {
             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));

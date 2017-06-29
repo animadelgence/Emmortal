@@ -47,6 +47,10 @@ switch ($controller) {
                  $this->headScript()
                 ->prependFile($this->basePath() . '/js/backend/seo.js');
             break;
+            case 'bgedit':
+                 $this->headScript()
+                ->prependFile($this->basePath() . '/js/backend/bgimg.js');
+            break;
         }
     break;
 

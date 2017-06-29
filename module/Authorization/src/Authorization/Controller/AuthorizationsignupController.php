@@ -123,7 +123,7 @@ class AuthorizationsignupController extends AbstractActionController {
                 $decrypteduserId = $FetchDetails[0]['userid'];
             }
         }
-        return $this->redirect()->toUrl($dynamicPath . "/profile/newsfeed");
+        return $this->redirect()->toUrl($dynamicPath . "/profile/newsfeed/confirmed/".$actionChecker);
     }
     public function encrypt($data, $key){
     return base64_encode(

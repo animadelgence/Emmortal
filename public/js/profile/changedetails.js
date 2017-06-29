@@ -1,7 +1,7 @@
-var Url = window.location.origin;
+var getUrl = window.location.origin;
 $(function(){
 	//alert(1);
-	$("#squarespaceModalchangeimage").modal('show');
+	
 	$(".upgradelink").click(function () {
         $('#error-message').fadeIn();
         $('.message-error').html("Your account seems to be inactive. Please contact us to finish publishing.<br/>Phone: 088-1415001<br/>E-mail: info@smartfanpage.com");
@@ -90,33 +90,16 @@ $(function(){
 
         $.ajax({
             type : "POST",
-            Url  : Url + "/account/saveboth",
+            url  : getUrl + "/account/saveboth",
             data : {
                 profileimageNmae    : profileimageNmae,
                 backgroundimageName : backgroundimageName
             },
             success: function (result) {
-                alert(result);return false;
+                //alert(result);return false;
+                $('#squarespaceModalchangeimage').modal('hide');
             }
         });
     });
-    $(".removeavtr").click(function(){
-        var pfimage = $("#canvas-placeholderpfimage").find('img').attr("src");
-        //alert(pfimage);
-        $.ajax({
-            type : "POST",
-            Url  : Url + "/settings/removeavatar",
-            data : {
-                imageNmae    : pfimage,
-                imageCategory : "profileimage"
-            },
-            success: function (result) {
-                //lert(result);return false;
-                if(result == 1)
-                {
-                    $("#canvas-placeholderpfimage").load(document.URL +  ' #canvas-placeholderpfimage');
-                }
-            }
-        });
-    });
+   
 });

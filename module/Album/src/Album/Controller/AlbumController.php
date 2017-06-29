@@ -51,10 +51,12 @@ class AlbumController extends AbstractActionController {
 		$action = $this->params('action');
         $uploadQuery = array();
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
+        $bgimg = $modelPlugin->getseoTable()->fetchall();
+        //print_r($bgimg); exit;
         if($this->sessionid == "")
         {
             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
-            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'bgimg'=>$bgimg));
 
         }
         else{

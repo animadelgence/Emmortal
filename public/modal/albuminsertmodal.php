@@ -4,7 +4,7 @@
 		<div class="modal-content modal-outer inner-modal-photo">
 			<div class="modal-header modal-headernew">
 				<button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-				<h3 class="modal-title" id="lineModalLabel">Create new Album</h3>
+				<h3 class="modal-title" id="lineModalLabel">Create new Album now</h3>
 			</div>
 			<div class="modal-body select-media-type-popup">
 				<!--<form name="textAddForm" id="textAddForm" action="" method="POST" enctype="multipart/form-data">-->
@@ -68,33 +68,33 @@
 								    <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>
 								</div>
 								<div class="row error-style" style="margin-top: 46px;">
-									<div class="col-sm-4 ">
-                                        <div class="hostt" id="div-editphoto">
-                                            <!--<tags-input class="e-tags-input ">-->
-                                                
-                                                <div class="tags" style = "margin-top: -5px;">
-                                                    <ul class="input"></ul>
-                                                    <input id="imgbtnEditPhoto" type="image" src="http://advanced.aviary.com/images/feather/edit-photo.png" value="Edit photo" onclick="return launchEditor('profile_pic_thumb');" style="padding: 10px;"/>
-                                                </div>
-                                                
-                                            <!--</tags-input>-->
-                                        </div>
-
-                                    </div>
-                                    <div class="col-sm-4">
+									<div class="col-sm-6">
+									<div class="col-sm-10">
 										<div class="e-select">
 											<!--<select>
 												<option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
 											</select>-->
                                             <select name="AID" id="listing" class="AID">
+                                            <option value="public">Public</option>
+  											<option value="friends">Friends</option>
 								            </select>
 										</div>
 									</div>
-									<div class="col-sm-4 m-t-xs-20">
+									</div>
+									<div class="col-sm-6">
+									<div class="col-sm-10">
+									<div dropdown-toggle="" class="btn e-btn btn-brown" aria-haspopup="true" aria-expanded="false" styl="bordr">
+										
+										<span class="color-preview" style="background-color: rgb(180, 80, 78);"></span>
+										<span class="color-name text-capitalize" style="color: rgb(180, 80, 78);">red</span>
+									</div>
+									</div>
+									</div>
+									<!-- <div class="col-sm-4 m-t-xs-20">
 										<div class="btn e-btn btn-brown" >
 											<div class="fa fa-plus"></div> Add album
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>

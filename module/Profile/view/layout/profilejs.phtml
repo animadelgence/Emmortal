@@ -18,6 +18,7 @@ switch ($controller) {
                 case 'newsfeed':
                 $this->headScript()
                 //->prependFile($this->basePath() . '/js/profile/alerthideshow.js?version=' . $t)
+                ->prependFile($this->basePath() . '/js/profile/modalload.js?version=' . $t)
                 ->prependFile($this->basePath() . '/js/profile/changedetails.js?version=' . $t)
                 ->prependFile($this->basePath() . '/js/profile/confirmImage.js?version=' . $t);
 

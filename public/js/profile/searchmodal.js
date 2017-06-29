@@ -72,6 +72,7 @@ $(document).ready(function () {
     });
     $('body').on('keyup', '#searchText', function () {
 
+
         var friendsid = $(this).val().trim();
         $('#searchResults').css('display', 'none');
         if (friendsid != '') {
@@ -248,6 +249,7 @@ function friendlist(param,search,searchParam)
                 $('#outgoingTabshow').css('display', 'none');
                 //$('#myRelationships').css('display', 'none');
 
+
             } else if(param == 'Incoming' && html != ''){
                 $('#incomingTabShow').css('display', 'none');
                 $('#myRelationships').css('display', 'none');
@@ -256,6 +258,7 @@ function friendlist(param,search,searchParam)
                 $('#relationshipTabShow').css('display', 'none');
             } else {
                 $('#myRelationships').css('display', 'block');
+
             }//don't know required or not
             //alert(additionalhtml);
             if (searchParam == 'search' && param == 'All'){
@@ -279,7 +282,6 @@ function friendlist(param,search,searchParam)
                 $('[data-toggle="tooltip"]').tooltip();
                 $('#tabResults').show();
             }
-
 
             $('#loader').css('display','none');
         }

@@ -33,7 +33,7 @@
                <p>By clicking Sign Up, you agree to our <a href="<?php echo $dynamicPath; ?>/album/termsandconditions" class="link-color">Terms and conditions</a></p>
                <a class="modal-button" id="signupbutton">Sign Up</a> 
                <div class="alertmesage_signup" style="display: none;"></div>
-               <p>Already have an account? Please, <a id="signin" class="link-color" data-toggle="modal" data-target="#squarespaceModal2" onclick="$('.close').trigger('click');" style="cursor: pointer;">Sign In</a></p>
+               <p>Already have an account? Please, <a id="signin" class="link-color" onclick="squarespaceModal2open();" style="cursor: pointer;">Sign In</a></p>
             </div>
           </div>
          </div>

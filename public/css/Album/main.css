@@ -514,7 +514,7 @@ button[disabled], html input[disabled] {
 }
 
 .hamburger-menu li {
-    top: -7px;
+    top: -11px;
 }
 .dropdown-menu>li>a {
     color: #428bca;
@@ -749,11 +749,12 @@ button[disabled], html input[disabled] {
     color: rgb(170,168,151);
 }
 
-.hover-effect:hover {
+/*.hover-effect:hover {
     background-color: #fff;
     height: 45px;
-    color: #aaa897;
-}
+    color: #aaa897;  
+}*/
+
 
 .photo-collage {
   margin: 81px 0;

@@ -23,7 +23,7 @@
          <?php include 'albumjs.phtml'; ?>
 </head>
 <body>
-<div class ="fullwrapnew" id="fullwrapnew" style="background: rgba(0, 0, 0, 0) url('<?php echo $backgroundimage; ?>') no-repeat scroll 0 0 / cover ;">
+<div class ="fullwrapnew" id="fullwrapnew" style="background: rgba(0, 0, 0, 0) url('<?php echo $userDetails[0]["backgroundimage"]; ?>') no-repeat scroll 0 0 / cover ;">
     <?php  $root = $_SERVER['DOCUMENT_ROOT'];
             $root1 = explode("/public",$root);
             $path = $root1[0]."/module/Album/view/layout/navbar.phtml";

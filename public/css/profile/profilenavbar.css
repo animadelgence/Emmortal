@@ -11,14 +11,19 @@
     top: 36px;
     width: 1426px;
 }
-
+.wrapclassrow{
+    margin-right: 20px;
+}
+.addedclassnew{
+    width: 4% !important;
+}
 .down-arrow {
     background: #fff none repeat scroll 0 0;
     border: medium none;
     border-radius: 0;
     color: #BABBB6;
     height: 40px;
-    left: 130px;
+    left: 115px;
     padding: 4px 10px;
     position: absolute;
     top: 0;
@@ -31,10 +36,28 @@
     border: 2px solid rgb(255, 255, 255);
     color: #fff;
 }*/
+.hover-effect:hover i {
+  background-color: #fff;
+  color: #aaa897;
+  margin-top: 0;
+  padding: 12px 20px;
+  transition:background-color 0.3s ease;
+}
+.hover-effect i {
+  background-color: transparent;
+  color: #ffffff;
+  margin-top: 0;
+  padding: 12px 20px;
+}
+.navbar-nav > li > a {
+  line-height: 0;
+  overflow: hidden;
+  padding-top: 3px;
 
+}
 .down-inner {
     overflow: hidden;
-    padding-left: 145px;
+    padding-left: 132px;
 }
 
 .down-inner li {
@@ -48,7 +71,7 @@
     padding: 0px 15px;
 }
 .profile-image-name-menu {
-  padding: 2px 15px !important;
+  padding: 2px 2px !important;
   bottom: 8px;
   position: relative;
 }

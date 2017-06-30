@@ -221,13 +221,13 @@ $(document).ready(function () {
  {
     setTimeout(function () {
                  $("#dropped_ui").show();
-            }, 500);
+            }, 1);
 
  }
  else{
     setTimeout(function () {
                  $("#dropped_ui").hide();
-            }, 500);
+            }, 1);
 
  }
 

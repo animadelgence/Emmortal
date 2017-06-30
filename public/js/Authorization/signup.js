@@ -2,7 +2,8 @@ $(document).ready(function () {
 
 	$('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
 
-$('.signupidenter').keypress(function (e) {
+ $('body').on('keypress','.signupidenter', function(e){
+
         if (e.which == 13) { 
 
             $("#signupbutton").trigger("click");
@@ -10,8 +11,8 @@ $('.signupidenter').keypress(function (e) {
         }
     });
 
-$('#signupbutton').click(function(){
 
+$('body').on('click','#signupbutton', function(){
 	var firstName = $("#fname").val(),
 	lastName = $("#lname").val(),
 	email = $("#email").val(),

@@ -14,7 +14,8 @@ var URL = document.URL;
         	//alert(pathname);
         		$('#squarespaceModalepassword').modal('show');
         		//alert("hello");
-        		$('#recoverypasswordid').keypress(function (e) {
+        		$('body').on('keypress','#recoverypasswordid', function(e){
+        		
 			        if (e.which == 13) { 
 
 			            $("#savepassbutton").trigger("click");
@@ -22,9 +23,8 @@ var URL = document.URL;
 			        }
 			    });
 			    
-        		
-        		$("#savepassbutton").click(function(){
-        			//alert();
+        		$('body').on('click','#savepassbutton', function(){
+
         			var forgetpassword = $('#forgetpassword').val(),
         			forgetconfirmPassword = $('#forgetconfirmPassword').val(),
         			regexpassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;

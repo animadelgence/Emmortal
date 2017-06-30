@@ -15,14 +15,14 @@
 
 function yHandler() {
     var noofScroll = $('#valuetobeIncremented').val();
-      var  wrap = '';
-     var   contentHeight = '';
-     var  yOffset = '';
-      var  y = '';
-     var   no_of_template_div = '';
-     var baseUrl = window.location.origin;
-        i = '';
-      //  id_string = '';
+    var wrap = '';
+    var contentHeight = '';
+    var yOffset = '';
+    var y = '';
+    var no_of_template_div = '';
+    var baseUrl = window.location.origin;
+    i = '';
+    //  id_string = '';
     if (($('#noOfTemplates').val) > 9) {
         $('#loader-icon').css('display', 'block');
     }
@@ -36,7 +36,7 @@ function yHandler() {
     yOffset = window.pageYOffset;
     y = yOffset + window.innerHeight;
     no_of_template_div = $('#outer-wrap').children().length;
-    
+
     i = parseInt(no_of_template_div, 10);
 
     //id_string = $('#category_string').html();
@@ -54,10 +54,10 @@ function yHandler() {
             data: {
                 counter: i,
                 noofScroll: noofScroll,
-               // tem_id: id_string
+                // tem_id: id_string
             },
             success: function (response) {
-               // alert(response);return false;
+                // alert(response);return false;
                 var jsObject = JSON.parse(response);
 
                 noofScroll++;
@@ -66,34 +66,34 @@ function yHandler() {
                 i++;
                 $("#counterOfTheTemplate").val(i);
                 if (jsObject.checker != 0) { // jshint ignore:line
-                   // $("#outer-wrap").append(jsObject.galleryStruct);
-$(".clickme").html(jsObject.galleryStruct);
+                    // $("#outer-wrap").append(jsObject.galleryStruct);
+                    $(".clickme").html(jsObject.galleryStruct);
                     $item = $(".clickme li");
 
 
-        /* Gridster setup code */
-      var  gridster = $(".gridster ul").gridster({
-            namespace: '.gridster',
-            widget_base_dimensions: [182,181],
-            widget_margins: [5, 5],
-            max_cols:6
-        }).data('gridster');
-$item.each(function(){
-                    gridster.add_widget($(this), 2,1);
-                })
-$(".gridster ul").gridster({
-            namespace: '.gridster',
-            widget_base_dimensions: [182,181],
-            widget_margins: [5, 5],
-            max_cols:6
-        }).data('gridster');
+                    /* Gridster setup code */
+                    var gridster = $(".gridster ul").gridster({
+                        namespace: '.gridster',
+                        widget_base_dimensions: [182, 181],
+                        widget_margins: [5, 5],
+                        max_cols: 6
+                    }).data('gridster');
+                    $item.each(function () {
+                        gridster.add_widget($(this), 2, 1);
+                    })
+                    $(".gridster ul").gridster({
+                        namespace: '.gridster',
+                        widget_base_dimensions: [182, 181],
+                        widget_margins: [5, 5],
+                        max_cols: 6
+                    }).data('gridster');
 
 
                     $('#loader-icon').css('display', 'none');
                     $('#valuetobeIncremented').val(noofScroll);
                 }
 
-          return false;
+                return false;
             },
             complete: function () {
                 $('#loader-icon').css('display', 'none');
@@ -109,12 +109,12 @@ $(document).ready(function () {
     "use strict";
     $("#checker").val('1');
     var noOfTemplates = $("#noOfTemplates").val();
-  
+
 
     if (noOfTemplates > 15) {
-       
+
         window.onscroll = yHandler;
-  
+
     }
 
 });

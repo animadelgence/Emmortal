@@ -15,7 +15,7 @@
                   <div class="form-group full-width">
                      <input type="password" class="form-control" id="loginpassword" placeholder="Password">
                   </div>
-                  <a data-toggle="modal" data-target="#squarespaceModalemail" class="link-color use-margin" id="forgotmail" onclick="showhide();" style="cursor: pointer;">Forgot Password?</a>
+                  <a onclick="squarespaceModalemailopen();"  class="link-color use-margin" id="forgotmail" onclick="showhide();" style="cursor: pointer;">Forgot Password?</a>
                   <button type="submit" value="Submit" style="display:none;"></button>
                </form>
                <div class="modal-footersec">

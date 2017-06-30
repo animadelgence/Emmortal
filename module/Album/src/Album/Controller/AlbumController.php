@@ -20,13 +20,7 @@ class AlbumController extends AbstractActionController {
     public function __construct() {
         $userSession = new Container('userloginId');
         $this->sessionid = $userSession->offsetGet('userloginId');
-        /*$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
-        if ($this->sessionid == "") {
-            header("Location:" . $dynamicPath. "/album/showalbum");
-            exit;
-        }*/
-    }
+     }
     public function indexAction() {
        // echo "welcome from album module";exit;
     	$this->layout('layout/albumlayout.phtml');
@@ -62,7 +56,7 @@ class AlbumController extends AbstractActionController {
         else{
 
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
-            $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'action' => $action,'jsonArray'=>$jsonArray,'backgroundimage'=> $userDetails[0]['backgroundimage']));
+            $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'action' => $action,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails));
 
            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails));
         }
@@ -79,33 +73,7 @@ class AlbumController extends AbstractActionController {
     	return new ViewModel();
     	//exit;
     }*/
-    public function showalbumgridAction(){
-    	$this->layout('layout/albumlayout.phtml');
-        $modelPlugin = $this->modelplugin();
-        $dynamicPath = $modelPlugin->dynamicPath();
-        $jsonArray = $modelPlugin->jsondynamic();
-        $currentPageURL = $modelPlugin->curPageURL();
-        $href = explode("/", $currentPageURL);
-        $controller = 'album';
-		$action = $this->params('action');
-        $uploadQuery = array();
 
-        $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
-
-        if($this->sessionid == "")
-        {
-            $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
-            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails));
-
-        }
-        else{
-
-            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
-            $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'action' => $action,'jsonArray'=>$jsonArray));
-
-           return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails));
-        }
-    }
     public function termsandconditionsAction(){
     	$this->layout('layout/albumlayout.phtml');
     	$plugin = $this->routeplugin();
@@ -116,7 +84,12 @@ class AlbumController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $this->layout()->setVariables(array( 'sessionid'=>$this->sessionid,'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+        if($this->sessionid != ""){
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        } else {
+            $userDetails = "";
+        }
+        $this->layout()->setVariables(array( 'sessionid'=>$this->sessionid,'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
     public function aboutusAction(){
@@ -129,7 +102,12 @@ class AlbumController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $this->layout()->setVariables(array( 'sessionid'=>$this->sessionid,'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+        if($this->sessionid != ""){
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        } else {
+            $userDetails = "";
+        }
+        $this->layout()->setVariables(array( 'sessionid'=>$this->sessionid,'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
 

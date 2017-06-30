@@ -1,32 +1,35 @@
  $(document).ready(function () {
     var baseURL = window.location.origin;
        var frndDetails =[];
-     if($('#imagetextDescription').length) {
-    CKEDITOR.replace('videoDescription', {
-        toolbar: [
+    if($('#videoDescription').length) {
+        CKEDITOR.replace('videoDescription', {
+            toolbar: [
 
-            {
-                name: 'others',
-                items: ['-']
-            },
-            '/',
-            {
-                name: 'basicstyles',
-                groups: ['basicstyles', 'cleanup'],
-                items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
-            },
+                {
+                    name: 'others',
+                    items: ['-']
+                },
+                '/',
+                {
+                    name: 'basicstyles',
+                    groups: ['basicstyles', 'cleanup'],
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                },
 
-            {
-                name: 'links',
-                items: ['Link', 'Unlink', 'Anchor']
-            }
+                {
+                    name: 'links',
+                    items: ['Link', 'Unlink', 'Anchor']
+                }
 
 
-        ]
-    });
-    CKEDITOR.disableAutoInline = true;
+            ]
+        });
+        CKEDITOR.disableAutoInline = true;
      }
-    $("#videoInsert").click(function(){
+    //$("#videoInsert").click(function(){
+    $('body').on('click', '#videoInsert', function () {
+        $('.close').trigger('click');
+        
             $.ajax({
             type: "POST",
             url: baseURL + '/profile/getalbum',

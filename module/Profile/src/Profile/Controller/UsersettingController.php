@@ -30,7 +30,12 @@ class UsersettingController extends AbstractActionController {
         $action = @$href[4];
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
-        $bgimgSend = $bgimg[0]['bgimgpath'];
+        if(@getimagesize($userDetails[0]['backgroundimage'])){
+                $bgimgSend = $userDetails[0]['backgroundimage'];
+            }
+            else{
+             $bgimgSend = $bgimg[0]['bgimgpath'];
+            }
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'sessionid'=>$this->sessionid,'bgimg'=>$bgimgSend));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'userDetails'=>$userDetails));
     }

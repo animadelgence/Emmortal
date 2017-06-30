@@ -41,9 +41,9 @@ function tributemodalopen()
     if($('#tributemodal').length) {
         $('#tributemodal').remove();
     }
-    if($('.in').length) {
+    /*if($('.in').length) {
         $('.in').remove();
-    }
+    }*/
     $.get(getUrl+"/modal/tributemodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -154,9 +154,9 @@ function imagemodalopen(){
     if($('#photoInsertModal').length) {
         $('#photoInsertModal').remove();
     }
-    if($('.in').length) {
+    /*if($('.in').length) {
         $('.in').remove();
-    }
+    }*/
     $.get(getUrl+"/modal/imageinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -197,9 +197,9 @@ function videomodalopen(){
     if($('#videoInsertModal').length) {
         $('#videoInsertModal').remove();
     }
-    if($('.in').length) {
+    /*if($('.in').length) {
         $('.in').remove();
-    }
+    }*/
     $.get(getUrl+"/modal/videoinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -261,11 +261,50 @@ function videomodalopen(){
 
 
 }
+function getTributemodalopen()
+{
+    if($('#friendTributeAddModal').length) {
+        $('#friendTributeAddModal').remove();
+    }
+    /*if($('.in').length) {
+        $('.in').remove();
+    }*/
+    $.get(getUrl+"/modal/friendtributeaddmodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#friendTributeAddModal').modal('show');
+        $('#uploadModal').modal('hide');
+        if($('#friendtributeDescription').length) {
+            CKEDITOR.replace('friendtributeDescription', {
+                toolbar: [
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
+    });
+}
 function uploadmodalopen(){
     if($('#uploadModal').length) {
         $('#uploadModal').remove();
     }
-    
+    if($('.in').length) {
+        $('.in').remove();
+    }
     $.get(getUrl+"/modal/uploadmodal.php", function (result) {
         // append response to body
         $('body').append(result);

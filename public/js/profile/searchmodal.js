@@ -136,7 +136,7 @@ $(document).ready(function () {
                 if (res == 1) {
                     var htmlData = "";
                     if(action == 'Accept') {
-                        htmlData += '<div class="show-adds-btns" style="width:200px;" ><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="" data-toggle="tooltip" data-placement="bottom" title="Tribute">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
+                        htmlData += '<div class="show-adds-btns" style="width:200px;" ><div class="inline btn e-btn btn-brown btn-round full getTribute" onclick ="getTributemodalopen();" data-id="" data-toggle="tooltip" data-placement="bottom" title="Tribute">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
                     } else {
                         htmlData += '<div class="relationship-btn" user="client"><button class="btnn e-btn btn-danger full sendFriendRequest" id="requestbtn"><div class="fa fa-times"></div> Declined</button></div>';
                     }

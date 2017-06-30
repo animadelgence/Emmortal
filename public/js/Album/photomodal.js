@@ -12,7 +12,7 @@ var base_url_dynamic = window.location.origin;
 $(document).ready(function () {
     $('#div-editphoto').hide();
     if($('#imagetextDescription').length) {
-    CKEDITOR.replace('imagetextDescription', {
+    var editor = CKEDITOR.replace('imagetextDescription', {
         toolbar: [
 
             {
@@ -34,6 +34,7 @@ $(document).ready(function () {
 
         ]
     });
+    editor.resize('100%','500',true);
     CKEDITOR.disableAutoInline = true;
     }
     $('body').on('click', '#photoInsert', function () {

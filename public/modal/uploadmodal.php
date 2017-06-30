@@ -13,25 +13,25 @@ $protocolPath = $protocol . $_SERVER['HTTP_HOST'];
 				<div class="row">
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 add-content-section">
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer" data-toggle="modal" data-target="#photoInsertModal" id="photoInsert">
+							<a class="btn btn-default btn-media-type pointer" onclick="imagemodalopen();" href="javascript:void(0)" id="photoInsert">
 								<i class="fa fa-camera"></i>
 								<div class="text">Photo</div>
 							</a>
 						</div>
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer" data-toggle="modal" data-target="#videoInsertModal" id="videoInsert">
+							<a class="btn btn-default btn-media-type pointer" onclick="videomodalopen();" href="javascript:void(0)" id="videoInsert">
 								<i class="fa fa-video-camera"></i>
 								<div class="text">Video</div>
 							</a>
 						</div>
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer" data-toggle="modal" data-target="#textInsertModal" id="textInsert">
+							<a class="btn btn-default btn-media-type pointer" onclick="textmodalopen();" href="javascript:void(0)" id="textInsert">
 								<i class="fa fa-file-text-o"></i>
 									<div class="text">Text</div>
 							</a>
 						</div>
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer">
+							<a class="btn btn-default btn-media-type pointer" onclick="modalopen();" href="javascript:void(0)">
 								<i class="fa fa-book"></i>
 								<div class="text">Album</div>
 							</a>

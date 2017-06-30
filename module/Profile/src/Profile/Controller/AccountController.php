@@ -22,24 +22,6 @@ class AccountController extends AbstractActionController {
         }
     }
 
-
-	public function myaccountAction(){
-//echo "hi from account controller";exit;changedetails
-
-    	$this->layout('layout/profilelayout.phtml');
-    	$plugin         = $this->routeplugin();
-        $modelPlugin    = $this->modelplugin();
-        $uploadPlugin   = $this->imageuploadplugin();
-        $dynamicPath    = $plugin->dynamicPath();
-        $jsonArray      = $plugin->jsondynamic();
-        $currentPageURL = $plugin->curPageURL();
-        $href           = explode("/", $currentPageURL);
-        $controller     = @$href[3];
-        $action         = @$href[4];
-
-		$this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'sessionid'=>$this->sessionid));
-        return new ViewModel(array('userid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
-	}
 	public function profileimageAction(){
 
 		$plugin            = $this->routeplugin();
@@ -87,6 +69,7 @@ class AccountController extends AbstractActionController {
 
         exit;
 	}
+
     public function savebothAction(){
 
         $plugin              = $this->routeplugin();
@@ -105,5 +88,6 @@ class AccountController extends AbstractActionController {
         exit;
 
     }
+   
 
 }

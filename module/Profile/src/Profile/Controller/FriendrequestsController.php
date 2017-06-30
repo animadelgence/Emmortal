@@ -50,6 +50,14 @@ class FriendrequestsController extends AbstractActionController {
                     'status'        => $status
                 );
                 }
+                else if ($param == 'Onlyfriend' && $status =='Accepted') {
+                    $array[] = array(
+                            'friendsid'     => $sendfrndDetails[0]['friendsid'],
+                            'friendsname'   => $sendfrndDetails[0]['firstname']." ".$sendfrndDetails[0]['lastname'],
+                            'profileimage'  => $sendfrndDetails[0]['profileimage'],
+                            'status'        => $status
+                        );
+                }
             } else if(count($recfrndDetails)>0){
                 if($recfrndDetails[0]['requestaccept'] == 1){
                     $status = "Accepted";
@@ -57,15 +65,24 @@ class FriendrequestsController extends AbstractActionController {
                     $status = "Incoming";
                 }
                 if($recfrndDetails[0]['relationshipstatus'] == 'declined'){
-                if(($param=='Incoming' && $status == "Incoming") || ($param=='All')){
-                    $array[] = array(
-                        'friendsid'     => $recfrndDetails[0]['userid'],
-                        'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
-                        'profileimage'  => $recfrndDetails[0]['profileimage'],
-                        'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
-                        'status'        => "Declined"
-                    );
+                    if(($param=='Incoming' && $status == "Incoming") || ($param=='All')){
+                        $array[] = array(
+                            'friendsid'     => $recfrndDetails[0]['userid'],
+                            'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
+                            'profileimage'  => $recfrndDetails[0]['profileimage'],
+                            'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'status'        => "Declined"
+                        );
+                    }
                 }
+                else if ($param == 'Onlyfriend' && $status =='Accepted') {
+                    $array[] = array(
+                            'friendsid'     => $recfrndDetails[0]['userid'],
+                            'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
+                            'profileimage'  => $recfrndDetails[0]['profileimage'],
+                            'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'status'        => $status
+                        );
                 }
                 else {
                     if(($param=='AllFriend') || ($param=='Incoming' && $status == "Incoming") || ($param=='All')){
@@ -163,6 +180,6 @@ class FriendrequestsController extends AbstractActionController {
                         'friendsid'=>$userid);
         $friendDetails = $modelPlugin->getfriendsTable()->updateData($updatedArray,$where);
         echo $friendDetails;exit;
-        
+
     }
 }

@@ -176,7 +176,7 @@
 
 @-webkit-keyframes uptodownvisible {
     from {
-        top: -200px;
+        top: -800px;
     }
     to {
         top: 0px;
@@ -191,7 +191,7 @@
 
 @keyframes uptodownvisible {
     from {
-        top: -200px;
+        top: -800px;
     }
     to {
         top: 0px;
@@ -209,7 +209,7 @@
         top: 0px;
     }
     to {
-        top: 200px;
+        top: 800px;
     }
     from {
         opacity: 1;
@@ -224,7 +224,7 @@
         top: 0px;
     }
     to {
-        top: 200px;
+        top: 800px;
     }
     from {
         opacity: 1;
@@ -239,7 +239,7 @@
         top: 0px;
     }
     to {
-        top: -200px;
+        top: -800px;
     }
     from {
         opacity: 1;
@@ -254,7 +254,7 @@
         top: 0px;
     }
     to {
-        top: -200px;
+        top: -800px;
     }
     from {
         opacity: 1;
@@ -266,7 +266,7 @@
 
 @-webkit-keyframes downtoupvisible {
     from {
-        top: 200px;
+        top: 800px;
     }
     to {
         top: 0px;
@@ -278,10 +278,9 @@
         opacity: 1;
     }
 }
-
 @keyframes downtoupvisible {
     from {
-        top: 200px;
+        top: 800px;
     }
     to {
         top: 0px;

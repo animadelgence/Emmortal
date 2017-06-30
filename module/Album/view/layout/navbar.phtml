@@ -18,8 +18,8 @@
             <div class="col-lg-8" id="secondnavbarimage">
                <a href="<?php echo $dynamicPath;?>" class="logo-style">Emmortal</a>
                <?php if( $sessionid != ""){ ?>
-               <!--<button class="btn btn-default dropdown-toggle down-arrow arrow-toggle collapsed" type="button" id="dropdownMenu1" data-toggle="collapse" data-target="#dropped_ui" >
-                   <i class="fa fa-chevron-up" id="arrowiconid" aria-hidden="true" style= "padding-bottom: 3px;"></i>
+               <!-- <button class="btn btn-default dropdown-toggle down-arrow arrow-toggle collapsed" type="button" id="dropdownMenu1" data-toggle="collapse" data-target="#dropped_ui" >
+                   <i class="fa fa-chevron-up" id="arrowiconid" aria-hidden="true" style= "padding-bottom: 3px;"></i>-->
                    <!--<i class="fa fa-chevron-down" aria-hidden="true" style= "padding-bottom: 3px;"></i>-->
                <!--</button>-->
                <a class="btn btn-default dropdown-toggle down-arrow arrow-toggle collapsed" id="dropdownMenu1" href="javascript:void(0);"><div class="fa fa-chevron-up rotate"></div></a>
@@ -68,7 +68,7 @@
             <div class="col-lg-0.5">
                <ul class="nav navbar-nav hamburger-menu pull-right">
                   <li class="dropdown hover-effect">
-                     <a href="javascript:void(0);" class="dropdown-toggle drop-list-icon" data-toggle="modal" data-target="#uploadModal"><span class="glyphicon glyphicon-user menu-icon pull-right allicon"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
+                     <a href="javascript:void(0);" class="dropdown-toggle drop-list-icon" onclick="uploadmodalopen();"><span class="glyphicon glyphicon-user menu-icon pull-right allicon"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
                   </li>
                </ul>
             </div>
@@ -122,10 +122,10 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/signupmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/loginmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/forgetpasswordmodal.php"); ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/uploadmodal.php"); ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/textinsertmodal.php"); ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/imageinsertmodal.php"); ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/videoinsertmodal.php"); ?>
+<?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/uploadmodal.php"); ?>
+<?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/textinsertmodal.php"); ?>
+<?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/imageinsertmodal.php"); ?>
+<?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/videoinsertmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/tributemodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/searchmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/textpreviewmodal.php"); ?>

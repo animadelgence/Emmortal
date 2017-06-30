@@ -68,6 +68,7 @@ $(function () {
                 appendHtml += "<ul class='outer-wrap'>";
 
                 if (jsObject.defaultPage == 1) {
+                    if(jsObject.profileImage!=1)
                     appendHtml += '<li class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></li><li class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></li>';
                 }
                 if (jsObject.NoPage == 1) {

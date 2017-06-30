@@ -40,21 +40,23 @@ class LazyloadController extends AbstractActionController {
             for ($i = 0; $i < $totalcount; $i++) {
               $uploadId = $uploadAll[$i]['uploadId'];
             	if($uploadAll[$i]['uploadType'] == "text"){
-                                             $galleryStruct .= ' <li class="previewUploadedFile user_upload_part_section_content--inside vid-sec text-sec" style="height:220px;width:20%;" data-target="#textPreviewModal" data-cmd="text" data-id="'.$uploadId.'" data-toggle="modal">
-                  <span><label name="text Name">'.$uploadAll[$i]['uploadTitle'].'<p>'.$uploadAll[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> 0 </div>
-               </li>';
+                                             $galleryStruct .= '<li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                             <span><label name="text Name">'.$uploadAll[$i]['uploadTitle'].'<p>'.$uploadAll[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> 0 </div> </li>';
                                           }
 
                                            else if($uploadAll[$i]['uploadType'] == "image"){
-                                              $galleryStruct .= ' <li class="previewUploadedFile user_upload_part_section_content--inside vid-sec" style="height:220px;width:20%;" data-target="#imagePreviewModal" data-cmd="image" data-id="'.$uploadId.'" data-toggle="modal">
-                  <span><img name="Image Name" id="" src="'.$uploadAll[$i]['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div>
-               </li>';
+                                                if (@getimagesize($uploadAll[$i]['uploadPath'])) {
+                                                  $uploadedImage = $uploadAll[$i]['uploadPath'];
+                                              }else{
+                                                  $uploadedImage = $dynamicPath."/image/NoPhotoDefault.png";
+                                              }
+                                              $galleryStruct .= ' <li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                              <span><img name="Image Name" id="" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div></li>';
 
                                           }
                                            else if($uploadAll[$i]['uploadType'] == "video"){
-                                                $galleryStruct .=  '<li class="previewUploadedFile user_upload_part_section_content--inside vid-sec" style="height:220px;width:20%;" data-target="#videoPreviewModal" data-cmd="video" data-id="'.$uploadId.'" data-toggle="modal">
-                  <span><video controls="controls" name="Video Name" id="" src="'.$uploadAll[$i]['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div>
-               </li>';
+                                                $galleryStruct .=  ' <li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                                <span><video controls="controls" name="Video Name" id="" src="'.$uploadAll[$i]['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div></li>';
 
 
                                            }

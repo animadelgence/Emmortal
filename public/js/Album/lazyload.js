@@ -66,8 +66,29 @@ function yHandler() {
                 i++;
                 $("#counterOfTheTemplate").val(i);
                 if (jsObject.checker != 0) { // jshint ignore:line
-                    $("#outer-wrap").append(jsObject.galleryStruct);
-                   // $("#thumbPopup").remove();
+                   // $("#outer-wrap").append(jsObject.galleryStruct);
+$(".clickme").html(jsObject.galleryStruct);
+                    $item = $(".clickme li");
+
+
+        /* Gridster setup code */
+      var  gridster = $(".gridster ul").gridster({
+            namespace: '.gridster',
+            widget_base_dimensions: [182,181],
+            widget_margins: [5, 5],
+            max_cols:6
+        }).data('gridster');
+$item.each(function(){
+                    gridster.add_widget($(this), 2,1);
+                })
+$(".gridster ul").gridster({
+            namespace: '.gridster',
+            widget_base_dimensions: [182,181],
+            widget_margins: [5, 5],
+            max_cols:6
+        }).data('gridster');
+
+
                     $('#loader-icon').css('display', 'none');
                     $('#valuetobeIncremented').val(noofScroll);
                 }

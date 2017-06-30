@@ -46,7 +46,6 @@ class AlbumController extends AbstractActionController {
         $uploadQuery = array();
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
-
         if($this->sessionid == "")
         {
             $bgimgSend = $bgimg[0]['bgimgpath'];

@@ -20,6 +20,7 @@ class modelplugin extends routeplugin {
     public $userbackupTable;
     public $seoTable;
     public $notificationdetailsTable;
+    public $bgimageTable;
 
     public function getalbumdetailsTable() {
         if (!$this->albumdetailsTable) {
@@ -130,6 +131,14 @@ class modelplugin extends routeplugin {
             $this->notificationdetailsTable = $sm->get('Album\Model\notificationdetailsTable');
         }
         return $this->notificationdetailsTable;
+    }
+    public function getbgimageTable() {
+        if (!$this->bgimageTable) {
+
+            $sm = $this->getController()->getServiceLocator();
+            $this->bgimageTable = $sm->get('Backend\Model\bgimageTable');
+        }
+        return $this->bgimageTable;
     }
 }
 

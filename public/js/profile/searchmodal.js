@@ -71,7 +71,8 @@ $(document).ready(function () {
         $('#incomingTabShow').css('display', 'none');
     });
     $('body').on('keyup', '#searchText', function () {
-        
+
+
         var friendsid = $(this).val().trim();
         $('#searchResults').css('display', 'none');
         if (friendsid != '') {
@@ -174,7 +175,7 @@ function friendlist(param,search,searchParam)
                 var buttonhtml= "";
                 var extrahtml= "";
                 var tabShow= "";
-                
+
                 var additionalbuttonhtml= "";
                 var additionalextrahtml= "";
                 var incomingbuttonhtml= "";
@@ -198,7 +199,7 @@ function friendlist(param,search,searchParam)
                         incomingformhtml += '<form name="requestform" id="requestform" action="/friendrequests/responserequest" method="POST" enctype="multipart/form-data">';
                         incomingbuttonhtml += '<div class="pending-actions-btn text-right" user="client" data-folder-target-id="' + id + '"><button class="btnn btn e-btn btn-primary respondFriendRequest" id="acceptbtn' + id + '"><div class="fa fa-user-plus"></div> Accept </button>&nbsp;<button class="btnn btn e-btn btn-danger respondFriendRequest" id="declinebtn' + id + '"><div class="fa fa-user-times"></div> Decline </button></div>';
                         alert(incomingbuttonhtml);
-                        
+
                     }
                     formhtml +='<form name="requestform" id="requestform" action="/friendrequests/responserequest" method="POST" enctype="multipart/form-data">';
                     buttonhtml +='<div class="pending-actions-btn text-right" user="client" data-folder-target-id="' + id + '"><button class="btnn btn e-btn btn-primary respondFriendRequest" id="acceptbtn' + id + '"><div class="fa fa-user-plwhen do NaN shows in a js alertus"></div> Accept </button>&nbsp;<button class="btnn btn e-btn btn-danger respondFriendRequest" id="declinebtn' + id + '"><div class="fa fa-user-times"></div> Decline </button></div>';
@@ -247,15 +248,17 @@ function friendlist(param,search,searchParam)
             else if(param == 'Outgoing' && html != ''){
                 $('#outgoingTabshow').css('display', 'none');
                 //$('#myRelationships').css('display', 'none');
-                
+
+
             } else if(param == 'Incoming' && html != ''){
-                $('#incomingTabShow').css('display', 'none');       
-                $('#myRelationships').css('display', 'none');       
+                $('#incomingTabShow').css('display', 'none');
+                $('#myRelationships').css('display', 'none');
             } else if(param == 'Onlyfriend' && html != '') {
-                $('#myRelationships').css('display', 'block');  
+                $('#myRelationships').css('display', 'block');
                 $('#relationshipTabShow').css('display', 'none');
-            } else {       
-                $('#myRelationships').css('display', 'block');   
+            } else {
+                $('#myRelationships').css('display', 'block');
+
             }//don't know required or not
             //alert(additionalhtml);
             if (searchParam == 'search' && param == 'All'){
@@ -279,8 +282,7 @@ function friendlist(param,search,searchParam)
                 $('[data-toggle="tooltip"]').tooltip();
                 $('#tabResults').show();
             }
-            
-            
+
             $('#loader').css('display','none');
         }
     });

@@ -12,7 +12,9 @@ function albummodalopen(){
 
     });
 }
- function textmodalopen(){   
+
+ function textmodalopen(){
+
     $.get(getUrl+"/modal/textinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -43,7 +45,9 @@ function albummodalopen(){
     });
 
 }
-function imagemodalopen(){   
+
+function imagemodalopen(){
+
     $.get(getUrl+"/modal/imageinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -78,7 +82,9 @@ function imagemodalopen(){
     });
 
 }
-function videomodalopen(){   
+
+function videomodalopen(){
+
     $.get(getUrl+"/modal/videoinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -105,4 +111,5 @@ function searchmodalopen(){
         $('#searchmodal').modal('show');
 
     });
+
 }

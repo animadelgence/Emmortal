@@ -36,7 +36,7 @@
     border: 2px solid rgb(255, 255, 255);
     color: #fff;
 }*/
-.hover-effect:hover i {
+/*.hover-effect:hover i {
   background-color: #fff;
   color: #aaa897;
   margin-top: 0;
@@ -54,6 +54,10 @@
   overflow: hidden;
   padding-top: 3px;
 
+}*/
+.hoverthis:hover{
+  background: #fff none repeat scroll 0 0;
+    color: #aaa897;
 }
 .down-inner {
     overflow: hidden;

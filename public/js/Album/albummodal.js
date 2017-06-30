@@ -1,8 +1,8 @@
 /*
- * @Author: Rajyasree
- * @Date:   2017-06-14 17:46:35
- * @Last Modified by:   Rajyasree
- * @Last Modified time: 2017-06-21 18:52:26
+ * @Author: Maitrayee
+ * @Date:   2017-06-30 17:46:35
+ * @Last Modified by:   Maitrayee
+ * @Last Modified time: 2017-06-30 16:52:26
  */
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
@@ -35,6 +35,19 @@ $(document).ready(function () {
     });
     CKEDITOR.disableAutoInline = true;
     }
+    $('body').on('click','#colordropdown',function(){
+        //$(this).toggle(function(){
+            if($(this).hasClass('open'))
+            {
+                $(this).removeClass('open');
+            }
+            else{
+               $(this).addClass('open'); 
+            }
+            
+
+          //  });
+    });
 });
 function albumClick()
 {

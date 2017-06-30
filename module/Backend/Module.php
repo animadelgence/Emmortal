@@ -16,6 +16,8 @@ use Backend\Model\admin;
 use Backend\Model\adminTable;
 use Backend\Model\seo;
 use Backend\Model\seoTable;
+use Backend\Model\bgimage;
+use Backend\Model\bgimageTable;
 
 class Module
 {
@@ -64,6 +66,17 @@ class Module
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new seo());
                     return new TableGateway('seo', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Backend\Model\bgimageTable' => function($sm) {
+                    $tableGateway = $sm->get('bgimageTableGateway');
+                    $table = new bgimageTable($tableGateway);
+                    return $table;
+                },
+                'bgimageTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new bgimage());
+                    return new TableGateway('bgimage', $dbAdapter, null, $resultSetPrototype);
                 },
            ),
 

@@ -9,7 +9,7 @@ var gridster = "";
 gridster = $(".gridster ul").gridster({
             namespace: '.gridster',
             widget_base_dimensions: [182,181],
-            widget_margins: [5, 5],
+            widget_margins: [10, 10],
             max_cols:6
         }).data('gridster').disable();
     });

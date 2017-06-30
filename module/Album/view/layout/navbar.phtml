@@ -68,7 +68,7 @@
             <div class="col-lg-0.5">
                <ul class="nav navbar-nav hamburger-menu pull-right addedclassnew">
                   <li class="dropdown hover-effect">
-                     <a href="javascript:void(0);" class="dropdown-toggle drop-list-icon" data-toggle="modal" data-target="#uploadModal"><span class="glyphicon glyphicon-user menu-icon pull-right allicon"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
+                     <a href="javascript:void(0);" class="dropdown-toggle drop-list-icon" onclick="uploadmodalopen();"><span class="glyphicon glyphicon-user menu-icon pull-right allicon"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
                   </li>
                </ul>
             </div>
@@ -87,13 +87,18 @@
                      <i class="fa fa-comments" aria-hidden="true"></i>
                      </span>
                      </a>
+                     
                   </li>
                </ul>
             </div>
             <div class="col-lg-0.5">
-               <ul class="nav navbar-nav hamburger-menu pull-right addedclassnew">
-                  <li class="dropdown hover-effect">
-                     <a href="#" class="dropdown-toggle drop-list-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-user menu-icon pull-right bellblush allicon"><i class="fa fa-bell" aria-hidden="true"></i></span></a>
+               <ul class="nav navbar-nav hamburger-menu pull-right">
+                  <li class="dropdown hover-effect e-dropdown dropdown notifications-dropdown white-dropdown open">
+                     <a href="javascript:void(0);" class="dropdown-toggle drop-list-icon notification-click"><span class="glyphicon glyphicon-user menu-icon pull-right bellblush allicon"><i class="fa fa-bell" aria-hidden="true"></i></span></a>
+                     <!-- Notification Start -->
+                      <div id="notification-div" style="display:none;"></div>
+                    <!-- Notification End -->
+
                   </li>
                </ul>
             </div>
@@ -118,10 +123,10 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/signupmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/loginmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/forgetpasswordmodal.php"); ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/uploadmodal.php"); ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/textinsertmodal.php"); ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/imageinsertmodal.php"); ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/videoinsertmodal.php"); ?>
+<?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/uploadmodal.php"); ?>
+<?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/textinsertmodal.php"); ?>
+<?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/imageinsertmodal.php"); ?>
+<?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/videoinsertmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/tributemodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/searchmodal.php"); ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/modal/textpreviewmodal.php"); ?>

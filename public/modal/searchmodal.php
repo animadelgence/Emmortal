@@ -23,14 +23,18 @@
                 <div infinite-scroll="friendsLoader.nextPage()" >
                     <div class="m-t-15 search-divider e-brown p-l-10 animated fadeIn" id="myRelationships">My Relationships
                     </div>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="allTabShow">There are no relationships yet</h2>
+                    <!--<h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="allTabShow">There are no relationships yet</h2>
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="incomingTabShow">There are no incoming relationships requests</h2>
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="outgoingTabshow">There are no outgoing relationships requests</h2>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow">You have no relationships yet</h2>
+                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow">You have no relationships yet</h2>-->
+                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow"></h2>
+
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab">
                         <span>Rajyasree</span>
                         <span>Das</span> has no relationships yet
                     </h2>
+                    <div id="tabResults">
+                    </div>
                 </div>
                 <div class="">
                     <div class="m-t-50 search-divider e-brown p-l-10" id="globalSearch" style="display:none;">Global search</div>

@@ -22,6 +22,8 @@ use Album\Model\user;
 use Album\Model\userTable;
 use Album\Model\likesdetails;
 use Album\Model\likesdetailsTable;
+use Album\Model\notificationdetails;
+use Album\Model\notificationdetailsTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -104,6 +106,17 @@ class Module
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new likesdetails());
                     return new TableGateway('likesdetails', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Album\Model\notificationdetailsTable' => function($sm) {
+                    $tableGateway = $sm->get('notificationdetailsTableGateway');
+                    $table = new notificationdetailsTable($tableGateway);
+                    return $table;
+                },
+                'notificationdetailsTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new notificationdetails());
+                    return new TableGateway('notificationdetails', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );

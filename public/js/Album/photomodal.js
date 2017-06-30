@@ -215,8 +215,8 @@ $(document).ready(function () {
         });
         }
     })
-
-    $('#imageArea1').on('change', function () { 
+    $('body').on('change', '#imageArea1', function () {
+    //$('#imageArea1').on('change', function () { 
         $('#imagePathError').hide();
         $("#imageuploadform").ajaxSubmit({   //saving the image temporarily so that editing can be done in Aviary
 			data: {
@@ -231,7 +231,8 @@ $(document).ready(function () {
 			}
 		});
 	});
-    $(".closebtn").click(function(){
+    $('body').on('change', '.closebtn', function () {
+    //$(".closebtn").click(function(){
         $(".welcome").hide();
         $("#uploadModal").show();
         $("#photoInsertModal").css("z-index","1305");
@@ -267,4 +268,9 @@ function launchEditor(id, src) {
         url: src
     });
     return false;
+}
+function photoClick()
+{
+    $('#uploadModal').modal('show');
+    $('#photoInsertModal').modal('hide');
 }

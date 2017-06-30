@@ -46,8 +46,42 @@ function squarespaceModalemailopen()
 
     });
 }
+function tributemodalopen()
+{
+    $.get(getUrl+"/modal/tributemodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#tributemodal').modal('show');
+        $('#uploadModal').modal('hide');
+        if($('#tributeDescription').length) {
+            CKEDITOR.replace('tributeDescription', {
+                toolbar: [
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
+    });
+}
  function textmodalopen(){   
-
+    if($('#textInsertModal').length) {
+        $('#textInsertModal').modal('show');
+        $('#uploadModal').modal('hide');
+    } else {
     $.get(getUrl+"/modal/textinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -76,11 +110,16 @@ function squarespaceModalemailopen()
         }
 
     });
+    }
 
 }
 
 function imagemodalopen(){
-
+    if($('#photoInsertModal').length) {
+        $('#photoInsertModal').modal('show');
+        $('#uploadModal').modal('hide');
+    } else {
+       
     $.get(getUrl+"/modal/imageinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -113,16 +152,21 @@ function imagemodalopen(){
         }
 
     });
+    }
 
 }
 
 function videomodalopen(){
-
+    if($('#videoInsertModal').length) {
+        $('#videoInsertModal').modal('show');
+        $('#uploadModal').modal('hide');
+    } else {
     $.get(getUrl+"/modal/videoinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
         // open modal
         $('#videoInsertModal').modal('show');
+        $('#uploadModal').modal('hide');
         if($('#videoDescription').length) {
             CKEDITOR.replace('videoDescription', {
                 toolbar: [
@@ -150,16 +194,21 @@ function videomodalopen(){
          }
 
     });
+    }
 
 }
 function uploadmodalopen(){
+    if($('#uploadModal').length) {
+        $('#uploadModal').modal('show');
+    } else {
     $.get(getUrl+"/modal/uploadmodal.php", function (result) {
         // append response to body
         $('body').append(result);
         // open modal
         $('#uploadModal').modal('show');
-
+        
     });
+    }
 }
 function searchmodalopen(){
     $.get(getUrl+"/modal/searchmodal.php", function (result) {

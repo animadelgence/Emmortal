@@ -30,21 +30,21 @@
             foreach ($resultSet as $rSet) {
                 if($rSet->sizeX=="H")
                 {
-                    $sizeX = 2;$Height = "172px";
+                    $sizeX = 1;$Height = "172px";
                 }
 
                 else
                 {
-                    $sizeX = 1;$Height = "364px";
+                    $sizeX = 2;$Height = "364px";
                 }
 
                  if($rSet->sizeY=="W")
                     {
-                         $sizeY = 1;$Width = "364px";
+                         $sizeY = 2;$Width = "364px";
                     }
                 else
                    {
-                         $sizeY = 2;$Width = "172px";
+                         $sizeY = 1;$Width = "172px";
                     }
                 $array[] = array(
                     'uploadId' => $rSet->uploadId,
@@ -81,13 +81,13 @@
         $array = array();
         foreach ($result as $rSet) {
              if($rSet->sizeX=="H")
-                    $sizeX = 2;
-                else
                     $sizeX = 1;
-                 if($rSet->sizeY=="W")
-                    $sizeY = 1;
                 else
+                    $sizeX = 2;
+                 if($rSet->sizeY=="W")
                     $sizeY = 2;
+                else
+                    $sizeY = 1;
               $array[] = array(
                     'uploadId' => $rSet->uploadId,
                     'UID' => $rSet->UID,

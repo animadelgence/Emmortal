@@ -116,7 +116,7 @@ function tributemodalopen()
 
 function imagemodalopen(){
     if($('#photoInsertModal').length) {
-        $('#photoInsertModal').modal('show');
+        $('#photoInsertModal').toggle();
         $('#uploadModal').modal('hide');
     } else {
        

@@ -112,7 +112,7 @@ $(document).ready(function () {
         var imageDescription = CKEDITOR.instances['imagetextDescription'].getData();
         var friendsId = [];
         //var pageId = $('#currentPageId').val();
-        var pageURL = $(location).attr("href");
+        var pageURL = window.location.origin;
         if (pageURL.indexOf('profile/showprofile') > -1) {
           var currentPageId = $("#currentPageId").val();
         } else {

@@ -1,8 +1,8 @@
  $(document).ready(function () {
     var baseURL = window.location.origin;
        var frndDetails =[];
-    if($('#videoDescription').length) {
-        CKEDITOR.replace('videoDescription', {
+    if($('#videotextDescription').length) {
+        CKEDITOR.replace('videotextDescription', {
             toolbar: [
 
                 {
@@ -122,8 +122,8 @@
          var flag = 0;
         var title = $("#title").val();
         var uploadedvideo = $("#uploadedvideo").val();
-       var editor = CKEDITOR.instances['videoDescription'];
-            var videoDescription = CKEDITOR.instances['videoDescription'].getData();
+       var editor = CKEDITOR.instances['videotextDescription'];
+            var videotextDescription = CKEDITOR.instances['videotextDescription'].getData();
         var friendsId = [];
         var albumId = $(".AID-class" ).val();
             var pageURL = $(location).attr("href");
@@ -149,38 +149,38 @@
             flag = 1;
             $('#title').addClass('error-class');
             $('#videoTitleError').show();
-            $("#uploadModal").hide();
+            /*$("#uploadModal").hide();
             $("#videoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
             $(".welcome").show();
-            $(".showmsg").html("<span>please fill title field</span>");
+            $(".showmsg").html("<span>please fill title field</span>");*/
         } else {
             $('#videoTitleError').hide();
             $('#title').removeClass('error-class');
            
         }
-        if (videoDescription == '') {
+        if (videotextDescription == '') {
             flag = 1;
-            $('#videoDescription').addClass('error-class');
-            $('#videoDescriptionError').show();
-            $("#uploadModal").hide();
+            $('#videotextDescription').addClass('error-class');
+            $('#videotextDescriptionError').show();
+            /*$("#uploadModal").hide();
             $("#videoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
             $(".welcome").show();
-            $(".showmsg").html("<span>please fill description field</span>");
+            $(".showmsg").html("<span>please fill description field</span>");*/
         } else {
-            $('#videoDescriptionError').hide();
-            $('#videoDescription').removeClass('error-class');
+            $('#videotextDescriptionError').hide();
+            $('#videotextDescription').removeClass('error-class');
         }
         if(uploadedvideo == ''){
             flag = 1;
             $('#file').addClass('error-class');
             $('#videouploaderror').show();
-            $("#uploadModal").hide();
+            /*$("#uploadModal").hide();
             $("#videoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
             $(".welcome").show();
-            $(".showmsg").html("<span>please fill description field</span>");
+            $(".showmsg").html("<span>please fill description field</span>");*/
         } else{
             $('#videouploaderror').hide();
             $('#file').removeClass('error-class');
@@ -193,7 +193,7 @@
                 data: {
                     title : title,
                     uploadedvideo : uploadedvideo,
-                    videoDescription : videoDescription,
+                    videoDescription : videotextDescription,
                     friendsId : friendsId,
                     albumId: albumId,
                     currentPageId :currentPageId
@@ -227,3 +227,8 @@ $(".closebtn").click(function(){
 })
 
 });
+function videoClick()
+{
+    $('#uploadModal').modal('show');
+    $('#videoInsertModal').modal('hide');
+}

@@ -70,7 +70,7 @@ $(function () {
             nextCol = parseInt(datacol,10) + parseInt(datasizex,10);
         for(var i=datarow;i<=row;i++){
             var brk= 0;
-            console.log(i);
+            console.log(nextCol);
             if(nextCol>6){
                 nextdatarow = parseInt(datarow,10) + parseInt(1,10);
                 nextdatacol= 1;
@@ -106,6 +106,55 @@ $(function () {
             break;
             }
         }
+        
+    });
+    $('body').on('click', '#priviousDivContent', function () {
+       /* var liindex = $('#appendDiv').index(),
+            datasizey = $('#appendDiv').attr('data-sizey'),
+            datasizex = $('#appendDiv').attr('data-sizex'),
+            datacol = $('#appendDiv').attr('data-col'),
+            datarow = $('#appendDiv').attr('data-row'),
+            row = rowCount(),
+            nextdatarow="",
+            nextdatacol="",
+            nextCol = parseInt(datacol,10) + parseInt(datasizex,10);
+        for(var i=datarow;i<=row;i++){
+            var brk= 0;
+            if(nextCol>6){
+                nextdatarow = parseInt(datarow,10) + parseInt(1,10);
+                nextdatacol= 1;
+                console.log("Here");
+                console.log("nextdatacol--"+nextdatacol+"--nextdatarow--"+nextdatarow);
+                for(var k= nextdatacol;k<=6;k++){
+                    nextdatarow=nextdatarow;
+                    nextdatacol=k;
+                    var checkn = liPresentCheck(nextdatacol,nextdatarow);
+                    console.log(checkn);
+                    console.log("datacol--"+nextdatacol+"--datarow--"+nextdatarow);
+                    if(checkn==1){
+                        $("#outer-wrap li[data-col='"+nextdatacol+"'][data-row='"+nextdatarow+"']").trigger('click');
+                        brk=1;
+                        break;
+                    }
+                }
+                
+            } else{
+                for(var j= nextCol;j<=6;j++){
+                    nextdatarow=datarow;
+                    nextdatacol=j;
+                    var check = liPresentCheck(nextdatacol,nextdatarow);
+                    if(check==1){
+                        $("#outer-wrap li[data-col='"+nextCol+"'][data-row='"+datarow+"']").trigger('click');
+                        brk= 1;
+                        //console.log("datacol--"+nextdatacol+"--datarow--"+nextdatarow);
+                        break;
+                    }
+                }
+            }
+            if(brk == 1){
+            break;
+            }
+        }*/
         
     });
     function liPresentCheck(nextCol,datarow){

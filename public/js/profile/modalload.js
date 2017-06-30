@@ -116,9 +116,8 @@ function tributemodalopen()
 
 function imagemodalopen(){
     if($('#photoInsertModal').length) {
-        $('#photoInsertModal').modal('show');
-        $('#uploadModal').modal('hide');
-    } else {
+        $('#photoInsertModal').remove();
+    }
        
     $.get(getUrl+"/modal/imageinsertmodal.php", function (result) {
         // append response to body
@@ -152,7 +151,7 @@ function imagemodalopen(){
         }
 
     });
-    }
+
 
 }
 

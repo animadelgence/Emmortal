@@ -29,7 +29,14 @@ class UsersettingController extends AbstractActionController {
         $controller = @$href[3];
         $action = @$href[4];
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'sessionid'=>$this->sessionid));
+        $bgimg = $modelPlugin->getbgimageTable()->fetchall();
+        if(@getimagesize($userDetails[0]['backgroundimage'])){
+                $bgimgSend = $userDetails[0]['backgroundimage'];
+            }
+            else{
+             $bgimgSend = $bgimg[0]['bgimgpath'];
+            }
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'sessionid'=>$this->sessionid,'bgimg'=>$bgimgSend));
         return new ViewModel(array('dynamicPath' => $dynamicPath,'userDetails'=>$userDetails));
     }
     public function changepasswordAction() {

@@ -1,6 +1,6 @@
 var URL = window.location.origin;
 $(document).ready(function (){
-	
+	//alert();
 	$('body').on('keypress','.loginid', function(e){
 	
         if (e.which == 13) { 
@@ -20,7 +20,7 @@ $(document).ready(function (){
 
 	
 	$('body').on('click','#signinbutton', function(){
-		
+		//alert(12);
 		var loginemail = $("#loginemail").val(),
 		loginpassword = $("#loginpassword").val();
 

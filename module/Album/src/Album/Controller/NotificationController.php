@@ -27,33 +27,41 @@ class NotificationController extends AbstractActionController {
         // }
     }
     public function getnotificationAction(){
-        $plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $dynamicPath = $plugin->dynamicPath();
-        $jsonArray = $plugin->jsondynamic();
-        $UID = $this->sessionid;
-        $condition = array('UID'=>$UID,'notify_seen'=>0);
-        $notificationDetails = $modelPlugin->getnotificationdetailsTable()->fetchall($condition);
-        $array = array();
+        $plugin                 = $this->routeplugin();
+        $modelPlugin            = $this->modelplugin();
+        $dynamicPath            = $plugin->dynamicPath();
+        $jsonArray              = $plugin->jsondynamic();
+        $UID                    = $this->sessionid;
+        $condition              = array('UID'=>$UID,'notify_seen'=>0);
+        $notificationDetails    = $modelPlugin->getnotificationdetailsTable()->fetchall($condition);
+        $array                  = array();
+        echo "<pre/>";
+        print_r($notificationDetails); exit();
         foreach ($notificationDetails as $rSet) {
             $notificationid = $rSet['notificationid'];
             $notified_by    = $rSet['notified_by'];
             $notify_id      = $rSet['notify_id'];
             $notify_type    = $rSet['notify_type'];
-            
-           /* $array[] = array(
-                'uploadTitle' => $rSet['uploadTitle'],
-                'uploadDescription' => $rSet['uploadDescription'],
-                'uploadPath' => $rSet['uploadPath'],
-                'dateTime' => date("m/d/Y",strtotime($rSet['TimeStamp']))." ".$time,
-                'username' => $rSet['firstname']." ".$rSet['lastname'],
-                'userid'=>$rSet['userid'],
-                'likeCount'=>$likeCount
+            $html           = "";
+            if($notify_type == 'like'){
+                $likecon                = array('likeid'=>$notify_id);
+                $notificationDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($condition);
+                $html .="";
+            } else if($notify_type == 'friendrequest'){
+            } else if($notify_type == 'album'){
+            } else if($notify_type == 'upload'){
+            }
+            $array[] = array(
+                'notificationid' => $notificationid,
+                'notified_by' => $notified_by,
+                'notify_id' => $notify_id,
+                'notify_type'=>$notify_type
             );
           }
+        print_r($array); exit();
         $res['uploadDetails'] = $array;
         echo json_encode($res);
-        exit;*/
+        exit;
     }
 }
 ?>

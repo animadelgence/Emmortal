@@ -40,7 +40,7 @@ class LazyloadController extends AbstractActionController {
             for ($i = 0; $i < $totalcount; $i++) {
               $uploadId = $uploadAll[$i]['uploadId'];
             	if($uploadAll[$i]['uploadType'] == "text"){
-                                             $galleryStruct .= '<li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                             $galleryStruct .= '<li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1"  data-cmd="text" >
                                              <span><label name="text Name">'.$uploadAll[$i]['uploadTitle'].'<p>'.$uploadAll[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> 0 </div> </li>';
                                           }
 
@@ -50,12 +50,12 @@ class LazyloadController extends AbstractActionController {
                                               }else{
                                                   $uploadedImage = $dynamicPath."/image/NoPhotoDefault.png";
                                               }
-                                              $galleryStruct .= ' <li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                              $galleryStruct .= ' <li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1"  data-cmd="image" >
                                               <span><img name="Image Name" id="" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div></li>';
 
                                           }
                                            else if($uploadAll[$i]['uploadType'] == "video"){
-                                                $galleryStruct .=  ' <li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                                $galleryStruct .=  ' <li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1"  data-cmd="video" >
                                                 <span><video controls="controls" name="Video Name" id="" src="'.$uploadAll[$i]['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div></li>';
 
 

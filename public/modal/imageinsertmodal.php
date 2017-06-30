@@ -3,7 +3,7 @@
 	<div class="modal-dialog modal-box modal-photo">
 		<div class="modal-content modal-outer inner-modal-photo">
 			<div class="modal-header modal-headernew">
-				<button type="button" class="close close-new" data-dismiss="modal" ><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+				<button type="button" class="close close-new" data-dismiss="modal" onclick="photoClick();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 				<h3 class="modal-title" id="lineModalLabel">Create new image</h3>
 			</div>
 			<div class="modal-body select-media-type-popup">

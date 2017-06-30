@@ -169,8 +169,33 @@ function videomodalopen(){
         $('body').append(result);
         // open modal
         $('#videoInsertModal').modal('show');
+        if($('#videotextDescription').length) {
+            CKEDITOR.replace('videotextDescription', {
+                toolbar: [
+
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+
+
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
         //$('#uploadModal').modal('hide');
-        if($('#videoDescription').length) {
+        /*if($('#videoDescription').length) {
             CKEDITOR.replace('videoDescription', {
                 toolbar: [
 
@@ -194,7 +219,7 @@ function videomodalopen(){
                 ]
             });
             CKEDITOR.disableAutoInline = true;
-         }
+         }*/
 
     });
     

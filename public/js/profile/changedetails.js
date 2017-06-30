@@ -1,8 +1,8 @@
 var getUrl = window.location.origin;
 $(function(){
 	//alert(1);
+	$('body').on('click', '.upgradelink', function () {
 	
-	$(".upgradelink").click(function () {
         $('#error-message').fadeIn();
         $('.message-error').html("Your account seems to be inactive. Please contact us to finish publishing.<br/>Phone: 088-1415001<br/>E-mail: info@smartfanpage.com");
         $('body').css('overflow-y', 'hidden');
@@ -83,8 +83,8 @@ $(function(){
             }
     });
 
-    $("#profilesaveimageDetails").click(function(){
-
+    
+    $('body').on('click', '#profilesaveimageDetails', function () {
         var profileimageNmae    = $("#pfimagePath").val(),
             backgroundimageName = $("#bkimagePath").val();
 

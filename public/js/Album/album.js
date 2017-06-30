@@ -1,38 +1,19 @@
- var colour = [
-            "rgb(142, 68, 173)",
-            "rgb(243, 156, 18)",
-            "rgb(211, 84, 0)",
-            "rgb(0, 106, 63)",
-            "rgb(41, 128, 185)",
-            "rgb(192, 57, 43)",
-            "rgb(135, 0, 0)",
-            "rgb(39, 174, 96)"
-        ];
+/*
+ * @Author: Anima
+ * @Date:   2017-06-30 11:15:35
+ * @Last Modified by:   Anima
+ * @Last Modified time: 2017-06-30 16:46:35
+ */
+/*jslint browser: true*/
+/*global $, jQuery, alert,  Aviary, currentImage, csdkImageEditor, console, launchImageEditor,validateFileType, loadtheuploadbutton, showTheEditButtons, elementclick*/
+/*jslint plusplus: true */
+/*jshint -W065 */
+/*jshint -W030 */
 
-        $(".free-wall .size320").each(function() {
-            var backgroundColor = colour[colour.length * Math.random() << 0];
-            var bricks = $(this).find(".brick");
-            !bricks.length && (bricks = $(this));
-            bricks.css({
-                backgroundColor: backgroundColor
-            });
-        });
+/*jslint eqeq: true*/
+/*@Modal open*/
+$(function(){
+ $('body').on('click', '.previewUploadedFile', function () {
 
-        $(function() {
-            $(".free-wall").each(function() {
-                var wall = new Freewall(this);
-                wall.reset({
-                    selector: '.size320',
-                    cellW: 320,
-                    cellH: 320,
-                    fixSize: 0,
-                    gutterY: 20,
-                    gutterX: 20,
-                    onResize: function() {
-                        wall.fitWidth();
-                    }
-                })
-                wall.fitWidth();
-            });
-            $(window).trigger("resize");
-        });
+    });
+});

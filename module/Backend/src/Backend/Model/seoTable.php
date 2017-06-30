@@ -23,8 +23,8 @@
                     'seometadescription' => $rSet->seometadescription,
                     'seoOGimagepath'=>$rSet->seoOGimagepath,
                     'seoFaviconimagepath' => $rSet->seoFaviconimagepath,
-                    'creationDate' => $rSet->creationDate,
-                    'bgimage' => $rSet->bgimage
+                    'creationDate' => $rSet->creationDate
+                    //'bgimage' => $rSet->bgimage
                     );
             }
             return $array;

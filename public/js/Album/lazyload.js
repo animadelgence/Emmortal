@@ -14,6 +14,7 @@
 
 
 function yHandler() {
+    console.log("dfdfg")
     var noofScroll = $('#valuetobeIncremented').val();
     var wrap = '';
     var contentHeight = '';
@@ -33,10 +34,10 @@ function yHandler() {
     /* jshint ignore:end */
     wrap = document.getElementById("outer-wrap");
     contentHeight = wrap.offsetHeight;
-    yOffset = window.pageYOffset;
-    y = yOffset + window.innerHeight;
+    yOffset = $("#fullwrapnew").pageYOffset;
+    y = yOffset + $("#fullwrapnew").innerHeight;
     no_of_template_div = $('#outer-wrap').children().length;
-
+console.log(yOffset+"--"+y+"--"+contentHeight);
     i = parseInt(no_of_template_div, 10);
 
     //id_string = $('#category_string').html();

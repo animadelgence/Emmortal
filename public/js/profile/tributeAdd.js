@@ -121,6 +121,7 @@ $(document).ready(function () {
 });
 function tributeClick()
 {
-    $('#uploadModal').modal('show');
+    uploadmodalopen();
+    //$('#uploadModal').modal('show');
     $('#tributemodal').modal('hide');
 }

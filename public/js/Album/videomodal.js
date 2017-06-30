@@ -219,16 +219,17 @@
 
 
     });
-$(".closebtn").click(function(){
+/*$(".closebtn").click(function(){
     $(".welcome").hide();
     $("#uploadModal").show();
     $("#videoInsertModal").css("z-index","1305");
     $(".modal-backdrop").css("z-index","1040");
-})
+})*/
 
 });
 function videoClick()
 {
-    $('#uploadModal').modal('show');
+    uploadmodalopen();
+    //$('#uploadModal').modal('show');
     $('#videoInsertModal').modal('hide');
 }

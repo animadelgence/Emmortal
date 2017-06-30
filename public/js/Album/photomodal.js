@@ -271,6 +271,7 @@ function launchEditor(id, src) {
 }
 function photoClick()
 {
-    $('#uploadModal').modal('show');
+    uploadmodalopen();
+    //$('#uploadModal').modal('show');
     $('#photoInsertModal').modal('hide');
 }

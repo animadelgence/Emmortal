@@ -50,7 +50,7 @@ class AlbumController extends AbstractActionController {
         if($this->sessionid == "")
         {
 
-            $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimg[0]['bgimgpath'],'sessn'=>0));
+            $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimg[0]['bgimgpath']));
             return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails));
 
         }
@@ -59,11 +59,11 @@ class AlbumController extends AbstractActionController {
 
             if(!empty($userDetails[0]['backgroundimage'])){
 
-                $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'action' => $action,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails,'sessn'=>1));
+                $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'action' => $action,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails));
             }
             else{
 
-                $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'action' => $action,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails,'bgimg'=>$bgimg[0]['bgimgpath'],'sessn'=>1));
+                $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'action' => $action,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails,'bgimg'=>$bgimg[0]['bgimgpath']));
             }
 
            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails));

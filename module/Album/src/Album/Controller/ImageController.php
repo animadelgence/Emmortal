@@ -52,8 +52,8 @@ class ImageController extends AbstractActionController {
         {
             /*echo '/upload/uploadimage/'.$filename;
             exit;*/
-            $folderName = $_SERVER['DOCUMENT_ROOT'].'/upload/uploadimage/';
-            $pathThumb = $this->resizeImage($folderName, $filename);
+            //$folderName = $_SERVER['DOCUMENT_ROOT'].'/upload/uploadimage/';
+            //$pathThumb = $this->resizeImage($folderName, $filename);
             $res['imgFullName'] = '/upload/uploadimage/'.$filename; 
             //exit;
             
@@ -126,7 +126,7 @@ class ImageController extends AbstractActionController {
         echo $result; exit;
             //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
-    public function resizeImage($updir, $img)
+    /*public function resizeImage($updir, $img)
     {
         $thumbnail_width = 352;             //resizing image
      	$thumbnail_height = 352;
@@ -162,6 +162,6 @@ class ImageController extends AbstractActionController {
      		$imgt($new_image, "$updir"."$img");
      		return "$img";
      	}
-    }
+    }*/
 
 }

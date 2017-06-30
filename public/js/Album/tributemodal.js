@@ -1,31 +1,31 @@
  $(document).ready(function () {
     var baseURL = window.location.origin;
     var frndDetails =[];
+    if($('#tributeDescription').length){
+        CKEDITOR.replace('tributeDescription', {
+            toolbar: [
 
-    CKEDITOR.replace('tributeDescription', {
-        toolbar: [
+                {
+                    name: 'others',
+                    items: ['-']
+                },
+                '/',
+                {
+                    name: 'basicstyles',
+                    groups: ['basicstyles', 'cleanup'],
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                },
 
-            {
-                name: 'others',
-                items: ['-']
-            },
-            '/',
-            {
-                name: 'basicstyles',
-                groups: ['basicstyles', 'cleanup'],
-                items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
-            },
-
-            {
-                name: 'links',
-                items: ['Link', 'Unlink', 'Anchor']
-            }
+                {
+                    name: 'links',
+                    items: ['Link', 'Unlink', 'Anchor']
+                }
 
 
-        ]
-    });
-    CKEDITOR.disableAutoInline = true;
-
+            ]
+        });
+        CKEDITOR.disableAutoInline = true;
+    }
 
     $('body').on('keyup', '#friendsidtribute', function () {
         var friendsid = $(this).val().trim();
@@ -58,6 +58,9 @@
             $('#frndlisttribute').hide();
         }
     });
+     $("#tributemodal").on("hidden.bs.modal", function () {
+        $('#uploadModal').modal();
+    });
     $('body').on('click', '#frndlist-click-tribute', function () {
         var id = $(this).data("id");
         frndDetails.push(id);
@@ -84,7 +87,8 @@
         $(this).parent().remove();
     });
 
-     $("#publishidtribute").click(function(){
+     $('body').on('click', '#publishidtribute', function () {
+     //$("#publishidtribute").click(function(){
         var flag = 0;
             var editor = CKEDITOR.instances['tributeDescription'];
             var tributeDescription = CKEDITOR.instances['tributeDescription'].getData();

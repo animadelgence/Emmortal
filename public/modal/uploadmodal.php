@@ -37,7 +37,7 @@ $protocolPath = $protocol . $_SERVER['HTTP_HOST'];
 							</a>
 						</div>
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer" data-toggle="modal" data-target="#tributemodal" id="tributeinsert">
+							<a class="btn btn-default btn-media-type pointer" onclick="tributemodalopen();" id="tributeinsert">
 								<i class="fa fa-file-text"></i>
 								<div class="text">Tribute</div>
 							</a>

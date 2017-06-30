@@ -89,7 +89,8 @@
         $(this).parent().remove();
     });
 
- 	$('#file').on('change', function () {
+ 	//$('#file').on('change', function () {
+    $('body').on('change', '#file', function () {
 	     $("#videoupload").ajaxSubmit({
 
                     data: {
@@ -115,7 +116,8 @@
                 });
 	 });
 
-    $('#publishid').on('click', function () {
+    $('body').on('click', '#publishid', function () {
+     //$('#publishid').on('click', function () {
       
          var flag = 0;
         var title = $("#title").val();
@@ -225,3 +227,8 @@ $(".closebtn").click(function(){
 })
 
 });
+function videoClick()
+{
+    $('#uploadModal').modal('show');
+    $('#videoInsertModal').modal('hide');
+}

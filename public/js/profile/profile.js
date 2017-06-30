@@ -233,3 +233,8 @@ $(document).ready(function () {
 
 });
 });
+function textClick()
+{
+    $('#uploadModal').modal('show');
+    $('#textInsertModal').modal('hide');
+}

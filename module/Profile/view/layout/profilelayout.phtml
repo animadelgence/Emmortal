@@ -25,8 +25,8 @@
         <?php include 'profilecss.phtml'; ?>
          <?php include 'profilejs.phtml'; ?>
 </head>
-<body>
-    <div class ="fullwrapnew" id="fullwrapnew" style="background: rgba(0, 0, 0, 0) url('<?php echo $userDetails[0]["backgroundimage"]; ?>') no-repeat scroll 0 0 / cover ;">
+<body style="overflow-y: initial;">
+    <div class ="fullwrapnew" id="fullwrapnew" style="background-image:url('<?php echo $userDetails[0]["backgroundimage"]; ?>');background-attachment: fixed; background-repeat: no-repeat;background-size: cover;overflow-y: scroll; position: fixed;width: 100%;">
     <?php  $root = $_SERVER['DOCUMENT_ROOT'];
             $root1 = explode("/public",$root);
             $path = $root1[0]."/module/Album/view/layout/navbar.phtml";
@@ -35,3 +35,4 @@
     </div>
 </body>
 </html>
+

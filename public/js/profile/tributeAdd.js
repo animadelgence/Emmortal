@@ -119,3 +119,8 @@ $(document).ready(function () {
     }
 
 });
+function tributeClick()
+{
+    $('#uploadModal').modal('show');
+    $('#tributemodal').modal('hide');
+}

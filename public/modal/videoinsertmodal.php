@@ -78,7 +78,7 @@
     </div>
     <div class="modal-footer text-right">
         <span class="">
-               <button type="button" class="btn e-btn btn-default">Back</button>
+               <button type="button" class="btn e-btn btn-default" onclick="$('.close').trigger('click');" data-toggle="modal" data-target="#uploadModal">Back</button>
                <button type="submit" class="btn e-btn btn-primary" id="publishid">Publish</button>
                </span>
     </div>

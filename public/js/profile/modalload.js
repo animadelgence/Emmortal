@@ -13,7 +13,40 @@ function albummodalopen(){
     });
 }
 
- function textmodalopen(){
+function squarespaceModalopen()
+{
+    $.get(getUrl+"/modal/signupmodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#squarespaceModal2').modal('hide');;
+        $('#squarespaceModal').modal('show');
+
+    });
+}
+function squarespaceModal2open()
+{
+    $.get(getUrl+"/modal/loginmodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#squarespaceModal').modal('hide');
+        $('#squarespaceModal2').modal('show');
+
+    });
+}
+function squarespaceModalemailopen()
+{
+    $.get(getUrl+"/modal/forgetpasswordmodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#squarespaceModal2').modal('hide');
+        $('#squarespaceModalemail').modal('show');
+
+    });
+}
+ function textmodalopen(){   
 
     $.get(getUrl+"/modal/textinsertmodal.php", function (result) {
         // append response to body
@@ -90,6 +123,31 @@ function videomodalopen(){
         $('body').append(result);
         // open modal
         $('#videoInsertModal').modal('show');
+        if($('#videoDescription').length) {
+            CKEDITOR.replace('videoDescription', {
+                toolbar: [
+
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+
+
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+         }
 
     });
 

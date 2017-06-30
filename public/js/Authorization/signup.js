@@ -10,8 +10,8 @@ $('.signupidenter').keypress(function (e) {
         }
     });
 
-$('#signupbutton').click(function(){
 
+$('body').on('click','#signupbutton', function(){
 	var firstName = $("#fname").val(),
 	lastName = $("#lname").val(),
 	email = $("#email").val(),

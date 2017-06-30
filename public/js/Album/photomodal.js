@@ -36,8 +36,8 @@ $(document).ready(function () {
     });
     CKEDITOR.disableAutoInline = true;
     }
-    //$('body').on('click', '#photoInsert', function () {
-    $("#photoInsert").click(function(){
+    $('body').on('click', '#photoInsert', function () {
+        $('.close').trigger('click');
         $.ajax({
             type: "POST",
             url: base_url_dynamic + '/profile/getalbum',
@@ -52,6 +52,9 @@ $(document).ready(function () {
         $('#imageFriendError').css('display','none');
 
     });*/
+    $("#photoInsertModal").on("hidden.bs.modal", function () {
+        $('#uploadModal').modal();
+    });
     $('body').on('click', '#frndlist-click-image', function () {
         var id = $(this).data("id");
         frndDetails.push(id);

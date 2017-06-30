@@ -216,7 +216,7 @@ $(document).ready(function () {
         }
     })
     $('body').on('change', '#imageArea1', function () {
-    //$('#imageArea1').on('change', function () { 
+    //$('#imageArea1').on('change', function () {
         $('#imagePathError').hide();
         $("#imageuploadform").ajaxSubmit({   //saving the image temporarily so that editing can be done in Aviary
 			data: {

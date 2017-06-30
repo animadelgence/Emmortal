@@ -123,7 +123,7 @@ function imagemodalopen(){
     if($('#photoInsertModal').length) {
         $('#photoInsertModal').remove();
     }
-       
+
     $.get(getUrl+"/modal/imageinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -163,7 +163,7 @@ function imagemodalopen(){
 function videomodalopen(){
     if($('#videoInsertModal').length) {
         $('#videoInsertModal').remove();
-    } 
+    }
     $.get(getUrl+"/modal/videoinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -222,26 +222,26 @@ function videomodalopen(){
          }*/
 
     });
-    
+
 
 }
 function uploadmodalopen(){
     if($('#uploadModal').length) {
         $('#uploadModal').remove();
-    } 
+    }
     $.get(getUrl+"/modal/uploadmodal.php", function (result) {
         // append response to body
         $('body').append(result);
         // open modal
         $('#uploadModal').modal('show');
-        
+
     });
-    
+
 }
 function searchmodalopen(){
     if($('#searchmodal').length) {
         $('#searchmodal').remove();
-    } 
+    }
     $.get(getUrl+"/modal/searchmodal.php", function (result) {
         // append response to body
         $('body').append(result);

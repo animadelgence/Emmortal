@@ -22,8 +22,11 @@
         <?php include 'albumcss.phtml'; ?>
          <?php include 'albumjs.phtml'; ?>
 </head>
+
 <body style="overflow-y: initial;">
-<div class ="fullwrapnew" id="fullwrapnew" style="background-image:url('<?php echo $userDetails[0]["backgroundimage"]; ?>');background-attachment: fixed; background-repeat: no-repeat;background-size: cover;overflow-y: scroll; position: fixed;width: 100%;height:100%;">
+<div class ="fullwrapnew" id="fullwrapnew" style="background-image:url('<?php if($sessn == 1){
+    if(!empty($userDetails[0]['backgroundimage'])){ echo $userDetails[0]["backgroundimage"]; }else{ echo   $bgimg;}}else{echo $bgimg;} ?>');background-attachment: fixed; background-repeat: no-repeat;background-size: cover;overflow-y: scroll; position: fixed;width: 100%;height:100%;">
+
     <?php  $root = $_SERVER['DOCUMENT_ROOT'];
             $root1 = explode("/public",$root);
             $path = $root1[0]."/module/Album/view/layout/navbar.phtml";

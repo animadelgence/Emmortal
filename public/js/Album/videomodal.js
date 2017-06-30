@@ -227,3 +227,8 @@ $(".closebtn").click(function(){
 })
 
 });
+function videoClick()
+{
+    $('#uploadModal').modal('show');
+    $('#videoInsertModal').modal('hide');
+}

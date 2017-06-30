@@ -3,12 +3,15 @@ $(function(){
 
 });
 function albummodalopen(){
-
+    if($('#albumInsertModal').length) {
+        $('#albumInsertModal').remove();
+    }
 	$.get(getUrl+"/modal/albuminsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
         // open modal
         $('#albumInsertModal').modal('show');
+        $('#uploadModal').modal('hide');
 
     });
 }
@@ -48,6 +51,9 @@ function squarespaceModalemailopen()
 }
 function tributemodalopen()
 {
+    if($('#tributemodal').length) {
+        $('#tributemodal').remove();
+    }
     $.get(getUrl+"/modal/tributemodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -79,14 +85,14 @@ function tributemodalopen()
 }
  function textmodalopen(){   
     if($('#textInsertModal').length) {
-        $('#textInsertModal').modal('show');
-        $('#uploadModal').modal('hide');
-    } else {
+        $('#textInsertModal').remove();
+    }
     $.get(getUrl+"/modal/textinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
         // open modal
         $('#textInsertModal').modal('show');
+        $('#uploadModal').modal('hide');
         if($('#textDescription').length) {
             CKEDITOR.replace('textDescription', {
                 toolbar: [
@@ -110,15 +116,13 @@ function tributemodalopen()
         }
 
     });
-    }
 
 }
 
 function imagemodalopen(){
     if($('#photoInsertModal').length) {
-        $('#photoInsertModal').toggle();
-        $('#uploadModal').modal('hide');
-    } else {
+        $('#photoInsertModal').remove();
+    }
        
     $.get(getUrl+"/modal/imageinsertmodal.php", function (result) {
         // append response to body
@@ -152,21 +156,20 @@ function imagemodalopen(){
         }
 
     });
-    }
+
 
 }
 
 function videomodalopen(){
     if($('#videoInsertModal').length) {
-        $('#videoInsertModal').modal('show');
-        $('#uploadModal').modal('hide');
-    } else {
+        $('#videoInsertModal').remove();
+    } 
     $.get(getUrl+"/modal/videoinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
         // open modal
         $('#videoInsertModal').modal('show');
-        $('#uploadModal').modal('hide');
+        //$('#uploadModal').modal('hide');
         if($('#videoDescription').length) {
             CKEDITOR.replace('videoDescription', {
                 toolbar: [
@@ -194,13 +197,13 @@ function videomodalopen(){
          }
 
     });
-    }
+    
 
 }
 function uploadmodalopen(){
     if($('#uploadModal').length) {
-        $('#uploadModal').modal('show');
-    } else {
+        $('#uploadModal').remove();
+    } 
     $.get(getUrl+"/modal/uploadmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -208,9 +211,12 @@ function uploadmodalopen(){
         $('#uploadModal').modal('show');
         
     });
-    }
+    
 }
 function searchmodalopen(){
+    if($('#searchmodal').length) {
+        $('#searchmodal').remove();
+    } 
     $.get(getUrl+"/modal/searchmodal.php", function (result) {
         // append response to body
         $('body').append(result);

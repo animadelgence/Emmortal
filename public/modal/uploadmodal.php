@@ -31,13 +31,13 @@ $protocolPath = $protocol . $_SERVER['HTTP_HOST'];
 							</a>
 						</div>
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer" onclick="modalopen();" href="javascript:void(0)">
+							<a class="btn btn-default btn-media-type pointer" onclick="albummodalopen();" href="javascript:void(0)">
 								<i class="fa fa-book"></i>
 								<div class="text">Album</div>
 							</a>
 						</div>
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer" onclick="tributemodalopen();" id="tributeinsert">
+							<a class="btn btn-default btn-media-type pointer" onclick="tributemodalopen();" id="tributeinsert" href="javascript:void(0)">
 								<i class="fa fa-file-text"></i>
 								<div class="text">Tribute</div>
 							</a>

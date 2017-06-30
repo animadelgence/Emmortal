@@ -129,3 +129,8 @@
 
      });
 });
+function tributeClick()
+{
+    $('#uploadModal').modal('show');
+    $('#tributemodal').modal('hide');
+}

@@ -42,8 +42,10 @@ class ProfileController extends AbstractActionController {
         $uploadQuery = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
        //print_r($uploadDetails);exit;
+        $bgimg = $modelPlugin->getbgimageTable()->fetchall();
+        $bgimgSend = $bgimg[0]['bgimgpath'];
 
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid, 'userDetails'=>$userDetails));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid, 'userDetails'=>$userDetails,'bgimg'=>$bgimgSend));
 
         return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
     }
@@ -59,8 +61,10 @@ class ProfileController extends AbstractActionController {
         $controller       = @$href[3];
         $action           = @$href[4];
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));  //added by me
+        $bgimg = $modelPlugin->getbgimageTable()->fetchall();
+        $bgimgSend = $bgimg[0]['bgimgpath'];
 
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
        
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }

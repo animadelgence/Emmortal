@@ -7,7 +7,7 @@
                 <h3 class="modal-title" id="lineModalLabel">Add new Video</h3>
             </div>
             <div class="modal-body select-media-type-popup">
-                
+
                 <div class="modal-body photo-popup">
                     <div class="row">
                         <div class="col-md-6">
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                             </form>
-            
+
                             <div class="m-t-20">
                                 <div class="tags-input-wrapper">
                                     <div class="host">
@@ -85,5 +85,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>

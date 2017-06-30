@@ -18,7 +18,7 @@ switch ($controller) {
                 case 'newsfeed':
                 $this->headScript()
                 //->prependFile($this->basePath() . '/js/profile/alerthideshow.js?version=' . $t)
-                ->prependFile($this->basePath() . '/js/profile/modalload.js?version=' . $t)
+                
                 ->prependFile($this->basePath() . '/js/profile/changedetails.js?version=' . $t)
                 ->prependFile($this->basePath() . '/js/profile/confirmImage.js?version=' . $t);
 
@@ -63,6 +63,7 @@ switch ($controller) {
         break;
 }
 echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/profile/modalload.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/notification.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/profile/tributeAdd.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/like.js?version=' . $t)

@@ -28,7 +28,7 @@
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="outgoingTabshow">There are no outgoing relationships requests</h2>
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow">You have no relationships yet</h2>-->
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow"></h2>
-                    
+
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab">
                         <span>Rajyasree</span>
                         <span>Das</span> has no relationships yet

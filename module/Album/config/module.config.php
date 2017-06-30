@@ -15,8 +15,8 @@ return array(
              'Album\Controller\Image' => 'Album\Controller\ImageController',
              'Album\Controller\Albumdetails' => 'Album\Controller\AlbumdetailsController',
              'Album\Controller\Tribute' => 'Album\Controller\TributeController',
-             'Album\Controller\Lazyload' => 'Album\Controller\LazyloadController',
-             'Album\Controller\Createalbum' => 'Album\Controller\CreatealbumController'
+             'Album\Controller\Notification' => 'Album\Controller\NotificationController',
+             'Album\Controller\Lazyload' => 'Album\Controller\LazyloadController'
 
            
              
@@ -125,7 +125,7 @@ return array(
                  ),
              ),
              
-             'Lazyload' => array(
+                  'Lazyload' => array(
                  'type'    => 'segment',
                  'options' => array(
                      'route'    => '/lazyload[/:action][/:id]',
@@ -139,21 +139,20 @@ return array(
                      ),
                  ),
              ),
-             'Createalbum' => array(
+             'Notification' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/create[/:action][/:id]',
+                     'route'    => '/notification[/:action][/:id]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                          'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                      ),
                      'defaults' => array(
-                         'controller' => 'Album\Controller\Createalbum',
+                         'controller' => 'Album\Controller\Notification',
                          'action'     => 'index',
                      ),
                  ),
              ),
-            
          ),
      ),
     

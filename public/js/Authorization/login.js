@@ -1,15 +1,16 @@
 var URL = window.location.origin;
 $(document).ready(function (){
 	
-	$('.loginid').keypress(function (e) {
+	$('body').on('keypress','.loginid', function(e){
+	
         if (e.which == 13) { 
 
             $("#signinbutton").trigger("click");
             return false;
         }
     });
+    $('body').on('keypress','.recoverymailid', function(e){
     
-    $('.recoverymailid').keypress(function (e) {
         if (e.which == 13) { 
 
             $("#recoverybutton").trigger("click");

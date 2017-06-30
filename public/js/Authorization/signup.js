@@ -2,7 +2,8 @@ $(document).ready(function () {
 
 	$('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
 
-$('.signupidenter').keypress(function (e) {
+ $('body').on('keypress','.signupidenter', function(e){
+
         if (e.which == 13) { 
 
             $("#signupbutton").trigger("click");

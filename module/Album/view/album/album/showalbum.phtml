@@ -29,8 +29,8 @@
                            $uploadId = $uploadDetails[$i]['uploadId'];
 
                                          if($uploadDetails[$i]['uploadType'] == "text"){
-                                             echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
-                                             <span><label name="text Name">'.$uploadDetails[$i]['uploadTitle'].'<p>'.$uploadDetails[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> 0 </div>
+                                             echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="text">
+                                             <span><label name="text Name"><p>'.$uploadDetails[$i]['uploadTitle'].'</p><p>'.$uploadDetails[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> 0 </div>
 
                </li>';
                                           }
@@ -41,14 +41,14 @@
                                               }else{
                                                   $uploadedImage = $dynamicPath."/image/NoPhotoDefault.png";
                                               }
-                                              echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
-                                              <span><img name="Image Name" id="" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div>
+                                              echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="image">
+                                              <span><img name="ImageName" id="" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div>
 
                </li>';
 
                                           }
                                            else if($uploadDetails[$i]['uploadType'] == "video"){
-                                                echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-target="#showmodal_'.$uploadId.'" data-toggle="modal" >
+                                                echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="video">
                                                 <span><video controls="controls" name="Video Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div>
 
                </li>';

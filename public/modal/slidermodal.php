@@ -1,41 +1,32 @@
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-lg" id="slidermodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
-              <div class="carousel-inner">
-                <div class="item active">
-                     <img class="img-responsive" src="http://placehold.it/1200x600/555/000&text=One" alt="...">
-                      <div class="carousel-caption">
-                        One Image
-                      </div>
+              <div class="carousel-inner" style="height: 500px;padding:10px;">
+              <div class="col-md-12">
+                <div class="item active" style="text-align:center;">
+                    <p>Shubhadip Bera</p>
                 </div>
-                <div class="item">
-                  <img class="img-responsive" src="http://placehold.it/1200x600/fffccc/000&text=Two" alt="...">
-                  <div class="carousel-caption">
-                    Another Image
-                  </div>
                 </div>
-                 <div class="item">
-                  <img class="img-responsive" src="http://placehold.it/1200x600/fcf00c/000&text=Three" alt="...">
-                  <div class="carousel-caption">
-                    Another Image
-                  </div>
+               <div class="col-md-12">
+                   <div class="col-md-6" style="min-height: 200px;">
+                    <div id="appendDiv" class="item active" style="padding: 4px;line-height: 1.42857143;background-color: #fff;border: 1px solid #ddd;border-radius: 4px;height: 100%;">
+                    </div>
+                    </div>
                 </div>
               </div>
-
               <!-- Controls -->
-              <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
+              <a class="carousel-control" role="button" style="margin-left: -107px;top:50% !important;" id="priviousDivContent">
+                <i class="fa fa-chevron-left glyphicon" aria-hidden="true"></i>
+                <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
               </a>
-              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
+              <a class="right carousel-control" role="button" style="margin-right: -100px;background-image: none !important;top:50% !important"  id="nextDivContent">
+                <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
+                <!--<i class="fa fa-chevron-circle-right glyphicon" aria-hidden="true"></i>-->
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
               </a>
         </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button> 
-      </div>
     </div>
   </div>
 </div>

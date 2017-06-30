@@ -16,6 +16,7 @@ var base_url_dynamic = window.location.origin,
     i = "";
 $(document).ready(function () {
     "use strict";
+    if($('#friendtributeDescription').length){
     CKEDITOR.replace('friendtributeDescription', {
         toolbar: [
             {
@@ -35,6 +36,7 @@ $(document).ready(function () {
         ]
     });
     CKEDITOR.disableAutoInline = true;
+    }
     $('body').on('click', '.getTribute', function () {
         var frndId = $(this).data("id"),
             textDescription = "";
@@ -119,3 +121,9 @@ $(document).ready(function () {
     }
 
 });
+function tributeClick()
+{
+    uploadmodalopen();
+    //$('#uploadModal').modal('show');
+    $('#tributemodal').modal('hide');
+}

@@ -2,16 +2,6 @@ var getUrl = window.location.origin;
 $(function(){
 
 });
-function albummodalopen(){
-
-	$.get(getUrl+"/modal/albuminsertmodal.php", function (result) {
-        // append response to body
-        $('body').append(result);
-        // open modal
-        $('#albumInsertModal').modal('show');
-
-    });
-}
 
 function squarespaceModalopen()
 {
@@ -46,13 +36,94 @@ function squarespaceModalemailopen()
 
     });
 }
- function textmodalopen(){   
+function tributemodalopen()
+{
+    if($('#tributemodal').length) {
+        $('#tributemodal').remove();
+    }
+    /*if($('.in').length) {
+        $('.in').remove();
+    }*/
+    $.get(getUrl+"/modal/tributemodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#tributemodal').modal('show');
+        $('#uploadModal').modal('hide');
+        if($('#tributeDescription').length) {
+            CKEDITOR.replace('tributeDescription', {
+                toolbar: [
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
+    });
+}
+function albummodalopen(){
+    if($('#albumInsertModal').length) {
+        $('#albumInsertModal').remove();
+    }
+    if($('.in').length) {
+        $('.in').remove();
+    }
+	$.get(getUrl+"/modal/albuminsertmodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#albumInsertModal').modal('show');
+        $('#uploadModal').modal('hide');
+        if($('#albumtextDescription').length) {
+            CKEDITOR.replace('albumtextDescription', {
+                toolbar: [
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
 
+    });
+}
+
+ function textmodalopen(){   
+    if($('#textInsertModal').length) {
+        $('#textInsertModal').remove();
+    }
+    if($('.in').length) {
+        $('.in').remove();
+    }
     $.get(getUrl+"/modal/textinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
         // open modal
         $('#textInsertModal').modal('show');
+        $('#uploadModal').modal('hide');
         if($('#textDescription').length) {
             CKEDITOR.replace('textDescription', {
                 toolbar: [
@@ -80,7 +151,12 @@ function squarespaceModalemailopen()
 }
 
 function imagemodalopen(){
-
+    if($('#photoInsertModal').length) {
+        $('#photoInsertModal').remove();
+    }
+    /*if($('.in').length) {
+        $('.in').remove();
+    }*/
     $.get(getUrl+"/modal/imageinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -114,16 +190,48 @@ function imagemodalopen(){
 
     });
 
+
 }
 
 function videomodalopen(){
-
+    if($('#videoInsertModal').length) {
+        $('#videoInsertModal').remove();
+    }
+    /*if($('.in').length) {
+        $('.in').remove();
+    }*/
     $.get(getUrl+"/modal/videoinsertmodal.php", function (result) {
         // append response to body
         $('body').append(result);
         // open modal
         $('#videoInsertModal').modal('show');
-        if($('#videoDescription').length) {
+        if($('#videotextDescription').length) {
+            CKEDITOR.replace('videotextDescription', {
+                toolbar: [
+
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+
+
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
+        //$('#uploadModal').modal('hide');
+        /*if($('#videoDescription').length) {
             CKEDITOR.replace('videoDescription', {
                 toolbar: [
 
@@ -147,12 +255,56 @@ function videomodalopen(){
                 ]
             });
             CKEDITOR.disableAutoInline = true;
-         }
+         }*/
 
     });
 
+
+}
+function getTributemodalopen()
+{
+    if($('#friendTributeAddModal').length) {
+        $('#friendTributeAddModal').remove();
+    }
+    /*if($('.in').length) {
+        $('.in').remove();
+    }*/
+    $.get(getUrl+"/modal/friendtributeaddmodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#friendTributeAddModal').modal('show');
+        $('#uploadModal').modal('hide');
+        if($('#friendtributeDescription').length) {
+            CKEDITOR.replace('friendtributeDescription', {
+                toolbar: [
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
+    });
 }
 function uploadmodalopen(){
+    if($('#uploadModal').length) {
+        $('#uploadModal').remove();
+    }
+    if($('.in').length) {
+        $('.in').remove();
+    }
     $.get(getUrl+"/modal/uploadmodal.php", function (result) {
         // append response to body
         $('body').append(result);
@@ -160,8 +312,12 @@ function uploadmodalopen(){
         $('#uploadModal').modal('show');
 
     });
+
 }
 function searchmodalopen(){
+    if($('#searchmodal').length) {
+        $('#searchmodal').remove();
+    }
     $.get(getUrl+"/modal/searchmodal.php", function (result) {
         // append response to body
         $('body').append(result);

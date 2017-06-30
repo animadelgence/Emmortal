@@ -69,7 +69,8 @@ namespace Backend\Controller;
 		      $controller = @$href[3];
               $action = @$href[4];
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
-              $bgimg = $modelPlugin->getseoTable()->fetchall();
+              //$bgimg = $modelPlugin->getseoTable()->fetchall();
+              $bgimg = $modelPlugin->getbgimageTable()->fetchall();
 		      return new ViewModel(array('bgimg'=>$bgimg));
 
      }
@@ -80,12 +81,12 @@ namespace Backend\Controller;
               $dynamicPath  = $plugin->dynamicPath();
               $jsonArray    = $plugin->jsondynamic();
 		      $currentPageURL = $plugin->curPageURL();
-              $id = $_POST['seoid'];
+              $id = $_POST['bgimgid'];
               $filename = $_FILES['fileupload']['name'];
               $bgimgpath = $dynamicPath."/upload/bgimg/".$filename;
-              $where = array('seoid'=>$id);
-              $data = array('bgimage'=>$bgimgpath);
-              $imgUpdate = $modelPlugin->getseoTable()->updateData($data,$where);
+              $where = array('bgimgid'=>$id);
+              $data = array('bgimgpath'=>$bgimgpath);
+              $imgUpdate = $modelPlugin->getbgimageTable()->updateData($data,$where);
 
               //upload in bgimg folder(start)
               $href              = explode("/", $currentPageURL);

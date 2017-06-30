@@ -29,13 +29,23 @@
             $array = array();
             foreach ($resultSet as $rSet) {
                 if($rSet->sizeX=="H")
-                    $sizeX = 2;
+                {
+                    $sizeX = 2;$Height = "172px";
+                }
+
                 else
-                    $sizeX = 1;
+                {
+                    $sizeX = 1;$Height = "364px";
+                }
+
                  if($rSet->sizeY=="W")
-                    $sizeY = 1;
+                    {
+                         $sizeY = 1;$Width = "364px";
+                    }
                 else
-                    $sizeY = 2;
+                   {
+                         $sizeY = 2;$Width = "172px";
+                    }
                 $array[] = array(
                     'uploadId' => $rSet->uploadId,
                     'UID' => $rSet->UID,
@@ -46,6 +56,8 @@
                     'filestatus' => $rSet->filestatus,
                     'sizeX' => $sizeX,
                     'sizeY' => $sizeY,
+                    'height'=>$Height,
+                    'width'=>$Width,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,

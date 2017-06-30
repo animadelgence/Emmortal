@@ -22,8 +22,13 @@
         <?php include 'albumcss.phtml'; ?>
          <?php include 'albumjs.phtml'; ?>
 </head>
-<body>
-<div class ="fullwrapnew" id="fullwrapnew" style="background: rgba(0, 0, 0, 0) url('<?php echo $userDetails[0]["backgroundimage"]; ?>') no-repeat scroll 0 0 / cover ;">
+
+<body style="overflow-y: initial;">
+    <?php //echo ?>
+
+<img src="<?php echo $bgimg; ?>" id="background" style="width: 100%;height:100%;position:fixed;bottom: 0;
+    left: 0;z-index: -9999;">
+<div id="contentDiv">
     <?php  $root = $_SERVER['DOCUMENT_ROOT'];
             $root1 = explode("/public",$root);
             $path = $root1[0]."/module/Album/view/layout/navbar.phtml";

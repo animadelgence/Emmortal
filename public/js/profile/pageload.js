@@ -77,34 +77,13 @@ $(function () {
                   // appendHtml += '<div class="user_upload_part_section_content">';
                     for (i = 0; i < jsObject.uploaddetails.length; i++) {
                         if(jsObject.uploaddetails[i].uploadType == "video"){
-                             if(jsObject.uploaddetails[i].filestatus != ""){
-                                appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="'+jsObject.uploaddetails[i].filestatus+'"><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
-                             }
-                                else{
-                                    appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="style="height:184px;width:15%;""><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
-                                }
+
+                                    appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="height:'+jsObject.uploaddetails[i].height+';width:'+jsObject.uploaddetails[i].width+';"><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+                         } else if(jsObject.uploaddetails[i].uploadType == "image"){
                             
-
-                        } else if(jsObject.uploaddetails[i].uploadType == "image"){
-                            if(jsObject.uploaddetails[i].filestatus != ""){
-                                 appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="'+jsObject.uploaddetails[i].filestatus+'"><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
-
-                            } else {
-                                 appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="style="height:184px;width:15%;""><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
-
-                            }
-                           
-
+                                 appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="height:'+jsObject.uploaddetails[i].height+';width:'+jsObject.uploaddetails[i].width+';"><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
                         } else if(jsObject.uploaddetails[i].uploadType == "text"){
-                            if(jsObject.uploaddetails[i].filestatus != ""){
-                                appendHtml +='<li class="user_upload_part_section_content--inside vid-sec text-sec resizable" style="'+jsObject.uploaddetails[i].filestatus+'"><span><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
-
-                            } else {
-                                appendHtml +='<li class="user_upload_part_section_content--inside vid-sec text-sec resizable" style="style="height:184px;width:15%;""><span><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
-
-                            }
-                            
-
+                             appendHtml +='<li class="user_upload_part_section_content--inside vid-sec text-sec resizable" style="height:'+jsObject.uploaddetails[i].height+';width:'+jsObject.uploaddetails[i].width+';"><span><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
                         } else{
 
                         }

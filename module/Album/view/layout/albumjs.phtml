@@ -38,7 +38,7 @@ switch ($controller) {
         break;
 }
 echo $this->headScript()
-    ->prependFile($this->basePath() . '/js/profile/modalload.js?version=' . $t)
+
         ->prependFile($this->basePath() . '/js/Album/tributemodal.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/videomodal.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t)
@@ -49,6 +49,7 @@ echo $this->headScript()
         ->prependFile($this->basePath() . '/js/profile/profile.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/like.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/resetpassword.js?version=' . $t)
+        ->prependFile($this->basePath() . '/js/profile/modalload.js?version=' . $t)
         ->prependFile('//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js')
         //->prependFile($this->basePath() . '//code.jquery.com/jquery-3.2.1.min.js')
         ->prependFile($this->basePath() . '/js/jquery/jquery.form.js?version='.$t)

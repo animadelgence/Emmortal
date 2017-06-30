@@ -1,44 +1,4 @@
-<div class="main_section" style="margin-top:80px !important;">
-			<h3 class="termsHeader" id="newsfeed">Newsfeed</h3>
-
-            <!-- content goes here -->
-		    <div class="termsBody">
-                <p class="moodal-text inner_content"></p>
-		  </div>
-</div><!--/main_section-->
-<!-- create newpassword modal -->
-<!-- <div class="modal fade" id="squarespaceModalepassword" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-box signin_popup">
-  <div class="modal-content modal-outer">
-    <div class="modal-header modal-headernew">
-      <button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-      <h3 class="modal-title" id="lineModalLabel">Recovery password</h3>
-    </div>
-    <div class="modal-body">
-      
-            
-      <form method="post" action="/authlogin/resetpassword" enctype="multipart/form-data" name="nameform" id="resetpassword_form">
-
-                <div class="form-group full-width">
-                <input type="password" class="form-control" id="forgetpassword" placeholder="Password">
-              </div>
-                <div class="form-group full-width">
-                <input type="password" class="form-control" id="forgetconfirmPassword" placeholder="Confirm Password">
-              </div>
-               
-                <button type="submit" value="Submit" style="display:none;"></button>
-      </form>
-            <div class="modal-footersec">
-                <div class="button-div">
-                  <a class="modal-button" id="savepassbutton">Save</a> 
-                  <div class="alertmesage_recoverypassword" style="display: none;"></div>
-                </div>
-            </div>
-    </div>
-  </div>
-  </div>
-</div> -->
-<!-- <div class="modal fade" id="squarespaceModalchangeimage" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="squarespaceModalchangeimage" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
    <div class="modal-dialog modal-box signin_popup">
       <div class="modal-content modal-outer">
          <div class="modal-header modal-headernew">
@@ -46,7 +6,7 @@
             <h3 class="modal-title" id="lineModalLabel">Upload your profile photo and background</h3>
          </div>
          <div class="modal-body">
-            
+            <!-- content goes here -->
             <div>
                <div class="" >
                   <form action="/account/profileimage" method="post" enctype="multipart/form-data" name="form1" id="profileimagechangeform">
@@ -58,14 +18,14 @@
                                  <div class="img-input">
                                     <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 120px;">
                                        <i class="fa fa-picture-o remove-fa-picture-icon"></i>
-                                      
+                                       <!--<img id= 'profile_pic_thumb'/>-->
                                     </div>
                                     <div class="btn e-btn btn-primary file-input-btn" >
                                        <i class="fa fa-upload"></i>
                                        Choose photo
                                        <input name="profileimage" type="file" id="profileimagechange">
                                        <input type = "hidden" id = "pfimagePath" value="">
-                                      
+                                       <!--<input type = "hidden" id= "aviaryPath" name= "action" value=""> -->
                                     </div>
                                  </div>
                               </div>
@@ -73,14 +33,14 @@
                                  <div class="img-input">
                                     <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 120px;">
                                        <i class="fa fa-picture-o remove-fa-picture-icon"></i>
-                                       
+                                       <!--<img id= 'profile_pic_thumb'/>-->
                                     </div>
                                     <div class="btn e-btn btn-primary file-input-btn" >
                                        <i class="fa fa-upload"></i>
                                        Choose photo
                                        <input name="backgroundimage" type="file" id="backgroundimagechange">
                                        <input type = "hidden" id = "bkimagePath" value="">
-                                       
+                                       <!--<input type = "hidden" id= "aviaryPath" name= "action" value=""> -->
                                     </div>
                                  </div>
                               </div>
@@ -102,4 +62,4 @@
          </div>
       </div>
    </div>
-</div> -->
+</div>

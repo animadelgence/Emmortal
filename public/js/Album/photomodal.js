@@ -12,7 +12,7 @@ var base_url_dynamic = window.location.origin;
 $(document).ready(function () {
     $('#div-editphoto').hide();
     if($('#imagetextDescription').length) {
-    CKEDITOR.replace('imagetextDescription', {
+    var editor = CKEDITOR.replace('imagetextDescription', {
         toolbar: [
 
             {
@@ -34,6 +34,7 @@ $(document).ready(function () {
 
         ]
     });
+    editor.resize('100%','500',true);
     CKEDITOR.disableAutoInline = true;
     }
     $('body').on('click', '#photoInsert', function () {
@@ -133,11 +134,11 @@ $(document).ready(function () {
             //$('#imageTitle').addClass('error-class');
             $('#imageTitleError').css('display','block');
             $('.error-style').css('margin-top','28px');
-            $("#uploadModal").hide();
+            /*$("#uploadModal").hide();
             $("#photoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
             $(".welcome").show();
-            $(".showmsg").html("<span>please fill title field</span>");
+            $(".showmsg").html("<span>please fill title field</span>");*/
         } else {
             $('#imageTitleError').css('display','none');
             //$('#imageTitle').removeClass('error-class');
@@ -148,11 +149,11 @@ $(document).ready(function () {
             //$('#cke_textDescription').addClass('error-class');
             $('#imagetextDescriptionError').css('display','block');
             $('.error-style').css('margin-top','28px');
-            $("#uploadModal").hide();
+            /*$("#uploadModal").hide();
             $("#photoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
             $(".welcome").show();
-            $(".showmsg").html("<span>please fill description field</span>");
+            $(".showmsg").html("<span>please fill description field</span>");*/
         } else {
             $('#imagetextDescriptionError').css('display','none');
             //$('#imagetextDescriptionError').removeClass('error-class');
@@ -181,11 +182,11 @@ $(document).ready(function () {
         {
             flag = 1;
             $('#imagePathError').css('display','block');
-            $("#uploadModal").hide();
+            /*$("#uploadModal").hide();
             $("#photoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
             $(".welcome").show();
-            $(".showmsg").html("<span>please select one image</span>");
+            $(".showmsg").html("<span>please select one image</span>");*/
         }
         if (flag == 0) {
             $.ajax({                        // for unlinking the file from the temporary folder
@@ -215,8 +216,8 @@ $(document).ready(function () {
         });
         }
     })
-
-    $('#imageArea1').on('change', function () { 
+    $('body').on('change', '#imageArea1', function () {
+    //$('#imageArea1').on('change', function () {
         $('#imagePathError').hide();
         $("#imageuploadform").ajaxSubmit({   //saving the image temporarily so that editing can be done in Aviary
 			data: {
@@ -231,7 +232,8 @@ $(document).ready(function () {
 			}
 		});
 	});
-    $(".closebtn").click(function(){
+    $('body').on('change', '.closebtn', function () {
+    //$(".closebtn").click(function(){
         $(".welcome").hide();
         $("#uploadModal").show();
         $("#photoInsertModal").css("z-index","1305");
@@ -267,4 +269,10 @@ function launchEditor(id, src) {
         url: src
     });
     return false;
+}
+function photoClick()
+{
+    uploadmodalopen();
+    //$('#uploadModal').modal('show');
+    $('#photoInsertModal').modal('hide');
 }

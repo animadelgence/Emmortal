@@ -12,29 +12,31 @@
 						<div class="row">
 							<div class="col-md-6">
                                 <form action="/image/saveimage" method="post" enctype="multipart/form-data" name="form1" id="imageuploadform">
-                                <div class="aviary-div">
-								<div class="" >
-									<div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
-									<div class="image-select">
-										<div class="img-input">
-											<div class="canvas-placeholder" id="canvasPlaceholdeId" style="height: 360px;">
-												<i class="fa fa-picture-o remove-fa-picture-icon"></i>
-                                                <!--<img id= 'profile_pic_thumb'/>-->
-											</div>
-											<div class="btn e-btn btn-primary file-input-btn" >
-												<i class="fa fa-upload"></i>
-												Choose photo
-												<input name="file" type="file" id="imageArea1">
-                                                <input type = "hidden" id = "imagePath" value="">
-                                                <input type = "hidden" id= "aviaryPath" name= "action" value="">
-                                                
-											</div>
-                                            <span id="imagePathError" style="color:red;display:none;">No image Selected</span>
-										</div>
-									</div>
-								</div>
+                                    <div class="aviary-div">
+                                        <div class="" >
+                                            <div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
+                                            <div class="image-select">
+                                                <div class="img-input">
+                                                    <div class="canvas-placeholder" id="canvasPlaceholdeId" style="height: 360px;">
+                                                        <i class="fa fa-picture-o remove-fa-picture-icon"></i>
+                                                        <!--<img id= 'profile_pic_thumb'/>-->
+                                                    </div>
+                                                    <div class="btn e-btn btn-primary file-input-btn" >
+                                                        <i class="fa fa-upload"></i>
+                                                        Choose photo
+                                                        <input name="file" type="file" id="imageArea1">
+                                                        <input type = "hidden" id = "imagePath" value="">
+                                                        <input type = "hidden" id = "imageName" value="">
+                                                        <input type = "hidden" id = "imageFolder" value="">
+                                                        <input type = "hidden" id= "aviaryPath" name= "action" value="">
+
+                                                    </div>
+                                                    <span id="imagePathError" style="color:red;display:none;">No image Selected</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                 
-                                </div>
+                                    </div>
                                 </form>
 								<div class="m-t-20">
 									<div class="tags-input-wrapper" >

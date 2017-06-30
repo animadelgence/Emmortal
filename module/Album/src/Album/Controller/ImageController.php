@@ -33,6 +33,8 @@ class ImageController extends AbstractActionController {
     }
     public function saveimageAction() {
         //echo 1; exit;
+        $plugin = $this->routeplugin();
+        $dynamicPath = $plugin->dynamicPath();
         $request1 = $this->getRequest()->getPost();
         $filename = $request1['filename'];
         $request = $this->getRequest();
@@ -42,11 +44,22 @@ class ImageController extends AbstractActionController {
         $filename = date("Y-m-d h:i:sa").' image'.$imageName;
         $filename = str_replace(' ', '_', $filename);
         $newfilename = $_SERVER['DOCUMENT_ROOT'].'/upload/uploadimage/'.$filename;
+        $res['imgFilename'] = $filename;
+        $res['imgFolder'] = '/upload/uploadimage/';
+        
+    
         if(move_uploaded_file($temp_name, $newfilename))
         {
-            echo '/upload/uploadimage/'.$filename;
-            exit;
+            /*echo '/upload/uploadimage/'.$filename;
+            exit;*/
+            //$folderName = $_SERVER['DOCUMENT_ROOT'].'/upload/uploadimage/';
+            //$pathThumb = $this->resizeImage($folderName, $filename);
+            $res['imgFullName'] = '/upload/uploadimage/'.$filename; 
+            //exit;
+            
         }  
+        echo json_encode($res);
+        exit;
     }
     public function removeimageAction() {
         //echo 1; exit;
@@ -61,6 +74,11 @@ class ImageController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $imageTitle = $_POST['imageTitle'];
         $imagePath = $_POST['imagePath'];
+        
+        /*$imageFolder = $_POST['imageFolder'];
+        $imageName = $_POST['imageName'];
+        $pathThumb = $this->resizeImage($imageFolder, $imageName);*/
+        
         $imagefriendsId = '';
         $friendsid= '';
         if($_POST['imagefriendsId'])
@@ -108,5 +126,42 @@ class ImageController extends AbstractActionController {
         echo $result; exit;
             //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
+    /*public function resizeImage($updir, $img)
+    {
+        $thumbnail_width = 352;             //resizing image
+     	$thumbnail_height = 352;
+     	
+     	$arr_image_details = getimagesize("$updir"."$img"); // pass id to thumb name
+     	$original_width = $arr_image_details[0];
+     	$original_height = $arr_image_details[1];
+     	if ($original_width > $original_height) {
+     		$new_width = $thumbnail_width;
+     		$new_height = intval($original_height * $new_width / $original_width);
+     	} else {
+     		$new_height = $thumbnail_height;
+     		$new_width = intval($original_width * $new_height / $original_height);
+     	}
+     	$dest_x = intval(($thumbnail_width - $new_width) / 2);
+     	$dest_y = intval(($thumbnail_height - $new_height) / 2);
+     	if ($arr_image_details[2] == 1) {
+     		$imgt = "ImageGIF";
+     		$imgcreatefrom = "ImageCreateFromGIF";
+     	}
+     	if ($arr_image_details[2] == 2) {
+     		$imgt = "ImageJPEG";
+     		$imgcreatefrom = "ImageCreateFromJPEG";
+     	}
+     	if ($arr_image_details[2] == 3) {
+     		$imgt = "ImagePNG";
+     		$imgcreatefrom = "ImageCreateFromPNG";
+     	}
+     	if ($imgt) {
+     		$old_image = $imgcreatefrom("$updir"."$img");
+     		$new_image = imagecreatetruecolor($thumbnail_width, $thumbnail_height);
+     		imagecopyresized($new_image, $old_image, $dest_x, $dest_y, 0, 0, $new_width, $new_height, $original_width, $original_height);
+     		$imgt($new_image, "$updir"."$img");
+     		return "$img";
+     	}
+    }*/
 
 }

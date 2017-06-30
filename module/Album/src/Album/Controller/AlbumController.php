@@ -57,7 +57,7 @@ class AlbumController extends AbstractActionController {
         else{
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
 
-            if(!empty($userDetails[0]['backgroundimage'])){
+            if(@getimagesize($userDetails[0]['backgroundimage'])){
                 $bgimgSend = $userDetails[0]['backgroundimage'];
             }
             else{
@@ -102,7 +102,7 @@ class AlbumController extends AbstractActionController {
         } else {
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
 
-            if(!empty($userDetails[0]['backgroundimage'])){
+            if(($userDetails[0]['backgroundimage'])){
                 $bgimgSend = $userDetails[0]['backgroundimage'];
             }
             else{

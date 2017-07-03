@@ -42,7 +42,7 @@
                            <div class="host">
                               <div class="tags">
                                  <div class="auto-listing-div" id="append-div-image">
-                                    <input type="text" class="e-tags-input friendsids" name="friendsid" placeholder="Type Friend Name..." id ="imageFriend">
+                                    <input type="text" class="e-tags-input friendsids" name="friendsid" placeholder="Type Friend Name..." id ="albumFriend">
                                     <!--<span id="imageFriendError" style="color:red;display:none;">Required</span>-->
                                  </div>
                                  <div class="dropdown-div">
@@ -92,7 +92,7 @@
                         <div class="col-sm-6" style="padding-right: 0 !important;">
                            <div class="col-sm-12">
                               <div dropdown="" class="dropdown" id="colordropdown" style="border: 1px solid #aaa897;height: 35px;">
-                                 <div dropdown-toggle="" class="select dropdown-toggle" aria-haspopup="true" aria-expanded="true" style="padding-top: 3px;">
+                                 <div dropdown-toggle="" class="select dropdown-toggle" id ="selectedvaluecolor" aria-haspopup="true" aria-expanded="true" style="padding-top: 3px;">
                                     <span style="background-color: rgb(87, 153, 66); "></span><span class="color-preview" style="background-color: rgb(87, 153, 66); margin-left: 5px; padding: 0 10px;"></span><span class="color-name text-capitalize" style="color: rgb(87, 153, 66); font-size: 16px;padding-left: 7px;">green</span>
                                  </div>
                                  <div role="menu" class="colors-section dropdown-menu" aria-labelledby="single-button">

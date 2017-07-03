@@ -53,7 +53,7 @@ $(document).ready(function () {
                 filename: 'albumImagefile'
             },
             success: function (result) {
-                alert(result);//return false;
+                //alert(result);//return false;
                 var jsObject = JSON.parse(result);
                 $('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+jsObject.imgFullName+'" style="height:360px;width:100%"/>')
                 $("#albumPath").val(base_url_dynamic + jsObject.imgFullName);
@@ -80,16 +80,18 @@ $(document).ready(function () {
         });
         $(this).parent().remove();
     });
-     $('body').on('keyup', '#frndlistAlbum', function () {
+     $('body').on('keyup', '#albumFriend', function () {
         var friendsid = $(this).val().trim();
+        //alert(friendsid);return false;
         if (friendsid != '') {
             $.ajax({
                 type: "POST",
                 url: base_url_dynamic + '/profile/getfriends',
                 data: {},
                 success: function (res) {
+                    
                     jsObject = JSON.parse(res);
-                    var html = "",
+                    var htmlcreate = "",
                         profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg";
                     for (i = 0; i < jsObject.friendDetails.length; i++) {
                         var id = jsObject.friendDetails[i].friendsid;
@@ -99,11 +101,12 @@ $(document).ready(function () {
                                 if (jsObject.friendDetails[i].profileimage != null) {
                                     profileimage = jsObject.friendDetails[i].profileimage;
                                 }
-                                html += '<li class="frndlist-click-class dropdown-li" id="frndlist-click-album" data-id="' + jsObject.friendDetails[i].friendsid + '"><img src="' + profileimage + '" class="img-circle frnd-image-class" alt="Cinque Terre" ><span class="frnd-list-name" id="frnd-list-name-id">' + jsObject.friendDetails[i].friendsname + '</span></li>';
+                                htmlcreate += '<li class="frndlist-click-class dropdown-li" id="frndlist-click-album" data-id="' + jsObject.friendDetails[i].friendsid + '"><img src="' + profileimage + '" class="img-circle frnd-image-class" alt="Cinque Terre" ><span class="frnd-list-name" id="frnd-list-name-id">' + jsObject.friendDetails[i].friendsname + '</span></li>';
                             }
                         }
                     }
-                    $('#frndlistAlbum').html(html);
+                    
+                    $('#frndlistAlbum').html(htmlcreate);
                     $('#frndlistAlbum').show();
                 }
             });
@@ -113,15 +116,19 @@ $(document).ready(function () {
     });
     $('body').on('click', '#savealbumDetails', function () {
         var flag = 0;
-        var imageTitle = $('#albumTitle').val();
-        var imagePath = $('#aviaryPathalbum').val();
-        var imageName = $('#albumName').val();
-        var imageFolder = $('#albumFolder').val();
+        var albumTitle = $('#albumTitle').val();
+        var albumPath = $('#aviaryPath').val();
+        var albumName = $('#albumName').val();
+        var albumFolder = $('#albumFolder').val();
         var editor = CKEDITOR.instances['albumtextDescription'];
-        var imageDescription = CKEDITOR.instances['albumtextDescription'].getData();
+        var albumDescription = CKEDITOR.instances['albumtextDescription'].getData();
         var friendsId = [];
-        //var pageId = $('#currentPageId').val();
-       // var pageURL = window.location.origin;
+        var colorselected = $("#colordropdown").children('.select').find('.color-preview').css("background-color");
+        var show = "all";
+        if($(".listshowclass").hasClass('addnew')){
+            show = $(".addnew").val();
+        }
+         
         if (base_url_dynamic.indexOf('profile/showprofile') > -1) {
           var currentPageId = $("#currentPageId").val();
         } else {
@@ -130,7 +137,8 @@ $(document).ready(function () {
         if($('#albumInsertModal').find('input.frndId').length !== 0)
         {
             var values = $("input[name='frndId[]']").map(function(){return $(this).val();}).get();
-            for (var i=0;i<(values.length)/2;i++)
+          
+            for (var i=0;i<(values.length);i++)
             {
                 friendsId.push(values[i]);
             }
@@ -139,77 +147,51 @@ $(document).ready(function () {
         {
             friendsId = '';
         }
-        //alert(friendsId);
-        if (imageTitle == '') {
+        
+        if (albumTitle == '') {
             flag = 1;
-            //$('#imageTitle').addClass('error-class');
+            
             $('#imageTitleError').css('display','block');
             $('.error-style').css('margin-top','28px');
-            /*$("#uploadModal").hide();
-            $("#photoInsertModal").css("z-index","0");
-            $(".modal-backdrop").css("z-index","0");
-            $(".welcome").show();
-            $(".showmsg").html("<span>please fill title field</span>");*/
+            
         } else {
             $('#imageTitleError').css('display','none');
-            //$('#imageTitle').removeClass('error-class');
             flag= 0;
         }
-        if (imageDescription == '') {
+        if (albumDescription == '') {
             flag = 1;
-            //$('#cke_textDescription').addClass('error-class');
             $('#imagetextDescriptionError').css('display','block');
             $('.error-style').css('margin-top','28px');
-            /*$("#uploadModal").hide();
-            $("#photoInsertModal").css("z-index","0");
-            $(".modal-backdrop").css("z-index","0");
-            $(".welcome").show();
-            $(".showmsg").html("<span>please fill description field</span>");*/
+          
         } else {
-            $('#imagetextDescriptionError').css('display','none');
-            //$('#imagetextDescriptionError').removeClass('error-class');
+            $('#albumtextDescriptionError').css('display','none');
             flag = 0;
         }
-        /*if (friendsId == '')
-        {
-            flag = 1; 
-            $('#imageFriend').addClass('error-class');
-            $('#imageFriendError').css('display','block');
-        }
-        else {
-            flag = 0;
-            $('#imageFriendError').css('display','none');
-            $('#imageFriend').removeClass('error-class');
-        }*/
-        if (imageDescription == '' && imageTitle == '') {
+       
+        if (albumDescription == '' && albumTitle == '') {
             $('.error-style').css('margin-top','-12px');
             flag = 1;    
         }
-        if (imageDescription != '' && imageTitle != '') {
+        if (albumDescription != '' && albumTitle != '') {
             $('.error-style').css('margin-top','46px');
             flag = 0;
         }
-        if (imagePath  == '')
+        if (albumPath  == '')
         {
             flag = 1;
             $('#imagePathError').css('display','block');
-            /*$("#uploadModal").hide();
-            $("#photoInsertModal").css("z-index","0");
-            $(".modal-backdrop").css("z-index","0");
-            $(".welcome").show();
-            $(".showmsg").html("<span>please select one image</span>");*/
         }
         if (flag == 0) {
             $.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
-                url: base_url_dynamic + '/image/saveImageDetails',
+                url: base_url_dynamic + '/createalbum/saveAlbumDetails',
                 data: {
-                    imageTitle : imageTitle,
-                    imagePath : imagePath,
-                    /*imageName : imageName,
-                    imageFolder : imageFolder,*/
-                    imageDescription : imageDescription,
-                    imagefriendsId : friendsId,
+                    albumTitle : albumTitle,
+                    albumPath : albumPath,
+                    colorselected : colorselected,
+                    show : show,
+                    albumDescription : albumDescription,
+                    albumfriendsId : friendsId,
                     pageId : currentPageId
                 },
                 success: function (res) {
@@ -232,13 +214,16 @@ $(document).ready(function () {
     $('body').on('click', '.color', function () {
         $('.color').removeClass('active');
         $(this).addClass('active');
-        $("#colordropdown").children('.select').html($(".active").html());
+      //  alert($(this).html());
+        $('#selectedvaluecolor').html($(this).html());
 
     });
-    $('body').on('click', '#listing', function () {
-        $('.color').removeClass('active');
-        $(this).addClass('active');
-        $("#colordropdown").children('.select').html($(".active").html());
+    $('body').on('click', '.listshowclass', function () {
+        $('.listshowclass').removeClass('addnew');
+        $(this).addClass('addnew');
+        var getselectedValue = $(this).val();
+        //alert(getselectedValue);
+        //$("#colordropdown").children('.select').html($(".active").html());
 
     });
     

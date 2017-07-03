@@ -131,7 +131,20 @@
     padding: 20px;
     position: relative;
 }
-
+.vid-sec {
+  background: #fff none repeat scroll 0 0;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 5px;
+}
+.vid-sec img, .vid-sec video, .vid-sec label {
+  border-radius: 10px;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
 
 /* Animaton in page movement */
 

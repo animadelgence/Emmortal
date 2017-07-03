@@ -45,22 +45,22 @@ $(document).ready(function () {
                $(this).addClass('open'); 
             }
     });
-    $('body').on('change', '#albumArea1', function () {
+    $('body').on('change', '#imageArea1', function () {
     //$('#imageArea1').on('change', function () {
-        $('#imagePathError').hide();
+        //$('#imagePathError').hide();
         $("#albumuploadform").ajaxSubmit({   //saving the image temporarily so that editing can be done in Aviary
             data: {
                 filename: 'albumImagefile'
             },
             success: function (result) {
-                //alert(result);return false;
+                alert(result);//return false;
                 var jsObject = JSON.parse(result);
-                $('#canvasPlaceholdeIdalbum').html('<img id= "album_pic_thumb" src="'+jsObject.imgFullName+'" style="height:360px;width:100%"/>')
+                $('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+jsObject.imgFullName+'" style="height:360px;width:100%"/>')
                 $("#albumPath").val(base_url_dynamic + jsObject.imgFullName);
-                $("#aviaryPathalbum").val(base_url_dynamic + jsObject.imgFullName);
+                $("#aviaryPath").val(base_url_dynamic + jsObject.imgFullName);
                 $("#albumName").val(jsObject.imgFilename);
                 $("#albumFolder").val(base_url_dynamic + jsObject.imgFolder);
-                $('#div-editalbumphoto').show();
+                $('#div-editphoto').show();
             }
         });
     });
@@ -72,6 +72,7 @@ $(document).ready(function () {
         $('#frndlistAlbum').hide();
         $('#frndlistAlbum').val('');
     });
+    
     $('body').on('click', '.frnd-cancel-album', function () {
         var removeItem = $(this).next().val();
         frndDetails = jQuery.grep(frndDetails, function (value) {
@@ -227,15 +228,28 @@ $(document).ready(function () {
                 }
         });
         }
-    })
+    });
+    $('body').on('click', '.color', function () {
+        $('.color').removeClass('active');
+        $(this).addClass('active');
+        $("#colordropdown").children('.select').html($(".active").html());
+
+    });
+    $('body').on('click', '#listing', function () {
+        $('.color').removeClass('active');
+        $(this).addClass('active');
+        $("#colordropdown").children('.select').html($(".active").html());
+
+    });
+    
 
 });
-var featheralbumEditor = new Aviary.Feather({
-    apiKey: 'yourkey',
+/*var featheralbumEditor = new Aviary.Feather({
+    apiKey: 'mykey',
     apiVersion: 2,
     openType: 'lightbox',
     tools: 'all',
-    onSave: function (imageID, newURL) {
+    onSave(): function (imageID, newURL) {
         alert(newURL);
         $("#aviaryPathalbum").val(newURL);
         $("#album_pic_thumb").attr('src', newURL);
@@ -259,7 +273,7 @@ function launchalbumaviaryEditor(id, src){
         url: src
     });
     return false;
-}
+}*/
 function albumClick()
 {
     $('#uploadModal').modal('show');

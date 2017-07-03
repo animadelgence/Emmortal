@@ -17,20 +17,20 @@
                               <div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
                               <div class="image-select">
                                  <div class="img-input">
-                                    <div class="canvas-placeholder" id="canvasPlaceholdeIdalbum" style="height: 360px;">
+                                    <div class="canvas-placeholder" id="canvasPlaceholdeId" style="height: 360px;">
                                        <i class="fa fa-picture-o remove-fa-picture-icon"></i>
                                        <!--<img id= 'profile_pic_thumb'/>-->
                                     </div>
                                     <div class="btn e-btn btn-primary file-input-btn" >
                                        <i class="fa fa-upload"></i>
                                        Choose photo
-                                       <input name="albumImagefile" type="file" id="albumArea1">
+                                       <input name="albumImagefile" type="file" id="imageArea1">
                                        <input type = "hidden" id = "albumPath" value="">
                                        <input id="albumName" type="hidden" value="">
                                        <input id="albumFolder" type="hidden" value="">
-                                       <input type = "hidden" id= "aviaryPathalbum" name= "action" value="">
+                                       <input type = "hidden" id= "aviaryPath" name= "action" value="">
                                     </div>
-                                    <span id="imagePathError" style="color:red;display:none;">No image Selected</span>
+                                
                                  </div>
                               </div>
                            </div>
@@ -65,11 +65,11 @@
                         <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>
                      </div>
                      <div class="col-sm-4 ">
-                        <div id="div-editalbumphoto" class="hostt">
+                        <div id="div-editphoto" class="hostt">
                         <!--<tags-input class="e-tags-input ">-->
                         	<div style="margin-top: -5px;" class="tags">
                                 <ul class="input"></ul>
-                                <input type="image" style="padding: 10px;" onclick="return launchalbumaviaryEditor('album_pic_thumb');" value="Edit photo" src="http://advanced.aviary.com/images/feather/edit-photo1.png" id="imgbtnEditAlbum">
+                                <input id="imgbtnEditPhoto" type="image" src="http://advanced.aviary.com/images/feather/edit-photo.png" value="Edit photo" onclick="return launchEditor('profile_pic_thumb');" style="padding: 10px;"/>
                             </div>
                         <!--</tags-input>-->
                     	</div>
@@ -83,8 +83,8 @@
                                     <option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
                                     </select>-->
                                  <select name="AID" id="listing" class="AID">
-                                    <option value="public">Public</option>
-                                    <option value="friends">Friends</option>
+                                    <option class="listshowclass" value="public">Public</option>
+                                    <option class="listshowclass" value="friends">Friends</option>
                                  </select>
                               </div>
                            </div>

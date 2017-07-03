@@ -83,8 +83,8 @@
                                     <option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
                                     </select>-->
                                  <select name="AID" id="listing" class="AID">
-                                    <option value="public">Public</option>
-                                    <option value="friends">Friends</option>
+                                    <option class="listshowclass" value="public">Public</option>
+                                    <option class="listshowclass" value="friends">Friends</option>
                                  </select>
                               </div>
                            </div>

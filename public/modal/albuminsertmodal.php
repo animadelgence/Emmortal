@@ -46,7 +46,7 @@
                                     <!--<span id="imageFriendError" style="color:red;display:none;">Required</span>-->
                                  </div>
                                  <div class="dropdown-div">
-                                    <ul style="list-style-type: none;z-index: 999999; position: relative; display:none; margin-top:4px; width:445px;" id="frndlistImage" class="frndlist spanClass">
+                                    <ul style="list-style-type: none;z-index: 999999; position: relative; display:none; margin-top:4px; width:445px;" id="frndlistAlbum" class="frndlist spanClass">
                                     </ul>
                                  </div>
                               </div>

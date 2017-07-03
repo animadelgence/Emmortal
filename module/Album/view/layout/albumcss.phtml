@@ -7,6 +7,7 @@ switch ($controller) {
 		switch ($action) {   
              case 'showalbum':
 $this->headLink()
+                    ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t)
                     ->prependStylesheet($this->basePath() . '/css/Album/grid.css?version=' . $t)
                     ->prependStylesheet($this->basePath() . '/css/Album/jquery.gridster.min.css?version=' . $t);
                  break;

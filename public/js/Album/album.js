@@ -20,6 +20,7 @@ $(function () {
         var count = $('.previewUploadedFile').length,
             liIndex = $(this).index(),
             datacmd = $(this).attr('data-cmd'),
+            uploadId = $(this).data('id'),
             datasizey = $(this).attr('data-sizey'),
             datasizex = $(this).attr('data-sizex'),
             datacol = $(this).attr('data-col'),
@@ -31,30 +32,53 @@ $(function () {
             html = "",
             row = 1;
         row = rowCount();
-        if (datacmd == 'text') {
-            textTitle = $(this).children().children().children('p:first-child').text();
-            textDescription = $(this).children().children().children().next().text();
-            html += '<p>' + textTitle + '</p><p>' + textDescription + '</p>';
-        } else if (datacmd == 'image') {
-            imageUrl = $(this).children().children().attr('src');
-            html += '<img class="img-responsive" src="' + imageUrl + '" alt="...">';
-        } else if (datacmd == 'video') {
-            videoUrl = $(this).children().children().attr('src');
-            html += '<video controls="controls" name="Video Name" id="" src="' + videoUrl + '" style="width:100%;height:100%;"></video>';
-
-        }
-        if ($('#slidermodal').length > 0) {
-            $('#slidermodal').modal('show');
-            $('#appendDiv').html(html);
-            arrowHideShow(liIndex, count, datasizey, datasizex, datacol, datarow);
-        } else {
-            $.get(getUrl + "/modal/slidermodal.php", function (result) {
-                $('body').append(result);
-                $('#slidermodal').modal('show');
-                $('#appendDiv').html(html);
-                arrowHideShow(liIndex, count, datasizey, datasizex, datacol, datarow);
-            });
-        }
+        $.ajax({
+            type: "POST",
+            url: getUrl + '/albumdetails/getupload',
+            data: {
+                datacmd: datacmd,
+                uploadId: uploadId
+            },
+            success: function (res) {
+                jsObject = JSON.parse(res);
+                var profileimage = "/image/profile-deafult-avatar.jpg";
+                if(jsObject.uploadDetails[0].userimage !=''){
+                    profileimage = jsObject.uploadDetails[0].userimage;
+                }
+                html +='<div class="col-md-12" style="margin:5px;background-color: #fff;margin-left: 21px;"><div class="col-md-1 item active"><img src="'+profileimage+'" style="border-radius: 25px;height:50px;width:50px;margin-top:22px;"alt="" title=""></div><div class="col-md-11 item active"><h2 style="font-size: 20px;">'+jsObject.uploadDetails[0].uploadTitle+'</h2><p>by '+jsObject.uploadDetails[0].username+' on '+jsObject.uploadDetails[0].dateTime+'</p></div></div><div class="col-md-12" style="min-height: 500px;margin-top:10px;padding:0px;"><div class="col-md-6" style="min-height: 200px;"><div class="col-md-12" style="min-height: 200px;margin: 5px;background-color: #fff;border: 1px solid #ddd;"><div class="item active" style="line-height: 1.42857143;background-color: #fff;border: 1px solid #ddd;border-radius: 4px;min-height: 200px;margin: 17px 7px 17px 7px;">';
+                if (datacmd == 'text') {
+                    var textTitle = jsObject.uploadDetails[0].uploadTitle;
+                    var textDescription = jsObject.uploadDetails[0].uploadDescription;
+                    html += '<p style="margin-left: 10px;margin-top: 5px;font-size: 20px;">' + textTitle + '</p><p style="margin-left: 10px;margin-top: 5px;">' + textDescription + '</p>';
+                } else if (datacmd == 'image') {
+                    var imageUrl = jsObject.uploadDetails[0].uploadPath;
+                    html += '<img class="img-responsive" src="' + imageUrl + '" alt="...">';
+                } else if (datacmd == 'video') {
+                    var videoUrl = jsObject.uploadDetails[0].uploadPath;
+                    html += '<video controls="controls" name="Video Name" id="" src="' + videoUrl + '" style="width:100%;height:100%;"></video>';
+                }
+                
+              html +='</div></div><div class="col-md-12" style="margin-top: 20px;"><p>'+jsObject.uploadDetails[0].uploadDescription+'</p></div>';
+                html +='<div class="col-md-12" style="margin-top:5px;border-bottom:1px solid #ddd;"><p><span>11</span> <strong>Responses</strong></p></div>';
+                        html +='<div class="col-md-12" style="margin-top:5px;border-bottom:1px solid #ddd;"><div class="col-md-2 item active" style="padding: 0;"><img src="/image/profile-deafult-avatar.jpg" style="border-radius: 25px;height:50px;width:50px;margin-top:22px;"alt="" title=""></div><div class="col-md-10 item active"><h2 style="font-size: 20px;">commented By</h2><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div></div>';
+                html +='</div>';
+                html +='<div class="col-md-6" style="min-height:200px;"><div class="col-md-12" ><ul><li style="margin-top:5px;border-bottom:1px solid #ddd;"><span><img src="/image/like.png"><span> '+jsObject.uploadDetails[0].likeCount+' likes</span></span></li></ul></div></div></div>';
+                if ($('#slidermodal').length > 0) {
+                    $('#slidermodal').modal('show');
+                    $('#appendDiv').html(html);
+                    arrowHideShow(count, datasizey, datasizex, datacol, datarow);
+                } else {
+                    $.get(getUrl + "/modal/slidermodal.php", function (result) {
+                        $('body').append(result);
+                        $('#slidermodal').modal('show');
+                        $('#appendDiv').html(html);
+                        arrowHideShow(count, datasizey, datasizex, datacol, datarow);
+                    });
+                }
+            }
+        });
+        
+        
     });
 
 
@@ -65,102 +89,60 @@ $(function () {
             datacol = $('#appendDiv').attr('data-col'),
             datarow = $('#appendDiv').attr('data-row'),
             row = rowCount(),
-            nextdatarow="",
-            nextdatacol="",
-            nextCol = parseInt(datacol,10) + parseInt(datasizex,10);
-        for(var i=datarow;i<=row;i++){
-            var brk= 0;
-            console.log(nextCol);
-            if(nextCol>6){
-                nextdatarow = parseInt(datarow,10) + parseInt(1,10);
-                nextdatacol= 1;
-                console.log("Here");
-                console.log("nextdatacol--"+nextdatacol+"--nextdatarow--"+nextdatarow);
-                for(var k= nextdatacol;k<=6;k++){
-                    nextdatarow=nextdatarow;
-                    nextdatacol=k;
-                    var checkn = liPresentCheck(nextdatacol,nextdatarow);
-                    console.log(checkn);
-                    console.log("datacol--"+nextdatacol+"--datarow--"+nextdatarow);
-                    if(checkn==1){
-                        $("#outer-wrap li[data-col='"+nextdatacol+"'][data-row='"+nextdatarow+"']").trigger('click');
-                        brk=1;
-                        break;
-                    }
-                }
-                
+            nextdatacol = "";
+        for (var i = datarow; i <= row; i++) {
+            var brk = 0;
+            if(i==datarow){
+                nextdatacol = parseInt(datacol, 10) + parseInt(1, 10);
             } else{
-                for(var j= nextCol;j<=6;j++){
-                    nextdatarow=datarow;
-                    nextdatacol=j;
-                    var check = liPresentCheck(nextdatacol,nextdatarow);
-                    if(check==1){
-                        $("#outer-wrap li[data-col='"+nextCol+"'][data-row='"+datarow+"']").trigger('click');
-                        brk= 1;
-                        //console.log("datacol--"+nextdatacol+"--datarow--"+nextdatarow);
-                        break;
-                    }
+                nextdatacol =1;
+            }
+            for(var j= nextdatacol;j<=6;j++){
+                var checkn = liPresentCheck(j, i);
+                if (checkn == 1) {
+                    $("#outer-wrap li[data-col='" + j + "'][data-row='" + i + "']").trigger('click');
+                    brk = 1;
+                    break;
                 }
             }
-            if(brk == 1){
-            break;
+            if (brk == 1) {
+                break;
             }
         }
-        
     });
     $('body').on('click', '#priviousDivContent', function () {
-       /* var liindex = $('#appendDiv').index(),
+        var liindex = $('#appendDiv').index(),
             datasizey = $('#appendDiv').attr('data-sizey'),
             datasizex = $('#appendDiv').attr('data-sizex'),
             datacol = $('#appendDiv').attr('data-col'),
             datarow = $('#appendDiv').attr('data-row'),
             row = rowCount(),
-            nextdatarow="",
-            nextdatacol="",
-            nextCol = parseInt(datacol,10) + parseInt(datasizex,10);
-        for(var i=datarow;i<=row;i++){
-            var brk= 0;
-            if(nextCol>6){
-                nextdatarow = parseInt(datarow,10) + parseInt(1,10);
-                nextdatacol= 1;
-                console.log("Here");
-                console.log("nextdatacol--"+nextdatacol+"--nextdatarow--"+nextdatarow);
-                for(var k= nextdatacol;k<=6;k++){
-                    nextdatarow=nextdatarow;
-                    nextdatacol=k;
-                    var checkn = liPresentCheck(nextdatacol,nextdatarow);
-                    console.log(checkn);
-                    console.log("datacol--"+nextdatacol+"--datarow--"+nextdatarow);
-                    if(checkn==1){
-                        $("#outer-wrap li[data-col='"+nextdatacol+"'][data-row='"+nextdatarow+"']").trigger('click');
-                        brk=1;
-                        break;
-                    }
-                }
-                
+            prevdatacol = "";
+        for (var i = datarow; i >= 1; i--) {
+            var brk = 0;
+            if(i==datarow){
+                prevdatacol = parseInt(datacol, 10) - parseInt(1, 10);
             } else{
-                for(var j= nextCol;j<=6;j++){
-                    nextdatarow=datarow;
-                    nextdatacol=j;
-                    var check = liPresentCheck(nextdatacol,nextdatarow);
-                    if(check==1){
-                        $("#outer-wrap li[data-col='"+nextCol+"'][data-row='"+datarow+"']").trigger('click');
-                        brk= 1;
-                        //console.log("datacol--"+nextdatacol+"--datarow--"+nextdatarow);
-                        break;
-                    }
+                prevdatacol =6;
+            }
+            for(var j= prevdatacol;j>=1;j--){
+                var checkn = liPresentCheck(j, i);
+                if (checkn == 1) {
+                    $("#outer-wrap li[data-col='" + j + "'][data-row='" + i + "']").trigger('click');
+                    brk = 1;
+                    break;
                 }
             }
-            if(brk == 1){
-            break;
+            if (brk == 1) {
+                break;
             }
-        }*/
-        
+        }
     });
-    function liPresentCheck(nextCol,datarow){
-        if($("#outer-wrap li[data-col='"+nextCol+"'][data-row='"+datarow+"']").length>0){
+
+    function liPresentCheck(nextCol, datarow) {
+        if ($("#outer-wrap li[data-col='" + nextCol + "'][data-row='" + datarow + "']").length > 0) {
             return 1;
-        } else{
+        } else {
             return 0;
         }
     }
@@ -176,25 +158,71 @@ $(function () {
         return row;
     }
 
-    function arrowHideShow(liIndex, count, datasizey, datasizex, datacol, datarow) {
-        var lastcnt = "";
-        if (count > 0) {
-            lastcnt = parseInt(count, 10) - 1;
-        }
-        $('#appendDiv').attr('data-id', liIndex);
+    function arrowHideShow(count, datasizey, datasizex, datacol, datarow) {
         $('#appendDiv').attr('data-sizey', datasizey);
         $('#appendDiv').attr('data-sizex', datasizex);
         $('#appendDiv').attr('data-col', datacol);
         $('#appendDiv').attr('data-row', datarow);
-        if (count == 1) {
-            $('#priviousDivContent').hide();
-            $('#nextDivContent').hide();
-        } else if (liIndex == 0 && count > 1) {
+        var prevArrowShow = previousLiCount(count, datacol, datarow);
+        var nextArrowShow = nextLiCount(count, datacol, datarow);
+        if (prevArrowShow == 0 && nextArrowShow>0) {
             $('#priviousDivContent').hide();
             $('#nextDivContent').show();
-        } else if (liIndex == lastcnt) {
+        }
+        if (prevArrowShow >0  && nextArrowShow==0){
             $('#priviousDivContent').show();
             $('#nextDivContent').hide();
         }
+        if (prevArrowShow ==0  && nextArrowShow==0){
+            $('#priviousDivContent').hide();
+            $('#nextDivContent').hide();
+        }
+        if (prevArrowShow >0  && nextArrowShow>0){
+            $('#priviousDivContent').show();
+            $('#nextDivContent').show();
+        }
+    }
+    function nextLiCount(cnt, datacol, datarow){
+        var count = 0,
+            nextdatacol="",
+            nextdatarow="";
+        for (var i = datarow; i <= cnt; i++) {
+            if(i==datarow){
+                nextdatacol = parseInt(datacol, 10) + parseInt(1, 10);
+                nextdatarow = datarow;
+            } else{
+                nextdatacol =1;
+            }
+            for(var j= nextdatacol;j<=6;j++){
+                var checkn = liPresentCheck(nextdatacol, nextdatarow);
+                if (checkn == 1) {
+                    count ++;
+                }
+            }
+            nextdatarow = parseInt(nextdatarow, 10) + parseInt(1, 10);
+        }
+        return count;
+    }
+    function previousLiCount(cnt, datacol, datarow){
+        var count = 0,
+            prevdatacol="",
+            prevdatarow="";
+        for (var i = datarow; i >= 1; i--) {
+            if(i==datarow){
+                prevdatacol = parseInt(datacol, 10) - parseInt(1, 10);
+                prevdatarow = datarow;
+            } else{
+                prevdatacol =6;
+            }
+            for(var j= prevdatacol;j>=1;j--){
+                var checkn = liPresentCheck(prevdatacol, prevdatarow);
+                if (checkn == 1) {
+                    count ++;
+                }
+            }
+            prevdatarow = parseInt(prevdatarow, 10) - parseInt(1, 10);
+        }
+        return count;
+        
     }
 });

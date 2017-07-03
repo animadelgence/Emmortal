@@ -107,8 +107,6 @@ $(document).ready(function () {
         var imageTitle = $('#imageTitle').val();
         var imagePath = $('#aviaryPath').val();
         var imageName = $('#imageName').val();
-        var imageFolder = $('#imageFolder').val();
-        var editor = CKEDITOR.instances['imagetextDescription'];
         var imageDescription = CKEDITOR.instances['imagetextDescription'].getData();
         var friendsId = [];
         //var pageId = $('#currentPageId').val();
@@ -190,21 +188,29 @@ $(document).ready(function () {
             $(".welcome").show();
             $(".showmsg").html("<span>please select one image</span>");*/
         }
+        /*alert(imageTitle);
+        alert(imagePath);
+        alert(imageName);
+        alert(imageDescription);
+        alert(friendsId);
+        alert(currentPageId);*/
         if (flag == 0) {
             $.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
-                url: base_url_dynamic + '/image/saveImageDetails',
+                url: base_url_dynamic + '/image/saveImageDetails?first='+Math.random(),
                 data: {
                     imageTitle : imageTitle,
                     imagePath : imagePath,
-                    /*imageName : imageName,
-                    imageFolder : imageFolder,*/
+                    imageName : imageName,
+                    /*imageFolder : imageFolder,*/
+
                     imageDescription : imageDescription,
                     imagefriendsId : friendsId,
                     pageId : currentPageId
                 },
                 success: function (res) {
                     //alert(res);
+                    //console.log(res);return false;
                     if(res == 1){
 
 
@@ -229,12 +235,11 @@ $(document).ready(function () {
 	        },
 			success: function (result) {
                 //alert(result);return false;
-                var jsObject = JSON.parse(result);
+                jsObject = JSON.parse(result);
 				$('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+jsObject.imgFullName+'" style="height:360px;width:100%"/>')
-				$("#imagePath").val(base_url_dynamic + jsObject.imgFullName);
-				$("#aviaryPath").val(base_url_dynamic + jsObject.imgFullName);
+				$("#imagePath").val(base_url_dynamic+jsObject.imgFullName);
+				$("#aviaryPath").val(base_url_dynamic+jsObject.imgFullName);
 				$("#imageName").val(jsObject.imgFilename);
-				$("#imageFolder").val(jsObject.imgFolder);
                 $('#div-editphoto').show();
 			}
 		});
@@ -257,7 +262,7 @@ var featherEditor = new Aviary.Feather({
         $("#aviaryPath").val(newURL);
         $("#profile_pic_thumb").attr('src', newURL);
         var originalFile = $('#imagePath').val();
-        $.ajax({                        // for unlinking the file from the temporary folder
+        /*$.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
                 url: base_url_dynamic + '/image/removeimage',
                 data: {
@@ -266,7 +271,7 @@ var featherEditor = new Aviary.Feather({
                 success: function (res) {
                     console.log('removed image');
                 }
-        });
+        });*/
     }
 });
 

@@ -41,7 +41,7 @@ class ImageController extends AbstractActionController {
         $files = $request->getFiles()->toArray();
         $imageName = $files['file']['name'];
         $temp_name = $files['file']['tmp_name'];
-        $filename = date("Y-m-d h:i:sa").' image'.$imageName;
+        $filename = time().' image'.$imageName;
         $filename = str_replace(' ', '_', $filename);
         $newfilename = $_SERVER['DOCUMENT_ROOT'].'/upload/uploadimage/'.$filename;
         $res['imgFilename'] = $filename;
@@ -72,13 +72,24 @@ class ImageController extends AbstractActionController {
     public function saveImageDetailsAction() {
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
         $imageTitle = $_POST['imageTitle'];
         $imagePath = $_POST['imagePath'];
         
         /*$imageFolder = $_POST['imageFolder'];
         $imageName = $_POST['imageName'];
         $pathThumb = $this->resizeImage($imageFolder, $imageName);*/
-        
+        if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/uploadimage/' )) {
+            @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/uploadimage/', 0777, true);
+            chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/uploadimage/', 0777);
+        }
+        //chmod($_SERVER['DOCUMENT_ROOT'] . '/public/upload/uploadimage/'.$_POST['imageName'], 0777);
+        $imageNewPath = $_SERVER['DOCUMENT_ROOT'] . '/upload/uploadimage/'.$_POST['imageName']; 
+        $imageContent = file_get_contents($imagePath);
+        file_put_contents($imageNewPath, $imageContent);
+        //print_r($imageContent);
+        //exit;
+        $imageNewPath1 = $dynamicPath. '/upload/uploadimage/'.$_POST['imageName']; 
         $imagefriendsId = '';
         $friendsid= '';
         if($_POST['imagefriendsId'])
@@ -112,7 +123,7 @@ class ImageController extends AbstractActionController {
                             'PID'=>$currentPageId,
                             'uploadTitle'=>$imageTitle,
                             'uploadDescription'=>$imageDescription,
-                            'uploadPath'=>$imagePath,
+                            'uploadPath'=>$imageNewPath1,
                             'uploadType'=>'image',
                             'AID'=>1,
                             'FID'=>$friendsid,

@@ -80,14 +80,24 @@
         }
         $array = array();
         foreach ($result as $rSet) {
-             if($rSet->sizeX=="H")
-                    $sizeX = 1;
+            if($rSet->sizeX=="H")
+                {
+                    $sizeX = 1;$Height = "172px";
+                }
+
                 else
-                    $sizeX = 2;
+                {
+                    $sizeX = 2;$Height = "364px";
+                }
+
                  if($rSet->sizeY=="W")
-                    $sizeY = 2;
+                    {
+                         $sizeY = 2;$Width = "364px";
+                    }
                 else
-                    $sizeY = 1;
+                   {
+                         $sizeY = 1;$Width = "172px";
+                    }
               $array[] = array(
                     'uploadId' => $rSet->uploadId,
                     'UID' => $rSet->UID,

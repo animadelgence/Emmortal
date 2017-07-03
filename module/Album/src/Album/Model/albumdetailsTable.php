@@ -29,5 +29,9 @@
             }
             return $array;
         }
+        public function insertalbum($data)
+        {
+            return $rowset = $this->tableGWay->insert($data);
+        }
     }
 ?>

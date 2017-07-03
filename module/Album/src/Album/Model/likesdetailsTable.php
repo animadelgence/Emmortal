@@ -43,5 +43,11 @@
             $res = $this->tableGWay->delete($where);
             return $res;
         }
+        public function countLike($uploadId){
+            $resultSet = $this->tableGWay->select($uploadId);
+            $likeCount = count($resultSet);
+            return $likeCount;
+
+        }
     }
 ?>

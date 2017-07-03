@@ -119,7 +119,7 @@ $(document).ready(function () {
         if($('#photoInsertModal').find('input.frndId').length !== 0)
         {
             var values = $("input[name='frndId[]']").map(function(){return $(this).val();}).get();
-            for (var i=0;i<(values.length)/2;i++)
+            for (var i=0;i<(values.length);i++)
             {
                 friendsId.push(values[i]);
             }
@@ -188,12 +188,6 @@ $(document).ready(function () {
             $(".welcome").show();
             $(".showmsg").html("<span>please select one image</span>");*/
         }
-        /*alert(imageTitle);
-        alert(imagePath);
-        alert(imageName);
-        alert(imageDescription);
-        alert(friendsId);
-        alert(currentPageId);*/
         if (flag == 0) {
             $.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",

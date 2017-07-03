@@ -72,6 +72,7 @@ $(document).ready(function () {
         $('#frndlistAlbum').hide();
         $('#frndlistAlbum').val('');
     });
+    
     $('body').on('click', '.frnd-cancel-album', function () {
         var removeItem = $(this).next().val();
         frndDetails = jQuery.grep(frndDetails, function (value) {
@@ -227,7 +228,20 @@ $(document).ready(function () {
                 }
         });
         }
-    })
+    });
+    $('body').on('click', '.color', function () {
+        $('.color').removeClass('active');
+        $(this).addClass('active');
+        $("#colordropdown").children('.select').html($(".active").html());
+
+    });
+    $('body').on('click', '#listing', function () {
+        $('.color').removeClass('active');
+        $(this).addClass('active');
+        $("#colordropdown").children('.select').html($(".active").html());
+
+    });
+    
 
 });
 /*var featheralbumEditor = new Aviary.Feather({

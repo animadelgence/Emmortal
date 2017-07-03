@@ -104,7 +104,7 @@ $(document).ready(function () {
 /*Modal Tab Content Show*/
     $('body').on('click','#browse',function(){
         $.get(baseUrl+"/seomanage/pattern", function (result) {
-            console.log(result);return false;
+            //console.log(result);return false;
             $('#browseTab').append(result);
                 //$('#albumInsertModal').modal('show');
             });

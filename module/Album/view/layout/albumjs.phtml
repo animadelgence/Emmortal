@@ -41,7 +41,9 @@ echo $this->headScript()
 
         ->prependFile($this->basePath() . '/js/Album/tributemodal.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/videomodal.js?version=' . $t)
+        
         ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t)
+    ->prependFile($this->basePath() . '/js/Album/albummodal.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/ckeditor/ckeditor.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Authorization/login.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Authorization/signup.js?version=' . $t)

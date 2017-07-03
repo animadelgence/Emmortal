@@ -11,22 +11,24 @@
             <div class="modal-body photo-popup">
                <div class="row">
                   <div class="col-md-6">
-                     <form action="/image/saveimage" method="post" enctype="multipart/form-data" name="formalbum" id="albumuploadform">
+                     <form action="/createalbum/savealbum" method="post" enctype="multipart/form-data" name="formalbum" id="albumuploadform">
                         <div class="aviary-div">
                            <div class="" >
                               <div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
                               <div class="image-select">
                                  <div class="img-input">
-                                    <div class="canvas-placeholder" id="canvasPlaceholdeId" style="height: 360px;">
+                                    <div class="canvas-placeholder" id="canvasPlaceholdeIdalbum" style="height: 360px;">
                                        <i class="fa fa-picture-o remove-fa-picture-icon"></i>
                                        <!--<img id= 'profile_pic_thumb'/>-->
                                     </div>
                                     <div class="btn e-btn btn-primary file-input-btn" >
                                        <i class="fa fa-upload"></i>
                                        Choose photo
-                                       <input name="file" type="file" id="imageArea1">
-                                       <input type = "hidden" id = "imagePath" value="">
-                                       <input type = "hidden" id= "aviaryPath" name= "action" value="">
+                                       <input name="albumImagefile" type="file" id="albumArea1">
+                                       <input type = "hidden" id = "albumPath" value="">
+                                       <input id="albumName" type="hidden" value="">
+                                       <input id="albumFolder" type="hidden" value="">
+                                       <input type = "hidden" id= "aviaryPathalbum" name= "action" value="">
                                     </div>
                                     <span id="imagePathError" style="color:red;display:none;">No image Selected</span>
                                  </div>
@@ -55,13 +57,24 @@
                   </div>
                   <div class="col-md-6 m-t-xs-20">
                      <div class="m-b-10">
-                        <input class="form-control" type="text" placeholder="Title" id="imageTitle">
+                        <input class="form-control" type="text" placeholder="Title" id="albumTitle">
                      </div>
                      <span id="imageTitleError" style="color:red;display:none;">Required</span>
                      <div class="m-b-20 m-t-20" >
                         <textarea name="albumtextDescription" id="albumtextDescription" class="form-control" style="height:1000px;"></textarea>
                         <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>
                      </div>
+                     <div class="col-sm-4 ">
+                        <div id="div-editphoto" class="hostt">
+                        <!--<tags-input class="e-tags-input ">-->
+                        	<div style="margin-top: -5px;" class="tags">
+                                <ul class="input"></ul>
+                                <input type="image" style="padding: 10px;" onclick="return launchalbumaviaryEditor('album_pic_thumb');" value="Edit photo" src="http://advanced.aviary.com/images/feather/edit-photo1.png" id="imgbtnEditAlbum">
+                            </div>
+                        <!--</tags-input>-->
+                    	</div>
+
+                      </div>
                      <div class="row error-style" style="margin-top: 32px;">
                         <div class="col-sm-6" style="padding-left: 0 !important;">
                            <div class="col-sm-10">

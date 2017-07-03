@@ -106,13 +106,11 @@ $(document).ready(function () {
         var flag = 0;
         var imageTitle = $('#imageTitle').val();
         var imagePath = $('#aviaryPath').val();
-        var imageName = $('#imageName').val();
-        var imageFolder = $('#imageFolder').val();
         var editor = CKEDITOR.instances['imagetextDescription'];
         var imageDescription = CKEDITOR.instances['imagetextDescription'].getData();
         var friendsId = [];
         //var pageId = $('#currentPageId').val();
-        var pageURL = window.location.origin;
+        var pageURL = $(location).attr("href");
         if (pageURL.indexOf('profile/showprofile') > -1) {
           var currentPageId = $("#currentPageId").val();
         } else {
@@ -197,8 +195,6 @@ $(document).ready(function () {
                 data: {
                     imageTitle : imageTitle,
                     imagePath : imagePath,
-                    /*imageName : imageName,
-                    imageFolder : imageFolder,*/
                     imageDescription : imageDescription,
                     imagefriendsId : friendsId,
                     pageId : currentPageId
@@ -229,12 +225,9 @@ $(document).ready(function () {
 	        },
 			success: function (result) {
                 //alert(result);return false;
-                var jsObject = JSON.parse(result);
-				$('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+jsObject.imgFullName+'" style="height:360px;width:100%"/>')
-				$("#imagePath").val(base_url_dynamic + jsObject.imgFullName);
-				$("#aviaryPath").val(base_url_dynamic + jsObject.imgFullName);
-				$("#imageName").val(jsObject.imgFilename);
-				$("#imageFolder").val(jsObject.imgFolder);
+				$('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+result+'" style="height:360px;width:100%"/>')
+				$("#imagePath").val(result);
+				$("#aviaryPath").val(result);
                 $('#div-editphoto').show();
 			}
 		});

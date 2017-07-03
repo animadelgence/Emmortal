@@ -197,14 +197,15 @@ $(document).ready(function () {
                 data: {
                     imageTitle : imageTitle,
                     imagePath : imagePath,
-                    /*imageName : imageName,
-                    imageFolder : imageFolder,*/
+                    imageName : imageName,
+                    /*imageFolder : imageFolder,*/
                     imageDescription : imageDescription,
                     imagefriendsId : friendsId,
                     pageId : currentPageId
                 },
                 success: function (res) {
                     //alert(res);
+                    console.log(res);return false;
                     if(res == 1){
 
 

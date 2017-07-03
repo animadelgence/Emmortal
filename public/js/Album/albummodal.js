@@ -64,7 +64,7 @@ $(document).ready(function () {
             }
         });
     });
-    $('body').on('click', '#saveDetails', function () {
+    $('body').on('click', '#savealbumDetails', function () {
         var flag = 0;
         var imageTitle = $('#albumTitle').val();
         var imagePath = $('#aviaryPathalbum').val();
@@ -80,7 +80,7 @@ $(document).ready(function () {
         } else {
             var currentPageId = '';
         }
-        if($('#photoInsertModal').find('input.frndId').length !== 0)
+        if($('#albumInsertModal').find('input.frndId').length !== 0)
         {
             var values = $("input[name='frndId[]']").map(function(){return $(this).val();}).get();
             for (var i=0;i<(values.length)/2;i++)

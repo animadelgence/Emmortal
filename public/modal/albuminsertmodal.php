@@ -119,7 +119,7 @@
             <div class="modal-footer text-right">
                <span class="" style="padding-right: 15px;">
                <button type="button" class="btn e-btn btn-default" onclick="albumClick();">Cancle</button>
-               <button type="submit" class="btn e-btn btn-primary" id = "saveDetails">Save</button>
+               <button type="submit" class="btn e-btn btn-primary" id = "savealbumDetails">Save</button>
                </span>
             </div>
             <!--</form>-->

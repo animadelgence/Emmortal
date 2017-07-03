@@ -72,18 +72,32 @@ class TributeController extends AbstractActionController {
         $controller = @$href[3];
         $action = @$href[4];
         $userid = $this->sessionid;
-        $friendId = $_POST['frndId'];
+        
+        $tributeType = $_POST['tributeType'];
+        if($tributeType == 'friend'){
+          $friendId = $_POST['frndId'];  
+          $uploadId = "";  
+        } else if($tributeType == 'upload'){
+          $uploadId = $_POST['frndId'];
+          $friendId = ""; 
+        } else{
+            $friendId = $_POST['frndId'];
+            $uploadId = "";
+        }
         $description = $_POST['description'];
         if(!empty($description)){
-            $value = array(
+                $value = array(
                         'UID'=>$userid,
                         'description'=>$description,
                         'friendsid'=>$friendId,
+                        'uploadId'=>$uploadId,
                         'addeddate'=>date("Y-m-d H:i:s")
                     );
             $tribute = $modelPlugin->gettributedetailsTable()->insertData($value);
         }
+       
         $tributeDetails = $modelPlugin->gettributedetailsTable()->fetchall();
+        
         foreach ($tributeDetails as $rSet) {
             if(($userid == $rSet['UID']) && ($friendId == $rSet['friendsid'])){
                 if ($friendId == $rSet['friendsid'])
@@ -129,6 +143,7 @@ class TributeController extends AbstractActionController {
                 }
             }
         }
+        
         $res['tributeDetails'] = $array;
         echo json_encode($res);
         exit;

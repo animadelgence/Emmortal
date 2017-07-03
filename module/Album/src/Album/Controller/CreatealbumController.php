@@ -74,6 +74,75 @@ class CreatealbumController extends AbstractActionController {
         echo $imagePath ;
         exit;
     }
+    public function saveAlbumDetailsAction() {
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $albumTitle = $_POST['albumTitle'];
+        $albumPath = $_POST['albumPath'];
+        $colorselected = $_POST['colorselected'];
+        $show = $_POST['show'];
+        
+        /*$imageFolder = $_POST['imageFolder'];
+        $imageName = $_POST['imageName'];
+        $pathThumb = $this->resizeImage($imageFolder, $imageName);*/
+        if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/uploadimage/' )) {
+            @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/uploadimage/', 0777, true);
+            chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/uploadimage/', 0777);
+        }
+        //chmod($_SERVER['DOCUMENT_ROOT'] . '/public/upload/uploadimage/'.$_POST['imageName'], 0777);
+        $imageNewPath = $_SERVER['DOCUMENT_ROOT'] . '/upload/uploadimage/'.$_POST['albumTitle']; 
+        $imageContent = file_get_contents($albumPath);
+        file_put_contents($imageNewPath, $imageContent);
+        //print_r($imageContent);
+        //exit;
+        $imageNewPath1 = $dynamicPath. '/upload/uploadimage/'.$_POST['albumTitle']; 
+        $imagefriendsId = '';
+        $friendsid= '';
+        if($_POST['albumfriendsId'])
+        {
+            $imagefriendsId = $_POST['albumfriendsId'];
+            $ct = count($imagefriendsId);
+            for($i=0;$i<$ct;$i++){
+                $friendsid = $friendsid.$imagefriendsId[$i].',';
+            }
+        }
+        $albumDescription = $_POST['albumDescription'];
+        $currentPageId = '';
+        if($_POST['pageId'])
+        {
+            $currentPageId = $_POST['pageId'];
+        }
+
+      //echo $action;exit;
+        $addeddate = date('Y-m-d H:i:s');
+        if(!$currentPageId)
+        {
+            $where              = array('UID'=>$this->sessionid);
+            $pageDetails        = $modelPlugin->getpagedetailsTable()->fetchall($where);
+            //print_r($pageDetails);exit;
+            $currentPageId      = $pageDetails[0]['pageid'];
+            //echo $currentPageId;
+            //exit;
+        }
+        $uploadQuery = array(
+                            'UID'=>$this->sessionid,
+                            'title'=>$albumTitle,
+                            'description'=>$albumDescription,
+                            'albumimagepath'=>$imageNewPath1,
+                            'color'=>$colorselected,
+                            'viewstatus'=>$show,
+                            'friendsid' => $friendsid,
+                            'creationdate'=>$addeddate
+                           
+                            );
+        $albumDetails = $modelPlugin->getalbumdetailsTable()->insertalbum($uploadQuery);
+        if($albumDetails)
+        {
+            $result = 1;
+        }
+        echo $result; exit;
+    }
    
     
 }

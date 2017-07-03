@@ -105,15 +105,17 @@ $(document).ready(function () {
 /*Modal Tab Content Show*/
     $('body').on('click','#browse',function(){
         $.get(baseUrl+"/seomanage/pattern", function (result) {
+
             var jsObject = JSON.parse(result);
             var appendStructure = '<ul class="emmortal-tab-pattern__list">';
             $.each(jsObject, function(i, item) {
     			appendStructure += jsObject[i];
 			});
             appendStructure+="</ul>";
-            $('#browseTab').append(appendStructure);
-                //$('#albumInsertModal').modal('show');
+            //$('#browseTab').append(appendStructure);
+            $('#imgAppend').html(appendStructure);
             });
+
             $('#uploadTab').hide();
             $('#browse').show();
             $('#browseTab').show();

@@ -106,11 +106,11 @@ $(document).ready(function () {
         var flag = 0;
         var imageTitle = $('#imageTitle').val();
         var imagePath = $('#aviaryPath').val();
-        var editor = CKEDITOR.instances['imagetextDescription'];
+        var imageName = $('#imageName').val();
         var imageDescription = CKEDITOR.instances['imagetextDescription'].getData();
         var friendsId = [];
         //var pageId = $('#currentPageId').val();
-        var pageURL = $(location).attr("href");
+        var pageURL = window.location.origin;
         if (pageURL.indexOf('profile/showprofile') > -1) {
           var currentPageId = $("#currentPageId").val();
         } else {
@@ -119,7 +119,7 @@ $(document).ready(function () {
         if($('#photoInsertModal').find('input.frndId').length !== 0)
         {
             var values = $("input[name='frndId[]']").map(function(){return $(this).val();}).get();
-            for (var i=0;i<(values.length)/2;i++)
+            for (var i=0;i<(values.length);i++)
             {
                 friendsId.push(values[i]);
             }
@@ -191,7 +191,7 @@ $(document).ready(function () {
         if (flag == 0) {
             $.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
-                url: base_url_dynamic + '/image/saveImageDetails',
+                url: base_url_dynamic + '/image/saveImageDetails?first='+Math.random(),
                 data: {
                     imageTitle : imageTitle,
                     imagePath : imagePath,
@@ -204,7 +204,7 @@ $(document).ready(function () {
                 },
                 success: function (res) {
                     //alert(res);
-                    console.log(res);return false;
+                    //console.log(res);return false;
                     if(res == 1){
 
 
@@ -256,7 +256,7 @@ var featherEditor = new Aviary.Feather({
         $("#aviaryPath").val(newURL);
         $("#profile_pic_thumb").attr('src', newURL);
         var originalFile = $('#imagePath').val();
-        $.ajax({                        // for unlinking the file from the temporary folder
+        /*$.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
                 url: base_url_dynamic + '/image/removeimage',
                 data: {
@@ -265,7 +265,7 @@ var featherEditor = new Aviary.Feather({
                 success: function (res) {
                     console.log('removed image');
                 }
-        });
+        });*/
     }
 });
 

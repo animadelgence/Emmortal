@@ -3,16 +3,20 @@
         <div class="modal-content">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
-              <div class="carousel-inner" style="height: 500px;padding:10px;">
-              <div class="col-md-12">
-                <div class="item active" style="text-align:center;">
-                    <p>Shubhadip Bera</p>
-                </div>
-                </div>
-               <div class="col-md-12">
-                   <div class="col-md-6" style="min-height: 200px;">
-                    <div id="appendDiv" class="item active" style="padding: 4px;line-height: 1.42857143;background-color: #fff;border: 1px solid #ddd;border-radius: 4px;height: 100%;">
+              <div class="carousel-inner" style="min-height: 500px;padding:10px;">
+                <div class="col-md-12" style="border:2px solid;">
+                    <div class="item active" style="text-align:center;margin:5px;">
+                        <p>Shubhadip Bera</p>
                     </div>
+                </div>
+               <div class="col-md-12" style="min-height: 500px;margin-top:10px;">
+                   <div class="col-md-6" style="min-height: 200px;border:2px solid;">
+                        <div id="appendDiv" class="item active" style="padding: 4px;line-height: 1.42857143;background-color: #fff;border: 1px solid #ddd;border-radius: 4px;height: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="min-height: 200px;border:2px solid;">
+                        <div id="appendDiv" class="item active" style="padding: 4px;line-height: 1.42857143;background-color: #fff;border: 1px solid #ddd;border-radius: 4px;height: 100%;">
+                        </div>
                     </div>
                 </div>
               </div>

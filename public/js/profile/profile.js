@@ -52,17 +52,17 @@ $(document).ready(function () {
         var sizeY = "";
         if(height > 257){
             height = 364;
-            sizeX = "W";
+            sizeY = "W";
         } else {
              height = 172;
-             sizeX = "H";
+             sizeY = "H";
         }
         if(width > 257){
             width = 364;
-            sizeY = "W";
+            sizeX = "W";
         } else {
              width = 172;
-             sizeY = "H";
+             sizeX = "H";
         }
        $(this).css('height',height);
        $(this).css('width',width);

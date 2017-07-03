@@ -150,8 +150,8 @@ class ProfileController extends AbstractActionController {
         $action             = @$href[4];
         $title              = $_POST['textTitle'];
         $description        = $_POST['textDescription'];
-        $AID                = $_POST['AID'];
-        $frndId             = $_POST['frndId'];
+        $AID                = @$_POST['AID'];
+        $frndId             = @$_POST['frndId'];
         $ct                 = count($frndId);
         $friendsid          = '';
 
@@ -180,7 +180,6 @@ class ProfileController extends AbstractActionController {
                                       'uploadType'=>'text',
                                       'TimeStamp'=>$addeddate
                               );
-
         $albumDetails       = $modelPlugin->getuploadDetailsTable()->insertData($data);
 
         return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");

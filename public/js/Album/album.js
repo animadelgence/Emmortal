@@ -66,14 +66,12 @@ $(function () {
                 if ($('#slidermodal').length > 0) {
                     $('#slidermodal').modal('show');
                     $('#appendDiv').html(html);
-                    $("#appendDiv").show("slide", { direction: "left" }, 1000).parent().siblings().hide("slide", { direction: "left" }, 1000);
                     arrowHideShow(count, datasizey, datasizex, datacol, datarow);
                 } else {
                     $.get(getUrl + "/modal/slidermodal.php", function (result) {
                         $('body').append(result);
                         $('#slidermodal').modal('show');
                         $('#appendDiv').html(html);
-                        $("#appendDiv").show("slide", { direction: "left" }, 1000).parent().siblings().hide("slide", { direction: "left" }, 1000);
                         arrowHideShow(count, datasizey, datasizex, datacol, datarow);
                     });
                 }

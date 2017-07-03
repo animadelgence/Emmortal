@@ -197,7 +197,7 @@ $(document).ready(function () {
         if (flag == 0) {
             $.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
-                url: base_url_dynamic + '/image/saveImageDetails',
+                url: base_url_dynamic + '/image/saveImageDetails?first='+Math.random(),
                 data: {
                     imageTitle : imageTitle,
                     imagePath : imagePath,

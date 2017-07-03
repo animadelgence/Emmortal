@@ -112,10 +112,10 @@ $(document).ready(function () {
     			appendStructure += jsObject[i];
 			});
             appendStructure+="</ul>";
-            $('#browseTab').append(appendStructure);
-
-                //$('#albumInsertModal').modal('show');
+            //$('#browseTab').append(appendStructure);
+            $('#imgAppend').html(appendStructure);
             });
+
             $('#uploadTab').hide();
             $('#browse').show();
             $('#browseTab').show();

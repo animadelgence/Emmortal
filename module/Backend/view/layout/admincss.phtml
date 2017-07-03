@@ -17,24 +17,16 @@ switch ($controller) {
 //                break;
 //		}
 //		break;
-//    case 'sectionmanage':
-//		switch ($action) {
-//            case 'editsection':
-//				 $this->headLink()
-//                        ->prependStylesheet('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css');
-//            break;
-//            case 'addsection':
-//				 $this->headLink()
-//                        ->prependStylesheet('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css');
-//            break;
-//		    }
+
 	default:
 		break;
 }
 echo $this->headLink()
-->prependStylesheet('//fonts.googleapis.com/css?family=Ruda:400,700,900')
-->prependStylesheet($this->basePath() . '/css/backend/style_temp.css?version='.$t)
-->prependStylesheet($this->basePath() . '/css/backend/style.css?version='.$t)
-->prependStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-->prependStylesheet($this->basePath() . '/css/bootstrap/bootstrap.css');
+
+    ->prependStylesheet('//fonts.googleapis.com/css?family=Ruda:400,700,900')
+    ->prependStylesheet('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') //appended last
+    ->prependStylesheet($this->basePath() . '/css/backend/style_temp.css?version='.$t)
+    ->prependStylesheet($this->basePath() . '/css/backend/style.css?version='.$t)
+    ->prependStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+    ->prependStylesheet($this->basePath() . '/css/bootstrap/bootstrap.css');
 ?>

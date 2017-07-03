@@ -69,7 +69,6 @@ namespace Backend\Controller;
 		      $controller = @$href[3];
               $action = @$href[4];
 		      $this->layout()->setVariables(array('controller'=>$controller,'action'=>$action));
-              //$bgimg = $modelPlugin->getseoTable()->fetchall();
               $bgimg = $modelPlugin->getbgimageTable()->fetchall();
 		      return new ViewModel(array('bgimg'=>$bgimg));
 
@@ -116,5 +115,34 @@ namespace Backend\Controller;
 				      'action'     => 'seoview'));
 
      }
+     public function patternAction(){
+              $modelPlugin = $this->modelplugin();
+
+              $patternFolder = $_SERVER['DOCUMENT_ROOT'] . '/pattern/';
+
+                $getdynamicPath = $modelPlugin->dynamicPath();
+                $filetype = '*.*';
+                $files = glob($patternFolder . $filetype);
+                $count = count($files);
+                $patternFolderList = array();
+                $response = array();
+                for ($i = 0; $i < $count; $i++) {
+                    $patternFolderList[$i] = $files[$i];
+                }
+                    ksort($patternFolderList);
+                    $countpattern = 0;
+                    foreach ($patternFolderList as $filename)
+                    {
+                        $getFile = explode($_SERVER['DOCUMENT_ROOT'],$filename);
+                        $thumbNailImageExplode = explode("/",$getFile[1]);
+                        $getThumNail = "/pattern/thumbnail/".$thumbNailImageExplode[2];
+                        $response[$countpattern] =  '<li class="emmortal-tab-pattern__list-item"><strong><a href="'.@$getdynamicPath.$getFile[1].'" title="Loading image" class="emmortal-tab-pattern__link"><img alt="emmortal-pattern" src="'.@$getdynamicPath.$getThumNail.'" class="emmortal-tab-pattern__link-img"/></a></strong></li>';
+                        $countpattern = $countpattern + 1;
+
+                    }
+         echo  json_encode($response);exit;
+
+     }
+
 
  }

@@ -101,4 +101,22 @@ $(document).ready(function () {
             $('#bgimgEditForm').submit();
     });
 
+/*Modal Tab Content Show*/
+    $('body').on('click','#browse',function(){
+        $.get(baseUrl+"/seomanage/pattern", function (result) {
+            console.log(result);return false;
+            $('#browseTab').append(result);
+                //$('#albumInsertModal').modal('show');
+            });
+            $('#uploadTab').hide();
+            $('#browse').show();
+            $('#browseTab').show();
+    });
+
+    $('body').on('click','#upload',function(){
+            $('#browseTab').hide();
+            $('#upload').show();
+            $('#uploadTab').show();
+    });
+
 });

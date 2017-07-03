@@ -58,6 +58,11 @@ switch ($controller) {
 		break;
 }
 echo $this->headScript()
+    //->prependFile($this->basePath() . '//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js?version='.$t)  //appended last
+    //->prependFile($this->basePath() . 'ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js?version='.$t) //appended last
+    //->prependFile($this->basePath() . '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js?version='.$t) //appended last
+//    ->prependFile($this->basePath() . '//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js?version='.$t) //appended last
+    ->prependFile($this->basePath() . '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js?version='.$t) //appended last
     ->prependFile($this->basePath() . '/js/jquery/jquery.form.js?version='.$t)
     ->prependFile($this->basePath() . '/js/backend/logout.popup.js?version='.$t)
     ->prependFile($this->basePath() . '/js/backend/common-scripts.js?version='.$t)
@@ -65,5 +70,6 @@ echo $this->headScript()
 //    ->prependFile($this->basePath() . '/js/admin/jquery.dcjqaccordion.2.7.js')
 //    ->prependFile($this->basePath() . '/js/bootstrap/bootstrap.min.js')
     ->prependFile('//code.jquery.com/ui/1.9.2/jquery-ui.js')
-    ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
+    //->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
+    ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
 ?>

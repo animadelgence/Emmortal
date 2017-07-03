@@ -11,9 +11,9 @@
 				<div class="container">
                     <form class="form-login reg-form" id='bgimgEditForm' method="post" action="/seomanage/bgeditsubmit" enctype="multipart/form-data">
                     <h2 class="form-login-heading">Edit Background Image</h2>
-                        <div class="reg-wrap">
+                        <div class="reg-wrap col-md-12">
                             <input type="hidden" id="bgimgid" name="bgimgid" value="<?php echo $bgimg[0]['bgimgid']; ?>">
-								<div id="upload_prev" class="upload_prev" style="margin-left: 12em; padding-bottom: 10px;">
+								<div id="upload_prev" class="upload_prev col-md-6" style="padding-bottom: 20px; padding-left: 50px;">
 									<?php if(!empty($bgimg[0]['bgimgpath'])){ ?>
 									<img class="image" src="<?php echo $bgimg[0]['bgimgpath'] ?>" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
 									<?php } else{ ?><img class="image" src="<?php echo $bgimg[0]['bgimgpath'] ?>" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
@@ -22,7 +22,10 @@
 								</div>
                                 <label id="errorImg1" style="margin-left: 10px;"></label><!--img extnsn valid-->
 								<label id="errorImg2" style="margin-left: 70px;"></label><!--img size(>1MB) valid-->
-                                <input type="file" class="form-control" name="fileupload" id="fileupload" style='height: 30%;' required />
+<!--                                <input type="file" class="form-control" name="fileupload" id="fileupload" style='height: 30%;' required />-->
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary btn-lg modBtn" data-toggle="modal" data-target="#myModal">Choose Image</button>
+                                </div>
 
                             <br>
                             <input type="button" class="btn btn-theme btn-block" id="bgImgSave" value="Save and Continue">
@@ -37,5 +40,45 @@
 		<!-- /row -->
 	</section>
 	<!--/wrapper -->
+
+   <!--modal (start)-->
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+                </button>
+                 <h4 class="modal-title" id="myModalLabel">Choose Image</h4>
+
+            </div>
+            <div class="modal-body">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active" id="upload"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">My Image</a>
+
+                        </li>
+                        <li role="presentation" id="browse"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Pattern</a>
+
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="uploadTab">upload Tab</div>
+                        <div role="tabpanel" class="tab-pane" id="browseTab">Pattern</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+   <!--modal (end)-->
+
 </section>
 <!-- /MAIN CONTENT -->

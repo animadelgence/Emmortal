@@ -195,12 +195,16 @@ $(document).ready(function () {
                 data: {
                     imageTitle : imageTitle,
                     imagePath : imagePath,
+                    imageName : imageName,
+                    /*imageFolder : imageFolder,*/
+
                     imageDescription : imageDescription,
                     imagefriendsId : friendsId,
                     pageId : currentPageId
                 },
                 success: function (res) {
                     //alert(res);
+                    console.log(res);return false;
                     if(res == 1){
 
 
@@ -225,9 +229,11 @@ $(document).ready(function () {
 	        },
 			success: function (result) {
                 //alert(result);return false;
-				$('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+result+'" style="height:360px;width:100%"/>')
-				$("#imagePath").val(result);
-				$("#aviaryPath").val(result);
+                jsObject = JSON.parse(result);
+				$('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+jsObject.imgFullName+'" style="height:360px;width:100%"/>')
+				$("#imagePath").val(base_url_dynamic+jsObject.imgFullName);
+				$("#aviaryPath").val(base_url_dynamic+jsObject.imgFullName);
+				$("#imageName").val(jsObject.imgFilename);
                 $('#div-editphoto').show();
 			}
 		});

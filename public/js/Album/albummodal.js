@@ -60,7 +60,7 @@ $(document).ready(function () {
                 $("#aviaryPathalbum").val(base_url_dynamic + jsObject.imgFullName);
                 $("#albumName").val(jsObject.imgFilename);
                 $("#albumFolder").val(base_url_dynamic + jsObject.imgFolder);
-                $('#div-editphoto').show();
+                $('#div-editalbumphoto').show();
             }
         });
     });

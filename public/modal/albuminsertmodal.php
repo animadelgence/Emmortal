@@ -65,7 +65,7 @@
                         <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>
                      </div>
                      <div class="col-sm-4 ">
-                        <div id="div-editphoto" class="hostt">
+                        <div id="div-editalbumphoto" class="hostt">
                         <!--<tags-input class="e-tags-input ">-->
                         	<div style="margin-top: -5px;" class="tags">
                                 <ul class="input"></ul>

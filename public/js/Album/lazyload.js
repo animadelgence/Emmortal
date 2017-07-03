@@ -79,8 +79,11 @@ function yHandler() {
                         widget_margins: [5, 5],
                         max_cols: 6
                     }).data('gridster');
-                    $item.each(function () {
-                        gridster.add_widget($(this), 2, 1);
+                    $item.each(function (index) {
+
+                        var sizey = parseInt($(this).attr("data-sizey")),
+                            sizex = parseInt($(this).attr("data-sizex"));
+                        gridster.add_widget($(this),sizex,sizey);
                     })
                     $(".gridster ul").gridster({
                         namespace: '.gridster',

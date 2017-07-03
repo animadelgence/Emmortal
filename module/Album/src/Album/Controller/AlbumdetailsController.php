@@ -123,6 +123,7 @@ class AlbumdetailsController extends AbstractActionController {
                 'uploadPath' => $rSet['uploadPath'],
                 'dateTime' => date("m/d/Y",strtotime($rSet['TimeStamp']))." ".$time,
                 'username' => $rSet['firstname']." ".$rSet['lastname'],
+                'userimage' => $rSet['profileimage'],
                 'userid'=>$rSet['userid'],
                 'likeCount'=>$likeCount
             );

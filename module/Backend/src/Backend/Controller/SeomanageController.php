@@ -119,6 +119,7 @@ namespace Backend\Controller;
               $modelPlugin = $this->modelplugin();
 
               $patternFolder = $_SERVER['DOCUMENT_ROOT'] . '/pattern/';
+              //echo $patternFolder; exit;
 
                 $getdynamicPath = $modelPlugin->dynamicPath();
                 $filetype = '*.*';
@@ -134,9 +135,10 @@ namespace Backend\Controller;
                     foreach ($patternFolderList as $filename)
                     {
                         $getFile = explode($_SERVER['DOCUMENT_ROOT'],$filename);
+                        //print_r($getFile); exit;
                         $thumbNailImageExplode = explode("/",$getFile[1]);
                         $getThumNail = "/pattern/thumbnail/".$thumbNailImageExplode[2];
-                        $response[$countpattern] =  '<li class="emmortal-tab-pattern__list-item"><strong><a href="'.@$getdynamicPath.$getFile[1].'" title="Loading image" class="emmortal-tab-pattern__link"><img alt="emmortal-pattern" src="'.@$getdynamicPath.$getThumNail.'" class="emmortal-tab-pattern__link-img"/></a></strong></li>';
+                        $response[$countpattern] =  '<li class="emmortal-tab-pattern__list-item col-sm-2"><strong><a href="'.@$getdynamicPath.$getFile[1].'" title="Loading image" class="emmortal-tab-pattern__link"><img class="pattern" alt="emmortal-pattern" src="'.@$getdynamicPath.$getThumNail.'" class="emmortal-tab-pattern__link-img"/></a></strong></li>';
                         $countpattern = $countpattern + 1;
 
                     }

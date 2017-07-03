@@ -28,6 +28,7 @@
         reader = '';
 
         fileUpload = document.getElementById("fileupload");
+        if(fileUpload!=null){
         fileUpload.onchange = function preview(e) {
             var maxfilesize = 1024 * 1024; // 1MB
 
@@ -64,7 +65,7 @@
                 $('#hidden_newsbrief').html("This browser does not support HTML5 FileReader.");
             }
         };
-//    }
+   }
 };
 
 $(document).ready(function () {
@@ -104,10 +105,17 @@ $(document).ready(function () {
 /*Modal Tab Content Show*/
     $('body').on('click','#browse',function(){
         $.get(baseUrl+"/seomanage/pattern", function (result) {
-            console.log(result);return false;
-            $('#browseTab').append(result);
-                //$('#albumInsertModal').modal('show');
+
+            var jsObject = JSON.parse(result);
+            var appendStructure = '<ul class="emmortal-tab-pattern__list">';
+            $.each(jsObject, function(i, item) {
+    			appendStructure += jsObject[i];
+			});
+            appendStructure+="</ul>";
+            //$('#browseTab').append(appendStructure);
+            $('#imgAppend').html(appendStructure);
             });
+
             $('#uploadTab').hide();
             $('#browse').show();
             $('#browseTab').show();

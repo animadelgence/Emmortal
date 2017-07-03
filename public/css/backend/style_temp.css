@@ -2626,3 +2626,23 @@ border-radius: 5px 5px 0 0;
     margin: 20px 10px 0 15px !important;
 }
 
+.pattern{
+    vertical-align: baseline !important;
+}
+
+.imgAppend{
+    margin: 25px 0 10px -30px;
+    background-color: #edeff2;
+}
+
+.modal-body{
+    height: 370px;
+    overflow-y: auto;
+}
+
+.browseTab{
+    display: block;
+    background-color: #f7f7f7;
+    margin-bottom: 10px;
+}
+

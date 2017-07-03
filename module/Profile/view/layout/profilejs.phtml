@@ -7,6 +7,8 @@ switch ($controller) {
         switch ($action) {
 
             case 'showprofile':
+             $this->headScript()
+            ->prependFile($this->basePath() . '/js/profile/showprofilegrid.js?version=' . $t);
                 break;
                 case 'newsfeed':
                 $this->headScript()
@@ -71,6 +73,7 @@ echo $this->headScript()
         ->prependFile($this->basePath() . '/js/profile/searchmodal.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/resetpassword.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/jquery/jquery.form.js?version='.$t)
+         ->prependFile($this->basePath() . '/js/Album/jquery.gridster.min.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/bootstrap/bootstrap.min.js?version=' . $t)
         ->prependFile('//code.jquery.com/ui/1.11.3/jquery-ui.min.js')
         ->prependFile('//code.jquery.com/jquery-1.12.4.js')

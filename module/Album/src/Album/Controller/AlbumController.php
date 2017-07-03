@@ -48,21 +48,23 @@ class AlbumController extends AbstractActionController {
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
         
         foreach ($uploadDetails as $upload) {
-            $likeDetailsArray = array();
+            $likeDetailsArrays = array();
             $uploadId = $upload['uploadId'];
             $uploadIdquery = array('uploadId' =>$uploadId);
             $likeDetails = $modelPlugin->getlikesdetailsTable()->countLike($uploadIdquery);
+            
             $likeDetailsArray[$uploadId] = $likeDetails;
+             array_push($likeDetailsArrays,$likeDetailsArray);
+
 
            
         }
-      // print_r($likeDetailsArray);  
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
         if($this->sessionid == "")
         {
             $bgimgSend = $bgimg[0]['bgimgpath'];
             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
-            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArray' =>$likeDetailsArray));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArrays' =>$likeDetailsArrays));
 
         }
         else{
@@ -76,7 +78,7 @@ class AlbumController extends AbstractActionController {
             }
 
                 $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller,'dynamicPath' => $dynamicPath, 'userDetails'=>$userDetails, 'action' => $action,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails,'bgimg'=>$bgimgSend));
-            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArray' => $likeDetailsArray));
+            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArrays' => $likeDetailsArrays));
         }
     }
     /*public function allalbumAction(){

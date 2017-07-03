@@ -101,9 +101,8 @@
 
 .vid-sec {
   float: left;
-  margin: 0 28px 50px;
+  margin: 0 8px 29px;
   position: relative;
-
 }
 
 .outer-wrap {
@@ -112,18 +111,18 @@
 }
 
 .inner-box {
-    background: #b4504e none repeat scroll 0 0;
-    border: 3px solid #fff;
-    bottom: 0;
-    color: #fff;
-    height: 35px;
-    left: 0;
-    padding: 5px 0 0;
-    position: absolute;
-    text-align: center;
-    width: 40px;
+  background: #b4504e none repeat scroll 0 0;
+  border: 5px solid #fff;
+  bottom: 0;
+  color: #fff;
+  font-size: 23px;
+  height: 45px;
+  left: 0;
+  padding: 2px;
+  position: absolute;
+  text-align: center;
+  width: 47px;
 }
-
 .text-sec {
     background: #fff none repeat scroll 0 0;
     border-radius: 5px;
@@ -131,9 +130,23 @@
     padding: 20px;
     position: relative;
 }
+
+.gridster {
+    margin: 0 auto;
+    width: 1170px;
+}
+
+.gridster .gs-w {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 10px;
+}
 .vid-sec {
   background: #fff none repeat scroll 0 0;
-  border-radius: 10px;
+  border-radius: 10px 10px 10px 0;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   overflow: hidden;

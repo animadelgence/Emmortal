@@ -15,8 +15,13 @@ var base_url_dynamic = window.location.origin,
     frndDetails = [],
     jsObject = "",
     i = "0";
+
 $(document).ready(function () {
     "use strict";
+
+
+
+
     if($('#textDescription').length) {
     CKEDITOR.replace('textDescription', {
         toolbar: [
@@ -80,39 +85,11 @@ $(document).ready(function () {
     }
 
     });
-    // $('.resizable').on('mouseup' , function(){
-    //    // alert(1)
-    //     var height = $(this).height();
-    //     var width = $(this).width();
-    //     var H = "";
-    //     var W = "";
-    //     if(height > 257){
-    //         height = 364;
-    //         H = "H1";
-    //     } else {
-    //          height = 172;
-    //          H = "H0";
-    //     }
-    //     if(width > 257){
-    //         width = 364;
-    //         W = "W1";
-    //     } else {
-    //          width = 172;
-    //          W = "W0";
-    //     }
-    //    $(this).css('height',height);
-    //    $(this).css('width',width);
-    //     var uploadId = $(this).find(".uploadId").val();
-    //        // $.ajax({
-    //        //      type: "POST",
-    //        //      //async:false,
-    //        //      url: base_url_dynamic + '/profile/savefilestatus',
-    //        //      data: {H:H,W:W,uploadId:uploadId},
-    //        //      success: function (res) {
-    //        //      alert(res);
-    //        //      }
-    //        //  });
-    // });
+
+
+
+
+
     $('body').on('click', '#textInsert', function () {
         $('.close').trigger('click');
         $('#textTitleError').hide();

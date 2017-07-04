@@ -18,6 +18,7 @@ body {
     padding: 15px 0;
     text-align: center;
     width: 46%;
+    cursor: pointer;
 }
 
 .main-wrapper__image-section {

@@ -3,6 +3,7 @@ var base_url_dynamic = window.location.origin;
 
 $(function () {
     gridster = $(".gridster ul").gridster({
+    	
         namespace: '.gridster',
         widget_base_dimensions: [182, 181],
         widget_margins: [10, 10],

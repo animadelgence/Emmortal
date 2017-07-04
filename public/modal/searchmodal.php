@@ -21,7 +21,7 @@
             </ul>
             <div class="users-section animated fadeIn">
                 <div infinite-scroll="friendsLoader.nextPage()" >
-                    <div class="m-t-15 search-divider e-brown p-l-10 animated fadeIn" id="myRelationships">My Relationships
+                    <div class="m-t-15 search-divider e-brown p-l-10 animated fadeIn" id="myRelationships" style="display:none;">My Relationships
                     </div>
                     <!--<h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="allTabShow">There are no relationships yet</h2>
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="incomingTabShow">There are no incoming relationships requests</h2>

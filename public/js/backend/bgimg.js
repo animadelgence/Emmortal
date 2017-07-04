@@ -33,7 +33,7 @@
             var maxfilesize = 1024 * 1024; // 1MB
 
             if (typeof (FileReader) !== "undefined") {
-                dvPreview = document.getElementById("upload_prev");
+                dvPreview = document.getElementById("img_prev"); //upload_prev
                 dvPreview.innerHTML = "";
                 for (i = 0; i < fileUpload.files.length; i++) {
                     file = fileUpload.files[i];
@@ -76,23 +76,23 @@ $(document).ready(function () {
         var ext = $('#fileupload').val().split('.').pop().toLowerCase(),
             picsize = (this.files[0].size);
         if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) === -1) {
-            $('#errorImg2,#upload_prev').css('display', 'none'); // hides image along with other error messages
+            $('#errorImg2,#img_prev').css('display', 'none'); // hides image along with other error messages
             $('#errorImg1').css('display', 'block');
             $('#errorImg1').html("<font color='red'> Invalid Image Format! Image Format Must Be JPG, JPEG, PNG or GIF </font>");
-            $('#bgImgSave').attr("disabled", true);
+//            $('#bgImgSave').attr("disabled", true);
             return false;
         } else if (picsize > 1024000) {
-            $('#errorImg1,#upload_prev').css('display', 'none'); // hides image along with other error messages
+            $('#errorImg1,#img_prev').css('display', 'none'); // hides image along with other error messages
             $('#errorImg2').css('display', 'block');
             $('#errorImg2').html("<font color='red'> Invalid Image Format! Maximum File Size Limit is 1MB </font>");
-            $('.upload_prev').children('img').attr('src', '');
-            $('#bgImgSave').attr("disabled", true);
+            $('.img_prev').children('img').attr('src', '');
+//            $('#bgImgSave').attr("disabled", true);
             return false;
         } else {
             $('#errorImg1').css('display', 'none');
             $('#errorImg2').css('display', 'none');
-            $('#upload_prev').css('display', 'block');
-            $('#bgImgSave').attr("disabled", false);
+            $('#img_prev').css('display', 'block');
+//            $('#bgImgSave').attr("disabled", false);
 
         }
     });

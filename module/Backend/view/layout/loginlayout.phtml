@@ -25,7 +25,11 @@
 </head>
 <body style="background: url('<?php echo $dynamicPath; ?>/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg') no-repeat; height: 100%; background-size: cover;">
 <div>
- <a href="<?php echo $dynamicPath; ?>"><img src="<?php echo $dynamicPath; ?>/image/logo.jpg" ></a>
+    <div class="login-navbar-logo">
+        <a class="login-navbar-logo__anchor" href="<?php echo $dynamicPath;?>">Emmortal</a>
+    </div>
+
+
 	<section id="container">
 		<?php
 	       echo $this->content;

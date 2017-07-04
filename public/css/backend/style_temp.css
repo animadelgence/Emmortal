@@ -2505,16 +2505,15 @@ label {
 	-webkit-border-radius: 5px;
 }
 .form-popup h2.form-login-heading {
-	margin: 0;
-	padding: 15px 78px;
-	text-align: center;
-	background: #827657;
-	border-radius: 5px 5px 0 0;
-	-webkit-border-radius: 5px 5px 0 0;
-	color: #fff;
-	font-size: 25px;
-	text-transform: uppercase;
-	font-weight: 300;
+  background: #827657 none repeat scroll 0 0;
+  border-radius: 5px 5px 0 0;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 300;
+  margin: 0;
+  padding: 9px 78px;
+  text-align: center;
+  text-transform: uppercase;
 }
 .chang_PPopup
 {
@@ -2530,7 +2529,7 @@ border-radius: 5px 5px 0 0;
 /*Dynamic-page-create popup*/
 .popup_cancel{
     font-family: ubunturegular;
-    background-color: #04ad6a;
+    background-color: #827657;
     border: medium none;
     border-radius: 3px;
     color: #fff;
@@ -2687,4 +2686,7 @@ border-radius: 5px 5px 0 0;
     height: auto;
     padding: 6px 15px;
 }
-
+.login-navbar-logo__anchor:hover, .login-navbar-logo__anchor:focus {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}

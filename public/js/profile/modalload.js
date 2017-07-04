@@ -192,8 +192,56 @@ function imagemodalopen(){
 
 
 }
+function addtributemodal() {
+    if($('#tributeAddModal').length) {
+        $('#tributeAddModal').remove();
+    }
+    $.get(getUrl+"/modal/tributeaddmodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#tributeAddModal').modal('show');
+    });
+}
+function friendtributemodal() {
+    $('#tributeAddModal').css('z-index','0');
+    if($('#friendTributeAddModal').length) {
+        $('#friendTributeAddModal').remove();
+    }
+    $.get(getUrl+"/modal/friendtributeaddmodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#friendTributeAddModal').modal('show');
+        if($('#friendtributeDescription').length) {
+            CKEDITOR.replace('friendtributeDescription', {
+                toolbar: [
 
-function videomodalopen(){
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+
+
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
+    });
+}
+
+function videomodalopen() {
     if($('#videoInsertModal').length) {
         $('#videoInsertModal').remove();
     }
@@ -230,36 +278,7 @@ function videomodalopen(){
             });
             CKEDITOR.disableAutoInline = true;
         }
-        //$('#uploadModal').modal('hide');
-        /*if($('#videoDescription').length) {
-            CKEDITOR.replace('videoDescription', {
-                toolbar: [
-
-                    {
-                        name: 'others',
-                        items: ['-']
-                    },
-                    '/',
-                    {
-                        name: 'basicstyles',
-                        groups: ['basicstyles', 'cleanup'],
-                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
-                    },
-
-                    {
-                        name: 'links',
-                        items: ['Link', 'Unlink', 'Anchor']
-                    }
-
-
-                ]
-            });
-            CKEDITOR.disableAutoInline = true;
-         }*/
-
     });
-
-
 }
 function uploadmodalopen(){
     if($('#uploadModal').length) {

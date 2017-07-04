@@ -12,13 +12,16 @@
                         <div class="comments-count" id="totalTribute"></div>
                         <div class="offcanvas-comments-title">Tributes</div>
                         <div class="pull-right btn-wrapper" id="tribute-add-btn">
-                            <div class="btn e-btn btn-brown" data-toggle="modal" data-target="#friendTributeAddModal" onclick="$('#tributeAddModal').css('z-index','0');">Add tribute</div>
+                            <div class="btn e-btn btn-brown" onclick="friendtributemodal();">Add tribute</div>
                         </div>
                     </div>
 				</div>
 				<div class="modal-body">
+                    <div style="display:block;" id="tributeloader">
+                        <img src ="/image/loading.gif"/ style=" height: 160px; padding-left: 235px;">
+                    </div>
 					<div class="offcanvas-comments-content" id="tributeAppend"> 
-                       <h2 class="text-center e-brown">There are no tributes yet.</h2>
+                       
                     </div>
                 </div><!-- modal-content -->
             </div>

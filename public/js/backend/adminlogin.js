@@ -18,10 +18,10 @@ $(document).ready(function () {
         var userid = $('#userId').val(),
             passwrd = $('#password').val();
         if (userid === "") {
-            $('#errormsg').html("<font color='red'> Please enter the User ID </font>");
+            $('#errormsg').html("<font color='#C35056' style='font-size:12px;'> Please enter the User ID </font>");
             return false;
         } else if (passwrd === "") {
-            $('#errormsg').html("<font color='red'> Please enter the Password </font>");
+            $('#errormsg').html("<font color='#C35056' style='font-size:12px;'> Please enter the Password </font>");
             return false;
         } else {
             $.ajax({
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     if (response.trim() === "error") {
-                        $('#errormsg').html("<font color='red'> Please enter correct User ID / Password </font>");
+                        $('#errormsg').html("<font color='#C35056' style='font-size:12px;'> Please enter correct User ID / Password </font>");
                         return false;
                     } else {
                         window.location = baseUrl + '/usermanage/userdetails';

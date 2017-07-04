@@ -2,9 +2,7 @@
    <div class="container">
       <div class="row">
          <div class="layout">
-            <div id='loader-icon' style="display: none;">
-    <img src='<?php echo $dynamicPath; ?>/image/load3.gif' alt="loader" />
-</div>
+
 <input type="hidden" id="isAjaxStart" value=0 />
 <input type="hidden" id="checker" value=1 />
 <input type="hidden" id="counterOfTheTemplate" value=0 />
@@ -71,10 +69,18 @@
 
           
                 </ul>
+                  <div id='loader-icon' style="display: none;">
+    <img src='<?php echo $dynamicPath; ?>/image/load3.gif' alt="loader" />
+    <p>Loading more widgets...</p>
+</div>
             </div>
         
          </div>
+
          </div>
+
+
+
       </div>
 <ul class="clickme" style="display:none"></ul>
 </section>

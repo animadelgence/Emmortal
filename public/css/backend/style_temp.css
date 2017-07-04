@@ -2646,3 +2646,20 @@ border-radius: 5px 5px 0 0;
     margin-bottom: 10px;
 }
 
+/*admin login*/
+
+.login-navbar-logo {
+    position: fixed;
+    background: rgba(86, 67, 17, 0.45) none repeat scroll 0 0;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.login-navbar-logo__anchor {
+    color: rgb(255, 255, 255);
+    float: left;
+    font-size: 18px;
+    height: auto;
+    padding: 6px 15px;
+}

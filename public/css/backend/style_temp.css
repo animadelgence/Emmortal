@@ -2621,7 +2621,7 @@ border-radius: 5px 5px 0 0;
     color: #fff !important;
     background-color: #827657 !important;
     border-color: #b6b6b6 !important;
-    margin: 20px 10px 0 15px !important;
+    margin: 35px 10px 0 15px !important;
 }
 
 .pattern{
@@ -2691,7 +2691,8 @@ border-radius: 5px 5px 0 0;
     opacity: 0;
     overflow: hidden;
     position: absolute;
-    margin: -55px 0 20px -25px;
+/*    margin: -55px 0 20px -25px;*/
+    margin: -108px 0 20px -85px;
 }
 
 .uploadbtn{

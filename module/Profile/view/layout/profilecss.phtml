@@ -42,6 +42,7 @@ switch ($controller) {
 		break;
 }
 echo $this->headLink()
+        ->prependStylesheet($this->basePath() . '/css/Album/album.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/profile/searchfriends.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/album/like.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)

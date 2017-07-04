@@ -143,6 +143,17 @@ class CreatealbumController extends AbstractActionController {
         }
         echo $result; exit;
     }
+    public function showafterpublishAction(){
+        $this->layout('layout/albumlayout.phtml');
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $controller = 'createalbum';
+        $action = $this->params('action');
+        $this->layout()->setVariables(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'controller' => $controller, 'action' => $action));
+        return new ViewModel();
+    }
    
     
 }

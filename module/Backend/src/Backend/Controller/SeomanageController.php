@@ -82,6 +82,7 @@ namespace Backend\Controller;
 		      $currentPageURL = $plugin->curPageURL();
               $id = $_POST['bgimgid'];
               $filename = $_FILES['fileupload']['name'];
+              echo $filename; exit;
               $bgimgpath = $dynamicPath."/upload/bgimg/".$filename;
               $where = array('bgimgid'=>$id);
               $data = array('bgimgpath'=>$bgimgpath);

@@ -40,7 +40,7 @@ class Module
             //if not this module
             return;
         }
-        echo $action = $e->getRouteMatch()->getParam('action'); exit;
+        $action = $e->getRouteMatch()->getParam('action');
         if ($action == 'not-found') {
             //if not this module
                 include_once(dirname(dirname(dirname(__FILE__))).'/module/Authorization/view/authorization/error/error.php');

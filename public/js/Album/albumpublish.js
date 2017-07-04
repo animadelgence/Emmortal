@@ -11,6 +11,7 @@
 var base_url_dynamic = window.location.origin;
 $(document).ready(function () {
 
+	$('[data-toggle="tooltip"]').tooltip();   
 	$('body').on('click', '.edit-menu-album', function () {
          if($(this).hasClass('open'))
             {

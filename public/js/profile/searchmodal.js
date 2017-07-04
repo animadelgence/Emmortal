@@ -22,6 +22,8 @@ $(document).ready(function () {
         /*$('#searchText').prop("disabled", false);*/
         $("#searchResults").empty();
         $("#tabResults").empty();
+        $('#myRelationships').css('display', 'block');
+        $('#globalSearch').css('display', 'none');
         friendlist('AllFriend', '','');
         $("#li-allTab").addClass("active");
         $("#li-relationshipTab").removeClass("active");
@@ -36,6 +38,8 @@ $(document).ready(function () {
         $('#searchText').val('');
         $("#searchResults").empty();
         $("#tabResults").empty();
+        $('#myRelationships').css('display', 'block');
+        $('#globalSearch').css('display', 'none');
        // $('#searchText').attr("disabled", "disabled");
         friendlist('Onlyfriend', '','');
         $("#li-relationshipTab").addClass("active");
@@ -53,6 +57,8 @@ $(document).ready(function () {
         $('#searchText').val('');
         $("#searchResults").empty();
         $("#tabResults").empty();
+        $('#myRelationships').css('display', 'block');
+        $('#globalSearch').css('display', 'none');
         /*$('#searchResults').css('display', 'none');
         $('#globalSearch').css('display', 'none');*/
         friendlist('Incoming', '','');
@@ -70,6 +76,8 @@ $(document).ready(function () {
         $('#searchText').val('');
         $("#searchResults").empty();
         $("#tabResults").empty();
+        $('#myRelationships').css('display', 'block');
+        $('#globalSearch').css('display', 'none');
         /*$('#searchResults').css('display', 'none');
         $('#globalSearch').css('display', 'none');*/
         friendlist('Outgoing', '','');
@@ -258,6 +266,9 @@ function friendlist(param,search,searchParam)
             }
             if(search) {
                 $('#globalSearch').css('display', 'block');
+            }
+            if(additionalhtml != '' || html != '') {
+                $('#myRelationships').css('display', 'block');
             }
             if (param == 'AllFriend') {
                 $('#myRelationships').css('display', 'block');

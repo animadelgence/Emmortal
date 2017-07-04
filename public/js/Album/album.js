@@ -56,7 +56,7 @@ $(function () {
                     html += '<video controls="controls" name="Video Name" id="" src="' + videoUrl + '" style="width:100%;height:100%;"></video>';
                 }
                 
-              html +='</div></div><div class="col-md-12" style="margin-top: 20px;"><ul><li class="liLikeCount"><span class="';
+              html +='</div></div><div class="col-md-12" style="margin-top: 20px;border-bottom:1px solid #ddd;"><ul><li class="liLikeCount"><span class="';
                 if(jsObject.uploadDetails[0].sessionId !=null){
                     html +='likeClick';
                 } else{
@@ -64,9 +64,11 @@ $(function () {
                 }
               html += '"  data-id="'+uploadId+'" data-cmd=""><i class="fa fa-heart" aria-hidden="true" style="width: 30px;font-size: 21px;color: #827878;cursor:pointer;"></i><span><span id="lkcnt"> '+jsObject.uploadDetails[0].likeCount+'</span> likes</span></span></li></ul></div>';
                 html +='<div class="col-md-12 likeNo" style=""><p><span>'+jsObject.uploadDetails[0].tributeDetails.length+'</span> <strong>Responses</strong></p></div>';
+                html +='<div id="appendComment">';
                 for(var j=0; j<jsObject.uploadDetails[0].tributeDetails.length; j++){
                         html +='<div class="col-md-12" style="margin-top:5px;border-bottom:1px solid #ddd;"><div class="col-md-2 item active" style="padding: 0;"><img src="'+jsObject.uploadDetails[0].tributeDetails[j].profileImage+'" style="border-radius: 25px;height:50px;width:50px;margin-top:22px;"alt="" title="" onerror="this.src=\''+profileimage+'\'"></div><div class="col-md-10 item active"><h2 style="font-size: 20px;">'+jsObject.uploadDetails[0].tributeDetails[j].profileName+'</h2><p>'+jsObject.uploadDetails[0].tributeDetails[j].tributeDescription+'</p></div></div>';
                 }
+                html +='</div>';
                 html +='</div>';
                 if (datacmd != 'text') {
                 html +='<div class="col-md-6" style="min-height:200px;" id="dploadDescriptionDiv"><div class="col-md-12" ><p>'+jsObject.uploadDetails[0].uploadDescription+'</p></div></div>';
@@ -92,9 +94,16 @@ $(function () {
             $(this).removeClass('zoomIn').addClass('zoomOut');
             if($("#dploadDescriptionDiv").is(':visible') == true){
                 $("#dploadDescriptionDiv").addClass('descZoom');
+               var height = parseInt($("#dploadDescriptionDiv").height(),10)+parseInt(530,10) + parseInt(140,10);
+                if(parseInt($("#dploadDescriptionDiv").height(),10)+parseInt(530,10)>$("#appendDiv").height()){
+                    $("#appendDiv").css('height',height);
+                }
             }
         } else{
             $(this).removeClass('zoomOut').addClass('zoomIn');
+            $("#appendDiv").removeAttr("style");
+            $("#appendDiv").css('min-height','451px');
+            $("#appendDiv").css('padding','30px 80px');
             if($("#dploadDescriptionDiv").is(':visible') == true){
                 $("#dploadDescriptionDiv").removeClass('descZoom');
             }
@@ -105,6 +114,9 @@ $(function () {
     });
 
     $('body').on('click', '#nextDivContent', function () {
+            $("#appendDiv").removeAttr("style");
+            $("#appendDiv").css('min-height','451px');
+            $("#appendDiv").css('padding','30px 80px');
         var liindex = $('#appendDiv').index(),
             datasizey = $('#appendDiv').attr('data-sizey'),
             datasizex = $('#appendDiv').attr('data-sizex'),
@@ -133,6 +145,9 @@ $(function () {
         }
     });
     $('body').on('click', '#priviousDivContent', function () {
+            $("#appendDiv").removeAttr("style");
+            $("#appendDiv").css('min-height','451px');
+            $("#appendDiv").css('padding','30px 80px');
         var liindex = $('#appendDiv').index(),
             datasizey = $('#appendDiv').attr('data-sizey'),
             datasizex = $('#appendDiv').attr('data-sizex'),

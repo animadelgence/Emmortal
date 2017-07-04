@@ -45,7 +45,7 @@
 			<div class="modal-footer text-right" style="margin-bottom: 20px;">
 						<span class="" style="padding:30px">
 							<button type="button" class="btn e-btn btn-default" onclick="textClick();"style="margin-bottom: 15px;">Back</button>
-							<button type="submit" class="btn e-btn btn-primary" id="textPublishBtn" style="margin-bottom: 15px;">Publish</button>
+							<button type="button" class="btn e-btn btn-primary" id="textPublishBtn" style="margin-bottom: 15px;">Publish</button>
 						</span>
 					</div>
 		</div>

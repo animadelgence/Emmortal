@@ -16,29 +16,32 @@ var base_url_dynamic = window.location.origin,
     i = "";
 $(document).ready(function () {
     "use strict";
-    CKEDITOR.replace('friendtributeDescription', {
-        toolbar: [
-            {
-                name: 'others',
-                items: ['-']
-            },
-            '/',
-            {
-                name: 'basicstyles',
-                groups: ['basicstyles', 'cleanup'],
-                items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
-            },
-            {
-                name: 'links',
-                items: ['Link', 'Unlink', 'Anchor']
-            }
-        ]
-    });
-    CKEDITOR.disableAutoInline = true;
+    if($('#friendtributeDescription').length) {
+        CKEDITOR.replace('friendtributeDescription', {
+            toolbar: [
+                {
+                    name: 'others',
+                    items: ['-']
+                },
+                '/',
+                {
+                    name: 'basicstyles',
+                    groups: ['basicstyles', 'cleanup'],
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                },
+                {
+                    name: 'links',
+                    items: ['Link', 'Unlink', 'Anchor']
+                }
+            ]
+        });
+        CKEDITOR.disableAutoInline = true;
+    }
     $('body').on('click', '.getTribute', function () {
         var frndId = $(this).data("id"),
             textDescription = "";
-        $('#tributeAddModal').modal('show');
+        //$('#tributeAddModal').modal('show');
+        addtributemodal();
         if ($("#searchmodal").is(':visible') == true) {
             $('#searchmodal').css('z-index', '0');
         }

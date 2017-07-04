@@ -20,7 +20,7 @@
 			<p><font color="#FF4E55">Oops!</font> This is awkward...You are looking for </p><p> something that doesn't actually exist</p>
 	</div>
 	<div class="main-wrapper__image-section"><img src="/image/404.png"></div>
-	<div class="main-wrapper__button-click"><span class="main-wrapper__button-click-text">Go Back</span></div>
+	<div class="main-wrapper__button-click" onclick="window.location.href = window.location.origin;"><span class="main-wrapper__button-click-text">Go Back</span></div>
 </div>
 </body>
 </html>

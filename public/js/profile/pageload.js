@@ -65,25 +65,25 @@ $(function () {
 				} else {
 					appendHtml = "<div class='container-of-sections classdowntoupvisible'>";
 				}
-                appendHtml += "<ul class='outer-wrap'>";
+                appendHtml += "<div class='gridster ready'><ul class='outer-wrap'>";
 
                 if (jsObject.defaultPage == 1) {
                     if(jsObject.profileImage!=1)
-                    appendHtml += '<li class="user_profile_image_section"><img src="' + jsObject.profileImage + '"></li><li class="user_profile_name_section"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></li>';
+                    appendHtml += '<li class="user_profile_image_section" data-col="1" data-row="1"><img src="' + jsObject.profileImage + '"></li><li class="user_profile_name_section" data-col="1" data-row="1"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></li>';
                 }
                 if (jsObject.NoPage == 1) {
-                    appendHtml += '<li class="user_upload_part_section"><div data-target="#uploadModal" data-toggle="modal"  class="fa fa-plus add-page-plus-icon"></div><div class=""><p>Add your Life moments: upload photos and videos.</p><p>Create Albums, Tributes and add valuable texts.</p><p>"Add" button is always accessible on right top menu.</p></div></li>';
+                    appendHtml += '<li class="user_upload_part_section" data-col="1" data-row="1" data-sizex="1" data-sizey="2"><div  onclick="uploadmodalopen();" href="javascript:void(0);" class="fa fa-plus add-page-plus-icon"></div><div class=""><p>Add your Life moments: upload photos and videos.</p><p>Create Albums, Tributes and add valuable texts.</p><p>"Add" button is always accessible on right top menu.</p></div></li>';
                 } else {
                   // appendHtml += '<div class="user_upload_part_section_content">';
                     for (i = 0; i < jsObject.uploaddetails.length; i++) {
                         if(jsObject.uploaddetails[i].uploadType == "video"){
 
-                                    appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="height:'+jsObject.uploaddetails[i].height+';width:'+jsObject.uploaddetails[i].width+';"><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+                                    appendHtml +='<li class="gs-w user_upload_part_section_content--inside vid-sec resizable" data-col="1" data-row="1" data-cmd="video" data-sizey="'+jsObject.uploaddetails[i].sizeY+'" data-sizex="'+jsObject.uploaddetails[i].sizeX+'" data-id="'+jsObject.uploaddetails[i].uploadId+'"><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div></li>';
                          } else if(jsObject.uploaddetails[i].uploadType == "image"){
                             
-                                 appendHtml +='<li class="user_upload_part_section_content--inside vid-sec resizable" style="height:'+jsObject.uploaddetails[i].height+';width:'+jsObject.uploaddetails[i].width+';"><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+                                 appendHtml +='<li class="gs-w user_upload_part_section_content--inside vid-sec resizable" data-col="1" data-row="1" data-cmd="video" data-sizey="'+jsObject.uploaddetails[i].sizeY+'" data-sizex="'+jsObject.uploaddetails[i].sizeX+'" data-id="'+jsObject.uploaddetails[i].uploadId+'"><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
                         } else if(jsObject.uploaddetails[i].uploadType == "text"){
-                             appendHtml +='<li class="user_upload_part_section_content--inside vid-sec text-sec resizable" style="height:'+jsObject.uploaddetails[i].height+';width:'+jsObject.uploaddetails[i].width+';"><span><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+                             appendHtml +='<li class="gs-w user_upload_part_section_content--inside vid-sec text-sec resizable" data-col="1" data-row="1" data-cmd="video" data-sizey="'+jsObject.uploaddetails[i].sizeY+'" data-sizex="'+jsObject.uploaddetails[i].sizeX+'" data-id="'+jsObject.uploaddetails[i].uploadId+'"><span><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
                         } else{
 
                         }
@@ -92,11 +92,61 @@ $(function () {
                        
                     //appendHtml+= '</div>';
                 }
-                 appendHtml+= '</ul>';
+                 appendHtml+= '</ul></div>';
                 appendHtml += "</div>";
                 $(".container-of-sections").remove();
                     $(".user_profile_section").prepend(appendHtml);
 
+                    $item = $(".profile-paginator__click.active");
+
+
+                    /* Gridster setup code */
+                    var gridster = $(".gridster ul").gridster({
+                       namespace: '.gridster',
+                        widget_base_dimensions: [182, 181],
+                        widget_margins: [10, 10],
+                        resize: {
+                        enabled: true,
+                        max_size: [2, 2],
+
+        stop: function (e, ui, $widget) {
+            var newDimensions = this.serialize($widget)[0];
+            var width =  newDimensions.size_x;
+            var height =  newDimensions.size_y;
+            var sizeX = "";
+            var sizeY = "";
+                if(height >= 2){
+                    height = 2;
+                    sizeY = "W";
+                } else {
+                     height = 1;
+                     sizeY = "H";
+                }
+                if(width >= 2){
+                    width = 2;
+                    sizeX = "W";
+                } else {
+                     width = 1;
+                     sizeX = "H";
+                }
+
+            var uploadId =  $widget.attr("data-id");
+            $.ajax({
+                type: "POST",
+                //async:false,
+                url: baseUrl + '/profile/savefilestatus',
+                data: {sizeX:sizeX,sizeY:sizeY,uploadId:uploadId},
+                success: function (res) {
+
+                }
+            });
+   
+        }
+    },
+             max_cols: 6
+      
+    }).data('gridster').disable();
+                    
                 /*$(".user_profile_section .container-of-sections").css(fadeOUT).slideUp(1500, function() {
                     $(".user_profile_section").html(appendHtml);
                     $(".user_profile_section .container-of-sections").css(fadeIN).slideUp(1000);

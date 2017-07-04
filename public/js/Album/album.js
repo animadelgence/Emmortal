@@ -45,24 +45,27 @@ $(function () {
                 if(jsObject.uploadDetails[0].userimage !=''){
                     profileimage = jsObject.uploadDetails[0].userimage;
                 }
-                html +='<div class="col-md-12" style="margin:5px;background-color: #fff;margin-left: 21px;"><div class="col-md-1 item active"><img src="'+profileimage+'" style="border-radius: 25px;height:50px;width:50px;margin-top:22px;"alt="" title=""></div><div class="col-md-11 item active"><h2 style="font-size: 20px;">'+jsObject.uploadDetails[0].uploadTitle+'</h2><p>by '+jsObject.uploadDetails[0].username+' on '+jsObject.uploadDetails[0].dateTime+'</p></div></div><div class="col-md-12" style="min-height: 500px;margin-top:10px;padding:0px;"><div class="col-md-6" style="min-height: 200px;"><div class="col-md-12" style="min-height: 200px;margin: 5px;background-color: #fff;border: 1px solid #ddd;"><div class="item active" style="line-height: 1.42857143;background-color: #fff;border: 1px solid #ddd;border-radius: 4px;min-height: 200px;margin: 17px 7px 17px 7px;">';
+                html +='<div class="col-md-12" style="margin:5px;background-color: #fff;margin-left: 21px;"><div class="col-md-1 item active"><img src="'+profileimage+'" style="border-radius: 25px;height:50px;width:50px;margin-top:22px;"alt="" title=""></div><div class="col-md-11 item active"><h2 style="font-size: 20px;">'+jsObject.uploadDetails[0].uploadTitle+'</h2><p>by '+jsObject.uploadDetails[0].username+' on '+jsObject.uploadDetails[0].dateTime+'</p></div></div><div class="col-md-12" style="min-height: 500px;margin-top:10px;padding:0px;"><div class="col-md-6" style="min-height: 200px;"><div class="col-md-12" style="min-height: 200px; margin: 5px;background-color: #fff;border: 1px solid #ddd;border-radius: 15px;"><div class="item active" style="line-height: 1.42857143;background-color: #fff; border: 1px solid #ddd;border-radius: 15px;margin: 6px -9px -3px -10px;overflow: hidden;min-height:186px;">';
                 if (datacmd == 'text') {
                     var textTitle = jsObject.uploadDetails[0].uploadTitle;
                     var textDescription = jsObject.uploadDetails[0].uploadDescription;
                     html += '<p style="margin-left: 10px;margin-top: 5px;font-size: 20px;">' + textTitle + '</p><p style="margin-left: 10px;margin-top: 5px;">' + textDescription + '</p>';
                 } else if (datacmd == 'image') {
                     var imageUrl = jsObject.uploadDetails[0].uploadPath;
-                    html += '<img class="img-responsive" src="' + imageUrl + '" alt="...">';
+                    html += '<img class="" src="' + imageUrl + '" alt="..." style="width:100%">';
                 } else if (datacmd == 'video') {
                     var videoUrl = jsObject.uploadDetails[0].uploadPath;
                     html += '<video controls="controls" name="Video Name" id="" src="' + videoUrl + '" style="width:100%;height:100%;"></video>';
                 }
                 
-              html +='</div></div><div class="col-md-12" style="margin-top: 20px;"><p>'+jsObject.uploadDetails[0].uploadDescription+'</p></div>';
+              html +='</div></div><div class="col-md-12" style="margin-top: 20px;"><ul><li style="margin-top:5px;border-bottom:1px solid #ddd;"><span><img src="/image/like.png"><span> '+jsObject.uploadDetails[0].likeCount+' likes</span></span></li></ul></div>';
                 html +='<div class="col-md-12" style="margin-top:5px;border-bottom:1px solid #ddd;"><p><span>11</span> <strong>Responses</strong></p></div>';
                         html +='<div class="col-md-12" style="margin-top:5px;border-bottom:1px solid #ddd;"><div class="col-md-2 item active" style="padding: 0;"><img src="/image/profile-deafult-avatar.jpg" style="border-radius: 25px;height:50px;width:50px;margin-top:22px;"alt="" title=""></div><div class="col-md-10 item active"><h2 style="font-size: 20px;">commented By</h2><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div></div>';
                 html +='</div>';
-                html +='<div class="col-md-6" style="min-height:200px;"><div class="col-md-12" ><ul><li style="margin-top:5px;border-bottom:1px solid #ddd;"><span><img src="/image/like.png"><span> '+jsObject.uploadDetails[0].likeCount+' likes</span></span></li></ul></div></div></div>';
+                if (datacmd != 'text') {
+                html +='<div class="col-md-6" style="min-height:200px;"><div class="col-md-12" ><p>'+jsObject.uploadDetails[0].uploadDescription+'</p></div></div>';
+                }
+                html +='</div>';
                 if ($('#slidermodal').length > 0) {
                     $('#slidermodal').modal('show');
                     $('#appendDiv').html(html);

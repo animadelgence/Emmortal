@@ -39,15 +39,20 @@ $(document).ready(function () {
     }
     $('body').on('click', '.getTribute', function () {
         var frndId = $(this).data("id"),
+
             textDescription = "";
         //$('#tributeAddModal').modal('show');
-        addtributemodal();
+            addtributemodal();
+
+           var tributeType = $(this).attr('data-cmd');
+        
         if ($("#searchmodal").is(':visible') == true) {
             $('#searchmodal').css('z-index', '0');
         }
         if (frndId != '') {
             $('#friendId').val(frndId);
-            getAlbum(frndId, textDescription);
+            $('#tributeType').val(tributeType);
+            getAlbum(frndId, textDescription,tributeType);
         } else {
             $('#tribute-add-btn').hide();
         }
@@ -55,6 +60,7 @@ $(document).ready(function () {
     $('body').on('click', '#publishFriendTribute', function () {
         var flag = 0,
             frndId = $('#friendId').val(),
+            tributeType = $('#tributeType').val(),
             editor = CKEDITOR.instances.friendtributeDescription,
             textDescription = CKEDITOR.instances.friendtributeDescription.getData();
         if (textDescription == '') {
@@ -69,33 +75,36 @@ $(document).ready(function () {
             $('#cke_friendtributeDescription').removeClass('error-class');
         }
         if (flag == 0) {
-            getAlbum(frndId, textDescription);
+            getAlbum(frndId, textDescription,tributeType);
             $('.close').trigger('click');
             $(".welcome").show();
             $(".closebtn").css('color', 'green');
             $(".showmsg").html("<span>Tribute record was successfully added</span>");
         }
     });
-    $("#tributeAddModal").on("hidden.bs.modal", function () {
+    $('body').on("hidden.bs.modal", '#tributeAddModal', function () {
         if ($("#searchmodal").is(':visible') == true) {
             $('#searchmodal').css('z-index', '99999');
             $('#searchmodal').css('position', 'absolute');
             $('#searchmodal').css('overflow', 'visible');
         }
     });
-    $("#friendTributeAddModal").on("hidden.bs.modal", function () {
+    $('body').on("hidden.bs.modal", '#friendTributeAddModal', function () {
         $('#tributeAddModal').css('z-index', '99999');
     });
 
-    function getAlbum(frndId, textDescription) {
+    function getAlbum(frndId, textDescription,tributeType) {
+        //$('#tributeloader').css('display','block');
         $.ajax({
             type: "POST",
             url: base_url_dynamic + '/tribute/gettribute',
             data: {
                 description: textDescription,
-                frndId: frndId
+                frndId: frndId,
+                tributeType: tributeType
             },
             success: function (res) {
+                alert(res);
                 $('.offcanvas-comments').css("height", "100%");
                 jsObject = JSON.parse(res);
                 $('#totalTribute').html(jsObject.tributeDetails.length);
@@ -119,6 +128,7 @@ $(document).ready(function () {
                 }
             }
         });
+        $('#tributeloader').css('display','none');
     }
 
 });

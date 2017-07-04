@@ -127,4 +127,23 @@ $(document).ready(function () {
             $('#uploadTab').show();
     });
 
+//    $('body').on('click', '#imgAppend ul li strong a', function (event) {
+//        event.preventDefault();
+//        event.stopPropagation();
+//        return false;
+//    });
+
+    $('body').on('click', '#imgAppend ul li strong a img', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+//        alert($(this).attr('src'));
+        var imgSrc = $(this).attr('src');
+        $('#imgSrc').val(imgSrc);
+    });
+
+     $('body').on('click', '.save', function () {
+        var imgSrc = $('#imgSrc').val();
+        $('#upload_prev').html("<img src='"+imgSrc+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
+     });
+
 });

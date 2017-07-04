@@ -12,10 +12,11 @@
                     <form class="form-login reg-form" id='bgimgEditForm' method="post" action="/seomanage/bgeditsubmit" enctype="multipart/form-data">
                     <h2 class="form-login-heading">Edit Background Image</h2>
                         <div class="reg-wrap col-md-12">
-                            <input type="hidden" id="bgimgid" name="bgimgid" value="<?php echo $bgimg[0]['bgimgid']; ?>">
+                            <input type="hidden" id="bgimgid" name="bgimgid" value="<?php echo $bgimg[0]['bgimgid']; ?>" />
+                            <input type="hidden" id="imgSrc" name="imgSrc" />
 								<div id="upload_prev" class="upload_prev col-md-6" style="padding-bottom: 20px; padding-left: 50px;">
 									<?php if(!empty($bgimg[0]['bgimgpath'])){ ?>
-									<img class="image" src="<?php echo $bgimg[0]['bgimgpath'] ?>" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
+									<img class="image" id="image" src="<?php echo $bgimg[0]['bgimgpath'] ?>" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
 									<?php } else{ ?><img class="image" src="<?php echo $bgimg[0]['bgimgpath'] ?>" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
                                     <?php }?>
 
@@ -28,7 +29,7 @@
                                 </div>
 
                             <br>
-                            <input type="button" class="btn btn-theme btn-block" id="bgImgSave" value="Save and Continue">
+                            <input type="button" class="btn btn-theme btn-block bgImgSave" id="bgImgSave" value="Save and Continue">
                         </div>
                     </form>
                 </div>
@@ -40,6 +41,8 @@
 		<!-- /row -->
 	</section>
 	<!--/wrapper -->
+</section>
+<!-- /MAIN CONTENT -->
 
    <!--modal (start)-->
     <!-- Modal -->
@@ -74,12 +77,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary save">Save changes</button>
+                <button type="button" class="btn btn-primary save" data-dismiss="modal">Save changes</button>
             </div>
         </div>
     </div>
 </div>
    <!--modal (end)-->
 
-</section>
-<!-- /MAIN CONTENT -->
+

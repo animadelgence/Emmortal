@@ -24,6 +24,7 @@
                             'UID' => $rSet->UID,
                             'description' => $rSet->description,
                             'friendsid' => $rSet->friendsid,
+                            'uploadId' => $rSet->uploadId,
                             'addeddate' => $rSet->addeddate,
                         );
             }
@@ -43,6 +44,7 @@
                             'UID' => $rSet->UID,
                             'description' => $rSet->description,
                             'friendsid' => $rSet->friendsid,
+                            'uploadId' => $rSet->uploadId,
                             'addeddate' => $rSet->addeddate,
                             'userid' => $rSet->userid,
                             'emailid' => $rSet->emailid,

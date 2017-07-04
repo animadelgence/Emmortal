@@ -13,6 +13,7 @@
                         <textarea name="friendtributeDescription" id="friendtributeDescription" class="form-control" style="height:200px;"></textarea>
                         <span id="friendtributeDescriptionError" style="color:red;display:none;">Required</span>
                         <input type="hidden" name="friendId" id="friendId" value="">
+                        <input type="hidden" name="tributeType" id="tributeType" value="">
                      </div>
                  </div>
                 </div>

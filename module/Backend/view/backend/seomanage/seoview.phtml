@@ -48,10 +48,13 @@
 									style=""><?php echo strtolower($val['seometadescription']); ?>
 								</span></td>
                                 <td class="hidden-phone profileImg"><span class="profileImg"
-									style="padding: 5px; font-weight: bold;"><img src="<?php echo $val['seoOGimagepath'];?>"  height="100px" width="100px" />
-								</span></td>
+									style="padding: 5px; font-weight: bold;">
+                                    <?php if(@getimagesize($val['seoOGimagepath'])) { echo '<img src="'.$val["seoOGimagepath"].'"  height="100px" width="100px">';
+                } else {?><i class='fa fa-picture-o' aria-hidden='true' style="font-size: 8em;"></i><?php  } ?></span></td>
+
                                 <td class="hidden-phone profileImg"><span class="profileImg"
-									style="padding: 5px; font-weight: bold;"><img src="<?php echo $val['seoFaviconimagepath'];?>"  height="100px" width="100px" />
+									style="padding: 5px; font-weight: bold;"><?php if(@getimagesize($val['seoFaviconimagepath'])) { echo '<img src="'.$val["seoFaviconimagepath"].'"  height="100px" width="100px">';
+                } else {?><i class='fa fa-picture-o' aria-hidden='true' style="font-size: 8em;"></i><?php  } ?>
 								</span></td>
                                 <td class="hidden-phone"><?php echo $val['creationDate'];?></td>
                                 <input type="hidden"  class="hidden_class" value="<?php echo $val['seoid']; ?>" />

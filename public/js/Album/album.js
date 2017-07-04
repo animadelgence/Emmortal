@@ -42,25 +42,31 @@ $(function () {
             success: function (res) {
                 jsObject = JSON.parse(res);
                 var profileimage = "/image/profile-deafult-avatar.jpg";
-                if(jsObject.uploadDetails[0].userimage !=''){
-                    profileimage = jsObject.uploadDetails[0].userimage;
-                }
-                html +='<div class="col-md-12" style="margin:5px;background-color: #fff;margin-left: 21px;"><div class="col-md-1 item active"><img src="'+profileimage+'" class="profileImageDiv"alt="" title=""></div><div class="col-md-11 item active"><h2 style="font-size: 20px;">'+jsObject.uploadDetails[0].uploadTitle+'</h2><p>by '+jsObject.uploadDetails[0].username+' on '+jsObject.uploadDetails[0].dateTime+'</p></div></div><div class="col-md-12 mainDiv" style=""><div class="col-md-6"><div class="col-md-12 zoomIn zoomDiv"><div class="item active zoonChild">';
+                html +='<div class="col-md-12" style="margin:5px;background-color: #fff;margin-left: 21px;"><div class="col-md-1 item active"><img src="'+jsObject.uploadDetails[0].userimage+'" onerror="this.src=\''+profileimage+'\'" class="profileImageDiv"alt="" title=""></div><div class="col-md-11 item active"><h2 style="font-size: 20px;">'+jsObject.uploadDetails[0].uploadTitle+'</h2><p>by '+jsObject.uploadDetails[0].username+' on '+jsObject.uploadDetails[0].dateTime+'</p></div></div><div class="col-md-12 mainDiv" style=""><div class="col-md-6"><div class="col-md-12 zoomIn zoomDiv"><div class="item active zoonChild">';
                 if (datacmd == 'text') {
                     var textTitle = jsObject.uploadDetails[0].uploadTitle;
                     var textDescription = jsObject.uploadDetails[0].uploadDescription;
                     html += '<p style="margin-left: 10px;margin-top: 5px;font-size: 20px;">' + textTitle + '</p><p style="margin-left: 10px;margin-top: 5px;">' + textDescription + '</p>';
                 } else if (datacmd == 'image') {
+                    var errorImage="/image/NoPhotoDefault.png";
                     var imageUrl = jsObject.uploadDetails[0].uploadPath;
-                    html += '<img class="" src="' + imageUrl + '" alt="..." style="width:100%;height:100%;">';
+                    html += '<img class="" src="' + imageUrl + '" alt="..." style="width:100%;height:100%;" onerror="this.src=\''+errorImage+'\'">';
                 } else if (datacmd == 'video') {
                     var videoUrl = jsObject.uploadDetails[0].uploadPath;
                     html += '<video controls="controls" name="Video Name" id="" src="' + videoUrl + '" style="width:100%;height:100%;"></video>';
                 }
                 
-              html +='</div></div><div class="col-md-12" style="margin-top: 20px;"><ul><li class="liLikeCount"><span><img src="/image/like.png"><span> '+jsObject.uploadDetails[0].likeCount+' likes</span></span></li></ul></div>';
-                html +='<div class="col-md-12 likeNo" style=""><p><span>11</span> <strong>Responses</strong></p></div>';
-                        html +='<div class="col-md-12" style="margin-top:5px;border-bottom:1px solid #ddd;"><div class="col-md-2 item active" style="padding: 0;"><img src="/image/profile-deafult-avatar.jpg" style="border-radius: 25px;height:50px;width:50px;margin-top:22px;"alt="" title=""></div><div class="col-md-10 item active"><h2 style="font-size: 20px;">commented By</h2><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div></div>';
+              html +='</div></div><div class="col-md-12" style="margin-top: 20px;"><ul><li class="liLikeCount"><span class="';
+                if(jsObject.uploadDetails[0].sessionId !=null){
+                    html +='likeClick';
+                } else{
+                    html +='NoSessionlikeClick';
+                }
+              html += '"  data-id="'+uploadId+'" data-cmd=""><i class="fa fa-heart" aria-hidden="true" style="width: 30px;font-size: 21px;color: #827878;cursor:pointer;"></i><span><span id="lkcnt"> '+jsObject.uploadDetails[0].likeCount+'</span> likes</span></span></li></ul></div>';
+                html +='<div class="col-md-12 likeNo" style=""><p><span>'+jsObject.uploadDetails[0].tributeDetails.length+'</span> <strong>Responses</strong></p></div>';
+                for(var j=0; j<jsObject.uploadDetails[0].tributeDetails.length; j++){
+                        html +='<div class="col-md-12" style="margin-top:5px;border-bottom:1px solid #ddd;"><div class="col-md-2 item active" style="padding: 0;"><img src="'+jsObject.uploadDetails[0].tributeDetails[j].profileImage+'" style="border-radius: 25px;height:50px;width:50px;margin-top:22px;"alt="" title="" onerror="this.src=\''+profileimage+'\'"></div><div class="col-md-10 item active"><h2 style="font-size: 20px;">'+jsObject.uploadDetails[0].tributeDetails[j].profileName+'</h2><p>'+jsObject.uploadDetails[0].tributeDetails[j].tributeDescription+'</p></div></div>';
+                }
                 html +='</div>';
                 if (datacmd != 'text') {
                 html +='<div class="col-md-6" style="min-height:200px;" id="dploadDescriptionDiv"><div class="col-md-12" ><p>'+jsObject.uploadDetails[0].uploadDescription+'</p></div></div>';
@@ -93,6 +99,9 @@ $(function () {
                 $("#dploadDescriptionDiv").removeClass('descZoom');
             }
         }
+    });
+    $('body').on('click', '.NoSessionlikeClick', function () {
+        alert("Please Log In To Like This");
     });
 
     $('body').on('click', '#nextDivContent', function () {

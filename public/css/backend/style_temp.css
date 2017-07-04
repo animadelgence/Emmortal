@@ -2686,4 +2686,7 @@ border-radius: 5px 5px 0 0;
     height: auto;
     padding: 6px 15px;
 }
-
+.login-navbar-logo__anchor:hover, .login-navbar-logo__anchor:focus {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}

@@ -126,7 +126,7 @@
             var videotextDescription = CKEDITOR.instances['videotextDescription'].getData();
         var friendsId = [];
         var albumId = $(".AID-class" ).val();
-            var pageURL = $(location).attr("href");
+            var pageURL = window.location.href;
             if (pageURL.indexOf('profile/showprofile') > -1) {
                   var currentPageId = $("#currentPageId").val();
                 } else{
@@ -202,10 +202,11 @@
                     if(res == 1){
 
 
-                         if (pageURL.indexOf('profile/showprofile') > -1) {
+                         if (currentPageId != "") {
                              $('.modal').modal('hide');
                               $(".profile-paginator__click.active").trigger("click");
                             } else{
+                               
                                 window.location.href = baseURL + "/profile/showprofile";
                             }
 

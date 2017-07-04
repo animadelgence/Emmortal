@@ -28,11 +28,15 @@ $(document).ready(function () {
                 id: id
             },
             success: function (res) {
-                $likeClick.text(res);
-                if (parseInt(likevalue, 10) < parseInt(res, 10)) {
-                    $likeClick.css('background', '#b4504e');
-                } else {
-                    $likeClick.css('background', '#aaa897');
+                if($("#lkcnt").is(':visible') == true){
+                    $("#lkcnt").text(res);
+                } else{
+                    $likeClick.text(res);
+                    if (parseInt(likevalue, 10) < parseInt(res, 10)) {
+                        $likeClick.css('background', '#b4504e');
+                    } else {
+                        $likeClick.css('background', '#aaa897');
+                    }
                 }
             }
         });

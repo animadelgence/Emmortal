@@ -3,8 +3,8 @@
         <div class="container">
             <div class="row">
                 <div class="layout">
-                       <!--  <div class="content-wrapper user_profile_section"> -->
-                            <!-- <div class="container-of-sections "> -->
+                        <div class="content-wrapper user_profile_section">
+                         <div class="container-of-sections ">
                              <div class="gridster ready">
                               <ul class="outer-wrap">
                                   <?php if (!@getimagesize($userDetails[0]['profileimage'])) { ?>
@@ -43,7 +43,7 @@
                                             
                                            }
                                         }
-                                       // echo "</div>";
+                                       echo "</div>";
                                     }else{ ?>
                             <li class="user_upload_part_section">
                                 <div data-target="#uploadModal" data-toggle="modal" class="fa fa-plus add-page-plus-icon"></div>
@@ -57,7 +57,7 @@
                           </ul>
                         </div>
 
-              <!-- </div> -->
+              </div>
                             <?php if(count($pageDetails)>1){ ?>
    <div class="profile-paginator">
       <ul>

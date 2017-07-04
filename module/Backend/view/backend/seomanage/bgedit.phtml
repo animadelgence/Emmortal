@@ -21,8 +21,10 @@
                                     <?php }?>
 
 								</div>
-                                <label id="errorImg1" style="margin-left: 10px;"></label><!--img extnsn valid-->
-								<label id="errorImg2" style="margin-left: 70px;"></label><!--img size(>1MB) valid-->
+<!--
+                                <label id="errorImg1" style="margin-left: 10px;"></label>img extnsn valid
+								<label id="errorImg2" style="margin-left: 70px;"></label>img size(>1MB) valid
+-->
 <!--                                <input type="file" class="form-control" name="fileupload" id="fileupload" style='height: 30%;' required />-->
                                 <div class="col-md-6">
                                     <button type="button" class="btn btn-primary btn-lg modBtn" data-toggle="modal" data-target="#myModal">Choose Image</button>
@@ -60,21 +62,47 @@
                 <div role="tabpanel">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active" id="upload"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">My Image</a>
+                        <li role="presentation" class="active" id="upload"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">MY IMAGES</a>
 
                         </li>
-                        <li role="presentation" id="browse"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Pattern</a>
+                        <li role="presentation" id="browse"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">PATTERNS</a>
 
                         </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="uploadTab">upload Tab</div>
+                        <div role="tabpanel" class="tab-pane active" id="uploadTab">
+                          <div class="col-md-12">
+<!--
+                            <div id="img_prev" class="img_prev col-md-6" style="padding-bottom: 20px; padding-left: 50px;">
+									<img class="imgPrev" id="imgPrev" src="" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
+				            </div>
+-->
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <label class="uploadbtn">Upload Image</label>
+                                    <input type="file" class="form-control uploadbtn-input-file" name="fileupload" id="fileupload" style='height: 30%;' required />
+                                </div>
+                                <div id="img_prev" class="img_prev col-sm-6" style="padding-left: 60px;">
+									<img class="imgPrev" id="imgPrev" src="" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
+                                 </div>
+                                    <label id="errorImg1" class="col-sm-6" style="top: 15px;"></label><!--img extnsn valid-->
+<!--                                    style="margin-left: 10px;"-->
+                                    <label id="errorImg2" class="col-sm-6" style="top: 15px;"></label><!--img size(>1MB) valid-->
+                                    <!-- style="margin-left: 70px;"-->
+
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4"></div>
+                          </div><!-- /col-md-12 -->
+                        </div><!-- /uploadTab -->
+
                         <div role="tabpanel" class="tab-pane col-sm-12 browseTab" id="browseTab">
-                        <div class="imgAppend" id="imgAppend"></div><!-- style="display: block; background-color: #f7f7f7; margin-bottom: 10px;"  -->
-                    </div>
+                        <div class="imgAppend" id="imgAppend"></div>
+                        </div>
+                   </div>
                 </div>
-            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary save" data-dismiss="modal">Save changes</button>

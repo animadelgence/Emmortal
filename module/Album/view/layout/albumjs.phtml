@@ -38,7 +38,7 @@ switch ($controller) {
         break;
 }
 echo $this->headScript()
-
+        ->prependFile($this->basePath() . '/js/Album/albumpublish.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/tributemodal.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Album/videomodal.js?version=' . $t)
         

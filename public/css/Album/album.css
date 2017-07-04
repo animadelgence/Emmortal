@@ -1,0 +1,19 @@
+.albumcontainer {
+    border: 1px solid;
+    left: 6%;
+    margin-top: 81px;
+    position: relative;
+    margin-bottom: 5%;
+    width: 86%;
+}
+.edit-menu-album{
+	cursor: pointer;
+    display: table;
+    height: 52px;
+    text-align: center;
+    width: 52px;
+}
+.heightwidthclass{
+	height:52 px;
+	width: 52 px;
+}

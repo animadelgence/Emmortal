@@ -104,7 +104,7 @@ $(document).ready(function () {
                 tributeType: tributeType
             },
             success: function (res) {
-                alert(res);
+                $('#tributeloader').css('display','none');
                 $('.offcanvas-comments').css("height", "100%");
                 jsObject = JSON.parse(res);
                 $('#totalTribute').html(jsObject.tributeDetails.length);
@@ -128,7 +128,7 @@ $(document).ready(function () {
                 }
             }
         });
-        $('#tributeloader').css('display','none');
+        
     }
 
 });

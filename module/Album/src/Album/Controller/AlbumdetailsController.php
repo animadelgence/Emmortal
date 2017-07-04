@@ -117,6 +117,26 @@ class AlbumdetailsController extends AbstractActionController {
             } else{
                 $time = date("H:i",strtotime($rSet['TimeStamp']))."AM";
             }
+            $join = 'tributedetails.UID = user.userid';
+            $condition = array('tributedetails.uploadId'=>$rSet['uploadId']);
+            $tribute = $modelPlugin->gettributedetailsTable()->joinquery($condition,$join);
+            $tributeDetails = array();
+            foreach($tribute as $result){
+                $where = array('TID'=>$result['tributesid']);
+                $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+                $like = count($likeDetails);
+                $tributeDetails[] = array(
+                        'tributesid' => $result['tributesid'],
+                        'UID' => $result['UID'],
+                        'profileName' => $result['firstname']." ".$result['lastname'],
+                        'profileImage'=>$result['profileimage'],
+                        'tributeDescription'=>$result['description'],
+                        'shortDescription'=>substr($result['description'],0,20).'...',
+                        'friendsid'=>$result['friendsid'],
+                        'like'=>$like,
+                        'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
+                    );
+            }
             $array[] = array(
                 'uploadTitle' => $rSet['uploadTitle'],
                 'uploadDescription' => $rSet['uploadDescription'],
@@ -125,7 +145,9 @@ class AlbumdetailsController extends AbstractActionController {
                 'username' => $rSet['firstname']." ".$rSet['lastname'],
                 'userimage' => $rSet['profileimage'],
                 'userid'=>$rSet['userid'],
-                'likeCount'=>$likeCount
+                'likeCount'=>$likeCount,
+                'tributeDetails'=>$tributeDetails,
+                'sessionId'=>$this->sessionid
             );
           }
         $res['uploadDetails'] = $array;

@@ -198,16 +198,11 @@ $(document).ready(function () {
                     //alert(res);
                     if(res == 1){
 
-
-                         if (base_url_dynamic.indexOf('profile/showprofile') > -1) {
-                                $('.modal').modal('hide');
-                                $(".profile-paginator__click").trigger("click");
-                            } else{
-                                window.location.href = base_url_dynamic + "/profile/showprofile";
+                                window.location.href = base_url_dynamic + "/createalbum/showafterpublish";
                             }
 
                     }
-                }
+                
         });
         }
     });
@@ -229,36 +224,7 @@ $(document).ready(function () {
     
 
 });
-/*var featheralbumEditor = new Aviary.Feather({
-    apiKey: 'mykey',
-    apiVersion: 2,
-    openType: 'lightbox',
-    tools: 'all',
-    onSave(): function (imageID, newURL) {
-        alert(newURL);
-        $("#aviaryPathalbum").val(newURL);
-        $("#album_pic_thumb").attr('src', newURL);
-        var originalFile = $('#albumPath').val();
-        $.ajax({                        // for unlinking the file from the temporary folder
-                type: "POST",
-                url: base_url_dynamic + '/createalbum/removealbum',
-                data: {
-                    removeimage : originalFile
-                },
-                success: function (res) {
-                    console.log('removed image');
-                }
-        });
-    }
-});
-function launchalbumaviaryEditor(id, src){
-    alert(53678);
-    featheralbumEditor.launch({
-        image: id,
-        url: src
-    });
-    return false;
-}*/
+
 function albumClick()
 {
     $('#uploadModal').modal('show');

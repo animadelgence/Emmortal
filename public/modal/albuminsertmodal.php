@@ -64,10 +64,10 @@
                         <textarea name="albumtextDescription" id="albumtextDescription" class="form-control" style="height:1000px;"></textarea>
                         <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>
                      </div>
-                     <div class="col-sm-4 ">
+                     <div class="col-sm-5 ">
                         <div id="div-editphoto" class="hostt">
                         <!--<tags-input class="e-tags-input ">-->
-                        	<div style="margin-top: -5px;" class="tags">
+                        	<div style="margin-top: 4px;" class="tags">
                                 <ul class="input"></ul>
                                 <input id="imgbtnEditPhoto" type="image" src="http://advanced.aviary.com/images/feather/edit-photo.png" value="Edit photo" onclick="return launchEditor('profile_pic_thumb');" style="padding: 10px;"/>
                             </div>
@@ -118,8 +118,8 @@
             </div>
             <div class="modal-footer text-right">
                <span class="" style="padding-right: 15px;">
-               <button type="button" class="btn e-btn btn-default" onclick="albumClick();">Cancle</button>
-               <button type="submit" class="btn e-btn btn-primary" id = "savealbumDetails">Save</button>
+               <button type="button" class="btn e-btn btn-default" onclick="albumClick();">Back</button>
+               <button type="submit" class="btn e-btn btn-primary" id = "savealbumDetails">Publish</button>
                </span>
             </div>
             <!--</form>-->

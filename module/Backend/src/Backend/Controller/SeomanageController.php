@@ -80,13 +80,13 @@ namespace Backend\Controller;
               $dynamicPath  = $plugin->dynamicPath();
               $jsonArray    = $plugin->jsondynamic();
 		      $currentPageURL = $plugin->curPageURL();
-              $id = $_POST['bgimgid'];
+//              $id = $_POST['bgimgid'];
               $filename = $_FILES['fileupload']['name'];
-              echo $filename; exit;
+//              echo $filename; exit;
               $bgimgpath = $dynamicPath."/upload/bgimg/".$filename;
-              $where = array('bgimgid'=>$id);
-              $data = array('bgimgpath'=>$bgimgpath);
-              $imgUpdate = $modelPlugin->getbgimageTable()->updateData($data,$where);
+//              $where = array('bgimgid'=>$id);
+//              $data = array('bgimgpath'=>$bgimgpath);
+//              $imgUpdate = $modelPlugin->getbgimageTable()->updateData($data,$where);
 
               //upload in bgimg folder(start)
               $href              = explode("/", $currentPageURL);
@@ -109,9 +109,20 @@ namespace Backend\Controller;
                   }
 
               $result = $uploadPlugin->bgimgedit($tmp_name , $fileName);
+              echo $bgimgpath; exit;
               //upload in bgimg folder(end)
 
-              return $this->redirect()->toRoute('seomanage', array(
+     }
+     public function bgimgupdateAction(){
+            $modelPlugin  = $this->modelplugin();
+            $plugin       = $this->routeplugin();
+            $dynamicPath  = $plugin->dynamicPath();
+            $id = $_POST['bgimgid'];
+            $where = array('bgimgid'=>$id);
+            $imgPath = $_POST['imgSrc'];
+            $data = array('bgimgpath'=>$imgPath);
+            $imgUpdate = $modelPlugin->getbgimageTable()->updateData($data,$where);
+            return $this->redirect()->toRoute('seomanage', array(
 				      'controller' => 'seomanage',
 				      'action'     => 'seoview'));
 

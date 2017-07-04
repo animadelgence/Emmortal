@@ -11,6 +11,7 @@
                <form method="post" action="/authlogin/login" enctype="multipart/form-data" name="nameform" id="login_form">
                   <div class="form-group  full-width">
                      <input type="text" class="form-control" id="loginemail" placeholder="Email">
+                     <span id = "loginEmailError" class='error'>Invalid email or password.</span>
                   </div>
                   <div class="form-group full-width">
                      <input type="password" class="form-control" id="loginpassword" placeholder="Password">
@@ -20,7 +21,7 @@
                </form>
                <div class="modal-footersec">
                   <div class="button-div">
-                     <a class="modal-button" id="signinbutton">Sign IN</a> 
+                     <button class="modal-button" id="signinbutton" disabled="disabled">Sign IN</button> 
                      <div class="alertmesage_signin" style="display: none;"></div>
                   </div>
                   <p>Don't have an account? Please,  <a id="signup" class="link-color" data-toggle="modal" data-target="#squarespaceModal" onclick="$('.close').trigger('click');" style="cursor: pointer;">Sign Up</a></p>

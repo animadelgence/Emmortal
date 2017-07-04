@@ -2664,9 +2664,27 @@ border-radius: 5px 5px 0 0;
     border-color: #827657 !important;
     color: #fff !important;
 }
-
 .bgImgSave:active, .bgImgSave:hover{
     background-color: #827657 !important;
     border-color: #b6b6b6 !important;
     color: #fff !important;
+
 }
+/*admin login*/
+
+.login-navbar-logo {
+    position: fixed;
+    background: rgba(86, 67, 17, 0.45) none repeat scroll 0 0;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.login-navbar-logo__anchor {
+    color: rgb(255, 255, 255);
+    float: left;
+    font-size: 18px;
+    height: auto;
+    padding: 6px 15px;
+}
+

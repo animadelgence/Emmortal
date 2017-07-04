@@ -113,7 +113,6 @@ $(document).ready(function () {
     			appendStructure += jsObject[i];
 			});
             appendStructure+="</ul>";
-            //$('#browseTab').append(appendStructure);
             $('#imgAppend').html(appendStructure);
             });
 
@@ -123,6 +122,8 @@ $(document).ready(function () {
     });
 
     $('body').on('click','#upload',function(){
+
+        // code for appending user uploaded images
             $('#browseTab').hide();
             $('#upload').show();
             $('#uploadTab').show();

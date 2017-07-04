@@ -1124,3 +1124,53 @@ body {
     color: #999; 
     background: #fffccc; 
 }
+.zoomIn{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    height: 300px;
+    width: 360px;
+    padding: 0px;
+    cursor: zoom-in;  
+}
+.zoomOut{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    height: 500px;
+    width: 746px;;
+    padding: 0px;
+    cursor: zoom-out;
+}
+.zoonChild{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 98%;
+    height: 97%;
+    display: block;
+    margin: 5px;
+}
+.descZoom{
+    top:530px;
+}
+.profileImageDiv{
+    border-radius: 25px;
+    height:50px;
+    width:50px;
+    margin-top:22px;
+}
+.mainDiv{
+    min-height: 500px;
+    margin-top:10px;
+    padding:0px;
+}
+.liLikeCount{
+    margin-top:5px;
+    border-bottom:1px solid #ddd;
+}
+.likeNo{
+    margin-top:5px;
+    border-bottom:1px solid #ddd;
+}

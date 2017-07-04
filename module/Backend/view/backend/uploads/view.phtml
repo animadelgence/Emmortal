@@ -57,7 +57,7 @@
 									style=""><?php echo strip_tags($val['uploadDescription']); ?>
 								</span></td>
                                 <td class="hidden-phone uploadPath">
-                                    <?php if(($val['uploadType'] == "image") || ($val['uploadType'] == "video")){ ?><span class="uploadPath" style="padding: 5px; font-weight: bold;"><?php if (@getimagesize($val['uploadPath'])) { ?><img src="<?php echo $val['uploadPath'] ?>"  height="100px" width="100px" /><?php }else{ ?><i class="fa fa-frown-o" aria-hidden="true" style="font-size:50px;"></i><?php } ?>
+                                    <?php if(($val['uploadType'] == "image") || ($val['uploadType'] == "video")){ ?><span class="uploadPath" style="padding: 5px; font-weight: bold;"><?php if (@getimagesize($val['uploadPath'])) { ?><img src="<?php echo $val['uploadPath'] ?>"  height="100px" width="100px" /><?php }else{ ?><i class='fa fa-picture-o' aria-hidden='true' style="font-size: 5em;"></i><?php } ?>
 
 								    </span> <?php } else{?>
                                     <span class="uploadPath"><div style="margin-left: 5px; height: 100px; width: 100px;font-size: 10px;font-weight: bold; border: 1px solid lightgray; background-color: #fff; color: #726971 !important; overflow: hidden; padding-left: 5px;"><?php echo strip_tags($val['uploadTitle'])."<br/>"."<br/>".strip_tags($val['uploadDescription']);?></div></span><?php }?>

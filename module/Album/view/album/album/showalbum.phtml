@@ -2,9 +2,7 @@
    <div class="container">
       <div class="row">
          <div class="layout">
-            <div id='loader-icon' style="display: none;">
-    <img src='<?php echo $dynamicPath; ?>/image/load3.gif' alt="loader" />
-</div>
+
 <input type="hidden" id="isAjaxStart" value=0 />
 <input type="hidden" id="checker" value=1 />
 <input type="hidden" id="counterOfTheTemplate" value=0 />
@@ -31,7 +29,7 @@
 
                                          if($uploadDetails[$i]['uploadType'] == "text"){
 
-                                             echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="text">
+                                             echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="text" data-id="'.$uploadDetails[$i]['uploadId'].'">
                                              <span><label name="text Name"><p>'.$uploadDetails[$i]['uploadTitle'].'</p><p>'.$uploadDetails[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div>
 
 
@@ -45,7 +43,7 @@
                                                   $uploadedImage = $dynamicPath."/image/NoPhotoDefault.png";
                                               }
 
-                                              echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="image">
+                                              echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="image" data-id="'.$uploadDetails[$i]['uploadId'].'">
                                               <span><img name="ImageName" id="" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div>
 
 
@@ -54,7 +52,7 @@
                                           }
                                            else if($uploadDetails[$i]['uploadType'] == "video"){
 
-                                                echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="video">
+                                                echo ' <li class="gs-w previewUploadedFile" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="video" data-id="'.$uploadDetails[$i]['uploadId'].'">
                                                 <span><video controls="controls" name="Video Name" id="" src="'.$uploadDetails[$i]['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div>
 
 
@@ -71,10 +69,18 @@
 
           
                 </ul>
+                  <div id='loader-icon' style="display: none;">
+    <img src='<?php echo $dynamicPath; ?>/image/load3.gif' alt="loader" />
+    <p>Loading more widgets...</p>
+</div>
             </div>
         
          </div>
+
          </div>
+
+
+
       </div>
 <ul class="clickme" style="display:none"></ul>
 </section>

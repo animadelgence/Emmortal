@@ -110,7 +110,7 @@ $(document).ready(function () {
         var imageDescription = CKEDITOR.instances['imagetextDescription'].getData();
         var friendsId = [];
         //var pageId = $('#currentPageId').val();
-        var pageURL = window.location.origin;
+        var pageURL = window.location.href;
         if (pageURL.indexOf('profile/showprofile') > -1) {
           var currentPageId = $("#currentPageId").val();
         } else {
@@ -208,9 +208,9 @@ $(document).ready(function () {
                     if(res == 1){
 
 
-                         if (pageURL.indexOf('profile/showprofile') > -1) {
+                         if (currentPageId != '') {
                                 $('.modal').modal('hide');
-                                $(".profile-paginator__click").trigger("click");
+                                $(".profile-paginator__click.active").trigger("click");
                             } else{
                                 window.location.href = base_url_dynamic + "/profile/showprofile";
                             }

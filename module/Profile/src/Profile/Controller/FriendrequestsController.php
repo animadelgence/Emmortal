@@ -26,6 +26,8 @@ class FriendrequestsController extends AbstractActionController {
         $query = $this->sessionid;
         $userdetails = $modelPlugin->getuserTable()->fetchallData($query);
         $array = array();
+        $friendlikes = '';
+        $noOfTributes = '';
         $userid = $this->sessionid;
         $param = $_POST['param'];
         foreach ($userdetails as $rSet) {
@@ -36,7 +38,15 @@ class FriendrequestsController extends AbstractActionController {
             $recfrndCon      = array('friends.friendsid'=>$userid,'friends.userid'=>$frndid);
             $recfrndJoin     = "friends.userid = user.userid";
             $recfrndDetails  = $modelPlugin->getfriendsTable()->joinquery($recfrndCon,$recfrndJoin);
+            
             if(count($sendfrndDetails)>0){
+                
+                $where = array(
+                        'UID' => $sendfrndDetails[0]['friendsid']
+                    );
+                $friendlikes = count($modelPlugin->getlikesdetailsTable()->fetchall($where));
+                $noOfTributes = count($modelPlugin->gettributedetailsTable()->fetchall($where));
+                
                 if($sendfrndDetails[0]['requestaccept'] == 1){
                     $status = "Accepted";
                 } else{
@@ -47,6 +57,8 @@ class FriendrequestsController extends AbstractActionController {
                     'friendsid'     => $sendfrndDetails[0]['friendsid'],
                     'friendsname'   => $sendfrndDetails[0]['firstname']." ".$sendfrndDetails[0]['lastname'],
                     'profileimage'  => $sendfrndDetails[0]['profileimage'],
+                    'friendslikes'  => $friendlikes,
+                    'noOfTributes'  => $noOfTributes,
                     'status'        => $status
                 );
                 }
@@ -55,10 +67,19 @@ class FriendrequestsController extends AbstractActionController {
                             'friendsid'     => $sendfrndDetails[0]['friendsid'],
                             'friendsname'   => $sendfrndDetails[0]['firstname']." ".$sendfrndDetails[0]['lastname'],
                             'profileimage'  => $sendfrndDetails[0]['profileimage'],
+                            'friendslikes'  => $friendlikes,
+                            'noOfTributes'  => $noOfTributes,
                             'status'        => $status
                         );
                 }
             } else if(count($recfrndDetails)>0){
+                
+                $where = array(
+                        'UID' => $recfrndDetails[0]['userid']
+                    );
+                $friendlikes = count($modelPlugin->getlikesdetailsTable()->fetchall($where));
+                $noOfTributes = count($modelPlugin->gettributedetailsTable()->fetchall($where));
+                
                 if($recfrndDetails[0]['requestaccept'] == 1){
                     $status = "Accepted";
                 } else{
@@ -71,6 +92,8 @@ class FriendrequestsController extends AbstractActionController {
                             'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
                             'profileimage'  => $recfrndDetails[0]['profileimage'],
                             'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'friendslikes'  => $friendlikes,
+                            'noOfTributes'  => $noOfTributes,
                             'status'        => "Declined"
                         );
                     }
@@ -81,6 +104,8 @@ class FriendrequestsController extends AbstractActionController {
                             'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
                             'profileimage'  => $recfrndDetails[0]['profileimage'],
                             'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'friendslikes'  => $friendlikes,
+                            'noOfTributes'  => $noOfTributes,
                             'status'        => $status
                         );
                 }
@@ -91,6 +116,8 @@ class FriendrequestsController extends AbstractActionController {
                             'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
                             'profileimage'  => $recfrndDetails[0]['profileimage'],
                             //'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'friendslikes'  => $friendlikes,
+                            'noOfTributes'  => $noOfTributes,
                             'status'        => $status
                         );
                 }

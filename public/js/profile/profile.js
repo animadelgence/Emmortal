@@ -43,7 +43,7 @@ $(document).ready(function () {
     });
     CKEDITOR.disableAutoInline = true;
     }
-  
+
     $('body').on('click', '#textInsert', function () {
         $('.close').trigger('click');
         $('#textTitleError').hide();

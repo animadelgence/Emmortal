@@ -43,53 +43,7 @@ $(document).ready(function () {
     });
     CKEDITOR.disableAutoInline = true;
     }
-    // $( ".resizable" ).resizable({
-
-    //   maxHeight: 364,
-    //   maxWidth: 364,
-    //   minHeight: 172,
-    //   minWidth: 172,
-
-    //    stop : function(event,ui) {
-    //    var height = $(this).height();
-    //     var width = $(this).width();
-    //     var sizeX = "";
-    //     var sizeY = "";
-    //     if(height > 257){
-    //         height = 364;
-    //         sizeY = "W";
-    //     } else {
-    //          height = 172;
-    //          sizeY = "H";
-    //     }
-    //     if(width > 257){
-    //         width = 364;
-    //         sizeX = "W";
-    //     } else {
-    //          width = 172;
-    //          sizeX = "H";
-    //     }
-    //    $(this).css('height',height);
-    //    $(this).css('width',width);
-    //    var uploadId = $(this).find(".uploadId").val();
-    //        $.ajax({
-    //             type: "POST",
-    //             //async:false,
-    //             url: base_url_dynamic + '/profile/savefilestatus',
-    //             data: {sizeX:sizeX,sizeY:sizeY,uploadId:uploadId},
-    //             success: function (res) {
-
-    //             }
-    //         });
-
-    // }
-
-    // });
-
-
-
-
-
+  
     $('body').on('click', '#textInsert', function () {
         $('.close').trigger('click');
         $('#textTitleError').hide();

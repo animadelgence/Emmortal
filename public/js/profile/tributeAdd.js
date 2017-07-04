@@ -16,30 +16,36 @@ var base_url_dynamic = window.location.origin,
     i = "";
 $(document).ready(function () {
     "use strict";
-    CKEDITOR.replace('friendtributeDescription', {
-        toolbar: [
-            {
-                name: 'others',
-                items: ['-']
-            },
-            '/',
-            {
-                name: 'basicstyles',
-                groups: ['basicstyles', 'cleanup'],
-                items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
-            },
-            {
-                name: 'links',
-                items: ['Link', 'Unlink', 'Anchor']
-            }
-        ]
-    });
-    CKEDITOR.disableAutoInline = true;
+    if($('#friendtributeDescription').length) {
+        CKEDITOR.replace('friendtributeDescription', {
+            toolbar: [
+                {
+                    name: 'others',
+                    items: ['-']
+                },
+                '/',
+                {
+                    name: 'basicstyles',
+                    groups: ['basicstyles', 'cleanup'],
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                },
+                {
+                    name: 'links',
+                    items: ['Link', 'Unlink', 'Anchor']
+                }
+            ]
+        });
+        CKEDITOR.disableAutoInline = true;
+    }
     $('body').on('click', '.getTribute', function () {
         var frndId = $(this).data("id"),
-            textDescription = "",
-            tributeType = $(this).attr('data-cmd');
-        $('#tributeAddModal').modal('show');
+
+            textDescription = "";
+        //$('#tributeAddModal').modal('show');
+            addtributemodal();
+
+           var tributeType = $(this).attr('data-cmd');
+        
         if ($("#searchmodal").is(':visible') == true) {
             $('#searchmodal').css('z-index', '0');
         }
@@ -76,18 +82,19 @@ $(document).ready(function () {
             $(".showmsg").html("<span>Tribute record was successfully added</span>");
         }
     });
-    $("#tributeAddModal").on("hidden.bs.modal", function () {
+    $('body').on("hidden.bs.modal", '#tributeAddModal', function () {
         if ($("#searchmodal").is(':visible') == true) {
             $('#searchmodal').css('z-index', '99999');
             $('#searchmodal').css('position', 'absolute');
             $('#searchmodal').css('overflow', 'visible');
         }
     });
-    $("#friendTributeAddModal").on("hidden.bs.modal", function () {
+    $('body').on("hidden.bs.modal", '#friendTributeAddModal', function () {
         $('#tributeAddModal').css('z-index', '99999');
     });
 
     function getAlbum(frndId, textDescription,tributeType) {
+        //$('#tributeloader').css('display','block');
         $.ajax({
             type: "POST",
             url: base_url_dynamic + '/tribute/gettribute',
@@ -121,6 +128,7 @@ $(document).ready(function () {
                 }
             }
         });
+        $('#tributeloader').css('display','none');
     }
 
 });

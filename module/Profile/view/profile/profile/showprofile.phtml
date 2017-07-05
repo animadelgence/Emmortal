@@ -36,6 +36,15 @@
 
 
                                           }
+
+                                          else if($upload['uploadType'] == "album"){
+
+
+                                              echo '<li class="gs-w user_upload_part_section_content--inside vid-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="image" data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><span><img name="Image Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';
+
+
+
+                                          }
                                           else if($upload['uploadType'] == "video"){
 
                                                 echo '<li class="gs-w user_upload_part_section_content--inside vid-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="video"data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><span><video controls="controls" name="Video Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';

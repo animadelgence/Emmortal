@@ -156,6 +156,39 @@ namespace Backend\Controller;
          echo  json_encode($response);exit;
 
      }
+     public function uploadimgAction(){
+              $modelPlugin = $this->modelplugin();
+
+              $uploadFolder = $_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg/';
+              //echo $uploadFolder; exit;
+
+                $getdynamicPath = $modelPlugin->dynamicPath();
+                $filetype = '*.*';
+                $files = glob($uploadFolder . $filetype);
+                $count = count($files);
+                $uploadFolderList = array();
+                $response = array();
+                for ($i = 0; $i < $count; $i++) {
+                    $uploadFolderList[$i] = $files[$i];
+                }
+                    ksort($uploadFolderList);
+                    $countimg = 0;
+                    foreach ($uploadFolderList as $filename)
+                    {
+                        $getFile = explode($_SERVER['DOCUMENT_ROOT'],$filename);
+                        //print_r ($getFile); exit;
+                        $pathExplode = explode("/",$getFile[1]);
+                        //print_r($pathExplode); exit;
+                        $getImgName = "/upload/bgimg/".$pathExplode[3];
+                        //echo "getThumNail = ".$getThumNail."<br />"; exit;
+
+                        $response[$countimg] =  '<li class="emmortal-tab-image__list-item col-sm-4"><strong><a href="'.@$getdynamicPath.$getFile[1].'" title="Loading image" class="emmortal-tab-image__link"><img class="image" alt="emmortal-image" src="'.@$getdynamicPath.$getImgName.'" class="emmortal-tab-image__link-img"/></a></strong></li>';
+                        $countimg = $countimg + 1;
+
+                    }
+            echo json_encode($response);exit;
+
+     }
 
 
  }

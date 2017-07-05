@@ -354,3 +354,41 @@ function searchmodalopen(){
     });
 
 }
+function openalbumforedit(){
+    if($('#albumInsertModal').length) {
+        $('#albumInsertModal').remove();
+    }
+    if($('.in').length) {
+        $('.in').remove();
+    }
+    $.get(getUrl+"/modal/albuminsertmodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#albumInsertModal').modal('show');
+        $('#uploadModal').remove();
+       // var friendsidalbum =
+        if($('#albumtextDescription').length) {
+            CKEDITOR.replace('albumtextDescription', {
+                toolbar: [
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
+
+    });
+}

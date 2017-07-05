@@ -190,16 +190,15 @@ $(document).ready(function () {
                     albumPath : albumPath,
                     colorselected : colorselected,
                     show : show,
+                    albumName : albumName,
                     albumDescription : albumDescription,
                     albumfriendsId : friendsId,
                     pageId : currentPageId
                 },
                 success: function (res) {
-                    //alert(res);
-                    if(res == 1){
-
-                                window.location.href = base_url_dynamic + "/createalbum/showafterpublish";
-                            }
+                    //alert(res);return false;
+                    window.location.href = base_url_dynamic + "/createalbum/showafterpublish/" + res;
+                          
 
                     }
                 

@@ -17,3 +17,7 @@
 	height:52 px;
 	width: 52 px;
 }
+.error {
+    color: #b4504e;
+    display:none;
+}

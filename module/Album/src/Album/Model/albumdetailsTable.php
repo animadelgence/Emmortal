@@ -10,9 +10,9 @@
         {
             $this->tableGWay = $tableGateway;
         }
-        public function fetchall()
+        public function fetchall($data)
         {
-            $resultSet = $this->tableGWay->select();
+            $resultSet = $this->tableGWay->select($data);
             $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
@@ -31,7 +31,9 @@
         }
         public function insertalbum($data)
         {
-            return $rowset = $this->tableGWay->insert($data);
+            $rowset = $this->tableGWay->insert($data);
+           return $id = $this->tableGWay->lastInsertValue;
+
         }
         public function insertalbumGetId($data)
         {

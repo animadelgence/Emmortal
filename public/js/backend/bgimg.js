@@ -70,6 +70,7 @@
 
 $(document).ready(function () {
     "use strict";
+//alert($('#img_prev').html());
 
 /*Background Image Edit Validation(onchange)*/
     $('#fileupload').bind('change', function () {
@@ -79,20 +80,20 @@ $(document).ready(function () {
             $('#errorImg2,#img_prev').css('display', 'none'); // hides image along with other error messages
             $('#errorImg1').css('display', 'block');
             $('#errorImg1').html("<font color='red'> Invalid Image Format! Image Format Must Be JPG, JPEG, PNG or GIF </font>");
-//            $('#bgImgSave').attr("disabled", true);
+            $('.save').attr("disabled", true);
             return false;
         } else if (picsize > 1024000) {
             $('#errorImg1,#img_prev').css('display', 'none'); // hides image along with other error messages
             $('#errorImg2').css('display', 'block');
             $('#errorImg2').html("<font color='red'> Invalid Image Format! Maximum File Size Limit is 1MB </font>");
             $('.img_prev').children('img').attr('src', '');
-//            $('#bgImgSave').attr("disabled", true);
+            $('.save').attr("disabled", true);
             return false;
         } else {
             $('#errorImg1').css('display', 'none');
             $('#errorImg2').css('display', 'none');
             $('#img_prev').css('display', 'block');
-//            $('#bgImgSave').attr("disabled", false);
+            $('.save').attr("disabled", false);
 
         }
     });
@@ -102,7 +103,7 @@ $(document).ready(function () {
             $('#bgimgEditForm').submit();
     });
 
-/*Modal Tab Content Show*/
+/*Pattern -- Modal Tab Content Show*/
     $('body').on('click','#browse',function(){
         $.get(baseUrl+"/seomanage/pattern", function (result) {
 
@@ -112,7 +113,6 @@ $(document).ready(function () {
     			appendStructure += jsObject[i];
 			});
             appendStructure+="</ul>";
-            //$('#browseTab').append(appendStructure);
             $('#imgAppend').html(appendStructure);
             });
 
@@ -121,7 +121,24 @@ $(document).ready(function () {
             $('#browseTab').show();
     });
 
+/*Upload Image -- Modal Tab Content Show*/
+    $('body').on('click','#modBtn',function(){ //#modBtn
+        $.get(baseUrl+"/seomanage/uploadimg", function (result) {
+
+            console.log(result);
+            var jsObject = JSON.parse(result);
+            var appendStructure = '<ul class="emmortal-tab-image__list">';
+            $.each(jsObject, function(i, item) {
+    			appendStructure += jsObject[i];
+			});
+            appendStructure+="</ul>";
+            $('#savedImg').html(appendStructure);
+            });
+    });
+
     $('body').on('click','#upload',function(){
+
+        // code for appending user uploaded images
             $('#browseTab').hide();
             $('#upload').show();
             $('#uploadTab').show();
@@ -142,8 +159,20 @@ $(document).ready(function () {
     });
 
      $('body').on('click', '.save', function () {
-        var imgSrc = $('#imgSrc').val();
-        $('#upload_prev').html("<img src='"+imgSrc+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
+        var imgSrc = $.trim($('#imgSrc').val());
+
+         if (imgSrc != ""){
+            $('#upload_prev').html("<img src='"+imgSrc+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
+         } else {
+               $("#imgUploadForm").ajaxSubmit({
+                data: { fileupload: 'fileupload' },
+                success: function (response) {
+                   $('#imgSrc').val(response);
+                    $('#upload_prev').html("<img src='"+response+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
+                }
+            });
+
+         }
      });
 
 });

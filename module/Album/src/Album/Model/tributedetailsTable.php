@@ -14,7 +14,7 @@
         {
              return $rowset = $this->tableGWay->insert($data);
         }
-        public function fetchall($query=null)
+        public function fetchall($query)
         {
             $resultSet = $this->tableGWay->select($query);
             $array = array();

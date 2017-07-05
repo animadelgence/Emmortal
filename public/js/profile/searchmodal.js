@@ -19,22 +19,28 @@ $(document).ready(function () {
     });
     $('#allTabShow').css('display', 'block');
     $('body').on('click', '#allTab', function () {
-        $('#searchText').prop("disabled", false);
-        $('#searchResults').html('');
+        /*$('#searchText').prop("disabled", false);*/
+        $("#searchResults").empty();
+        $("#tabResults").empty();
+        $('#myRelationships').css('display', 'block');
+        $('#globalSearch').css('display', 'none');
         friendlist('AllFriend', '','');
         $("#li-allTab").addClass("active");
         $("#li-relationshipTab").removeClass("active");
         $("#li-incomingTab").removeClass("active");
         $("#li-outgoingTab").removeClass("active");
-        $('#allTabShow').css('display', 'block');
-        $('#relationshipTabShow').css('display', 'none');
-        $('#incomingTabShow').css('display', 'none');
-        $('#outgoingTabshow').css('display', 'none');
+        //$('#allTabShow').css('display', 'block');
+        $('#relationshipTabShow').text('There are no relationships yet');
+        /*$('#incomingTabShow').css('display', 'none');
+        $('#outgoingTabshow').css('display', 'none');*/
     });
     $('body').on('click', '#relationshipTab', function () {
         $('#searchText').val('');
-        $('#searchResults').html('');
-        $('#searchText').attr("disabled", "disabled");
+        $("#searchResults").empty();
+        $("#tabResults").empty();
+        $('#myRelationships').css('display', 'block');
+        $('#globalSearch').css('display', 'none');
+       // $('#searchText').attr("disabled", "disabled");
         friendlist('Onlyfriend', '','');
         $("#li-relationshipTab").addClass("active");
         $("#li-allTab").removeClass("active");
@@ -47,10 +53,14 @@ $(document).ready(function () {
         $('#outgoingTabshow').css('display', 'none');*/
     });
     $('body').on('click', '#incomingTab', function () {
-        $('#searchText').prop("disabled", false);
+        /*$('#searchText').prop("disabled", false);*/
         $('#searchText').val('');
-        $('#searchResults').css('display', 'none');
+        $("#searchResults").empty();
+        $("#tabResults").empty();
+        $('#myRelationships').css('display', 'block');
         $('#globalSearch').css('display', 'none');
+        /*$('#searchResults').css('display', 'none');
+        $('#globalSearch').css('display', 'none');*/
         friendlist('Incoming', '','');
         $("#li-incomingTab").addClass("active");
         $("#li-allTab").removeClass("active");
@@ -64,8 +74,12 @@ $(document).ready(function () {
     $('body').on('click', '#outgoingTab', function () {
         $('#searchText').prop("disabled", false);
         $('#searchText').val('');
-        $('#searchResults').css('display', 'none');
+        $("#searchResults").empty();
+        $("#tabResults").empty();
+        $('#myRelationships').css('display', 'block');
         $('#globalSearch').css('display', 'none');
+        /*$('#searchResults').css('display', 'none');
+        $('#globalSearch').css('display', 'none');*/
         friendlist('Outgoing', '','');
         $("#li-outgoingTab").addClass("active");
         $("#li-allTab").removeClass("active");
@@ -78,11 +92,12 @@ $(document).ready(function () {
     });
     $('body').on('keyup', '#searchText', function () {
 
-
+        $("#searchResults").empty();
+        $("#tabResults").empty();
         var friendsid = $(this).val().trim();
         $('#searchResults').css('display', 'none');
         if (friendsid != '') {
-            $('#globalSearch').css('display', 'block');
+            
             friendlist('All', friendsid,'search');
         } else {
             $('#globalSearch').css('display', 'none');
@@ -165,6 +180,7 @@ function friendlist(param,search,searchParam)
             param:param
         },
         success: function (res) {
+            //console.log(res);return false;
             jsObject = JSON.parse(res);
             var html ="";
             var additionalhtml= "";
@@ -194,14 +210,14 @@ function friendlist(param,search,searchParam)
                     chk = 1;
                 }
                 if(jsObject.userDetails[i].status == 'Outgoing'){
-                    if ((param == 'All' && $('#li-outgoingTab').hasClass('active')) || (param == 'All' && $('#li-allTab').hasClass('active'))) {
+                    if ((param == 'All' && $('#li-outgoingTab').hasClass('active')) || (param == 'All' && $('#li-allTab').hasClass('active')) ) {
                         additionalbuttonhtml += '<div class="relationship-btn" user="client" data-folder-target-id="' + id + '"><button class="btnn e-btn btn-warning full sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-clock-o"></div> Request sent</button></div>';
                         //alert(additionalbuttonhtml);
                     }
                     buttonhtml +='<div class="relationship-btn" user="client" data-folder-target-id="' + id + '"><button class="btnn e-btn btn-warning full sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-clock-o"></div> Request sent</button></div>';
                     //tabShow = 'outgoing';
                 } else if(jsObject.userDetails[i].status == 'Incoming') {
-                    if ((param == 'All' && $('#li-incomingTab').hasClass('active'))) {
+                    if ((param == 'All' && $('#li-incomingTab').hasClass('active')) ) {
                         incomingformhtml += '<form name="requestform" id="requestform" action="/friendrequests/responserequest" method="POST" enctype="multipart/form-data">';
                         incomingbuttonhtml += '<div class="pending-actions-btn text-right" user="client" data-folder-target-id="' + id + '"><button class="btnn btn e-btn btn-primary respondFriendRequest" id="acceptbtn' + id + '"><div class="fa fa-user-plus"></div> Accept </button>&nbsp;<button class="btnn btn e-btn btn-danger respondFriendRequest" id="declinebtn' + id + '"><div class="fa fa-user-times"></div> Decline </button></div>';
                         alert(incomingbuttonhtml);
@@ -211,13 +227,13 @@ function friendlist(param,search,searchParam)
                     buttonhtml +='<div class="pending-actions-btn text-right" user="client" data-folder-target-id="' + id + '"><button class="btnn btn e-btn btn-primary respondFriendRequest" id="acceptbtn' + id + '"><div class="fa fa-user-plwhen do NaN shows in a js alertus"></div> Accept </button>&nbsp;<button class="btnn btn e-btn btn-danger respondFriendRequest" id="declinebtn' + id + '"><div class="fa fa-user-times"></div> Decline </button></div>';
                     //tabShow = 'incoming';
                 } else if(jsObject.userDetails[i].status == 'Accepted'){
-                    if ((param == 'All' && $('#li-allTab').hasClass('active')) || (param == 'All' && $('#li-relationshipTab').hasClass('active'))) {
-                        additionalbuttonhtml += '<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="friend">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
+                    if ((param == 'All' && $('#li-allTab').hasClass('active')) || (search != '' && param == 'All' && $('#li-relationshipTab').hasClass('active'))) {
+                        additionalbuttonhtml += '<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="friend">'+jsObject.userDetails[i].noOfTributes+'</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">'+jsObject.userDetails[i].friendslikes+'</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
                         additionalextrahtml += '<a class="e-link pointer">View Relationship Page</a>';
                         //alert(additionalbuttonhtml);
                         //alert(additionalextrahtml);
                     }
-                    buttonhtml +='<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="friend">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
+                    buttonhtml +='<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="friend">'+jsObject.userDetails[i].noOfTributes+'</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">'+jsObject.userDetails[i].friendslikes+'</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
                     extrahtml += '<a class="e-link pointer">View Relationship Page</a>';
                 } else if(jsObject.userDetails[i].status == 'Declined'){
                     buttonhtml +='<div class="relationship-btn" user="client" data-folder-target-id="' + id + '"><button class="btnn e-btn btn-danger full sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div>Declined</button></div>';
@@ -227,7 +243,7 @@ function friendlist(param,search,searchParam)
                 }
                 if(chk == '1'){
                     if (param == 'All' && additionalbuttonhtml != '') {
-                        if ($('#li-outgoingTab').hasClass('active')) {
+                        if (($('#li-outgoingTab').hasClass('active')) || ($('#li-relationshipTab').hasClass('active'))) {
                             additionalhtml += '<div class="user-field m-t-25 animated fadeIn"><div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3></div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+additionalbuttonhtml+'</div></form></div>';
                             additionalbuttonhtml = '';
                         } else if ($('#li-allTab').hasClass('active')) {
@@ -239,7 +255,7 @@ function friendlist(param,search,searchParam)
                             incomingbuttonhtml = '';
                             alert(additionalhtml);
                         }*/
-                 } else if (param == 'All' && $('#li-incomingTab').hasClass('active') && incomingformhtml != '') {
+                 } else if ((param == 'All' && $('#li-incomingTab').hasClass('active') && incomingbuttonhtml != '') || (param == 'All' && $('#li-relationshipTab').hasClass('active') && incomingbuttonhtml != '')) {
                         additionalhtml += '<div class="user-field m-t-25 animated fadeIn">'+incomingformhtml+'<div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3></div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+incomingbuttonhtml+'</div></form></div>';
                         incomingbuttonhtml = '';
                         alert(additionalhtml);
@@ -248,23 +264,29 @@ function friendlist(param,search,searchParam)
                 }
                 
             }
+            if(search) {
+                $('#globalSearch').css('display', 'block');
+            }
+            if(additionalhtml != '' || html != '') {
+                $('#myRelationships').css('display', 'block');
+            }
             if (param == 'AllFriend') {
                 $('#myRelationships').css('display', 'block');
             }
             else if(param == 'Outgoing' && html != ''){
                 $('#outgoingTabshow').css('display', 'none');
-                //$('#myRelationships').css('display', 'none');
+                $('#myRelationships').css('display', 'block');
 
 
             } else if(param == 'Incoming' && html != ''){
                 $('#incomingTabShow').css('display', 'none');
-                $('#myRelationships').css('display', 'none');
+                $('#myRelationships').css('display', 'block');
             } else if(param == 'Onlyfriend' && html != '') {
                 $('#myRelationships').css('display', 'block');
                 $('#relationshipTabShow').css('display', 'none');
                 $('#globalSearch').css('display', 'none');
             } else {
-                $('#myRelationships').css('display', 'block');
+                $('#myRelationships').css('display', 'none');
 
             }//don't know required or not
             //alert(additionalhtml);
@@ -280,6 +302,10 @@ function friendlist(param,search,searchParam)
                     $('#relationshipTabShow').css('display', 'block');
                     $('#relationshipTabShow').text('There are no incoming relationships requests');
                 } else if (additionalhtml == '' && $('#li-outgoingTab').hasClass('active')) {
+                    $('#myRelationships').css('display', 'none');
+                    $('#relationshipTabShow').css('display', 'block');
+                    $('#relationshipTabShow').text('There are no outgoing relationships requests');
+                } else if (additionalhtml == '' && $('#li-relationshipTab').hasClass('active')) {
                     $('#myRelationships').css('display', 'none');
                     $('#relationshipTabShow').css('display', 'block');
                     $('#relationshipTabShow').text('There are no outgoing relationships requests');

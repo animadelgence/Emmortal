@@ -118,9 +118,23 @@ $(document).ready(function () {
             editor = CKEDITOR.instances.textDescription,
             textDescription = CKEDITOR.instances.textDescription.getData(),
             pageURL = $(location).attr("href");
+        var friendsId = [];
+        var albumId = $(".AID" ).val();
         if (pageURL.indexOf('profile/showprofile') > -1) {
             currentPageId = $("#currentPageId").val();
             $('#currentPage').val(currentPageId);
+        } 
+        if($('#textInsertModal').find('input.frndId').length !== 0)
+        {
+            var values = $("input[name='frndId[]']").map(function(){return $(this).val();}).get();
+            for (var i=0;i<(values.length);i++)
+            {
+                friendsId.push(values[i]);
+            }
+        }
+        else
+        {
+            friendsId = '';
         }
         if (textTitle == '') {
             flag = 1;
@@ -139,11 +153,35 @@ $(document).ready(function () {
             $('#cke_textDescription').removeClass('error-class');
         }
         if (flag == 0) {
-            $('#textAddForm').submit();
-            $('.close').trigger('click');
-            $(".welcome").show();
-            $(".closebtn").css('color','green');
-            $(".showmsg").html("<span>Text record was successfully added</span>");
+            $.ajax({                     
+                type: "POST",
+                url: base_url_dynamic + '/profile/publishtext',
+                data: {
+                    textTitle : textTitle,
+                    textDescription : textDescription,
+                    friendsId : friendsId,
+                    albumId: albumId,
+                    currentPageId :currentPageId
+                },
+                success: function (res) {
+                    if(res == 1){
+                         if (currentPageId != "") {
+                             $('.modal').modal('hide');
+                              $(".profile-paginator__click.active").trigger("click");
+                            } else{
+                               
+                                window.location.href = baseURL + "/profile/showprofile";
+                            }
+                    }
+                    $('.modal').modal('hide');
+                    $('.close').trigger('click');
+                    $(".welcome").show();
+                    $(".closebtn").css('color','green');
+                    $(".showmsg").html("<span>Text record was successfully added</span>");
+                }
+            });
+            //$('#textAddForm').submit();
+            
         }
     });
     $(".rotate").click(function(){

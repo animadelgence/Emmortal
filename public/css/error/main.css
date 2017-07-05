@@ -1,0 +1,39 @@
+body {
+    font-family: 'Oxygen', sans-serif;
+    background-color: #ffffff;
+}
+
+.main-wrapper {
+    display: block;
+    margin: 100px auto;
+    width: 50%;
+}
+
+.main-wrapper__button-click {
+    background-color: #4caf50;
+    border-radius: 2px;
+    color: #ffffff;
+    display: block;
+    margin: 35px auto;
+    padding: 15px 0;
+    text-align: center;
+    width: 46%;
+    cursor: pointer;
+}
+
+.main-wrapper__image-section {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.main-wrapper__header-text {
+    font-size: 21px;
+    margin: 0;
+    padding: 13px 4px;
+    text-align: center;
+}
+
+.main-wrapper__header-text p {
+    line-height: 30px;
+    margin: 0;
+}

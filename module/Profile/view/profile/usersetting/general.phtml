@@ -31,8 +31,7 @@
                         <img src="<?php echo $userDetails[0]['profileimage'];?>" style="height:120px; width:160px;" >
                         <?php }else{ ?>
                         <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
-                        <!--<img id= 'profile_pic_thumb'/>-->
-                     </div>
+                      </div>
                      <div id="reloaddiv">
                         <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
                         <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removeavtr">
@@ -56,16 +55,15 @@
                            <img src="<?php echo $userDetails[0]['backgroundimage'];?>" style="height:120px; width:160px;" >
                            <?php }else{ ?>
                            <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
-                           <!--<img id= 'profile_pic_thumb'/>-->
-                        </div>
+                         </div>
                         <div id="reloaddivbk">
                            <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
                            <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removebgavtr">
                               <i class="fa fa-times-circle"></i>
-                              Remove avatar<?php }else{ ?>
+                              Remove Background<?php }else{ ?>
                               <div class="btn e-btn btn-primary file-input-btn" >
                                  <i class="fa fa-upload"></i>
-                                 Choose photo
+                                 Choose Background
                                  <input name="backgroundimage" type="file" id="backgroundimagechange"><?php } ?>
                                  <input type = "hidden" id = "bkimagePath" value="">
                               </div>

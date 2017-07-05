@@ -141,6 +141,7 @@ ul, ol {
 .nav > li {
     display: block;
     position: relative;
+	color: #fff;
 }
 .nav-pills.e-nav-pills li.active a {
     background: #f1f1f1 none repeat scroll 0 0;
@@ -165,9 +166,10 @@ ul, ol {
     border-radius: 4px;
 }
 .nav > li > a {
-    display: block;
-    padding: 10px 15px;
+    display: inline-block;
+    padding: 9px 15px;
     position: relative;
+	color:inherit;
 }
 .pointer {
     cursor: pointer;

@@ -163,12 +163,13 @@ class ProfileController extends AbstractActionController {
         $title              = $_POST['textTitle'];
         $description        = $_POST['textDescription'];
         $AID                = @$_POST['AID'];
-        $frndId             = @$_POST['frndId'];
-        $ct                 = count($frndId);
         $friendsid          = '';
 
-        for($i=0;$i<$ct;$i++){
-          $friendsid        = $friendsid.$frndId[$i].',';
+        $frndIdValue               = $_POST['friendsId'];
+        if($frndIdValue){
+        $friendId             =  implode(",",$frndIdValue);
+        } else{
+          $friendId = "";
         }
 
         $UID                = $this->sessionid;
@@ -188,13 +189,13 @@ class ProfileController extends AbstractActionController {
                                       'uploadDescription'=>$description,
                                       'AID'=>$AID,
                                       'PID'=>$currentPageId,
-                                      'FID'=>$friendsid,
+                                      'FID'=>$friendId,
                                       'uploadType'=>'text',
                                       'TimeStamp'=>$addeddate
                               );
         $albumDetails       = $modelPlugin->getuploadDetailsTable()->insertData($data);
-
-        return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
+         echo $albumDetails;exit;
+        //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
     public function savefilestatusAction(){
         $plugin             = $this->routeplugin();

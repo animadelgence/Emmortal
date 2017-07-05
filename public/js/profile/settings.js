@@ -33,9 +33,10 @@ function openCity(evt, cityName) {
 
 $(document).ready(function () {
     "use strict";
-	$(".datepicker").datepicker({
-        dateFormat: 'yy-mm-dd'
-    });
+//	$(".datepicker").datepicker({
+//        dateFormat: 'yy-mm-dd'
+//    });
+    $('#acc-dob').datepicker({ dateFormat: 'dd-mm-yy' });
     $('body').on('click', '#password_save', function () {
         var regexpassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/,
             currentPassword = $("#acc-cur-pass").val(),
@@ -104,7 +105,7 @@ $(document).ready(function () {
         });
         
     });
-    $('body').on('change','.profileDetails', function(e){
+    $(document).on('change','.profileDetails', function(e){
         var accountFirstName = $("#acc-name").val(),
             accountLastName = $("#acc-lastname").val(),
             accountDOB = $("#acc-dob").val(),

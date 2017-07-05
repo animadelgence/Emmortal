@@ -5,13 +5,11 @@ $(document).ready(function (){
     $('body').on('change','.loginid', function(e){
         var loginemail = $("#loginemail").val(),
             loginpassword = $("#loginpassword").val();
-         alert(1);   
+            
         if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
-            alert(2);  
             $('#signinbutton').prop("disabled", false);
             $('#signinbutton').css('cursor', 'pointer');
         } else {
-            alert(3);  
             $('#signinbutton').prop("disabled", true);
             $('#signinbutton').css('cursor', 'not-allowed');
         }
@@ -19,16 +17,13 @@ $(document).ready(function (){
     $('body').on('keyup','.loginid', function(e){
         var loginemail = $("#loginemail").val(),
             loginpassword = $("#loginpassword").val();
-            alert(4);  
+            
         if(e.keyCode == 8) {
-            alert(5);  
             if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
-                alert(6);  
                 //alert('if change');
                 $('#signinbutton').prop("disabled", false);
                 $('#signinbutton').css('cursor', 'pointer');
             } else {
-                alert(7);  
                 $('#signinbutton').prop("disabled", true);
                 $('#signinbutton').css('cursor', 'not-allowed');
             }

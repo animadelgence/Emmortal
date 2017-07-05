@@ -69,7 +69,7 @@ class imageuploadplugin extends AbstractPlugin {
 //     }
 
     //new added below
-    public function uploadimg($fileSize,$fileName,$files,$folderName,$imageName,$fileType="")
+    public function uploadimg($fileSize,$fileName,$files,$folderName,$imageName,$fileType) //="" (last par)
      {
        $res = array();
        if($fileSize >= 5)
@@ -111,7 +111,9 @@ class imageuploadplugin extends AbstractPlugin {
      			$res['originalPath'] = $ups;
 			$res['exterror'] = 0;
 			$res['thumbPath'] = $upload.$folderName.$pathThumb;
+            //echo $res['thumbPath']; exit;
 			return json_encode($res);
+                //return($res);
 				exit;
      		}
 		else

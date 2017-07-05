@@ -80,7 +80,18 @@ namespace Backend\Controller;
               $dynamicPath  = $plugin->dynamicPath();
               $jsonArray    = $plugin->jsondynamic();
 		      $currentPageURL = $plugin->curPageURL();
-              $filename = $_FILES['fileupload']['name'];
+
+              $request1 = $this->getRequest()->getPost();
+              $name = $request1['filename'];
+              $request = $this->getRequest();
+              $files = $request->getFiles()->toArray();
+         //print_r($files); exit;
+              $filename = $files['fileupload']['name'];
+         //echo $imageName; exit;
+
+
+              //$filename = $_FILES['fileupload']['name'];
+
               $bgimgpath = $dynamicPath."/upload/bgimg/".$filename;
 
               //upload in bgimg folder(start)
@@ -106,6 +117,7 @@ namespace Backend\Controller;
               //$result = $uploadPlugin->bgimgedit($tmp_name , $fileName);
               $folderName = "/upload/bgimg/";
               $result = $uploadPlugin->uploadimg($fileSize, $fileName, $files[$filename]['error'], $folderName, $fileName, $fileType);
+              //return json_decode($result);
               //print_r($result); exit; //uncomment this
               echo $bgimgpath; exit;
               //upload in bgimg folder(end)

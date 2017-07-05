@@ -51,9 +51,12 @@ class AlbumdetailsController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
         $jsonArray = $plugin->jsondynamic();
+        //$type = 'friend';
         $type = $_POST['datacmd'];
         $id = $_POST['id'];
+        //$id = 1;
         $UID = $this->sessionid;
+        //$UID = 27;
         if($type == 'album'){
             $where = array('AID'=>$id,'UID'=>$UID);
             $data = array(
@@ -62,6 +65,8 @@ class AlbumdetailsController extends AbstractActionController {
                 'likedate'=> date("Y-m-d H:i:s")
             );
             $query = array('AID'=>$id);
+            $albumDet = $modelPlugin->getalbumdetailsTable()->fetchall($query);
+            $uid = $albumDet[0]['UID'];
         } else if($type == 'tribute'){
             $where = array('TID'=>$id,'UID'=>$UID);
             $data = array(
@@ -70,6 +75,8 @@ class AlbumdetailsController extends AbstractActionController {
                 'likedate'=> date("Y-m-d H:i:s")
             );
             $query = array('TID'=>$id);
+            $tributeDet = $modelPlugin->gettributedetailsTable()->fetchall(array('tributesid'=>$id));
+            $uid = $tributeDet[0]['UID'];
         } else if($type == 'friend'){
             $where = array('FID'=>$id,'UID'=>$UID);
             $data = array(
@@ -78,6 +85,7 @@ class AlbumdetailsController extends AbstractActionController {
                 'likedate'=> date("Y-m-d H:i:s")
             );
             $query = array('FID'=>$id);
+            $uid = $id;
         } else{
             $where = array('uploadId'=>$id,'UID'=>$UID);
             $data = array(
@@ -86,12 +94,31 @@ class AlbumdetailsController extends AbstractActionController {
                 'likedate'=> date("Y-m-d H:i:s")
             );
             $query = array('uploadId'=>$id);
+            $uploadDet = $modelPlugin->getuploadDetailsTable->fetchall($query);
+            $uid = $uploadDet[0]['UID'];
         }
         $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+        //print_r($likeDetails);
+        //echo "Count".count($likeDetails);
         if(count($likeDetails)>0){
+           // echo "here";
             $likeDelete = $modelPlugin->getlikesdetailsTable()->deleteLike($where);
+            $notiDElCon = array('notify_id'=>$likeDetails[0]['likeid']);
+            $notificationDelete = $modelPlugin->getnotificationdetailsTable()->deleteNotification($notiDElCon);
         } else{
+            //echo "else";
             $likeInsert = $modelPlugin->getlikesdetailsTable()->insertLike($data);
+            //print_r($likeInsert);
+            $notificationData = array(
+                'UID'=>$uid,
+                'notified_by'=>$UID,
+                'notify_id'=>$likeInsert,
+                'notify_type'=>'like',
+                'notify_seen'=>0,
+                'notificationdate'=>date("Y-m-d H:i:s")
+            );
+           // print_r($notificationData); exit;
+            $notificationInsert = $modelPlugin->getnotificationdetailsTable()->updateNotification($notificationData);
         }
         $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($query);
         echo $likeCount = count($likeDetails);

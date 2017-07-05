@@ -33,8 +33,8 @@ class LazyloadController extends AbstractActionController {
 		    $galleryStruct = "";
         $t = intval($_POST["counter"]);
         $uploadAll = $modelPlugin->getuploadDetailsTable()->fetchAllData($t);
-        $likeDetailsArrays = array();
         foreach ($uploadAll as $upload) {
+            $likeDetailsArrays = array();
             $uploadId = $upload['uploadId'];
             $uploadIdquery = array('uploadId' =>$uploadId);
             $likeDetails = $modelPlugin->getlikesdetailsTable()->countLike($uploadIdquery);
@@ -50,7 +50,7 @@ class LazyloadController extends AbstractActionController {
             	if($uploadAll[$i]['uploadType'] == "text"){
 
                                              $galleryStruct .= '<li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1"  data-cmd="text" data-id="'.$uploadAll[$i]['uploadId'].'">
-                                             <span><label name="text Name">'.$uploadAll[$i]['uploadTitle'].'<p>'.$uploadAll[$i]['uploadDescription'].'</p></label></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div> </li>';
+                                             <div><label name="text Name">'.$uploadAll[$i]['uploadTitle'].'<p>'.$uploadAll[$i]['uploadDescription'].'</p></label></div><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div> </li>';
                                            }
 
 

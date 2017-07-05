@@ -12,7 +12,8 @@
 /*jslint devel: true */
 /*jslint eqeq: true*/
 var base_url_dynamic = window.location.origin,
-    regexemail = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/;
+    regexemail = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/,
+    regexpassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
 $(function () {
      // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
@@ -33,8 +34,37 @@ function openCity(evt, cityName) {
 
 $(document).ready(function () {
     "use strict";
-	$(".datepicker").datepicker({
-        dateFormat: 'yy-mm-dd'
+//	$(".datepicker").datepicker({
+//        dateFormat: 'yy-mm-dd'
+//    });
+    $('#acc-dob').datepicker({ 
+        dateFormat: 'dd-mm-yy',
+        changeMonth:true,
+        changeYear:true,
+        numberOfMonths:[1,1]
+    });
+    
+    
+    $('body').on('keypress','.passwordDetails', function(e){
+        //$('#loginEmailError').css('display','none');
+        var currentPassword = $("#acc-cur-pass").val(),
+            newPassword = $("#acc-pass").val(),
+            repeatPassword = $("#acc-pass-rep").val();
+            
+        if ((currentPassword === "") && (newPassword === "") && (repeatPassword === "")) {
+            $('#password_save').prop("disabled", false);
+            $('#password_save').css('cursor', 'pointer');
+            if (e.which == 13) { 
+
+                $("#password_save").trigger("click");
+                return false;
+            }
+        }
+        else {
+            $('#password_save').prop("disabled", true);
+            $('#password_save').css('cursor', 'not-allowed');
+        }
+        
     });
     $('body').on('click', '#password_save', function () {
         var regexpassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/,
@@ -104,21 +134,20 @@ $(document).ready(function () {
         });
         
     });
-    $('body').on('change','.profileDetails', function(e){
+    $('body').on('change','.profileDetails', function(){
         var accountFirstName = $("#acc-name").val(),
             accountLastName = $("#acc-lastname").val(),
             accountDOB = $("#acc-dob").val(),
             accountEmail = $("#acc-email").val(),
             profileimageNmae    = $("#pfimagePath").val(),
             backgroundimageName = $("#bkimagePath").val();
-        alert(accountFirstName.trim()+accountLastName.trim()+accountDOB+accountEmail);   
+        //alert(accountFirstName.trim()+accountLastName.trim()+accountDOB+accountEmail);   
         if ((accountFirstName.trim() != '') && (accountLastName.trim != '') && (accountEmail.match(regexemail)) && (accountEmail != '') && (accountDOB != '')) {
-            alert(2);
+            //alert(2);
             $('#changePersonalDetails').prop("disabled", false);
             $('#changePersonalDetails').css('cursor', 'pointer');
-            //$("#changePersonalDetails").trigger("click");
         } else {
-            alert(3);
+            //alert(3);
             $('#changePersonalDetails').prop("disabled", true);
             $('#changePersonalDetails').css('cursor', 'not-allowed');
         }
@@ -130,23 +159,22 @@ $(document).ready(function () {
             accountEmail = $("#acc-email").val(),
             profileimageNmae    = $("#pfimagePath").val(),
             backgroundimageName = $("#bkimagePath").val();
-           alert(4); 
+           //alert(4); 
         if(e.keyCode == 8) { 
-            alert(5);
+            //alert(5);
             if ((accountFirstName.trim() != '') && (accountLastName.trim != '') && (accountEmail.match(regexemail)) && (accountEmail != '') && (accountDOB != '')) {
-                alert(6);
+                //alert(6);
                 $('#changePersonalDetails').prop("disabled", false);
                 $('#changePersonalDetails').css('cursor', 'pointer');
-                $("#changePersonalDetails").trigger("click");
             } else {
-                 alert(7);
+                 //alert(7);
                 $('#changePersonalDetails').prop("disabled", true);
                 $('#changePersonalDetails').css('cursor', 'not-allowed');
             }
         }
     });
     $('body').on('keypress','.profileDetails', function(e){
-        $('#loginEmailError').css('display','none');
+        //$('#loginEmailError').css('display','none');
         var accountFirstName = $("#acc-name").val(),
             accountLastName = $("#acc-lastname").val(),
             accountDOB = $("#acc-dob").val(),
@@ -178,7 +206,7 @@ $(document).ready(function () {
             profileimageNmae    = $("#pfimagePath").val(),
             backgroundimageName = $("#bkimagePath").val();
             
-        if (accountFirstName.trim() === "") {
+        /*if (accountFirstName.trim() === "") {
             $(".div--error_secondmsg").html('Enter Your First Name').css('display', 'block');
             setTimeout(function () {
                 $(".div--error_secondmsg").fadeOut(300, function () {});
@@ -188,7 +216,7 @@ $(document).ready(function () {
             setTimeout(function () {
                 $(".div--error_secondmsg").fadeOut(300, function () {});
             }, 6000);
-        } else {
+        } else {*/
             $.ajax({
                 url: base_url_dynamic + "/settings/changedetails",
                 type: "POST",
@@ -220,7 +248,7 @@ $(document).ready(function () {
                 }
 
             });
-        }
+        //}
         
     });
     $('body').on('click', '#saveQuestion', function () {

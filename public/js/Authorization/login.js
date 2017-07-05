@@ -3,18 +3,30 @@ var URL = window.location.origin,
 
 $(document).ready(function (){
     $('body').on('change','.loginid', function(e){
-        $('#signinbutton').prop("disabled", true);
-        $('#signinbutton').css('cursor', 'not-allowed');
         var loginemail = $("#loginemail").val(),
             loginpassword = $("#loginpassword").val();
             
         if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
-            //alert('up');
             $('#signinbutton').prop("disabled", false);
             $('#signinbutton').css('cursor', 'pointer');
         } else {
             $('#signinbutton').prop("disabled", true);
             $('#signinbutton').css('cursor', 'not-allowed');
+        }
+    });
+    $('body').on('keyup','.loginid', function(e){
+        var loginemail = $("#loginemail").val(),
+            loginpassword = $("#loginpassword").val();
+            
+        if(e.keyCode == 8) {
+            if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
+                //alert('if change');
+                $('#signinbutton').prop("disabled", false);
+                $('#signinbutton').css('cursor', 'pointer');
+            } else {
+                $('#signinbutton').prop("disabled", true);
+                $('#signinbutton').css('cursor', 'not-allowed');
+            }
         }
     });
 	$('body').on('keypress','.loginid', function(e){
@@ -25,13 +37,16 @@ $(document).ready(function (){
         if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
             $('#signinbutton').prop("disabled", false);
             $('#signinbutton').css('cursor', 'pointer');
-            //return true;
             if (e.which == 13) { 
 
                 $("#signinbutton").trigger("click");
                 return false;
             }
-        } 
+        }
+        else {
+            $('#signinbutton').prop("disabled", true);
+            $('#signinbutton').css('cursor', 'not-allowed');
+        }
         
     });
     $('body').on('keypress','.recoverymailid', function(e){

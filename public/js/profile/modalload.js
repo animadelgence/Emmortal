@@ -24,7 +24,8 @@ function squarespaceModalopen()
         // open modal
         $('#squarespaceModal2').modal('hide');;
         $('#squarespaceModal').modal('show');
-
+        if($('#datepicker').length)
+           $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
     });
 }
 function squarespaceModal2open()

@@ -70,17 +70,21 @@
     color: #BABBB6 !important;
 }
 .sectionnavber li {
-    display:inline-block;
-    border-left:2px solid;
-    color:#ffffff;
-    content: "";
-    height: 20px;
-    position: relative;
-    top: 10px;
+    float:left;
+	position: relative;
 }
-
-.sectionnavber li:first-child {
-    border-left:none;
+.sectionnavber li:after {
+    background: #fff;
+    content: "";
+    display: inline-block;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 1px;
+}
+.sectionnavber li:last-child:after {
+	display: none;
 }
 .allicon {
     top: 6px !important;

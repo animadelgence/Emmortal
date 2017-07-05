@@ -103,7 +103,7 @@ $(document).ready(function () {
             $('#bgimgEditForm').submit();
     });
 
-/*Modal Tab Content Show*/
+/*Pattern -- Modal Tab Content Show*/
     $('body').on('click','#browse',function(){
         $.get(baseUrl+"/seomanage/pattern", function (result) {
 
@@ -119,6 +119,21 @@ $(document).ready(function () {
             $('#uploadTab').hide();
             $('#browse').show();
             $('#browseTab').show();
+    });
+
+/*Upload Image -- Modal Tab Content Show*/
+    $('body').on('click','#modBtn',function(){ //#modBtn
+        $.get(baseUrl+"/seomanage/uploadimg", function (result) {
+
+            console.log(result);
+            var jsObject = JSON.parse(result);
+            var appendStructure = '<ul class="emmortal-tab-image__list">';
+            $.each(jsObject, function(i, item) {
+    			appendStructure += jsObject[i];
+			});
+            appendStructure+="</ul>";
+            $('#savedImg').html(appendStructure);
+            });
     });
 
     $('body').on('click','#upload',function(){

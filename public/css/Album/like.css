@@ -1124,14 +1124,14 @@ body {
     color: #999; 
     background: #fffccc; 
 }
-.zoomIn{
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    height: 300px;
-    width: 360px;
-    padding: 0px;
-    cursor: zoom-in;  
+.zoomIn {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  cursor: zoom-in;
+  height: 291px;
+  padding: 0;
+  width: 360px;
 }
 .zoomOut{
     background-color: #fff;
@@ -1142,15 +1142,15 @@ body {
     padding: 0px;
     cursor: zoom-out;
 }
-.zoonChild{
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    overflow: hidden;
-    width: 98%;
-    height: 97%;
-    display: block;
-    margin: 5px;
+.zoonChild {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100%;
 }
 .descZoom{
     top:530px;

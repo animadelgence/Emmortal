@@ -8,7 +8,8 @@ switch ($controller) {
 
             case 'showprofile':
              $this->headScript()
-            ->prependFile($this->basePath() . '/js/profile/showprofilegrid.js?version=' . $t);
+               ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
+               ->prependFile($this->basePath() . '/js/profile/showprofilegrid.js?version=' . $t);
                 break;
                 case 'newsfeed':
                 $this->headScript()

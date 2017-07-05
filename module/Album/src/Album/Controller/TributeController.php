@@ -52,14 +52,47 @@ class TributeController extends AbstractActionController {
                       );
         $tributeDetails             = $modelPlugin->gettributedetailsTable()->insertData($data);
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$UID));
-        $recfrndCon      = array('friends.friendsid'=>$friendId,'friends.requestaccept'=>1);
+        $recfrndCon      = array('friends.friendsid'=>$friendId,'friends.requestaccept'=>1,'friends.userid'=>$UID);
         $recfrndJoin     = "friends.friendsid = user.userid";
+        $recfrndDetailscheck  = $modelPlugin->getfriendsTable()->joinquery($recfrndCon,$recfrndJoin);
+        if(empty($recfrndDetailscheck)){
+         $recfrndCon      = array('friends.friendsid'=>$UID,'friends.requestaccept'=>1,'friends.userid'=>$friendId);
+         $recfrndJoin     = "friends.userid = user.userid";
         $recfrndDetails  = $modelPlugin->getfriendsTable()->joinquery($recfrndCon,$recfrndJoin);
+    } else {
+        $recfrndDetails = $recfrndDetailscheck ;
+    }
+
         if($tributeDetails == 1){
-            return new ViewModel(array('sessionid'=>$UID,'dynamicPath' => $dynamicPath,'tributeDescription'=>$tributeDescription, 'tributeDescription'=>$tributeDescription,'recfrndDetails'=>$recfrndDetails,'userDetails'=>$userDetails));
+            return new ViewModel(array('sessionid'=>$UID,'dynamicPath' => $dynamicPath,'tributeDescription'=>$tributeDescription,'recfrndDetails'=>$recfrndDetails,'userDetails'=>$userDetails,'friendId'=>$friendId));
         }
 
 
+    }
+    public function tributeupdateAction(){
+         $plugin                     = $this->routeplugin();
+         $modelPlugin                = $this->modelplugin();
+         $dynamicPath                = $plugin->dynamicPath();
+         $currentPageURL = $plugin->curPageURL();
+         $href = explode("/", $currentPageURL);
+         $controller = @$href[3];
+         $action = @$href[4];
+         $UID                        = $this->sessionid;
+         $this->layout()->setVariables(array('sessionid'=> $UID,'controller' => $controller, 'action' => $action));
+         $tributeDescription         = $_POST['tributeDescriptionUpdate'];
+         $frndIdValue                = $_POST['frndId'];
+        if($frndIdValue){
+           $friendId                =  implode(",",$frndIdValue);
+            } else{
+              $friendId = "";
+            }
+            //echo $friendId;exit;
+         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$UID));
+
+         $data                       =  array('description'=>$tributeDescription);
+         $where                       =  array('UID'=>$UID);
+         $tributeDetails             = $modelPlugin->gettributedetailsTable()->updateData($data,$where);
+         return new ViewModel(array('sessionid'=>$UID,'dynamicPath' => $dynamicPath,'tributeDescription'=>$tributeDescription,'userDetails'=>$userDetails,'friendId'=>$friendId));
     }
 
     public function gettributeAction(){

@@ -21,7 +21,7 @@
                                   </div>
 
 
-<h3 class="inline text-capitalize"><span>Tribute for</span> <span class="ng-binding"><?php echo $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'];?></span></h3>
+<h3 class="inline text-capitalize"><span>Tribute for</span> <span class="ng-binding"><?php echo $friendId;?></span></h3>
 
                         </div>
                           <div class="row"><div class="col-lg-3 col-md-4 col-sm-4 text-center"><div class="inline tribute-user-image-wrapper"><div class="user_profile_image_section"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
@@ -33,9 +33,8 @@
                     </div>
                   </div>
                 </div>
-                      <input type="hidden" class="friendId" value="<?php echo $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'];?>">
+                      <input type="hidden" class="friendId" value="<?php echo $friendId;?>">
                        <input type="hidden" class="tributedescription" value="<?php echo $tributeDescription;?>">
                        <input type="hidden" class="friendId" value="<?php echo $friendId;?>">
 
 </section>
-

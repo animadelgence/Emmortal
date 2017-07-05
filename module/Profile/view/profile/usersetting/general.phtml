@@ -10,13 +10,13 @@
       <button class="tablinks" onclick="openCity(event, 'support')">Support</button>
    </div>
    <div>
-      <div id="gen" class="tabcontent">
+      <div id="gen" class="tabcontent  profileDetails">
          <div class="col-lg-6">
             <h3>Personal information</h3>
             <form action="/action_page.php">
                <input class="gen-input" type="text" name="fname" id="acc-name" value="<?php echo $userDetails[0]['firstname'];?>">
                <input class="gen-input" id="acc-lastname" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
-               <input class="gen-input-mail" id="acc-email" type="text" readonly name="email" value="<?php echo $userDetails[0]['emailid'];?>">
+               <input class="gen-input-mail" id="acc-email" type="text" name="email" value="<?php echo $userDetails[0]['emailid'];?>">
                <input type="text" class="form-control datepicker" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
                <!--<div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>-->
             </form>
@@ -31,8 +31,7 @@
                         <img src="<?php echo $userDetails[0]['profileimage'];?>" style="height:120px; width:160px;" >
                         <?php }else{ ?>
                         <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
-                        <!--<img id= 'profile_pic_thumb'/>-->
-                     </div>
+                      </div>
                      <div id="reloaddiv">
                         <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
                         <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removeavtr">
@@ -56,24 +55,25 @@
                            <img src="<?php echo $userDetails[0]['backgroundimage'];?>" style="height:120px; width:160px;" >
                            <?php }else{ ?>
                            <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
-                           <!--<img id= 'profile_pic_thumb'/>-->
-                        </div>
+                         </div>
                         <div id="reloaddivbk">
                            <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
                            <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removebgavtr">
                               <i class="fa fa-times-circle"></i>
-                              Remove avatar<?php }else{ ?>
+                              Remove Background<?php }else{ ?>
                               <div class="btn e-btn btn-primary file-input-btn" >
                                  <i class="fa fa-upload"></i>
-                                 Choose photo
+                                 Choose Background
                                  <input name="backgroundimage" type="file" id="backgroundimagechange"><?php } ?>
                                  <input type = "hidden" id = "bkimagePath" value="">
                               </div>
                            </div>
                         </div>
                      </div>
+                   </div>
+                </div>
             </form>
-            <a class="save" id="changePersonalDetails" href="javascript:void(0)">Save</a>
+            <button class="save" id="changePersonalDetails" href="javascript:void(0)" disabled="disabled" style="cursor:pointer;">Save</button>
             </div>
             </div>
             <div id="security" class="tabcontent">

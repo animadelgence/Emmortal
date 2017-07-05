@@ -55,6 +55,7 @@
   padding-top: 3px;
 
 }*/
+
 .hoverthis:hover{
   background: #fff none repeat scroll 0 0;
     color: #aaa897;
@@ -63,21 +64,13 @@
     overflow: hidden;
     padding-left: 132px;
 }
-
-.down-inner li {
-    float: left;
-    text-align: center;
-}
-
 .down-inner li a {
     background-color: transparent;
     color: rgb(255, 255, 255);
-    padding: 0px 15px;
+    padding: 11px 15px;
 }
-.profile-image-name-menu {
-  padding: 2px 2px !important;
-  bottom: 8px;
-  position: relative;
+.down-inner li a.profile-image-name-menu {
+    padding: 3px 15px !important;
 }
 .down-inner li a:hover {
     background-color: #fff;

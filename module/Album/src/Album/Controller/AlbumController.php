@@ -81,18 +81,21 @@ class AlbumController extends AbstractActionController {
             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArrays' => $likeDetailsArrays));
         }
     }
-    /*public function allalbumAction(){
+    public function fetchAllAlbumAction(){
     	$this->layout('layout/albumlayout.phtml');
     	$plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
     	$dynamicPath = $plugin->dynamicPath();
     	$jsonArray = $plugin->jsondynamic(); 
-    	//echo $dynamicPath;
-    	//print_r($jsonArray);exit;
-    	//$this->layout()->setVariables(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
-    	//echo "hi";exit;
-    	return new ViewModel();
-    	//exit;
-    }*/
+        $uploadQuery = array('UID'=> $this->sessionid);
+        $albumValue = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
+        $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
+        $res['albumValue'] = $albumValue;
+        $res['uploadDetails'] = $uploadDetails;
+    	$result = json_encode($res);
+        echo $result;
+        exit;
+    }
 
     public function termsandconditionsAction(){
     	$this->layout('layout/albumlayout.phtml');

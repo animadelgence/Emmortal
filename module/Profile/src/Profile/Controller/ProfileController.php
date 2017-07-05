@@ -41,9 +41,9 @@ class ProfileController extends AbstractActionController {
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
         $uploadQuery = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
-         $likeDetailsArrays = array();
+         
         foreach ($uploadDetails as $upload) {
-           
+            $likeDetailsArrays = array();
             $uploadId = $upload['uploadId'];
             $uploadIdquery = array('uploadId' =>$uploadId);
             $likeDetails = $modelPlugin->getlikesdetailsTable()->countLike($uploadIdquery);
@@ -62,8 +62,12 @@ class ProfileController extends AbstractActionController {
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid, 'userDetails'=>$userDetails,'bgimg'=>$bgimgSend));
+        if(empty($likeDetailsArrays)){
+             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
 
+        } else{
         return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'likeDetailsArrays' =>$likeDetailsArrays));
+    }
     }
     public function newsfeedAction(){
        

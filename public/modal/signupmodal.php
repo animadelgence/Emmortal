@@ -32,7 +32,7 @@
                <button type="submit" value="Submit" style="display:none;" disabled="disabled" >Sign Up</button>
             </form>
             <div class="modal-footersec">
-               <p>By clicking Sign Up, you agree to our <a href="<?php echo $dynamicPath; ?>/album/termsandconditions" class="link-color">Terms and conditions</a></p>
+               <p>By clicking Sign Up, you agree to our <a class="link-color" onclick= "termsandconditions();" style = "cursor:pointer;">Terms and conditions</a></p>
                <button class="modal-button" id="signupbutton" disabled="disabled" style="cursor:not-allowed;">Sign Up</button> 
                <!--<div class="alertmesage_signup" style="display: none;"></div>-->
                <p>Already have an account? Please, <a id="signin" class="link-color" onclick="squarespaceModal2open();" style="cursor: pointer;">Sign In</a></p>

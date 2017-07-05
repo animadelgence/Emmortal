@@ -10,13 +10,13 @@
       <button class="tablinks" onclick="openCity(event, 'support')">Support</button>
    </div>
    <div>
-      <div id="gen" class="tabcontent">
+      <div id="gen" class="tabcontent  profileDetails">
          <div class="col-lg-6">
             <h3>Personal information</h3>
             <form action="/action_page.php">
                <input class="gen-input" type="text" name="fname" id="acc-name" value="<?php echo $userDetails[0]['firstname'];?>">
                <input class="gen-input" id="acc-lastname" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
-               <input class="gen-input-mail" id="acc-email" type="text" readonly name="email" value="<?php echo $userDetails[0]['emailid'];?>">
+               <input class="gen-input-mail" id="acc-email" type="text" name="email" value="<?php echo $userDetails[0]['emailid'];?>">
                <input type="text" class="form-control datepicker" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
                <!--<div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>-->
             </form>
@@ -70,8 +70,10 @@
                            </div>
                         </div>
                      </div>
+                   </div>
+                </div>
             </form>
-            <a class="save" id="changePersonalDetails" href="javascript:void(0)">Save</a>
+            <button class="save" id="changePersonalDetails" href="javascript:void(0)" disabled="disabled" style="cursor:pointer;">Save</button>
             </div>
             </div>
             <div id="security" class="tabcontent">

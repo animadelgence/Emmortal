@@ -11,8 +11,16 @@ function squarespaceModalopen()
         // open modal
         $('#squarespaceModal2').modal('hide');;
         $('#squarespaceModal').modal('show');
-        if($('#datepicker').length)
-           $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
+        if($('#datepickercustom').length)
+           $('body').on('focus',"#datepickercustom", function(){
+                $(this).datepicker({
+               dateFormat: 'dd-mm-yy',
+               changeMonth:true,
+               changeYear:true,
+               yearRange: '-100y:c+nn',
+               maxDate: '-1d'
+           });
+});
     });
 }
 function squarespaceModal2open()

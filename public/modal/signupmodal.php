@@ -27,7 +27,7 @@
                   <span id = "confpasswordError" class='error'>doesn't match Password</span>
                </div>
                <div class="form-group full-width date-picker" id='datetimepicker2'>
-                  <input type="text" class="form-control " id="datepicker" placeholder="Date of Birthday">
+                  <input type="text" class="form-control " id="datepickercustom" placeholder="Date of Birthday">
                </div>
                <button type="submit" value="Submit" style="display:none;" disabled="disabled" >Sign Up</button>
             </form>

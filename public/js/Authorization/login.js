@@ -1,18 +1,52 @@
-var URL = window.location.origin;
+var URL = window.location.origin,
+    regexemail = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/;
+
 $(document).ready(function (){
-	$('body').on('keypress','.loginid', function(e){
-	   var  loginemail = $("#loginemail").val(),
-            loginpassword = $("#loginpassword").val(),
-            regexemail = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/;
+    $('body').on('change','.loginid', function(e){
+        var loginemail = $("#loginemail").val(),
+            loginpassword = $("#loginpassword").val();
+            
         if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
             $('#signinbutton').prop("disabled", false);
-            //return true;
+            $('#signinbutton').css('cursor', 'pointer');
+        } else {
+            $('#signinbutton').prop("disabled", true);
+            $('#signinbutton').css('cursor', 'not-allowed');
+        }
+    });
+    $('body').on('keyup','.loginid', function(e){
+        var loginemail = $("#loginemail").val(),
+            loginpassword = $("#loginpassword").val();
+            
+        if(e.keyCode == 8) {
+            if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
+                //alert('if change');
+                $('#signinbutton').prop("disabled", false);
+                $('#signinbutton').css('cursor', 'pointer');
+            } else {
+                $('#signinbutton').prop("disabled", true);
+                $('#signinbutton').css('cursor', 'not-allowed');
+            }
+        }
+    });
+	$('body').on('keypress','.loginid', function(e){
+        $('#loginEmailError').css('display','none');
+        var loginemail = $("#loginemail").val(),
+            loginpassword = $("#loginpassword").val();
+            
+        if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
+            $('#signinbutton').prop("disabled", false);
+            $('#signinbutton').css('cursor', 'pointer');
             if (e.which == 13) { 
 
                 $("#signinbutton").trigger("click");
                 return false;
             }
-        } 
+        }
+        else {
+            $('#signinbutton').prop("disabled", true);
+            $('#signinbutton').css('cursor', 'not-allowed');
+        }
         
     });
     $('body').on('keypress','.recoverymailid', function(e){

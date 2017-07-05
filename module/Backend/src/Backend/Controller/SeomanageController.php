@@ -80,13 +80,8 @@ namespace Backend\Controller;
               $dynamicPath  = $plugin->dynamicPath();
               $jsonArray    = $plugin->jsondynamic();
 		      $currentPageURL = $plugin->curPageURL();
-//              $id = $_POST['bgimgid'];
               $filename = $_FILES['fileupload']['name'];
-//              echo $filename; exit;
               $bgimgpath = $dynamicPath."/upload/bgimg/".$filename;
-//              $where = array('bgimgid'=>$id);
-//              $data = array('bgimgpath'=>$bgimgpath);
-//              $imgUpdate = $modelPlugin->getbgimageTable()->updateData($data,$where);
 
               //upload in bgimg folder(start)
               $href              = explode("/", $currentPageURL);
@@ -108,30 +103,31 @@ namespace Backend\Controller;
                       chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg/', 0777);
                   }
 
-              $result = $uploadPlugin->bgimgedit($tmp_name , $fileName);
+              //$result = $uploadPlugin->bgimgedit($tmp_name , $fileName);
+              $folderName = "/upload/bgimg/";
+              $result = $uploadPlugin->uploadimg($fileSize, $fileName, $files[$filename]['error'], $folderName, $fileName, $fileType);
+              //print_r($result); exit; //uncomment this
               echo $bgimgpath; exit;
               //upload in bgimg folder(end)
 
      }
      public function bgimgupdateAction(){
-            $modelPlugin  = $this->modelplugin();
-            $plugin       = $this->routeplugin();
-            $dynamicPath  = $plugin->dynamicPath();
-            $id = $_POST['bgimgid'];
-            $where = array('bgimgid'=>$id);
-            $imgPath = $_POST['imgSrc'];
-            $data = array('bgimgpath'=>$imgPath);
-            $imgUpdate = $modelPlugin->getbgimageTable()->updateData($data,$where);
-            return $this->redirect()->toRoute('seomanage', array(
+              $modelPlugin  = $this->modelplugin();
+              $plugin       = $this->routeplugin();
+              $dynamicPath  = $plugin->dynamicPath();
+              $id = $_POST['bgimgid'];
+              $where = array('bgimgid'=>$id);
+              $imgPath = $_POST['imgSrc'];
+              $data = array('bgimgpath'=>$imgPath);
+              $imgUpdate = $modelPlugin->getbgimageTable()->updateData($data,$where);
+              return $this->redirect()->toRoute('seomanage', array(
 				      'controller' => 'seomanage',
 				      'action'     => 'seoview'));
 
      }
      public function patternAction(){
               $modelPlugin = $this->modelplugin();
-
               $patternFolder = $_SERVER['DOCUMENT_ROOT'] . '/pattern/';
-              //echo $patternFolder; exit;
 
                 $getdynamicPath = $modelPlugin->dynamicPath();
                 $filetype = '*.*';
@@ -147,14 +143,42 @@ namespace Backend\Controller;
                     foreach ($patternFolderList as $filename)
                     {
                         $getFile = explode($_SERVER['DOCUMENT_ROOT'],$filename);
-                        //print_r($getFile); exit;
                         $thumbNailImageExplode = explode("/",$getFile[1]);
                         $getThumNail = "/pattern/thumbnail/".$thumbNailImageExplode[2];
                         $response[$countpattern] =  '<li class="emmortal-tab-pattern__list-item col-sm-2"><strong><a href="'.@$getdynamicPath.$getFile[1].'" title="Loading image" class="emmortal-tab-pattern__link"><img class="pattern" alt="emmortal-pattern" src="'.@$getdynamicPath.$getThumNail.'" class="emmortal-tab-pattern__link-img"/></a></strong></li>';
                         $countpattern = $countpattern + 1;
 
                     }
-         echo  json_encode($response);exit;
+            echo  json_encode($response);exit;
+
+     }
+     public function uploadimgAction(){
+              $modelPlugin = $this->modelplugin();
+              $uploadFolder = $_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg/thumb/';
+
+                $getdynamicPath = $modelPlugin->dynamicPath();
+                $filetype = '*.*';
+                $files = glob($uploadFolder . $filetype);
+                $count = count($files);
+                $uploadFolderList = array();
+                $response = array();
+                for ($i = 0; $i < $count; $i++) {
+                    $uploadFolderList[$i] = $files[$i];
+                }
+                    ksort($uploadFolderList);
+                    $countimg = 0;
+                    foreach ($uploadFolderList as $filename)
+                    {
+                        $getFile = explode($_SERVER['DOCUMENT_ROOT'],$filename);
+                        $pathExplode = explode("/",$getFile[1]);
+                        //print_r($pathExplode); exit;
+                        $getImgName = "/upload/bgimg/thumb/".$pathExplode[4];
+                        //print_r($getImgName); exit;
+                        $response[$countimg] =  '<li class="emmortal-tab-image__list-item col-sm-4" style="padding: 10px;"><strong><a href="'.@$getdynamicPath.$getFile[1].'" title="Loading image" class="emmortal-tab-image__link"><img class="image" alt="emmortal-image" src="'.@$getdynamicPath.$getImgName.'" class="emmortal-tab-image__link-img"/></a></strong></li>';
+                        $countimg = $countimg + 1;
+
+                    }
+            echo json_encode($response);exit;
 
      }
 

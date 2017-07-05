@@ -6,14 +6,14 @@
                         <div class="content-wrapper user_profile_section">
                          <div class="container-of-sections ">
                              <div class="gridster ready">
-                              <ul class="outer-wrap">
+                              <ul class="outer-wrap" id="outer-wrap">
                                   <?php if (!@getimagesize($userDetails[0]['profileimage'])) { ?>
-                            <li class="user_profile_image_section" data-col="1" data-row="1"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
+                            <li class="user_profile_image_section no-resize" data-col="1" data-row="1" data-sizey="2" data-sizex="2"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
                     echo $userDetails[0]['profileimage'];
                 } else {
                     echo "/image/profile-deafult-avatar.jpg";
                 }?>"></li>
-                            <li class="user_profile_name_section" data-col="1" data-row="1"><span><?php echo $userDetails[0]['dateofbirth']?></span><br><span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname']?></span></li>
+                            <li class="user_profile_name_section no-resize" data-col="1" data-row="1" data-sizey="1" data-sizex="2"><span><?php echo $userDetails[0]['dateofbirth']?></span><br><span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname']?></span></li>
 
                             <?php }?>
                              <?php  if(count($uploadDetails)>0){
@@ -24,19 +24,30 @@
                                            // print_r($upload);
                                           if($upload['uploadType'] == "text"){
 
-                                              echo '<li class="gs-w user_upload_part_section_content--inside vid-sec text-sec resizable" data-col="1" data-row="1" data-cmd="text"  data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><span><label name="text Name">'.$upload['uploadTitle'].'</label></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';
+                                              echo '<li class="gs-w user_upload_part_section_content--inside vid-sec text-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="text"  data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><div><label name="text Name">'.$upload['uploadTitle'].'</label></div><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';
 
 
                                           
                                           } else if($upload['uploadType'] == "image"){
 
-                                              echo '<li class="gs-w user_upload_part_section_content--inside vid-sec resizable" data-col="1" data-row="1" data-cmd="image" data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><span><img name="Image Name" id="" src="'.$upload['uploadPath'].'?abc" style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';
+
+                                              echo '<li class="gs-w user_upload_part_section_content--inside vid-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="image" data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><span><img name="Image Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';
+
+
+
+                                          }
+
+                                          else if($upload['uploadType'] == "album"){
+
+
+                                              echo '<li class="gs-w user_upload_part_section_content--inside vid-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="image" data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><span><img name="Image Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';
+
 
 
                                           }
                                           else if($upload['uploadType'] == "video"){
 
-                                                echo '<li class="gs-w user_upload_part_section_content--inside vid-sec resizable" data-col="1" data-row="1" data-cmd="video"data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><span><video controls="controls" name="Video Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';
+                                                echo '<li class="gs-w user_upload_part_section_content--inside vid-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="video"data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><span><video controls="controls" name="Video Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></video></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';
 
                                            
                                           }else{
@@ -45,8 +56,8 @@
                                         }
                                        echo "</div>";
                                     }else{ ?>
-                            <li class="user_upload_part_section">
-                                <div data-target="#uploadModal" data-toggle="modal" class="fa fa-plus add-page-plus-icon"></div>
+                            <li class="gs-w user_upload_part_section vid-sec no-resize" data-col="1" data-row="1" data-sizey="1" data-sizex="2">
+                                <div onclick="uploadmodalopen();" href="javascript:void(0);" class="fa fa-plus add-page-plus-icon"></div>
                                 <div class="">
                                     <p>Add your Life moments: upload photos and videos.</p>
                                     <p>Create Albums, Tributes and add valuable texts.</p>

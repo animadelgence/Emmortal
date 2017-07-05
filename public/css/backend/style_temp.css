@@ -2613,6 +2613,7 @@ border-radius: 5px 5px 0 0;
     position: absolute !important;
 }
 
+/*admin background image edit*/
 .modBtn{
     padding: 8px 17px !important;
     font-size: 15px !important;
@@ -2687,16 +2688,16 @@ border-radius: 5px 5px 0 0;
     padding: 6px 15px;
 }
 
+/*admin upload image in modal*/
 .uploadbtn-input-file{
     opacity: 0;
     overflow: hidden;
     position: absolute;
-/*    margin: -55px 0 20px -25px;*/
-    margin: -108px 0 20px -85px;
+    margin: -108px 0 20px -60px;
 }
 
 .uploadbtn{
-    margin: 15px 0 20px -30px;
+    margin: 15px 0 20px 0;
     padding: 10px 20px;
     cursor: pointer;
     font-weight: 400;
@@ -2707,6 +2708,10 @@ border-radius: 5px 5px 0 0;
     background-color: #827657;
     color: #ffffff;
     border-radius: 5px;
+}
+
+.uploadTab{
+    background-color: #f7f7f7;
 }
 
 .login-navbar-logo__anchor:hover, .login-navbar-logo__anchor:focus {

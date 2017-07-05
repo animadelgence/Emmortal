@@ -4,17 +4,17 @@
       <div class="modal-content modal-outer">
          <div class="modal-header modal-headernew">
             <button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            <h3 class="modal-title" id="lineModalLabel">Edit Tribute For <span class="friendname"></span></h3>
+            <h3 class="modal-title" id="lineModalLabel">Edit tribute for <span class="friendname"></span></h3>
          </div>
          <div class="modal-body select-media-type-popup">
-            <form name="tributecreate" id="tributecreate" action="/tribute/tributesubmit" method="POST" enctype="multipart/form-data">
+            <form name="tributeUpdate" id="tributeUpdate" action="/tribute/tributeupdate" method="POST" enctype="multipart/form-data">
                <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <div class="form-group col-xs-12 col-sm-12">
          </div>
-
+                     <input class="frndId" type="hidden" name="frndId[]">
                      <div class="form-group col-xs-12 col-sm-12">
-                        <textarea name="tributeDescription" id="tributeDescription" class="form-control" style="height:200px;"></textarea>
+                        <textarea name="tributeDescriptionUpdate" id="tributeDescriptionUpdate" class="form-control tributeDescriptionUpdate" style="height:200px;"></textarea>
                         <span id="tributeDescriptionError" style="color:red;display:none;">Required</span>
                      </div>
                      </div>

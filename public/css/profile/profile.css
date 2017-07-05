@@ -158,6 +158,13 @@
   object-fit: cover;
   width: 100%;
 }
+.no-resize .gs-resize-handle-both{
+   display:none;
+
+}
+.no-resize{
+     cursor:default !important;
+}
 #loader-icon{
     margin-top: 20px;
     text-align: center;

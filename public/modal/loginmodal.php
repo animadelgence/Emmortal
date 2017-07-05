@@ -21,10 +21,10 @@
                </form>
                <div class="modal-footersec">
                   <div class="button-div">
-                     <button class="modal-button" id="signinbutton" disabled="disabled">Sign IN</button> 
+                     <button class="modal-button" id="signinbutton" disabled="disabled" style="cursor:not-allowed;">Sign IN</button> 
                      <div class="alertmesage_signin" style="display: none;"></div>
                   </div>
-                  <p>Don't have an account? Please,  <a id="signup" class="link-color" data-toggle="modal" data-target="#squarespaceModal" onclick="$('.close').trigger('click');" style="cursor: pointer;">Sign Up</a></p>
+                  <p>Don't have an account? Please,  <a id="signup" class="link-color" onclick="squarespaceModalopen();" style="cursor: pointer;">Sign Up</a></p>
                </div>
             </div>
          </div>

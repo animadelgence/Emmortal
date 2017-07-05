@@ -125,6 +125,7 @@ class CreatealbumController extends AbstractActionController {
             //echo $currentPageId;
             //exit;
         }
+
         $uploadQuery = array(
                             'UID'=>$this->sessionid,
                             'title'=>$albumTitle,
@@ -136,7 +137,19 @@ class CreatealbumController extends AbstractActionController {
                             'creationdate'=>$addeddate
                            
                             );
-        $albumDetails = $modelPlugin->getalbumdetailsTable()->insertalbum($uploadQuery);
+        $albumDetails = $modelPlugin->getalbumdetailsTable()->insertalbumGetId($uploadQuery);
+         $data                  =  array('UID'=>$this->sessionid,
+                      'uploadTitle'=>$albumTitle,
+                      'uploadDescription'=>$albumDescription,
+                      'AID'=>$albumDetails,
+                      'FID'=>$friendsid,
+                      'TimeStamp'=>$addeddate,
+                      'uploadPath'=> $imageNewPath1,
+                      'uploadType'=>'album',
+                      'PID'=>$currentPageId,
+
+                      );
+           $albumDetailsforupload         = $modelPlugin->getuploadDetailsTable()->insertData($data);
         if($albumDetails)
         {
             $result = 1;

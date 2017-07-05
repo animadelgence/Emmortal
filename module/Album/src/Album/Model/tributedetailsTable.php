@@ -68,5 +68,11 @@
 
            return $data;
 	    }
+         public function updateData($data,$where)
+        {
+            
+            $res = $this->tableGWay->update($data,$where);
+            return $res;
+        }
     }
 ?>

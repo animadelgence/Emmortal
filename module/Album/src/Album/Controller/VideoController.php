@@ -18,12 +18,7 @@ class VideoController extends AbstractActionController {
    public function __construct() {
         $userSession = new Container('userloginId');
         $this->sessionid = $userSession->offsetGet('userloginId');
-        // $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        // $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
-        // if ($this->sessionid == "") {
-        //     header("Location:" . $dynamicPath. "/profile/showprofile");
-        //     exit;
-        // }
+        
     }
 
     public function videosubmitAction(){
@@ -71,7 +66,7 @@ class VideoController extends AbstractActionController {
                       'AID'=>$albumId,
                       'FID'=>$friendId,
                       'TimeStamp'=>$addeddate,
-                      'uploadPath'=>'/upload/video/'.$uploadedvideo,
+                      'uploadPath'=> $dynamicPath.'/upload/video/'.$uploadedvideo,
                       'uploadType'=>'video',
                       'PID'=>$currentPageId,
 

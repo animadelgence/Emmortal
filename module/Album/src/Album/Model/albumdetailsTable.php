@@ -33,5 +33,11 @@
         {
             return $rowset = $this->tableGWay->insert($data);
         }
+        public function insertalbumGetId($data)
+        {
+             $rowset = $this->tableGWay->insert($data);
+             $id = $this->tableGWay->lastInsertValue;
+             return $id;
+        }
     }
 ?>

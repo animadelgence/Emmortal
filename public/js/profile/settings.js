@@ -111,13 +111,14 @@ $(document).ready(function () {
             accountEmail = $("#acc-email").val(),
             profileimageNmae    = $("#pfimagePath").val(),
             backgroundimageName = $("#bkimagePath").val();
-        alert(2);   
+        alert(accountFirstName.trim()+accountLastName.trim()+accountDOB+accountEmail);   
         if ((accountFirstName.trim() != '') && (accountLastName.trim != '') && (accountEmail.match(regexemail)) && (accountEmail != '') && (accountDOB != '')) {
-            alert(3);
+            alert(2);
             $('#changePersonalDetails').prop("disabled", false);
             $('#changePersonalDetails').css('cursor', 'pointer');
             //$("#changePersonalDetails").trigger("click");
         } else {
+            alert(3);
             $('#changePersonalDetails').prop("disabled", true);
             $('#changePersonalDetails').css('cursor', 'not-allowed');
         }
@@ -129,18 +130,44 @@ $(document).ready(function () {
             accountEmail = $("#acc-email").val(),
             profileimageNmae    = $("#pfimagePath").val(),
             backgroundimageName = $("#bkimagePath").val();
-           alert(1); 
-        if(e.keyCode == 8) {    
+           alert(4); 
+        if(e.keyCode == 8) { 
+            alert(5);
             if ((accountFirstName.trim() != '') && (accountLastName.trim != '') && (accountEmail.match(regexemail)) && (accountEmail != '') && (accountDOB != '')) {
-                alert(4);
+                alert(6);
                 $('#changePersonalDetails').prop("disabled", false);
                 $('#changePersonalDetails').css('cursor', 'pointer');
                 $("#changePersonalDetails").trigger("click");
             } else {
+                 alert(7);
                 $('#changePersonalDetails').prop("disabled", true);
                 $('#changePersonalDetails').css('cursor', 'not-allowed');
             }
         }
+    });
+    $('body').on('keypress','.profileDetails', function(e){
+        $('#loginEmailError').css('display','none');
+        var accountFirstName = $("#acc-name").val(),
+            accountLastName = $("#acc-lastname").val(),
+            accountDOB = $("#acc-dob").val(),
+            accountEmail = $("#acc-email").val(),
+            profileimageNmae    = $("#pfimagePath").val(),
+            backgroundimageName = $("#bkimagePath").val();
+            
+        if ((accountFirstName.trim() != '') && (accountLastName.trim != '') && (accountEmail.match(regexemail)) && (accountEmail != '') && (accountDOB != '')) {
+            $('#changePersonalDetails').prop("disabled", false);
+            $('#changePersonalDetails').css('cursor', 'pointer');
+            if (e.which == 13) { 
+
+                $("#changePersonalDetails").trigger("click");
+                return false;
+            }
+        }
+        else {
+            $('#changePersonalDetails').prop("disabled", true);
+            $('#changePersonalDetails').css('cursor', 'not-allowed');
+        }
+        
     });
     $("#changePersonalDetails").click(function (e) {
 

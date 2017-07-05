@@ -82,7 +82,8 @@ $(document).ready(function () {
             email = $("#email").val(),
             password = $("#password").val(),
             confirmpassword = $("#confirmPassword").val(),
-            dob = $("#datepicker").val();
+            dob = $("#datepicker").val(),
+            regexpassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
         if ((password !== confirmpassword) && (!password.match(regexpassword))) {
             $('#confpasswordError').css('display', 'block');
             $('#passwordError').css('display', 'block');

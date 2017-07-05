@@ -122,7 +122,7 @@ $(document).ready(function () {
     });
 
 /*Upload Image -- Modal Tab Content Show*/
-    $('body').on('click','#modBtn',function(){ //#modBtn
+    $('body').on('click','#modBtn',function(){
         $.get(baseUrl+"/seomanage/uploadimg", function (result) {
 
             console.log(result);
@@ -167,6 +167,7 @@ $(document).ready(function () {
                $("#imgUploadForm").ajaxSubmit({
                 data: { fileupload: 'fileupload' },
                 success: function (response) {
+                    console.log(response);
                    $('#imgSrc').val(response);
                     $('#upload_prev').html("<img src='"+response+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
                 }

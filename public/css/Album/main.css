@@ -16,7 +16,6 @@ body {
   width: 100%;
 }
 .menu-icon {
-  color: #fff;
   font-size: 18px;
 }
 .menu-icon:hover{
@@ -513,9 +512,6 @@ button[disabled], html input[disabled] {
     background-color: transparent;
 }
 
-.hamburger-menu li {
-    top: -11px;
-}
 .dropdown-menu>li>a {
     color: #428bca;
 }
@@ -745,8 +741,7 @@ button[disabled], html input[disabled] {
   background-color: #eee;
   border-color: #337ab7;
   float: right;
-  height: 45px;
-    color: rgb(170,168,151);
+  color: rgb(170,168,151);
 }
 
 /*.hover-effect:hover {

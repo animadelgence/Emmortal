@@ -15,7 +15,7 @@
 
 function yHandler() {
     $('#loader-icon').css('display', 'block');
-    console.log("dfdfg")
+   // console.log("dfdfg")
     var noofScroll = $('#valuetobeIncremented').val();
     var wrap = '';
     var contentHeight = '';

@@ -202,6 +202,50 @@ function addtributemodal() {
         $('body').append(result);
         // open modal
         $('#tributeAddModal').modal('show');
+
+    });
+}
+
+function onupdateTribute() {
+    if($('#tributeUpdatemodal').length) {
+        $('#tributeUpdatemodal').remove();
+    }
+    $.get(getUrl+"/modal/updatetributemodal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        var name = $('.friendId').val();
+        var tributedescription = $('.tributedescription').val();
+        var friendId = $('.friendId').val();
+        $('#tributeUpdatemodal').modal('show');
+        $('.friendname').html(name);
+        $('.frndId').val(friendId);
+        if($('#tributeDescriptionUpdate').length) {
+            //CKEDITOR.instances.tributeDescriptionUpdate.setData(tributedescription);
+            CKEDITOR.replace('tributeDescriptionUpdate', {
+                toolbar: [
+
+                    {
+                        name: 'others',
+                        items: ['-']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup'],
+                        items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
+                    },
+
+                    {
+                        name: 'links',
+                        items: ['Link', 'Unlink', 'Anchor']
+                    }
+
+
+                ]
+            });
+            CKEDITOR.disableAutoInline = true;
+        }
     });
 }
 function friendtributemodal() {

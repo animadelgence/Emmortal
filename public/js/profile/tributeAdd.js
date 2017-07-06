@@ -54,7 +54,10 @@ $(document).ready(function () {
             $('#tributeType').val(tributeType);
             getAlbum(frndId, textDescription,tributeType);
         } else {
-            $('#tribute-add-btn').hide();
+            setTimeout(function(){
+                $('#tributeloader').css('display','none');
+                $('#tribute-add-btn').hide();
+            }, 2000);
         }
     });
     $('body').on('click', '#publishFriendTribute', function () {

@@ -4,7 +4,7 @@ namespace Plugin\Controller\Plugin;
 
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
-class imageuploadplugin extends AbstractPlugin {
+class imageuploadplugin extends routeplugin {
 	public function upload($tempname,$name,$newfoldername,$valuecondition)
      {
         $res                        = array();
@@ -69,8 +69,9 @@ class imageuploadplugin extends AbstractPlugin {
 //     }
 
     //new added below
-    public function uploadimg($fileSize,$fileName,$files,$folderName,$imageName,$fileType="")
+    public function uploadimg($fileSize,$fileName,$files,$folderName,$imageName,$fileType) //="" (last par)
      {
+        //echo $fileSize."--".$fileName."--".$folderName."--".$imageName."--".$fileType;exit;
        $res = array();
        if($fileSize >= 5)
         {
@@ -92,9 +93,9 @@ class imageuploadplugin extends AbstractPlugin {
                 //echo "inside if";exit;
      		$uploadObj = new \Zend\File\Transfer\Adapter\Http();
      		$uploadObj->setDestination($_SERVER['DOCUMENT_ROOT'].$folderName);
-			//$upload =  $this->dynamicPath();
+			$upload =  $this->dynamicPath();
             //$plugin = $this->routeplugin();
-			$upload =  $_SERVER['DOCUMENT_ROOT'];
+			 //$upload =  $_SERVER['DOCUMENT_ROOT'];
 			$ext = $this->_findexts($fileName);
             if(empty($imageName)){
                 $newfilename = md5(time()).".".$ext;
@@ -111,7 +112,9 @@ class imageuploadplugin extends AbstractPlugin {
      			$res['originalPath'] = $ups;
 			$res['exterror'] = 0;
 			$res['thumbPath'] = $upload.$folderName.$pathThumb;
+            //echo $res['thumbPath']; exit;
 			return json_encode($res);
+                //return($res);
 				exit;
      		}
 		else

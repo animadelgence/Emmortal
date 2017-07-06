@@ -13,7 +13,7 @@
         {
             $this->tableGWay = $tableGateway;
         }
-        public function fetchall($query=null)
+        public function fetchall($query)
         {
         $sql = new Sql($this->tableGWay->adapter);
         $select = $sql->select();
@@ -53,7 +53,7 @@
                     'uploadTitle' => $rSet->uploadTitle,
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
-                    'filestatus' => $rSet->filestatus,
+                    'albumcolor' => $rSet->albumcolor,
                     'sizeX' => $sizeX,
                     'sizeY' => $sizeY,
                     'height'=>$Height,
@@ -105,7 +105,7 @@
                     'uploadTitle' => $rSet->uploadTitle,
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
-                    'filestatus' => $rSet->filestatus,
+                    'albumcolor' => $rSet->albumcolor,
                     'sizeX' => $sizeX,
                     'sizeY' => $sizeY,
                     'AID' => $rSet->AID,
@@ -115,16 +115,16 @@
                     );
         }
         return $array;
-        //print_r($array);exit;
     }
 
         public function insertData($data)
         {
-            return $rowset = $this->tableGWay->insert($data);
+            $rowset = $this->tableGWay->insert($data);
+            $id = $this->tableGWay->lastInsertValue;
+            return $id;
         }
         public function updateData($data,$where)
         {
-            //$rowset = $this->tableGWay->select($where);
             $res = $this->tableGWay->update($data,$where);
             return $res;
         }
@@ -150,6 +150,7 @@
                             'uploadDescription' => $rSet->uploadDescription,
                             'uploadPath' => $rSet->uploadPath,
                             'uploadType' => $rSet->uploadType,
+                            'albumcolor' => $rSet->albumcolor,
                             'AID' => $rSet->AID,
                             'FID' => $rSet->FID,
                             'PID' => $rSet->PID,

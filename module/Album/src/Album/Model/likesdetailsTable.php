@@ -29,7 +29,9 @@
         }
         public function insertLike($data)
         {
-            return $rowset = $this->tableGWay->insert($data);
+            $rowset = $this->tableGWay->insert($data);
+            $id = $this->tableGWay->lastInsertValue;
+            return $id;
         }
         public function updateLike($data,$where)
         {

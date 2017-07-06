@@ -19,7 +19,9 @@ $(document).ready(function () {
         var datacmd = $(this).attr('data-cmd'),
             id = $(this).data('id'),
             $likeClick = $(this),
-            likevalue = $(this).text();
+            likevalue = $(this).text(),
+           colorvalue =$likeClick.css("background-color");
+           alert(colorvalue);
         $.ajax({
             type: "POST",
             url: base_url_dynamic + '/albumdetails/likesave',
@@ -35,7 +37,7 @@ $(document).ready(function () {
                     if (parseInt(likevalue, 10) < parseInt(res, 10)) {
                         $likeClick.css('background', '#b4504e');
                     } else {
-                        $likeClick.css('background', '#aaa897');
+                        $likeClick.css('background-color', colorvalue);
                     }
                 }
             }

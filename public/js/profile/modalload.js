@@ -401,6 +401,20 @@ function videomodalopen() {
         }
     });
 }
+function errormodalopen(param){
+    if($('#errorModal').length) {
+        $('#errorModal').remove();
+    }
+    $.get(getUrl+"/modal/errorModal.php", function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#errorModal').modal('show');
+        $('#errorMessage').html(param);
+
+    });
+
+}
 function uploadmodalopen(){
     if($('#uploadModal').length) {
         $('#uploadModal').remove();

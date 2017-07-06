@@ -14,6 +14,8 @@ class ProfileController extends AbstractActionController {
     public function __construct() {
         $userSession     = new Container('userloginId');
         $this->sessionid = $userSession->offsetGet('userloginId');
+        $userSessionTemp     = new Container('tempStoreName');
+        $this->sessionidtemp = $userSessionTemp->offsetGet('tempStoreName');
         $protocol        = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath     = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
@@ -66,7 +68,7 @@ class ProfileController extends AbstractActionController {
         return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'likeDetailsArrays' =>$likeDetailsArrays));
     }
     public function newsfeedAction(){
-       
+       //echo $this->sessionidtemp;exit;
     	$this->layout('layout/profilelayout.phtml');
 
     	$modelPlugin      = $this->modelplugin();
@@ -84,8 +86,26 @@ class ProfileController extends AbstractActionController {
             else{
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
-
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
+        $tempstore = 'blank';
+        if($this->sessionidtemp) {
+            $tempstore = $this->sessionidtemp;
+            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
+            /*$user_session_temp->loginId = ($_SESSION['tempStore']);
+            $user_session_temp = new \Zend\Session\Container('tempStore');
+            unset($user_session_temp->tempStore);*/
+        }
+        else {
+            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
+        }
+        if($this->sessionidtemp){
+            $user_session_temp->tempStore = ($_SESSION['tempStoreName']);
+            $user_session_temp = new \Zend\Session\Container('tempStoreName');
+            unset($user_session_temp->tempStoreName);
+            
+            /*$user_session->loginId  = ($_SESSION['userloginId']);
+        $user_session           = new \Zend\Session\Container('userloginId');
+        unset($user_session->userloginId);*/
+        }
        
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }

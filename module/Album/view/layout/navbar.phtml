@@ -2,7 +2,7 @@
    <div class="container">
       <div class="row wrapclassrow ">
          <div>
-            <!--<div class="welcome" style="display:none;">
+            <div class="welcome" style="display:none;">
                <div class="close-msg">
                   <a href="#">
                   <i class="fa fa-times closebtn" aria-hidden="true"></i>
@@ -14,7 +14,7 @@
                   <span>Welcome!</span>
                   <?php //} ?>
                </div>
-            </div>-->
+            </div>
             <div class="col-lg-8" id="secondnavbarimage">
                <a href="<?php echo $dynamicPath;?>" class="logo-style">Emmortal</a>
                <?php if( $sessionid != ""){ ?>
@@ -106,20 +106,16 @@
          </div>
       </div>
    </div>
-</section>
-<div class="welcome" style="display:none;">
+    <div id="welcome" style="display: none;" class="welcome">
    <div class="close-msg">
       <a href="#">
-      <i class="fa fa-times closebtn" aria-hidden="true"></i>
+      <i aria-hidden="true" class="fa fa-times closebtn"></i>
       </a>
    </div>
-   <div class="showmsg" style="margin:5px;">
-      <?php
-         if(strtolower($refercontroller) == 'album' && strtolower($referaction) == 'showalbum'){?>
-      <span>Welcome!</span>
-      <?php } ?>
-   </div>
+   <div id="showmsg" style="margin:5px;" class="showmsg">Changes was successfully saved!</div>
 </div>
+</section>
+
 <?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/signupmodal.php"); ?>
 <?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/loginmodal.php"); ?>
 <?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/forgetpasswordmodal.php"); ?>

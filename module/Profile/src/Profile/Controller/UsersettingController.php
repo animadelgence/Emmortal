@@ -132,7 +132,7 @@ class UsersettingController extends AbstractActionController {
         $mailBody = str_replace("|FULLNAME|", $fullname, $activationLinkreplace);
         $subject = "Query to be answered";
         $from = $jsonArray['sendgridaccount']['addfrom'];
-        echo $mailBody;exit;
+        //echo $mailBody;exit;
         $mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
         echo $mailfunction;exit;
     }

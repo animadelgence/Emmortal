@@ -44,14 +44,41 @@ $(document).ready(function () {
         numberOfMonths:[1,1]
     });
     
-    
+    $('body').on('change','.passwordDetails', function(){
+        var currentPassword = $("#acc-cur-pass").val(),
+            newPassword = $("#acc-pass").val(),
+            repeatPassword = $("#acc-pass-rep").val();
+        if ((currentPassword !== "") && (newPassword !== "") && (repeatPassword !== "")) { // jshint ignore:line
+                $('#password_save').prop("disabled", false);
+                $('#password_save').css('cursor', 'pointer');
+        }  else {
+            $('#changePersonalDetails').prop("disabled", true);
+            $('#changePersonalDetails').css('cursor', 'not-allowed');
+        }
+    });
+    $('body').on('keyup','.passwordDetails', function(e){
+        var currentPassword = $("#acc-cur-pass").val(),
+            newPassword = $("#acc-pass").val(),
+            repeatPassword = $("#acc-pass-rep").val();
+        if(e.keyCode == 8) { 
+            if ((currentPassword !== "") && (newPassword !== "") && (repeatPassword !== "")) { // jshint ignore:line
+                $('#password_save').prop("disabled", false);
+                $('#password_save').css('cursor', 'pointer');
+            } else {
+                 //alert(7);
+                $('#changePersonalDetails').prop("disabled", true);
+                $('#changePersonalDetails').css('cursor', 'not-allowed');
+            }
+        }
+    });
     $('body').on('keypress','.passwordDetails', function(e){
-        //$('#loginEmailError').css('display','none');
+        $('#confirmpassError').css('display', 'none');
+        $('#currentpassError').css('display', 'none');
         var currentPassword = $("#acc-cur-pass").val(),
             newPassword = $("#acc-pass").val(),
             repeatPassword = $("#acc-pass-rep").val();
             
-        if ((currentPassword === "") && (newPassword === "") && (repeatPassword === "")) {
+        if ((currentPassword !== "") && (newPassword !== "") && (repeatPassword !== "")) { // jshint ignore:line
             $('#password_save').prop("disabled", false);
             $('#password_save').css('cursor', 'pointer');
             if (e.which == 13) { 
@@ -71,7 +98,11 @@ $(document).ready(function () {
             currentPassword = $("#acc-cur-pass").val(),
             newPassword = $("#acc-pass").val(),
             repeatPassword = $("#acc-pass-rep").val();
-        if (currentPassword === "") {
+        if (newPassword !== repeatPassword) { // jshint ignore:line
+            $('#confirmpassError').css('display', 'block');
+            return false;
+        }
+        /*if (currentPassword === "") {
             $(".div--error_secondmsg").html('Enter current password').css('display', 'block');
             setTimeout(function () {
                 $(".div--error_secondmsg").fadeOut(300, function () {});
@@ -113,7 +144,7 @@ $(document).ready(function () {
                 $(".div--error_secondmsg").fadeOut(300, function () {});
             }, 6000);
             return false;
-        }
+        }*/
         $("#form__changepassword").ajaxSubmit({
             data: {
                 newPassword: newPassword,
@@ -125,11 +156,18 @@ $(document).ready(function () {
                 var jsObject = JSON.parse(result);
                 //console.log(jsObject);
                 //return false;
-                $(".div--error_secondmsg").html(jsObject.Message).css('display', 'block');
-                setTimeout(function () {
-                    $(".div--error_secondmsg").fadeOut(300, function () {});
-                }, 6000);
-                return false;
+                if (jsObject.Message == 'Your current password is wrong') {
+                    $('#currentpassError').css('display', 'block');
+                    return false;
+                } else {
+                    setTimeout(function () {
+                        $('#welcome').css('display','block').fadeOut(10000, function () {});
+                        $('#welcome').css('top','-33px');
+                        $('#showmsg').html('Changes was successfully saved!');
+                    }, 500);
+                    
+                }
+                
             }
         });
         
@@ -229,11 +267,17 @@ $(document).ready(function () {
                 },
                 success: function (result) {
                     //console.log(result);return false;
-                    window.location.reload();
+                   /* window.location.reload();
                     $(".div--error_secondmsg").html('Account details updated').css('display', 'block');
                     setTimeout(function () {
                         $(".div--error_secondmsg").fadeOut(300, function () {});
-                    }, 6000);
+                    }, 6000);*/
+                    
+                    setTimeout(function () {
+                        $('#welcome').css('display','block').fadeOut(10000, function () {});
+                        $('#welcome').css('top','-33px');
+                        $('#showmsg').html('Changes was successfully saved!');
+                    }, 500);
                     return false;
 
                     // trying to load a single div but not happening need to recheck
@@ -251,14 +295,59 @@ $(document).ready(function () {
         //}
         
     });
+    $('body').on('change','.supportQues', function(){
+        var questionDetails = ($('#questionDetails').val()).trim();
+        if (questionDetails != '') {
+            //alert(2);
+            $('#saveQuestion').prop("disabled", false);
+            $('#saveQuestion').css('cursor', 'pointer');
+        } else {
+            //alert(3);
+            $('#saveQuestion').prop("disabled", true);
+            $('#saveQuestion').css('cursor', 'not-allowed');
+        }
+    });
+    $('body').on('keyup','.supportQues', function(e){
+        var questionDetails = ($('#questionDetails').val()).trim();
+        if(e.keyCode == 8) { 
+            //alert(5);
+            if (questionDetails != '')  {
+                //alert(6);
+                $('#saveQuestion').prop("disabled", false);
+                $('#saveQuestion').css('cursor', 'pointer');
+            } else {
+                 //alert(7);
+                $('#saveQuestion').prop("disabled", true);
+                $('#saveQuestion').css('cursor', 'not-allowed');
+            }
+        }
+    });
+    $('body').on('keypress','.supportQues', function(e){
+        //$('#loginEmailError').css('display','none');
+       var questionDetails = $('#questionDetails').val();
+        if (questionDetails != '')  {
+            $('#saveQuestion').prop("disabled", false);
+            $('#saveQuestion').css('cursor', 'pointer');
+            if (e.which == 13) { 
+
+                $("#saveQuestion").trigger("click");
+                return false;
+            }
+        }
+        else {
+            $('#saveQuestion').prop("disabled", true);
+            $('#saveQuestion').css('cursor', 'not-allowed');
+        }
+        
+    });
     $('body').on('click', '#saveQuestion', function () {
         var questionDetails = $('#questionDetails').val();
-        if (questionDetails.trim() === "") {
+        /*if (questionDetails.trim() === "") {
             $(".div--error_secondmsg").html('Enter Your Question').css('display', 'block');
             setTimeout(function () {
                 $(".div--error_secondmsg").fadeOut(300, function () {});
             }, 6000);
-        } else {
+        } else {*/
             $.ajax({
                 url: base_url_dynamic + "/settings/sendQuestion",
                 type: "POST",
@@ -266,16 +355,22 @@ $(document).ready(function () {
                     questionDetails: questionDetails
                 },
                 success: function (result) {
-                    console.log(result);//return false;
+                    /*console.log(result);//return false;
                     $(".div--error_secondmsg").html('Query sent').css('display', 'block');
                     setTimeout(function () {
                         $(".div--error_secondmsg").fadeOut(300, function () {});
                     }, 6000);
+                    return false;*/
+                    setTimeout(function () {
+                        $('#welcome').css('display','block').fadeOut(10000, function () {});
+                        $('#welcome').css('top','-33px');
+                        $('#showmsg').html('Thank you for your question.');
+                    }, 500);
                     return false;
                 }
 
             });
-        }
+        //}
     });
     $('body').on('change', '#profileView', function () {
         var optionValue = $(this).val(),

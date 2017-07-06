@@ -2,7 +2,7 @@
 <div class="e-container albumcontainer">
    <div class="e-brown m-b-5">
       <div class="show-adds-btns pull-right" style=" width: 17%;">
-         <div tooltip-placement="bottom" data-toggle="tooltip" title="Likes" class="e-like btn e-btn btn-round full" type="album" target="album" color="album.color" style="background-color: rgb(47, 109, 107);float: left;">0</div>
+         <div tooltip-placement="bottom" data-toggle="tooltip" title="Likes" class="e-like btn e-btn btn-round full likeClick" data-id="<?php echo $albumDetails[0]['albumeid']; ?>" data-cmd="album" type="album" target="album" color="album.color" style="background-color: rgb(47, 109, 107);float: left;">0</div>
          <div data-toggle="tooltip" title="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full" on-link-follow="$close()" content-type="album" content-id="61" comments-count="album.comments_count" color="album.color" style="background-color: rgb(47, 109, 107); margin-right: 5px;float: left;">0</div>
          
          <div  class="edit-menu-wrapper" style=" padding-top: 4px;">

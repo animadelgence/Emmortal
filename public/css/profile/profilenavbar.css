@@ -53,7 +53,7 @@
 
 }*/
 
-.hoverthis > li:hover{
+.hoverthis > li:hover, .hoverthis > li:active, .hoverthis > li:focus{
   background: #fff none repeat scroll 0 0;
     color: #aaa897;
 }

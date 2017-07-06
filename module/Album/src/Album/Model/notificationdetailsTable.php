@@ -10,9 +10,19 @@
         {
             $this->tableGWay = $tableGateway;
         }
-        public function fetchall($query)
+        public function fetchall($query,$off,$limit)
         {
-            $resultSet = $this->tableGWay->select($query);
+           $sql = new Sql($this->tableGWay->adapter);
+           $select = $sql->select();
+           $select->from($this->tableGWay->getTable())
+                  ->where($query)
+                  ->order(array('notify_seen ASC','notificationid DESC'))
+                  ->limit($limit)
+                  ->offset($off);
+                 // ->order('notificationid DESC','notify_seen ASC');
+            $resultSet = $this->tableGWay->selectWith($select);
+            /*$result = $this->tableGWay->selectWith($select);
+            $resultSet = $this->tableGWay->select($query) ->order('publisherId DESC');*/
             $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(

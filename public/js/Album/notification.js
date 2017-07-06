@@ -14,19 +14,69 @@
 var base_url_dynamic = window.location.origin;
 $(document).ready(function () {
     "use strict";
-    /*setInterval(function () {
-        $.get("demo_test.asp", function (data, status) {
-            alert("Data: " + data + "\nStatus: " + status);
-        });
-    }, 3000);*/
+    setInterval(function () {
+        getNotification();
+    }, 5000);
     $('body').on('click', '.notification-click', function () {
         if ($("#notification-div").is(':visible')) {
             $('#notification-div').hide('show');
         } else {
             $.get(base_url_dynamic + "/modal/notificationmodal.php", function (result) {
                 $('#notification-div').html(result);
+                getNotification();
                 $('#notification-div').slideToggle('show');
             });
         }
     });
+    $('body').on('click', '.not-seen', function () {
+        var notificationid = $(this).data("id");
+        var $this = $(this);
+        $.ajax({
+            type: "POST",
+            url: getUrl + '/notification/notificationupdate',
+            data: {
+                notificationid : notificationid,
+                notificationupdate : "single"
+            },
+            success: function (res) {
+                $this.removeClass('not-seen').addClass('seen');
+            }
+        });
+    });
+    $('body').on('click', '.all-seen', function () {
+        $.ajax({
+            type: "POST",
+            url: getUrl + '/notification/notificationupdate',
+            data: {
+                notificationid : '',
+                notificationupdate : "all"
+            },
+            success: function (res) {
+                $('.e-notification').removeClass('not-seen').addClass('seen');
+            }
+        });
+    });
+    function getNotification(){
+        $.ajax({
+            type: "POST",
+            url: getUrl + '/notification/getnotification',
+            data: {
+            },
+            success: function (res) {
+                var appengHtml="";
+                jsObject = JSON.parse(res);
+                for(var i=0;i<jsObject.notificationDetails.length;i++){
+                    appengHtml += jsObject.notificationDetails[i].html;
+                }
+                
+                if(jsObject.notificationDetails.length>0){
+                     $('#all-notification').html(appengHtml);
+                     $('#all-notification').css('display','block');
+                     $('#notificationPresent').css('display','block');
+                     $('#notification-count').text(jsObject.notificationDetails.length);
+                     $('#no-notification').css('display','none');
+                } 
+            }
+        });
+    }
 });

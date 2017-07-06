@@ -168,7 +168,11 @@ $(document).ready(function () {
                $("#imgUploadForm").ajaxSubmit({
                 data: { fileupload: 'fileupload' },
                 success: function (response) {
-                    console.log(response);
+                     console.log(response); return false;
+                    var jsObject = JSON.parse(response);
+//                    console.warn(xhr.responseText);return false;
+
+                    console.log(jsObject); return false;
                    $('#imgSrc').val(response);
                     $('#upload_prev').html("<img src='"+response+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
                 }

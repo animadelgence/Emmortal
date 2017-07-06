@@ -12,7 +12,7 @@
                   
                   <li class="" style="color: rgb(47, 109, 107);"><i class="fa fa-trash m-r-5"></i>Remove</li>
                   
-                  <li class="editalbum" style="color: rgb(47, 109, 107);" value="<?php echo $getid; ?>" onclick="openalbumforedit()"><i class="fa fa-pencil m-r-5"></i>Edit</li>
+                  <li class="editalbum" style="color: rgb(47, 109, 107);" value="<?php echo $getid; ?>" onclick="openalbumforedit(this.value)"><i class="fa fa-pencil m-r-5"></i>Edit</li>
                   
                   <li class="" style="color: rgb(47, 109, 107);"><i class="fa fa-thumb-tack m-r-5 font-bold e-red"></i><span class="font-bold e-red">Pinned</span></li>
                   
@@ -25,7 +25,7 @@
          
          <div class="btn e-btn btn-round full btn-brown m-r-10 heightwidthclass" style="background: rgb(47, 109, 107) none repeat scroll 0% 0%; height: 52px !important; margin-top: -9px; width: 52px !important;">0</div>
         
-         <h3 class="inline text-capitalize" style="color: rgb(47, 109, 107);"><?php echo $albumDetails[0]['title']; ?></h3>
+         <h3 id="albumtitleid" class="inline text-capitalize" style="color: rgb(47, 109, 107);"><?php echo $albumDetails[0]['title']; ?></h3>
          <input type="hidden" id="friendsidalbum" value="<?php echo $albumDetails[0]['friendsid']; ?>">
          <input type="hidden" id="descriptionidalbum" value="<?php echo $albumDetails[0]['description']; ?>">
          <input type="hidden" id="coloridalbum" value="<?php echo $albumDetails[0]['color']; ?>">
@@ -69,7 +69,7 @@
    </div>
    <div class="row">
       <div class="col-md-3 col-sm-4 cover-tagged">
-         <div class="cover-wrapper"><img  class="img-responsive" src="<?php echo $albumDetails[0]["albumimagepath"]; ?>?xvc"></div>
+         <div class="cover-wrapper"><img id="albumimagefullpath"  class="img-responsive" src="<?php echo $albumDetails[0]["albumimagepath"]; ?>?xvc"></div>
       </div>
    </div>
   

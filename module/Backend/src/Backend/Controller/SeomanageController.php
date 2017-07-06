@@ -46,7 +46,6 @@ namespace Backend\Controller;
      public function editseosubmitAction(){
               $modelPlugin = $this->modelplugin();
               $plugin = $this->routeplugin();
-		     // $currentPageURL = $plugin->curPageURL();
               $seoId = $_POST['seoId'];
               $seoTitle = $_POST['seoTitle'];
               $metaDesc = $_POST['metaDesc'];
@@ -88,7 +87,6 @@ namespace Backend\Controller;
                 $tmp_name          = $files [$filename]['tmp_name'];
                 $fileNamewithspace = $files[$filename]['name'];
                 $fileName          = str_replace("","_",$fileNamewithspace);
-                //print_r($fileName);exit;
                 $fileType          = $files[$filename]['type'];
                 $fileType          = strtolower($fileType);
                 $fileSize          = ($files[$filename]['size'] / 1024) / 1024;
@@ -97,8 +95,6 @@ namespace Backend\Controller;
                       @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg', 0777, true);
                       chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg/', 0777);
                   }
-                 //chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg/', 0777);
-              //$result = $uploadPlugin->bgimgedit($tmp_name , $fileName);
 
             $result = $uploadPlugin->uploadimg($fileSize, $filename, $files[$filename]['error'], $folderName, $fileName, $fileType);
             print_r($result); exit;
@@ -163,9 +159,7 @@ namespace Backend\Controller;
                     {
                         $getFile = explode($_SERVER['DOCUMENT_ROOT'],$filename);
                         $pathExplode = explode("/",$getFile[1]);
-                        //print_r($pathExplode); exit;
                         $getImgName = "/upload/bgimg/thumb/".$pathExplode[4];
-                        //print_r($getImgName); exit;
                         $response[$countimg] =  '<li class="emmortal-tab-image__list-item col-sm-4" style="padding: 10px;"><strong><a href="'.@$getdynamicPath.$getFile[1].'" title="Loading image" class="emmortal-tab-image__link"><img class="image" alt="emmortal-image" src="'.@$getdynamicPath.$getImgName.'" class="emmortal-tab-image__link-img"/></a></strong></li>';
                         $countimg = $countimg + 1;
 

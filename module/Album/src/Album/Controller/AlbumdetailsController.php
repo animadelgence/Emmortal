@@ -51,12 +51,12 @@ class AlbumdetailsController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
         $jsonArray = $plugin->jsondynamic();
-        //$type = 'friend';
+        $UID = $this->sessionid;
         $type = $_POST['datacmd'];
         $id = $_POST['id'];
-        //$id = 1;
-        $UID = $this->sessionid;
-        //$UID = 27;
+        /*$id = 1;
+        $type = 'friend';
+        $UID = 27;*/
         if($type == 'album'){
             $where = array('AID'=>$id,'UID'=>$UID);
             $data = array(
@@ -103,7 +103,7 @@ class AlbumdetailsController extends AbstractActionController {
         if(count($likeDetails)>0){
            // echo "here";
             $likeDelete = $modelPlugin->getlikesdetailsTable()->deleteLike($where);
-            $notiDElCon = array('notify_id'=>$likeDetails[0]['likeid']);
+            $notiDElCon = array('notify_id'=>$likeDetails[0]['likeid'],'notified_by'=>$UID,'notify_type'=>'like');
             $notificationDelete = $modelPlugin->getnotificationdetailsTable()->deleteNotification($notiDElCon);
         } else{
             //echo "else";
@@ -117,8 +117,8 @@ class AlbumdetailsController extends AbstractActionController {
                 'notify_seen'=>0,
                 'notificationdate'=>date("Y-m-d H:i:s")
             );
-           // print_r($notificationData); exit;
-            $notificationInsert = $modelPlugin->getnotificationdetailsTable()->updateNotification($notificationData);
+            //print_r($notificationData); exit;
+            $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
         }
         $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($query);
         echo $likeCount = count($likeDetails);

@@ -39,7 +39,9 @@
         }
         public function insertNotification($data)
         {
-            return $rowset = $this->tableGWay->insert($data);
+            $rowset = $this->tableGWay->insert($data);
+            $id = $this->tableGWay->lastInsertValue;
+            return $id;
         }
         public function updateNotification($data,$where)
         {

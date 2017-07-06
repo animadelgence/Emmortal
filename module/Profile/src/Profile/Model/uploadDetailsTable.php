@@ -115,16 +115,16 @@
                     );
         }
         return $array;
-        //print_r($array);exit;
     }
 
         public function insertData($data)
         {
-            return $rowset = $this->tableGWay->insert($data);
+            $rowset = $this->tableGWay->insert($data);
+            $id = $this->tableGWay->lastInsertValue;
+            return $id;
         }
         public function updateData($data,$where)
         {
-            //$rowset = $this->tableGWay->select($where);
             $res = $this->tableGWay->update($data,$where);
             return $res;
         }

@@ -53,6 +53,7 @@ $(document).ready(function () {
             },
             success: function (res) {
                 $('.e-notification').removeClass('not-seen').addClass('seen');
+                $('#notification-count').text("0");
             }
         });
     });

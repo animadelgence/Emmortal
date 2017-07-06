@@ -136,7 +136,7 @@ $(document).ready(function () {
             $('.error-style').css('margin-top','28px');
             //$("#uploadModal").hide();
             $("#photoInsertModal").css("z-index","0");
-            //$(".modal-backdrop").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
             $('#welcome').css('display','block');
             $('#welcome').css('top','-33px');
             $('#showmsg').html('please fill title field');
@@ -152,6 +152,11 @@ $(document).ready(function () {
             //$('#cke_textDescription').addClass('error-class');
             $('#imagetextDescriptionError').css('display','block');
             $('.error-style').css('margin-top','28px');
+            $("#photoInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            $('#welcome').css('display','block');
+            $('#welcome').css('top','-33px');
+            $('#showmsg').html('please fill description field');
             /*$("#uploadModal").hide();
             $("#photoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");

@@ -478,4 +478,8 @@ $(document).ready(function () {
         }, 500);
         return false;
     }
+    $('body').on('click', '.close-msg', function () {
+        $('#welcome').css('display','none');
+        $(this).parents('body').children('#photoInsertModal').css('z-index','9999');
+    });
 });

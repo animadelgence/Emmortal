@@ -4,7 +4,7 @@
       <div class="modal-content modal-outer inner-modal-photo">
          <div class="modal-header modal-headernew">
             <button type="button" class="close close-new" data-dismiss="modal" onclick="albumClick();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            <h3 class="modal-title" id="lineModalLabel">Create new Album</h3>
+            <h3 class="modal-title" id="lineModalLabel">Update Album</h3>
          </div>
          <div class="modal-body select-media-type-popup">
             <!--<form name="textAddForm" id="textAddForm" action="" method="POST" enctype="multipart/form-data">-->
@@ -18,7 +18,7 @@
                               <div class="image-select">
                                  <div class="img-input">
                                     <div class="canvas-placeholder" id="canvasPlaceholdeId" style="height: 360px;">
-                                       <img id="albumpictureidedit" src="">
+                                       <img id="albumpictureidedit" src="" style="height:360px;width:100%;">
                                        <!--<img id= 'profile_pic_thumb'/>-->
                                     </div>
                                     <div class="btn e-btn btn-primary file-input-btn" >

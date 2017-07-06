@@ -450,7 +450,8 @@ function openalbumforedit(valid){
         // append response to body
         $('body').append(result);
         $('#albumpictureidedit').attr('src',albumimagefullpath);
-         $('#albumpictureidedit').css("heigh","360px");//lheight:360px;width:100%
+        //$('#albumpictureidedit').css({"heigh","360px"},{"width","100%"});
+        //$('#albumpictureidedit').css("width","100%");//lheight:360px;width:100%
         $("#albumTitle").val(albumtitleid);
         
         $("select#listing option").each(function(){

@@ -76,6 +76,8 @@ $(function () {
                 } else {
                   // appendHtml += '<div class="user_upload_part_section_content">';
                     for (i = 0; i < jsObject.uploaddetails.length; i++) {
+                        var uploadAlbumId = jsObject.uploaddetails[i].AID;
+                        var encodeUploadId = btoa(uploadAlbumId);
                         if(jsObject.uploaddetails[i].uploadType == "video"){
 
                                     appendHtml +='<li class="gs-w user_upload_part_section_content--inside vid-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="video" data-sizey="'+jsObject.uploaddetails[i].sizeY+'" data-sizex="'+jsObject.uploaddetails[i].sizeX+'" data-id="'+jsObject.uploaddetails[i].uploadId+'"><span><video controls="controls" name="Video Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></video></span><div class="inner-box"> 0 </div></li>';
@@ -85,10 +87,10 @@ $(function () {
                         }
                         else if(jsObject.uploaddetails[i].uploadType == "album"){
                             
-                                 appendHtml +='<li class="gs-w user_upload_part_section_content--inside vid-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="album" data-sizey="'+jsObject.uploaddetails[i].sizeY+'" data-sizex="'+jsObject.uploaddetails[i].sizeX+'" data-id="'+jsObject.uploaddetails[i].uploadId+'"><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+                                 appendHtml +='<li class="gs-w user_upload_part_section_content--inside vid-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="album" data-sizey="'+jsObject.uploaddetails[i].sizeY+'" data-sizex="'+jsObject.uploaddetails[i].sizeX+'" data-id="'+jsObject.uploaddetails[i].uploadId+'"><a href="'+jsObject.uploaddetails[i].encodeUploadId+'"><span><img name="Image Name" id="" src="'+jsObject.uploaddetails[i].uploadPath+'" style="width:100%;height:100%;"></span></a><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
                         }
                          else if(jsObject.uploaddetails[i].uploadType == "text"){
-                             appendHtml +='<li class="gs-w user_upload_part_section_content--inside vid-sec text-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="text" data-sizey="'+jsObject.uploaddetails[i].sizeY+'" data-sizex="'+jsObject.uploaddetails[i].sizeX+'" data-id="'+jsObject.uploaddetails[i].uploadId+'"><div><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></div><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
+                             appendHtml +='<li class="gs-w user_upload_part_section_content--inside vid-sec text-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="text" data-sizey="'+jsObject.uploaddetails[i].sizeY+'" data-sizex="'+jsObject.uploaddetails[i].sizeX+'" data-id="'+jsObject.uploaddetails[i].uploadId+'"><div class="uploadtext"><label name="text Name">'+jsObject.uploaddetails[i].uploadPath+'</label></div><div class="inner-box"> 0 </div><input type="hidden" class="uploadId" value="'+jsObject.uploaddetails[i].uploadId+'"></li>';
                         } else{
 
                         }

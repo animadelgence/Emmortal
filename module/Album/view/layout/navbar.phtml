@@ -29,9 +29,9 @@
                 } else {
                     echo "/image/profile-deafult-avatar.jpg";
                 }?>"/></span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname'];?></a></li>
-                  <li><a href="#"  onclick="albumdetailsmodal();" class="relationships" id="<?php echo $sessionid;?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Albums</a></li>
-                  <li><a href="#" onclick="relationshipsmodal();" class="relationships" data-name="<?php echo $userDetails[0]['firstname'];?>">Relationships</a></li>
-                  <li><a href="#">Tributes</a></li>
+                  <li><a href="javascript:void(0);"  onclick="albumdetailsmodal();" class="relationships" id="<?php echo $sessionid;?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Albums</a></li>
+                  <li><a href="javascript:void(0);" onclick="relationshipsmodal();" class="relationships" data-name="<?php echo $userDetails[0]['firstname'];?>">Relationships</a></li>
+                  <li><a href="javascript:void(0);">Tributes</a></li>
                </ul>
                <?php } ?>
             </div>
@@ -107,7 +107,7 @@
       </div>
    </div>
     <?php if(($controller == 'profile') && ($action == 'newsfeed') && ($tempsessionid != 'blank')) {?>
-       <input type="hidden" value="<?php echo $tempsessionid;?>"> 
+       <input id="welcomeAlert" type="hidden" value="<?php echo $tempsessionid;?>"> 
     <?php }?>
     <div id="welcome" style="display: none;" class="welcome">
         <div class="close-msg">

@@ -141,8 +141,11 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     padding: 5px;
-    overflow: hidden;
     border-radius: 10px;
+}
+.gridster .gs-w > div.uploadtext {
+	height: 100%;
+	overflow: hidden;
 }
 .vid-sec {
   background: #fff none repeat scroll 0 0;

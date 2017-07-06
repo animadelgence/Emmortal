@@ -27,55 +27,59 @@ class NotificationController extends AbstractActionController {
         // }
     }
     public function notificationupdateAction(){
-        $plugin                 = $this->routeplugin();
-        $modelPlugin            = $this->modelplugin();
-        $dynamicPath            = $plugin->dynamicPath();
-        $jsonArray              = $plugin->jsondynamic();
-        $notificationid         = @$_POST['notificationid'];
-        $notificationupdate     = @$_POST['notificationupdate'];
-        $data                   =array('notify_seen'=>1);
+        $plugin                     = $this->routeplugin();
+        $modelPlugin                = $this->modelplugin();
+        $dynamicPath                = $plugin->dynamicPath();
+        $jsonArray                  = $plugin->jsondynamic();
+        $notificationid             = @$_POST['notificationid'];
+        $notificationupdate         = @$_POST['notificationupdate'];
+        $UID                        = $this->sessionid;
+        $data                       = array('notify_seen'=>1);
         if($notificationupdate == 'single'){
-            $where =array('notificationid'=>$notificationid);   
+            $where                  = array('notificationid'=>$notificationid);   
         } else{
-            $where =array('UID'=>$this->sessionid);
+            $where                  = array('UID'=>$this->sessionid);
         }
-        $notificationDetails    = $modelPlugin->getnotificationdetailsTable()->updateNotification($data,$where);
-        echo 1; exit;
+        $notificationDetails        = $modelPlugin->getnotificationdetailsTable()->updateNotification($data,$where);
+        $condition                  = array('UID'=>$UID,'notify_seen'=>0);
+        $off                        = 0;
+        $limit                      = 100;
+        $notificationDetails        = $modelPlugin->getnotificationdetailsTable()->fetchall($condition,$off,$limit);
+        echo count($notificationDetails); exit;
     }
     public function getnotificationAction(){
-        $plugin                 = $this->routeplugin();
-        $modelPlugin            = $this->modelplugin();
-        $dynamicPath            = $plugin->dynamicPath();
-        $jsonArray              = $plugin->jsondynamic();
-        //$UID                    = 27;
-        $UID                    = $this->sessionid;
-        $condition              = array('UID'=>$UID,'notify_seen'=>0);
-        $off                    = 0;
-        $limit                  = 100;
-        $notificationDetails    = $modelPlugin->getnotificationdetailsTable()->fetchall($condition,$off,$limit);
-        //print_r($notificationDetails); exit;
+        $plugin                     = $this->routeplugin();
+        $modelPlugin                = $this->modelplugin();
+        $dynamicPath                = $plugin->dynamicPath();
+        $jsonArray                  = $plugin->jsondynamic();
+        $UID                        = $this->sessionid;
+        if($this->sessionid !=''){
+        $condition                  = array('UID'=>$UID,'notify_seen'=>0);
+        $off                        = 0;
+        $limit                      = 100;
+        $notificationDetails        = $modelPlugin->getnotificationdetailsTable()->fetchall($condition,$off,$limit);
+        $unreadNotification         = count($notificationDetails);
         if(count($notificationDetails)<7){
             $off                    = 0;
             $limit                  = 7;
             $condition              = array('UID'=>$UID);
             $notificationDetails    = $modelPlugin->getnotificationdetailsTable()->fetchall($condition,$off,$limit);
         }
-        $userCondition          = array('userid'=>$UID);
-        $userDetails            = $modelPlugin->getuserTable()->fetchall($userCondition);
-        $array                  = array();
-        //print_r($notificationDetails); exit;
+        $userCondition              = array('userid'=>$UID);
+        $userDetails                = $modelPlugin->getuserTable()->fetchall($userCondition);
+        $array                      = array();
         foreach ($notificationDetails as $rSet) {
-            $notificationid = $rSet['notificationid'];
-            $notified_by    = $rSet['notified_by'];
-            $notify_id      = $rSet['notify_id'];
-            $notify_type    = $rSet['notify_type'];
-            $notify_seen    = $rSet['notify_seen'];
-            $html           = "";
+            $notificationid         = $rSet['notificationid'];
+            $notified_by            = $rSet['notified_by'];
+            $notify_id              = $rSet['notify_id'];
+            $notify_type            = $rSet['notify_type'];
+            $notify_seen            = $rSet['notify_seen'];
+            $html                   = "";
             if($notify_type == 'like'){
-                $likecon        = array('likeid'=>$notify_id);
-                $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($likecon);
-                $likedBy        = $likeDetails[0]['UID'];
-                $likedByDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$likedBy));
+                $likecon            = array('likeid'=>$notify_id);
+                $likeDetails        = $modelPlugin->getlikesdetailsTable()->fetchall($likecon);
+                $likedBy            = $likeDetails[0]['UID'];
+                $likedByDetails     = $modelPlugin->getuserTable()->fetchall(array('userid'=>$likedBy));
                 if($notify_seen == 1){
                     $html .='<div class="e-notification like seen">';
                 } else{
@@ -162,9 +166,9 @@ declined'){
                 $html .='</div>';
                 $html .='</div>';
             } else if($notify_type == 'album'){
-                $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$notify_id));
-                $uploadBy        = $albumDetails[0]['UID'];
-                $taggedByDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$uploadBy));
+                $albumDetails           = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$notify_id));
+                $uploadBy               = $albumDetails[0]['UID'];
+                $taggedByDetails        = $modelPlugin->getuserTable()->fetchall(array('userid'=>$uploadBy));
                 if($notify_seen == 1){
                     $html .='<div class="e-notification tag seen">';
                 } else{
@@ -189,9 +193,9 @@ declined'){
                 $html .='</div>';
                 $html .='</div>';
             } else if($notify_type == 'upload'){
-                $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall(array('uploadId'=>$notify_id));
-                $uploadBy        = $uploadDetails[0]['UID'];
-                $taggedByDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$uploadBy));
+                $uploadDetails          = $modelPlugin->getuploadDetailsTable()->fetchall(array('uploadId'=>$notify_id));
+                $uploadBy               = $uploadDetails[0]['UID'];
+                $taggedByDetails        = $modelPlugin->getuserTable()->fetchall(array('userid'=>$uploadBy));
                 if($notify_seen == 1){
                     $html .='<div class="e-notification tag seen">';
                 } else{
@@ -225,9 +229,9 @@ declined'){
                 $html .='</div>';
                 $html .='</div>';
             } else if($notify_type == 'tribute'){
-                $where              = array('tributedetails.id'=>$notify_id);
-                $join               = 'tributedetails.friendsid=user.userid';
-                $friendDetails      = $modelPlugin->gettributedetailsTable()->fetchalljoinquery($where,$join);
+                $where                  = array('tributedetails.tributesid'=>$notify_id);
+                $join                   = 'tributedetails.friendsid=user.userid';
+                $friendDetails          = $modelPlugin->gettributedetailsTable()->joinquery($where,$join);
                 if($notify_seen == 1){
                     $html .='<div class="e-notification tribute seen">';
                 } else{
@@ -253,23 +257,22 @@ declined'){
                 $html .='</div>';
                 $html .='</div>';
             } else if($notify_type == 'comment'){
-                $status="";
-                $where              = array('tributedetails.id'=>$notify_id);
-                $tributeDetails     = $modelPlugin->gettributedetailsTable()->fetchall($where);
-                $join               = 'tributedetails.UID=user.userid';
-                $friendDetails      = $modelPlugin->gettributedetailsTable()->fetchalljoinquery($where,$join);
-                if($tributeDetails[0]['tribute_type'] == 'album'){
-                    $albumDetails     = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$tributeDetails[0]['uploadId']));
+                $status                 = "";
+                $where                  = array('tributedetails.tributesid'=>$notify_id);
+                $join                   = 'tributedetails.UID=user.userid';
+                $friendDetails          = $modelPlugin->gettributedetailsTable()->joinquery($where,$join);
+                if($friendDetails[0]['tribute_type'] == 'album'){
+                    $albumDetails       = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$friendDetails[0]['uploadId']));
                     $status='<a class="e-link e-brown pointer" href="">Album</a>';
-                } else if($tributeDetails[0]['tribute_type'] == 'relationship'){
+                } else if($friendDetails[0]['tribute_type'] == 'relationship'){
                     $status='<a class="e-link e-brown pointer" href="">Relationship</a>';
-                } else if($tributeDetails[0]['tribute_type'] == 'upload'){
-                    $uploadDetails     = $modelPlugin->getuploadDetailsTable()->fetchall(array('uploadId'=>$tributeDetails[0]['uploadId']));
-                    if($uploadDetails[0]['uploadType'] == 'text'){
+                } else if($friendDetails[0]['tribute_type'] == 'upload'){
+                    $uploadDetails      = $modelPlugin->getuploadDetailsTable()->fetchall(array('uploadId'=>$friendDetails[0]['uploadId']));
+                    if($friendDetails[0]['uploadType'] == 'text'){
                         $status='<a class="e-link e-brown pointer" href="">Text</a>';
-                    } else if($uploadDetails[0]['uploadType'] == 'image'){
+                    } else if($friendDetails[0]['uploadType'] == 'image'){
                         $status='<a class="e-link e-brown pointer" href="">Image</a>';
-                    } else if($uploadDetails[0]['uploadType'] == 'video'){
+                    } else if($friendDetails[0]['uploadType'] == 'video'){
                         $status='<a class="e-link e-brown pointer" href="">Video</a>';
                     }
                 }
@@ -292,7 +295,7 @@ declined'){
                 $html .='</div>';
                 $html .='<div class="action">';
                 $html .='<span>commented your</span>';
-                $html .='<a class="e-link e-brown pointer" href="">Relationship</a>';
+                $html .=$status;
                 $html .='</div>';
                 $html .='</div>';
                 $html .='</div>';
@@ -303,11 +306,15 @@ declined'){
                 'notified_by' => $notified_by,
                 'notify_id' => $notify_id,
                 'notify_type'=>$notify_type,
-                'html'=>$html
+                'html'=>$html,
+                'unread'=>$unreadNotification
             );
           }
-        //print_r($array); exit();
         $res['notificationDetails'] = $array;
+        } else{
+            $array                      = array();
+            $res['notificationDetails'] = $array;
+        }
         echo json_encode($res);
         exit;
     }

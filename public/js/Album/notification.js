@@ -16,7 +16,7 @@ $(document).ready(function () {
     "use strict";
     setInterval(function () {
         getNotification();
-    }, 5000);
+    }, 15000);
     $('body').on('click', '.notification-click', function () {
         if ($("#notification-div").is(':visible')) {
             $('#notification-div').hide('show');
@@ -53,7 +53,8 @@ $(document).ready(function () {
             },
             success: function (res) {
                 $('.e-notification').removeClass('not-seen').addClass('seen');
-                $('#notification-count').text("0");
+                $('#notification-count').text(res);
+                $('#noticnt').text(res);
             }
         });
     });
@@ -68,13 +69,13 @@ $(document).ready(function () {
                 jsObject = JSON.parse(res);
                 for(var i=0;i<jsObject.notificationDetails.length;i++){
                     appengHtml += jsObject.notificationDetails[i].html;
-                }
-                
+                } 
                 if(jsObject.notificationDetails.length>0){
                      $('#all-notification').html(appengHtml);
                      $('#all-notification').css('display','block');
                      $('#notificationPresent').css('display','block');
-                     $('#notification-count').text(jsObject.notificationDetails.length);
+                     $('#notification-count').text(jsObject.notificationDetails[0].unread);
+                     $('#noticnt').text(jsObject.notificationDetails[0].unread);
                      $('#no-notification').css('display','none');
                 } 
             }

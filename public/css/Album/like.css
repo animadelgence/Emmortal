@@ -1137,10 +1137,18 @@ body {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 15px;
-    height: 500px;
+    height: 450px;
     width: 746px;;
     padding: 0px;
     cursor: zoom-out;
+}
+.zoomText{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    height: 450px;
+    width: 746px;;
+    padding: 0px;
 }
 .zoonChild {
   background-color: #fff;

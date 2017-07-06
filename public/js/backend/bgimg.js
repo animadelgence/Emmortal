@@ -93,6 +93,7 @@ $(document).ready(function () {
             $('#errorImg2').css('display', 'none');
             $('#img_prev').css('display', 'block');
             $('.save').attr("disabled", false);
+            $('#imgSrc').removeAttr('value');// to change img src in upload_prev
 
         }
     });
@@ -124,7 +125,8 @@ $(document).ready(function () {
     $('body').on('click','#modBtn',function(){
         $.get(baseUrl+"/seomanage/uploadimg", function (result) {
 
-            console.log(result);
+            var imgSrc = $.trim($('#imgSrc').val());//preview in modal last saved img
+            $("#imgPrev").attr('src',imgSrc);//preview in modal last saved img
             var jsObject = JSON.parse(result);
             var appendStructure = '<ul class="emmortal-tab-image__list">';
             $.each(jsObject, function(i, item) {
@@ -161,6 +163,7 @@ $(document).ready(function () {
 /*Clicking on 'Save Changes' modal button */
      $('body').on('click', '.save', function () {
         var imgSrc = $.trim($('#imgSrc').val());
+         //alert(imgSrc);
 
          if (imgSrc != ""){
             $('#upload_prev').html("<img src='"+imgSrc+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
@@ -168,9 +171,11 @@ $(document).ready(function () {
                $("#imgUploadForm").ajaxSubmit({
                 data: { fileupload: 'fileupload' },
                 success: function (response) {
+                    console.log(response);
                      var jsObject = JSON.parse(response);
                     $('#imgSrc').val(jsObject.originalPath);
                     $('#upload_prev').html("<img src='"+jsObject.originalPath+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
+                    //$('#imgSrc').removeAttr('value');
                 }
             });
 

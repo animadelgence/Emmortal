@@ -42,7 +42,12 @@ $(function () {
             success: function (res) {
                 jsObject = JSON.parse(res);
                 var profileimage = "/image/profile-deafult-avatar.jpg";
-                html +='<div class="col-md-12" style="margin:5px;background-color: #fff;margin-left: 21px;"><div class="col-md-1 item active"><img src="'+jsObject.uploadDetails[0].userimage+'" onerror="this.src=\''+profileimage+'\'" class="profileImageDiv"alt="" title=""></div><div class="col-md-11 item active"><h2 style="font-size: 20px;">'+jsObject.uploadDetails[0].uploadTitle+'</h2><p>by '+jsObject.uploadDetails[0].username+' on '+jsObject.uploadDetails[0].dateTime+'</p></div></div><div class="col-md-12 mainDiv" style=""><div class="col-md-6"><div class="col-md-12 zoomIn zoomDiv"><div class="item active zoonChild">';
+                html +='<div class="col-md-12" style="margin:5px;background-color: #fff;margin-left: 21px;"><div class="col-md-1 item active"><img src="'+jsObject.uploadDetails[0].userimage+'" onerror="this.src=\''+profileimage+'\'" class="profileImageDiv" alt="" title=""></div><div class="col-md-11 item active"><h2 style="font-size: 20px;">'+jsObject.uploadDetails[0].uploadTitle+'</h2><p>by '+jsObject.uploadDetails[0].username+' on '+jsObject.uploadDetails[0].dateTime+'</p></div></div><div class="col-md-12 mainDiv" style="">';
+                if (datacmd == 'text') {
+                    html +='<div class="col-md-6"><div class="col-md-12 zoomText"><div class="item active zoonChild">';
+                } else{
+                    html +='<div class="col-md-6"><div class="col-md-12 zoomIn zoomDiv"><div class="item active zoonChild">';
+                }
                 if (datacmd == 'text') {
                     var textTitle = jsObject.uploadDetails[0].uploadTitle;
                     var textDescription = jsObject.uploadDetails[0].uploadDescription;

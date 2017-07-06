@@ -3,7 +3,7 @@
    <div class="e-brown m-b-5">
       <div class="show-adds-btns pull-right" style=" width: 17%;">
          <div tooltip-placement="bottom" data-toggle="tooltip" title="Likes" class="e-like btn e-btn btn-round full likeClick" data-id="<?php echo $albumDetails[0]['albumeid']; ?>" data-cmd="album" type="album" target="album" color="album.color" style="background-color: rgb(47, 109, 107);float: left;">0</div>
-         <div data-toggle="tooltip" title="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full" on-link-follow="$close()" content-type="album" content-id="61" comments-count="album.comments_count" color="album.color" style="background-color: rgb(47, 109, 107); margin-right: 5px;float: left;">0</div>
+         <div data-toggle="tooltip" title="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full getTribute" on-link-follow="$close()" content-type="album" content-id="61" comments-count="album.comments_count" color="album.color" style="background-color: rgb(47, 109, 107); margin-right: 5px;float: left;"  data-id="<?php echo $albumDetails[0]['albumeid']; ?>" data-cmd="album">0</div>
          
          <div  class="edit-menu-wrapper" style=" padding-top: 4px;">
             <div dropdown-toggle="" dropdown="" class="edit-menu edit-menu-album e-dropdown dropdown white-dropdown" style="background: rgb(47, 109, 107) none repeat scroll 0% 0%;">
@@ -12,7 +12,7 @@
                   
                   <li class="" style="color: rgb(47, 109, 107);"><i class="fa fa-trash m-r-5"></i>Remove</li>
                   
-                  <li class="editalbum" style="color: rgb(47, 109, 107);" value="<?php echo $getid; ?>" onclick="openalbumforedit()"><i class="fa fa-pencil m-r-5"></i>Edit</li>
+                  <li class="editalbum" style="color: rgb(47, 109, 107);" value="<?php echo $getid; ?>" onclick="openalbumforedit(this.value)"><i class="fa fa-pencil m-r-5"></i>Edit</li>
                   
                   <li class="" style="color: rgb(47, 109, 107);"><i class="fa fa-thumb-tack m-r-5 font-bold e-red"></i><span class="font-bold e-red">Pinned</span></li>
                   
@@ -25,7 +25,7 @@
          
          <div class="btn e-btn btn-round full btn-brown m-r-10 heightwidthclass" style="background: rgb(47, 109, 107) none repeat scroll 0% 0%; height: 52px !important; margin-top: -9px; width: 52px !important;">0</div>
         
-         <h3 class="inline text-capitalize" style="color: rgb(47, 109, 107);"><?php echo $albumDetails[0]['title']; ?></h3>
+         <h3 id="albumtitleid" class="inline text-capitalize" style="color: rgb(47, 109, 107);"><?php echo $albumDetails[0]['title']; ?></h3>
          <input type="hidden" id="friendsidalbum" value="<?php echo $albumDetails[0]['friendsid']; ?>">
          <input type="hidden" id="descriptionidalbum" value="<?php echo $albumDetails[0]['description']; ?>">
          <input type="hidden" id="coloridalbum" value="<?php echo $albumDetails[0]['color']; ?>">
@@ -69,7 +69,7 @@
    </div>
    <div class="row">
       <div class="col-md-3 col-sm-4 cover-tagged">
-         <div class="cover-wrapper"><img  class="img-responsive" src="<?php echo $albumDetails[0]["albumimagepath"]; ?>?xvc"></div>
+         <div class="cover-wrapper"><img id="albumimagefullpath"  class="img-responsive" src="<?php echo $albumDetails[0]["albumimagepath"]; ?>?xvc"></div>
       </div>
    </div>
   

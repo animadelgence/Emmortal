@@ -107,7 +107,7 @@
       </div>
    </div>
     <?php if(($controller == 'profile') && ($action == 'newsfeed') && ($tempsessionid != 'blank')) {?>
-       <input type="hidden" value="<?php echo $tempsessionid;?>"> 
+       <input id="welcomeAlert" type="hidden" value="<?php echo $tempsessionid;?>"> 
     <?php }?>
     <div id="welcome" style="display: none;" class="welcome">
         <div class="close-msg">

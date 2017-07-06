@@ -468,3 +468,13 @@ function openalbumforedit(){
 
     });
 }
+$(document).ready(function () {
+    if($('#welcomeAlert').length) {
+        setTimeout(function () {
+            $('#welcome').css('display','block').fadeOut(10000, function () {});
+            $('#welcome').css('top','-33px');
+            $('#showmsg').html('Welcome!.');
+        }, 500);
+        return false;
+    }
+});

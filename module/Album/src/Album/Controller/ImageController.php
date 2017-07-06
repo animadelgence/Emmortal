@@ -130,6 +130,23 @@ class ImageController extends AbstractActionController {
                             'TimeStamp'=>$addeddate
                             );
         $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($uploadQuery);
+        if($_POST['imagefriendsId'])
+        {
+            $imagefriendsId = $_POST['imagefriendsId'];
+            $ct = count($imagefriendsId);
+            for($i=0;$i<$ct;$i++){
+                $friendsid = $friendsid.$imagefriendsId[$i];
+                $notificationData   = array(
+                                        'UID'=>$friendsid,
+                                        'notified_by'=>$this->sessionid,
+                                        'notify_id'=>$albumDetails,
+                                        'notify_type'=>'upload',
+                                        'notify_seen'=>0,
+                                        'notificationdate'=>date("Y-m-d H:i:s")
+                                    );
+                $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
+            }
+        }
         if($albumDetails)
         {
             $result = 1;

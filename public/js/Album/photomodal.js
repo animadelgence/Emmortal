@@ -131,56 +131,26 @@ $(document).ready(function () {
         //alert(friendsId);
         if (imageTitle == '') {
             flag = 1;
-            //$('#imageTitle').addClass('error-class');
             $('#imageTitleError').css('display','block');
             $('.error-style').css('margin-top','28px');
-            //$("#uploadModal").hide();
             $("#photoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
-            errormodalopen('please fill title field');
-        
-            /*$('#welcome').css('display','block');
-            $('#welcome').css('top','-33px');
-            $('#showmsg').html('please fill title field');*/
-            /*$(".welcome").show();
-            $(".showmsg").html("<span>please fill title field</span>");*/
+            errormodalopen('please fill title field','image');
         } else {
             $('#imageTitleError').css('display','none');
-            //$('#imageTitle').removeClass('error-class');
             flag= 0;
         }
         if (imageDescription == '') {
             flag = 1;
-            //$('#cke_textDescription').addClass('error-class');
             $('#imagetextDescriptionError').css('display','block');
             $('.error-style').css('margin-top','28px');
             $("#photoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
-            errormodalopen('please fill description field');
-            /*$('#welcome').css('display','block');
-            $('#welcome').css('top','-33px');
-            $('#showmsg').html('please fill description field');*/
-            /*$("#uploadModal").hide();
-            $("#photoInsertModal").css("z-index","0");
-            $(".modal-backdrop").css("z-index","0");
-            $(".welcome").show();
-            $(".showmsg").html("<span>please fill description field</span>");*/
+            errormodalopen('please fill description field','image');
         } else {
             $('#imagetextDescriptionError').css('display','none');
-            //$('#imagetextDescriptionError').removeClass('error-class');
             flag = 0;
         }
-        /*if (friendsId == '')
-        {
-            flag = 1; 
-            $('#imageFriend').addClass('error-class');
-            $('#imageFriendError').css('display','block');
-        }
-        else {
-            flag = 0;
-            $('#imageFriendError').css('display','none');
-            $('#imageFriend').removeClass('error-class');
-        }*/
         if (imageDescription == '' && imageTitle == '') {
             $('.error-style').css('margin-top','-12px');
             flag = 1;    
@@ -193,11 +163,6 @@ $(document).ready(function () {
         {
             flag = 1;
             $('#imagePathError').css('display','block');
-            /*$("#uploadModal").hide();
-            $("#photoInsertModal").css("z-index","0");
-            $(".modal-backdrop").css("z-index","0");
-            $(".welcome").show();
-            $(".showmsg").html("<span>please select one image</span>");*/
         }
         if (flag == 0) {
             $.ajax({                        // for unlinking the file from the temporary folder
@@ -249,13 +214,6 @@ $(document).ready(function () {
 			}
 		});
 	});
-    $('body').on('change', '.closebtn', function () {
-    //$(".closebtn").click(function(){
-        $(".welcome").hide();
-        $("#uploadModal").show();
-        $("#photoInsertModal").css("z-index","1305");
-        $(".modal-backdrop").css("z-index","1040");
-    });
     
 });
 var featherEditor = new Aviary.Feather({
@@ -279,7 +237,7 @@ var featherEditor = new Aviary.Feather({
         });*/
     }
 });
-function functionClick() {
+function imagefunctionClick() {
     imagemodalopen();
     $('#errorModal').modal('hide');
 }

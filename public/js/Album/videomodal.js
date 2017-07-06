@@ -199,7 +199,7 @@
                     currentPageId :currentPageId
                 },
                 success: function (res) {
-                    if(res == 1){
+                    if(res != 0){
 
 
                          if (currentPageId != "") {

@@ -121,7 +121,6 @@
             }
             if(flag == 0 ){
                 $('#tributecreate').submit();
-
             }
             else{
                 return false;

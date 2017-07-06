@@ -77,6 +77,7 @@ function albumdetailsmodal()
         $('#albumdetailsmodal').modal('show');
         var name = $('.relationships').attr('data-name');
         var id = $('.relationships').attr('id');
+        var encodeUploadIdStatic = btoa('1');
         $.ajax({
         type: "POST",
         url: getUrl + '/album/fetchallalbum',
@@ -86,7 +87,7 @@ function albumdetailsmodal()
                  var   appendHtml = "";
                  var k = jsObject.uploadDetails.length;
                  if(k){
-                    appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+getUrl+'/image/no_cover-e343970a522a1599bd04bb0453d26b90.jpg"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="">My chronicles</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
+                    appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+getUrl+'/image/no_cover-e343970a522a1599bd04bb0453d26b90.jpg"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="href="'+getUrl+'/createalbum/showafterpublish/'+encodeUploadIdStatic+'"">My chronicles</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
             appendHtml += '<div class="album-preview-collection">';
                 
                 for(var l = 0; l < k; l++){
@@ -112,10 +113,10 @@ function albumdetailsmodal()
 
     var m = jsObject.albumValue.length;
       if(m){
-    
-
-                for(var n = 0; n < m; n++){
-                        appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+jsObject.albumValue[n].albumimagepath+'" style="height:100%;"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="">'+jsObject.albumValue[n].title+'</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
+        for(var n = 0; n < m; n++){
+            var albumId = jsObject.albumValue[n].AID;
+            var encodeUploadId = btoa(albumId);
+                        appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+jsObject.albumValue[n].albumimagepath+'" style="height:100%;"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="'+getUrl+'/createalbum/showafterpublish/'+encodeUploadId+'">'+jsObject.albumValue[n].title+'</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
             appendHtml += '<div class="album-preview-collection">';
                     var s = jsObject.albumValue[n].uploadDetails.length;
                     for(var t=0; t<s; t++){

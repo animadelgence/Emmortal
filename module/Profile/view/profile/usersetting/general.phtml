@@ -62,10 +62,12 @@
                                             <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removebgavtr">
                                                 <i class="fa fa-times-circle"></i>
                                             Remove Background<?php }else{ ?>
-                                                <div class="btn e-btn btn-primary file-input-btn" >
+                                                <div class="btn e-btn btn-primary file-input-btn bgimageBtn" id="bgimageBtn" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-upload"></i>
+<!--                                                    <button type="button" class="modBtn" id="modBtn" data-toggle="modal" data-target="#myModal">Choose Background</button>-->
                                             Choose Background
-                                                    <input name="backgroundimage" type="file" id="backgroundimagechange"><?php } ?>
+<!--                                                  <input name="backgroundimage" type="file" id="backgroundimagechange">-->
+                                                    <?php } ?>
                                                     <input type = "hidden" id = "bkimagePath" value="">
                                                 </div>
                                             </div>
@@ -155,3 +157,74 @@
     </div>
     </div>
 </section>
+
+ <!--modal (start)-->
+    <!-- Modal -->
+<div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+                </button>
+                 <h4 class="modal-title" id="myModalLabel">Choose Image</h4>
+
+            </div>
+            <div class="modal-body">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active" id="upload"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">MY IMAGES</a>
+
+                        </li>
+                        <li role="presentation" id="browse"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">PATTERNS</a>
+
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active uploadTab" id="uploadTab">
+                          <div class="col-md-12">
+<!--                            <div class="col-sm-12">-->
+                                <div class="col-md-6">
+                                    <label class="uploadbtn">Upload Image</label>
+                                    <form class="form-login reg-form" id='imgUploadForm' name="imgUploadForm" method="post" action="/seomanage/bgeditsubmit" enctype="multipart/form-data">
+                                        <input type="file" class="form-control uploadbtn-input-file" name="fileupload" id="fileupload" style='height: 30%;' required />
+                                     </form>
+                                </div>
+                                <div id="img_prev" class="img_prev col-md-6" style="padding-left: 60px;">
+                                    <?php if(!empty($bgimg[0]['bgimgpath'])){ ?>
+                                    <img class="imgPrev" id="imgPrev" src="<?php echo $bgimg[0]['bgimgpath'] ?>" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin: 5px 12em 0 0;" />
+									<?php } else{ ?><img class="imgPrev" id="imgPrev" src="" onerror="this.src='/image/profile-deafult-avatar.jpg'" height="100px" width="100px" style="margin-top: 5px;" />
+                                 <?php }?>
+                                 </div>
+                                    <label id="errorImg1" class="col-md-6" style="top: 15px;"></label><!--img extnsn valid-->
+<!--                                    style="margin-left: 10px;"-->
+                                    <label id="errorImg2" class="col-md-6" style="top: 15px;"></label><!--img size(>1MB) valid-->
+                                    <!-- style="margin-left: 70px;"-->
+
+<!--
+
+                                </div>
+-->
+                              <div class="col-sm-12" class="savedImg" id="savedImg" style="margin: 10px 0 0px -45px;"></div>
+                            </div><!--/col-md-12-->
+
+                            <div class="col-sm-4"></div>
+                          </div><!-- /col-md-12 -->
+                        </div><!-- /uploadTab -->
+
+                        <div role="tabpanel" class="tab-pane col-sm-12 browseTab" id="browseTab">
+                        <div class="imgAppend" id="imgAppend"></div>
+                        </div>
+                   </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+   <!--modal (end)-->
+

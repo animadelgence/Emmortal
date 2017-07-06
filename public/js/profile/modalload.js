@@ -455,14 +455,11 @@ function errormodalopen(param,secondParam){
     if($('#errorModal').length) {
         $('#errorModal').remove();
     }
-<<<<<<< HEAD
     if($('.modal-backdrop').length) {
         $('.modal-backdrop').remove();
     }
-    $.get(getUrl+"/modal/errorModal.php", function (result) {
-=======
     $.get(getUrl+"/modal/errorModal.php?version="+RandomNumber, function (result) {
->>>>>>> b7e8c4af9a66b3996f9805cf24240fce77a4f95c
+
         // append response to body
         $('body').append(result);
         // open modal

@@ -11,6 +11,7 @@
 /*jshint -W065 */
 /*jslint devel: true */
 /*jslint eqeq: true*/
+//$.noConflict();
 var getUrl = window.location.origin;
 $(function(){
 
@@ -22,10 +23,11 @@ function squarespaceModalopen()
         // append response to body
         $('body').append(result);
         // open modal
-        $('#squarespaceModal2').modal('hide');;
+        //$.noConflict();
+        $('#squarespaceModal2').modal('hide');
         $('#squarespaceModal').modal('show');
-        if($('#datepickercustom').length)
-           $('body').on('focus',"#datepickercustom", function(){
+        if($('#datepicker').length)
+           $('body').on('focus',"#datepicker", function(){
                 $(this).datepicker({
                dateFormat: 'dd-mm-yy',
                changeMonth:true,

@@ -266,7 +266,7 @@ function imagemodalopen(){
 
 
 }
-function addtributemodal() {
+function addtributemodal(frndId,tributeType) {
     if($('#tributeAddModal').length) {
         $('#tributeAddModal').remove();
     }
@@ -275,7 +275,8 @@ function addtributemodal() {
         $('body').append(result);
         // open modal
         $('#tributeAddModal').modal('show');
-
+        $('#frndAddTributeBtn').attr('data-id',frndId);
+        $('#frndAddTributeBtn').attr('data-cmd',tributeType);
     });
 }
 
@@ -321,7 +322,7 @@ function onupdateTribute() {
         }
     });
 }
-function friendtributemodal() {
+function friendtributemodal(frndId,tributeType) {
     $('#tributeAddModal').css('z-index','0');
     if($('#friendTributeAddModal').length) {
         $('#friendTributeAddModal').remove();
@@ -331,6 +332,8 @@ function friendtributemodal() {
         $('body').append(result);
         // open modal
         $('#friendTributeAddModal').modal('show');
+        $('#friendId').val(frndId);
+        $('#tributeType').val(tributeType);
         if($('#friendtributeDescription').length) {
             CKEDITOR.replace('friendtributeDescription', {
                 toolbar: [
@@ -466,3 +469,13 @@ function openalbumforedit(){
 
     });
 }
+$(document).ready(function () {
+    if($('#welcomeAlert').length) {
+        setTimeout(function () {
+            $('#welcome').css('display','block').fadeOut(10000, function () {});
+            $('#welcome').css('top','-33px');
+            $('#showmsg').html('Welcome!.');
+        }, 500);
+        return false;
+    }
+});

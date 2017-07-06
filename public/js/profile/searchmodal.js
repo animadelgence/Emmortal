@@ -228,7 +228,7 @@ function friendlist(param,search,searchParam)
                     //tabShow = 'incoming';
                 } else if(jsObject.userDetails[i].status == 'Accepted'){
                     if ((param == 'All' && $('#li-allTab').hasClass('active')) || (search != '' && param == 'All' && $('#li-relationshipTab').hasClass('active'))) {
-                        additionalbuttonhtml += '<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="friend">'+jsObject.userDetails[i].noOfTributes+'</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">'+jsObject.userDetails[i].friendslikes+'</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
+                        additionalbuttonhtml += '<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="relationship">'+jsObject.userDetails[i].noOfTributes+'</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">'+jsObject.userDetails[i].friendslikes+'</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
                         additionalextrahtml += '<a class="e-link pointer">View Relationship Page</a>';
                         //alert(additionalbuttonhtml);
                         //alert(additionalextrahtml);

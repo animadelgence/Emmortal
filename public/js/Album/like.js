@@ -20,8 +20,7 @@ $(document).ready(function () {
             id = $(this).data('id'),
             $likeClick = $(this),
             likevalue = $(this).text(),
-           colorvalue =$likeClick.css("background-color");
-           alert(colorvalue);
+            colorvalue =$(this).css("background-color");
         $.ajax({
             type: "POST",
             url: base_url_dynamic + '/albumdetails/likesave',

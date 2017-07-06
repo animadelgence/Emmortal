@@ -91,7 +91,7 @@ class ProfileController extends AbstractActionController {
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
         $tempstore = 'blank';
-        if($this->sessionidtemp) {
+        if(@$this->sessionidtemp) {
             $tempstore = $this->sessionidtemp;
             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
             /*$user_session_temp->loginId = ($_SESSION['tempStore']);
@@ -101,7 +101,7 @@ class ProfileController extends AbstractActionController {
         else {
             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
         }
-        if($this->sessionidtemp){
+        if(@$this->sessionidtemp){
             $user_session_temp->tempStore = ($_SESSION['tempStoreName']);
             $user_session_temp = new \Zend\Session\Container('tempStoreName');
             unset($user_session_temp->tempStoreName);

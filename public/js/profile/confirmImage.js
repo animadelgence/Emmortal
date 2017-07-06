@@ -107,11 +107,11 @@ $(document).ready(function () {
 /*Pattern -- Modal Tab Content Show*/
     $('body').on('click','#browse',function(){
         //alert(); return false;
-        $.get(getUrl+"/usersetting/pattern", function (result) {
-            console.log(result); return false;
+        $.get(getUrl+"/seomanage/pattern", function (result) {
+            //console.log(result); return false;
 
             var jsObject = JSON.parse(result);
-            console.log(result); return false;
+            //console.log(result); return false;
             var appendStructure = '<ul class="emmortal-tab-pattern__list">';
             $.each(jsObject, function(i, item) {
     			appendStructure += jsObject[i];
@@ -127,9 +127,9 @@ $(document).ready(function () {
 
 /*Upload Image -- Modal Tab Content Show*/
     $('body').on('click','#modBtn',function(){
-        $.get(getUrl+"/usersetting/uploadimg", function (result) {
+        $.get(getUrl+"/seomanage/uploadimg", function (result) {
 
-            //console.log(result);
+            console.log(result);return false;
             var jsObject = JSON.parse(result);
             var appendStructure = '<ul class="emmortal-tab-image__list">';
             $.each(jsObject, function(i, item) {
@@ -173,7 +173,7 @@ $(document).ready(function () {
                $("#imgUploadForm").ajaxSubmit({
                 data: { fileupload: 'fileupload' },
                 success: function (response) {
-                     console.log(response); return false;
+                     //console.log(response); return false;
 //                    var jsObject = JSON.parse(response);
 //                    console.warn(xhr.responseText);return false;
 

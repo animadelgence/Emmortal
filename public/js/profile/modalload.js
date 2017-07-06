@@ -428,18 +428,37 @@ function searchmodalopen(){
     });
 
 }
-function openalbumforedit(){
-    if($('#albumInsertModal').length) {
-        $('#albumInsertModal').remove();
+function openalbumforedit(valid){
+    //alert(valid);return false;
+    var albumtitleid = $("#albumtitleid").text();
+    var friendsidalbum = $("#friendsidalbum").val();
+    var descriptionidalbum = $("#descriptionidalbum").val();
+    var coloridalbum = $("#coloridalbum").val();
+    var statusidalbum = $("#statusidalbum").val();
+    var albumimagefullpath = $("#albumimagefullpath").attr('src');
+
+    if($('#albumEditModal').length) {
+        $('#albumEditModal').remove();
     }
     if($('.in').length) {
         $('.in').remove();
     }
-    $.get(getUrl+"/modal/albuminsertmodal.php", function (result) {
+    $.get(getUrl+"/modal/updatealbummodal.php", function (result) {
         // append response to body
         $('body').append(result);
+        $('#albumpictureidedit').attr('src',albumimagefullpath);
+         $('#albumpictureidedit').css("heigh","360px");//lheight:360px;width:100%
+        $("#albumTitle").val(albumtitleid);
+        
+        $("select#listing option").each(function(){
+            $('.listshowclass').removeClass('addnew');
+            if($(this).val() == statusidalbum){ 
+                $(this).attr("selected","selected");
+                $(this).addClass("addnew");    
+            }
+        });
         // open modal
-        $('#albumInsertModal').modal('show');
+        $('#albumEditModal').modal('show');
         $('#uploadModal').remove();
        // var friendsidalbum =
         if($('#albumtextDescription').length) {
@@ -462,7 +481,9 @@ function openalbumforedit(){
                 ]
             });
             CKEDITOR.disableAutoInline = true;
+
         }
+        CKEDITOR.instances.albumtextDescription.setData(descriptionidalbum);
 
     });
 }

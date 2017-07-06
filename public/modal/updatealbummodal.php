@@ -1,32 +1,129 @@
-<!-- line modal for text-->
-<div class="modal fade" id="tributeUpdatemodal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:scroll !important;">
-   <div class="modal-dialog modal-box text-nsert-modal">
-      <div class="modal-content modal-outer">
+<!-- line modal -->
+<div class="modal fade" id="albumEditModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="position: absolute !important; overflow:scroll !important;">
+   <div class="modal-dialog modal-box modal-photo">
+      <div class="modal-content modal-outer inner-modal-photo">
          <div class="modal-header modal-headernew">
-            <button type="button" class="close close-new" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            <h3 class="modal-title" id="lineModalLabel">Edit Tribute For <span class="friendname"></span></h3>
+            <button type="button" class="close close-new" data-dismiss="modal" onclick="albumClick();"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title" id="lineModalLabel">Create new Album</h3>
          </div>
          <div class="modal-body select-media-type-popup">
-            <form name="tributecreate" id="tributecreate" action="/tribute/tributesubmit" method="POST" enctype="multipart/form-data">
+            <!--<form name="textAddForm" id="textAddForm" action="" method="POST" enctype="multipart/form-data">-->
+            <div class="modal-body photo-popup">
                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                   <div class="form-group col-xs-12 col-sm-12">
-         </div>
-
-                     <div class="form-group col-xs-12 col-sm-12">
-                        <textarea name="tributeDescription" id="tributeDescription" class="form-control" style="height:200px;"></textarea>
-                        <span id="tributeDescriptionError" style="color:red;display:none;">Required</span>
-                     </div>
+                  <div class="col-md-6">
+                     <form action="/createalbum/updatesavealbum" method="post" enctype="multipart/form-data" name="formalbum" id="albumuploadform">
+                        <div class="aviary-div">
+                           <div class="" >
+                              <div class="image-form-field " picture-name="photo" height="360" field-name="image"></div>
+                              <div class="image-select">
+                                 <div class="img-input">
+                                    <div class="canvas-placeholder" id="canvasPlaceholdeId" style="height: 360px;">
+                                       <img id="albumpictureidedit" src="">
+                                       <!--<img id= 'profile_pic_thumb'/>-->
+                                    </div>
+                                    <div class="btn e-btn btn-primary file-input-btn" >
+                                       <i class="fa fa-upload"></i>
+                                       Choose photo
+                                       <input name="albumImagefile" type="file" id="imageArea1">
+                                       <input type = "hidden" id = "albumPath" value="">
+                                       <input id="albumName" type="hidden" value="">
+                                       <input id="albumFolder" type="hidden" value="">
+                                       <input type = "hidden" id= "aviaryPath" name= "action" value="">
+                                    </div>
+                                
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                     <div class="m-t-20">
+                        <div class="tags-input-wrapper" >
+                           <!--<tags-input class="e-tags-input " placeholder="Type friend name..." min-length="1" >-->
+                           <div class="host">
+                              <div class="tags">
+                                 <div class="auto-listing-div" id="append-div-image">
+                                    <input type="text" class="e-tags-input friendsids" name="friendsid" placeholder="Type Friend Name..." id ="albumFriend">
+                                    <!--<span id="imageFriendError" style="color:red;display:none;">Required</span>-->
+                                 </div>
+                                 <div class="dropdown-div">
+                                    <ul style="list-style-type: none;z-index: 999999; position: relative; display:none; margin-top:4px; width:445px;" id="frndlistAlbum" class="frndlist spanClass">
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                           <!--</tags-input>-->
+                        </div>
                      </div>
                   </div>
-                   <div class="modal-footer text-right">
-               <span class="">
-               <button type="submit" id="publishidtribute" class="btn e-btn btn-primary">Save</button>
+                  <div class="col-md-6 m-t-xs-20">
+                     <div class="m-b-10">
+                        <input class="form-control" type="text" placeholder="Title" id="albumTitle" >
+                     </div>
+                     <span id="imageTitleError" style="color:red;display:none;">Required</span>
+                     <div class="m-b-20 m-t-20" >
+                        <textarea name="albumtextDescription" id="albumtextDescription" class="form-control" style="height:1000px;"></textarea>
+                        <span id="imagetextDescriptionError" style="color:red;display:none;">Required</span>
+                     </div>
+                     <div class="col-sm-5 ">
+                        <div id="div-editphoto" class="hostt">
+                        <!--<tags-input class="e-tags-input ">-->
+                           <div style="margin-top: 4px;" class="tags">
+                                <ul class="input"></ul>
+                                <input id="imgbtnEditPhoto" type="image" src="http://advanced.aviary.com/images/feather/edit-photo.png" value="Edit photo" onclick="return launchEditor('profile_pic_thumb');" style="padding: 10px;"/>
+                            </div>
+                        <!--</tags-input>-->
+                     </div>
+
+                      </div>
+                     <div class="row error-style" style="margin-top: 32px;">
+                        <div class="col-sm-6" style="padding-left: 0 !important;">
+                           <div class="col-sm-10">
+                              <div class="e-select" style="width:93% !important;">
+                                 <!--<select>
+                                    <option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
+                                    </select>-->
+                                 <select name="AID" id="listing" class="AID">
+                                    <option class="listshowclass" value="public">Public</option>
+                                    <option class="listshowclass" value="friends">Friends</option>
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-6" style="padding-right: 0 !important;">
+                           <div class="col-sm-12">
+                              <div dropdown="" class="dropdown" id="colordropdown" style="border: 1px solid #aaa897;height: 35px;">
+                                 <div dropdown-toggle="" class="select dropdown-toggle" id ="selectedvaluecolor" aria-haspopup="true" aria-expanded="true" style="padding-top: 3px;">
+                                    <span style="background-color: rgb(87, 153, 66); "></span><span class="color-preview" style="background-color: rgb(87, 153, 66); margin-left: 5px; padding: 0 10px;"></span><span class="color-name text-capitalize" style="color: rgb(87, 153, 66); font-size: 16px;padding-left: 7px;">green</span>
+                                 </div>
+                                 <div role="menu" class="colors-section dropdown-menu" aria-labelledby="single-button">
+                                    <div class="e-brown font-bold m-l-xs select-title">Select a color:</div>
+                                    <div class="color"><span class="color-preview" style="background-color: rgb(170, 168, 151); margin-left: 5px; padding: 0 10px;"></span> <span class="color-name text-capitalize " style="color: rgb(170, 168, 151); font-size: 16px;padding-left: 7px;">brown</span></div>
+                                    <div class="color active"><span class="color-preview" style="background-color: rgb(87, 153, 66); margin-left: 5px; padding: 0 10px;"></span> <span class="color-name text-capitalize" style="color: rgb(87, 153, 66);font-size: 16px;padding-left: 7px;">green</span></div>
+                                    <div class="color"><span class="color-preview" style="background-color: rgb(180, 80, 78);margin-left: 5px; padding: 0 10px;"></span> <span class="color-name text-capitalize" style="color: rgb(180, 80, 78);font-size: 16px;padding-left: 7px;">red</span></div>
+                                    <div class="color"><span class="color-preview" style="background-color: rgb(179, 176, 77);margin-left: 5px; padding: 0 10px;"></span> <span class="color-name text-capitalize" style="color: rgb(179, 176, 77); font-size: 16px;padding-left: 7px;">yellow</span></div>
+                                    <div class="color"><span class="color-preview" style="background-color: rgb(47, 109, 107);margin-left: 5px; padding: 0 10px;"></span> <span class="color-name text-capitalize" style="color: rgb(47, 109, 107); font-size: 16px;padding-left: 7px;">blue</span></div>
+                                    <div class="color"><span  class="color-preview" style="background-color: rgb(141, 141, 141); margin-left: 5px; padding: 0 10px;"></span> <span class="color-name text-capitalize" style="color: rgb(141, 141, 141); font-size: 16px;padding-left: 7px;">grey</span></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <div class="col-sm-4 m-t-xs-20">
+                           <div class="btn e-btn btn-brown" >
+                              <div class="fa fa-plus"></div> Add album
+                           </div>
+                           </div> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer text-right">
+               <span class="" style="padding-right: 15px;">
+               <button type="button" class="btn e-btn btn-default" onclick="albumClick();">Back</button>
+               <button type="submit" class="btn e-btn btn-primary" id = "savealbumDetails">Publish</button>
                </span>
             </div>
-               </div>
-            </form>
+            <!--</form>-->
          </div>
       </div>
    </div>
-
+</div>

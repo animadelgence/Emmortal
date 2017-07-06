@@ -198,6 +198,17 @@ class ProfileController extends AbstractActionController {
                                       'TimeStamp'=>$addeddate
                               );
         $albumDetails       = $modelPlugin->getuploadDetailsTable()->insertData($data);
+         
+        $notificationData   = array(
+                                    'UID'=>$uid,
+                                    'notified_by'=>$UID,
+                                    'notify_id'=>$likeInsert,
+                                    'notify_type'=>'like',
+                                    'notify_seen'=>0,
+                                    'notificationdate'=>date("Y-m-d H:i:s")
+                                );
+        $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
+         
          echo $albumDetails;exit;
         //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }

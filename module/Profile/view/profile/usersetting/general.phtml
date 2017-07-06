@@ -23,8 +23,9 @@
                         <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
                     </div>
                     <div class="col-lg-6">
-                        <form action="/account/profileimage" method="post" enctype="multipart/form-data" name="profileimagechangeform" id="profileimagechangeform" style="padding-top: 70px;">
-                            <div class="col-lg-6 no-padding">
+                        <div class="col-lg-6 no-padding">
+                            <form action="/account/profileimage" method="post" enctype="multipart/form-data" name="profileimagechangeform" id="profileimagechangeform" style="padding-top: 70px;">
+                            
                                 <div class="img-input">
                                     <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 104px;">
                                         <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
@@ -48,7 +49,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 no-padding">
+                                <div class="col-lg-6 no-padding"  style="margin-top: 69px;">
                                     <div class="img-input">
                                         <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 104px;">
                                             <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
@@ -70,7 +71,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                
+                                </div>
                         </form>
                         <a class="save" id="changePersonalDetails" href="javascript:void(0)" disabled="disabled" style="cursor:pointer;">Save</a>
                     </div>
@@ -80,10 +81,12 @@
                         <h3>Change password</h3>
                         <form method="post" action="/settings/changepassword" enctype="multipart/form-data" id="form__changepassword">
                             <input type="password" class="form-control " id="acc-cur-pass" placeholder="Current password">
+                            <span id = "currentpassError" class='error'>Is invalid</span>
                             <input type="password" class="form-control " id="acc-pass" placeholder="New password">
                             <input type="password" class="form-control " id="acc-pass-rep" placeholder="Password confirmation">
+                            <span id = "confirmpassError" class='error'>doesn't match Password</span>
                         </form>
-                        <a class="save-new" href="javascript:void(0)" id="password_save" disabled="disabled" style="cursor:pointer;">Save</a>
+                        <a class="save-new" href="javascript:void(0)" id="password_save" disabled="disabled" style="cursor:not-allowed;">Save</a>
                         <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
                         <div>
                             <hr>
@@ -137,17 +140,18 @@
                         </div>
                     </div>
                 </div>
-                <div id="support" class="tabcontent">
+                <div id="support" class="tabcontent supportQues">
                     <div class="col-lg-7">
                         <h3>Send us your question</h3>
                         <textarea rows="4" cols="50" id="questionDetails">
 
                         </textarea>
-                        <a class="save-new" href="javascript:void(0)" style="cursor:pointer;" id="saveQuestion">Send</a>
+                        <button class="save-new" href="javascript:void(0)" id="saveQuestion" disabled="disabled" style="cursor:not-allowed;">Send</button>
                         <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>

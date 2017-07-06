@@ -71,19 +71,71 @@ function albumdetailsmodal()
         var id = $('.relationships').attr('id');
         $.ajax({
         type: "POST",
-        url: getUrl + '/album/fetchAllAlbum',
+        url: getUrl + '/album/fetchallalbum',
         success: function (res) {
             var jsObject = JSON.parse(res);
                  var   i = 0;
                  var   appendHtml = "";
-                 var i = jsObject.uploadDetails.length;
-                    appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+getUrl+'/image/no_cover-e343970a522a1599bd04bb0453d26b90.jpg"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="">My chronicles</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div><div class="album-preview-collection">';
-           while(i == 3){
-             appendHtml += ' <div class="image-wrapper ng-scope"><img class="img-responsive" src="'+jsObject.uploadDetails[0].uploadPath+'"></div></div>';
+                 var k = jsObject.uploadDetails.length;
+                 if(k){
+                    appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+getUrl+'/image/no_cover-e343970a522a1599bd04bb0453d26b90.jpg"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="">My chronicles</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
+            appendHtml += '<div class="album-preview-collection">';
+                
+                for(var l = 0; l < k; l++){
+                   
+                if(l <3){
+              
+                    if(jsObject.uploadDetails[l].uploadDetails[0].uploadType == "image"){
+                        appendHtml += ' <div class="image-wrapper ng-scope"><img class="img-responsive" src="'+jsObject.uploadDetails[l].uploadDetails[0].uploadPath+'" style="height:100%;"></div>';
+                    } else if(jsObject.uploadDetails[l].uploadDetails[0].uploadType == "video"){
+                        appendHtml += ' <div class="image-wrapper ng-scope"><video controls="controls" name="Video Name" id="" src="'+jsObject.uploadDetails[l].uploadDetails[0].uploadPath+'" style="height:100%;"></video></div>';
+                    }
+                          else if(jsObject.uploadDetails[l].uploadDetails[0].uploadType == "text"){
+                        appendHtml += ' <div class="image-wrapper ng-scope"><label name="text Name" style="height:100%;"><p>'+jsObject.uploadDetails[l].uploadDetails[0].uploadTitle+'</p><p>'+jsObject.uploadDetails[l].uploadDetails[0].uploadDescription+'</p></label></div>';
+                    }
 
-           }
-          appendHtml += '</div></div></div></div>';
+                }
+                
+}
+  appendHtml += '</div>';
+          appendHtml += '</div></div></div>';
+      }
           
+
+    var m = jsObject.albumValue.length;
+      if(m){
+    
+
+                for(var n = 0; n < m; n++){
+                        appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+jsObject.albumValue[n].albumimagepath+'" style="height:100%;"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="">'+jsObject.albumValue[n].title+'</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
+            appendHtml += '<div class="album-preview-collection">';
+                    var s = jsObject.albumValue[n].uploadDetails.length;
+                    for(var t=0; t<s; t++){
+                  if(jsObject.albumValue[n].uploadDetails[t].uploadType != "album"){ 
+                if(t <= 3){
+                    if(jsObject.albumValue[n].uploadDetails[t].uploadType == "image"){
+                        appendHtml += ' <div class="image-wrapper ng-scope"><img class="img-responsive" src="'+jsObject.albumValue[n].uploadDetails[t].uploadPath+'" style="height:100%;"></div>';
+                    } else if(jsObject.albumValue[n].uploadDetails[t].uploadType == "video"){
+                        appendHtml += ' <div class="image-wrapper ng-scope"><video controls="controls" name="Video Name" id="" src="'+jsObject.albumValue[n].uploadDetails[t].uploadPath+'" style="height:50px;""></video></div>';
+                    }
+                          else if(jsObject.albumValue[n].uploadDetails[t].uploadType == "text"){
+                        appendHtml += ' <div class="image-wrapper ng-scope"><label name="text Name" style="height:100%;"><p>'+jsObject.albumValue[n].uploadDetails[t].uploadTitle+'</p><p>'+jsObject.albumValue[n].uploadDetails[t].uploadDescription+'</p></label></div>';
+                    }
+                }
+                }
+              }
+                
+
+        appendHtml += '</div>';
+          appendHtml += '</div></div></div>';
+
+
+}
+
+
+           
+        
+          }
            $('.append_div').append(appendHtml);
         }
     });

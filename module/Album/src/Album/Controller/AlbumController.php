@@ -81,19 +81,65 @@ class AlbumController extends AbstractActionController {
             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArrays' => $likeDetailsArrays));
         }
     }
-    public function fetchAllAlbumAction(){
-    	$this->layout('layout/albumlayout.phtml');
+    public function fetchallalbumAction(){
+        //echo 1;exit;
+    	//$this->layout('layout/albumlayout.phtml');
     	$plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
     	$dynamicPath = $plugin->dynamicPath();
     	$jsonArray = $plugin->jsondynamic(); 
         $uploadQuery = array('UID'=> $this->sessionid);
+       // $uploadQuery = array('UID'=> 27);
         $albumValue = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
-        $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
-        $res['albumValue'] = $albumValue;
-        $res['uploadDetails'] = $uploadDetails;
-    	$result = json_encode($res);
-        echo $result;
+       // print_r($albumValue);exit;
+        $finalArray = array();
+        $finalArrayStatic = array();
+        foreach ($albumValue as $albumValueData) {
+            $array =  array();
+            $albumId = $albumValueData['albumeid'];
+            $title = $albumValueData['title'];
+            $albumimagepath = $albumValueData['albumimagepath'];
+            $uploadQueryUploadTable = array('UID'=> $this->sessionid,'AID'=>$albumId);
+            
+            $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQueryUploadTable);
+           
+
+            foreach ($uploadDetails as $upload) {
+
+                $array[] = array('uploadId'=>$upload['uploadId'],
+                    'UID'=>$upload['UID'],
+                    'uploadTitle'=>$upload['uploadTitle'],
+                    'uploadType'=>$upload['uploadType'],
+                    'uploadPath'=>$upload['uploadPath'],
+                    'uploadDescription'=>$upload['uploadDescription']);
+            }
+            $finalArray[] = array('AID'=>$albumId,
+                'title'=>$title,
+                'albumimagepath'=>$albumimagepath,
+                    'uploadDetails'=>$array);
+              
+    }
+    $uploadQueryUploadTableStaic = array('UID'=> $this->sessionid,'AID'=>1);
+    $uploadDetailsforstaticvalue = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQueryUploadTableStaic);
+    foreach ($uploadDetailsforstaticvalue as $uploadstatic) {
+                $arrayfprstatic = array();
+
+                $arrayfprstatic[] = array('uploadId'=>$uploadstatic['uploadId'],
+                    'UID'=>$uploadstatic['UID'],
+                    'uploadTitle'=>$uploadstatic['uploadTitle'],
+                    'uploadType'=>$uploadstatic['uploadType'],
+                    'uploadPath'=>$uploadstatic['uploadPath'],
+                    'uploadDescription'=>$uploadstatic['uploadDescription']);
+                $finalArrayStatic[] = array('AID'=>1,
+                    'uploadDetails'=>$arrayfprstatic);
+            }
+            
+
+     $res['albumValue'] = $finalArray;
+     $res['uploadDetails'] = $finalArrayStatic;
+    // print_r($res);exit;
+     echo json_encode($res);
+
         exit;
     }
 

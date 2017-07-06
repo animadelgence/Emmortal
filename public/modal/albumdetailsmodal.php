@@ -6,24 +6,6 @@
 
 
                 <div class="ng-isolate-scope append_div">
-                   
-                       
-                            
-                            
-                            
-                               
-                                
-                           
-                           
-
-
-
-
-
-
-
-
-
 
            
         </div>

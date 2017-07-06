@@ -108,13 +108,13 @@ class TributeController extends AbstractActionController {
         
         $tributeType = $_POST['tributeType'];
         if($tributeType == 'friend'){
-          $friendId = $_POST['frndId'];  
+          $friendId = @$_POST['frndId'];  
           $uploadId = "";  
         } else if($tributeType == 'upload'){
-          $uploadId = $_POST['frndId'];
+          $uploadId = @$_POST['frndId'];
           $friendId = ""; 
         } else{
-            $friendId = $_POST['frndId'];
+            $friendId = @$_POST['frndId'];
             $uploadId = "";
         }
         $description = $_POST['description'];
@@ -128,9 +128,9 @@ class TributeController extends AbstractActionController {
                     );
             $tribute = $modelPlugin->gettributedetailsTable()->insertData($value);
         }
-       
-        $tributeDetails = $modelPlugin->gettributedetailsTable()->fetchall();
-        
+        $query = array();
+        $tributeDetails = $modelPlugin->gettributedetailsTable()->fetchall($query);
+        $array = array();
         foreach ($tributeDetails as $rSet) {
             if(($userid == $rSet['UID']) && ($friendId == $rSet['friendsid'])){
                 if ($friendId == $rSet['friendsid'])

@@ -49,16 +49,16 @@ $(document).ready(function () {
         if ($("#searchmodal").is(':visible') == true) {
             $('#searchmodal').css('z-index', '0');
         }
-        if (frndId != '') {
+        //if (frndId != '') {
             $('#friendId').val(frndId);
             $('#tributeType').val(tributeType);
-            getAlbum(frndId, textDescription,tributeType);
-        } else {
+            getTribute(frndId, textDescription,tributeType);
+        /*} else {
             setTimeout(function(){
                 $('#tributeloader').css('display','none');
                 $('#tribute-add-btn').hide();
             }, 2000);
-        }
+        }*/
     });
     $('body').on('click', '#publishFriendTribute', function () {
         var flag = 0,
@@ -96,7 +96,7 @@ $(document).ready(function () {
         $('#tributeAddModal').css('z-index', '99999');
     });
 
-    function getAlbum(frndId, textDescription,tributeType) {
+    function getTribute(frndId, textDescription,tributeType) {
         //$('#tributeloader').css('display','block');
         $.ajax({
             type: "POST",
@@ -107,6 +107,7 @@ $(document).ready(function () {
                 tributeType: tributeType
             },
             success: function (res) {
+                console.log(res);
                 $('#tributeloader').css('display','none');
                 $('.offcanvas-comments').css("height", "100%");
                 jsObject = JSON.parse(res);
@@ -127,6 +128,8 @@ $(document).ready(function () {
                     $('#tributeAppend').html(html);
                     $('[data-toggle="tooltip"]').tooltip();
                 } else {
+                    $('#tributeloader').css('display','none');
+                    $('#tribute-add-btn').hide();
                     $('#tributeAppend').html('<h2 class="text-center e-brown">There are no tributes yet.</h2>');
                 }
             }

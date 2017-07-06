@@ -453,9 +453,12 @@ function videomodalopen() {
         }
     });
 }
-function errormodalopen(param){
+function errormodalopen(param,secondParam){
     if($('#errorModal').length) {
         $('#errorModal').remove();
+    }
+    if($('.modal-backdrop').length) {
+        $('.modal-backdrop').remove();
     }
     $.get(getUrl+"/modal/errorModal.php", function (result) {
         // append response to body
@@ -463,7 +466,30 @@ function errormodalopen(param){
         // open modal
         $('#errorModal').modal('show');
         $('#errorMessage').html(param);
-
+        if(secondParam == 'image') {
+            if($('.closebtn').length) {
+                $('.closebtn').remove();
+            }
+            $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="imagefunctionClick();"></i>');
+        }
+        if(secondParam == 'video') {
+            if($('.closebtn').length) {
+                $('.closebtn').remove();
+            }
+            $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="videofunctionClick();"></i>');
+        }
+        if(secondParam == 'text') {
+            if($('.closebtn').length) {
+                $('.closebtn').remove();
+            }
+            $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="textfunctionClick();"></i>');
+        }
+        if(secondParam == 'album') {
+            if($('.closebtn').length) {
+                $('.closebtn').remove();
+            }
+            $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="albumfunctionClick();"></i>');
+        }
     });
 
 }

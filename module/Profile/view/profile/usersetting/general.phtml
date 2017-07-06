@@ -27,13 +27,13 @@
                             <form action="/account/profileimage" method="post" enctype="multipart/form-data" name="profileimagechangeform" id="profileimagechangeform" style="padding-top: 70px;">
                             
                                 <div class="img-input">
-                                    <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 104px;">
+                                    <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 134px; width: 176px;">
                                         <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
                                         <img src="<?php echo $userDetails[0]['profileimage'];?>" style="height:120px; width:160px;" >
                                         <?php }else{ ?>
                                         <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
                                     </div>
-                                    <div id="reloaddiv">
+                                    <div id="reloaddiv" style=" width: 176px;">
                                         <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
                                         <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removeavtr">
                                             <i class="fa fa-times-circle"></i>
@@ -51,13 +51,13 @@
                                 </div>
                                 <div class="col-lg-6 no-padding"  style="margin-top: 69px;">
                                     <div class="img-input">
-                                        <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 104px;">
+                                        <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 134px; width: 176px;">
                                             <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
                                             <img src="<?php echo $userDetails[0]['backgroundimage'];?>" style="height:120px; width:160px;" >
                                             <?php }else{ ?>
                                             <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
                                         </div>
-                                        <div id="reloaddivbk">
+                                        <div id="reloaddivbk" style=" width: 176px;">
                                             <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
                                             <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removebgavtr">
                                                 <i class="fa fa-times-circle"></i>

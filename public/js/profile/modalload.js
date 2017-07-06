@@ -16,10 +16,10 @@ var getUrl = window.location.origin;
 $(function(){
 
 });
-
+var RandomNumber = Math.floor((Math.random() * 100) + 1);
 function squarespaceModalopen()
 {
-    var RandomNumber = Math.floor((Math.random() * 100) + 1);
+
     $.get(getUrl+"/modal/signupmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
@@ -35,7 +35,6 @@ function squarespaceModalopen()
 }
 function squarespaceModal2open()
 {
-    var RandomNumber = Math.floor((Math.random() * 100) + 1);
     $.get(getUrl+"/modal/loginmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
@@ -51,7 +50,6 @@ function relationshipsmodal()
     if($('#relationshipsmodal').length) {
         $('#relationshipsmodal').remove();
     }
-    var RandomNumber = Math.floor((Math.random() * 100) + 1);
     $.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
@@ -69,7 +67,6 @@ function albumdetailsmodal()
     if($('#albumdetailsmodal').length) {
         $('#albumdetailsmodal').remove();
     }
-    var RandomNumber = Math.floor((Math.random() * 100) + 1);
     $.get(getUrl+"/modal/albumdetailsmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
@@ -153,7 +150,7 @@ function albumdetailsmodal()
 }
 function squarespaceModalemailopen()
 {
-    $.get(getUrl+"/modal/forgetpasswordmodal.php", function (result) {
+    $.get(getUrl+"/modal/forgetpasswordmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -170,7 +167,7 @@ function tributemodalopen()
     if($('.in').length) {
         $('.in').remove();
     }
-    $.get(getUrl+"/modal/tributemodal.php", function (result) {
+    $.get(getUrl+"/modal/tributemodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -206,7 +203,7 @@ function albummodalopen(){
     if($('.in').length) {
         $('.in').remove();
     }
-	$.get(getUrl+"/modal/albuminsertmodal.php", function (result) {
+	$.get(getUrl+"/modal/albuminsertmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -244,7 +241,7 @@ function albummodalopen(){
     if($('.in').length) {
         $('.in').remove();
     }
-    $.get(getUrl+"/modal/textinsertmodal.php", function (result) {
+    $.get(getUrl+"/modal/textinsertmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -283,7 +280,7 @@ function imagemodalopen(){
     /*if($('.in').length) {
         $('.in').remove();
     }*/
-    $.get(getUrl+"/modal/imageinsertmodal.php", function (result) {
+    $.get(getUrl+"/modal/imageinsertmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -322,7 +319,7 @@ function addtributemodal(frndId,tributeType) {
     if($('#tributeAddModal').length) {
         $('#tributeAddModal').remove();
     }
-    $.get(getUrl+"/modal/tributeaddmodal.php", function (result) {
+    $.get(getUrl+"/modal/tributeaddmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -336,7 +333,7 @@ function onupdateTribute() {
     if($('#tributeUpdatemodal').length) {
         $('#tributeUpdatemodal').remove();
     }
-    $.get(getUrl+"/modal/updatetributemodal.php", function (result) {
+    $.get(getUrl+"/modal/updatetributemodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -379,7 +376,7 @@ function friendtributemodal(frndId,tributeType) {
     if($('#friendTributeAddModal').length) {
         $('#friendTributeAddModal').remove();
     }
-    $.get(getUrl+"/modal/friendtributeaddmodal.php", function (result) {
+    $.get(getUrl+"/modal/friendtributeaddmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -421,7 +418,7 @@ function videomodalopen() {
     /*if($('.in').length) {
         $('.in').remove();
     }*/
-    $.get(getUrl+"/modal/videoinsertmodal.php", function (result) {
+    $.get(getUrl+"/modal/videoinsertmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -457,7 +454,7 @@ function errormodalopen(param){
     if($('#errorModal').length) {
         $('#errorModal').remove();
     }
-    $.get(getUrl+"/modal/errorModal.php", function (result) {
+    $.get(getUrl+"/modal/errorModal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -474,7 +471,7 @@ function uploadmodalopen(){
     if($('.in').length) {
         $('.in').remove();
     }
-    $.get(getUrl+"/modal/uploadmodal.php", function (result) {
+    $.get(getUrl+"/modal/uploadmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -487,7 +484,7 @@ function searchmodalopen(){
     if($('#searchmodal').length) {
         $('#searchmodal').remove();
     }
-    $.get(getUrl+"/modal/searchmodal.php", function (result) {
+    $.get(getUrl+"/modal/searchmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -504,7 +501,7 @@ function openalbumforedit(){
     if($('.in').length) {
         $('.in').remove();
     }
-    $.get(getUrl+"/modal/albuminsertmodal.php", function (result) {
+    $.get(getUrl+"/modal/albuminsertmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal

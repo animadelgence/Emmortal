@@ -91,7 +91,7 @@ class ProfileController extends AbstractActionController {
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
         $tempstore = 'blank';
-        if($this->sessionidtemp) {
+        if(@$this->sessionidtemp) {
             $tempstore = $this->sessionidtemp;
             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
             /*$user_session_temp->loginId = ($_SESSION['tempStore']);
@@ -101,7 +101,7 @@ class ProfileController extends AbstractActionController {
         else {
             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
         }
-        if($this->sessionidtemp){
+        if(@$this->sessionidtemp){
             $user_session_temp->tempStore = ($_SESSION['tempStoreName']);
             $user_session_temp = new \Zend\Session\Container('tempStoreName');
             unset($user_session_temp->tempStoreName);
@@ -189,9 +189,9 @@ class ProfileController extends AbstractActionController {
         $AID                = @$_POST['AID'];
         $friendsid          = '';
 
-        $frndIdValue               = $_POST['friendsId'];
+        $frndIdValue        = $_POST['friendsId'];
         if($frndIdValue){
-        $friendId             =  implode(",",$frndIdValue);
+        $friendId           =  implode(",",$frndIdValue);
         } else{
           $friendId = "";
         }
@@ -217,18 +217,22 @@ class ProfileController extends AbstractActionController {
                                       'uploadType'=>'text',
                                       'TimeStamp'=>$addeddate
                               );
-        $albumDetails       = $modelPlugin->getuploadDetailsTable()->insertData($data);
-         
-        $notificationData   = array(
-                                    'UID'=>$uid,
-                                    'notified_by'=>$UID,
-                                    'notify_id'=>$likeInsert,
-                                    'notify_type'=>'like',
-                                    'notify_seen'=>0,
-                                    'notificationdate'=>date("Y-m-d H:i:s")
-                                );
-        $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
-         
+        $uploadId       = $modelPlugin->getuploadDetailsTable()->insertData($data);
+        if($friendId != ''){
+        $frndId = explode(",",$friendId);
+        $ct = count($frndId);
+            for($i=0;$i<$ct;$i++){
+                $notificationData   = array(
+                                            'UID'=>$frndId[$i],
+                                            'notified_by'=>$UID,
+                                            'notify_id'=>$uploadId,
+                                            'notify_type'=>'upload',
+                                            'notify_seen'=>0,
+                                            'notificationdate'=>date("Y-m-d H:i:s")
+                                        );
+                $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
+            }
+        }
          echo $albumDetails;exit;
         //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }

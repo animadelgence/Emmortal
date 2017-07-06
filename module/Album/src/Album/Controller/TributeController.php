@@ -105,17 +105,30 @@ class TributeController extends AbstractActionController {
         $controller = @$href[3];
         $action = @$href[4];
         $userid = $this->sessionid;
-        
+        $friendId = "";  
+        $uploadId = "";
+        $tribute_type="";
+        $notify_type ="comment";
         $tributeType = $_POST['tributeType'];
         if($tributeType == 'friend'){
-          $friendId = $_POST['frndId'];  
-          $uploadId = "";  
-        } else if($tributeType == 'upload'){
-          $uploadId = $_POST['frndId'];
-          $friendId = ""; 
-        } else{
-            $friendId = $_POST['frndId'];
+            $friendId = @$_POST['frndId'];  
             $uploadId = "";
+            $tribute_type = 'friend';
+            $notify_type ="tribute";
+        } else if($tributeType == 'relationship'){
+            $friendId = @$_POST['frndId'];  
+            $uploadId = "";
+            $tribute_type = 'relationship';
+        } else if($tributeType == 'upload'){
+            $uploadId = @$_POST['frndId'];
+            $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall(array('uploadId'=>$uploadId));
+            $friendId = $uploadDetails[0]['UID'];
+            $tribute_type = 'upload';
+        } else if($tributeType == 'album'){
+            $uploadId = @$_POST['frndId'];
+            $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$uploadId));
+            $friendId = $albumDetails[0]['UID'];
+            $tribute_type = 'album';
         }
         $description = $_POST['description'];
         if(!empty($description)){
@@ -124,16 +137,26 @@ class TributeController extends AbstractActionController {
                         'description'=>$description,
                         'friendsid'=>$friendId,
                         'uploadId'=>$uploadId,
+                        'tribute_type'=>$tribute_type,
                         'addeddate'=>date("Y-m-d H:i:s")
                     );
-            $tribute = $modelPlugin->gettributedetailsTable()->insertData($value);
+            $tributeId = $modelPlugin->gettributedetailsTable()->insertData($value);
+            $notificationData   = array(
+                                    'UID'=>$friendId,
+                                    'notified_by'=>$userid,
+                                    'notify_id'=>$tributeId,
+                                    'notify_type'=>$notify_type,
+                                    'notify_seen'=>0,
+                                    'notificationdate'=>date("Y-m-d H:i:s")
+                                );
+            $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
         }
-       
-        $tributeDetails = $modelPlugin->gettributedetailsTable()->fetchall();
-        
+        $query = array();
+        $tributeDetails = $modelPlugin->gettributedetailsTable()->fetchall($query);
+        $array = array();
         foreach ($tributeDetails as $rSet) {
             if(($userid == $rSet['UID']) && ($friendId == $rSet['friendsid'])){
-                if ($friendId == $rSet['friendsid'])
+                if ($friendId == $rSet['friendsid'] && $tributeType == $rSet['tribute_type'])
                 {
                     $where = array('TID'=>$rSet['tributesid']);
                     $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);
@@ -154,7 +177,7 @@ class TributeController extends AbstractActionController {
                     );
                 }
             } else if($friendId == $rSet['UID'] && $userid == $rSet['friendsid']){
-                if ($friendId == $rSet['friendsid'])
+                if ($friendId == $rSet['friendsid'] && $tributeType == $rSet['tribute_type'])
                 {
                     $where = array('TID'=>$rSet['tributesid']);
                     $likeDetails = $modelPlugin->getlikesdetailsTable()->fetchall($where);

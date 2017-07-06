@@ -164,7 +164,7 @@ $(document).ready(function () {
                     currentPageId :currentPageId
                 },
                 success: function (res) {
-                    if(res == 1){
+                    if(res > 0){
                          if (currentPageId != "") {
                              $('.modal').modal('hide');
                               $(".profile-paginator__click.active").trigger("click");

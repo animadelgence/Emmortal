@@ -70,7 +70,7 @@ class AlbumdetailsController extends AbstractActionController {
                             'likedate'=> date("Y-m-d H:i:s")
                         );
             $query      = array('AID'=>$id);
-            $albumDet   = $modelPlugin->getalbumdetailsTable()->fetchall($query);
+            $albumDet   = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$id));
             $uid = $albumDet[0]['UID'];
         } else if($type == 'tribute'){
             $where      = array('TID'=>$id,'UID'=>$UID);

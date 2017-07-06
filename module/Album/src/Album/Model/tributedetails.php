@@ -11,6 +11,7 @@ class tributedetails
     public $description;
     public $friendsid;
     public $uploadId;
+    public $tribute_type;
     public $addeddate;
     
     public $userid;
@@ -38,6 +39,7 @@ class tributedetails
 		$this->description     = (!empty($data['description'])) ? $data['description'] : null;
         $this->friendsid   = (!empty($data['friendsid'])) ? $data['friendsid'] : null;
         $this->uploadId   = (!empty($data['uploadId'])) ? $data['uploadId'] : null;
+        $this->tribute_type   = (!empty($data['tribute_type'])) ? $data['tribute_type'] : null;
         $this->addeddate    = (!empty($data['addeddate'])) ? $data['addeddate'] : null;
         
         $this->userid = (!empty($data['userid'])) ? $data['userid'] : null;

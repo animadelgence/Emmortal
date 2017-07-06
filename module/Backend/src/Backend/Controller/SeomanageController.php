@@ -93,6 +93,7 @@ namespace Backend\Controller;
               //$filename = $_FILES['fileupload']['name'];
 
               $bgimgpath = $dynamicPath."/upload/bgimg/".$filename;
+              //echo $bgimgpath; exit;
 
               //upload in bgimg folder(start)
               $href              = explode("/", $currentPageURL);
@@ -113,11 +114,14 @@ namespace Backend\Controller;
                       @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg', 0777, true);
                       chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg/', 0777);
                   }
-
+                 //chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg/', 0777);
               //$result = $uploadPlugin->bgimgedit($tmp_name , $fileName);
               $folderName = "/upload/bgimg/";
               $result = $uploadPlugin->uploadimg($fileSize, $fileName, $files[$filename]['error'], $folderName, $fileName, $fileType);
+            print_r($result); exit;
               //return json_decode($result);
+         echo json_encode($result);
+        exit;
               //print_r($result); exit; //uncomment this
               echo $bgimgpath; exit;
               //upload in bgimg folder(end)

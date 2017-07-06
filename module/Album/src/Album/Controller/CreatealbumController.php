@@ -142,6 +142,7 @@ class CreatealbumController extends AbstractActionController {
          $data                  =  array('UID'=>$this->sessionid,
                       'uploadTitle'=>$albumTitle,
                       'uploadDescription'=>$albumDescription,
+                      'albumcolor' => $colorselected,
                       'AID'=>$albumDetails,
                       'FID'=>$friendsid,
                       'TimeStamp'=>$addeddate,

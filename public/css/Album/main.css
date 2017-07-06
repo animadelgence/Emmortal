@@ -867,7 +867,46 @@ button[disabled], html input[disabled] {
   width: 100% !important;
   height: auto !important;
 }
+/***** added for album****/
 
+.album-preview:hover {
+  background: rgba(170, 168, 151, 0.08) none repeat scroll 0 0;
+}
+.album-preview {
+  border-bottom: 2px solid #aaa897;
+  padding: 10px 0;
+}
+.album-preview .album-preview-cover-wrapper {
+  display: inline-block;
+  height: 100px;
+  vertical-align: middle;
+  width: 100px;
+}
+.album-preview .album-preview-info {
+  display: inline-block;
+  vertical-align: middle;
+  width: 200px;
+}
+.album-preview .album-preview-collection {
+  display: inline-block;
+  float: right;
+  vertical-align: middle;
+ 
+}
+.album-preview .album-preview-collection .image-wrapper {
+  display: inline-block;
+  margin-right: 5px;
+  width: 100px;
+}
+.album-preview .album-preview-info .action-btns .btn {
+  border: 1px solid #fff;
+  vertical-align: middle;
+}
+.album-preview .album-preview-collection .image-wrapper {
+  display: inline-block;
+  margin-right: 5px;
+  width: 100px;
+}
 @media (max-width: 1200px) {
   #photos {
   -moz-column-count:    4;

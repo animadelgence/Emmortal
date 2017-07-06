@@ -149,11 +149,9 @@
             flag = 1;
             $('#title').addClass('error-class');
             $('#videoTitleError').show();
-            /*$("#uploadModal").hide();
             $("#videoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
-            $(".welcome").show();
-            $(".showmsg").html("<span>please fill title field</span>");*/
+            errormodalopen('please fill title field','video');
         } else {
             $('#videoTitleError').hide();
             $('#title').removeClass('error-class');
@@ -163,11 +161,9 @@
             flag = 1;
             $('#videotextDescription').addClass('error-class');
             $('#videotextDescriptionError').show();
-            /*$("#uploadModal").hide();
             $("#videoInsertModal").css("z-index","0");
             $(".modal-backdrop").css("z-index","0");
-            $(".welcome").show();
-            $(".showmsg").html("<span>please fill description field</span>");*/
+            errormodalopen('please fill description field','video');
         } else {
             $('#videotextDescriptionError').hide();
             $('#videotextDescription').removeClass('error-class');
@@ -176,11 +172,6 @@
             flag = 1;
             $('#file').addClass('error-class');
             $('#videouploaderror').show();
-            /*$("#uploadModal").hide();
-            $("#videoInsertModal").css("z-index","0");
-            $(".modal-backdrop").css("z-index","0");
-            $(".welcome").show();
-            $(".showmsg").html("<span>please fill description field</span>");*/
         } else{
             $('#videouploaderror').hide();
             $('#file').removeClass('error-class');
@@ -220,14 +211,12 @@
 
 
     });
-/*$(".closebtn").click(function(){
-    $(".welcome").hide();
-    $("#uploadModal").show();
-    $("#videoInsertModal").css("z-index","1305");
-    $(".modal-backdrop").css("z-index","1040");
-})*/
 
 });
+function videofunctionClick() {
+    videomodalopen();
+    $('#errorModal').modal('hide');
+}
 function videoClick()
 {
     uploadmodalopen();

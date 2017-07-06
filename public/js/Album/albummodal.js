@@ -153,7 +153,9 @@ $(document).ready(function () {
             
             $('#imageTitleError').css('display','block');
             $('.error-style').css('margin-top','28px');
-            
+            $("#albumInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            errormodalopen('please fill title field','album');
         } else {
             $('#imageTitleError').css('display','none');
             flag= 0;
@@ -162,7 +164,9 @@ $(document).ready(function () {
             flag = 1;
             $('#imagetextDescriptionError').css('display','block');
             $('.error-style').css('margin-top','28px');
-          
+            $("#albumInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            errormodalopen('please fill description field','album');
         } else {
             $('#albumtextDescriptionError').css('display','none');
             flag = 0;
@@ -224,6 +228,10 @@ $(document).ready(function () {
 
 });
 
+function albumfunctionClick() {
+    albummodalopen();
+    $('#errorModal').modal('hide');
+}
 function albumClick()
 {
     $('#uploadModal').modal('show');

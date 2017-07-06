@@ -83,7 +83,7 @@ body {
 .canvas-placeholder {
     background: #c0c0c0 none repeat scroll 0 0;
     display: table;
-    margin-bottom: 13px;
+    margin-bottom: 5px;
     text-align: center;
     width: 100%;
 }

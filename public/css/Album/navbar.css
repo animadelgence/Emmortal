@@ -10,7 +10,7 @@
     font-weight: 600;
 }*/
 
-.welcome {
+.welcome, .welcomee {
     background: #fff;
     position: relative;
     border-bottom: 8px solid #579942;
@@ -22,7 +22,7 @@
     margin-right: 15px;
     width: 20%;
 }
-.close-msg {
+.close-msg, .close-msgg {
     text-align: right;
     padding-top: 3px;
     padding-bottom: 6px;

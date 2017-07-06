@@ -254,7 +254,7 @@ declined'){
                 $html .='</div>';
             } else if($notify_type == 'comment'){
                 $where              = array('tributedetails.id'=>$notify_id);
-                $join               = 'tributedetails.friendsid=user.userid';
+                $join               = 'tributedetails.UID=user.userid';
                 $friendDetails      = $modelPlugin->gettributedetailsTable()->fetchalljoinquery($where,$join);
                 if($notify_seen == 1){
                     $html .='<div class="e-notification comment seen">';

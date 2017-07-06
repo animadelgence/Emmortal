@@ -12,7 +12,9 @@
         }
         public function insertData($data)
         {
-             return $rowset = $this->tableGWay->insert($data);
+            $rowset = $this->tableGWay->insert($data);
+            $id = $this->tableGWay->lastInsertValue;
+            return $id;
         }
         public function fetchall($query)
         {
@@ -25,6 +27,7 @@
                             'description' => $rSet->description,
                             'friendsid' => $rSet->friendsid,
                             'uploadId' => $rSet->uploadId,
+                            'tribute_type' => $rSet->tribute_type,
                             'addeddate' => $rSet->addeddate,
                         );
             }
@@ -45,6 +48,7 @@
                             'description' => $rSet->description,
                             'friendsid' => $rSet->friendsid,
                             'uploadId' => $rSet->uploadId,
+                            'tribute_type' => $rSet->tribute_type,
                             'addeddate' => $rSet->addeddate,
                             'userid' => $rSet->userid,
                             'emailid' => $rSet->emailid,

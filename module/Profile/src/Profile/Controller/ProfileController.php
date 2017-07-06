@@ -10,10 +10,12 @@ use Zend\Session\SessionManager;
 
 class ProfileController extends AbstractActionController {
 
-    
+    public $sessionidtemp;
     public function __construct() {
         $userSession     = new Container('userloginId');
         $this->sessionid = $userSession->offsetGet('userloginId');
+        $userSessionTemp     = new Container('tempStoreName');
+        $this->sessionidtemp = $userSessionTemp->offsetGet('tempStoreName');
         $protocol        = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath     = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
@@ -70,7 +72,7 @@ class ProfileController extends AbstractActionController {
     }
     }
     public function newsfeedAction(){
-       
+       //echo $this->sessionidtemp;exit;
     	$this->layout('layout/profilelayout.phtml');
 
     	$modelPlugin      = $this->modelplugin();
@@ -88,8 +90,28 @@ class ProfileController extends AbstractActionController {
             else{
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
-
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
+        $tempstore = 'blank';
+        if(isset($this->sessionidtemp)) {
+            $tempstore = $this->sessionidtemp;
+            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
+            /*$user_session_temp->loginId = ($_SESSION['tempStore']);
+            $user_session_temp = new \Zend\Session\Container('tempStore');
+            unset($user_session_temp->tempStore);*/
+        }
+        else {
+            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
+        }
+        if(isset($this->sessionidtemp)){
+            /*$user_session_temp->tempStore = ($_SESSION['tempStoreName']);
+            $user_session_temp = new \Zend\Session\Container('tempStoreName');
+            unset($user_session_temp->tempStoreName);*/
+            $user_session_temp = new Container('tempStoreName');
+            $user_session_temp->getManager()->getStorage()->clear('tempStoreName');
+            
+            /*$user_session->loginId  = ($_SESSION['userloginId']);
+        $user_session           = new \Zend\Session\Container('userloginId');
+        unset($user_session->userloginId);*/
+        }
        
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
     }
@@ -169,9 +191,9 @@ class ProfileController extends AbstractActionController {
         $AID                = @$_POST['AID'];
         $friendsid          = '';
 
-        $frndIdValue               = $_POST['friendsId'];
+        $frndIdValue        = $_POST['friendsId'];
         if($frndIdValue){
-        $friendId             =  implode(",",$frndIdValue);
+        $friendId           =  implode(",",$frndIdValue);
         } else{
           $friendId = "";
         }
@@ -197,18 +219,22 @@ class ProfileController extends AbstractActionController {
                                       'uploadType'=>'text',
                                       'TimeStamp'=>$addeddate
                               );
-        $albumDetails       = $modelPlugin->getuploadDetailsTable()->insertData($data);
-         
-        $notificationData   = array(
-                                    'UID'=>$uid,
-                                    'notified_by'=>$UID,
-                                    'notify_id'=>$likeInsert,
-                                    'notify_type'=>'like',
-                                    'notify_seen'=>0,
-                                    'notificationdate'=>date("Y-m-d H:i:s")
-                                );
-        $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
-         
+        $uploadId       = $modelPlugin->getuploadDetailsTable()->insertData($data);
+        if($friendId != ''){
+        $frndId = explode(",",$friendId);
+        $ct = count($frndId);
+            for($i=0;$i<$ct;$i++){
+                $notificationData   = array(
+                                            'UID'=>$frndId[$i],
+                                            'notified_by'=>$UID,
+                                            'notify_id'=>$uploadId,
+                                            'notify_type'=>'upload',
+                                            'notify_seen'=>0,
+                                            'notificationdate'=>date("Y-m-d H:i:s")
+                                        );
+                $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
+            }
+        }
          echo $albumDetails;exit;
         //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }

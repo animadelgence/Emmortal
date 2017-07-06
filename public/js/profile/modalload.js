@@ -11,6 +11,7 @@
 /*jshint -W065 */
 /*jslint devel: true */
 /*jslint eqeq: true*/
+//$.noConflict();
 var getUrl = window.location.origin;
 $(function(){
 
@@ -18,27 +19,24 @@ $(function(){
 
 function squarespaceModalopen()
 {
-    $.get(getUrl+"/modal/signupmodal.php", function (result) {
+    var RandomNumber = Math.floor((Math.random() * 100) + 1);
+    $.get(getUrl+"/modal/signupmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
-        $('#squarespaceModal2').modal('hide');;
+        //$.noConflict();
+        $('#squarespaceModal2').modal('hide');
         $('#squarespaceModal').modal('show');
-        if($('#datepickercustom').length)
-           $('body').on('focus',"#datepickercustom", function(){
-                $(this).datepicker({
-               dateFormat: 'dd-mm-yy',
-               changeMonth:true,
-               changeYear:true,
-               yearRange: '-100y:c+nn',
-               maxDate: '-1d'
-           });
-});
+        if($('#datetimepicker1').length)
+            {
+            $('#datetimepicker1').datetimepicker({format: 'DD/MM/YYYY' });
+            }
     });
 }
 function squarespaceModal2open()
 {
-    $.get(getUrl+"/modal/loginmodal.php", function (result) {
+    var RandomNumber = Math.floor((Math.random() * 100) + 1);
+    $.get(getUrl+"/modal/loginmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -53,7 +51,8 @@ function relationshipsmodal()
     if($('#relationshipsmodal').length) {
         $('#relationshipsmodal').remove();
     }
-    $.get(getUrl+"/modal/relationshipsmodal.php", function (result) {
+    var RandomNumber = Math.floor((Math.random() * 100) + 1);
+    $.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -70,7 +69,8 @@ function albumdetailsmodal()
     if($('#albumdetailsmodal').length) {
         $('#albumdetailsmodal').remove();
     }
-    $.get(getUrl+"/modal/albumdetailsmodal.php", function (result) {
+    var RandomNumber = Math.floor((Math.random() * 100) + 1);
+    $.get(getUrl+"/modal/albumdetailsmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -266,7 +266,7 @@ function imagemodalopen(){
 
 
 }
-function addtributemodal() {
+function addtributemodal(frndId,tributeType) {
     if($('#tributeAddModal').length) {
         $('#tributeAddModal').remove();
     }
@@ -275,7 +275,8 @@ function addtributemodal() {
         $('body').append(result);
         // open modal
         $('#tributeAddModal').modal('show');
-
+        $('#frndAddTributeBtn').attr('data-id',frndId);
+        $('#frndAddTributeBtn').attr('data-cmd',tributeType);
     });
 }
 
@@ -321,7 +322,7 @@ function onupdateTribute() {
         }
     });
 }
-function friendtributemodal() {
+function friendtributemodal(frndId,tributeType) {
     $('#tributeAddModal').css('z-index','0');
     if($('#friendTributeAddModal').length) {
         $('#friendTributeAddModal').remove();
@@ -331,6 +332,8 @@ function friendtributemodal() {
         $('body').append(result);
         // open modal
         $('#friendTributeAddModal').modal('show');
+        $('#friendId').val(frndId);
+        $('#tributeType').val(tributeType);
         if($('#friendtributeDescription').length) {
             CKEDITOR.replace('friendtributeDescription', {
                 toolbar: [
@@ -487,3 +490,17 @@ function openalbumforedit(valid){
 
     });
 }
+$(document).ready(function () {
+    if($('#welcomeAlert').length) {
+        setTimeout(function () {
+            $('#welcome').css('display','block').fadeOut(10000, function () {});
+            $('#welcome').css('top','-33px');
+            $('#showmsg').html('Welcome!.');
+        }, 500);
+        return false;
+    }
+    $('body').on('click', '.close-msg', function () {
+        $('#welcome').css('display','none');
+        $(this).parents('body').children('#photoInsertModal').css('z-index','9999');
+    });
+});

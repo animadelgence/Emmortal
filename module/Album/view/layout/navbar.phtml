@@ -106,14 +106,17 @@
          </div>
       </div>
    </div>
+    <?php if(($controller == 'profile') && ($action == 'newsfeed') && ($tempsessionid != 'blank')) {?>
+       <input id="welcomeAlert" type="hidden" value="<?php echo $tempsessionid;?>"> 
+    <?php }?>
     <div id="welcome" style="display: none;" class="welcome">
-   <div class="close-msg">
-      <a href="#">
-      <i aria-hidden="true" class="fa fa-times closebtn"></i>
-      </a>
-   </div>
-   <div id="showmsg" style="margin:5px;" class="showmsg">Changes was successfully saved!</div>
-</div>
+        <div class="close-msg">
+          <a href="#">
+          <i aria-hidden="true" class="fa fa-times closebtn"></i>
+          </a>
+        </div>
+        <div id="showmsg" style="margin:5px;" class="showmsg"></div>
+    </div>
 </section>
 
 <?php //include_once($_SERVER['DOCUMENT_ROOT']."/modal/signupmodal.php"); ?>

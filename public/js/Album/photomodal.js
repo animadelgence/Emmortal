@@ -134,10 +134,13 @@ $(document).ready(function () {
             //$('#imageTitle').addClass('error-class');
             $('#imageTitleError').css('display','block');
             $('.error-style').css('margin-top','28px');
-            /*$("#uploadModal").hide();
+            //$("#uploadModal").hide();
             $("#photoInsertModal").css("z-index","0");
-            $(".modal-backdrop").css("z-index","0");
-            $(".welcome").show();
+            //$(".modal-backdrop").css("z-index","0");
+            $('#welcome').css('display','block');
+            $('#welcome').css('top','-33px');
+            $('#showmsg').html('please fill title field');
+            /*$(".welcome").show();
             $(".showmsg").html("<span>please fill title field</span>");*/
         } else {
             $('#imageTitleError').css('display','none');

@@ -27,6 +27,8 @@ class AuthorizationloginController extends AbstractActionController {
 
         $userSession = new Container('loginId');
         $this->sessionid = $userSession->offsetGet('loginId');
+        $userSessionTemp = new Container('tempStore');
+        $this->sessionidtemp = $userSessionTemp->offsetGet('tempStore');
         /*$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $dynamicPath = $protocol . $_SERVER['HTTP_HOST'];
         if ($this->sessionid == "") {
@@ -52,7 +54,9 @@ class AuthorizationloginController extends AbstractActionController {
         {
         	$value = "live"; 
             $user_session = new Container('userloginId');
-            $user_session->userloginId = $usid;   
+            $user_session->userloginId = $usid;
+            $user_session_temp = new Container('tempStoreName');
+            $user_session_temp->tempStoreName = 'showMessage';
         }
         else if($passcheck == 1 && $contentDetails[0]['activation'] == 0)
         {

@@ -11,6 +11,7 @@
 /*jshint -W065 */
 /*jslint devel: true */
 /*jslint eqeq: true*/
+//$.noConflict();
 var getUrl = window.location.origin;
 $(function(){
 
@@ -18,27 +19,24 @@ $(function(){
 
 function squarespaceModalopen()
 {
-    $.get(getUrl+"/modal/signupmodal.php", function (result) {
+    var RandomNumber = Math.floor((Math.random() * 100) + 1);
+    $.get(getUrl+"/modal/signupmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
-        $('#squarespaceModal2').modal('hide');;
+        //$.noConflict();
+        $('#squarespaceModal2').modal('hide');
         $('#squarespaceModal').modal('show');
-        if($('#datepickercustom').length)
-           $('body').on('focus',"#datepickercustom", function(){
-                $(this).datepicker({
-               dateFormat: 'dd-mm-yy',
-               changeMonth:true,
-               changeYear:true,
-               yearRange: '-100y:c+nn',
-               maxDate: '-1d'
-           });
-});
+        if($('#datetimepicker1').length)
+            {
+            $('#datetimepicker1').datetimepicker({format: 'DD/MM/YYYY' });
+            }
     });
 }
 function squarespaceModal2open()
 {
-    $.get(getUrl+"/modal/loginmodal.php", function (result) {
+    var RandomNumber = Math.floor((Math.random() * 100) + 1);
+    $.get(getUrl+"/modal/loginmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -53,7 +51,8 @@ function relationshipsmodal()
     if($('#relationshipsmodal').length) {
         $('#relationshipsmodal').remove();
     }
-    $.get(getUrl+"/modal/relationshipsmodal.php", function (result) {
+    var RandomNumber = Math.floor((Math.random() * 100) + 1);
+    $.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -70,7 +69,8 @@ function albumdetailsmodal()
     if($('#albumdetailsmodal').length) {
         $('#albumdetailsmodal').remove();
     }
-    $.get(getUrl+"/modal/albumdetailsmodal.php", function (result) {
+    var RandomNumber = Math.floor((Math.random() * 100) + 1);
+    $.get(getUrl+"/modal/albumdetailsmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal

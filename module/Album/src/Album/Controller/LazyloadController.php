@@ -47,10 +47,12 @@ class LazyloadController extends AbstractActionController {
             $res['checker'] = 1;
             for ($i = 0; $i < $totalcount; $i++) {
               $uploadId = $uploadAll[$i]['uploadId'];
+              $uploadAlbumId = $uploadAll[$i]['AID'];
+              $encodeUploadId = base64_encode($uploadAlbumId);
             	if($uploadAll[$i]['uploadType'] == "text"){
 
                                              $galleryStruct .= '<li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1"  data-cmd="text" data-id="'.$uploadAll[$i]['uploadId'].'">
-                                             <div><label name="text Name">'.$uploadAll[$i]['uploadTitle'].'<p>'.$uploadAll[$i]['uploadDescription'].'</p></label></div><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div> </li>';
+                                             <div class="uploadtext"><label name="text Name">'.$uploadAll[$i]['uploadTitle'].'<p>'.$uploadAll[$i]['uploadDescription'].'</p></label></div><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div> </li>';
                                            }
 
 
@@ -72,8 +74,8 @@ class LazyloadController extends AbstractActionController {
                                                   $uploadedImage = $dynamicPath."/image/NoPhotoDefault.png";
                                               }
 
-                                              $galleryStruct .= ' <li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1"  data-cmd="album" data-id="'.$uploadAll[$i]['uploadId'].'">
-                                              <span><img name="Image Name" id="" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].'</div></li>';
+                                              $galleryStruct .= ' <li class="gs-w previewUploadedFile dynamic" data-sizey="'.$uploadAll[$i]['sizeY'].'" data-sizex="'.$uploadAll[$i]['sizeX'].'" data-col="1" data-row="1"  data-cmd="album" data-id="'.$uploadAll[$i]['uploadId'].'"><a href="'.$dynamicPath.'/createalbum/showafterpublish/'.$encodeUploadId.'">
+                                              <span><img name="Image Name" id="" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span></a><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].'</div></li>';
 
                                           }
                                            else if($uploadAll[$i]['uploadType'] == "video"){

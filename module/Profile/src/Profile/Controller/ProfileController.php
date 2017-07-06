@@ -10,7 +10,7 @@ use Zend\Session\SessionManager;
 
 class ProfileController extends AbstractActionController {
 
-    
+    public $sessionidtemp;
     public function __construct() {
         $userSession     = new Container('userloginId');
         $this->sessionid = $userSession->offsetGet('userloginId');
@@ -91,7 +91,7 @@ class ProfileController extends AbstractActionController {
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
         $tempstore = 'blank';
-        if(@$this->sessionidtemp) {
+        if(isset($this->sessionidtemp)) {
             $tempstore = $this->sessionidtemp;
             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
             /*$user_session_temp->loginId = ($_SESSION['tempStore']);
@@ -101,10 +101,12 @@ class ProfileController extends AbstractActionController {
         else {
             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
         }
-        if(@$this->sessionidtemp){
-            $user_session_temp->tempStore = ($_SESSION['tempStoreName']);
+        if(isset($this->sessionidtemp)){
+            /*$user_session_temp->tempStore = ($_SESSION['tempStoreName']);
             $user_session_temp = new \Zend\Session\Container('tempStoreName');
-            unset($user_session_temp->tempStoreName);
+            unset($user_session_temp->tempStoreName);*/
+            $user_session_temp = new Container('tempStoreName');
+            $user_session_temp->getManager()->getStorage()->clear('tempStoreName');
             
             /*$user_session->loginId  = ($_SESSION['userloginId']);
         $user_session           = new \Zend\Session\Container('userloginId');

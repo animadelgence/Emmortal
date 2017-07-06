@@ -12,7 +12,7 @@ switch ($controller) {
                         ->prependFile($this->basePath() . '/js/Album/album.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/main.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/Album/lazyload.js?version=' . $t)
-                        ->prependFile($this->basePath() . '/js/Album/jquery.gridster.min.js?version=' . $t);
+                       ->prependFile($this->basePath() . '/js/Album/jquery.gridster.min.js?version=' . $t);
                 break;
 
 
@@ -43,7 +43,7 @@ echo $this->headScript()
         ->prependFile($this->basePath() . '/js/Album/videomodal.js?version=' . $t)
         
         ->prependFile($this->basePath() . '/js/Album/photomodal.js?version=' . $t)
-    ->prependFile($this->basePath() . '/js/Album/albummodal.js?version=' . $t)
+        ->prependFile($this->basePath() . '/js/Album/albummodal.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/ckeditor/ckeditor.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Authorization/login.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/Authorization/signup.js?version=' . $t)
@@ -54,13 +54,13 @@ echo $this->headScript()
         ->prependFile($this->basePath() . '/js/Album/resetpassword.js?version=' . $t)
         ->prependFile($this->basePath() . '/js/profile/modalload.js?version=' . $t)
         ->prependFile('//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js')
-        //->prependFile($this->basePath() . '//code.jquery.com/jquery-3.2.1.min.js')
         ->prependFile($this->basePath() . '/js/jquery/jquery.form.js?version='.$t)
+        ->prependFile('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js')
         ->prependFile($this->basePath() . '/js/bootstrap/bootstrap.min.js?version=' . $t)
-        ->prependFile('//code.jquery.com/ui/1.11.3/jquery-ui.min.js')
-        ->prependFile('//code.jquery.com/jquery-1.12.4.js')
-        ->prependFile('//code.jquery.com/ui/1.12.1/jquery-ui.js')
+        // ->prependFile('https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+        ->prependFile('https://code.jquery.com/jquery-1.12.4.js')
         ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
         ->prependFile('//feather.aviary.com/js/feather.js')
+        ->prependFile('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js')
         ->prependFile('//code.jquery.com/jquery-1.11.0.min.js');
 ?>

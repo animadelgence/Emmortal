@@ -12,7 +12,7 @@
                         <div class="comments-count" id="totalTribute"></div>
                         <div class="offcanvas-comments-title">Tributes</div>
                         <div class="pull-right btn-wrapper" id="tribute-add-btn">
-                            <div class="btn e-btn btn-brown" onclick="friendtributemodal();">Add tribute</div>
+                            <div class="btn e-btn btn-brown" id="frndAddTributeBtn">Add tribute</div>
                         </div>
                     </div>
 				</div>

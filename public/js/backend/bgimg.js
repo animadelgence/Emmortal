@@ -70,7 +70,6 @@
 
 $(document).ready(function () {
     "use strict";
-//alert($('#img_prev').html());
 
 /*Background Image Edit Validation(onchange)*/
     $('#fileupload').bind('change', function () {
@@ -137,27 +136,29 @@ $(document).ready(function () {
     });
 
     $('body').on('click','#upload',function(){
-
-        // code for appending user uploaded images
             $('#browseTab').hide();
             $('#upload').show();
             $('#uploadTab').show();
     });
 
-//    $('body').on('click', '#imgAppend ul li strong a', function (event) {
-//        event.preventDefault();
-//        event.stopPropagation();
-//        return false;
-//    });
-
+/*Clicking on a Pattern */
     $('body').on('click', '#imgAppend ul li strong a img', function (event) {
         event.preventDefault();
         event.stopPropagation();
-//        alert($(this).attr('src'));
         var imgSrc = $(this).attr('src');
         $('#imgSrc').val(imgSrc);
     });
 
+/*Clicking on a Saved Image */
+    $('body').on('click', '#savedImg ul li strong a img', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var imgSrc = $(this).attr('src');
+        $('#imgSrc').val(imgSrc);
+        $('#img_prev').html("<img src='"+imgSrc+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
+    });
+
+/*Clicking on 'Save Changes' modal button */
      $('body').on('click', '.save', function () {
         var imgSrc = $.trim($('#imgSrc').val());
 
@@ -167,7 +168,11 @@ $(document).ready(function () {
                $("#imgUploadForm").ajaxSubmit({
                 data: { fileupload: 'fileupload' },
                 success: function (response) {
-                    console.log(response);
+                     console.log(response); return false;
+                    var jsObject = JSON.parse(response);
+//                    console.warn(xhr.responseText);return false;
+
+                    console.log(jsObject); return false;
                    $('#imgSrc').val(response);
                     $('#upload_prev').html("<img src='"+response+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
                 }

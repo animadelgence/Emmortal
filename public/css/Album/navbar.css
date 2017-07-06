@@ -13,18 +13,21 @@
 .welcome {
     background: #fff;
     position: relative;
-    border-bottom: 8px solid green;
+    border-bottom: 8px solid #579942;
     text-align: center;
     font-weight: 600;
     z-index: 99999;
     float: right;
-    top: -76px;
+    /*top: -76px;*/
     margin-right: 15px;
+    width: 20%;
 }
 .close-msg {
     text-align: right;
     padding-top: 3px;
     padding-bottom: 6px;
+    width: 10%;
+    float: right;
 }
 .close-msg a {
     margin-right: 4px;

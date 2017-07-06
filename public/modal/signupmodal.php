@@ -26,9 +26,15 @@
                   <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
                   <span id = "confpasswordError" class='error'>doesn't match Password</span>
                </div>
-               <div class="form-group full-width date-picker" id='datetimepicker2'>
-                  <input type="text" class="form-control " id="datepicker" placeholder="Date of Birthday">
+                <div class="form-group full-width" >
+                  <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" placeholder="Date of birth"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
                </div>
+
                <button type="submit" value="Submit" style="display:none;" disabled="disabled" >Sign Up</button>
             </form>
             <div class="modal-footersec">

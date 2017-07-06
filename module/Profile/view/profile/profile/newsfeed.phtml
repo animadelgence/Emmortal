@@ -103,3 +103,8 @@
       </div>
    </div>
 </div> -->
+<?php if($this->sessionidtemp){
+    $user_session_temp->loginId = ($_SESSION['tempStore']);
+    $user_session_temp = new \Zend\Session\Container('tempStore');
+    unset($user_session_temp->tempStore);
+}?>

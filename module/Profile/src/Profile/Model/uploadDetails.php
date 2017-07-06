@@ -12,7 +12,7 @@ class uploadDetails
     public $uploadDescription;
     public $uploadType;
     public $uploadPath;
-    public $filestatus;
+    public $albumcolor;
     public $sizeX;
     public $sizeY;
     public $AID;
@@ -45,7 +45,7 @@ class uploadDetails
 		$this->uploadTitle = (!empty($data['uploadTitle'])) ? $data['uploadTitle'] : null;
         $this->uploadDescription = (!empty($data['uploadDescription'])) ? $data['uploadDescription'] : null;
         $this->uploadType = (!empty($data['uploadType'])) ? $data['uploadType'] : null;
-        $this->filestatus = (!empty($data['filestatus'])) ? $data['filestatus'] : null;
+        $this->albumcolor = (!empty($data['albumcolor'])) ? $data['albumcolor'] : null;
         $this->sizeX = (!empty($data['sizeX'])) ? $data['sizeX'] : null;
         $this->sizeY = (!empty($data['sizeY'])) ? $data['sizeY'] : null;
         $this->AID = (!empty($data['AID'])) ? $data['AID'] : null;

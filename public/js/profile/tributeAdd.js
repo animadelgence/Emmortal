@@ -10,52 +10,47 @@
 /*jshint -W065 */
 /*jshint -W030 */
 /*jslint eqeq: true */
-/*global getAlbum,radix:true */
+/*global getTribute,radix:true,addtributemodal,friendtributemodal */
 var base_url_dynamic = window.location.origin,
     jsObject = "",
     i = "";
 $(document).ready(function () {
     "use strict";
-    if($('#friendtributeDescription').length) {
+    if ($('#friendtributeDescription').length) {
         CKEDITOR.replace('friendtributeDescription', {
             toolbar: [
                 {
                     name: 'others',
                     items: ['-']
-                },
-                '/',
+        },
+        '/',
                 {
                     name: 'basicstyles',
                     groups: ['basicstyles', 'cleanup'],
                     items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
-                },
+        },
                 {
                     name: 'links',
                     items: ['Link', 'Unlink', 'Anchor']
-                }
-            ]
+        }
+    ]
         });
         CKEDITOR.disableAutoInline = true;
     }
     $('body').on('click', '.getTribute', function () {
         var frndId = $(this).data("id"),
-
-            textDescription = "";
-        //$('#tributeAddModal').modal('show');
-            addtributemodal();
-
-           var tributeType = $(this).attr('data-cmd');
-        
+            textDescription = "",
+            tributeType = $(this).attr('data-cmd');
+        addtributemodal(frndId, tributeType);
         if ($("#searchmodal").is(':visible') == true) {
             $('#searchmodal').css('z-index', '0');
         }
-        if (frndId != '') {
-            $('#friendId').val(frndId);
-            $('#tributeType').val(tributeType);
-            getAlbum(frndId, textDescription,tributeType);
-        } else {
-            $('#tribute-add-btn').hide();
-        }
+        getTribute(frndId, textDescription, tributeType);
+    });
+    $('body').on('click', '#frndAddTributeBtn', function () {
+        var frndId = $(this).data("id"),
+            tributeType = $(this).attr('data-cmd');
+        friendtributemodal(frndId, tributeType);
     });
     $('body').on('click', '#publishFriendTribute', function () {
         var flag = 0,
@@ -75,7 +70,7 @@ $(document).ready(function () {
             $('#cke_friendtributeDescription').removeClass('error-class');
         }
         if (flag == 0) {
-            getAlbum(frndId, textDescription,tributeType);
+            getTribute(frndId, textDescription, tributeType);
             $('.close').trigger('click');
             $(".welcome").show();
             $(".closebtn").css('color', 'green');
@@ -93,7 +88,7 @@ $(document).ready(function () {
         $('#tributeAddModal').css('z-index', '99999');
     });
 
-    function getAlbum(frndId, textDescription,tributeType) {
+    function getTribute(frndId, textDescription, tributeType) {
         //$('#tributeloader').css('display','block');
         $.ajax({
             type: "POST",
@@ -104,7 +99,8 @@ $(document).ready(function () {
                 tributeType: tributeType
             },
             success: function (res) {
-                $('#tributeloader').css('display','none');
+                console.log(res);
+                $('#tributeloader').css('display', 'none');
                 $('.offcanvas-comments').css("height", "100%");
                 jsObject = JSON.parse(res);
                 $('#totalTribute').html(jsObject.tributeDetails.length);
@@ -124,11 +120,14 @@ $(document).ready(function () {
                     $('#tributeAppend').html(html);
                     $('[data-toggle="tooltip"]').tooltip();
                 } else {
+                    $('#tributeloader').css('display', 'none');
+                    if (frndId == '') {
+                        $('#tribute-add-btn').hide();
+                    }
                     $('#tributeAppend').html('<h2 class="text-center e-brown">There are no tributes yet.</h2>');
                 }
             }
         });
-        
-    }
 
+    }
 });

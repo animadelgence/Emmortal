@@ -54,7 +54,9 @@ $(document).ready(function () {
             success: function (res) {
                 $('.e-notification').removeClass('not-seen').addClass('seen');
                 $('#notification-count').text(res);
-                $('#noticnt').text(res);
+                if(res>0){
+                    $('#noticnt').text(res);
+                }
             }
         });
     });
@@ -75,7 +77,9 @@ $(document).ready(function () {
                      $('#all-notification').css('display','block');
                      $('#notificationPresent').css('display','block');
                      $('#notification-count').text(jsObject.notificationDetails[0].unread);
-                     $('#noticnt').text(jsObject.notificationDetails[0].unread);
+                     if(jsObject.notificationDetails[0].unread>0){
+                        $('#noticnt').text(jsObject.notificationDetails[0].unread);
+                     }
                      $('#no-notification').css('display','none');
                 } 
             }

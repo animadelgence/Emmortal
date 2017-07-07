@@ -16,12 +16,7 @@ class ProfileController extends AbstractActionController {
         $this->sessionid = $userSession->offsetGet('userloginId');
         $userSessionTemp     = new Container('tempStoreName');
         $this->sessionidtemp = $userSessionTemp->offsetGet('tempStoreName');
-        $protocol        = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        $dynamicPath     = $protocol . $_SERVER['HTTP_HOST'];
-        if ($this->sessionid == "") {
-            header("Location:" . $dynamicPath);
-            exit;
-        }
+
     }
     public function showprofileAction(){
 
@@ -78,11 +73,13 @@ class ProfileController extends AbstractActionController {
     }
     }
     public function newsfeedAction(){
-       //echo $this->sessionidtemp;exit;
-    	$this->layout('layout/profilelayout.phtml');
-
-    	$modelPlugin      = $this->modelplugin();
+        $modelPlugin      = $this->modelplugin();
         $dynamicPath      = $modelPlugin->dynamicPath();
+        if ($this->sessionid == "") {
+            header("Location:" . $dynamicPath);
+            exit;
+        }
+    	$this->layout('layout/profilelayout.phtml');
         $jsonArray        = $modelPlugin->jsondynamic();
         $currentPageURL   = $modelPlugin->curPageURL();
         $href             = explode("/", $currentPageURL);

@@ -142,7 +142,11 @@ class NotificationController extends AbstractActionController {
             } else if($notify_type == 'friendrequest'){
                 $friendcon              = array('id'=>$notify_id);
                 $friendDetails          = $modelPlugin->getfriendsTable()->fetchall($friendcon);
-                $friendId               = $friendDetails[0]['friendsid'];
+                if($friendDetails[0]['requestaccept'] != 1 && $friendDetails[0]['relationshipstatus'] != 'declined'){
+                    $friendId           = $friendDetails[0]['userid'];
+                } else{
+                    $friendId           = $friendDetails[0]['friendsid'];
+                }
                 $friendPersonalDetails  = $modelPlugin->getuserTable()->fetchall(array('userid'=>$friendId));
                 if($notify_seen == 1){
                     $html .='<div class="e-notification relationship_accepted seen">';

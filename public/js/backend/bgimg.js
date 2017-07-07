@@ -105,7 +105,7 @@ $(document).ready(function () {
 
 /*Pattern -- Modal Tab Content Show*/
     $('body').on('click','#browse',function(){
-        $.get(baseUrl+"/seomanage/pattern", function (result) {
+        $.get(baseUrl+"/patternget/getpattern", function (result) {
 
             var jsObject = JSON.parse(result);
             var appendStructure = '<ul class="emmortal-tab-pattern__list">';

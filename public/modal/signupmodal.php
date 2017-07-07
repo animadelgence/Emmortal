@@ -10,25 +10,25 @@
             <div class="signupidenter">
             <form method="post" action="/authsignup/signup" enctype="multipart/form-data" name="nameform" id="signup_form">
                <div class="form-group input-box">
-                  <input type="text" class="form-control" id="fname" placeholder="First Name">
+                  <input type="text" class="form-control signupForm" id="fname" placeholder="First Name">
                </div>
                <div class="form-group input-box">
-                  <input type="text" class="form-control" id="lname" placeholder="Last Name">
+                  <input type="text" class="form-control" id="lname signupForm" placeholder="Last Name">
                </div>
                <div class="form-group  full-width">
-                  <input type="text" class="form-control" id="email" placeholder="Email">
+                  <input type="text" class="form-control signupForm" id="email" placeholder="Email">
                </div>
                <div class="form-group full-width">
-                  <input type="password" class="form-control" id="password" placeholder="Password">
+                  <input type="password" class="form-control signupForm" id="password" placeholder="Password">
                   <span id = "passwordError" class='error'>Should be at least 8 characters length</span>
                </div>
                <div class="form-group full-width">
-                  <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                  <input type="password" class="form-control signupForm" id="confirmPassword" placeholder="Confirm Password">
                   <span id = "confpasswordError" class='error'>doesn't match Password</span>
                </div>
                 <div class="form-group full-width" >
                   <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" id= "datepicker" placeholder="Date of birth"/>
+                    <input type='text' class="form-control signupForm" id= "datepicker" placeholder="Date of birth"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>

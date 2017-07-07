@@ -1955,7 +1955,7 @@ body {
     top: 25%;
     left:25%; 
     color: #999; 
-    background: #fffccc; 
+    background:transparent;
 }
 .zoomIn {
   background-color: #fff;

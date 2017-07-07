@@ -46,10 +46,11 @@ class AlbumController extends AbstractActionController {
 		$action = $this->params('action');
         $uploadQuery = array();
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
-        
+         $likeDetailsArrays = array();
+        $likeDetailsArray = array();
+
         foreach ($uploadDetails as $upload) {
-            $likeDetailsArrays = array();
-            $uploadId = $upload['uploadId'];
+           $uploadId = $upload['uploadId'];
             $uploadIdquery = array('uploadId' =>$uploadId);
             $likeDetails = $modelPlugin->getlikesdetailsTable()->countLike($uploadIdquery);
             

@@ -207,6 +207,22 @@ $('.vid-sec').mouseleave(function() {
     $(this).append('<div class="settings-wrapper ng-scope"><div class="tile-edit-buttons"><i class="fa fa-trash"></i><span class="ng-scope"><i tooltip-placement="bottom" tooltip="Edit tile" class="fa fa-pencil edit-button ng-scope"></i></span><i class="fa fa-arrows drag-handle"></i></div></div>');
     });
 
+ $('body').on('click', '.albumid', function () {
+   var albumid =  $(this).attr('id');
+   var encodeUploadId = btoa(albumid);
+    $.ajax({
+                type: "POST",
+                url: base_url_dynamic + '/album/redirectuseraccount',
+                data: {albumid:albumid},
+                success: function (res) {
+                   // alert(base_url_dynamic+"/createalbum/showafterpublish/"+encodeUploadId);
+                    window.location.href = base_url_dynamic+"/createalbum/showafterpublish/"+encodeUploadId+"/"+res;
+                }
+            });
+
+ });
+ 
+
     $(".rotate").click(function(){
  $(this).toggleClass("down");
  if($(".rotate").hasClass("down"))

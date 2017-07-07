@@ -17,7 +17,8 @@
             </div>
             <div class="col-lg-8" id="secondnavbarimage">
                <a href="<?php echo $dynamicPath;?>" class="logo-style">Emmortal</a>
-               <?php if( !empty($userDetails)){ ?>
+
+               <?php if( count($userDetails)){ ?>
 
                <!-- <button class="btn btn-default dropdown-toggle down-arrow arrow-toggle collapsed" type="button" id="dropdownMenu1" data-toggle="collapse" data-target="#dropped_ui" >
                    <i class="fa fa-chevron-up" id="arrowiconid" aria-hidden="true" style= "padding-bottom: 3px;"></i>-->
@@ -45,8 +46,8 @@
                         </li>
                         <li><?php if($sessionid == ""){ ?><button onclick="squarespaceModal2open();"  class="btn btn-primary center-block sign-up">Sign In</button><?php }?>
                         </li>
-                         <?php $encodesessionid = base64_encode($sessionid);?>
-                        <li><?php if($sessionid != ""){ ?><button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/showprofile'">My profile</button><?php }?>
+                         
+                        <li><?php if($sessionid != ""){ ?><button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/showprofile/<?php echo $loggedInUserUniqueId;?>'">My profile</button><?php }?>
                         </li>
                         <li><?php if($sessionid != ""){ ?>
                            <button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/newsfeed'">Newsfeed</button><?php }?>
@@ -66,7 +67,7 @@
                   </li>
                </ul>
             </div>
-            <?php if ($sessionid != ""){ ?>
+            <?php if (!empty($sessionid)){ ?>
             <div class="col-lg-0.5">
                <ul class="nav navbar-nav hamburger-menu pull-right hoverthis">
                   <li class="dropdown hover-effect">

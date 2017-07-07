@@ -50,18 +50,16 @@ $this->headLink()
 		break;
 }
 echo $this->headLink()
-
         ->prependStylesheet($this->basePath() . '/css/Album/album.css?version=' . $t)
-
         ->prependStylesheet($this->basePath() . '/css/profile/searchfriends.css?version=' . $t)
-
         ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/like.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/style.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/navbar.css?version=' . $t)
-          ->prependStylesheet( 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css?version=' . $t)
+        ->prependStylesheet($this->basePath() . '/css/Album/notification.css?version=' . $t)
+        ->prependStylesheet( 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css?version=' . $t)
         ->prependStylesheet($this->basePath() . 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css')
         ->prependStylesheet( 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css')
         ->prependStylesheet($this->basePath() . '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')

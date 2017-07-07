@@ -46,7 +46,7 @@ class AlbumController extends AbstractActionController {
 		$action = $this->params('action');
         $uploadQuery = array();
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
-        
+        $userDetails = '';
         foreach ($uploadDetails as $upload) {
             $likeDetailsArrays = array();
             $uploadId = $upload['uploadId'];
@@ -63,7 +63,7 @@ class AlbumController extends AbstractActionController {
         if($this->sessionid == "")
         {
             $bgimgSend = $bgimg[0]['bgimgpath'];
-            $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+            $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails,'bgimg'=>$bgimgSend));
             return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArrays' =>$likeDetailsArrays));
 
         }

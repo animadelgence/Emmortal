@@ -17,7 +17,17 @@
                             <input class="gen-input" type="text" name="fname" id="acc-name" value="<?php echo $userDetails[0]['firstname'];?>">
                             <input class="gen-input" id="acc-lastname" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
                             <input class="gen-input-mail" id="acc-email" type="text" name="email" value="<?php echo $userDetails[0]['emailid'];?>">
-                            <input type="text" class="form-control date-picker" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
+                            
+                            <div class="form-group full-width" >
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            
                             <!--<div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>-->
                         </form>
                         <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
@@ -57,8 +67,9 @@
                                             <?php }else{ ?>
                                             <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
                                         </div>
+                                        <input type="hidden" id="imgSrc" name="imgSrc" />
                                         <div id="reloaddivbk" style=" width: 176px;">
-                                            <input type="hidden" id="imgSrc" name="imgSrc" />
+
                                             <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
                                             <div class="btn e-btn btn-primary file-input-btn removeavtr" id="removebgavtr">
                                                 <i class="fa fa-times-circle"></i>
@@ -79,14 +90,14 @@
                         <a class="save" id="changePersonalDetails" href="javascript:void(0)" disabled="disabled" style="cursor:pointer;">Save</a>
                     </div>
                 </div>
-                <div id="security" class="tabcontent passwordDetails">
+                <div id="security" class="tabcontent ">
                     <div class="col-lg-12">
                         <h3>Change password</h3>
                         <form method="post" action="/settings/changepassword" enctype="multipart/form-data" id="form__changepassword">
-                            <input type="password" class="form-control " id="acc-cur-pass" placeholder="Current password">
+                            <input type="password" class="form-control passwordDetails" id="acc-cur-pass" placeholder="Current password">
                             <span id = "currentpassError" class='error'>Is invalid</span>
-                            <input type="password" class="form-control " id="acc-pass" placeholder="New password">
-                            <input type="password" class="form-control " id="acc-pass-rep" placeholder="Password confirmation">
+                            <input type="password" class="form-control passwordDetails" id="acc-pass" placeholder="New password">
+                            <input type="password" class="form-control passwordDetails" id="acc-pass-rep" placeholder="Password confirmation">
                             <span id = "confirmpassError" class='error'>doesn't match Password</span>
                         </form>
                         <a class="save-new" href="javascript:void(0)" id="password_save" disabled="disabled" style="cursor:not-allowed;">Save</a>
@@ -166,13 +177,13 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
 
                 </button>
-                 <h4 class="modal-title" id="myModalLabel">Choose Image</h4>
+                 <h4 class="modal-title title" id="myModalLabel">Choose Image</h4>
 
             </div>
             <div class="modal-body">
                 <div role="tabpanel">
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
+                    <ul class="nav nav-tabs navTabs" role="tablist">
                         <li role="presentation" class="active" id="upload"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">MY IMAGES</a>
 
                         </li>
@@ -220,7 +231,7 @@
                 </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary save" data-dismiss="modal">Save changes</button>
+                <button type="button" class="btn btn-primary save frontImgSave" data-dismiss="modal">Save changes</button>
             </div>
         </div>
     </div>

@@ -12,16 +12,21 @@
 /*jslint eqeq: true */
 /*global radix:true,base_url_dynamic */
 var base_url_dynamic = window.location.origin;
+var RandomNotificationNumber = Math.floor((Math.random() * 100) + 1);
 $(document).ready(function () {
     "use strict";
+    
     setInterval(function () {
-        getNotification();
+        if($('.notification-click').length>0){
+            getNotification();
+        }
     }, 15000);
+    
     $('body').on('click', '.notification-click', function () {
         if ($("#notification-div").is(':visible')) {
             $('#notification-div').hide('show');
         } else {
-            $.get(base_url_dynamic + "/modal/notificationmodal.php", function (result) {
+            $.get(base_url_dynamic + "/modal/notificationmodal.php?version="+RandomNotificationNumber, function (result) {
                 $('#notification-div').html(result);
                 getNotification();
                 $('#notification-div').slideToggle('show');
@@ -56,6 +61,8 @@ $(document).ready(function () {
                 $('#notification-count').text(res);
                 if(res>0){
                     $('#noticnt').text(res);
+                } else{
+                    $('#noticnt').text('');
                 }
             }
         });
@@ -79,6 +86,8 @@ $(document).ready(function () {
                      $('#notification-count').text(jsObject.notificationDetails[0].unread);
                      if(jsObject.notificationDetails[0].unread>0){
                         $('#noticnt').text(jsObject.notificationDetails[0].unread);
+                     } else{
+                        $('#noticnt').text('');
                      }
                      $('#no-notification').css('display','none');
                 } 

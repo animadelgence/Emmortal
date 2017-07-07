@@ -80,14 +80,19 @@ class NotificationController extends AbstractActionController {
                 $likeDetails        = $modelPlugin->getlikesdetailsTable()->fetchall($likecon);
                 $likedBy            = $likeDetails[0]['UID'];
                 $likedByDetails     = $modelPlugin->getuserTable()->fetchall(array('userid'=>$likedBy));
-                
+                if(@getimagesize($likedByDetails[0]['profileimage'])){
+                $profileImage = $likedByDetails[0]['profileimage'];
+                }
+                else{
+                $profileImage = $dynamicPath."/image/profile-deafult-avatar.jpg";
+                }
                 if($notify_seen == 1){
                     $html .='<div class="e-notification like seen">';
                 } else{
                     $html .='<div class="e-notification like not-seen" data-id="'.$notificationid.'">';
                 }
                 $html .='<div class="avatar-wrapper pull-left">';
-                $html .='<img class="img-responsive img-rounded"src="'.@$likedByDetails[0]['profileimage'].'" onerror="this.src=\'/image/profile-deafult-avatar.jpg\'">';
+                $html .='<img class="img-responsive img-rounded" src="'.$profileImage.'">';
                 $html .='</div>';
                 $html .='<div class="pull-right e-notification-icon">';
                 $html .='<div class="fa e-red fa-heart"></div>';
@@ -142,15 +147,25 @@ class NotificationController extends AbstractActionController {
             } else if($notify_type == 'friendrequest'){
                 $friendcon              = array('id'=>$notify_id);
                 $friendDetails          = $modelPlugin->getfriendsTable()->fetchall($friendcon);
-                $friendId               = $friendDetails[0]['friendsid'];
+                if($friendDetails[0]['requestaccept'] != 1 && $friendDetails[0]['relationshipstatus'] != 'declined'){
+                    $friendId           = $friendDetails[0]['userid'];
+                } else{
+                    $friendId           = $friendDetails[0]['friendsid'];
+                }
                 $friendPersonalDetails  = $modelPlugin->getuserTable()->fetchall(array('userid'=>$friendId));
                 if($notify_seen == 1){
                     $html .='<div class="e-notification relationship_accepted seen">';
                 } else{
                     $html .='<div class="e-notification relationship_accepted not-seen" data-id="'.$notificationid.'">';
                 }
+                if(@getimagesize($friendPersonalDetails[0]['profileimage'])){
+                $profileImage = $friendPersonalDetails[0]['profileimage'];
+                }
+                else{
+                $profileImage = $dynamicPath."/image/profile-deafult-avatar.jpg";
+                }
                 $html .='<div class="avatar-wrapper pull-left">';
-                $html .='<img class="img-responsive img-rounded"src="'.@$friendPersonalDetails[0]['profileimage'].'" onerror="this.src=\'/image/profile-deafult-avatar.jpg\'">';
+                $html .='<img class="img-responsive img-rounded"src="'.$profileImage.'">';
                 $html .='</div>';
                 $html .='<div class="pull-right e-notification-icon">';
                 if($friendDetails[0]['relationshipstatus']=='accepted'){
@@ -193,8 +208,14 @@ declined'){
                 } else{
                     $html .='<div class="e-notification tag not-seen" data-id="'.$notificationid.'">';
                 }
+                if(@getimagesize($taggedByDetails[0]['profileimage'])){
+                $profileImage = $taggedByDetails[0]['profileimage'];
+                }
+                else{
+                $profileImage = $dynamicPath."/image/profile-deafult-avatar.jpg";
+                }
                 $html .='<div class="avatar-wrapper pull-left">';
-                $html .='<img class="img-responsive img-rounded"src="'.@$taggedByDetails[0]['profileimage'].'" onerror="this.src=\'/image/profile-deafult-avatar.jpg\'">';
+                $html .='<img class="img-responsive img-rounded"src="'.$profileImage.'">';
                 $html .='</div>';
                 $html .='<div class="pull-right e-notification-icon">';
                 $html .='<div class="fa e-green fa-tag"></div>';
@@ -220,8 +241,14 @@ declined'){
                 } else{
                     $html .='<div class="e-notification tag not-seen" data-id="'.$notificationid.'">';
                 }
+                if(@getimagesize($taggedByDetails[0]['profileimage'])){
+                $profileImage = $taggedByDetails[0]['profileimage'];
+                }
+                else{
+                $profileImage = $dynamicPath."/image/profile-deafult-avatar.jpg";
+                }
                 $html .='<div class="avatar-wrapper pull-left">';
-                $html .='<img class="img-responsive img-rounded"src="'.@$taggedByDetails[0]['profileimage'].'" onerror="this.src=\'/image/profile-deafult-avatar.jpg\'">';
+                $html .='<img class="img-responsive img-rounded"src="'.$profileImage.'">';
                 $html .='</div>';
                 $html .='<div class="pull-right e-notification-icon">';
                 $html .='<div class="fa e-green fa-tag"></div>';
@@ -256,8 +283,14 @@ declined'){
                 } else{
                     $html .='<div class="e-notification tribute not-seen" data-id="'.$notificationid.'">';
                 }
+                if(@getimagesize($friendDetails[0]['profileimage'])){
+                $profileImage = $friendDetails[0]['profileimage'];
+                }
+                else{
+                $profileImage = $dynamicPath."/image/profile-deafult-avatar.jpg";
+                }
                 $html .='<div class="avatar-wrapper pull-left">';
-                $html .='<img class="img-responsive img-rounded"src="'.@$friendDetails[0]['profileimage'].'" onerror="this.src=\'/image/profile-deafult-avatar.jpg\'">';
+                $html .='<img class="img-responsive img-rounded"src="'.$profileImage.'">';
                 $html .='</div>';
                 $html .='<div class="pull-right e-notification-icon">';
                 $html .='<div class="fa e-yellow fa-envelope"></div>';
@@ -305,8 +338,14 @@ declined'){
                 } else{
                     $html .='<div class="e-notification comment not-seen" data-id="'.$notificationid.'">';
                 }
+                if(@getimagesize($friendDetails[0]['profileimage'])){
+                $profileImage = $friendDetails[0]['profileimage'];
+                }
+                else{
+                $profileImage = $dynamicPath."/image/profile-deafult-avatar.jpg";
+                }
                 $html .='<div class="avatar-wrapper pull-left">';
-                $html .='<img class="img-responsive img-rounded"src="'.@$friendDetails[0]['profileimage'].'" onerror="this.src=\'/image/profile-deafult-avatar.jpg\'">';
+                $html .='<img class="img-responsive img-rounded"src="'.$profileImage.'">';
                 $html .='</div>';
                 $html .='<div class="pull-right e-notification-icon">';
                 $html .='<div class="fa e-blue fa-comment"></div>';

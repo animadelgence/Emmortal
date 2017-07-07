@@ -16,7 +16,7 @@ $(document).ready(function () {
     var regexemail = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/;
 
 
-    $('body').on('change','.signupidenter', function(e){
+    $('body').on('change blur keyup','.signupForm', function(e){
         var firstName = $("#fname").val(),
             lastName = $("#lname").val(),
             email = $("#email").val(),
@@ -32,26 +32,8 @@ $(document).ready(function () {
             $('#signupbutton').css('cursor', 'not-allowed');
         }
     });
-    $('body').on('keyup','.signupidenter', function(e){
-        var firstName = $("#fname").val(),
-            lastName = $("#lname").val(),
-            email = $("#email").val(),
-            password = $("#password").val(),
-            confirmpassword = $("#confirmPassword").val(),
-            dob = $("#datepicker").val();
-            
-        if(e.keyCode == 8) {
-            if ((firstName != '') && (lastName != '') && (email != '') && (password != "") && (confirmpassword != "") && (email.match(regexemail)) && (dob != '')) {
-                $('#signupbutton').prop("disabled", false);
-                $('#signupbutton').css('cursor', 'pointer');
-            } else {
-                $('#signupbutton').prop("disabled", true);
-                $('#signupbutton').css('cursor', 'not-allowed');
-            }
-        }
-    });
-    $('body').on('keypress', '.signupidenter', function (e) {
-        "use strict";
+    $('body').on('keypress', '.signupForm', function (e) {
+        console.log("keypress");
         $('#confpasswordError').css('display', 'none');
         $('#passwordError').css('display', 'none');
         var firstName = $("#fname").val(),
@@ -106,8 +88,9 @@ $(document).ready(function () {
                     dob: dob
                 },
                 success: function (result) {
-                    //alert(result);
-                    //return false;
+                    /*alert(result);
+                    return false;*/
+
                     if (result == 1) {
                         alert("welcome to emmortal,please check your mail and confirm the link to logged in");
                         $('.close').trigger('click');

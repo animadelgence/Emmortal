@@ -1,0 +1,136 @@
+#imgAppend ul li{
+    list-style: none;
+}
+
+#savedImg ul li{
+    list-style: none;
+}
+
+.modBtn{
+    padding: 8px 17px !important;
+    font-size: 15px !important;
+    line-height: 1.33 !important;
+    border-radius: 4px !important;
+    color: #fff !important;
+    background-color: #827657 !important;
+    border-color: #b6b6b6 !important;
+    margin: 35px 10px 0 15px !important;
+}
+
+.pattern{
+    vertical-align: baseline !important;
+}
+
+.imgAppend{
+    margin: 25px 0 10px -30px;
+    background-color: #edeff2;
+}
+
+.modal-body{
+    height: 370px;
+    overflow-y: auto;
+}
+
+.browseTab{
+    display: block;
+    background-color: #f7f7f7;
+    margin-bottom: 20px;
+}
+
+.modal-header{
+    background-color: #92907C;
+}
+
+.frontImgSave{
+    background-color: #827657 !important;
+    border-color: #827657 !important;
+    color: #fff !important;
+}
+
+.frontImgSave:hover, .frontImgSave:active{
+    background-color: #827657 !important;
+    border-color: #b6b6b6 !important;
+    color: #fff !important;
+}
+
+.bgImgSave{
+    background-color: #827657 !important;
+    border-color: #827657 !important;
+    color: #fff !important;
+}
+.bgImgSave:active, .bgImgSave:hover{
+    background-color: #827657 !important;
+    border-color: #b6b6b6 !important;
+    color: #fff !important;
+
+}
+/*admin login*/
+
+.login-navbar-logo {
+    position: fixed;
+    background: rgba(86, 67, 17, 0.45) none repeat scroll 0 0;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.login-navbar-logo__anchor {
+    color: rgb(255, 255, 255);
+    float: left;
+    font-size: 18px;
+    height: auto;
+    padding: 6px 15px;
+}
+
+/*admin upload image in modal*/
+.uploadbtn-input-file{
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    margin: -54px 0 20px 0px;
+}
+
+.uploadbtn{
+    margin: 15px 0 20px 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    border: none;
+    background-color: #827657;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.uploadTab{
+    background-color: #f7f7f7;
+}
+
+.navTabs{
+    display: block !important;
+    color: #337ab7 !important;
+}
+
+.navTabs > li > a {
+    display: block !important;
+    color: #337ab7 !important;
+    margin-right: 2px !important;
+    line-height: 1.42857143 !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px 4px 0 0 !important;
+}
+
+.navTabs>li.active>a, .navTabs>li.active>a:hover, .navTabs>li.active>a:focus{
+    color: #555 !important;
+    cursor: default !important;
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+    border-bottom-color: transparent !important;
+}
+
+.title{
+    color: #fff !important;
+}
+

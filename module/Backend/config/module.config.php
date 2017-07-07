@@ -12,7 +12,8 @@ return array(
              'Backend\Controller\Adminlogin' => 'Backend\Controller\AdminloginController',
              'Backend\Controller\Usermanage' => 'Backend\Controller\UsermanageController',
              'Backend\Controller\Seomanage' => 'Backend\Controller\SeomanageController',
-             'Backend\Controller\Uploads' => 'Backend\Controller\UploadsController'
+             'Backend\Controller\Uploads' => 'Backend\Controller\UploadsController',
+            'Backend\Controller\Patternget' => 'Backend\Controller\PatterngetController'
          ),
      ),
 
@@ -80,7 +81,20 @@ return array(
                      ),
                  ),
              ),
-
+            // this is for Uploads-manage operation
+             'patternget' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/patternget[/:action][/:id][/:pId]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Backend\Controller\Patternget',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
 
          ),
      ),

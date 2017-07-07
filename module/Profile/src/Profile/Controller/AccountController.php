@@ -77,11 +77,13 @@ class AccountController extends AbstractActionController {
         $dynamicPath         = $plugin->dynamicPath();
         $backgroundimage     = $_POST['backgroundimageName'];
         $profileimage        = $_POST['profileimageNmae'];
-        $backgroundimageName = $dynamicPath."/upload/backgroundImage/".$backgroundimage;
         $profileimageNmae    = $dynamicPath."/upload/profileImage/".$profileimage;
-        //echo $backgroundimageName."----".$profileimageNmae;exit;
         $searchkayarray      = array('userid'=>$this->sessionid);
-        $updateArray         = array('profileimage' => $profileimageNmae, 'backgroundimage' => $backgroundimageName);
+        if(!empty($profileimage)){
+            $updateArray         = array('profileimage' => $profileimageNmae, 'backgroundimage' => $backgroundimage);//$backgroundimageName
+        }else{
+            $updateArray         = array('backgroundimage' => $backgroundimage);
+        }
         $updatedValues = $modelPlugin->getuserTable()->updateuser($updateArray, $searchkayarray);
             
         echo $updatedValues;

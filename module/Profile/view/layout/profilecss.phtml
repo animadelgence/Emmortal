@@ -45,7 +45,7 @@ switch ($controller) {
 echo $this->headLink()
         ->prependStylesheet($this->basePath() . '/css/Album/album.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/profile/searchfriends.css?version=' . $t)
-        ->prependStylesheet($this->basePath() . '/css/album/like.css?version=' . $t)
+        ->prependStylesheet($this->basePath() . '/css/Album/like.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/profile/profilenavbar.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/design.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/main.css?version=' . $t)
@@ -53,10 +53,8 @@ echo $this->headLink()
         ->prependStylesheet($this->basePath() . '/css/Album/navbar.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '/css/Album/notification.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
-        //->prependStylesheet($this->basePath() . '/css/bootstrap/bootstrap.min.css?version=' . $t)
-        ->prependStylesheet('//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css') //appended last
-        ->prependStylesheet( 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css')
-        ->prependStylesheet($this->basePath() . '/css/Album/notification.css?version=' . $t)
+        ->prependStylesheet($this->basePath() . '/css/bootstrap/bootstrap.min.css?version=' . $t)
+    //->prependStylesheet('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') //appended last
         ->prependStylesheet($this->basePath() . '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     	->prependStylesheet($this->basePath() . '//fonts.googleapis.com/css?family=Oxygen:400,700' );
 ?>

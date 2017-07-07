@@ -96,24 +96,20 @@
                 $('#tributefriendError').hide();
                 $('#friendsidtribute').removeClass('error-class');
             } else{
-                            flag = 1;
-                            $('#friendsidtribute').addClass('error-class');
-                            $('#tributefriendError').show();
-                            $("#uploadModal").hide();
-                            $("#tributemodal").css("z-index","0");
-                            $(".modal-backdrop").css("z-index","0");
-                            $(".welcome").show();
-                            $(".showmsg").html("<span>please select your friend</span>");
+                flag = 1;
+                $('#friendsidtribute').addClass('error-class');
+                $('#tributefriendError').show();
+                $("#tributemodal").css("z-index","0");
+                $(".modal-backdrop").css("z-index","0");
+                errormodalopen('please select your friend','tribute');
             }
             if(tributeDescription == ""){
-                            flag = 1;
-                            $('#tributeDescription').addClass('error-class');
-                            $('#tributeDescriptionError').show();
-                            $("#uploadModal").hide();
-                            $("#tributemodal").css("z-index","0");
-                            $(".modal-backdrop").css("z-index","0");
-                            $(".welcome").show();
-                            $(".showmsg").html("<span>please put the Description</span>");
+                flag = 1;
+                $('#tributeDescription').addClass('error-class');
+                $('#tributeDescriptionError').show();
+                $("#tributemodal").css("z-index","0");
+                $(".modal-backdrop").css("z-index","0");
+                errormodalopen('please put the Description','tribute');
 
             } else {
                 $('#tributeDescriptionError').hide();
@@ -128,9 +124,15 @@
 
      });
 });
-
+function tributefunctionClick() {
+    /*tributemodalopen();
+    $('#errorModal').modal('hide');*/
+    $("#tributemodal").css("z-index","9999");
+    $("#errorModal").css("z-index","0");
+}
 function tributeClick()
 {
-    $('#uploadModal').modal('show');
+    uploadmodalopen();
+    //$('#uploadModal').modal('show');
     $('#tributemodal').modal('hide');
 }

@@ -214,8 +214,10 @@
 
 });
 function videofunctionClick() {
-    videomodalopen();
-    $('#errorModal').modal('hide');
+    /*videomodalopen();
+    $('#errorModal').modal('hide');*/
+    $("#videoInsertModal").css("z-index","9999");
+    $("#errorModal").css("z-index","0");
 }
 function videoClick()
 {

@@ -209,8 +209,10 @@ $(document).ready(function () {
 });
 });
 function textfunctionClick() {
-    textmodalopen();
-    $('#errorModal').modal('hide');
+    /*textmodalopen();
+    $('#errorModal').modal('hide');*/
+    $("#textInsertModal").css("z-index","9999");
+    $("#errorModal").css("z-index","0");
 }
 function textClick()
 {

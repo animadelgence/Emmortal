@@ -207,12 +207,16 @@ class CreatealbumController extends AbstractActionController {
         }
         //print_r($friendsDetails);
 //exit;
-        if(empty($this->sessionid)) {
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
+        
+        if($idOfUSer) {
              $bgimgSend = $bgimg[0]['bgimgpath'];
             //  $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
             // return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails' =>$userDetails));
 
-             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
 
             return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
 
@@ -231,7 +235,7 @@ class CreatealbumController extends AbstractActionController {
             else{
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
-             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
         }
        
@@ -278,9 +282,13 @@ class CreatealbumController extends AbstractActionController {
         }
         //print_r($friendsDetails);
 //exit;
-        if($this->sessionid == "") {
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
+        
+        if($idOfUSer) {
             $bgimgSend = $bgimg[0]['bgimgpath'];
-             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
             return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails' =>$userDetails));
         } else {
              if($LoggedInUserDetails != ""){
@@ -298,7 +306,7 @@ class CreatealbumController extends AbstractActionController {
             else{
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
-             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'bgimg'=>$bgimgSend));
             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
         }
        

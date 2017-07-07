@@ -11,14 +11,14 @@
             </div>
             <div>
                 <div id="gen" class="tabcontent  profileDetails">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-md-5">
                         <h3>Personal information</h3>
                         <form action="/action_page.php">
                             <input class="gen-input" type="text" name="fname" id="acc-name" value="<?php echo $userDetails[0]['firstname'];?>">
                             <input class="gen-input" id="acc-lastname" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
                             <input class="gen-input-mail" id="acc-email" type="text" name="email" value="<?php echo $userDetails[0]['emailid'];?>">
-                            
-                            <div class="form-group full-width" >
+
+                            <div class="form-group" >
                                 <div class='input-group date' id='datetimepicker1'>
                                     <input type='text' class="form-control" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
                                     <span class="input-group-addon">
@@ -26,7 +26,7 @@
                                     </span>
                                 </div>
                             </div>
-                            
+
                             
                             <!--<div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>-->
                         </form>

@@ -173,19 +173,20 @@ class UsersettingController extends AbstractActionController {
     }
     public function bgeditsubmitAction(){
               $modelPlugin  = $this->modelplugin();
-              $plugin       = $this->routeplugin();
+//              $plugin       = $this->routeplugin();
               $uploadPlugin = $this->imageuploadplugin();
-              $dynamicPath  = $plugin->dynamicPath();
-              $jsonArray    = $plugin->jsondynamic();
-		      $currentPageURL = $plugin->curPageURL();
+              $dynamicPath  = $modelPlugin->dynamicPath();
+//              $jsonArray    = $plugin->jsondynamic();
+//		      $currentPageURL = $plugin->curPageURL();
 
+              $res               = array();
               $request1 = $this->getRequest()->getPost();
-              $name = $request1['filename'];
+              $filename = $request1['fileupload'];
               //print_r($name) ; exit;
-              $request = $this->getRequest();
-              $files = $request->getFiles()->toArray();
+//              $request = $this->getRequest();
+//              $files = $request->getFiles()->toArray();
          //print_r($files); exit;
-              $filename = $files['fileupload']['name'];
+//              $filename = $files['fileupload']['name'];
          //echo $imageName; exit;
 
 
@@ -195,11 +196,11 @@ class UsersettingController extends AbstractActionController {
               //echo $bgimgpath; exit;
 
               //upload in bgimg folder(start)
-              $href              = explode("/", $currentPageURL);
-              $controller        = @$href[3];
-              $action            = @$href[4];
-
-              $res               = array();
+//              $href              = explode("/", $currentPageURL);
+//              $controller        = @$href[3];
+//              $action            = @$href[4];
+//
+//              $res               = array();
 //              $request           = $this->getRequest();
 //              $files             = $request->getFiles()->toArray();
 //              $tmp_name          = $_FILES['fileupload']['tmp_name'];
@@ -207,12 +208,14 @@ class UsersettingController extends AbstractActionController {
 //              $fileType          = $_FILES['fileupload']['type'];
 //              $fileSize          = ($_FILES['fileupload']['size'] / 1024) / 1024;
 
-              $tmp_name          = $files['fileupload']['tmp_name'];
-              $fileNamewithspace = $files['fileupload']['name'];
+              $request           = $this->getRequest();
+              $files             = $request->getFiles()->toArray();
+              $tmp_name          = $files[$filename]['tmp_name'];
+              $fileNamewithspace = $files[$filename]['name'];
               $fileName          = str_replace("","_",$fileNamewithspace);
-              $fileType          = $files['fileupload']['type'];
+              $fileType          = $files[$filename]['type'];
               $fileType          = strtolower($fileType);
-              $fileSize          = ($files['fileupload']['size'] / 1024) / 1024;
+              $fileSize          = ($files[$filename]['size'] / 1024) / 1024;
 
 
               if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg')) {

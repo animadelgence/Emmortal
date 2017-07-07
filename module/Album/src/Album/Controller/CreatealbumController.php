@@ -212,6 +212,61 @@ class CreatealbumController extends AbstractActionController {
         }
        
     }
+
+    public function showafterpublishforstaticAction(){
+        $this->layout('layout/albumlayout.phtml');
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $jsonArray = $plugin->jsondynamic();
+        $controller = 'createalbum';
+        $action = $this->params('action');
+        $geturlid = $this->params('id');
+        $getid = base64_decode($geturlid);
+        $bgimg = $modelPlugin->getbgimageTable()->fetchall();
+        $uploadQuery =  array('albumeid' =>1 );
+        $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
+        $friendsArray = explode(',',$albumDetails[0]['friendsid']);
+        $userid = $this->sessionid;
+        $friendsDetails = array();
+        for ($i=0; $i < count($friendsArray)-1; $i++) { 
+            
+            $frndid = $friendsArray[$i];
+            $condition     = array('friends.userid'=>$userid,'friends.friendsid'=>$frndid);
+            $join    = "friends.friendsid = user.userid";
+            //$getfriendsdetails = $modelPlugin->getfriendsTable()->joinquery($condition,$join);
+            $getfriendsdetails = $modelPlugin->getfriendsTable()->joinquery($condition,$join);
+           // print_r($getfriendsdetails);
+             $array = array(
+                    'friendsid'     => $getfriendsdetails[0]['friendsid'],
+                    'friendsname'   => $getfriendsdetails[0]['firstname']." ".$getfriendsdetails[0]['lastname'],
+                    'profileimage'  => $getfriendsdetails[0]['profileimage']
+                    
+                );
+             $friendsDetailsArray = $array;
+             //print_r($friendsDetailsArray);
+             array_push($friendsDetails, $friendsDetailsArray);
+        }
+        //print_r($friendsDetails);
+//exit;
+        if($this->sessionid == "") {
+            $bgimgSend = $bgimg[0]['bgimgpath'];
+             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails' =>$userDetails));
+        } else {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+
+            if(@getimagesize($userDetails[0]['backgroundimage'])){
+                $bgimgSend = $userDetails[0]['backgroundimage'];
+            }
+            else{
+             $bgimgSend = $bgimg[0]['bgimgpath'];
+            }
+             $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
+        }
+       
+    }
    
     
 }

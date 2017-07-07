@@ -34,7 +34,8 @@
                     'content' => $rSet->content,
                     'activation' => $rSet->activation,
                     'viewprofile' => $rSet->viewprofile,
-                    'viewname' => $rSet->viewname
+                    'viewname' => $rSet->viewname,
+                    'uniqueUser'=>$rSet->uniqueUser
                     );
                 }
                 return $array;
@@ -65,7 +66,8 @@
                         'seeme' => $rSet->seeme,
                         'findme' => $rSet->findme,
                         'content' => $rSet->content,
-                        'activation' => $rSet->activation
+                        'activation' => $rSet->activation,
+                        'uniqueUser'=>$rSet->uniqueUser
                         );
                 }
                 return $array;
@@ -129,7 +131,8 @@
                             'seeme' => $rSet->seeme,
                             'findme' => $rSet->findme,
                             'content' => $rSet->content,
-                            'activation' => $rSet->activation
+                            'activation' => $rSet->activation,
+                            'uniqueUser'=>$rSet->uniqueUser
 			         );
 		   }
             print_r($data);exit;
@@ -168,7 +171,8 @@
                     'content' => $rSet->content,
                     'activation' => $rSet->activation,
                     'viewprofile' => $rSet->viewprofile,
-                    'viewname' => $rSet->viewname
+                    'viewname' => $rSet->viewname,
+                    'uniqueUser'=>$rSet->uniqueUser
                     );
                 }
                 return $array;

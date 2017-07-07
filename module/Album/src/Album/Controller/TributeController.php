@@ -88,14 +88,11 @@ class TributeController extends AbstractActionController {
             $recfrndDetails         = $recfrndDetailscheck ;
         }
 
-        if($tributeDetails == 1){
-            return new ViewModel(array('sessionid'=>$UID,
-                                       'dynamicPath' => $dynamicPath,
-                                       'tributeDescription'=>$tributeDescription,
-                                       'recfrndDetails'=>$recfrndDetails,
-                                       'userDetails'=>$userDetails,
-                                       'friendId'=>$friendId));
-        }
+
+        if($tributeDetails != 0){
+            return new ViewModel(array('sessionid'=>$UID,'dynamicPath' => $dynamicPath,'tributeDescription'=>$tributeDescription,'recfrndDetails'=>$recfrndDetails,'userDetails'=>$userDetails,'friendId'=>$friendId));
+
+    
     }
     public function tributeupdateAction(){
          $plugin                     = $this->routeplugin();

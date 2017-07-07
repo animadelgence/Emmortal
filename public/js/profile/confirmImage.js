@@ -126,10 +126,10 @@ $(document).ready(function () {
     });
 
 /*Upload Image -- Modal Tab Content Show*/
-    $('body').on('click','#modBtn',function(){
-        $.get(getUrl+"/seomanage/uploadimg", function (result) {
+    $('body').on('click','#bgimageBtn',function(){
+        $.get(getUrl+"/settings/uploadimg", function (result) {
 
-            console.log(result);return false;
+            //console.log(result);return false;
             var jsObject = JSON.parse(result);
             var appendStructure = '<ul class="emmortal-tab-image__list">';
             $.each(jsObject, function(i, item) {
@@ -168,18 +168,15 @@ $(document).ready(function () {
         var imgSrc = $.trim($('#imgSrc').val());
 
          if (imgSrc != ""){
-            $('#upload_prev').html("<img src='"+imgSrc+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
+            $('#canvas-placeholderbkimage').html("<img src='"+imgSrc+"' height='100%' width='100%' />");
          } else {
                $("#imgUploadForm").ajaxSubmit({
                 data: { fileupload: 'fileupload' },
                 success: function (response) {
                      //console.log(response); return false;
-//                    var jsObject = JSON.parse(response);
-//                    console.warn(xhr.responseText);return false;
-
-//                    console.log(jsObject); return false;
-                   $('#imgSrc').val(response);
-                    $('#upload_prev').html("<img src='"+response+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
+                    var jsObject = JSON.parse(response);
+                    $('#imgSrc').val(jsObject.originalPath);
+                    $('#canvas-placeholderbkimage').html("<img src='"+jsObject.originalPath+"' height='100%' width='100%' />");
                 }
             });
 

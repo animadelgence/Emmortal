@@ -173,32 +173,34 @@ class UsersettingController extends AbstractActionController {
     }
     public function bgeditsubmitAction(){
               $modelPlugin  = $this->modelplugin();
-              $plugin       = $this->routeplugin();
+//              $plugin       = $this->routeplugin();
               $uploadPlugin = $this->imageuploadplugin();
-              $dynamicPath  = $plugin->dynamicPath();
-              $jsonArray    = $plugin->jsondynamic();
-		      $currentPageURL = $plugin->curPageURL();
+              $dynamicPath  = $modelPlugin->dynamicPath();
+//              $jsonArray    = $plugin->jsondynamic();
+//		      $currentPageURL = $plugin->curPageURL();
 
+              $res               = array();
               $request1 = $this->getRequest()->getPost();
-              $name = $request1['filename'];
-              $request = $this->getRequest();
-              $files = $request->getFiles()->toArray();
+              $filename = $request1['fileupload'];
+              //print_r($name) ; exit;
+//              $request = $this->getRequest();
+//              $files = $request->getFiles()->toArray();
          //print_r($files); exit;
-              $filename = $files['fileupload']['name'];
+//              $filename = $files['fileupload']['name'];
          //echo $imageName; exit;
 
 
               //$filename = $_FILES['fileupload']['name'];
 
-              $bgimgpath = $dynamicPath."/upload/bgimg/".$filename;
+              $bgimgpath = $dynamicPath."/upload/bkimg/".$filename;
               //echo $bgimgpath; exit;
 
               //upload in bgimg folder(start)
-              $href              = explode("/", $currentPageURL);
-              $controller        = @$href[3];
-              $action            = @$href[4];
-
-              $res               = array();
+//              $href              = explode("/", $currentPageURL);
+//              $controller        = @$href[3];
+//              $action            = @$href[4];
+//
+//              $res               = array();
 //              $request           = $this->getRequest();
 //              $files             = $request->getFiles()->toArray();
 //              $tmp_name          = $_FILES['fileupload']['tmp_name'];
@@ -206,21 +208,23 @@ class UsersettingController extends AbstractActionController {
 //              $fileType          = $_FILES['fileupload']['type'];
 //              $fileSize          = ($_FILES['fileupload']['size'] / 1024) / 1024;
 
-              $tmp_name          = $files['fileupload']['tmp_name'];
-              $fileNamewithspace = $files['fileupload']['name'];
+              $request           = $this->getRequest();
+              $files             = $request->getFiles()->toArray();
+              $tmp_name          = $files[$filename]['tmp_name'];
+              $fileNamewithspace = $files[$filename]['name'];
               $fileName          = str_replace("","_",$fileNamewithspace);
-              $fileType          = $files['fileupload']['type'];
+              $fileType          = $files[$filename]['type'];
               $fileType          = strtolower($fileType);
-              $fileSize          = ($files['fileupload']['size'] / 1024) / 1024;
+              $fileSize          = ($files[$filename]['size'] / 1024) / 1024;
 
 
-              if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg')) {
-                      @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg', 0777, true);
-                      chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/bgimg/', 0777);
+              if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg')) {
+                      @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg', 0777, true);
+                      chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg/', 0777);
                   }
 
               //$result = $uploadPlugin->bgimgedit($tmp_name , $fileName);
-              $folderName = "/upload/bgimg/";
+              $folderName = "/upload/bkimg/";
               $result = $uploadPlugin->uploadimg($fileSize, $fileName, $files[$filename]['error'], $folderName, $fileName, $fileType);
             print_r($result); exit;
 
@@ -229,6 +233,33 @@ class UsersettingController extends AbstractActionController {
               //print_r($result); exit; //uncomment this
 //              echo $bgimgpath; exit;
               //upload in bgimg folder(end)
+
+     }
+    public function uploadimgAction(){
+              $modelPlugin = $this->modelplugin();
+              $uploadFolder = $_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg/thumb/';
+
+                $getdynamicPath = $modelPlugin->dynamicPath();
+                $filetype = '*.*';
+                $files = glob($uploadFolder . $filetype);
+                $count = count($files);
+                $uploadFolderList = array();
+                $response = array();
+                for ($i = 0; $i < $count; $i++) {
+                    $uploadFolderList[$i] = $files[$i];
+                }
+                    ksort($uploadFolderList);
+                    $countimg = 0;
+                    foreach ($uploadFolderList as $filename)
+                    {
+                        $getFile = explode($_SERVER['DOCUMENT_ROOT'],$filename);
+                        $pathExplode = explode("/",$getFile[1]);
+                        $getImgName = "/upload/bkimg/thumb/".$pathExplode[4];
+                        $response[$countimg] =  '<li class="emmortal-tab-image__list-item col-sm-4" style="padding: 10px;"><strong><a href="'.@$getdynamicPath.$getFile[1].'" title="Loading image" class="emmortal-tab-image__link"><img class="image" alt="emmortal-image" src="'.@$getdynamicPath.$getImgName.'" class="emmortal-tab-image__link-img"/></a></strong></li>';
+                        $countimg = $countimg + 1;
+
+                    }
+            echo json_encode($response);exit;
 
      }
 

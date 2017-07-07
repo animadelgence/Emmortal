@@ -45,6 +45,19 @@
     background-color: #827657 !important;
     border-color: #827657 !important;
     color: #fff !important;
+    margin: 0 !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    line-height: 1.42857 !important;
+    margin-bottom: 0 !important;
+    padding: 6px 12px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
 }
 
 .frontImgSave:hover, .frontImgSave:active{
@@ -133,4 +146,11 @@
 .title{
     color: #fff !important;
 }
+
+.footer{
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5 !important;
+}
+
 

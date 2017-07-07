@@ -46,6 +46,7 @@ switch ($controller) {
             case 'general':
                 $this->headScript()
                          ->prependFile($this->basePath() . '/js/profile/changedetails.js?version=' . $t)
+                         ->prependFile($this->basePath() . '/js/profile/confirmImage.js?version=' . $t)
                         ->prependFile($this->basePath() . '/js/profile/settings.js?version=' . $t);
 
                 break;

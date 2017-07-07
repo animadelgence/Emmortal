@@ -140,6 +140,9 @@ $(document).ready(function () {
             flag = 1;
             $('#textTitle').addClass('error-class');
             $('#textTitleError').show();
+            $("#textInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            errormodalopen('please fill title field','text');
         } else {
             $('#textTitleError').hide();
             $('#textTitle').removeClass('error-class');
@@ -148,6 +151,9 @@ $(document).ready(function () {
             flag = 1;
             $('#cke_textDescription').addClass('error-class');
             $('#textDescriptionError').show();
+            $("#textInsertModal").css("z-index","0");
+            $(".modal-backdrop").css("z-index","0");
+            errormodalopen('please fill description field','text');
         } else {
             $('#textDescriptionError').hide();
             $('#cke_textDescription').removeClass('error-class');
@@ -202,6 +208,10 @@ $(document).ready(function () {
 
 });
 });
+function textfunctionClick() {
+    textmodalopen();
+    $('#errorModal').modal('hide');
+}
 function textClick()
 {
     uploadmodalopen();

@@ -51,7 +51,8 @@ class AlbumdetailsController extends AbstractActionController {
                                    'jsonArray'=>$jsonArray,
                                    'albumDetails'=>$albumDetails,
                                    'likeCount'=>$likeCount,
-                                   'uploadDetails'=>$uploadDetails)
+                                   'uploadDetails'=>$uploadDetails
+                                )
                             );
     }
     public function likesaveAction(){
@@ -139,17 +140,17 @@ class AlbumdetailsController extends AbstractActionController {
         $likeCount          = count($likeDetails);
         $array              = array();
         foreach ($uploadDetails as $rSet) {
-            $hr     = date("H",strtotime($rSet['TimeStamp']));
-            $min    = date("i",strtotime($rSet['TimeStamp']));
+            $hr             = date("H",strtotime($rSet['TimeStamp']));
+            $min            = date("i",strtotime($rSet['TimeStamp']));
             if($hr>=12){
-                $hr = $hr - 12;
-                $time = $hr.":".$min."PM";
+                $hr         = $hr - 12;
+                $time       = $hr.":".$min."PM";
             } else{
-                $time = date("H:i",strtotime($rSet['TimeStamp']))."AM";
+                $time       = date("H:i",strtotime($rSet['TimeStamp']))."AM";
             }
-            $join          = 'tributedetails.UID = user.userid';
-            $condition     = array('tributedetails.uploadId'=>$rSet['uploadId']);
-            $tribute       = $modelPlugin->gettributedetailsTable()->joinquery($condition,$join);
+            $join           = 'tributedetails.UID = user.userid';
+            $condition      = array('tributedetails.uploadId'=>$rSet['uploadId']);
+            $tribute        = $modelPlugin->gettributedetailsTable()->joinquery($condition,$join);
             $tributeDetails = array();
             foreach($tribute as $result){
                 $where              = array('TID'=>$result['tributesid']);
@@ -167,7 +168,7 @@ class AlbumdetailsController extends AbstractActionController {
                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
             }
-            $array[]                = array(
+                $array[]             = array(
                                         'uploadTitle' => $rSet['uploadTitle'],
                                         'uploadDescription' => $rSet['uploadDescription'],
                                         'uploadPath' => $rSet['uploadPath'],
@@ -180,7 +181,7 @@ class AlbumdetailsController extends AbstractActionController {
                                         'sessionId'=>$this->sessionid
                                     );
         }
-        $res['uploadDetails'] = $array;
+        $res['uploadDetails']       = $array;
         echo json_encode($res);
         exit;
     }

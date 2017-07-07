@@ -43,7 +43,7 @@ class VideoController extends AbstractActionController {
            $title                = $_POST['title'];
            $videoDescription     = $_POST['videoDescription'];
            $uploadedvideo        = $_POST['uploadedvideo'];
-           $frndIdValue               = $_POST['friendsId'];
+           $frndIdValue          = $_POST['friendsId'];
            if($frndIdValue){
            $friendId             =  implode(",",$frndIdValue);
             } else{
@@ -71,7 +71,23 @@ class VideoController extends AbstractActionController {
                       'PID'=>$currentPageId,
 
                       );
-           $albumDetails         = $modelPlugin->getuploadDetailsTable()->insertData($data);
+            $albumDetails         = $modelPlugin->getuploadDetailsTable()->insertData($data);
+            if($friendId != ''){
+            $frndId = explode(",",$friendId);
+            $ct = count($frndId);
+                for($i=0;$i<$ct;$i++){
+                    $notificationData   = array(
+                                                'UID'=>$frndId[$i],
+                                                'notified_by'=>$UID,
+                                                'notify_id'=>$albumDetails,
+                                                'notify_type'=>'upload',
+                                                'notify_seen'=>0,
+                                                'notificationdate'=>date("Y-m-d H:i:s")
+                                            );
+                    $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
+                }
+            }
+           
            echo $albumDetails;exit;
            
     }

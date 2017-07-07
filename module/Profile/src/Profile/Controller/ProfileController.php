@@ -90,23 +90,13 @@ class ProfileController extends AbstractActionController {
         if(isset($this->sessionidtemp)) {
             $tempstore = $this->sessionidtemp;
             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
-            /*$user_session_temp->loginId = ($_SESSION['tempStore']);
-            $user_session_temp = new \Zend\Session\Container('tempStore');
-            unset($user_session_temp->tempStore);*/
         }
         else {
             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
         }
         if(isset($this->sessionidtemp)){
-            /*$user_session_temp->tempStore = ($_SESSION['tempStoreName']);
-            $user_session_temp = new \Zend\Session\Container('tempStoreName');
-            unset($user_session_temp->tempStoreName);*/
             $user_session_temp = new Container('tempStoreName');
             $user_session_temp->getManager()->getStorage()->clear('tempStoreName');
-            
-            /*$user_session->loginId  = ($_SESSION['userloginId']);
-        $user_session           = new \Zend\Session\Container('userloginId');
-        unset($user_session->userloginId);*/
         }
        
         return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
@@ -260,6 +250,8 @@ class ProfileController extends AbstractActionController {
         $user_session->loginId  = ($_SESSION['userloginId']);
         $user_session           = new \Zend\Session\Container('userloginId');
         unset($user_session->userloginId);
+        $user_session_temp = new Container('tempStoreName');
+        $user_session_temp->getManager()->getStorage()->clear('tempStoreName');
         
         $plugin                 = $this->routeplugin();
         $dynamicPath            = $plugin->dynamicPath();

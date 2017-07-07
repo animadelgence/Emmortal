@@ -452,17 +452,44 @@ function videomodalopen() {
         }
     });
 }
-function errormodalopen(param){
+function errormodalopen(param,secondParam){
     if($('#errorModal').length) {
         $('#errorModal').remove();
     }
+    if($('.modal-backdrop').length) {
+        $('.modal-backdrop').remove();
+    }
     $.get(getUrl+"/modal/errorModal.php?version="+RandomNumber, function (result) {
+
         // append response to body
         $('body').append(result);
         // open modal
         $('#errorModal').modal('show');
         $('#errorMessage').html(param);
-
+        if(secondParam == 'image') {
+            if($('.closebtn').length) {
+                $('.closebtn').remove();
+            }
+            $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="imagefunctionClick();"></i>');
+        }
+        if(secondParam == 'video') {
+            if($('.closebtn').length) {
+                $('.closebtn').remove();
+            }
+            $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="videofunctionClick();"></i>');
+        }
+        if(secondParam == 'text') {
+            if($('.closebtn').length) {
+                $('.closebtn').remove();
+            }
+            $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="textfunctionClick();"></i>');
+        }
+        if(secondParam == 'album') {
+            if($('.closebtn').length) {
+                $('.closebtn').remove();
+            }
+            $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="albumfunctionClick();"></i>');
+        }
     });
 
 }
@@ -496,18 +523,40 @@ function searchmodalopen(){
     });
 
 }
-function openalbumforedit(){
-    if($('#albumInsertModal').length) {
-        $('#albumInsertModal').remove();
+function openalbumforedit(valid){
+    //alert(valid);return false;
+    var albumtitleid = $("#albumtitleid").text();
+    var friendsidalbum = $("#friendsidalbum").val();
+    var descriptionidalbum = $("#descriptionidalbum").val();
+    var coloridalbum = $("#coloridalbum").val();
+    var statusidalbum = $("#statusidalbum").val();
+    var albumimagefullpath = $("#albumimagefullpath").attr('src');
+
+    if($('#albumEditModal').length) {
+        $('#albumEditModal').remove();
     }
     if($('.in').length) {
         $('.in').remove();
     }
-    $.get(getUrl+"/modal/albuminsertmodal.php?version="+RandomNumber, function (result) {
+
+    $.get(getUrl+"/modal/updatealbummodal.php", function (result) {
+
         // append response to body
         $('body').append(result);
+        $('#albumpictureidedit').attr('src',albumimagefullpath);
+        //$('#albumpictureidedit').css({"heigh","360px"},{"width","100%"});
+        //$('#albumpictureidedit').css("width","100%");//lheight:360px;width:100%
+        $("#albumTitle").val(albumtitleid);
+        
+        $("select#listing option").each(function(){
+            $('.listshowclass').removeClass('addnew');
+            if($(this).val() == statusidalbum){ 
+                $(this).attr("selected","selected");
+                $(this).addClass("addnew");    
+            }
+        });
         // open modal
-        $('#albumInsertModal').modal('show');
+        $('#albumEditModal').modal('show');
         $('#uploadModal').remove();
        // var friendsidalbum =
         if($('#albumtextDescription').length) {
@@ -530,7 +579,9 @@ function openalbumforedit(){
                 ]
             });
             CKEDITOR.disableAutoInline = true;
+
         }
+        CKEDITOR.instances.albumtextDescription.setData(descriptionidalbum);
 
     });
 }

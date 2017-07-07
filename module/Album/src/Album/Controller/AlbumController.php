@@ -176,6 +176,21 @@ class AlbumController extends AbstractActionController {
         return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
 
     }
+
+    public function redirectuseraccountAction(){
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
+        $albumid =$_POST['albumid'];
+        $uploadQuery = array('albumeid'=>$albumid);
+        $albumValue = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
+        $idOfUSer = $albumValue[0]['UID'];
+        $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$idOfUSer));
+        $loggedInUserUniqueId = $userDetails[0]['uniqueUser'];
+        echo $loggedInUserUniqueId;exit;
+        
+
+    }
     public function aboutusAction(){
     	$this->layout('layout/albumlayout.phtml');
     	$plugin = $this->routeplugin();

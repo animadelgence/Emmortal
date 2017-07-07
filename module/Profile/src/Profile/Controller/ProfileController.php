@@ -31,6 +31,7 @@ class ProfileController extends AbstractActionController {
         $action = @$href[4];
         $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
         $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
         if($idOfUSer==""){
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
             $pageQuery = array('UID'=>$this->sessionid);
@@ -64,12 +65,12 @@ class ProfileController extends AbstractActionController {
             else{
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid,'LoggedInUserDetails'=>$LoggedInUserDetails, 'userDetails'=>$userDetails,'bgimg'=>$bgimgSend));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid,'LoggedInUserDetails'=>$LoggedInUserDetails, 'userDetails'=>$userDetails,'bgimg'=>$bgimgSend,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
         if(empty($likeDetailsArrays)){
-             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
+             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
 
         } else{
-        return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'likeDetailsArrays' =>$likeDetailsArrays));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'likeDetailsArrays' =>$likeDetailsArrays,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
     }
     }
     public function newsfeedAction(){
@@ -85,7 +86,18 @@ class ProfileController extends AbstractActionController {
         $href             = explode("/", $currentPageURL);
         $controller       = @$href[3];
         $action           = @$href[4];
-        $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
+            if($idOfUSer==""){
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        }else
+        {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$idOfUSer));
+            if(empty($userDetails)){
+                return $this->redirect()->toUrl($dynamicPath);
+            }
+        }
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
        if(@getimagesize($userDetails[0]['backgroundimage'])){
                 $bgimgSend = $userDetails[0]['backgroundimage'];
@@ -96,17 +108,17 @@ class ProfileController extends AbstractActionController {
         $tempstore = 'blank';
         if(isset($this->sessionidtemp)) {
             $tempstore = $this->sessionidtemp;
-            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
+            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
         }
         else {
-            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend));
+            $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'sessionid'=>$this->sessionid,'tempsessionid'=>$tempstore,'userDetails' => $userDetails,'bgimg'=>$bgimgSend,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
         }
         if(isset($this->sessionidtemp)){
             $user_session_temp = new Container('tempStoreName');
             $user_session_temp->getManager()->getStorage()->clear('tempStoreName');
         }
        
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
     }
     public function getalbumAction(){
         

@@ -80,6 +80,7 @@ class NotificationController extends AbstractActionController {
                 $likeDetails        = $modelPlugin->getlikesdetailsTable()->fetchall($likecon);
                 $likedBy            = $likeDetails[0]['UID'];
                 $likedByDetails     = $modelPlugin->getuserTable()->fetchall(array('userid'=>$likedBy));
+                
                 if($notify_seen == 1){
                     $html .='<div class="e-notification like seen">';
                 } else{
@@ -98,15 +99,33 @@ class NotificationController extends AbstractActionController {
                 $html .='</a>';
                 $html .='</div>';
                 $html .='<div class="action">';
-                $html .='<span>liked your </span>';
+                
                 if($likeDetails[0]['FID']){
+                    $html .='<span>liked your </span>';
                     $html .='<a class="e-link e-brown pointer">Relationship</a>';
                 } else if($likeDetails[0]['TID']){
+                    $tribuiteDetails = $modelPlugin->gettributedetailsTable()->fetchall(array('tributesid'=>$likeDetails[0]['TID']));
+                    if($tribuiteDetails[0]['UID'] == $notified_by){
+                        $html .='<span>liked own </span>';
+                    } else{
+                        $html .='<span>liked your </span>';
+                    }
                     $html .='<a class="e-link e-brown pointer">Comment</a>';
                 } else if($likeDetails[0]['AID']){
+                    $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$likeDetails[0]['AID']));
+                    if($albumDetails[0]['UID'] == $notified_by){
+                        $html .='<span>liked own </span>';
+                    } else{
+                        $html .='<span>liked your </span>';
+                    }
                     $html .='<a class="e-link e-brown pointer">Album</a>';
                 } else if($likeDetails[0]['uploadId']){
                     $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall(array('uploadId'=>$likeDetails[0]['uploadId']));
+                     if($uploadDetails[0]['UID'] == $notified_by){
+                        $html .='<span>liked own </span>';
+                    } else{
+                        $html .='<span>liked your </span>';
+                    }
                     $html .='<a class="e-link e-brown pointer">';
                     if($uploadDetails[0]['uploadType']=='text'){
                         $html .='Text';  
@@ -261,19 +280,24 @@ declined'){
                 $where                  = array('tributedetails.tributesid'=>$notify_id);
                 $join                   = 'tributedetails.UID=user.userid';
                 $friendDetails          = $modelPlugin->gettributedetailsTable()->joinquery($where,$join);
+                if($friendDetails[0]['UID']==$notified_by){
+                    $status         = '<span>commente own </span>';
+                } else{
+                    $status         = '<span>commente your </span>';
+                }
                 if($friendDetails[0]['tribute_type'] == 'album'){
                     $albumDetails       = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$friendDetails[0]['uploadId']));
-                    $status             ='<a class="e-link e-brown pointer" href="">Album</a>';
+                    $status            .='<a class="e-link e-brown pointer" href="">Album</a>';
                 } else if($friendDetails[0]['tribute_type'] == 'relationship'){
-                    $status             ='<a class="e-link e-brown pointer" href="">Relationship</a>';
+                    $status            .='<a class="e-link e-brown pointer" href="">Relationship</a>';
                 } else if($friendDetails[0]['tribute_type'] == 'upload'){
                     $uploadDetails      = $modelPlugin->getuploadDetailsTable()->fetchall(array('uploadId'=>$friendDetails[0]['uploadId']));
                     if($friendDetails[0]['uploadType'] == 'text'){
-                        $status         ='<a class="e-link e-brown pointer" href="">Text</a>';
+                        $status        .='<a class="e-link e-brown pointer" href="">Text</a>';
                     } else if($friendDetails[0]['uploadType'] == 'image'){
-                        $status         ='<a class="e-link e-brown pointer" href="">Image</a>';
+                        $status        .='<a class="e-link e-brown pointer" href="">Image</a>';
                     } else if($friendDetails[0]['uploadType'] == 'video'){
-                        $status         ='<a class="e-link e-brown pointer" href="">Video</a>';
+                        $status        .='<a class="e-link e-brown pointer" href="">Video</a>';
                     }
                 }
                 if($notify_seen == 1){
@@ -294,7 +318,7 @@ declined'){
                 $html .='</a>';
                 $html .='</div>';
                 $html .='<div class="action">';
-                $html .='<span>commented your </span>';
+                $html .='<span>commente your </span>';
                 $html .=$status;
                 $html .='</div>';
                 $html .='</div>';

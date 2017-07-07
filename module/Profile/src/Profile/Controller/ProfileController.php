@@ -31,7 +31,6 @@ class ProfileController extends AbstractActionController {
         $dynamicPath    = $modelPlugin->dynamicPath();
         $jsonArray      = $modelPlugin->jsondynamic();
         $currentPageURL = $modelPlugin->curPageURL();
-
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
@@ -62,7 +61,7 @@ class ProfileController extends AbstractActionController {
             }
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid, 'userDetails'=>$userDetails,'bgimg'=>$bgimgSend));
         if(empty($likeDetailsArrays)){
-             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
+             return new ViewModel(array('sessionid'=>$id,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
 
         } else{
         return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'likeDetailsArrays' =>$likeDetailsArrays));

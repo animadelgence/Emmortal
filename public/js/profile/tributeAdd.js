@@ -99,7 +99,6 @@ $(document).ready(function () {
                 tributeType: tributeType
             },
             success: function (res) {
-                console.log(res);
                 $('#tributeloader').css('display', 'none');
                 $('.offcanvas-comments').css("height", "100%");
                 jsObject = JSON.parse(res);

@@ -359,7 +359,7 @@ button[disabled], html input[disabled] {
     cursor: default;
 }
 .btn-default {
-  background-color: #fff !important;
+ background-color: transparent;
   border-color: #ccc;
   color: #333;
 }

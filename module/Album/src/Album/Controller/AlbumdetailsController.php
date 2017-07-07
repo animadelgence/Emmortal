@@ -63,6 +63,8 @@ class AlbumdetailsController extends AbstractActionController {
         $UID            = $this->sessionid;
         $type           = $_POST['datacmd'];
         $id             = $_POST['id'];
+        /*$type           = 'album';
+        $id             = 21;*/
         if($type == 'album'){
             $where      = array('AID'=>$id,'UID'=>$UID);
             $data       = array(
@@ -113,16 +115,45 @@ class AlbumdetailsController extends AbstractActionController {
                                 );
             $notificationDelete = $modelPlugin->getnotificationdetailsTable()->deleteNotification($notiDElCon);
         } else{
-            $likeInsert         = $modelPlugin->getlikesdetailsTable()->insertLike($data);
-            $notificationData   = array(
-                                    'UID'=>$uid,
-                                    'notified_by'=>$UID,
-                                    'notify_id'=>$likeInsert,
-                                    'notify_type'=>'like',
-                                    'notify_seen'=>0,
-                                    'notificationdate'=>date("Y-m-d H:i:s")
-                                );
-            $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
+            $likeInsert         = $modelPlugin->getlikesdetailsTable()->insertLike($data); 
+            
+            if($uid == $UID){
+                $fndDetails          = $modelPlugin->getfriendsTable()->fetchall(array('requestaccept'=>1));
+                foreach($fndDetails as $fRes ){
+                    if($fRes['userid'] == $UID){
+                        $notificationData   = array(
+                                                'UID'=>$fRes['friendsid'],
+                                                'notified_by'=>$UID,
+                                                'notify_id'=>$likeInsert,
+                                                'notify_type'=>'like',
+                                                'notify_seen'=>0,
+                                                'notificationdate'=>date("Y-m-d H:i:s")
+                                            );
+                    $notificationInsert     = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData); 
+                    } else if($fRes['friendsid'] == $UID){
+                        $notificationData   = array(
+                                                'UID'=>$fRes['userid'],
+                                                'notified_by'=>$UID,
+                                                'notify_id'=>$likeInsert,
+                                                'notify_type'=>'like',
+                                                'notify_seen'=>0,
+                                                'notificationdate'=>date("Y-m-d H:i:s")
+                                            );
+                        $notificationInsert     = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
+                    }
+                }
+                
+            } else{
+                $notificationData   = array(
+                                        'UID'=>$uid,
+                                        'notified_by'=>$UID,
+                                        'notify_id'=>$likeInsert,
+                                        'notify_type'=>'like',
+                                        'notify_seen'=>0,
+                                        'notificationdate'=>date("Y-m-d H:i:s")
+                                    );
+                $notificationInsert     = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
+            }
         }
         $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($query);
         echo $likeCount = count($likeDetails);

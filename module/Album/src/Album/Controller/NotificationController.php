@@ -263,17 +263,17 @@ declined'){
                 $friendDetails          = $modelPlugin->gettributedetailsTable()->joinquery($where,$join);
                 if($friendDetails[0]['tribute_type'] == 'album'){
                     $albumDetails       = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$friendDetails[0]['uploadId']));
-                    $status='<a class="e-link e-brown pointer" href="">Album</a>';
+                    $status             ='<a class="e-link e-brown pointer" href="">Album</a>';
                 } else if($friendDetails[0]['tribute_type'] == 'relationship'){
-                    $status='<a class="e-link e-brown pointer" href="">Relationship</a>';
+                    $status             ='<a class="e-link e-brown pointer" href="">Relationship</a>';
                 } else if($friendDetails[0]['tribute_type'] == 'upload'){
                     $uploadDetails      = $modelPlugin->getuploadDetailsTable()->fetchall(array('uploadId'=>$friendDetails[0]['uploadId']));
                     if($friendDetails[0]['uploadType'] == 'text'){
-                        $status='<a class="e-link e-brown pointer" href="">Text</a>';
+                        $status         ='<a class="e-link e-brown pointer" href="">Text</a>';
                     } else if($friendDetails[0]['uploadType'] == 'image'){
-                        $status='<a class="e-link e-brown pointer" href="">Image</a>';
+                        $status         ='<a class="e-link e-brown pointer" href="">Image</a>';
                     } else if($friendDetails[0]['uploadType'] == 'video'){
-                        $status='<a class="e-link e-brown pointer" href="">Video</a>';
+                        $status         ='<a class="e-link e-brown pointer" href="">Video</a>';
                     }
                 }
                 if($notify_seen == 1){

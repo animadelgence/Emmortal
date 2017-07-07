@@ -36,8 +36,15 @@ class AlbumdetailsController extends AbstractActionController {
         $href               = explode("/", $currentPageURL);
         $controller         = @$href[3];
         $action             = @$href[4];
+        
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
+        
+        
         $this->layout()->setVariables(array('controller' => $controller,
                                             'action' => $action,
+                                            'loggedInUserUniqueId'=>$loggedInUserUniqueId,
                                             'sessionid'=>$this->sessionid)
                                      );
         $query              = array('albumeid'=>1);

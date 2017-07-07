@@ -171,5 +171,92 @@ class UsersettingController extends AbstractActionController {
         echo $updateData;exit;
 
     }
-    
+    public function bgeditsubmitAction(){
+              $modelPlugin  = $this->modelplugin();
+              $plugin       = $this->routeplugin();
+              $uploadPlugin = $this->imageuploadplugin();
+              $dynamicPath  = $plugin->dynamicPath();
+              $jsonArray    = $plugin->jsondynamic();
+		      $currentPageURL = $plugin->curPageURL();
+
+              $request1 = $this->getRequest()->getPost();
+              $name = $request1['filename'];
+              $request = $this->getRequest();
+              $files = $request->getFiles()->toArray();
+         //print_r($files); exit;
+              $filename = $files['fileupload']['name'];
+         //echo $imageName; exit;
+
+
+              //$filename = $_FILES['fileupload']['name'];
+
+              $bgimgpath = $dynamicPath."/upload/bkimg/".$filename;
+              //echo $bgimgpath; exit;
+
+              //upload in bgimg folder(start)
+              $href              = explode("/", $currentPageURL);
+              $controller        = @$href[3];
+              $action            = @$href[4];
+
+              $res               = array();
+//              $request           = $this->getRequest();
+//              $files             = $request->getFiles()->toArray();
+//              $tmp_name          = $_FILES['fileupload']['tmp_name'];
+//              $fileNamewithspace = $_FILES['fileupload']['name'];
+//              $fileType          = $_FILES['fileupload']['type'];
+//              $fileSize          = ($_FILES['fileupload']['size'] / 1024) / 1024;
+
+              $tmp_name          = $files['fileupload']['tmp_name'];
+              $fileNamewithspace = $files['fileupload']['name'];
+              $fileName          = str_replace("","_",$fileNamewithspace);
+              $fileType          = $files['fileupload']['type'];
+              $fileType          = strtolower($fileType);
+              $fileSize          = ($files['fileupload']['size'] / 1024) / 1024;
+
+
+              if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg')) {
+                      @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg', 0777, true);
+                      chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg/', 0777);
+                  }
+
+              //$result = $uploadPlugin->bgimgedit($tmp_name , $fileName);
+              $folderName = "/upload/bkimg/";
+              $result = $uploadPlugin->uploadimg($fileSize, $fileName, $files[$filename]['error'], $folderName, $fileName, $fileType);
+            print_r($result); exit;
+
+//         echo json_encode($result);
+//        exit;
+              //print_r($result); exit; //uncomment this
+//              echo $bgimgpath; exit;
+              //upload in bgimg folder(end)
+
+     }
+    public function uploadimgAction(){
+              $modelPlugin = $this->modelplugin();
+              $uploadFolder = $_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg/thumb/';
+
+                $getdynamicPath = $modelPlugin->dynamicPath();
+                $filetype = '*.*';
+                $files = glob($uploadFolder . $filetype);
+                $count = count($files);
+                $uploadFolderList = array();
+                $response = array();
+                for ($i = 0; $i < $count; $i++) {
+                    $uploadFolderList[$i] = $files[$i];
+                }
+                    ksort($uploadFolderList);
+                    $countimg = 0;
+                    foreach ($uploadFolderList as $filename)
+                    {
+                        $getFile = explode($_SERVER['DOCUMENT_ROOT'],$filename);
+                        $pathExplode = explode("/",$getFile[1]);
+                        $getImgName = "/upload/bkimg/thumb/".$pathExplode[4];
+                        $response[$countimg] =  '<li class="emmortal-tab-image__list-item col-sm-4" style="padding: 10px;"><strong><a href="'.@$getdynamicPath.$getFile[1].'" title="Loading image" class="emmortal-tab-image__link"><img class="image" alt="emmortal-image" src="'.@$getdynamicPath.$getImgName.'" class="emmortal-tab-image__link-img"/></a></strong></li>';
+                        $countimg = $countimg + 1;
+
+                    }
+            echo json_encode($response);exit;
+
+     }
+
 }

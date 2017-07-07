@@ -124,7 +124,7 @@ $(document).ready(function () {
 /*Upload Image -- Modal Tab Content Show*/
     $('body').on('click','#modBtn',function(){
         $.get(baseUrl+"/seomanage/uploadimg", function (result) {
-
+            console.log(result); return false;
             var imgSrc = $.trim($('#imgSrc').val());//preview in modal last saved img
             $("#imgPrev").attr('src',imgSrc);//preview in modal last saved img
             var jsObject = JSON.parse(result);

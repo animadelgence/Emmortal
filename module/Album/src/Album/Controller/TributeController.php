@@ -33,6 +33,9 @@ class TributeController extends AbstractActionController {
         $href                       = explode("/", $currentPageURL);
         $controller                 = @$href[3];
         $action                     = @$href[4];
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
         $tributeDescription         = $_POST['tributeDescription'];
         $frndIdValue                = $_POST['frndId'];
         if($frndIdValue){
@@ -44,7 +47,7 @@ class TributeController extends AbstractActionController {
         $this->layout()->setVariables(array(
                                         'sessionid'=> $UID,
                                         'controller' => $controller,
-                                        'action' => $action));
+                                        'action' => $action,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
         $addeddate                  = date('Y-m-d H:i:s');
         $data                       =  array('UID'=>$UID,
                       'description'=>$tributeDescription,
@@ -102,8 +105,11 @@ class TributeController extends AbstractActionController {
          $href                       = explode("/", $currentPageURL);
          $controller                 = @$href[3];
          $action                     = @$href[4];
+         $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
          $UID                        = $this->sessionid;
-         $this->layout()->setVariables(array('sessionid'=> $UID,'controller' => $controller, 'action' => $action));
+         $this->layout()->setVariables(array('sessionid'=> $UID,'controller' => $controller, 'action' => $action,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
          $tributeDescription         = $_POST['tributeDescriptionUpdate'];
          $frndIdValue                = $_POST['frndId'];
         if($frndIdValue){

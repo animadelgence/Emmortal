@@ -28,7 +28,16 @@ class UsersettingController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
+        if($idOfUSer==""){
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+    }
+    else
+        {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$idOfUSer));
+        }
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
         if(@getimagesize($userDetails[0]['backgroundimage'])){
                 $bgimgSend = $userDetails[0]['backgroundimage'];

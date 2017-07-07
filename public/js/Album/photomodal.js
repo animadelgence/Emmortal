@@ -238,8 +238,10 @@ var featherEditor = new Aviary.Feather({
     }
 });
 function imagefunctionClick() {
-    imagemodalopen();
-    $('#errorModal').modal('hide');
+    /*imagemodalopen();
+    $('#errorModal').modal('hide');*/
+    $("#photoInsertModal").css("z-index","9999");
+    $('#errorModal').remove();
 }
 function launchEditor(id, src) {
     featherEditor.launch({

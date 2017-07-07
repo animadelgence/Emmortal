@@ -63,7 +63,40 @@
     color: rgb(170, 168, 151);
     font-size: 20x;
 }
-
+.tile-show-settings-btn {
+  background-color: #aaa897; 
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  opacity: 0;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  transition: opacity 0.3s ease 0s;
+  width: 30px;
+  z-index: 10;
+}
+.tile .tile-edit-buttons {
+  right: 35px;
+  top: 2px;
+}
+.tile-edit-buttons {
+  color: #fff;
+  font-size: 25px;
+  line-height: 25px;
+  position: absolute;
+  right: 18px;
+  text-shadow: 0 0 1px #000;
+  top: 0;
+  width: 113px;
+  z-index: 1;
+}
+.tile-edit-buttons i.fa {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 10px;
+}
 .add-page-plus-icon {
     background: #AAA897;
     color: rgb(255, 255, 255);

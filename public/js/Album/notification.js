@@ -14,9 +14,15 @@
 var base_url_dynamic = window.location.origin;
 $(document).ready(function () {
     "use strict";
+    
     setInterval(function () {
-        getNotification();
-    }, 15000);
+        if($('.notification-click').length>0){
+            getNotification();
+        } else{
+            console.log("Please Log In");
+        }
+    }, 2000);
+    
     $('body').on('click', '.notification-click', function () {
         if ($("#notification-div").is(':visible')) {
             $('#notification-div').hide('show');

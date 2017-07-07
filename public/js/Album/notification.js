@@ -18,10 +18,8 @@ $(document).ready(function () {
     setInterval(function () {
         if($('.notification-click').length>0){
             getNotification();
-        } else{
-            console.log("Please Log In");
         }
-    }, 2000);
+    }, 15000);
     
     $('body').on('click', '.notification-click', function () {
         if ($("#notification-div").is(':visible')) {

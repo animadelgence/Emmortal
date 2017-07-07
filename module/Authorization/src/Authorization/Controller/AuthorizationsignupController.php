@@ -84,6 +84,7 @@ class AuthorizationsignupController extends AbstractActionController {
 
                     $mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
                     $mailfunction = 1;
+                    print_r($mailfunction);
                 }
                // $resultinsertvalue = 1; 
 

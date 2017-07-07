@@ -345,7 +345,7 @@ function onupdateTribute() {
         $('.friendname').html(name);
         $('.frndId').val(friendId);
         if($('#tributeDescriptionUpdate').length) {
-            //CKEDITOR.instances.tributeDescriptionUpdate.setData(tributedescription);
+            
             CKEDITOR.replace('tributeDescriptionUpdate', {
                 toolbar: [
 
@@ -369,6 +369,7 @@ function onupdateTribute() {
                 ]
             });
             CKEDITOR.disableAutoInline = true;
+            CKEDITOR.instances.tributeDescriptionUpdate.setData(tributedescription);
         }
     });
 }

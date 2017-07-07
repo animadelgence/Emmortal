@@ -44,6 +44,7 @@
                         </li>
                         <li><?php if($sessionid == ""){ ?><button onclick="squarespaceModal2open();"  class="btn btn-primary center-block sign-up">Sign In</button><?php }?>
                         </li>
+                         <?php $encodesessionid = base64_encode($sessionid);?>
                         <li><?php if($sessionid != ""){ ?><button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/showprofile'">My profile</button><?php }?>
                         </li>
                         <li><?php if($sessionid != ""){ ?>

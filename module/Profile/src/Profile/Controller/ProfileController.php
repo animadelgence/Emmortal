@@ -24,7 +24,8 @@ class ProfileController extends AbstractActionController {
         }
     }
     public function showprofileAction(){
-       
+        //$idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+
     	$this->layout('layout/profilelayout.phtml');
 
     	$modelPlugin    = $this->modelplugin();
@@ -49,9 +50,6 @@ class ProfileController extends AbstractActionController {
             
             $likeDetailsArray[$uploadId] = $likeDetails;
              array_push($likeDetailsArrays,$likeDetailsArray);
-
-
-           
         }
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
         if(@getimagesize($userDetails[0]['backgroundimage'])){

@@ -129,7 +129,6 @@ function tributefunctionClick() {
     $('#errorModal').modal('hide');*/
     $("#tributemodal").css("z-index","9999");
     $('#errorModal').remove();
-    
 }
 function tributeClick()
 {

@@ -124,7 +124,6 @@ $(document).ready(function () {
 /*Upload Image -- Modal Tab Content Show*/
     $('body').on('click','#modBtn',function(){
         $.get(baseUrl+"/seomanage/uploadimg", function (result) {
-            console.log(result); return false;
             var imgSrc = $.trim($('#imgSrc').val());//preview in modal last saved img
             $("#imgPrev").attr('src',imgSrc);//preview in modal last saved img
             var jsObject = JSON.parse(result);
@@ -163,7 +162,6 @@ $(document).ready(function () {
 /*Clicking on 'Save Changes' modal button */
      $('body').on('click', '.save', function () {
         var imgSrc = $.trim($('#imgSrc').val());
-         //alert(imgSrc);
 
          if (imgSrc != ""){
             $('#upload_prev').html("<img src='"+imgSrc+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
@@ -171,11 +169,10 @@ $(document).ready(function () {
                $("#imgUploadForm").ajaxSubmit({
                 data: { fileupload: 'fileupload' },
                 success: function (response) {
-                    console.log(response);
                      var jsObject = JSON.parse(response);
+                    console.log(jsObject);
                     $('#imgSrc').val(jsObject.originalPath);
                     $('#upload_prev').html("<img src='"+jsObject.originalPath+"' height='100px' width='100px' style='margin: 5px 12em 0 0;' />");
-                    //$('#imgSrc').removeAttr('value');
                 }
             });
 

@@ -3,11 +3,9 @@ var getUrl = window.location.origin;
 $(function(){
 
 	var getpath = document.URL;
-           // alert(document.URL);return false;
             var actionname = getpath.split("/"),
              pathname = actionname[5],
              encryptedmailid = actionname[6];
-            //alert(pathname);forgetpassword
         if(pathname == "confirmed"){
         	$('#squarespaceModalchangeimage').modal('show');
         }
@@ -72,7 +70,7 @@ window.onload = function () {
 
 $(document).ready(function () {
     "use strict";
-//alert(getUrl); return false;
+
 /*Background Image Edit Validation(onchange)*/
     $('#fileupload').bind('change', function () {
         var ext = $('#fileupload').val().split('.').pop().toLowerCase(),
@@ -107,12 +105,10 @@ $(document).ready(function () {
 
 /*Pattern -- Modal Tab Content Show*/
     $('body').on('click','#browse',function(){
-        //alert(); return false;
+
         $.get(getUrl+"/seomanage/pattern", function (result) {
-            //console.log(result); return false;
 
             var jsObject = JSON.parse(result);
-            //console.log(result); return false;
             var appendStructure = '<ul class="emmortal-tab-pattern__list">';
             $.each(jsObject, function(i, item) {
     			appendStructure += jsObject[i];
@@ -130,7 +126,6 @@ $(document).ready(function () {
     $('body').on('click','#bgimageBtn',function(){
         $.get(getUrl+"/settings/uploadimg", function (result) {
 
-            //console.log(result);return false;
             var jsObject = JSON.parse(result);
             var appendStructure = '<ul class="emmortal-tab-image__list">';
             $.each(jsObject, function(i, item) {
@@ -174,7 +169,6 @@ $(document).ready(function () {
                $("#imgUploadForm").ajaxSubmit({
                 data: { fileupload: 'fileupload' },
                 success: function (response) {
-                     //console.log(response); return false;
                     var jsObject = JSON.parse(response);
                     $('#imgSrc').val(jsObject.originalPath);
                     $('#canvas-placeholderbkimage').html("<img src='"+jsObject.originalPath+"' height='100%' width='100%' />");
@@ -183,6 +177,21 @@ $(document).ready(function () {
 
          }
      });
+
+/* When Clicking on 'Save' button */
+    $('body').on('click', '#changePersonalDetails', function () {
+        var imgSrc = $.trim($('#imgSrc').val());
+
+        $.ajax({
+            type: "POST",
+            url: getUrl+'/account/saveboth',
+            data: {backgroundimageName: imgSrc},
+            success: function(result){
+            $('#squarespaceModalchangeimage').modal('hide');
+        }
+        });
+
+    });
 
 });
 

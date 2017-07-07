@@ -30,6 +30,57 @@ $(document).ready(function () {
             //myFunction(friendsid);
         }
     });
+    $('body').on('click', '.sendFriendRequest', function (e) {
+        e.preventDefault();
+        var userID = $(this).parents('.relationship-btn').attr('data-folder-target-id'),
+            value = $(this);
+        //alert(userID);
+        //return false;
+        $("#requestform").ajaxSubmit({
+            data: {
+                userID: userID
+            },
+            success: function (result) {
+                
+                var jsObject = JSON.parse(result);
+                //console.log(jsObject);
+                if (jsObject.status == 'Request sent') {
+                    //if($(".relationship-btn").attr('data-folder-target-id') == userID)
+                    value.text('Request sent');
+                }
+                return false;
+            }
+        });
+        return false;
+    });
+    $('body').on('click', '.respondFriendRequest', function (e) {
+        e.preventDefault();
+        var toBeRespondedId = $(this).parents('.pending-actions-btn').attr('data-folder-target-id'),
+            value = 'btn-section' + toBeRespondedId,
+            action = $(this).text().trim();
+        $.ajax({
+            type: "POST",
+            url: base_url_dynamic + '/friendrequests/responserequest',
+            data: {
+                userID: toBeRespondedId,
+                action: action
+            },
+            success: function (res) {
+                if (res == 1) {
+                    var htmlData = "";
+                    if(action == 'Accept') {
+                        htmlData += '<div class="show-adds-btns" style="width:200px;" ><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="" data-toggle="tooltip" data-placement="bottom" title="Tribute">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
+                    } else {
+                        htmlData += '<div class="relationship-btn" user="client"><button class="btnn e-btn btn-danger full sendFriendRequest" id="requestbtn"><div class="fa fa-times"></div> Declined</button></div>';
+                    }
+                    $('#'+value).html(htmlData);
+                    $('[data-toggle="tooltip"]').tooltip();
+                    $('#'+value).show();
+                }
+            }
+        });
+        //return false;
+    });
     
 });
 

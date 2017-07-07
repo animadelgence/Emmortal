@@ -44,7 +44,7 @@ $(document).ready(function () {
         numberOfMonths:[1,1]
     });
     
-    $('body').on('change','.passwordDetails', function(){
+    $('body').on('change keyup','.passwordDetails', function(){
         var currentPassword = $("#acc-cur-pass").val(),
             newPassword = $("#acc-pass").val(),
             repeatPassword = $("#acc-pass-rep").val();
@@ -56,7 +56,7 @@ $(document).ready(function () {
             $('#changePersonalDetails').css('cursor', 'not-allowed');
         }
     });
-    $('body').on('keyup','.passwordDetails', function(e){
+    /*$('body').on('keyup','.passwordDetails', function(e){
         var currentPassword = $("#acc-cur-pass").val(),
             newPassword = $("#acc-pass").val(),
             repeatPassword = $("#acc-pass-rep").val();
@@ -70,7 +70,7 @@ $(document).ready(function () {
                 $('#changePersonalDetails').css('cursor', 'not-allowed');
             }
         }
-    });
+    });*/
     $('body').on('keypress','.passwordDetails', function(e){
         $('#confirmpassError').css('display', 'none');
         $('#currentpassError').css('display', 'none');
@@ -172,25 +172,23 @@ $(document).ready(function () {
         });
         
     });
-    $('body').on('change','.profileDetails', function(){
+    $('body').on('change keyup blur','.gen-input', function(){
+        console.log(1);
         var accountFirstName = $("#acc-name").val(),
             accountLastName = $("#acc-lastname").val(),
             accountDOB = $("#acc-dob").val(),
             accountEmail = $("#acc-email").val(),
             profileimageNmae    = $("#pfimagePath").val(),
             backgroundimageName = $("#bkimagePath").val();
-        //alert(accountFirstName.trim()+accountLastName.trim()+accountDOB+accountEmail);   
         if ((accountFirstName.trim() != '') && (accountLastName.trim != '') && (accountEmail.match(regexemail)) && (accountEmail != '') && (accountDOB != '')) {
-            //alert(2);
             $('#changePersonalDetails').prop("disabled", false);
             $('#changePersonalDetails').css('cursor', 'pointer');
         } else {
-            //alert(3);
             $('#changePersonalDetails').prop("disabled", true);
             $('#changePersonalDetails').css('cursor', 'not-allowed');
         }
     });
-    $('body').on('keyup','.profileDetails', function(e){
+    /*$('body').on('keyup','.profileDetails', function(e){
         var accountFirstName = $("#acc-name").val(),
             accountLastName = $("#acc-lastname").val(),
             accountDOB = $("#acc-dob").val(),
@@ -210,8 +208,8 @@ $(document).ready(function () {
                 $('#changePersonalDetails').css('cursor', 'not-allowed');
             }
         }
-    });
-    $('body').on('keypress','.profileDetails', function(e){
+    });*/
+    $('body').on('keypress','.gen-input', function(e){
         //$('#loginEmailError').css('display','none');
         var accountFirstName = $("#acc-name").val(),
             accountLastName = $("#acc-lastname").val(),

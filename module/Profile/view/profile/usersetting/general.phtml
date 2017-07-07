@@ -17,7 +17,12 @@
                             <input class="gen-input" type="text" name="fname" id="acc-name" value="<?php echo $userDetails[0]['firstname'];?>">
                             <input class="gen-input" id="acc-lastname" type="text" name="lname" value="<?php echo $userDetails[0]['lastname'];?>">
                             <input class="gen-input-mail" id="acc-email" type="text" name="email" value="<?php echo $userDetails[0]['emailid'];?>">
-                            <input type="text" class="form-control date-picker" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
+                            <div class='input-group date'>
+                                <input type="text" class="form-control" id="acc-dob" value="<?php echo $userDetails[0]['dateofbirth'];?>">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                             <!--<div class="picker-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>-->
                         </form>
                         <span class="div--error_secondmsg" style="margin: 20px 0 !important;"></span>
@@ -79,14 +84,14 @@
                         <a class="save" id="changePersonalDetails" href="javascript:void(0)" disabled="disabled" style="cursor:pointer;">Save</a>
                     </div>
                 </div>
-                <div id="security" class="tabcontent passwordDetails">
+                <div id="security" class="tabcontent ">
                     <div class="col-lg-12">
                         <h3>Change password</h3>
                         <form method="post" action="/settings/changepassword" enctype="multipart/form-data" id="form__changepassword">
-                            <input type="password" class="form-control " id="acc-cur-pass" placeholder="Current password">
+                            <input type="password" class="form-control passwordDetails" id="acc-cur-pass" placeholder="Current password">
                             <span id = "currentpassError" class='error'>Is invalid</span>
-                            <input type="password" class="form-control " id="acc-pass" placeholder="New password">
-                            <input type="password" class="form-control " id="acc-pass-rep" placeholder="Password confirmation">
+                            <input type="password" class="form-control passwordDetails" id="acc-pass" placeholder="New password">
+                            <input type="password" class="form-control passwordDetails" id="acc-pass-rep" placeholder="Password confirmation">
                             <span id = "confirmpassError" class='error'>doesn't match Password</span>
                         </form>
                         <a class="save-new" href="javascript:void(0)" id="password_save" disabled="disabled" style="cursor:not-allowed;">Save</a>

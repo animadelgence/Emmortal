@@ -83,6 +83,7 @@ class AuthorizationsignupController extends AbstractActionController {
                     $from = $jsonArray['sendgridaccount']['addfrom'];
                     $mailfunction = $mailplugin->confirmationmail($email, $from, $subject, $mailBody);
                     $mailfunction = 1;
+                    print_r($mailfunction);
                 }
                // $resultinsertvalue = 1; 
 

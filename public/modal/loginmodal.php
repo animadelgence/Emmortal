@@ -10,11 +10,11 @@
             <div class="loginid">
                <form method="post" action="/authlogin/login" enctype="multipart/form-data" name="nameform" id="login_form">
                   <div class="form-group  full-width">
-                     <input type="text" class="form-control" id="loginemail" placeholder="Email">
+                     <input type="text" class="form-control loginform" id="loginemail" placeholder="Email">
                      <span id = "loginEmailError" class='error'>Invalid email or password.</span>
                   </div>
                   <div class="form-group full-width">
-                     <input type="password" class="form-control" id="loginpassword" placeholder="Password">
+                     <input type="password" class="form-control loginform" id="loginpassword" placeholder="Password">
                   </div>
                   <a onclick="squarespaceModalemailopen();"  class="link-color use-margin" id="forgotmail" onclick="showhide();" style="cursor: pointer;">Forgot Password?</a>
                   <button type="submit" value="Submit" style="display:none;"></button>

@@ -173,41 +173,12 @@ class UsersettingController extends AbstractActionController {
     }
     public function bgeditsubmitAction(){
               $modelPlugin  = $this->modelplugin();
-//              $plugin       = $this->routeplugin();
               $uploadPlugin = $this->imageuploadplugin();
               $dynamicPath  = $modelPlugin->dynamicPath();
-//              $jsonArray    = $plugin->jsondynamic();
-//		      $currentPageURL = $plugin->curPageURL();
-
               $res               = array();
               $request1 = $this->getRequest()->getPost();
               $filename = $request1['fileupload'];
-              //print_r($name) ; exit;
-//              $request = $this->getRequest();
-//              $files = $request->getFiles()->toArray();
-         //print_r($files); exit;
-//              $filename = $files['fileupload']['name'];
-         //echo $imageName; exit;
-
-
-              //$filename = $_FILES['fileupload']['name'];
-
               $bgimgpath = $dynamicPath."/upload/bkimg/".$filename;
-              //echo $bgimgpath; exit;
-
-              //upload in bgimg folder(start)
-//              $href              = explode("/", $currentPageURL);
-//              $controller        = @$href[3];
-//              $action            = @$href[4];
-//
-//              $res               = array();
-//              $request           = $this->getRequest();
-//              $files             = $request->getFiles()->toArray();
-//              $tmp_name          = $_FILES['fileupload']['tmp_name'];
-//              $fileNamewithspace = $_FILES['fileupload']['name'];
-//              $fileType          = $_FILES['fileupload']['type'];
-//              $fileSize          = ($_FILES['fileupload']['size'] / 1024) / 1024;
-
               $request           = $this->getRequest();
               $files             = $request->getFiles()->toArray();
               $tmp_name          = $files[$filename]['tmp_name'];
@@ -217,22 +188,14 @@ class UsersettingController extends AbstractActionController {
               $fileType          = strtolower($fileType);
               $fileSize          = ($files[$filename]['size'] / 1024) / 1024;
 
-
               if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg')) {
                       @mkdir($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg', 0777, true);
                       chmod($_SERVER['DOCUMENT_ROOT'] . '/upload/bkimg/', 0777);
                   }
 
-              //$result = $uploadPlugin->bgimgedit($tmp_name , $fileName);
               $folderName = "/upload/bkimg/";
               $result = $uploadPlugin->uploadimg($fileSize, $fileName, $files[$filename]['error'], $folderName, $fileName, $fileType);
-            print_r($result); exit;
-
-//         echo json_encode($result);
-//        exit;
-              //print_r($result); exit; //uncomment this
-//              echo $bgimgpath; exit;
-              //upload in bgimg folder(end)
+              print_r($result); exit;
 
      }
     public function uploadimgAction(){

@@ -56,6 +56,8 @@ $(document).ready(function () {
                 $('#notification-count').text(res);
                 if(res>0){
                     $('#noticnt').text(res);
+                } else{
+                    $('#noticnt').text('');
                 }
             }
         });
@@ -79,6 +81,8 @@ $(document).ready(function () {
                      $('#notification-count').text(jsObject.notificationDetails[0].unread);
                      if(jsObject.notificationDetails[0].unread>0){
                         $('#noticnt').text(jsObject.notificationDetails[0].unread);
+                     } else{
+                        $('#noticnt').text('');
                      }
                      $('#no-notification').css('display','none');
                 } 

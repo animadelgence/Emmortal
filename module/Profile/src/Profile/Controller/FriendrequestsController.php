@@ -200,7 +200,7 @@ class FriendrequestsController extends AbstractActionController {
                                         'UID'=>$friendsId,
                                         'notified_by'=>$userid,
                                         'notify_id'=>$friendDetails,
-                                        'notify_type'=>'like',
+                                        'notify_type'=>'friendrequest',
                                         'notify_seen'=>0,
                                         'notificationdate'=>date("Y-m-d H:i:s")
                                     );
@@ -246,11 +246,14 @@ class FriendrequestsController extends AbstractActionController {
                                     );
         $friendDetails          = $modelPlugin->getfriendsTable()->updateData($updatedArray,$where);
         $frndDetails            = $modelPlugin->getfriendsTable()->fetchall($where);
+        
+        $frndDetails            = $modelPlugin->getnotificationdetailsTable()->deleteNotification(array('UID'=>$friendsId,'notified_by'=>$userid,'notify_type'=>'friendrequest'));
+        
         $notificationData       = array(
                                         'UID'               =>$friendsId,
                                         'notified_by'       =>$this->sessionid,
                                         'notify_id'         =>$frndDetails[0]['id'],
-                                        'notify_type'       =>'like',
+                                        'notify_type'       =>'friendrequest',
                                         'notify_seen'       =>0,
                                         'notificationdate'  =>date("Y-m-d H:i:s")
                                     );

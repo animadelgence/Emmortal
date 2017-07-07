@@ -37,14 +37,17 @@ $(document).ready(function () {
 //	$(".datepicker").datepicker({
 //        dateFormat: 'yy-mm-dd'
 //    });
-    $('#acc-dob').datepicker({ 
+    /*$('#acc-dob').datepicker({ 
         dateFormat: 'dd-mm-yy',
         changeMonth:true,
         changeYear:true,
         numberOfMonths:[1,1]
-    });
-    
-    $('body').on('change keyup mouseclick','.passwordDetails', function(){
+    });*/
+    if($('#datetimepicker1').length)
+    {
+        $('#datetimepicker1').datetimepicker({format: 'DD/MM/YYYY' });
+    }
+    $('body').on('change keyup blur keydown','.passwordDetails', function(){
         var currentPassword = $("#acc-cur-pass").val(),
             newPassword = $("#acc-pass").val(),
             repeatPassword = $("#acc-pass-rep").val();

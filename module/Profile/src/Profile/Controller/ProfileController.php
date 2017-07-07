@@ -24,7 +24,6 @@ class ProfileController extends AbstractActionController {
         }
     }
     public function showprofileAction(){
-        //$idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
 
     	$this->layout('layout/profilelayout.phtml');
 
@@ -36,8 +35,13 @@ class ProfileController extends AbstractActionController {
         $controller = @$href[3];
         $action = @$href[4];
         $pageQuery = array('UID'=>$this->sessionid);
+         $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        if($idOfUSer==""){
+          $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+          $idOfUSer =   $userDetails[0]['uniqueUser'];
+        }
         $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
-        $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$idOfUSer));
         $uploadQuery = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
          

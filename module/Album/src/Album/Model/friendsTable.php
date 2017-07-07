@@ -66,11 +66,12 @@
            return $data;
 	    }
         public function insertFirend($query){
-            return $rowset = $this->tableGWay->insert($query);
+            $this->tableGWay->insert($query);
+            $id = $this->tableGWay->lastInsertValue;
+            return $id;
         }
         public function updateData($data,$where)
         {
-            //$rowset = $this->tableGWay->select($where);
             $res = $this->tableGWay->update($data,$where);
             return $res;
         }

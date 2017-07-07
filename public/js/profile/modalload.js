@@ -613,14 +613,12 @@ function openalbumforedit(valid){
 $(document).ready(function () {
     if($('#welcomeAlert').length) {
         setTimeout(function () {
-            $('#welcome').css('display','block').fadeOut(10000, function () {});
+            $('#welcome').css('display','block');
             $('#welcome').css('top','-33px');
             $('#showmsg').html('Welcome!.');
         }, 500);
-        return false;
+        $('body').on('click', '#close-msg', function () {
+            $("#welcome").css('display','none');
+        });
     }
-    $('body').on('click', '.close-msg', function () {
-        $('#welcome').css('display','none');
-        $(this).parents('body').children('#photoInsertModal').css('z-index','9999');
-    });
 });

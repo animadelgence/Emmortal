@@ -178,53 +178,86 @@ class FriendrequestsController extends AbstractActionController {
     }
     public function sendingrequestAction()
     {
-        $plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $friendsId = $_POST['userID'];
-        $userid = $this->sessionid;
-        //echo $friendsId;
-        //echo $userid;
-        $query = array('userid'=>$userid,
-                      'friendsid'=>$friendsId);
-        $friendDetails = $modelPlugin->getfriendsTable()->fetchall($query);
+        $plugin                 = $this->routeplugin();
+        $modelPlugin            = $this->modelplugin();
+        $friendsId              = $_POST['userID'];
+        $userid                 = $this->sessionid;
+        $query                  = array(
+                                    'userid'=>$userid,
+                                    'friendsid'=>$friendsId
+                                    );
+        $friendDetails          = $modelPlugin->getfriendsTable()->fetchall($query);
         if(empty($friendDetails)) {
-            $newQuery  =  array('userid'=>$userid,
-                                'friendsid'=>$friendsId,
-                                'friendshipdate'=>date('Y-m-d H:i:s'),
-                                'relationshipstatus'=>'outgoing',
-                               'requestaccept'=>0);
-            $friendDetails = $modelPlugin->getfriendsTable()->insertFirend($newQuery);
-            if($friendDetails == 1) {
-                $res['status'] = 'Request sent';
+            $newQuery           =  array(
+                                    'userid'=>$userid,
+                                    'friendsid'=>$friendsId,
+                                    'friendshipdate'=>date('Y-m-d H:i:s'),
+                                    'relationshipstatus'=>'outgoing',
+                                    'requestaccept'=>0
+                                    );
+            $friendDetails      = $modelPlugin->getfriendsTable()->insertFirend($newQuery);
+            $notificationData   = array(
+                                        'UID'=>$friendsId,
+                                        'notified_by'=>$userid,
+                                        'notify_id'=>$friendDetails,
+                                        'notify_type'=>'friendrequest',
+                                        'notify_seen'=>0,
+                                        'notificationdate'=>date("Y-m-d H:i:s")
+                                    );
+            $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
+            if($friendDetails != 0) {
+                $res['status']  = 'Request sent';
+            } else {
+                $res['status']  = 'Request could not be sent';
             }
-            else {
-                $res['status'] = 'Request could not be sent';
-            }
-        }
-        else {
-            $res['status'] = 'Request already sent';
+        } else {
+            $res['status']      = 'Request already sent';
         }
         echo json_encode($res);
         exit;
     }
     public function responserequestAction()
     {
-        $plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $friendsId = $_POST['userID'];
-        $action = $_POST['action'];
-        $userid = $this->sessionid;
-        $query = array('userid'=>$friendsId,
-                      'friendsid'=>$userid);
-        $friendDetails = $modelPlugin->getfriendsTable()->fetchall($query);
-        //print_r($friendDetails);exit;
-        $updatedArray = array(
-                            'relationshipstatus'=>'accepted',
-                            'requestaccept'=>1);
-        $where = array(
-                        'userid'=>$friendsId,
-                        'friendsid'=>$userid);
-        $friendDetails = $modelPlugin->getfriendsTable()->updateData($updatedArray,$where);
+        $plugin                 = $this->routeplugin();
+        $modelPlugin            = $this->modelplugin();
+        $friendsId              = $_POST['userID'];
+        $action                 = $_POST['action'];
+        if($action == 'Accept') {
+            $status             = "accepted";
+            $requestaccept      = 0;
+        }
+        else {
+            $status             = "declined";
+            $requestaccept      = 1;
+        }
+        $userid                 = $this->sessionid;
+        $query                  = array(
+                                    'userid'                =>$friendsId,
+                                    'friendsid'             =>$userid
+                                    );
+        $friendDetails          = $modelPlugin->getfriendsTable()->fetchall($query);
+        $updatedArray           = array(
+                                    'relationshipstatus'    =>$status,
+                                    'requestaccept'         =>$requestaccept
+                                    );
+        $where                  = array(
+                                    'userid'                =>$friendsId,
+                                    'friendsid'             =>$userid
+                                    );
+        $friendDetails          = $modelPlugin->getfriendsTable()->updateData($updatedArray,$where);
+        $frndDetails            = $modelPlugin->getfriendsTable()->fetchall($where);
+        
+        $frndDetails            = $modelPlugin->getnotificationdetailsTable()->deleteNotification(array('UID'=>$friendsId,'notified_by'=>$userid,'notify_type'=>'friendrequest'));
+        
+        $notificationData       = array(
+                                        'UID'               =>$friendsId,
+                                        'notified_by'       =>$this->sessionid,
+                                        'notify_id'         =>$frndDetails[0]['id'],
+                                        'notify_type'       =>'friendrequest',
+                                        'notify_seen'       =>0,
+                                        'notificationdate'  =>date("Y-m-d H:i:s")
+                                    );
+        $notificationInsert     = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
         echo $friendDetails;exit;
 
     }

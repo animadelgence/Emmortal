@@ -44,7 +44,7 @@ $(document).ready(function () {
         numberOfMonths:[1,1]
     });
     
-    $('body').on('change keyup','.passwordDetails', function(){
+    $('body').on('change keyup mouseclick','.passwordDetails', function(){
         var currentPassword = $("#acc-cur-pass").val(),
             newPassword = $("#acc-pass").val(),
             repeatPassword = $("#acc-pass-rep").val();

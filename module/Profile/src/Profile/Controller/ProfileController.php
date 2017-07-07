@@ -16,12 +16,7 @@ class ProfileController extends AbstractActionController {
         $this->sessionid = $userSession->offsetGet('userloginId');
         $userSessionTemp     = new Container('tempStoreName');
         $this->sessionidtemp = $userSessionTemp->offsetGet('tempStoreName');
-        $protocol        = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        $dynamicPath     = $protocol . $_SERVER['HTTP_HOST'];
-        if ($this->sessionid == "") {
-            header("Location:" . $dynamicPath);
-            exit;
-        }
+
     }
     public function showprofileAction(){
 
@@ -44,6 +39,9 @@ class ProfileController extends AbstractActionController {
         }else
         {
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$idOfUSer));
+            if(empty($userDetails)){
+                return $this->redirect()->toUrl($dynamicPath);
+            }
             $pageQuery = array('UID'=>$userDetails[0]['userid']);
             $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
             $uploadQuery = array('UID'=>$userDetails[0]['userid'],'PID'=>$pageDetails[0]['pageid']);
@@ -68,18 +66,20 @@ class ProfileController extends AbstractActionController {
             }
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid,'LoggedInUserDetails'=>$LoggedInUserDetails, 'userDetails'=>$userDetails,'bgimg'=>$bgimgSend));
         if(empty($likeDetailsArrays)){
-             return new ViewModel(array('sessionid'=>$id,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
+             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
 
         } else{
         return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'likeDetailsArrays' =>$likeDetailsArrays));
     }
     }
     public function newsfeedAction(){
-       //echo $this->sessionidtemp;exit;
-    	$this->layout('layout/profilelayout.phtml');
-
-    	$modelPlugin      = $this->modelplugin();
+        $modelPlugin      = $this->modelplugin();
         $dynamicPath      = $modelPlugin->dynamicPath();
+        if ($this->sessionid == "") {
+            header("Location:" . $dynamicPath);
+            exit;
+        }
+    	$this->layout('layout/profilelayout.phtml');
         $jsonArray        = $modelPlugin->jsondynamic();
         $currentPageURL   = $modelPlugin->curPageURL();
         $href             = explode("/", $currentPageURL);

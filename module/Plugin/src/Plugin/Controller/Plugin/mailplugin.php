@@ -6,16 +6,15 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
 class mailplugin extends routeplugin {
 
-    public function confirmationmail($from, $to, $subject, $confirmationMailBody) {
+    public function confirmationmail($to, $from, $subject, $confirmationMailBody) {
         //echo $from;exit;
-        $response = $this->curlpost($from, $to, $subject, $confirmationMailBody);
+        $response = $this->curlpost($to, $from, $subject, $confirmationMailBody);
        echo $response; exit;
     }
 
     public function curlpost($to, $from, $subject, $body) {
         $jsonArray = $this->jsondynamic();
         $url = 'https://api.sendgrid.com/';
-        $request = $url . 'api/mail.send.json';
         $user = $jsonArray['sendgridaccount']['username'];
         $pass = $jsonArray['sendgridaccount']['password'];
         $params = array(
@@ -36,7 +35,7 @@ class mailplugin extends routeplugin {
         $response = curl_exec($session);
         curl_close($session);
         $responseGet = 1;
-        return $response;
+        return 1;
     }
 
 }

@@ -93,12 +93,12 @@ class NotificationController extends AbstractActionController {
                 $html .='</div>';
                 $html .='<div class="e-notification-info">';
                 $html .='<div class="user-name">';
-                $html .='<a class="e-link" href="/users/62/profile">';
+                $html .='<a class="e-link" href="">';
                 $html .='<strong>'.@$likedByDetails[0]['firstname'].' '.@$likedByDetails[0]['lastname'].'</strong>';
                 $html .='</a>';
                 $html .='</div>';
                 $html .='<div class="action">';
-                $html .='<span>liked your</span>';
+                $html .='<span>liked your </span>';
                 if($likeDetails[0]['FID']){
                     $html .='<a class="e-link e-brown pointer">Relationship</a>';
                 } else if($likeDetails[0]['TID']){
@@ -187,7 +187,7 @@ declined'){
                 $html .='</a>';
                 $html .='</div>';
                 $html .='<div class="action">';
-                $html .='<span>tagged you on</span>';
+                $html .='<span>tagged you on </span>';
                 $html .='<a class="e-link e-brown pointer">Album</a>';
                 $html .='</div>';
                 $html .='</div>';
@@ -214,7 +214,7 @@ declined'){
                 $html .='</a>';
                 $html .='</div>';
                 $html .='<div class="action">';
-                $html .='<span>tagged you on</span>';
+                $html .='<span>tagged you on </span>';
                 
                 $html .='<a class="e-link e-brown pointer">';
                 if($uploadDetails[0]['uploadType']=='text'){
@@ -250,8 +250,8 @@ declined'){
                 $html .='</a>';
                 $html .='</div>';
                 $html .='<div class="action">';
-                $html .='<span>wrote</span>';
-                $html .='<a class="e-link e-brown pointer" href="">Tribute</a>';
+                $html .='<span>wrote </span>';
+                $html .='<a class="e-link e-brown pointer" href="">Tribute </a>';
                 $html .='<span>for you</span>';
                 $html .='</div>';
                 $html .='</div>';
@@ -294,7 +294,7 @@ declined'){
                 $html .='</a>';
                 $html .='</div>';
                 $html .='<div class="action">';
-                $html .='<span>commented your</span>';
+                $html .='<span>commented your </span>';
                 $html .=$status;
                 $html .='</div>';
                 $html .='</div>';

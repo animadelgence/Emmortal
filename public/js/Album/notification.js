@@ -12,6 +12,7 @@
 /*jslint eqeq: true */
 /*global radix:true,base_url_dynamic */
 var base_url_dynamic = window.location.origin;
+var RandomNotificationNumber = Math.floor((Math.random() * 100) + 1);
 $(document).ready(function () {
     "use strict";
     
@@ -25,7 +26,7 @@ $(document).ready(function () {
         if ($("#notification-div").is(':visible')) {
             $('#notification-div').hide('show');
         } else {
-            $.get(base_url_dynamic + "/modal/notificationmodal.php", function (result) {
+            $.get(base_url_dynamic + "/modal/notificationmodal.php?version="+RandomNotificationNumber, function (result) {
                 $('#notification-div').html(result);
                 getNotification();
                 $('#notification-div').slideToggle('show');

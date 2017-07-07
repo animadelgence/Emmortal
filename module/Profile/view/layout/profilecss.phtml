@@ -34,6 +34,7 @@ switch ($controller) {
                 $this->headLink()
                     ->prependStylesheet($this->basePath() . '/css/profile/setting.css?version=' . $t)
                     ->prependStylesheet($this->basePath() . '/css/profile/profile.css?version=' . $t)
+                    ->prependStylesheet($this->basePath() . '/css/profile/pattern.css?version=' . $t)
                     ->prependStylesheet('//code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css');
                  break;
         }
@@ -53,7 +54,7 @@ echo $this->headLink()
         ->prependStylesheet($this->basePath() . '/css/Album/notification.css?version=' . $t)
         ->prependStylesheet($this->basePath() . '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
         ->prependStylesheet($this->basePath() . '/css/bootstrap/bootstrap.min.css?version=' . $t)
-    ->prependStylesheet('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') //appended last
+    //->prependStylesheet('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') //appended last
         ->prependStylesheet($this->basePath() . '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     	->prependStylesheet($this->basePath() . '//fonts.googleapis.com/css?family=Oxygen:400,700' );
 ?>

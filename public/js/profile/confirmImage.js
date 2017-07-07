@@ -126,8 +126,8 @@ $(document).ready(function () {
     });
 
 /*Upload Image -- Modal Tab Content Show*/
-    $('body').on('click','#modBtn',function(){
-        $.get(getUrl+"/seomanage/uploadimg", function (result) {
+    $('body').on('click','#bgimageBtn',function(){
+        $.get(getUrl+"/usersetting/uploadimg", function (result) {
 
             console.log(result);return false;
             var jsObject = JSON.parse(result);

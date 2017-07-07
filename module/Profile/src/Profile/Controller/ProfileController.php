@@ -261,6 +261,8 @@ class ProfileController extends AbstractActionController {
         $user_session->loginId  = ($_SESSION['userloginId']);
         $user_session           = new \Zend\Session\Container('userloginId');
         unset($user_session->userloginId);
+        $user_session_temp = new Container('tempStoreName');
+        $user_session_temp->getManager()->getStorage()->clear('tempStoreName');
         
         $plugin                 = $this->routeplugin();
         $dynamicPath            = $plugin->dynamicPath();

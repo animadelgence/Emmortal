@@ -88,11 +88,9 @@ $(document).ready(function () {
                     dob: dob
                 },
                 success: function (result) {
-<<<<<<< HEAD
-                    alert(result);
-                    return false;
-=======
->>>>>>> a16f969f4a4c2f9c19c92976981cce3e2c935919
+                    /*alert(result);
+                    return false;*/
+
                     if (result == 1) {
                         alert("welcome to emmortal,please check your mail and confirm the link to logged in");
                         $('.close').trigger('click');

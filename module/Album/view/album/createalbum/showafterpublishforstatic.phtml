@@ -1,0 +1,99 @@
+<?php //print_r($albumDetails);exit;  ?>
+<div class="e-container albumcontainer">
+   <div class="e-brown m-b-5">
+      <div class="show-adds-btns pull-right" style=" width: 17%;">
+         <div tooltip-placement="bottom" data-toggle="tooltip" title="Likes" class="e-like btn e-btn btn-round full likeClick" data-id="<?php echo $albumDetails[0]['albumeid']; ?>" data-cmd="album" type="album" target="album" color="album.color" style="background-color: rgb(47, 109, 107);float: left;">0</div>
+         <div data-toggle="tooltip" title="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full getTribute" on-link-follow="$close()" content-type="album" content-id="61" comments-count="album.comments_count" color="album.color" style="background-color: rgb(47, 109, 107); margin-right: 5px;float: left;"  data-id="<?php echo $albumDetails[0]['albumeid']; ?>" data-cmd="album">0</div>
+         
+         <div  class="edit-menu-wrapper" style=" padding-top: 4px;">
+            <div dropdown-toggle="" dropdown="" class="edit-menu edit-menu-album e-dropdown dropdown white-dropdown" style="background: rgb(47, 109, 107) none repeat scroll 0% 0%;">
+               <i class="fa fa-cog cog-menu-icon"></i>
+               <ul stop-propagation="" role="menu" class="dropdown-menu text-left" aria-labelledby="single-button" style="width: 12px;">
+                  
+                  <li class="" style="color: rgb(47, 109, 107);"><i class="fa fa-trash m-r-5"></i>Remove</li>
+                  
+                  <li class="editalbum" style="color: rgb(47, 109, 107);" value="<?php echo $getid; ?>" onclick="openalbumforedit(this.value)"><i class="fa fa-pencil m-r-5"></i>Edit</li>
+                  
+                  <li class="" style="color: rgb(47, 109, 107);"><i class="fa fa-thumb-tack m-r-5 font-bold e-red"></i><span class="font-bold e-red">Pinned</span></li>
+                  
+               </ul>
+            </div>
+         </div>
+         
+      </div>
+      <div class="album-header-title inline">
+         
+         <div class="btn e-btn btn-round full btn-brown m-r-10 heightwidthclass" style="background: rgb(47, 109, 107) none repeat scroll 0% 0%; height: 52px !important; margin-top: -9px; width: 52px !important;">0</div>
+        
+         <h3 id="albumtitleid" class="inline text-capitalize" style="color: rgb(47, 109, 107);"><?php echo $albumDetails[0]['title']; ?></h3>
+         <input type="hidden" id="friendsidalbum" value="<?php echo $albumDetails[0]['friendsid']; ?>">
+         <input type="hidden" id="descriptionidalbum" value="<?php echo $albumDetails[0]['description']; ?>">
+         <input type="hidden" id="coloridalbum" value="<?php echo $albumDetails[0]['color']; ?>">
+         <input type="hidden" id="statusidalbum" value="<?php echo $albumDetails[0]['viewstatus']; ?>">
+
+      </div>
+      <div class="m-t-10">
+         
+         <div class="tags-view" target-type="album" target-id="album.id" force="album.force" color="album.color">
+            <button class="spot page-back pull-left pointer animated fadeIn hidden" style="background-color: rgb(47, 109, 107);" disabled="disabled">
+               <div class="fa fa-arrow-left"></div>
+            </button>
+            <button class="spot page-next pull-right pointer animated fadeIn hidden" style="background-color: rgb(47, 109, 107);" disabled="disabled">
+               <div class="fa fa-arrow-right"></div>
+            </button>
+            <div class="tags-wrapper">
+               <?php if($friendsDetails){
+                for($m = 0; $m < count($friendsDetails); $m++) {
+                  if($friendsDetails[$m]["profileimage"] != ""){
+                ?>
+                 <div class="tag animated fadeIn"><a><img data-toggle="tooltip" class="img-responsive img-circle" tooltip-placement="top" title="<?php echo $friendsDetails[$m]["friendsname"]; ?>" src="<?php echo $friendsDetails[$m]["profileimage"]; ?>"></a></div>
+              <?php }else{?>
+                   <div class="tag animated fadeIn"><a><img data-toggle="tooltip" class="img-responsive img-circle" tooltip-placement="top" title="<?php echo $friendsDetails[$m]["friendsname"]; ?>" src="<?php echo $dynamicPath."/image/profile-deafult-avatar.jpg"; ?>"></a></div>
+              <?php  }
+              }
+              }else { ?>
+
+                <h3 class="inline e-brown m-t-0 m-b-0" style="color: rgb(47, 109, 107);">Nobody has been tagged to this album</h3>
+
+                <?php  } 
+
+                ?>
+               
+              
+               
+            </div>
+            <div class="clearfix"></div>
+         </div>
+       
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-3 col-sm-4 cover-tagged">
+         <div class="cover-wrapper"><img id="albumimagefullpath"  class="img-responsive" src="<?php echo $albumDetails[0]["albumimagepath"]; ?>?xvc"></div>
+      </div>
+   </div>
+  
+   <div class="content m-t-30 p-t-10" style="border-top: 1px solid #aaa897;">
+      
+      <div class="row ng-scope">
+         <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12">
+            <div class="album-tooltip">
+               <h3 class="e-brown text-center"> Add photos, videos and texts to this album.</h3>
+               <h4 class="e-brown text-center m-t-5"> "Add" button is always accessible on right top menu.</h4>
+               <div class="row m-t-10">
+                  <div class="col-xs-4 col-sm-4 text-center"><a onclick="imagemodalopen();" class="btn btn-brown pointer e-btn"><i class="fa fa-camera"></i> Add Photo</a></div>
+                  <div class="col-xs-4 col-sm-4 text-center"><a onclick="videomodalopen();" class="btn btn-brown pointer e-btn"><i class="fa fa-video-camera"></i> Add Video</a></div>
+                  <div class="col-xs-4 col-sm-4 text-center"><a onclick="textmodalopen();" class="btn btn-brown pointer e-btn"><i class="fa fa-file-text-o"></i> Add Text</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <div infinite-scroll="recordsLoader.nextPage()" class="sortable-container">
+         <div sv-root="" sv-part="recordsLoader.items" sv-on-start="checkEditable()" sv-on-sort="updateWeights($item, $partFrom, $partTo, $indexFrom, $indexTo)" class="records-wrapper ng-scope">
+           
+         </div>
+      </div>
+   </div>
+   
+</div>

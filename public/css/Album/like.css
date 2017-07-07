@@ -1209,9 +1209,9 @@ html,body{
     height:170px;
     resize:none
 }
-.album-preview{
-    padding:10px 0;
-    border-bottom:2px solid #aaa897
+.album-preview {
+  border-bottom: 2px solid #aaa897;
+  padding: 0 0 10px;
 }
 .album-preview:hover{
     background:rgba(170,168,151,0.08)
@@ -1248,16 +1248,17 @@ html,body{
 .album-preview .album-preview-info .action-btns .edit-menu-wrapper .edit-menu{
     border:1px solid #fff
 }
-.album-preview .album-preview-collection{
-    display:inline-block;
-    vertical-align:middle;
-    float:right;
-    width:315px
+.album-preview .album-preview-collection {
+  display: inline-block;
+  float: right;
+  vertical-align: middle;
+  width: 323px;
 }
-.album-preview .album-preview-collection .image-wrapper{
-    display:inline-block;
-    width:100px;
-    margin-right:5px
+.album-preview .album-preview-collection .image-wrapper {
+  display: inline-block;
+  height: 103px;
+  margin-right: 5px;
+  max-width: 100%;
 }
 @media all and (max-width: 767px){
     .album-preview .album-preview-collection{
@@ -1954,7 +1955,7 @@ body {
     top: 25%;
     left:25%; 
     color: #999; 
-    background: #fffccc; 
+    background:transparent;
 }
 .zoomIn {
   background-color: #fff;

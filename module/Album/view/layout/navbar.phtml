@@ -17,7 +17,7 @@
             </div>
             <div class="col-lg-8" id="secondnavbarimage">
                <a href="<?php echo $dynamicPath;?>" class="logo-style">Emmortal</a>
-               <?php if( count($userDetails)){ ?>
+               <?php if( !empty($userDetails)){ ?>
                <!-- <button class="btn btn-default dropdown-toggle down-arrow arrow-toggle collapsed" type="button" id="dropdownMenu1" data-toggle="collapse" data-target="#dropped_ui" >
                    <i class="fa fa-chevron-up" id="arrowiconid" aria-hidden="true" style= "padding-bottom: 3px;"></i>-->
                    <!--<i class="fa fa-chevron-down" aria-hidden="true" style= "padding-bottom: 3px;"></i>-->
@@ -31,7 +31,7 @@
                 }?>"/></span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname'];?></a></li>
                   <li><a href="javascript:void(0);"  onclick="albumdetailsmodal();" class="relationships" id="<?php echo $userDetails[0]['userid'];?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Albums</a></li>
                   <li><a href="javascript:void(0);" onclick="relationshipsmodal();" class="relationships" data-name="<?php echo $userDetails[0]['firstname'];?>">Relationships</a></li>
-                  <li><a href="javascript:void(0);">Tributes</a></li>
+                  <li><a href="javascript:void(0);" onclick="tributedetailsmodal();" class="tributes" id="<?php echo $userDetails[0]['userid'];?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Tributes</a></li>
                </ul>
                <?php } ?>
             </div>

@@ -44,6 +44,9 @@ class ProfileController extends AbstractActionController {
         }else
         {
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$idOfUSer));
+            if(empty($userDetails)){
+                return $this->redirect()->toUrl($dynamicPath);
+            }
             $pageQuery = array('UID'=>$userDetails[0]['userid']);
             $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
             $uploadQuery = array('UID'=>$userDetails[0]['userid'],'PID'=>$pageDetails[0]['pageid']);

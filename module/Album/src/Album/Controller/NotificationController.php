@@ -94,7 +94,7 @@ class NotificationController extends AbstractActionController {
                 $html .='</div>';
                 $html .='<div class="e-notification-info">';
                 $html .='<div class="user-name">';
-                $html .='<a class="e-link" href="">';
+                $html .='<a class="e-link" href="/profile/showprofile/'.@$likedByDetails[0]['uniqueUser'].'">';
                 $html .='<strong>'.@$likedByDetails[0]['firstname'].' '.@$likedByDetails[0]['lastname'].'</strong>';
                 $html .='</a>';
                 $html .='</div>';
@@ -164,7 +164,7 @@ declined'){
                 $html .='</div>';
                 $html .='<div class="e-notification-info">';
                 $html .='<div class="user-name">';
-                $html .='<a class="e-link" href="">';
+                $html .='<a class="e-link" href="/profile/showprofile/'.@$friendPersonalDetails[0]['uniqueUser'].'">';
                 $html .='<strong>'.@$friendPersonalDetails[0]['firstname'].' '.@$friendPersonalDetails[0]['lastname'].'</strong>';
                 $html .='</a>';
                 $html .='</div>';
@@ -201,7 +201,7 @@ declined'){
                 $html .='</div>';
                 $html .='<div class="e-notification-info">';
                 $html .='<div class="user-name">';
-                $html .='<a class="e-link" href="">';
+                $html .='<a class="e-link" href="/profile/showprofile/'.@$taggedByDetails[0]['uniqueUser'].'">';
                 $html .='<strong>'.@$taggedByDetails[0]['firstname'].' '.@$taggedByDetails[0]['lastname'].'</strong>';
                 $html .='</a>';
                 $html .='</div>';
@@ -228,7 +228,7 @@ declined'){
                 $html .='</div>';
                 $html .='<div class="e-notification-info">';
                 $html .='<div class="user-name">';
-                $html .='<a class="e-link" href="">';
+                $html .='<a class="e-link" href="/profile/showprofile/'.@$taggedByDetails[0]['uniqueUser'].'">';
                 $html .='<strong>'.@$taggedByDetails[0]['firstname'].' '.@$taggedByDetails[0]['lastname'].'</strong>';
                 $html .='</a>';
                 $html .='</div>';
@@ -264,7 +264,7 @@ declined'){
                 $html .='</div>';
                 $html .='<div class="e-notification-info">';
                 $html .='<div class="user-name">';
-                $html .='<a class="e-link" href="">';
+                $html .='<a class="e-link" href="/profile/showprofile/'.@$friendDetails[0]['uniqueUser'].'">';
                 $html .='<strong>'.@$friendDetails[0]['firstname'].' '.@$friendDetails[0]['lastname'].'</strong>';
                 $html .='</a>';
                 $html .='</div>';
@@ -313,7 +313,7 @@ declined'){
                 $html .='</div>';
                 $html .='<div class="e-notification-info">';
                 $html .='<div class="user-name">';
-                $html .='<a class="e-link" href="">';
+                $html .='<a class="e-link" href="/profile/showprofile/'.@$friendDetails[0]['uniqueUser'].'">';
                 $html .='<strong>'.@$friendDetails[0]['firstname'].' '.@$friendDetails[0]['lastname'].'</strong>';
                 $html .='</a>';
                 $html .='</div>';

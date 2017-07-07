@@ -29,7 +29,7 @@ class FriendrequestsController extends AbstractActionController {
         $friendlikes = '';
         $noOfTributes = '';
         $userid = $this->sessionid;
-        $param = $_POST['param'];
+       // $param = $_POST['param'];
         foreach ($userdetails as $rSet) {
             $frndid = $rSet['userid'];
             $sendfrndCon     = array('friends.userid'=>$userid,'friends.friendsid'=>$frndid);
@@ -47,7 +47,16 @@ class FriendrequestsController extends AbstractActionController {
                 $friendlikes = count($modelPlugin->getlikesdetailsTable()->fetchall($where));
                 $noOfTributes = count($modelPlugin->gettributedetailsTable()->fetchall($where));
                 
-                if($sendfrndDetails[0]['requestaccept'] == 1){
+                $array[] = array(
+                    'friendsid'     => $sendfrndDetails[0]['friendsid'],
+                    'friendsname'   => $sendfrndDetails[0]['firstname']." ".$sendfrndDetails[0]['lastname'],
+                    'profileimage'  => $sendfrndDetails[0]['profileimage'],
+                    'friendslikes'  => $friendlikes,
+                    'noOfTributes'  => $noOfTributes,
+                    'status'        => $sendfrndDetails[0]['relationshipstatus']
+                );
+                
+                /*if($sendfrndDetails[0]['requestaccept'] == 1){
                     $status = "Accepted";
                 } else{
                     $status = "Outgoing";
@@ -71,7 +80,7 @@ class FriendrequestsController extends AbstractActionController {
                             'noOfTributes'  => $noOfTributes,
                             'status'        => $status
                         );
-                }
+                }*/
             } else if(count($recfrndDetails)>0){
                 
                 $where = array(
@@ -80,7 +89,17 @@ class FriendrequestsController extends AbstractActionController {
                 $friendlikes = count($modelPlugin->getlikesdetailsTable()->fetchall($where));
                 $noOfTributes = count($modelPlugin->gettributedetailsTable()->fetchall($where));
                 
-                if($recfrndDetails[0]['requestaccept'] == 1){
+                 $array[] = array(
+                            'friendsid'     => $recfrndDetails[0]['userid'],
+                            'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
+                            'profileimage'  => $recfrndDetails[0]['profileimage'],
+                            'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'friendslikes'  => $friendlikes,
+                            'noOfTributes'  => $noOfTributes,
+                            'status'        => $recfrndDetails[0]['relationshipstatus']
+                        );
+                
+                /*if($recfrndDetails[0]['requestaccept'] == 1){
                     $status = "Accepted";
                 } else{
                     $status = "Incoming";
@@ -121,7 +140,7 @@ class FriendrequestsController extends AbstractActionController {
                             'status'        => $status
                         );
                 }
-                }
+                }*/
             } /*else if(count($recfrndDetails)>0){
                 if($recfrndDetails[0]['relationshipstatus'] == 'declined'){
                 if($recfrndDetails[0]['requestaccept'] == 1){
@@ -140,14 +159,14 @@ class FriendrequestsController extends AbstractActionController {
                 }
                 }
             }*/ else{
-                if($param=='All'){
+                //if($param=='All'){
                 $array[] = array(
                     'friendsid'     => $rSet['userid'],
                     'friendsname'   => $rSet['firstname']." ".$rSet['lastname'],
                     'profileimage'  => $rSet['profileimage'],
                     'status'        => 'New'
                 );
-                }
+               // }
             }
           }
         if(count($array)<1){

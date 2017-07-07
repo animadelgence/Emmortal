@@ -32,6 +32,7 @@ class user
     public $friendshipdate;
     public $requestaccept;
     public $relationshipstatus;
+    public $uniqueUser;
     
     function exchangeArray($data)
 	{
@@ -61,6 +62,7 @@ class user
         $this->friendshipdate = (!empty($data['friendshipdate'])) ? $data['friendshipdate'] : null;
         $this->requestaccept = (!empty($data['requestaccept'])) ? $data['requestaccept'] : null;
         $this->relationshipstatus = (!empty($data['relationshipstatus'])) ? $data['relationshipstatus'] : null;
+        $this->uniqueUser = (!empty($data['uniqueUser'])) ? $data['uniqueUser'] : null;
 	}
 
     public function getArrayCopy()

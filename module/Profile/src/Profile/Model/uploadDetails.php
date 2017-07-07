@@ -37,6 +37,7 @@ class uploadDetails
     public $findme;
     public $content;
     public $activation;
+    public $uniqueUser;
 
     function exchangeArray($data)
 	{
@@ -71,6 +72,7 @@ class uploadDetails
         $this->findme = (!empty($data['findme'])) ? $data['findme'] : null;
         $this->content = (!empty($data['content'])) ? $data['content'] : null;
         $this->activation = (!empty($data['activation'])) ? $data['activation'] : null;
+        $this->uniqueUser = (!empty($data['uniqueUser'])) ? $data['uniqueUser'] : null;
         
 	}
 

@@ -47,6 +47,7 @@ class AlbumController extends AbstractActionController {
         $uploadQuery = array();
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
          $likeDetailsArrays = array();
+        $likeDetailsArray = array();
 
         foreach ($uploadDetails as $upload) {
            $uploadId = $upload['uploadId'];

@@ -24,7 +24,7 @@ class ProfileController extends AbstractActionController {
         }
     }
     public function showprofileAction(){
-       
+
     	$this->layout('layout/profilelayout.phtml');
 
     	$modelPlugin    = $this->modelplugin();
@@ -34,10 +34,23 @@ class ProfileController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = @$href[3];
         $action = @$href[4];
-        $pageQuery = array('UID'=>$this->sessionid);
-        $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
-        $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
-        $uploadQuery = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        if($idOfUSer==""){
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+            $pageQuery = array('UID'=>$this->sessionid);
+            $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
+            $uploadQuery = array('UID'=>$this->sessionid,'PID'=>$pageDetails[0]['pageid']);
+        }else
+        {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$idOfUSer));
+            if(empty($userDetails)){
+                return $this->redirect()->toUrl($dynamicPath);
+            }
+            $pageQuery = array('UID'=>$userDetails[0]['userid']);
+            $pageDetails = $modelPlugin->getpagedetailsTable()->fetchall($pageQuery);
+            $uploadQuery = array('UID'=>$userDetails[0]['userid'],'PID'=>$pageDetails[0]['pageid']);
+        }
         $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
          
         foreach ($uploadDetails as $upload) {
@@ -48,9 +61,6 @@ class ProfileController extends AbstractActionController {
             
             $likeDetailsArray[$uploadId] = $likeDetails;
              array_push($likeDetailsArrays,$likeDetailsArray);
-
-
-           
         }
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
         if(@getimagesize($userDetails[0]['backgroundimage'])){
@@ -59,7 +69,7 @@ class ProfileController extends AbstractActionController {
             else{
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
-        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid, 'userDetails'=>$userDetails,'bgimg'=>$bgimgSend));
+        $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid,'LoggedInUserDetails'=>$LoggedInUserDetails, 'userDetails'=>$userDetails,'bgimg'=>$bgimgSend));
         if(empty($likeDetailsArrays)){
              return new ViewModel(array('sessionid'=>$id,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails));
 

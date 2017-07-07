@@ -1,18 +1,18 @@
 var getUrl = window.location.origin;
 
-//$(function(){
-//
-//	var getpath = document.URL;
-//           // alert(document.URL);return false;
-//            var actionname = getpath.split("/"),
-//             pathname = actionname[5],
-//             encryptedmailid = actionname[6];
-//            //alert(pathname);forgetpassword
-//        if(pathname == "confirmed"){
-//        	$('#squarespaceModalchangeimage').modal('show');
-//        }
-//
-//});
+$(function(){
+
+	var getpath = document.URL;
+           // alert(document.URL);return false;
+            var actionname = getpath.split("/"),
+             pathname = actionname[5],
+             encryptedmailid = actionname[6];
+            //alert(pathname);forgetpassword
+        if(pathname == "confirmed"){
+        	$('#squarespaceModalchangeimage').modal('show');
+        }
+
+});
 
 /* Image Fileupload */
 window.onload = function () {
@@ -95,6 +95,7 @@ $(document).ready(function () {
             $('#errorImg2').css('display', 'none');
             $('#img_prev').css('display', 'block');
             $('.save').attr("disabled", false);
+            $('#imgSrc').removeAttr('value'); // to change img src in canvas-placeholderbkimage
 
         }
     });

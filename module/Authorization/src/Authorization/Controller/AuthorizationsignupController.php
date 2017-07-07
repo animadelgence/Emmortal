@@ -48,12 +48,12 @@ class AuthorizationsignupController extends AbstractActionController {
         $mailplugin = $this->mailplugin();
         $dynamicPath = $plugin->dynamicPath();
         $jsonArray = $plugin->jsondynamic();
-      
+        $uniqueUser = time() . rand(10, 100);
         $keyArray = array('emailid'=>$email);
         $usercheck = $modelPlugin->getuserTable()->fetchall($keyArray);
         
             if(count($usercheck) == 0){
-                $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'dateofbirth'=>$dob,'signindate' => date('Y-m-d'));
+                $insertedArray = array('emailid' => $email, 'password' => $password, 'firstname' => $firstName, 'lastname' => $lastName,'uniqueUser'=>$uniqueUser,'dateofbirth'=>$dob,'signindate' => date('Y-m-d'));
                 $albumFolder = $modelPlugin->getuserTable()->savedata($insertedArray,$keyArray);
                 $insrtArrayforpagetable =array('UID'=>$albumFolder, 'createddate' =>date('Y-m-d'));
                 //print_r($insrtArrayforpagetable);exit;

@@ -229,8 +229,10 @@ $(document).ready(function () {
 });
 
 function albumfunctionClick() {
-    albummodalopen();
-    $('#errorModal').modal('hide');
+    /*albummodalopen();
+    $('#errorModal').modal('hide');*/
+    $("#albumInsertModal").css("z-index","9999");
+    $('#errorModal').remove();
 }
 function albumClick()
 {

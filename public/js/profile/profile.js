@@ -226,8 +226,10 @@ $('.vid-sec').mouseleave(function() {
 });
 });
 function textfunctionClick() {
-    textmodalopen();
-    $('#errorModal').modal('hide');
+    /*textmodalopen();
+    $('#errorModal').modal('hide');*/
+    $("#textInsertModal").css("z-index","9999");
+    $('#errorModal').remove();
 }
 function textClick()
 {

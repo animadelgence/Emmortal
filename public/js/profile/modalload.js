@@ -490,6 +490,12 @@ function errormodalopen(param,secondParam){
             }
             $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="albumfunctionClick();"></i>');
         }
+        if(secondParam == 'tribute') {
+            if($('.closebtn').length) {
+                $('.closebtn').remove();
+            }
+            $('#onclickAppend').append('<i aria-hidden="true" class="fa fa-times closebtn" onclick="tributefunctionClick();"></i>');
+        }
     });
 
 }

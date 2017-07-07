@@ -28,7 +28,7 @@
                </div>
                 <div class="form-group full-width" >
                   <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" placeholder="Date of birth"/>
+                    <input type='text' class="form-control" id= "datepicker" placeholder="Date of birth"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>

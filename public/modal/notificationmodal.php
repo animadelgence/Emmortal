@@ -4,7 +4,8 @@
         <button class="btn e-btn btn-xs btn-brown m-r-10 m-b-5 all-seen">Mark all as read</button>
     </div>
     <div class="notifications-wrapper" id="notification-append">
-        <div class="e-brown text-center animated fadeIn" id="no-notification">You have no notification yet</div>
+        <div class="e-brown text-center animated fadeIn" id="no-notification" style="margin: 20px;
+    font-size: 18px;">You have no notification yet</div>
         <div id="all-notification" style="display:none;">
         </div>
     </div>

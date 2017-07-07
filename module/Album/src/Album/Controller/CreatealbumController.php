@@ -168,16 +168,29 @@ class CreatealbumController extends AbstractActionController {
         $action = $this->params('action');
         $geturlid = $this->params('id');
         $getid = base64_decode($geturlid);
+        $LoggedInUserDetails = $this->params('pid');
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
-        $uploadQuery =  array('UID'=> $this->sessionid,'albumeid' =>$getid );
+        if($LoggedInUserDetails != ""){
+            $uploadQuery =  array('albumeid' =>$getid );
+        }else{
+            $uploadQuery =  array('UID'=> $this->sessionid,'albumeid' =>$getid );
+        }
+        
         $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
+        //print_r($albumDetails);exit;
         $friendsArray = explode(',',$albumDetails[0]['friendsid']);
         $userid = $this->sessionid;
         $friendsDetails = array();
+         $userDetailsarray = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$LoggedInUserDetails));
+         $loggedInUserUniqueId = $userDetailsarray[0]['userid'];
         for ($i=0; $i < count($friendsArray)-1; $i++) { 
             
             $frndid = $friendsArray[$i];
+             if($LoggedInUserDetails != ""){
+                $condition     = array('friends.userid'=>$loggedInUserUniqueId,'friends.friendsid'=>$frndid);
+            } else{
             $condition     = array('friends.userid'=>$userid,'friends.friendsid'=>$frndid);
+        }
             $join    = "friends.friendsid = user.userid";
             //$getfriendsdetails = $modelPlugin->getfriendsTable()->joinquery($condition,$join);
             $getfriendsdetails = $modelPlugin->getfriendsTable()->joinquery($condition,$join);
@@ -194,12 +207,27 @@ class CreatealbumController extends AbstractActionController {
         }
         //print_r($friendsDetails);
 //exit;
-        if($this->sessionid == "") {
-            $bgimgSend = $bgimg[0]['bgimgpath'];
-             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
-            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails' =>$userDetails));
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
+        
+        if($idOfUSer) {
+             $bgimgSend = $bgimg[0]['bgimgpath'];
+            //  $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+            // return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails' =>$userDetails));
+
+             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
+
         } else {
-            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+              if($LoggedInUserDetails != ""){
+                $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$idOfUSer));
+
+             }
+                else{
+                    $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+                }
 
             if(@getimagesize($userDetails[0]['backgroundimage'])){
                 $bgimgSend = $userDetails[0]['backgroundimage'];
@@ -207,7 +235,7 @@ class CreatealbumController extends AbstractActionController {
             else{
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
-             $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
         }
        
@@ -222,6 +250,7 @@ class CreatealbumController extends AbstractActionController {
         $controller = 'createalbum';
         $action = $this->params('action');
         $geturlid = $this->params('id');
+        $LoggedInUserDetails = $this->params('pid');
         $getid = base64_decode($geturlid);
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
         $uploadQuery =  array('albumeid' =>1 );
@@ -232,7 +261,11 @@ class CreatealbumController extends AbstractActionController {
         for ($i=0; $i < count($friendsArray)-1; $i++) { 
             
             $frndid = $friendsArray[$i];
+            if($LoggedInUserDetails != ""){
+                $condition     = array('friends.userid'=>$LoggedInUserDetails,'friends.friendsid'=>$frndid);
+            } else{
             $condition     = array('friends.userid'=>$userid,'friends.friendsid'=>$frndid);
+        }
             $join    = "friends.friendsid = user.userid";
             //$getfriendsdetails = $modelPlugin->getfriendsTable()->joinquery($condition,$join);
             $getfriendsdetails = $modelPlugin->getfriendsTable()->joinquery($condition,$join);
@@ -249,12 +282,23 @@ class CreatealbumController extends AbstractActionController {
         }
         //print_r($friendsDetails);
 //exit;
-        if($this->sessionid == "") {
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
+        
+        if($idOfUSer) {
             $bgimgSend = $bgimg[0]['bgimgpath'];
-             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
             return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails' =>$userDetails));
         } else {
-            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+             if($LoggedInUserDetails != ""){
+                $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$LoggedInUserDetails));
+
+             }
+                else{
+                    $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+                }
+            
 
             if(@getimagesize($userDetails[0]['backgroundimage'])){
                 $bgimgSend = $userDetails[0]['backgroundimage'];
@@ -262,7 +306,7 @@ class CreatealbumController extends AbstractActionController {
             else{
              $bgimgSend = $bgimg[0]['bgimgpath'];
             }
-             $this->layout()->setVariables(array('sessionid'=> $this->sessionid,'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
+             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'bgimg'=>$bgimgSend));
             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
         }
        

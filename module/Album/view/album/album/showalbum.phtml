@@ -27,7 +27,7 @@
                        // for($j = 0;$j< count($likeDetailsArrays); $j++){
                            $uploadId = $uploadDetails[$i]['uploadId'];
                            $uploadAlbumId = $uploadDetails[$i]['AID'];
-                           $encodeUploadId = base64_encode($uploadAlbumId);
+                           //$encodeUploadId = base64_encode($uploadAlbumId);
 
                                          if($uploadDetails[$i]['uploadType'] == "text"){
 
@@ -59,8 +59,8 @@
                                                   $uploadedImage = $dynamicPath."/image/NoPhotoDefault.png";
                                               }
 
-                                              echo ' <li class="gs-w" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="album" data-id="'.$uploadDetails[$i]['uploadId'].'"><a href="'.$dynamicPath.'/createalbum/showafterpublish/'.$encodeUploadId.'">
-                                              <span><img name="ImageName" id="" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span></a><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div>
+                                              echo ' <li class="gs-w albumid" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="album" id="'.$uploadAlbumId.'" data-id="'.$uploadDetails[$i]['uploadId'].'">
+                                              <span><img name="ImageName" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div>
 
 
                </li>';

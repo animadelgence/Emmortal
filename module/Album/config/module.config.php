@@ -157,7 +157,7 @@ return array(
              'Createalbum' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/createalbum[/:action][/:id]',
+                     'route'    => '/createalbum[/:action][/:id][/:pid]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                          

@@ -241,7 +241,7 @@ function imagefunctionClick() {
     /*imagemodalopen();
     $('#errorModal').modal('hide');*/
     $("#photoInsertModal").css("z-index","9999");
-    $("#errorModal").css("z-index","0");
+    $('#errorModal').remove();
 }
 function launchEditor(id, src) {
     featherEditor.launch({

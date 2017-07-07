@@ -128,7 +128,8 @@ function tributefunctionClick() {
     /*tributemodalopen();
     $('#errorModal').modal('hide');*/
     $("#tributemodal").css("z-index","9999");
-    $("#errorModal").css("z-index","0");
+    $('#errorModal').remove();
+    
 }
 function tributeClick()
 {

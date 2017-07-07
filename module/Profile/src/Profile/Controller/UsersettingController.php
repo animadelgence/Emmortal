@@ -181,6 +181,7 @@ class UsersettingController extends AbstractActionController {
 
               $request1 = $this->getRequest()->getPost();
               $name = $request1['filename'];
+              //print_r($name) ; exit;
               $request = $this->getRequest();
               $files = $request->getFiles()->toArray();
          //print_r($files); exit;

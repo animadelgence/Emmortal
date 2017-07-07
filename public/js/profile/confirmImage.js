@@ -127,9 +127,9 @@ $(document).ready(function () {
 
 /*Upload Image -- Modal Tab Content Show*/
     $('body').on('click','#bgimageBtn',function(){
-        $.get(getUrl+"/usersetting/uploadimg", function (result) {
+        $.get(getUrl+"/settings/uploadimg", function (result) {
 
-            console.log(result);return false;
+            //console.log(result);return false;
             var jsObject = JSON.parse(result);
             var appendStructure = '<ul class="emmortal-tab-image__list">';
             $.each(jsObject, function(i, item) {

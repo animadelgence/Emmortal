@@ -50,16 +50,83 @@ function relationshipsmodal()
     if($('#relationshipsmodal').length) {
         $('#relationshipsmodal').remove();
     }
-    $.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
+    var pageUrl = window.location.href;
+    var pageUrlarray = pageUrl.split("/");
+    var lastEl = pageUrlarray.slice(-1)[0];
+
+    $.ajax({
+        type: "POST",
+        data : {
+            userid : lastEl
+        },
+        url: getUrl + '/redirection/redirectuserdetails',
+        success: function (res) {
+            //alert(res);
+            var jsObject = JSON.parse(res),
+                buttonhtml = '',
+                extrahtml = '',
+                html = '',
+                jsObjectSecond = '';
+            if(jsObject.sessionid != jsObject.tempuserid) {
+                
+                $.get(getUrl+"/modal/temprelationshipmodal.php?version="+RandomNumber, function (result) {
+                    // append response to body
+                    $('body').append(result);
+                    $('#temprelationshipmodal').modal('show');
+                    var name = $('.relationships').attr('data-name');
+                    $(".firstName").html(name);
+                    $.ajax({
+                        type: "POST",
+                        data : {
+                            tempuserid  : jsObject.tempuserid
+                        },
+                        url: base_url_dynamic + '/redirection/searchrelationship',
+                        success: function (res) {
+                            //console.log(res);return false;
+                            jsObjectSecond = JSON.parse(res);
+                            for (i = 0; i < jsObjectSecond.userDetails.length; i++) {
+                                extrahtml = '',
+                                buttonhtml = '';   
+                                var id = jsObjectSecond.userDetails[i].friendsid,
+                                    friendsname = jsObjectSecond.userDetails[i].friendsname,
+                                    profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg",
+                                    uniqueuser = jsObjectSecond.userDetails[i].uniqueUser;
+                                if (jsObjectSecond.userDetails[i].profileimage != null) { // jshint ignore:line
+                                    profileimage = jsObjectSecond.userDetails[i].profileimage;
+                                }
+                                buttonhtml +='<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="relationship">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
+
+                                extrahtml += '<a class="e-link pointer">View Relationship Page</a>';
+
+                                html += '<div class="user-field m-t-25 animated fadeIn"><input type = "hidden" value = "'+friendsname+'"><div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" href="/profile/showprofile/'+uniqueuser+'"><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3>'+extrahtml+'</div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+buttonhtml+'</div></form></div>';
+                                $('#tempResult').html(html);
+                            }
+                        }
+                    });
+                });
+            } else {
+                $.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
+                    $('body').append(result);
+                    $('#relationshipsmodal').modal('show');
+                    var name = $('.relationships').attr('data-name');
+                    $(".firstName").html(name);
+                    //friendlist('AllFriend', '');
+                });
+            }
+        }
+    });
+
+    /*$.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
-        $('#relationshipsmodal').modal('show');
+        
+       /* $('#relationshipsmodal').modal('show');
         var name = $('.relationships').attr('data-name');
         $(".firstName").html(name);
-        friendlist('AllFriend', '');
+        friendlist('AllFriend', '');*/
 
-    });
+    //});*/
 }
 
 function tributedetailsmodal()
@@ -87,6 +154,9 @@ function albumdetailsmodal()
     }
     $.get(getUrl+"/modal/albumdetailsmodal.php?version="+RandomNumber, function (result) {
         // append response to body
+        var pageUrl = window.location.href;
+        var pageUrlarray = pageUrl.split("/");
+        var lastEl = pageUrlarray.slice(-1)[0];
         $('body').append(result);
         // open modal
         $('#albumdetailsmodal').modal('show');
@@ -95,14 +165,14 @@ function albumdetailsmodal()
         var encodeUploadIdStatic = btoa('1');
         $.ajax({
         type: "POST",
-        url: getUrl + '/album/fetchallalbum',
+        url: getUrl + '/album/fetchallalbum/'+lastEl,
         success: function (res) {
             var jsObject = JSON.parse(res);
                  var   i = 0;
                  var   appendHtml = "";
                  var k = jsObject.uploadDetails.length;
                  if(k){
-                    appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+getUrl+'/image/no_cover-e343970a522a1599bd04bb0453d26b90.jpg"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="'+getUrl+'/createalbum/showafterpublishforstatic/'+encodeUploadIdStatic+'"">My chronicle</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
+                    appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+getUrl+'/image/no_cover-e343970a522a1599bd04bb0453d26b90.jpg"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="'+getUrl+'/createalbum/showafterpublishforstatic/'+encodeUploadIdStatic+'/'+lastEl+'">My chronicle</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
             appendHtml += '<div class="album-preview-collection">';
                 
                 for(var l = 0; l < k; l++){
@@ -130,9 +200,9 @@ function albumdetailsmodal()
       if(m){
         for(var n = 0; n < m; n++){
             var albumId = jsObject.albumValue[n].AID;
-            alert(1);
+            
             var encodeUploadId = btoa(albumId);
-                        appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+jsObject.albumValue[n].albumimagepath+'" style="height:100%;"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="'+getUrl+'/createalbum/showafterpublish/'+encodeUploadId+'">'+jsObject.albumValue[n].title+'</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
+                        appendHtml += '<div class="m-t-5 ng-scope"><div class="album-preview ng-isolate-scope"><div class="album-preview-cover-wrapper m-r-10"><img class="img-responsive" src="'+jsObject.albumValue[n].albumimagepath+'" style="height:100%;"></div><div class="album-preview-info"><a class="album-preview-title font-bold e-link ng-binding" href="'+getUrl+'/createalbum/showafterpublish/'+encodeUploadId+'/'+lastEl+'">'+jsObject.albumValue[n].title+'</a><div class="e-brown m-b-10"><small class="album-preview-location"></small></div><div class="action-btns"><div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full ng-binding ng-isolate-scope">0</div><div tooltip="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full ng-binding ng-isolate-scope" content-id="47" >0</div></div></div>';
             appendHtml += '<div class="album-preview-collection">';
                     var s = jsObject.albumValue[n].uploadDetails.length;
                     for(var t=0; t<s; t++){

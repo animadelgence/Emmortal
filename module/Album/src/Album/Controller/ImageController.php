@@ -75,7 +75,10 @@ class ImageController extends AbstractActionController {
         $dynamicPath = $plugin->dynamicPath();
         $imageTitle = $_POST['imageTitle'];
         $imagePath = $_POST['imagePath'];
-        
+        $albumId = $_POST['albumId'];
+        if(empty($albumId)) {
+            $albumId = 1;
+        }
         /*$imageFolder = $_POST['imageFolder'];
         $imageName = $_POST['imageName'];
         $pathThumb = $this->resizeImage($imageFolder, $imageName);*/
@@ -125,7 +128,7 @@ class ImageController extends AbstractActionController {
                             'uploadDescription'=>$imageDescription,
                             'uploadPath'=>$imageNewPath1,
                             'uploadType'=>'image',
-                            'AID'=>1,
+                            'AID'=>$albumId,
                             'FID'=>$friendsid,
                             'TimeStamp'=>$addeddate
                             );
@@ -151,7 +154,8 @@ class ImageController extends AbstractActionController {
         {
             $result = 1;
         }
-        echo $result; exit;
+        $userDetails =  $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        echo $userDetails[0]['uniqueUser']; exit;
             //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }
     /*public function resizeImage($updir, $img)

@@ -88,7 +88,8 @@ class VideoController extends AbstractActionController {
                 }
             }
            
-           echo $albumDetails;exit;
+             $userDetails =  $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+             echo $userDetails[0]['uniqueUser']; exit;
            
     }
 }

@@ -198,7 +198,8 @@
                               $(".profile-paginator__click.active").trigger("click");
                             } else{
                                
-                                window.location.href = baseURL + "/profile/showprofile";
+                                window.location.href = baseURL + "/profile/showprofile"+res+"";
+
                             }
 
                     }

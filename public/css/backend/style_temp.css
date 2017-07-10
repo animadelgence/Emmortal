@@ -2057,6 +2057,10 @@ label {
     font-weight: 114px;
     padding: 12px;
     border: 1px solid #666666;
+    border-radius: 5px;
+}
+.dwnload_csv:link{
+    text-decoration: none !important;
 }
 .dwnload_csv:hover{
     background: #827657 none repeat scroll 0 0 !important;
@@ -2080,9 +2084,16 @@ label {
     margin-right: 20px;
     float: right;
     border: 1px solid #666666;
+    border-radius: 5px;
+}
+.new_user:link{
+    text-decoration: none !important;;
 }
 .new_user:hover{
     border-color: #b6b6b6;
+    color: #fff !important;
+}
+.new_user:active{
     color: #fff !important;
 }
 .new_tag{

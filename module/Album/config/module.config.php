@@ -17,6 +17,7 @@ return array(
              'Album\Controller\Tribute' => 'Album\Controller\TributeController',
              'Album\Controller\Notification' => 'Album\Controller\NotificationController',
              'Album\Controller\Lazyload' => 'Album\Controller\LazyloadController',
+             'Album\Controller\Redirection' => 'Album\Controller\RedirectionController',
              'Album\Controller\Createalbum' => 'Album\Controller\CreatealbumController'
 
            
@@ -168,7 +169,20 @@ return array(
                      ),
                  ),
              ),
-             
+             'Redirection' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/redirection[/:action][/:id][/:pid]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Album\Controller\Redirection',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
          ),
      ),
     

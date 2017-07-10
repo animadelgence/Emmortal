@@ -109,8 +109,11 @@ $(document).ready(function () {
         var imageName = $('#imageName').val();
         var imageDescription = CKEDITOR.instances['imagetextDescription'].getData();
         var friendsId = [];
+        var albumId = $(".AID-image" ).val();
         //var pageId = $('#currentPageId').val();
         var pageURL = window.location.href;
+    
+        
         if (pageURL.indexOf('profile/showprofile') > -1) {
           var currentPageId = $("#currentPageId").val();
         } else {
@@ -167,11 +170,12 @@ $(document).ready(function () {
         if (flag == 0) {
             $.ajax({                        // for unlinking the file from the temporary folder
                 type: "POST",
-                url: base_url_dynamic + '/image/saveImageDetails?first='+Math.random(),
+                url: base_url_dynamic + '/image/saveImageDetails',
                 data: {
                     imageTitle : imageTitle,
                     imagePath : imagePath,
                     imageName : imageName,
+                    albumId : albumId,
                     /*imageFolder : imageFolder,*/
 
                     imageDescription : imageDescription,
@@ -179,19 +183,19 @@ $(document).ready(function () {
                     pageId : currentPageId
                 },
                 success: function (res) {
-                    //alert(res);
+                    alert(res);
                     //console.log(res);return false;
-                    if(res == 1){
+                    //if(res == 1){
 
 
                          if (currentPageId != '') {
                                 $('.modal').modal('hide');
                                 $(".profile-paginator__click.active").trigger("click");
                             } else{
-                                window.location.href = base_url_dynamic + "/profile/showprofile";
+                                window.location.href = base_url_dynamic + "/profile/showprofile/"+res+"";
                             }
 
-                    }
+                    //}
                 }
         });
         }

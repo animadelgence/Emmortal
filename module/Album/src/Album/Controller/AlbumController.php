@@ -96,11 +96,23 @@ class AlbumController extends AbstractActionController {
     	$plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
     	$dynamicPath = $plugin->dynamicPath();
+        $currentPageURL = $plugin->curPageURL();
+        $href = explode("/", $currentPageURL);
+        $controller = @$href[3];
     	$jsonArray = $plugin->jsondynamic(); 
-        $uploadQuery = array('UID'=> $this->sessionid);
+        $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+       
+        if($idOfUSer == "") {
+            $uploadQuery = array('UID'=> $this->sessionid);
+        } else {
+            $Query = array('uniqueUser'=> $idOfUSer);
+            $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall($Query);
+            $uploadQuery =  array('UID'=> $LoggedInUserDetails[0]['userid']);
+        }
+         //print_r($uploadQuery);exit;
        // $uploadQuery = array('UID'=> 27);
         $albumValue = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
-       // print_r($albumValue);exit;
+        //print_r($albumValue);exit;
         $finalArray = array();
         $finalArrayStatic = array();
         foreach ($albumValue as $albumValueData) {
@@ -108,10 +120,16 @@ class AlbumController extends AbstractActionController {
             $albumId = $albumValueData['albumeid'];
             $title = $albumValueData['title'];
             $albumimagepath = $albumValueData['albumimagepath'];
-            $uploadQueryUploadTable = array('UID'=> $this->sessionid,'AID'=>$albumId);
+            if($idOfUSer == '') {
+               $uploadQueryUploadTable = array('UID'=> $this->sessionid,'AID'=>$albumId); 
+            } else {
+                $Query = array('uniqueUser'=> $idOfUSer);
+            $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall($Query);
+                $uploadQueryUploadTable = array('UID'=> $LoggedInUserDetails[0]['userid'],'AID'=>$albumId); 
+            }
+            
             
             $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQueryUploadTable);
-           
 
             foreach ($uploadDetails as $upload) {
 
@@ -128,7 +146,13 @@ class AlbumController extends AbstractActionController {
                     'uploadDetails'=>$array);
               
     }
+         if($idOfUSer == '') {
     $uploadQueryUploadTableStaic = array('UID'=> $this->sessionid,'AID'=>1);
+         } else  {
+             $Query = array('uniqueUser'=> $idOfUSer);
+            $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall($Query);
+             $uploadQueryUploadTableStaic = array('UID'=> $LoggedInUserDetails[0]['userid'],'AID'=>1);
+         }
     $uploadDetailsforstaticvalue = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQueryUploadTableStaic);
     foreach ($uploadDetailsforstaticvalue as $uploadstatic) {
                 $arrayfprstatic = array();
@@ -146,7 +170,7 @@ class AlbumController extends AbstractActionController {
 
      $res['albumValue'] = $finalArray;
      $res['uploadDetails'] = $finalArrayStatic;
-    // print_r($res);exit;
+     //print_r($res);exit;
      echo json_encode($res);
 
         exit;

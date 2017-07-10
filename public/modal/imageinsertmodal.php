@@ -88,7 +88,7 @@
 											<!--<select>
 												<option value="number:47" label="My chronicles" selected="selected">My chronicles</option>
 											</select>-->
-                                            <select name="AID" id="listing" class="AID">
+                                            <select name="AID" id="listing" class="AID-image">
 								            </select>
 										</div>
 									</div>

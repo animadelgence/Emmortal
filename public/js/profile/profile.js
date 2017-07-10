@@ -224,8 +224,9 @@ $('.vid-sec').mouseleave(function() {
  
 
     $(".rotate").click(function(){
- $(this).toggleClass("down");
- if($(".rotate").hasClass("down"))
+// $(this).toggleClass("down");
+ $(this).toggleClass("up");
+ if($(".rotate").hasClass("up"))
  {
     setTimeout(function () {
                  $("#dropped_ui").show();

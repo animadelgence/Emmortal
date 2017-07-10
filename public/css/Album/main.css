@@ -24,11 +24,12 @@ body {
 .menu-icon::before {
   content: none;
 }
-.logo-style {
+.logo-style { /*edited*/
     display: inline-block;
     color: #fff;
     font-size: 18px;
-     padding: 5px 2px;
+/*     padding: 5px 2px;*/
+     padding: 10px 2px; /*added*/
 }
 
 .logo-style:hover {

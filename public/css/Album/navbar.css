@@ -37,17 +37,22 @@
         transform: rotate(180deg);
         transition: transform 0.3s ease 0s;
     }*/
-.rotate{
+.rotate{ /*edited*/
     -moz-transition: all 1s linear;
     -webkit-transition: all 1s linear;
-    border: 1px solid #BABBB6;
+/*    border: 1px solid #BABBB6;*/
+    border: 2px solid #fff;
     border-radius: 50%;
-    padding: 3px;
+/*    padding: 3px;*/
+    padding: 1px;
     position: relative;
     top: 5px;
     transition: all 1s linear 0s;
+    margin: 3px 0 0 2px; /*added*/
 }
-
+.rotate:focus, .rotate:active, .rotate:hover { /*added*/
+    border: 2px solid #BABBB6;
+}
 .rotate.down{
     -moz-transform:rotate(180deg);
     -webkit-transform:rotate(180deg);

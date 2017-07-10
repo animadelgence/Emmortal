@@ -1981,11 +1981,17 @@ body {
     
 }
 
-.btn-default {
+.btn-default { /*edited*/
+/*
     top: 25%;
     left:25%; 
-    color: #999; 
+    color: #999;
+*/
+    color: #fff !important;
     background:transparent;
+}
+.down-arrow:active, .down-arrow:focus, .down-arrow:hover{ /*added*/
+    color: #BABBB6 !important;
 }
 .zoomIn {
   background-color: #fff;

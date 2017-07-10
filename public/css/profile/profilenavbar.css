@@ -14,14 +14,16 @@
 .addedclassnew{
     width: 4% !important;
 }
-.down-arrow {
+.down-arrow { /*edited*/
 
     border: medium none;
     border-radius: 0;
     color: #BABBB6;
     height: 40px;
-    left: 115px;
-    padding: 4px 10px;
+/*    left: 115px;*/
+    left: 110px; /*added*/
+/*    padding: 4px 10px;*/
+    padding: 4px 11px; /*added*/
     position: absolute;
     top: 0;
     width: 6%;

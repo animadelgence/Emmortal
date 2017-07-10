@@ -1,11 +1,11 @@
 .profile-strip {
-    background: rgb(128, 117, 86) none repeat scroll 0 0;
+    background: rgba(86,67,17,0.65) none repeat scroll 0 0;
     border: medium none;
     border-radius: 0;
     box-shadow: none;
     height: 41px;
     left: -129px;
-    margin: 0;
+    margin: 4px;
     padding: 0;
     position: absolute;
     top: 36px;

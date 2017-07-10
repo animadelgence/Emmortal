@@ -1,10 +1,12 @@
 .newsHeader {
-  background: #aaa897 none repeat scroll 0 0;
-  color: #fff;
-  display: inline-block;
-  font-size: 30px;
-  margin: 120px;
-  padding: 10px 15px;
+/*  background: #aaa897 none repeat scroll 0 0; */
+    background: rgba(86,67,17,0.45) none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 30px;
+/*  margin: 120px;*/
+    margin: 100px;
+    padding: 10px 15px;
 }
 .main_section{
     text-align: center;

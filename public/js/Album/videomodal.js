@@ -204,6 +204,11 @@
                                 window.location.href = baseURL + "/profile/showprofile/"+res+"";
 
                             }
+                            setTimeout(function () {
+                                $('#welcome').css('display','block').fadeOut(10000, function () {});
+                                $('#welcome').css('top','-33px');
+                                $('#showmsg').html('Video was successfully added.');
+                            }, 500);
 
                     }
                 }

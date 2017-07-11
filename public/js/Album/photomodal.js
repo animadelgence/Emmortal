@@ -183,7 +183,7 @@ $(document).ready(function () {
                     pageId : currentPageId
                 },
                 success: function (res) {
-                    alert(res);
+                    //alert(res);
                     //console.log(res);return false;
                     //if(res == 1){
 
@@ -197,6 +197,11 @@ $(document).ready(function () {
                             } else{
                                 window.location.href = base_url_dynamic + "/profile/showprofile/"+res+"";
                             }
+                            setTimeout(function () {
+                                $('#welcome').css('display','block').fadeOut(10000, function () {});
+                                $('#welcome').css('top','-33px');
+                                $('#showmsg').html('Photo was successfully added.');
+                            }, 500);
 
                     //}
                 }

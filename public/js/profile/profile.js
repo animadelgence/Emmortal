@@ -170,20 +170,26 @@ $(document).ready(function () {
                     currentPageId :currentPageId
                 },
                 success: function (res) {
+                    console.log(res);
                     if(res > 0){
                          if (currentPageId != "") {
                              $('.modal').modal('hide');
                               $(".profile-paginator__click.active").trigger("click");
                             } else{
                                
-                                window.location.href = baseURL + "/profile/showprofile";
+                                window.location.href = base_url_dynamic + "/profile/showprofile/"+res+"";
                             }
                     }
-                    $('.modal').modal('hide');
+                    setTimeout(function () {
+                        $('#welcome').css('display','block').fadeOut(10000, function () {});
+                        $('#welcome').css('top','-33px');
+                        $('#showmsg').html('Text record was successfully added.');
+                    }, 500);
+                    /*$('.modal').modal('hide');
                     $('.close').trigger('click');
                     $(".welcome").show();
                     $(".closebtn").css('color','green');
-                    $(".showmsg").html("<span>Text record was successfully added</span>");
+                    $(".showmsg").html("<span>Text record was successfully added</span>");*/
                 }
             });
             //$('#textAddForm').submit();

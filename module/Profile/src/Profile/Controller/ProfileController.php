@@ -204,7 +204,7 @@ class ProfileController extends AbstractActionController {
         }
 
         $UID                = $this->sessionid;
-        $currentPageIdValue = $_POST['currentPage'];
+        $currentPageIdValue = $_POST['currentPageId'];
 
         if(!$currentPageIdValue) {
             $where          = array('UID'=>$UID);
@@ -240,6 +240,8 @@ class ProfileController extends AbstractActionController {
                 $notificationInsert = $modelPlugin->getnotificationdetailsTable()->insertNotification($notificationData);
             }
         }
+        $userDetails =  $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        echo $userDetails[0]['uniqueUser']; exit;
          echo $albumDetails;exit;
         //return $this->redirect()->toUrl($dynamicPath . "/profile/showprofile");
     }

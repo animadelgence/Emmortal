@@ -1980,14 +1980,15 @@ body {
     padding-top: 20px;
     
 }
-
+.arrow{
+    color: #fff !important;
+    background:transparent;
+}
 .btn-default { /*edited*/
 /*
     top: 25%;
-    left:25%; 
+    left:25%; */
     color: #999;
-*/
-    color: #fff !important;
     background:transparent;
 }
 .down-arrow:active, .down-arrow:focus, .down-arrow:hover{ /*added*/

@@ -164,14 +164,14 @@ $(document).ready(function () {
         var imgSrc = $.trim($('#imgSrc').val());
 
          if (imgSrc != ""){
-            $('#canvas-placeholderbkimage').html("<img src='"+imgSrc+"' height='100%' width='100%' />");
+            $('#canvas-placeholderbkimage').html("<img src='"+imgSrc+"' height='133px' width='100%' />");
          } else {
                $("#imgUploadForm").ajaxSubmit({
                 data: { fileupload: 'fileupload' },
                 success: function (response) {
                     var jsObject = JSON.parse(response);
                     $('#imgSrc').val(jsObject.originalPath);
-                    $('#canvas-placeholderbkimage').html("<img src='"+jsObject.originalPath+"' height='100%' width='100%' />");
+                    $('#canvas-placeholderbkimage').html("<img src='"+jsObject.originalPath+"' height='133px' width='100%' />");
                 }
             });
 
@@ -180,12 +180,13 @@ $(document).ready(function () {
 
 /* When Clicking on 'Save' button */
     $('body').on('click', '#changePersonalDetails', function () {
-        var imgSrc = $.trim($('#imgSrc').val());
+        var imgSrc = $.trim($('#imgSrc').val()),
+            profileimageNmae = '';
 
         $.ajax({
             type: "POST",
             url: getUrl+'/account/saveboth',
-            data: {backgroundimageName: imgSrc},
+            data: {backgroundimageName: imgSrc,profileimageNmae:profileimageNmae},
             success: function(result){
             $('#squarespaceModalchangeimage').modal('hide');
         }

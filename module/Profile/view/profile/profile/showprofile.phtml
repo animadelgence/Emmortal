@@ -44,7 +44,11 @@
                                           else if($upload['uploadType'] == "album"){
 
 
-                                              echo '<li class="gs-w user_upload_part_section_content--inside vid-sec resizable previewUploadedFile" data-col="1" data-row="1" data-cmd="image" data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-id="'.$upload['uploadId'].'"><a href="'.$dynamicPath.'/createalbum/showafterpublish/'.$encodeUploadId.'"><span><img name="Image Name" id="" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></span></a><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div></li>';
+                                              echo '<li class="gs-w albumid" data-sizey="'.$upload['sizeY'].'" data-sizex="'.$upload['sizeX'].'" data-col="1" data-row="1" data-cmd="album" id="'.$uploadAlbumId.'" data-id="'.$upload['uploadId'].'">
+                                              <span><img name="ImageName" src="'.$upload['uploadPath'].'" style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div>
+
+
+               </li>';
 
 
 

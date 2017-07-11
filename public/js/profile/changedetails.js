@@ -29,7 +29,7 @@ $(function(){
                     
                     } else {
                            
-                        $("#canvas-placeholderpfimage").html('<img name="image Name" id="pfimgId" src="/upload/profileImage/'+response.filePath+'" style="width:100%;height:120px;">');
+                        $("#canvas-placeholderpfimage").html('<img name="image Name" id="pfimgId" src="/upload/profileImage/'+response.filePath+'" style="width:100%;height:133px;">');
                         $("#pfimagePath").val(response.filePath);
 
                     }
@@ -69,7 +69,7 @@ $(function(){
 
                     } else {
                            
-                        $("#canvas-placeholderbkimage").html('<img name="image Name" id="bkimgId" src="/upload/backgroundImage/'+response.filePath+'" style="width:100%;height:120px;">');
+                        $("#canvas-placeholderbkimage").html('<img name="image Name" id="bkimgId" src="/upload/backgroundImage/'+response.filePath+'" style="width:100%;height:133px;">');
                         $("#bkimagePath").val(response.filePath);
                     }
                 }
@@ -84,7 +84,7 @@ $(function(){
     });
 
     
-    $('body').on('click', '#profilesaveimageDetails', function () {
+    /*$('body').on('click', '#profilesaveimageDetails', function () {
         var profileimageNmae    = $("#pfimagePath").val(),
             backgroundimageName = $("#bkimagePath").val();
 
@@ -100,6 +100,6 @@ $(function(){
                 $('#squarespaceModalchangeimage').modal('hide');
             }
         });
-    });
+    });*/
    
 });

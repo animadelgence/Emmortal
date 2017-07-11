@@ -49,14 +49,30 @@ namespace Backend\Controller;
               $modelPlugin = $this->modelplugin();
               $plugin = $this->routeplugin();
               $dynamicPath = $plugin->dynamicPath();
-              $userid = $_POST['userid'];
-              $userfName = $_POST['userfName'];
-              $userlName = $_POST['userlName'];
-              $userEmail = $_POST['userEmail'];
-              $activation = $_POST['activation'];
-              $fileupload = $_POST['fileupload'];
+
+         $request1 = $this->getRequest()->getPost();
+         $filename = $request1['fileupload'];
+//              $userid = $_POST['userid'];
+//              $userfName = $_POST['userfName'];
+//              $userlName = $_POST['userlName'];
+//              $userEmail = $_POST['userEmail'];
+//              $activation = $_POST['activation'];
+//              $files = $_FILES['fileupload'];
+//              $filename = [$files]['name'];
+
+              $request  = $this->getRequest();
+              $files    = $request->getFiles()->toArray();
+
+              $fileNamewithspace = $files['fileupload']['name'];
+              $fileName          = str_replace("","_",$fileNamewithspace);
+              //print_r($files);
+//              print_r($fileName);
+//              exit;
+              $imgpath = $dynamicPath."/upload/bkimg/".$fileName;
+              print_r($files); exit;
               $where = array('userid'=>$userid);
-              $data = array('emailid'=>$userEmail,'firstname'=>$userfName,'lastname'=>$userlName,'profileimage'=>$fileupload,'activation'=>$activation);
+//              $data = array('emailid'=>$userEmail,'firstname'=>$userfName,'lastname'=>$userlName,'profileimage'=>$fileupload,'activation'=>$activation);
+              $data = array('emailid'=>$userEmail,'firstname'=>$userfName,'lastname'=>$userlName,'profileimage'=>$imgpath,'activation'=>$activation);
               $updatedata = $modelPlugin->getuserTable()->updateuser($data,$where);
               return $this->redirect()->toRoute('usermanage', array(
 				'controller' => 'usermanage',

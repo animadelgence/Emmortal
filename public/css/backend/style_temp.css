@@ -2729,4 +2729,16 @@ border-radius: 5px 5px 0 0;
     color: rgb(255, 255, 255);
     text-decoration: none;
 }
-
+.background_active{
+    box-shadow: 0 8px 6px -6px black;
+}
+li.emmortal-tab-pattern__list-item {
+    padding: 5px;
+    border: 1px solid #e2e2e2;
+    margin: 0 10px 10px 0;
+    height: 75px;
+    width: 75px;
+}
+li.emmortal-tab-pattern__list-item img {
+    width: 100%;
+}

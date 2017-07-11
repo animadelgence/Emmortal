@@ -39,7 +39,7 @@
                                 <div class="img-input">
                                     <div class="canvas-placeholder" id="canvas-placeholderpfimage" style="height: 134px; width: 176px;">
                                         <?php if(@getimagesize($userDetails[0]['profileimage'])){ ?>
-                                        <img src="<?php echo $userDetails[0]['profileimage'];?>" style="height:120px; width:160px;" >
+                                        <img src="<?php echo $userDetails[0]['profileimage'];?>" style="height:133px; width:100%;" >
                                         <?php }else{ ?>
                                         <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
                                     </div>
@@ -63,11 +63,11 @@
                                     <div class="img-input">
                                         <div class="canvas-placeholder" id="canvas-placeholderbkimage" style="height: 134px; width: 176px;">
                                             <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
-                                            <img src="<?php echo $userDetails[0]['backgroundimage'];?>" style="height:120px; width:100%;" >
+                                            <img src="<?php echo $userDetails[0]['backgroundimage'];?>" style="height:133px; width:100%;" >
                                             <?php }else{ ?>
                                             <i class="fa fa-picture-o remove-fa-picture-icon" style="height:120px; width:160px;"></i><?php } ?>
                                         </div>
-                                        <input type="hidden" id="imgSrc" name="imgSrc" />
+                                        <input type="hidden" id="imgSrc" name="imgSrc" value="<?php if(@getimagesize($userDetails[0]['backgroundimage'])){ echo $userDetails[0]['backgroundimage']; }?>"/>
                                         <div id="reloaddivbk" style=" width: 176px;">
 
                                             <?php if(@getimagesize($userDetails[0]['backgroundimage'])){ ?>
@@ -80,7 +80,7 @@
                                             Choose Background
 <!--                                                  <input name="backgroundimage" type="file" id="backgroundimagechange">-->
                                                     <?php } ?>
-                                                    <input type = "hidden" id = "bkimagePath" value="">
+                                                    <input type = "hidden" id = "bkimagePath" value="<?php if(@getimagesize($userDetails[0]['backgroundimage'])){ echo $userDetails[0]['backgroundimage']; }?>">
                                                 </div>
                                             </div>
                                         </div>

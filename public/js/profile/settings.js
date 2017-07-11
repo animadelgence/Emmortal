@@ -243,8 +243,8 @@ $(document).ready(function () {
             accountLastName = $("#acc-lastname").val(),
             accountDOB = $("#acc-dob").val(),
             profileimageNmae    = $("#pfimagePath").val(),
-            backgroundimageName = $("#bkimagePath").val();
-            
+            backgroundimageName = $("#imgSrc").val();
+            //alert(backgroundimageName);
         /*if (accountFirstName.trim() === "") {
             $(".div--error_secondmsg").html('Enter Your First Name').css('display', 'block');
             setTimeout(function () {
@@ -278,7 +278,8 @@ $(document).ready(function () {
                         $('#welcome').css('display','block').fadeOut(10000, function () {});
                         $('#welcome').css('top','-33px');
                         $('#showmsg').html('Changes was successfully saved!');
-                    }, 500);
+                    }, 1000);
+                    window.location.reload();
                     return false;
 
                     // trying to load a single div but not happening need to recheck

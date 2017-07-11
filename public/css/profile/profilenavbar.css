@@ -1,15 +1,15 @@
 .profile-strip {
-    background: rgba(86,67,17,0.65) none repeat scroll 0 0;
+    background: inherit;
     border: medium none;
     border-radius: 0;
     box-shadow: none;
     height: 41px;
-    left: -129px;
-    margin: 4px;
+    margin: 0 4px;
     padding: 0;
-    position: absolute;
+    position: static;
     top: 36px;
-    width: 1426px;
+    width: 100%;
+    display: block;
 }
 .addedclassnew{
     width: 4% !important;
@@ -28,7 +28,14 @@
     top: 0;
     width: 6%;
 }
-
+.top-bar-2 {
+    top: 40px;
+    position: fixed;
+    width: 100%;
+    height: 41px;
+    background: rgba(86,67,17,0.65);
+    display: none;
+}
 /*.down-arrow:hover,
 .down-arrow:active {
     background-color: transparent;
@@ -61,7 +68,6 @@
 }
 .down-inner {
     overflow: hidden;
-    padding-left: 132px;
 }
 .down-inner li a {
     background-color: transparent;

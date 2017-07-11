@@ -17,28 +17,11 @@
             </div>
             <div class="col-lg-8" id="secondnavbarimage">
                <a href="<?php echo $dynamicPath;?>" class="logo-style">Emmortal</a>
-
-               <?php if( count($userDetails)){ ?>
-
-               <!-- <button class="btn btn-default dropdown-toggle down-arrow arrow-toggle collapsed" type="button" id="dropdownMenu1" data-toggle="collapse" data-target="#dropped_ui" >
-                   <i class="fa fa-chevron-up" id="arrowiconid" aria-hidden="true" style= "padding-bottom: 3px;"></i>-->
-                   <!--<i class="fa fa-chevron-down" aria-hidden="true" style= "padding-bottom: 3px;"></i>-->
-               <!--</button>-->
+                <?php if( count($userDetails)){ ?>
                <a class="arrow btn-default dropdown-toggle down-arrow arrow-toggle collapsed" id="dropdownMenu1" href="javascript:void(0);">
-<!--                   <div class="fa fa-chevron-up rotate down"></div></a>-->
                    <div class="fa fa-chevron-down rotate down"></div></a>
-               <ul class="dropdown-menu profile-strip down-inner collapse sectionnavber" aria-labelledby="dropdownMenu1" id="dropped_ui">
-                  <li><a class="profile-image-name-menu" href="javascript:void(0)" onclick="location.href='/profile/showprofile'"><span class="user-icon"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
-                    echo $userDetails[0]['profileimage'];
-                } else {
-                    echo "/image/profile-deafult-avatar.jpg";
-                }?>"/></span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname'];?></a></li>
-                  <li><a href="javascript:void(0);"  onclick="albumdetailsmodal();" class="relationships" id="<?php echo $userDetails[0]['userid'];?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Albums</a></li>
-                  <li><a href="javascript:void(0);" onclick="relationshipsmodal();" class="relationships" data-name="<?php echo $userDetails[0]['firstname'];?>">Relationships</a></li>
-                  <li><a href="javascript:void(0);" onclick="tributedetailsmodal();" class="tributes" id="<?php echo $userDetails[0]['userid'];?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Tributes</a></li>
-               </ul>
-               <?php } ?>
-            </div>
+                <?php } ?>
+             </div>
             <div class="col-lg-0.5">
                <ul class="nav navbar-nav hamburger-menu pull-right hoverthis">
                   <li class="dropdown hover-effect">
@@ -110,6 +93,9 @@
             <?php }?>
          </div>
       </div>
+
+
+
    </div>
     <?php if(($controller == 'profile') && ($action == 'newsfeed') && ($tempsessionid != 'blank')) {?>
        <input id="welcomeAlert" type="hidden" value="<?php echo $tempsessionid;?>"> 
@@ -122,6 +108,26 @@
         </div>
         <div id="showmsg" style="margin:5px;" class="showmsg"></div>
     </div>
+</section>
+
+<section class="top-bar-2" id="dropped_ui">
+    <div class="container">
+        <div class="row">
+<?php if( count($userDetails)){ ?>
+
+               <ul class="dropdown-menu profile-strip down-inner collapse sectionnavber" aria-labelledby="dropdownMenu1" >
+                  <li><a class="profile-image-name-menu" href="javascript:void(0)" onclick="location.href='/profile/showprofile'"><span class="user-icon"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
+                    echo $userDetails[0]['profileimage'];
+                } else {
+                    echo "/image/profile-deafult-avatar.jpg";
+                }?>"/></span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname'];?></a></li>
+                  <li><a href="javascript:void(0);"  onclick="albumdetailsmodal();" class="relationships" id="<?php echo $userDetails[0]['userid'];?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Albums</a></li>
+                  <li><a href="javascript:void(0);" onclick="relationshipsmodal();" class="relationships" data-name="<?php echo $userDetails[0]['firstname'];?>">Relationships</a></li>
+                  <li><a href="javascript:void(0);" onclick="tributedetailsmodal();" class="tributes" id="<?php echo $userDetails[0]['userid'];?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Tributes</a></li>
+               </ul>
+               <?php } ?>
+            </div>
+        </div>
 </section>
 
 

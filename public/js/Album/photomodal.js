@@ -136,31 +136,31 @@ $(document).ready(function () {
             flag = 1;
             $('#imageTitleError').css('display','block');
             $('.error-style').css('margin-top','28px');
-            $("#photoInsertModal").css("z-index","0");
+            $("#photoInsertModal").css("z-index","99");
             $(".modal-backdrop").css("z-index","0");
             errormodalopen('please fill title field','image');
         } else {
             $('#imageTitleError').css('display','none');
-            flag= 0;
+            //flag= 0;
         }
         if (imageDescription == '') {
             flag = 1;
             $('#imagetextDescriptionError').css('display','block');
             $('.error-style').css('margin-top','28px');
-            $("#photoInsertModal").css("z-index","0");
+            $("#photoInsertModal").css("z-index","99");
             $(".modal-backdrop").css("z-index","0");
             errormodalopen('please fill description field','image');
         } else {
             $('#imagetextDescriptionError').css('display','none');
-            flag = 0;
+            //flag = 0;
         }
         if (imageDescription == '' && imageTitle == '') {
             $('.error-style').css('margin-top','-12px');
-            flag = 1;    
+            //flag = 1;    
         }
         if (imageDescription != '' && imageTitle != '') {
             $('.error-style').css('margin-top','46px');
-            flag = 0;
+            //flag = 0;
         }
         if (imagePath  == '')
         {
@@ -189,8 +189,11 @@ $(document).ready(function () {
 
 
                          if (currentPageId != '') {
-                                $('.modal').modal('hide');
-                                $(".profile-paginator__click.active").trigger("click");
+                                 if($('.modal-backdrop').length) {
+                                     $('.modal-backdrop').remove();
+                                 }
+                                 $('.modal').modal('hide');
+                                 $(".profile-paginator__click.active").trigger("click");
                             } else{
                                 window.location.href = base_url_dynamic + "/profile/showprofile/"+res+"";
                             }

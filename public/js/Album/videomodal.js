@@ -149,7 +149,7 @@
             flag = 1;
             $('#title').addClass('error-class');
             $('#videoTitleError').show();
-            $("#videoInsertModal").css("z-index","0");
+            $("#videoInsertModal").css("z-index","99");
             $(".modal-backdrop").css("z-index","0");
             errormodalopen('please fill title field','video');
         } else {
@@ -161,7 +161,7 @@
             flag = 1;
             $('#videotextDescription').addClass('error-class');
             $('#videotextDescriptionError').show();
-            $("#videoInsertModal").css("z-index","0");
+            $("#videoInsertModal").css("z-index","99");
             $(".modal-backdrop").css("z-index","0");
             errormodalopen('please fill description field','video');
         } else {
@@ -194,11 +194,14 @@
 
 
                          if (currentPageId != "") {
-                             $('.modal').modal('hide');
-                              $(".profile-paginator__click.active").trigger("click");
+                                if($('.modal-backdrop').length) {
+                                    $('.modal-backdrop').remove();
+                                }
+                                $('.modal').modal('hide');
+                                $(".profile-paginator__click.active").trigger("click");
                             } else{
                                
-                                window.location.href = baseURL + "/profile/showprofile"+res+"";
+                                window.location.href = baseURL + "/profile/showprofile/"+res+"";
 
                             }
 

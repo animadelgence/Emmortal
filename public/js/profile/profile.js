@@ -140,7 +140,7 @@ $(document).ready(function () {
             flag = 1;
             $('#textTitle').addClass('error-class');
             $('#textTitleError').show();
-            $("#textInsertModal").css("z-index","0");
+            $("#textInsertModal").css("z-index","99");
             $(".modal-backdrop").css("z-index","0");
             errormodalopen('please fill title field','text');
         } else {
@@ -151,7 +151,7 @@ $(document).ready(function () {
             flag = 1;
             $('#cke_textDescription').addClass('error-class');
             $('#textDescriptionError').show();
-            $("#textInsertModal").css("z-index","0");
+            $("#textInsertModal").css("z-index","99");
             $(".modal-backdrop").css("z-index","0");
             errormodalopen('please fill description field','text');
         } else {

@@ -81,6 +81,18 @@ $(document).ready(function () {
         });
         //return false;
     });
+    $('body').on('keyup', '#searchText', function () {
+        var friendsid = $(this).val().trim();
+        $("#searchResults .animated").hide();
+        $("#searchResults .animated > input[type='hidden']").each(function(){
+            
+            if($(this).val().toLowerCase().indexOf(friendsid.toLowerCase()) > -1) {
+                $(this).parent().show();
+                $(this).val().indexOf(friendsid.toLowerCase());
+            }
+        });
+         $("#searchResults").show();
+    });
     
 });
 

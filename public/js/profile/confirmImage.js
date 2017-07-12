@@ -147,7 +147,10 @@ $(document).ready(function () {
         event.preventDefault();
         event.stopPropagation();
         var imgSrc = $(this).attr('src');
-        $('#imgSrc').val(imgSrc);
+        var imgHref = $(this).parent("a").attr("href");
+        $('.emmortal-tab-pattern__list li').removeClass('background_active');
+        $(this).parent().parent().parent().addClass('background_active');// adding for design purpose
+        $('#imgSrc').val(imgHref);
     });
 
 /*Clicking on a Saved Image */

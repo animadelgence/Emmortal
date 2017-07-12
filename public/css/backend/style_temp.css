@@ -2730,7 +2730,8 @@ border-radius: 5px 5px 0 0;
     text-decoration: none;
 }
 .background_active{
-    box-shadow: 0 8px 6px -6px black;
+/*    box-shadow: 0 8px 6px -6px black;*/
+    box-shadow: 7px 8px 12px -5px black;
 }
 li.emmortal-tab-pattern__list-item {
     padding: 5px;

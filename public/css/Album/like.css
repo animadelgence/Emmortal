@@ -1973,7 +1973,9 @@ body.modal-open{overflow:hidden !important}@media screen and (max-width: 767px){
 .img-responsive, .thumbnail>img, .thumbnail a>img, .carousel-inner>.item>img, .carousel-inner>.item>a>img{
     display: block;
     max-width: 100%;
-    height: auto;
+/*    height: auto;*/
+    height: 100%;
+    width: 100%;
 }
 
 body {

@@ -157,6 +157,10 @@ function albumdetailsmodal()
         var pageUrl = window.location.href;
         var pageUrlarray = pageUrl.split("/");
         var lastEl = pageUrlarray.slice(-1)[0];
+        if(lastEl == ""){
+            lastEl = "user";
+        }
+        //console.log(lastEl); return false;
         $('body').append(result);
         // open modal
         $('#albumdetailsmodal').modal('show');
@@ -167,6 +171,7 @@ function albumdetailsmodal()
         type: "POST",
         url: getUrl + '/album/fetchallalbum/'+lastEl,
         success: function (res) {
+            console.log(res);
             var jsObject = JSON.parse(res);
                  var   i = 0;
                  var   appendHtml = "";

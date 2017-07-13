@@ -7,8 +7,10 @@
             </div>
             <div class="users-section animated fadeIn">
                 <div infinite-scroll="friendsLoader.nextPage()" >
+<!--
                     <div class="m-t-15 search-divider e-brown p-l-10 animated fadeIn" id="myRelationships">My Relationships
                     </div>
+-->
                     <!--<h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="allTabShow">There are no relationships yet</h2>
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="incomingTabShow">There are no incoming relationships requests</h2>
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="outgoingTabshow">There are no outgoing relationships requests</h2>

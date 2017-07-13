@@ -13,7 +13,7 @@
                   <input type="text" class="form-control signupForm" id="fname" placeholder="First Name">
                </div>
                <div class="form-group input-box">
-                  <input type="text" class="form-control" id="lname signupForm" placeholder="Last Name">
+                  <input type="text" class="form-control signupForm" id="lname" placeholder="Last Name">
                </div>
                <div class="form-group  full-width">
                   <input type="text" class="form-control signupForm" id="email" placeholder="Email">

@@ -58,6 +58,19 @@ class AuthorizationsignupController extends AbstractActionController {
                 $insrtArrayforpagetable =array('UID'=>$albumFolder, 'createddate' =>date('Y-m-d'));
                 //print_r($insrtArrayforpagetable);exit;
                 $resultinsert = $modelPlugin->getpagedetailsTable()->insertData($insrtArrayforpagetable);
+                /******** Album Creation ***/
+                $albumArray = array(
+                                'UID'=>$albumFolder,
+                                'title'=>'My chronicle'
+                                );
+                $albumInsertDetails = $modelPlugin->getalbumdetailsTable()->insertalbum($albumArray);
+                
+                $albumUploadArray = array(
+                                    'UID'=>$albumFolder,
+                                    'uploadType'=>'album',
+                                    'uploadTitle'=>'My chronicle'
+                                );
+                $albumUploadInsertDetails = $modelPlugin->getuploadDetailsTable()->insertData($albumUploadArray);
                 
                 $albumDetails = $modelPlugin->getuserTable()->fetchall($keyArray);
                 $usid= $albumDetails[0]['userid'];

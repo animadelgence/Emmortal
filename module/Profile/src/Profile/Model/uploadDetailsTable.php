@@ -13,7 +13,7 @@
         {
             $this->tableGWay = $tableGateway;
         }
-        public function fetchall($query=null)
+        public function fetchall($query)
         {
         $sql = new Sql($this->tableGWay->adapter);
         $select = $sql->select();

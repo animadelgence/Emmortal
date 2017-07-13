@@ -363,6 +363,14 @@ function albummodalopen(){
             });
             CKEDITOR.disableAutoInline = true;
         }
+        $.ajax({
+            type: "POST",
+            url: base_url_dynamic + '/profile/getalbum',
+            data: {},
+            success: function (res) {
+                $('.AID').html(res);
+            }
+        });
 
     });
 

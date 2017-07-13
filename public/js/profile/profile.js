@@ -44,7 +44,7 @@ $(document).ready(function () {
     CKEDITOR.disableAutoInline = true;
     }
 
-    $('body').on('click', '#textInsert', function () {
+ /*   $('body').on('click', '#textInsert', function () {
         $('.close').trigger('click');
         $('#textTitleError').hide();
         $('#textTitle').removeClass('error-class');
@@ -58,7 +58,7 @@ $(document).ready(function () {
                 $('.AID').html(res);
             }
         });
-    });
+    });*/
     $("#textInsertModal").on("hidden.bs.modal", function () {
         $('#uploadModal').modal();
     });

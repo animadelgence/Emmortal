@@ -55,6 +55,10 @@ class UploadoperationController extends AbstractActionController {
         $dataDetails    = $modelPlugin->getuploadDetailsTable()->fetchall($data);
         $res['uploadId'] = $dataDetails[0]['uploadId'];
         $res['uploadPath'] = $dataDetails[0]['uploadPath'];
+        
+        
+        $res['uploadimagePath'] = str_replace($dynamicPath.'/upload/uploadimage/' , '', $dataDetails[0]['uploadPath']);
+        //echo $res['uploadPath'];exit;
         //$res['uploadPath'] = '/upload/uploadimage/1500020556_imagescrap2.php.jpeg';
         $res['uploadTitle'] = $dataDetails[0]['uploadTitle'];
         $res['uploadDescription'] = $dataDetails[0]['uploadDescription'];

@@ -120,7 +120,7 @@ $('.vid-sec').mouseleave(function() {
                 url: base_url_dynamic + '/uploadoperation/opendata',
                 data: {dataid : dataid},
                 success: function (res) {
-                    console.log(res);
+                    //console.log(res);return false;
                     imagemodalopen(res);
                 }
             });

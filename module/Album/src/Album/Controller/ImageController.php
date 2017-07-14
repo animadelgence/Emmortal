@@ -121,6 +121,10 @@ class ImageController extends AbstractActionController {
             //echo $currentPageId;
             //exit;
         }
+        $where = array(
+                      'uploadid' => $_POST['uploadid'],
+                      'UID' => $this->sessionid
+                      );
         $uploadQuery = array(
                             'UID'=>$this->sessionid,
                             'PID'=>$currentPageId,
@@ -132,7 +136,13 @@ class ImageController extends AbstractActionController {
                             'FID'=>$friendsid,
                             'TimeStamp'=>$addeddate
                             );
-        $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($uploadQuery);
+        $albumDetailsFetch = $modelPlugin->getuploadDetailsTable()->fetchall($where);
+        if(!empty($albumDetailsFetch)) {
+            $albumDetailsUpdate = $modelPlugin->getuploadDetailsTable()->updateData($uploadQuery,$where);
+            $albumDetails = $_POST['uploadid'];
+        } else {
+            $albumDetails = $modelPlugin->getuploadDetailsTable()->insertData($uploadQuery);
+        }
         if($_POST['imagefriendsId'])
         {
             $imagefriendsId = $_POST['imagefriendsId'];

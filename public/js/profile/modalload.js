@@ -458,14 +458,27 @@ function imagemodalopen(arrayvalue){
             CKEDITOR.disableAutoInline = true;
         }
         if(arrayvalue) {
+            
             jsObject = JSON.parse(arrayvalue);
+            $('#uploadId').val(jsObject.uploadId);
             $('#imageTitle').val(jsObject.uploadTitle);
             $('#imagetextDescription').val(jsObject.uploadDescription);
-            $('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+jsObject.uploadPath+'" style="height:360px;width:100%"/>')
-            $("#imagePath").val(base_url_dynamic+jsObject.uploadPath);
-            $("#aviaryPath").val(base_url_dynamic+jsObject.uploadPath);
-            $("#imageName").val(jsObject.uploadPath);
+            $('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+jsObject.uploadPath+'" style="height:360px;width:100%"/>');
+            $("#imagePath").val(jsObject.uploadPath);
+            $("#aviaryPath").val(jsObject.uploadPath);
+            $("#imageName").val(jsObject.uploadimagePath);
             $('#div-editphoto').show();
+            //$("#listing :selected").val(jsObject.AID);
+            $.ajax({
+                    type: "POST",
+                    url: base_url_dynamic + '/profile/getalbum',
+                    data: {},
+                    success: function (res) {
+                        $('#listing').html(res);
+                        $('#listing option[value="'+jsObject.AID+'"]').attr('selected', true);
+                    }
+            });
+            
         }
 
     });

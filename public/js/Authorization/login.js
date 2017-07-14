@@ -15,22 +15,24 @@ $(document).ready(function (){
         }
     });
 	$('body').on('keypress','.loginid', function(e){
+        //alert(1);
         $('#loginEmailError').css('display','none');
         var loginemail = $("#loginemail").val(),
             loginpassword = $("#loginpassword").val();
-            
-        if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
-            $('#signinbutton').prop("disabled", false);
-            $('#signinbutton').css('cursor', 'pointer');
-            if (e.which == 13) { 
+        if (e.which == 13) { 
+            if ((loginemail != '') && (loginpassword != '') && (loginemail.match(regexemail))) {
+                $('#signinbutton').prop("disabled", false);
+                $('#signinbutton').css('cursor', 'pointer');
+                if (e.which == 13) { 
 
-                $("#signinbutton").trigger("click");
-                return false;
+                    $("#signinbutton").trigger("click");
+                    return false;
+                }
             }
-        }
-        else {
-            $('#signinbutton').prop("disabled", true);
-            $('#signinbutton').css('cursor', 'not-allowed');
+            else {
+                $('#signinbutton').prop("disabled", true);
+                $('#signinbutton').css('cursor', 'not-allowed');
+            }
         }
         
     });

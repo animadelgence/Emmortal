@@ -117,7 +117,7 @@ $(document).ready(function () {
         $('#myRelationships').css('display', 'block');
         var friendsid = $(this).val().trim(),
             noOfDivs = '';
-        alert(friendsid);
+        //alert(friendsid);
         if(friendsid != '') {
             $("#searchResults .animated").hide();
             $("#searchResults .animated > input[type='hidden']").each(function(){
@@ -130,12 +130,12 @@ $(document).ready(function () {
 
             //$("#tabResults .animated").hide();
             $("#tabResults .animated:visible > input[type='hidden']").each(function(){
-                alert($(this).val());
+                //alert($(this).val());
                 $("#tabResults .animated").hide();
                // $("#tabResults .animated > div[display='block']").each(function(){
                     if($(this).val().toLowerCase().indexOf(friendsid.toLowerCase()) > -1) {
-                        console.log(1);
-                        alert($(this).parent().parent().html());
+                        /*console.log(1);
+                        alert($(this).parent().parent().html());*/
                         $(this).parent().show();
                         $(this).val().indexOf(friendsid.toLowerCase());
                     }

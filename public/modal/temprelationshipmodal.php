@@ -17,9 +17,9 @@
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow">You have no relationships yet</h2>-->
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow"></h2>
 
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab">
+                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTabTemp">
                         <span></span>
-                        <span></span> has no relationships yet
+                        <span id = "showTabMessageTemp"></span> 
                     </h2>
                     <div id="tempResult">
                     </div>

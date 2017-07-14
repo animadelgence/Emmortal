@@ -760,6 +760,16 @@ function openalbumforedit(valid){
 
     });
 }
+function showtempmessage() {
+    var noOfDivs = $("#tempResult > div").filter(function() {
+                        return $(this).css('display') == 'block';
+                    }).length;
+        //$("#searchResults").show();
+    if(noOfDivs < 1) {
+        $('.displayTabTemp').show();
+        $('#showTabMessageTemp').html('There are no relationships yet');
+    }
+}
 $(document).ready(function () {
     if($('#welcomeAlert').length) {
         setTimeout(function () {
@@ -771,4 +781,17 @@ $(document).ready(function () {
             $("#welcome").css('display','none');
         });
     }
+    $('body').on('keyup', '#searchTextTemp', function () {
+        var friendsid = $(this).val().trim();
+        $("#tempResult .animated").hide();
+        $("#tempResult .animated > input[type='hidden']").each(function(){
+
+            if($(this).val().toLowerCase().indexOf(friendsid.toLowerCase()) > -1) {
+                $(this).parent().show();
+                $(this).val().indexOf(friendsid.toLowerCase());
+            }
+        });
+        $("#tempResult").show();
+        showtempmessage();
+    });
 });

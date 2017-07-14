@@ -782,6 +782,7 @@ $(document).ready(function () {
         });
     }
     $('body').on('keyup', '#searchTextTemp', function () {
+        $('.displayTabTemp').hide();
         var friendsid = $(this).val().trim();
         $("#tempResult .animated").hide();
         $("#tempResult .animated > input[type='hidden']").each(function(){

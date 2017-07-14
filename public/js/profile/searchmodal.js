@@ -156,7 +156,7 @@ $(document).ready(function () {
                $("#allTab").trigger("click");
             }
         }
-        //showmessage();
+        showmessage();
     });
     $('body').on('click', '.sendFriendRequest', function (e) {
         e.preventDefault();

@@ -124,7 +124,9 @@
                   <li><a href="<?php echo $dynamicPath;?>/createalbum/albumdetails/<?php echo $userDetails[0]['uniqueUser'];?>">Albums</a></li>
 
                   <!--here-->
-                  <li><a href="<?php echo $dynamicPath;?>/redirection/redirectuserdetails/<?php echo $userDetails[0]['uniqueUser'];?>"  class="relationships" data-name="<?php echo $userDetails[0]['firstname'];?>">Relationships</a></li> <!--onclick="relationshipsmodal();"-->
+                  <li><!--<a href="<?php //echo $dynamicPath;?>/redirection/redirectuserdetails/<?php //echo $userDetails[0]['uniqueUser'];?>"  class="relationships" data-name="<?php //echo $userDetails[0]['firstname'];?>">Relationships</a>-->
+                  <a href="javascript:void(0)" onclick="relationshipsmodal();"  class="relationships" data-name="<?php echo $userDetails[0]['firstname'];?>">Relationships</a> 
+                  </li> <!--javascript:void(0)" onclick="relationshipsmodal();"-->
 
 
                   <li><a href="javascript:void(0);" onclick="tributedetailsmodal();" class="tributes" id="<?php echo $userDetails[0]['userid'];?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Tributes</a></li>

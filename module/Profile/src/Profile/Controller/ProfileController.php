@@ -31,7 +31,11 @@ class ProfileController extends AbstractActionController {
         $action = @$href[4];
         $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
         $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
-        $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
+        $loggedInUserUniqueId = ' ';
+        if($LoggedInUserDetails) {
+            $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
+        }
+        
         if($idOfUSer==""){
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
             $pageQuery = array('UID'=>$this->sessionid);

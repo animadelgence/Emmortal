@@ -30,18 +30,94 @@ class RedirectionController extends AbstractActionController {
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
-        $userId = $_POST['userid'];
+        $jsonArray   = $plugin->jsondynamic();
+        $controller  = 'redirection';
+        $action      = $this->params('action');
+        $uniqueUser  = $this->getEvent()->getRouteMatch()->getParam('id');
+        //echo $uniqueUser; exit;
+        $bgimg       = $modelPlugin->getbgimageTable()->fetchall();
+        //$sessionId   = $this->sessionid;
+        $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $loggedInUserId   = $loggedInUserDetails[0]['userid'];
+        //$loggedInUserUniqueId   = $loggedInUserDetails[0]['uniqueUser'];
 
-        if($userId == 'user') {
-            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=> $this->sessionid));
+        //$user        = $modelPlugin->getuserTable()->fetchall(array('userid'=>$sessionId));
+//        $firstname   = $user[0]['firstname'];
+        //$userId = $_POST['userid'];
+
+//        if($uniqueUser == $loggedInUserUniqueId) {
+//            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=> $this->sessionid));
+//        }
+//        else {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$uniqueUser));
+        //print_r($userDetails); exit;
+//        }
+
+        $uniqueUserId = $userDetails[0]['userid']; // $UserUniqueId tempuserid
+        if(@getimagesize($userDetails[0]['backgroundimage'])){
+            $bgimgSend          = $userDetails[0]['backgroundimage'];
+        } else{
+            $bgimgSend          = $bgimg[0]['bgimgpath'];
         }
-        else {
-            $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$userId));
-        }
-        $UserUniqueId = $userDetails[0]['userid'];
-        $result['sessionid'] = $this->sessionid;
-        $result['tempuserid'] = $UserUniqueId;
-        echo json_encode($result);exit;
+
+        $where = array('userid' => $uniqueUserId, 'requestaccept' => 1);
+        $userdetails = $modelPlugin->getfriendsTable()->fetchall($where);
+        $whereSecond = array('friendsid' => $uniqueUserId, 'requestaccept' => 1);
+        $userdetailsSecond = $modelPlugin->getfriendsTable()->fetchall($whereSecond);
+
+        $array = array();
+        $result = array_merge($userdetails,$userdetailsSecond);
+        foreach ($result as $rSet) {
+            if($rSet['userid'] == $uniqueUserId){
+                $resultid = $rSet['friendsid'];
+            } else {
+                 $resultid = $rSet['userid'];
+            }
+//        foreach ($result as $rSet) {
+//            if($rSet['userid'] == $sessionId){ //check here
+//                $resultid = $rSet['userid'];
+//            } else {
+//                $resultid = $rSet['friendsid'];
+//            }
+        $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$resultid));
+
+        $array[] = array(
+                'friendsid'     => $rSet['friendsid'],
+                'friendsname'   => $userDetails[0]['firstname']." ".$userDetails[0]['lastname'],
+                'profileimage'  => $userDetails[0]['profileimage'],
+                'uniqueUser'  => $userDetails[0]['uniqueUser']
+            );
+
+        }//exit;
+
+        $relationships = $array;
+        //print_r($relationships); exit;
+
+        $this->layout()->setVariables(array(
+                                            'controller' => $controller,
+                                            'action' => $action,
+                                            'dynamicPath' => $dynamicPath,
+                                            'userDetails'=>$userDetails,
+                                            'loggedInUserId'=>$loggedInUserId,
+                                            'jsonArray'=>$jsonArray,
+                                            'bgimg'=>$bgimgSend,
+                                            'sessionid'=>$this->sessionid
+                                        )
+                                     );
+
+        return new ViewModel(array(
+                                'userDetails' => $userDetails,
+                                'dynamicPath' => $dynamicPath,
+                                'jsonArray'=>$jsonArray,
+                                'relationships' =>$relationships,
+                                )
+                            );
+
+        //$res['userDetails'] = $array;
+
+//        $result['sessionid'] = $this->sessionid;
+//        $result['tempuserid'] = $UserUniqueId;
+//        echo json_encode($result);exit;
         
     }
     public function searchrelationshipAction(){
@@ -87,4 +163,39 @@ class RedirectionController extends AbstractActionController {
         echo json_encode($res);
         exit;
     }
+//    public function relationshipsAction(){
+//        $this->layout('layout/albumlayout.phtml');
+//        $plugin = $this->routeplugin();
+//        $modelPlugin = $this->modelplugin();
+//        $dynamicPath = $plugin->dynamicPath();
+//        $uniqueUser  = $this->getEvent()->getRouteMatch()->getParam('id');
+//        $bgimg                  = $modelPlugin->getbgimageTable()->fetchall();
+//        $userDetails            = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$uniqueUser));
+//        $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+//        if(@getimagesize($userDetails[0]['backgroundimage'])){
+//            $bgimgSend          = $userDetails[0]['backgroundimage'];
+//        } else{
+//            $bgimgSend          = $bgimg[0]['bgimgpath'];
+//        }
+//
+//
+//    }
+//    public function myrelationsAction(){
+//        $this->layout('layout/albumlayout.phtml');
+//        $plugin = $this->routeplugin();
+//        $modelPlugin = $this->modelplugin();
+//        $dynamicPath = $plugin->dynamicPath();
+//        $uniqueUser  = $this->getEvent()->getRouteMatch()->getParam('id');
+//        $bgimg                  = $modelPlugin->getbgimageTable()->fetchall();
+//        $userDetails            = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$uniqueUser));
+//        $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+//        if(@getimagesize($userDetails[0]['backgroundimage'])){
+//            $bgimgSend          = $userDetails[0]['backgroundimage'];
+//        } else{
+//            $bgimgSend          = $bgimg[0]['bgimgpath'];
+//        }
+//
+//
+//    }
+
 }

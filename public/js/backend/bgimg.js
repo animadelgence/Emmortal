@@ -30,7 +30,7 @@
         fileUpload = document.getElementById("fileupload");
         if(fileUpload!=null){
         fileUpload.onchange = function preview(e) {
-            var maxfilesize = 1024 * 1024; // 1MB
+            var maxfilesize = 5 * 1024 * 1024; // 5MB
 
             if (typeof (FileReader) !== "undefined") {
                 dvPreview = document.getElementById("img_prev"); //upload_prev
@@ -82,10 +82,10 @@ $(document).ready(function () {
             $('#errorImg1').html("<font color='red'> Invalid Image Format! Image Format Must Be JPG, JPEG, PNG or GIF </font>");
             $('.save').attr("disabled", true);
             return false;
-        } else if (picsize > 1024000) {
+        } else if (picsize > 5242880) { // >5MB
             $('#errorImg1,#img_prev').css('display', 'none'); // hides image along with other error messages
             $('#errorImg2').css('display', 'block');
-            $('#errorImg2').html("<font color='red'> Invalid Image Format! Maximum File Size Limit is 1MB </font>");
+            $('#errorImg2').html("<font color='red'> Invalid Image Format! Maximum File Size Limit is 5MB </font>");
             $('.img_prev').children('img').attr('src', '');
             $('.save').attr("disabled", true);
             return false;

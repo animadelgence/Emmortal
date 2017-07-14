@@ -30,6 +30,72 @@ class RedirectionController extends AbstractActionController {
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
+        $userId = $_POST['userid'];
+        if(empty($userId)) {
+            $userId = $this->sessionid;
+                            $userDetailsTemp = $modelPlugin->getuserTable()->fetchall(array('userid'=>$userId));
+            $userId = $userDetailsTemp[0]['uniqueUser'];
+        }
+        $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$userId));
+        if($userId == 'user') {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=> $this->sessionid));
+        }
+        else {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$userId));
+        }
+        $UserUniqueId = $userDetails[0]['userid'];
+        $result['sessionid'] = $this->sessionid;
+        $result['tempuserid'] = $UserUniqueId;
+        echo json_encode($result);exit;
+
+    }
+    public function searchrelationshipAction(){
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $query = $_POST['tempuserid'];
+        //echo $query; exit;
+        $where = array('userid' => $query, 'requestaccept' => 1);
+        $userdetails = $modelPlugin->getfriendsTable()->fetchall($where);
+        $whereSecond = array('friendsid' => $query, 'requestaccept' => 1);
+        $userdetailsSecond = $modelPlugin->getfriendsTable()->fetchall($whereSecond);
+        //print_r($userdetailsSecond); exit;
+        $array = array();
+        $result = array_merge($userdetails,$userdetailsSecond);
+        //print_r($result); exit;
+        foreach ($result as $rSet) {
+            if($rSet['userid'] == $query){
+                $resultid = $rSet['friendsid'];
+            } else {
+                 $resultid = $rSet['userid'];
+            }
+
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$resultid));
+            //print_r($userDetails);
+            $where = array(
+                    'UID' => $resultid
+                );
+            $friendlikes = count($modelPlugin->getlikesdetailsTable()->fetchall($where));
+            $noOfTributes = count($modelPlugin->gettributedetailsTable()->fetchall($where));
+
+            $array[] = array(
+                'friendsid'     => $rSet['friendsid'],
+                'friendsname'   => $userDetails[0]['firstname']." ".$userDetails[0]['lastname'],
+                'profileimage'  => $userDetails[0]['profileimage'],
+                'uniqueUser'  => $userDetails[0]['uniqueUser'],
+                'friendslikes'  => $friendlikes,
+                'noOfTributes'  => $noOfTributes
+            );
+           // print_r($array); exit;
+        }//exit;
+        $res['userDetails'] = $array;
+        //print_r($res['userDetails']);exit;
+        echo json_encode($res);
+        exit;
+    }
+    public function relationshipsAction(){
+        $plugin = $this->routeplugin();
+        $modelPlugin = $this->modelplugin();
+        $dynamicPath = $plugin->dynamicPath();
         $jsonArray   = $plugin->jsondynamic();
         $controller  = 'redirection';
         $action      = $this->params('action');
@@ -120,82 +186,5 @@ class RedirectionController extends AbstractActionController {
 //        echo json_encode($result);exit;
         
     }
-    public function searchrelationshipAction(){
-        $plugin = $this->routeplugin();
-        $modelPlugin = $this->modelplugin();
-        $query = $_POST['tempuserid'];
-        //echo $query; exit;
-        $where = array('userid' => $query, 'requestaccept' => 1);
-        $userdetails = $modelPlugin->getfriendsTable()->fetchall($where);
-        $whereSecond = array('friendsid' => $query, 'requestaccept' => 1);
-        $userdetailsSecond = $modelPlugin->getfriendsTable()->fetchall($whereSecond);
-        //print_r($userdetailsSecond); exit;
-        $array = array();
-        $result = array_merge($userdetails,$userdetailsSecond);
-        //print_r($result); exit;
-        foreach ($result as $rSet) {
-            if($rSet['userid'] == $query){
-                $resultid = $rSet['friendsid'];
-            } else {
-                 $resultid = $rSet['userid'];
-            }
-           
-            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$resultid));
-            //print_r($userDetails);
-            $where = array(
-                    'UID' => $resultid
-                );
-            $friendlikes = count($modelPlugin->getlikesdetailsTable()->fetchall($where));
-            $noOfTributes = count($modelPlugin->gettributedetailsTable()->fetchall($where));
-
-            $array[] = array(
-                'friendsid'     => $rSet['friendsid'],
-                'friendsname'   => $userDetails[0]['firstname']." ".$userDetails[0]['lastname'],
-                'profileimage'  => $userDetails[0]['profileimage'],
-                'uniqueUser'  => $userDetails[0]['uniqueUser'],
-                'friendslikes'  => $friendlikes,
-                'noOfTributes'  => $noOfTributes
-            );
-           // print_r($array); exit;
-        }//exit;
-        $res['userDetails'] = $array;
-        //print_r($res['userDetails']);exit;
-        echo json_encode($res);
-        exit;
-    }
-//    public function relationshipsAction(){
-//        $this->layout('layout/albumlayout.phtml');
-//        $plugin = $this->routeplugin();
-//        $modelPlugin = $this->modelplugin();
-//        $dynamicPath = $plugin->dynamicPath();
-//        $uniqueUser  = $this->getEvent()->getRouteMatch()->getParam('id');
-//        $bgimg                  = $modelPlugin->getbgimageTable()->fetchall();
-//        $userDetails            = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$uniqueUser));
-//        $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
-//        if(@getimagesize($userDetails[0]['backgroundimage'])){
-//            $bgimgSend          = $userDetails[0]['backgroundimage'];
-//        } else{
-//            $bgimgSend          = $bgimg[0]['bgimgpath'];
-//        }
-//
-//
-//    }
-//    public function myrelationsAction(){
-//        $this->layout('layout/albumlayout.phtml');
-//        $plugin = $this->routeplugin();
-//        $modelPlugin = $this->modelplugin();
-//        $dynamicPath = $plugin->dynamicPath();
-//        $uniqueUser  = $this->getEvent()->getRouteMatch()->getParam('id');
-//        $bgimg                  = $modelPlugin->getbgimageTable()->fetchall();
-//        $userDetails            = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$uniqueUser));
-//        $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
-//        if(@getimagesize($userDetails[0]['backgroundimage'])){
-//            $bgimgSend          = $userDetails[0]['backgroundimage'];
-//        } else{
-//            $bgimgSend          = $bgimg[0]['bgimgpath'];
-//        }
-//
-//
-//    }
 
 }

@@ -96,8 +96,8 @@ $('.vid-sec').mouseleave(function() {
         }
     });
     $('body').on('click', '.delete-button', function () {
-        alert($(this).parents('.user_upload_part_section_content--inside').children().html());
-        alert($(this).parents('.user_upload_part_section_content--inside').children().attr('id'));
+       // alert($(this).parents('.user_upload_part_section_content--inside').children().html());
+        alert($(this).parents('.user_upload_part_section_content--inside').find("img").attr('id'));
     });
     
 

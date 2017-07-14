@@ -713,8 +713,24 @@ function openalbumforedit(valid){
     if($('.in').length) {
         $('.in').remove();
     }
-
-    $.get(getUrl+"/modal/updatealbummodal.php", function (result) {
+    
+    var pageUrl = window.location.href;
+    var pageUrlarray = pageUrl.split("/");
+    var lastEl = pageUrlarray.slice(-1)[0];
+    if(lastEl == ""){
+            lastEl = "user";
+    }
+    
+    $.ajax({
+        type: "POST",
+        data : {
+            userid : lastEl
+        },
+        url: getUrl + '/redirection/redirectuserdetails/'+lastEl,
+        success: function (res) {
+            var jsObject = JSON.parse(res);
+            if(jsObject.sessionid == jsObject.tempuserid) {
+                $.get(getUrl+"/modal/updatealbummodal.php", function (result) {
 
         // append response to body
         $('body').append(result);
@@ -759,6 +775,12 @@ function openalbumforedit(valid){
         CKEDITOR.instances.albumtextDescription.setData(descriptionidalbum);
 
     });
+            }
+        }
+    });
+    
+
+    
 }
 function showtempmessage() {
     var noOfDivs = $("#tempResult > div").filter(function() {

@@ -32,7 +32,7 @@ body {
      padding: 10px 2px; /*added*/
 }
 
-.logo-style:hover {
+.logo-style:hover, .logo-style:focus {
     color: #fff;
     text-decoration: none;
 }

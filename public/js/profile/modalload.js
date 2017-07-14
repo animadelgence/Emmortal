@@ -47,9 +47,9 @@ function squarespaceModal2open()
 
 function relationshipsmodal()
 {
-    if($('#relationshipsmodal').length) {
-        $('#relationshipsmodal').remove();
-    }
+//    if($('#relationshipsmodal').length) {
+//        $('#relationshipsmodal').remove();
+//    }
     var pageUrl = window.location.href;
     var pageUrlarray = pageUrl.split("/");
     var lastEl = pageUrlarray.slice(-1)[0];

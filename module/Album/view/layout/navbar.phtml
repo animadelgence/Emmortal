@@ -116,12 +116,12 @@
 <?php if( count($userDetails)){ ?>
 
                <ul class="dropdown-menu profile-strip down-inner collapse sectionnavber" aria-labelledby="dropdownMenu1" >
-                  <li><a class="profile-image-name-menu" href="javascript:void(0)" onclick="location.href='/profile/showprofile'"><span class="user-icon"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
+                  <li><a class="profile-image-name-menu" href="javascript:void(0)" onclick="location.href='/profile/showprofile/<?php echo $userDetails[0]['uniqueUser'];?>'"><span class="user-icon"><img src="<?php if (@getimagesize($userDetails[0]['profileimage'])) {
                     echo $userDetails[0]['profileimage'];
                 } else {
                     echo "/image/profile-deafult-avatar.jpg";
                 }?>"/></span><?php echo $userDetails[0]['firstname']." ".$userDetails[0]['lastname'];?></a></li>
-                  <li><a href="javascript:void(0);"  onclick="albumdetailsmodal();" class="relationships" id="<?php echo $userDetails[0]['userid'];?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Albums</a></li>
+                  <li><a href="<?php echo $dynamicPath;?>/createalbum/albumdetails/<?php echo $userDetails[0]['uniqueUser'];?>">Albums</a></li>
                   <li><a href="javascript:void(0);" onclick="relationshipsmodal();" class="relationships" data-name="<?php echo $userDetails[0]['firstname'];?>">Relationships</a></li>
                   <li><a href="javascript:void(0);" onclick="tributedetailsmodal();" class="tributes" id="<?php echo $userDetails[0]['userid'];?>" data-name="<?php echo $userDetails[0]['firstname'];?>">Tributes</a></li>
                </ul>

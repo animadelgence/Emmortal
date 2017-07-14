@@ -101,8 +101,10 @@ class AlbumController extends AbstractActionController {
         $controller = @$href[3];
     	$jsonArray = $plugin->jsondynamic(); 
         $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        //echo $idOfUSer; exit;
        
-        if($idOfUSer == "") {
+        if($idOfUSer == "user") {
+            //echo "going inside blank"; exit;
             $uploadQuery = array('UID'=> $this->sessionid);
         } else {
             $Query = array('uniqueUser'=> $idOfUSer);
@@ -120,7 +122,7 @@ class AlbumController extends AbstractActionController {
             $albumId = $albumValueData['albumeid'];
             $title = $albumValueData['title'];
             $albumimagepath = $albumValueData['albumimagepath'];
-            if($idOfUSer == '') {
+            if($idOfUSer == 'user') {
                $uploadQueryUploadTable = array('UID'=> $this->sessionid,'AID'=>$albumId); 
             } else {
                 $Query = array('uniqueUser'=> $idOfUSer);
@@ -146,7 +148,7 @@ class AlbumController extends AbstractActionController {
                     'uploadDetails'=>$array);
               
     }
-         if($idOfUSer == '') {
+         if($idOfUSer == 'user') {
     $uploadQueryUploadTableStaic = array('UID'=> $this->sessionid,'AID'=>1);
          } else  {
              $Query = array('uniqueUser'=> $idOfUSer);

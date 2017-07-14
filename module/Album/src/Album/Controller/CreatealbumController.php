@@ -355,7 +355,78 @@ class CreatealbumController extends AbstractActionController {
         }
        
     }
-   
-    
+    public function albumdetailsAction(){
+        $this->layout('layout/albumlayout.phtml');
+        $plugin                 = $this->routeplugin();
+        $modelPlugin            = $this->modelplugin();
+        $dynamicPath            = $plugin->dynamicPath();
+        $jsonArray              = $plugin->jsondynamic();
+        $controller             = 'createalbum';
+        $action                 = $this->params('action');
+        $uniqueUser             = $this->getEvent()->getRouteMatch()->getParam('id');
+        $bgimg                  = $modelPlugin->getbgimageTable()->fetchall();
+        $userDetails            = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$uniqueUser));
+        $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        if(@getimagesize($userDetails[0]['backgroundimage'])){
+            $bgimgSend          = $userDetails[0]['backgroundimage'];
+        } else{
+            $bgimgSend          = $bgimg[0]['bgimgpath'];
+        }
+        $loggedInUserUniqueId   = $loggedInUserDetails[0]['userid'];
+        $uploadQuery            = array('UID'=> $userDetails[0]['userid']);
+        $albumDetails           = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
+        $totalLike = 0;
+        $totalTribute = 0;
+        foreach($albumDetails as $aResult){
+            $userAlbumDetails    = $modelPlugin->getuploadDetailsTable()->fetchall(array('UID'=>$userDetails[0]['userid'],'AID'=>$aResult['albumeid']));
+            $albumTributeDetails = $modelPlugin->gettributedetailsTable()->fetchall(array('uploadId'=>$aResult['albumeid'],'tribute_type'=>'album'));
+            $albumLikeDetails = $modelPlugin->getlikesdetailsTable()->fetchall(array('AID'=>$aResult['albumeid']));
+            $totalLike = count($albumLikeDetails);
+            $totalTribute= count($albumTributeDetails);
+            $uploadAlbumArray = array();
+            if(count($userAlbumDetails)>0){
+                foreach($userAlbumDetails as $uResult){
+                    if($uResult['uploadType'] != 'album'){
+                       $uploadAlbumArray[] = array(
+                                                "uploadId"=>$uResult['uploadId'],
+                                                "uploadTitle"=>$uResult['uploadTitle'],
+                                                "uploadDescription"=>$uResult['uploadDescription'],
+                                                "uploadPath"=>$uResult['uploadPath'],
+                                                "uploadType"=>$uResult['uploadType'],
+                                                "TimeStamp"=>$uResult['TimeStamp']
+                                               ); 
+                    }
+                }
+            }
+            $array[] = array(
+                        "albumeid"=>$aResult['albumeid'],
+                        "title"=>$aResult['title'],
+                        "uploadDetails"=>$uploadAlbumArray,
+                        "totalLike"=>$totalLike,
+                        "totalTribute"=>$totalTribute
+                    );
+        }
+        $albumDetails = $array;
+        $this->layout()->setVariables(array(
+                                            'controller' => $controller,
+                                            'action' => $action,
+                                            'dynamicPath' => $dynamicPath,
+                                            'userDetails'=>$userDetails,
+                                            'loggedInUserUniqueId'=>$loggedInUserUniqueId,
+                                            'jsonArray'=>$jsonArray,
+                                            'bgimg'=>$bgimgSend,
+                                            'sessionid'=>$this->sessionid
+                                        )
+                                     );
+
+        return new ViewModel(array(
+                                'userDetails' => $userDetails,
+                                'dynamicPath' => $dynamicPath,
+                                'jsonArray'=>$jsonArray,
+                                'albumDetails' =>$albumDetails
+                                )
+                            );
+       
+    }   
 }
 ?>

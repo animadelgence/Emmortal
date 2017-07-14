@@ -53,15 +53,19 @@ function relationshipsmodal()
     var pageUrl = window.location.href;
     var pageUrlarray = pageUrl.split("/");
     var lastEl = pageUrlarray.slice(-1)[0];
+    if(lastEl == ""){
+            lastEl = "user";
+    }
+    //console.log(lastEl); return false;
 
     $.ajax({
         type: "POST",
         data : {
             userid : lastEl
         },
-        url: getUrl + '/redirection/redirectuserdetails',
+        url: getUrl + '/redirection/redirectuserdetails/'+lastEl,
         success: function (res) {
-            //alert(res);
+            //console.log(res); return false;
             var jsObject = JSON.parse(res),
                 buttonhtml = '',
                 extrahtml = '',
@@ -70,6 +74,8 @@ function relationshipsmodal()
             if(jsObject.sessionid != jsObject.tempuserid) {
                 
                 $.get(getUrl+"/modal/temprelationshipmodal.php?version="+RandomNumber, function (result) {
+                    //alert();
+                    //console.log(result); return false;
                     // append response to body
                     $('body').append(result);
                     $('#temprelationshipmodal').modal('show');
@@ -82,6 +88,7 @@ function relationshipsmodal()
                         },
                         url: base_url_dynamic + '/redirection/searchrelationship',
                         success: function (res) {
+                            //alert();
                             //console.log(res);return false;
                             jsObjectSecond = JSON.parse(res);
                             for (i = 0; i < jsObjectSecond.userDetails.length; i++) {
@@ -111,8 +118,41 @@ function relationshipsmodal()
                     var name = $('.relationships').attr('data-name');
                     $(".firstName").html(name);
                     //friendlist('AllFriend', '');
+<<<<<<< HEAD
                 });*/
                 searchmodalopen();
+=======
+                    $.ajax({
+                        type: "POST",
+                        data : {
+                            tempuserid  : jsObject.sessionid
+                        },
+                        url: base_url_dynamic + '/redirection/searchrelationship',
+                        success: function (res) {
+                            //alert();
+                            //console.log(res);
+                            jsObjectSecond = JSON.parse(res);
+                            for (i = 0; i < jsObjectSecond.userDetails.length; i++) {
+                                extrahtml = '',
+                                buttonhtml = '';
+                                var id = jsObjectSecond.userDetails[i].friendsid,
+                                    friendsname = jsObjectSecond.userDetails[i].friendsname,
+                                    profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg",
+                                    uniqueuser = jsObjectSecond.userDetails[i].uniqueUser;
+                                if (jsObjectSecond.userDetails[i].profileimage != null) { // jshint ignore:line
+                                    profileimage = jsObjectSecond.userDetails[i].profileimage;
+                                }
+                                buttonhtml +='<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="relationship">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
+
+                                extrahtml += '<a class="e-link pointer">View Relationship Page</a>';
+
+                                html += '<div class="user-field m-t-25 animated fadeIn"><input type = "hidden" value = "'+friendsname+'"><div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" href="/profile/showprofile/'+uniqueuser+'"><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3>'+extrahtml+'</div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+buttonhtml+'</div></form></div>';
+                                $('#tabResults').html(html);
+                            }
+                        }
+                    });
+                });
+>>>>>>> 43854e57dea944434921d7e68784ed275b43cd1e
             }
         }
     });
@@ -137,6 +177,13 @@ function tributedetailsmodal()
     }
     $.get(getUrl+"/modal/tributedetailsmodal.php?version="+RandomNumber, function (result) {
         // append response to body
+        var pageUrl = window.location.href;
+        var pageUrlarray = pageUrl.split("/");
+        var lastEl = pageUrlarray.slice(-1)[0];
+        if(lastEl == ""){
+            lastEl = "user";
+        }
+        //console.log(lastEl); return false;
         $('body').append(result);
         // open modal
         $('#tributedetailsmodal').modal('show');
@@ -158,6 +205,10 @@ function albumdetailsmodal()
         var pageUrl = window.location.href;
         var pageUrlarray = pageUrl.split("/");
         var lastEl = pageUrlarray.slice(-1)[0];
+        if(lastEl == ""){
+            lastEl = "user";
+        }
+        //console.log(lastEl); return false;
         $('body').append(result);
         // open modal
         $('#albumdetailsmodal').modal('show');
@@ -168,6 +219,7 @@ function albumdetailsmodal()
         type: "POST",
         url: getUrl + '/album/fetchallalbum/'+lastEl,
         success: function (res) {
+            //console.log(res);
             var jsObject = JSON.parse(res);
                  var   i = 0;
                  var   appendHtml = "";
@@ -359,6 +411,14 @@ function albummodalopen(){
             });
             CKEDITOR.disableAutoInline = true;
         }
+        $.ajax({
+            type: "POST",
+            url: base_url_dynamic + '/profile/getalbum',
+            data: {},
+            success: function (res) {
+                $('.AID').html(res);
+            }
+        });
 
     });
 

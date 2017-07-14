@@ -1,0 +1,116 @@
+<div class="e-container albumcontainer">
+<?php //echo "<pre/>";
+   // print_r($albumDetails);
+    ?>
+	<h2 class="e-brown m-t-0 m-b-25">
+		<span class="text-capitalize ng-binding" ng-bind="user.first_name"><?php echo $userDetails[0]['firstname'];?></span>'s Life Events
+	</h2>
+	<div class="ng-isolate-scope">
+	
+		<div class="m-t-5">
+			<div class="album-preview">
+				<div class="album-preview-cover-wrapper m-r-10">
+					<img class="img-responsive img-thumbnail" src="<?php echo $albumDetails[0]['albumimagepath'];?>" onerror="this.src='/image/NoPhotoDefault.png'">
+				</div>
+				<div class="album-preview-info">
+					<a class="album-preview-title font-bold e-link" href="<?php echo $dynamicPath;?>/createalbum/showafterpublish/<?php echo base64_encode($albumDetails[0]['albumeid']).'/'.$userDetails[0]['uniqueUser']?>">My chronicles</a>
+					<div class="e-brown m-b-10">
+						<small class="album-preview-location"></small>
+					</div>
+					<div class="action-btns">
+						<div class="e-like btn e-btn btn-round full likeClick" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php echo $albumDetails[0]['totalLike'];?></div>
+						<div class="btn e-btn btn-brown btn-round full getTribute" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php echo $albumDetails[0]['totalTribute'];?></div>
+						<div class="edit-menu-wrapper">
+							<div class="edit-menu e-dropdown dropdown white-dropdown dropdown-toggle">
+								<i class="fa fa-cog cog-menu-icon" onclick="$(this).next().slideToggle();"></i>
+								<ul class="dropdown-menu text-left" style="width:50%;">
+									<li><i class="fa fa-trash m-r-5"></i>Remove</li>
+									<li><i class="fa fa-pencil m-r-5"></i>Edit</li>
+									<li><i class="fa fa-thumb-tack m-r-5"></i>
+										<span class="font-bold e-red">Pinned</span>
+										<span>Pin</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="album-preview-collection">
+				    <?php $i=0;
+                        foreach($albumDetails[0]['uploadDetails'] as $uResult){
+                            if($i<=2){
+                    ?>
+					<div class="image-wrapper">
+					<?php if($uResult['uploadType'] == 'image'){?>
+						<img class="img-responsive" src="<?php echo $uResult['uploadPath'];?>">
+						<?php } else if($uResult['uploadType'] == 'text'){ ?>
+                        <p> <?php echo $uResult['uploadDescription'];?></p>
+                        <?php } else if($uResult['uploadType'] == 'video'){ ?>
+                        <video controls="controls" name="Video Name" id="" src="<?php echo $uResult['uploadPath'];?>" style="width:100%;height:100%;"></video>
+						<?php } ?>
+					</div>
+					<?php } 
+                        $i++;    
+                    } ?>
+				</div>
+			</div>
+		</div>
+		<?php if(count($albumDetails)>1){
+           for($j=1; $j<count($albumDetails);$j++){                 
+        ?>
+		<div class="m-t-5">
+			<div class="album-preview">
+				<div class="album-preview-cover-wrapper m-r-10">
+					<img class="img-responsive img-thumbnail" src="<?php echo $albumDetails[$j]['albumimagepath'];?>" onerror="this.src='/image/NoPhotoDefault.png'">
+				</div>
+				<div class="album-preview-info">
+					<a class="album-preview-title font-bold e-link" href="<?php echo $dynamicPath;?>/createalbum/showafterpublish/<?php echo base64_encode($albumDetails[$j]['albumeid']).'/'.$userDetails[0]['uniqueUser']?>" style="color: rgb(180, 80, 78);"><?php echo $albumDetails[$j]['title'];?></a>
+					<div class="e-brown m-b-10">
+						<small class="album-preview-location"></small>
+					</div>
+					<div class="action-btns">
+						<div class="e-like btn e-btn btn-round full liked likeClick" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[$j]['albumeid'];?>" data-cmd="album"><?php echo $albumDetails[0]['totalLike'];?></div>
+						<div class="btn e-btn btn-brown btn-round full getTribute" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php echo $albumDetails[$j]['totalTribute'];?></div>
+						<div class="edit-menu-wrapper">
+							<div class="edit-menu e-dropdown dropdown white-dropdown dropdown-toggle"  style="background: rgb(180, 80, 78);">
+								<i class="fa fa-cog cog-menu-icon" onclick="$(this).next().slideToggle();"></i>
+								<ul class="dropdown-menu text-left" style="width:50%;">
+									<li style="color: rgb(180, 80, 78);">
+										<i class="fa fa-trash m-r-5"></i>Remove
+									</li>
+									<li style="color: rgb(180, 80, 78);">
+										<i class="fa fa-pencil m-r-5"></i>Edit
+									</li>
+									<li style="color: rgb(180, 80, 78);">
+										<i class="fa fa-thumb-tack m-r-5 font-bold e-red"></i>
+										<span class="font-bold e-red">Pinned</span>
+										<span  class="ng-hide">Pin</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="album-preview-collection">
+				    <?php $i=0;
+                        foreach($albumDetails[$j]['uploadDetails'] as $uResult){
+                            if($i<=2){
+                    ?>
+					<div class="image-wrapper">
+					<?php if($uResult['uploadType'] == 'image'){?>
+						<img class="img-responsive" src="<?php echo $uResult['uploadPath'];?>">
+						<?php } else if($uResult['uploadType'] == 'text'){ ?>
+                        <p> <?php echo $uResult['uploadDescription'];?></p>
+                        <?php } else if($uResult['uploadType'] == 'video'){ ?>
+                        <video controls="controls" name="Video Name" id="" src="<?php echo $uResult['uploadPath'];?>" style="width:100%;height:100%;"></video>
+						<?php } ?>
+					</div>
+					<?php } 
+                        $i++;    
+                    } ?>
+				</div>
+			</div>
+		</div>
+		<?php } } ?>
+	</div>
+</div>

@@ -134,7 +134,7 @@ class ProfileController extends AbstractActionController {
         $query          = array('UID'=>$this->sessionid);
         $albumDetails   = $modelPlugin->getalbumdetailsTable()->fetchall($query);
 
-        echo '<option value="">My chronicles</option>';
+        ///echo '<option value="1">My chronicles</option>';
 
         if(!empty($albumDetails)){
             foreach($albumDetails as $aResult){

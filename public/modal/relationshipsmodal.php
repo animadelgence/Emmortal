@@ -1,7 +1,8 @@
 <div class="modal fade" id="relationshipsmodal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="container animated fadeIn p-t-100 p-b-100">
         <div class="e-container relationships-page" id="mainContainer">
-            <div class="h2 e-brown m-t-0"><span class="firstName"></span>'s Connections</div>
+<!--            <div class="h2 e-brown m-t-0"><span class="firstName"></span>'s Connections</div>-->
+            <div class="h2 e-brown m-t-0">Find Connections</div>
             <div class="m-b-10" type="text" placeholder="Type something to search..." >
                 <input type="text" placeholder="Type something to search..." class="form-control" id="searchText">
             </div>

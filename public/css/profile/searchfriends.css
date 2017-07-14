@@ -9,7 +9,8 @@
     padding-bottom: 100px !important;
 }
 .p-t-100 {
-    padding-top: 100px !important;
+/*    padding-top: 100px !important;*/
+    margin-top: 100px !important;
 }
 .fadeIn {
     animation-name: fadeIn;

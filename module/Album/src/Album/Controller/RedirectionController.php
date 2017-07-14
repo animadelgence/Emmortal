@@ -37,6 +37,14 @@ class RedirectionController extends AbstractActionController {
             $userId = $userDetailsTemp[0]['uniqueUser'];
         }
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$userId));
+
+        if($userId == 'user') {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=> $this->sessionid));
+        }
+        else {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$userId));
+        }
+
         $UserUniqueId = $userDetails[0]['userid'];
         $result['sessionid'] = $this->sessionid;
         $result['tempuserid'] = $UserUniqueId;
@@ -47,10 +55,12 @@ class RedirectionController extends AbstractActionController {
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $query = $_POST['tempuserid'];
+        //echo $query; exit;
         $where = array('userid' => $query, 'requestaccept' => 1);
         $userdetails = $modelPlugin->getfriendsTable()->fetchall($where);
         $whereSecond = array('friendsid' => $query, 'requestaccept' => 1);
         $userdetailsSecond = $modelPlugin->getfriendsTable()->fetchall($whereSecond);
+        //print_r($userdetailsSecond); exit;
         $array = array();
         $result = array_merge($userdetails,$userdetailsSecond);
         //print_r($result); exit;
@@ -77,9 +87,10 @@ class RedirectionController extends AbstractActionController {
                 'friendslikes'  => $friendlikes,
                 'noOfTributes'  => $noOfTributes
             );
+           // print_r($array); exit;
         }//exit;
         $res['userDetails'] = $array;
-        //print_r($res);exit;
+        //print_r($res['userDetails']);exit;
         echo json_encode($res);
         exit;
     }

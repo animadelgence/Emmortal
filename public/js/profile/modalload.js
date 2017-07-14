@@ -101,7 +101,7 @@ function relationshipsmodal()
                                 if (jsObjectSecond.userDetails[i].profileimage != null) { // jshint ignore:line
                                     profileimage = jsObjectSecond.userDetails[i].profileimage;
                                 }
-                                buttonhtml +='<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="relationship">'+jsObject.userDetails[i].noOfTributes+'</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">'+jsObject.userDetails[i].friendslikes+'</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
+                                buttonhtml +='<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="relationship">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
 
                                 extrahtml += '<a class="e-link pointer">View Relationship Page</a>';
 
@@ -112,16 +112,12 @@ function relationshipsmodal()
                     });
                 });
             } else {
-                /*$.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
+                $.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
                     $('body').append(result);
                     $('#relationshipsmodal').modal('show');
                     var name = $('.relationships').attr('data-name');
                     $(".firstName").html(name);
                     //friendlist('AllFriend', '');
-<<<<<<< HEAD
-                });*/
-                searchmodalopen();
-=======
                     $.ajax({
                         type: "POST",
                         data : {
@@ -152,7 +148,6 @@ function relationshipsmodal()
                         }
                     });
                 });
->>>>>>> 43854e57dea944434921d7e68784ed275b43cd1e
             }
         }
     });
@@ -752,17 +747,4 @@ $(document).ready(function () {
             $("#welcome").css('display','none');
         });
     }
-    $('body').on('keyup', '#searchTextTemp', function () {
-        var friendsid = $(this).val().trim();
-        $("#tempResult .animated").hide();
-        $("#tempResult .animated > input[type='hidden']").each(function(){
-
-            if($(this).val().toLowerCase().indexOf(friendsid.toLowerCase()) > -1) {
-                $(this).parent().show();
-                $(this).val().indexOf(friendsid.toLowerCase());
-            }
-        });
-         $("#tempResult").show();
-    });
-    
 });

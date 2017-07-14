@@ -88,8 +88,28 @@ class FriendrequestsController extends AbstractActionController {
                     );
                 $friendlikes = count($modelPlugin->getlikesdetailsTable()->fetchall($where));
                 $noOfTributes = count($modelPlugin->gettributedetailsTable()->fetchall($where));
-                
-                 $array[] = array(
+                if(($recfrndDetails[0]['friendsid'] == $userid) && ($recfrndDetails[0]['relationshipstatus'] != 'accepted')) {
+                    $array[] = array(
+                            'friendsid'     => $recfrndDetails[0]['userid'],
+                            'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
+                            'profileimage'  => $recfrndDetails[0]['profileimage'],
+                            'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'friendslikes'  => $friendlikes,
+                            'noOfTributes'  => $noOfTributes,
+                            'status'        => 'incoming'
+                        );
+                } else if (($recfrndDetails[0]['userid'] == $userid) && ($recfrndDetails[0]['relationshipstatus'] != 'accepted')) {
+                    $array[] = array(
+                            'friendsid'     => $recfrndDetails[0]['userid'],
+                            'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
+                            'profileimage'  => $recfrndDetails[0]['profileimage'],
+                            'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'friendslikes'  => $friendlikes,
+                            'noOfTributes'  => $noOfTributes,
+                            'status'        => 'outgoing'
+                        );
+                } else {
+                    $array[] = array(
                             'friendsid'     => $recfrndDetails[0]['userid'],
                             'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
                             'profileimage'  => $recfrndDetails[0]['profileimage'],
@@ -98,6 +118,8 @@ class FriendrequestsController extends AbstractActionController {
                             'noOfTributes'  => $noOfTributes,
                             'status'        => $recfrndDetails[0]['relationshipstatus']
                         );
+                }
+                
                 
                 /*if($recfrndDetails[0]['requestaccept'] == 1){
                     $status = "Accepted";
@@ -169,6 +191,8 @@ class FriendrequestsController extends AbstractActionController {
                // }
             }
           }
+        /*print_r($sendfrndDetails);
+        print_r($recfrndDetails); exit;*/
         if(count($array)<1){
             $array = array();
         }
@@ -224,11 +248,11 @@ class FriendrequestsController extends AbstractActionController {
         $action                 = $_POST['action'];
         if($action == 'Accept') {
             $status             = "accepted";
-            $requestaccept      = 0;
+            $requestaccept      = 1;
         }
         else {
             $status             = "declined";
-            $requestaccept      = 1;
+            $requestaccept      = 0;
         }
         $userid                 = $this->sessionid;
         $query                  = array(
@@ -246,8 +270,7 @@ class FriendrequestsController extends AbstractActionController {
                                     );
         $friendDetails          = $modelPlugin->getfriendsTable()->updateData($updatedArray,$where);
         $frndDetails            = $modelPlugin->getfriendsTable()->fetchall($where);
-        
-        $frndDetails            = $modelPlugin->getnotificationdetailsTable()->deleteNotification(array('UID'=>$friendsId,'notified_by'=>$userid,'notify_type'=>'friendrequest'));
+        $frndDetailsDelete            = $modelPlugin->getnotificationdetailsTable()->deleteNotification(array('notified_by'=>$friendsId,'UID'=>$userid,'notify_type'=>'friendrequest'));
         
         $notificationData       = array(
                                         'UID'               =>$friendsId,

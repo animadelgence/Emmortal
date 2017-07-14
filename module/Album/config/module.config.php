@@ -18,6 +18,7 @@ return array(
              'Album\Controller\Notification' => 'Album\Controller\NotificationController',
              'Album\Controller\Lazyload' => 'Album\Controller\LazyloadController',
              'Album\Controller\Redirection' => 'Album\Controller\RedirectionController',
+             'Album\Controller\Uploadoperation' => 'Album\Controller\UploadoperationController',
              'Album\Controller\Createalbum' => 'Album\Controller\CreatealbumController'
 
            
@@ -179,6 +180,20 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Album\Controller\Redirection',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+             'Uploadoperation' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/uploadoperation[/:action][/:id][/:pid]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Album\Controller\Uploadoperation',
                          'action'     => 'index',
                      ),
                  ),

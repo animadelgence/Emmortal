@@ -31,6 +31,11 @@ class RedirectionController extends AbstractActionController {
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
         $userId = $_POST['userid'];
+        if(empty($userId)) {
+            $userId = $this->sessionid;
+            $userDetailsTemp = $modelPlugin->getuserTable()->fetchall(array('userid'=>$userId));
+            $userId = $userDetailsTemp[0]['uniqueUser'];
+        }
         $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$userId));
         $UserUniqueId = $userDetails[0]['userid'];
         $result['sessionid'] = $this->sessionid;
@@ -58,19 +63,19 @@ class RedirectionController extends AbstractActionController {
            
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$resultid));
             //print_r($userDetails);
-            /*$where = array(
+            $where = array(
                     'UID' => $resultid
                 );
             $friendlikes = count($modelPlugin->getlikesdetailsTable()->fetchall($where));
             $noOfTributes = count($modelPlugin->gettributedetailsTable()->fetchall($where));
-*/
+
             $array[] = array(
                 'friendsid'     => $rSet['friendsid'],
                 'friendsname'   => $userDetails[0]['firstname']." ".$userDetails[0]['lastname'],
                 'profileimage'  => $userDetails[0]['profileimage'],
-                'uniqueUser'  => $userDetails[0]['uniqueUser']
-                /*'friendslikes'  => $friendlikes,
-                'noOfTributes'  => $noOfTributes,*/
+                'uniqueUser'  => $userDetails[0]['uniqueUser'],
+                'friendslikes'  => $friendlikes,
+                'noOfTributes'  => $noOfTributes
             );
         }//exit;
         $res['userDetails'] = $array;

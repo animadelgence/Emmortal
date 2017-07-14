@@ -3,7 +3,7 @@
         <div class="e-container relationships-page" id="mainContainer">
             <div class="h2 e-brown m-t-0"><span class="firstName"></span>'s Connections</div>
             <div class="m-b-10" type="text" placeholder="Type something to search..." >
-                <input type="text" placeholder="Type something to search..." class="form-control" id="searchText">
+                <input type="text" placeholder="Type something to search..." class="form-control" id="searchTextTemp">
             </div>
             <div class="users-section animated fadeIn">
                 <div infinite-scroll="friendsLoader.nextPage()" >

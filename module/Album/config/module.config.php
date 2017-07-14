@@ -190,7 +190,7 @@ return array(
                      'route'    => '/uploadoperation[/:action][/:id][/:pid]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         
+
                      ),
                      'defaults' => array(
                          'controller' => 'Album\Controller\Uploadoperation',

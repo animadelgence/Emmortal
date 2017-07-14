@@ -47,9 +47,9 @@ function squarespaceModal2open()
 
 function relationshipsmodal()
 {
-    if($('#relationshipsmodal').length) {
-        $('#relationshipsmodal').remove();
-    }
+//    if($('#relationshipsmodal').length) {
+//        $('#relationshipsmodal').remove();
+//    }
     var pageUrl = window.location.href;
     var pageUrlarray = pageUrl.split("/");
     var lastEl = pageUrlarray.slice(-1)[0];
@@ -458,7 +458,7 @@ function imagemodalopen(arrayvalue){
             CKEDITOR.disableAutoInline = true;
         }
         if(arrayvalue) {
-            
+
             jsObject = JSON.parse(arrayvalue);
             $('#uploadId').val(jsObject.uploadId);
             $('#imageTitle').val(jsObject.uploadTitle);
@@ -478,7 +478,7 @@ function imagemodalopen(arrayvalue){
                         $('#listing option[value="'+jsObject.AID+'"]').attr('selected', true);
                     }
             });
-            
+
         }
 
     });

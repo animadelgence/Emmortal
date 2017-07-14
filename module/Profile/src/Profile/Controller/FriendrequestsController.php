@@ -119,7 +119,7 @@ class FriendrequestsController extends AbstractActionController {
                             'status'        => $recfrndDetails[0]['relationshipstatus']
                         );
                 }
-                
+
                 
                 /*if($recfrndDetails[0]['requestaccept'] == 1){
                     $status = "Accepted";

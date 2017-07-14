@@ -111,7 +111,7 @@ $('.vid-sec').mouseleave(function() {
                     }
                 }
             });
-        });   
+        });
     });
     $('body').on('click', '.edit-button', function () {
         var dataid = $(this).parents('.user_upload_part_section_content--inside').find("img").attr('id');

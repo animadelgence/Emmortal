@@ -45,7 +45,7 @@ $(document).ready(function () {
         $('.displayTab').hide();
         $('#searchResults').hide();
         //$('#tabResults').hide();
-        
+
         $("#li-allTab").removeClass("active");
         $("#li-relationshipTab").removeClass("active");
         $("#li-outgoingTab").removeClass("active");
@@ -62,7 +62,7 @@ $(document).ready(function () {
         //$('#tabResults').hide();
         $('#searchText').val('');
         $('#searchResults').hide();
-        
+
         $("#li-relationshipTab").removeClass("active");
         $("#li-allTab").removeClass("active");
         $("#li-incomingTab").removeClass("active");
@@ -80,8 +80,8 @@ $(document).ready(function () {
         $('#globalSearch').hide();
         //$('#tabResults').hide();
         $('#searchResults').hide();
-        
-        
+
+
         $("#li-allTab").removeClass("active");
         $("#li-incomingTab").removeClass("active");
         $("#li-outgoingTab").removeClass("active");
@@ -99,7 +99,7 @@ $(document).ready(function () {
         $('#globalSearch').hide();
         //$('#tabResults').hide();
         $('#searchResults').hide();
-        
+
         $("#li-relationshipTab").removeClass("active");
         $("#li-incomingTab").removeClass("active");
         $("#li-outgoingTab").removeClass("active");

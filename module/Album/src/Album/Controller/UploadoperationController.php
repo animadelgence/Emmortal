@@ -26,10 +26,10 @@ class UploadoperationController extends AbstractActionController {
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
-        
+
         $user_id = $this->sessionid;
         $dataId = $_POST['dataid'];
-        
+
         $deleteDetails = 0;
         $data = array(
                 'uploadId' => $dataId,
@@ -45,7 +45,7 @@ class UploadoperationController extends AbstractActionController {
         $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
-        
+
         $user_id = $this->sessionid;
         $dataId = $_POST['dataid'];
         $data = array(
@@ -55,8 +55,8 @@ class UploadoperationController extends AbstractActionController {
         $dataDetails    = $modelPlugin->getuploadDetailsTable()->fetchall($data);
         $res['uploadId'] = $dataDetails[0]['uploadId'];
         $res['uploadPath'] = $dataDetails[0]['uploadPath'];
-        
-        
+
+
         $res['uploadimagePath'] = str_replace($dynamicPath.'/upload/uploadimage/' , '', $dataDetails[0]['uploadPath']);
         //echo $res['uploadPath'];exit;
         //$res['uploadPath'] = '/upload/uploadimage/1500020556_imagescrap2.php.jpeg';

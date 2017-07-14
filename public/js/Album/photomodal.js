@@ -104,6 +104,10 @@ $(document).ready(function () {
     });
     $('body').on('click', '#saveDetails', function () {
         var flag = 0;
+        var uploadid = '';
+        if($('#uploadId').val()) {
+            uploadid = $('#uploadId').val();
+        }
         var imageTitle = $('#imageTitle').val();
         var imagePath = $('#aviaryPath').val();
         var imageName = $('#imageName').val();
@@ -172,6 +176,7 @@ $(document).ready(function () {
                 type: "POST",
                 url: base_url_dynamic + '/image/saveImageDetails',
                 data: {
+                    uploadid : uploadid,
                     imageTitle : imageTitle,
                     imagePath : imagePath,
                     imageName : imageName,

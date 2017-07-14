@@ -78,7 +78,7 @@ $(function () {
    
     if(!$(this).find('.tile-show-settings-btn').length){
         $(this).removeClass('previewUploadedFile');
-   $(this).append('<div class="tile-show-settings-btn" style="opacity: 1;"></div>');
+    $(this).append('<div class="tile-show-settings-btn" style="opacity: 1;"></div>');
 }
 });
 
@@ -87,7 +87,7 @@ $('.vid-sec').mouseleave(function() {
    $(this).find('.tile-show-settings-btn').remove();
 });
  $('body').on('click', '.tile-show-settings-btn', function () {
-    $(this).append('<div class="settings-wrapper ng-scope"><div class="tile-edit-buttons"><i class="fa fa-trash"></i><span class="ng-scope"><i tooltip-placement="bottom" tooltip="Edit tile" class="fa fa-pencil edit-button ng-scope"></i></span><i class="fa fa-arrows drag-handle"></i></div></div>');
+    $(this).append('<div class="settings-wrapper ng-scope"><div class="tile-edit-buttons"><i class="fa fa-trash delete-button"></i><span class="ng-scope"><i tooltip-placement="bottom" tooltip="Edit tile" class="fa fa-pencil edit-button ng-scope"></i></span><i class="fa fa-arrows drag-handle"></i></div></div>');
     });
 
                 
@@ -95,6 +95,35 @@ $('.vid-sec').mouseleave(function() {
             }
         }
     });
-    
+    $('body').on('click', '.delete-button', function () {
+       var dataid = $(this).parents('.user_upload_part_section_content--inside').find("img").attr('id');
+        $('#popuppopupfordelete').fadeIn();
+        $('#popupSpan2').html('Are you sure you want to delete this data?');
+        $(".confirmation").click(function () {
+            $.ajax({
+                type: "POST",
+                url: base_url_dynamic + '/uploadoperation/deletedata',
+                data: {dataid : dataid},
+                success: function (res) {
+                    $('#popuppopupfordelete').fadeOut();
+                    if(res == 1) {
+                        window.location.reload();
+                    }
+                }
+            });
+        });
+    });
+    $('body').on('click', '.edit-button', function () {
+        var dataid = $(this).parents('.user_upload_part_section_content--inside').find("img").attr('id');
+        $.ajax({
+                type: "POST",
+                url: base_url_dynamic + '/uploadoperation/opendata',
+                data: {dataid : dataid},
+                success: function (res) {
+                    //console.log(res);return false;
+                    imagemodalopen(res);
+                }
+            });
+    });
 
 });

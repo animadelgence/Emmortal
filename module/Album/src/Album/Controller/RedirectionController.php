@@ -142,19 +142,19 @@ class RedirectionController extends AbstractActionController {
            
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$resultid));
             //print_r($userDetails);
-            /*$where = array(
+            $where = array(
                     'UID' => $resultid
                 );
             $friendlikes = count($modelPlugin->getlikesdetailsTable()->fetchall($where));
             $noOfTributes = count($modelPlugin->gettributedetailsTable()->fetchall($where));
-*/
+
             $array[] = array(
                 'friendsid'     => $rSet['friendsid'],
                 'friendsname'   => $userDetails[0]['firstname']." ".$userDetails[0]['lastname'],
                 'profileimage'  => $userDetails[0]['profileimage'],
-                'uniqueUser'  => $userDetails[0]['uniqueUser']
-                /*'friendslikes'  => $friendlikes,
-                'noOfTributes'  => $noOfTributes,*/
+                'uniqueUser'  => $userDetails[0]['uniqueUser'],
+                'friendslikes'  => $friendlikes,
+                'noOfTributes'  => $noOfTributes
             );
            // print_r($array); exit;
         }//exit;

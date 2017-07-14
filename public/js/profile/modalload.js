@@ -419,7 +419,7 @@ function albummodalopen(){
 
 }
 
-function imagemodalopen(){
+function imagemodalopen(arrayvalue){
     if($('#photoInsertModal').length) {
         $('#photoInsertModal').remove();
     }
@@ -427,6 +427,7 @@ function imagemodalopen(){
         $('.in').remove();
     }*/
     $.get(getUrl+"/modal/imageinsertmodal.php?version="+RandomNumber, function (result) {
+        $('#div-editphoto').hide();
         // append response to body
         $('body').append(result);
         // open modal
@@ -455,6 +456,29 @@ function imagemodalopen(){
                 ]
             });
             CKEDITOR.disableAutoInline = true;
+        }
+        if(arrayvalue) {
+
+            jsObject = JSON.parse(arrayvalue);
+            $('#uploadId').val(jsObject.uploadId);
+            $('#imageTitle').val(jsObject.uploadTitle);
+            $('#imagetextDescription').val(jsObject.uploadDescription);
+            $('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+jsObject.uploadPath+'" style="height:360px;width:100%"/>');
+            $("#imagePath").val(jsObject.uploadPath);
+            $("#aviaryPath").val(jsObject.uploadPath);
+            $("#imageName").val(jsObject.uploadimagePath);
+            $('#div-editphoto').show();
+            //$("#listing :selected").val(jsObject.AID);
+            $.ajax({
+                    type: "POST",
+                    url: base_url_dynamic + '/profile/getalbum',
+                    data: {},
+                    success: function (res) {
+                        $('#listing').html(res);
+                        $('#listing option[value="'+jsObject.AID+'"]').attr('selected', true);
+                    }
+            });
+
         }
 
     });

@@ -13,7 +13,7 @@ $protocolPath = $protocol . $_SERVER['HTTP_HOST'];
 				<div class="row">
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 add-content-section">
 						<div class="col-xs-6 col-sm-4">
-							<a class="btn btn-default btn-media-type pointer" onclick="imagemodalopen();" href="javascript:void(0)" id="photoInsert">
+							<a class="btn btn-default btn-media-type pointer" onclick="imagemodalopen('');" href="javascript:void(0)" id="photoInsert">
 								<i class="fa fa-camera"></i>
 								<div class="text">Photo</div>
 							</a>

@@ -419,7 +419,7 @@ function albummodalopen(){
 
 }
 
-function imagemodalopen(){
+function imagemodalopen(arrayvalue){
     if($('#photoInsertModal').length) {
         $('#photoInsertModal').remove();
     }
@@ -427,6 +427,7 @@ function imagemodalopen(){
         $('.in').remove();
     }*/
     $.get(getUrl+"/modal/imageinsertmodal.php?version="+RandomNumber, function (result) {
+        $('#div-editphoto').hide();
         // append response to body
         $('body').append(result);
         // open modal
@@ -455,6 +456,16 @@ function imagemodalopen(){
                 ]
             });
             CKEDITOR.disableAutoInline = true;
+        }
+        if(arrayvalue) {
+            jsObject = JSON.parse(arrayvalue);
+            $('#imageTitle').val(jsObject.uploadTitle);
+            $('#imagetextDescription').val(jsObject.uploadDescription);
+            $('#canvasPlaceholdeId').html('<img id= "profile_pic_thumb" src="'+jsObject.uploadPath+'" style="height:360px;width:100%"/>')
+            $("#imagePath").val(base_url_dynamic+jsObject.uploadPath);
+            $("#aviaryPath").val(base_url_dynamic+jsObject.uploadPath);
+            $("#imageName").val(jsObject.uploadPath);
+            $('#div-editphoto').show();
         }
 
     });

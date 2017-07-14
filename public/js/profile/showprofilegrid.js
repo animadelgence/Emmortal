@@ -96,9 +96,34 @@ $('.vid-sec').mouseleave(function() {
         }
     });
     $('body').on('click', '.delete-button', function () {
-       // alert($(this).parents('.user_upload_part_section_content--inside').children().html());
-        alert($(this).parents('.user_upload_part_section_content--inside').find("img").attr('id'));
+       var dataid = $(this).parents('.user_upload_part_section_content--inside').find("img").attr('id');
+        $('#popuppopupfordelete').fadeIn();
+        $('#popupSpan2').html('Are you sure you want to delete this data?');
+        $(".confirmation").click(function () {
+            $.ajax({
+                type: "POST",
+                url: base_url_dynamic + '/uploadoperation/deletedata',
+                data: {dataid : dataid},
+                success: function (res) {
+                    $('#popuppopupfordelete').fadeOut();
+                    if(res == 1) {
+                        window.location.reload();
+                    }
+                }
+            });
+        });   
     });
-    
+    $('body').on('click', '.edit-button', function () {
+        var dataid = $(this).parents('.user_upload_part_section_content--inside').find("img").attr('id');
+        $.ajax({
+                type: "POST",
+                url: base_url_dynamic + '/uploadoperation/opendata',
+                data: {dataid : dataid},
+                success: function (res) {
+                    console.log(res);
+                    imagemodalopen(res);
+                }
+            });
+    });
 
 });

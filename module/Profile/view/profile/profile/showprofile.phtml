@@ -97,6 +97,7 @@
             </div>
     </div>
    <input type="hidden" id="currentPageId" value="<?php echo $pageDetails[0]['pageid']; ?>">
+    
 </section>
 <!-- line modal -->
 <div class="modal fade" id="squarespaceModal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -195,3 +196,21 @@
       </div>
    </div>
 </div>
+<section id="popuppopupfordelete" class="popupFormForDynamicPage chang_PPopup_conta" style="display:none;">
+    <div id="" class="chang_PPopup">
+        <div class="tab-content" style="border:0px solid;width:490px;">
+            <form class="form-popup" style="margin-top: 0px;" method="POST" action="" enctype="multipart/form-data">
+                <a class="close" href="javascript:void(0)" onclick="$('#popuppopupfordelete').hide();" style="margin: 10px 10px 0 0px;"><i aria-hidden="true" class="fa fa-times"></i></a>
+                <h2 class="form-login-heading">Delete Data</h2>
+                <div class="login-wrap" style="overflow:hidden;text-align:center;">
+                    <input type="hidden" name="hidden_id" value="" class="hidden_id" id="hidden_id">
+                    <h4 class="form-login-heading"><span id="popupSpan2"></span></h4>
+                    <div style="overflow:hidden;display:inline-block;">
+                        <input type="button" class="rejection1" id="btn"  onclick="$('#popuppopupfordelete').hide();" style="font-family: Sans Pro;background-color: #04ad6a;border: medium none;border-radius: 3px;color: #fff;float: left;font-size: 15px;margin-right: 10px;font-weight: 700;padding: 8px 25px;line-height:normal;" value="CANCEL"/>
+                        <input type="button" style="font-family: Sans Pro;background-color: #04ad6a;border: medium none;border-radius: 3px;color: #fff;float: left;font-size: 15px;font-weight: 700;padding: 8px 25px;line-height:normal;" value="OK" class="confirmation"/>
+                    </div>
+                </div>  
+            </form>
+        </div><!--tab-content-->
+    </div>
+</section>

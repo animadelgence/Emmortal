@@ -35,14 +35,14 @@
                         <li><?php if(!empty($sessionid)){ ?><button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/showprofile/<?php echo $loggedInUserUniqueId;?>'">My profile</button><?php }?>
                         </li>
                         <li><?php if(!empty($sessionid)){ ?>
-                           <button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/newsfeed'">Newsfeed</button><?php }?>
+                           <button class="btn btn-primary center-block sign-up" onclick="location.href='/profile/newsfeed/<?php echo $loggedInUserUniqueId;?>'">Newsfeed</button><?php }?>
                         </li>
                         <?php if(!empty($sessionid)){ ?>
-                        <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/settings/general'">Settings</button>
+                        <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/settings/general/<?php echo $loggedInUserUniqueId;?>'">Settings</button>
                         </li>
                         <?php }?>
-                        <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/aboutus'">About Us</button></li>
-                        <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/termsandconditions'">Terms & Conditions</button></li>
+                        <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/aboutus/<?php echo $loggedInUserUniqueId;?>'">About Us</button></li>
+                        <li><button class="btn btn-primary center-block sign-up" onclick="location.href='/album/termsandconditions/<?php echo $loggedInUserUniqueId;?>'">Terms & Conditions</button></li>
                         <li>
                            <?php if(!empty($sessionid)){ ?>
                            <form class="form-horizontal style-form" id='userLogout' method="post"   action="/profile/logoutuser" enctype="multipart/form-data"><button class="btn btn-primary center-block sign-up" >Logout</button></form>

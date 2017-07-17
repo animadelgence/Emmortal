@@ -13,13 +13,11 @@ $(document).ready(function () {
 
 	$('[data-toggle="tooltip"]').tooltip();   
 	$('body').on('click', '.edit-menu-album', function () {
-         if($(this).hasClass('open'))
-            {
-                $(this).removeClass('open');
-            }
-            else{
-               $(this).addClass('open'); 
-            }
+        if($(this).hasClass('open')) {
+            $(this).removeClass('open');
+        } else{
+           $(this).addClass('open'); 
+        }
 
     });
 

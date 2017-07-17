@@ -170,11 +170,23 @@ class CreatealbumController extends AbstractActionController {
         $getid = base64_decode($geturlid);
         $LoggedInUserDetails = $this->params('pid');
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
+        $sessionid = '';
+        if($this->sessionid) {
+            $sessionid = $this->sessionid;
+        }
         if($LoggedInUserDetails != ""){
             $uploadQuery =  array('albumeid' =>$getid );
         }else{
             $uploadQuery =  array('UID'=> $this->sessionid,'albumeid' =>$getid );
         }
+        
+        $totalLike = 0;
+        $totalTribute = 0;
+        $albumTributeDetails = $modelPlugin->gettributedetailsTable()->fetchall(array('uploadId'=>$getid,'tribute_type'=>'album'));
+        $albumLikeDetails = $modelPlugin->getlikesdetailsTable()->fetchall(array('AID'=>$getid));
+        $totalLike = count($albumLikeDetails);
+        $totalTribute= count($albumTributeDetails);
+        
         
         $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
         //print_r($albumDetails);exit;
@@ -225,9 +237,9 @@ class CreatealbumController extends AbstractActionController {
             //  $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend));
             // return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails' =>$userDetails));
 
-             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend,'sessionid'=>$this->sessionid));
+             $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend,'sessionid'=>$sessionid));
 
-            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'sessionid'=>$sessionid,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid,'totalTribute'=>$totalTribute,'totalLike'=>$totalLike));
 
         } else {
               if($LoggedInUserDetails != ""){
@@ -249,10 +261,10 @@ class CreatealbumController extends AbstractActionController {
                 
             }
             else {
-                 $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend,'sessionid'=>$this->sessionid));
+                 $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend,'sessionid'=>$sessionid));
             }
              
-            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
+            return new ViewModel(array('sessionid'=>$sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
         }
        
     }

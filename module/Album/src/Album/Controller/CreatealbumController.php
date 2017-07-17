@@ -377,14 +377,13 @@ class CreatealbumController extends AbstractActionController {
         $albumDetails           = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
         $totalLike = 0;
         $totalTribute = 0;
-        $array = array();
-        
+        $array = array(); 
         foreach($albumDetails as $aResult){
             $userAlbumDetails    = $modelPlugin->getuploadDetailsTable()->fetchall(array('UID'=>$userDetails[0]['userid'],'AID'=>$aResult['albumeid']));
             $albumTributeDetails = $modelPlugin->gettributedetailsTable()->fetchall(array('uploadId'=>$aResult['albumeid'],'tribute_type'=>'album'));
-            $albumLikeDetails = $modelPlugin->getlikesdetailsTable()->fetchall(array('AID'=>$aResult['albumeid']));
-            $totalLike = count($albumLikeDetails);
-            $totalTribute= count($albumTributeDetails);
+            $albumLikeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall(array('AID'=>$aResult['albumeid']));
+            $totalLike           = count($albumLikeDetails);
+            $totalTribute        = count($albumTributeDetails);
             $uploadAlbumArray = array();
             if(count($userAlbumDetails)>0){
                 foreach($userAlbumDetails as $uResult){
@@ -410,7 +409,6 @@ class CreatealbumController extends AbstractActionController {
                     );
         }
         $albumDetails = $array;
-        //print_r($albumDetails); exit();
         $this->layout()->setVariables(array(
                                             'controller' => $controller,
                                             'action' => $action,

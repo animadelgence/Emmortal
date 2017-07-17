@@ -2,9 +2,9 @@
 <div class="e-container albumcontainer">
    <div class="e-brown m-b-5">
       <div class="show-adds-btns pull-right" style=" width: 17%;">
-         <div tooltip-placement="bottom" data-toggle="tooltip" title="Likes" class="e-like btn e-btn btn-round full <?php if($sessionid != ''){?>likeClick<?php } ?>" data-id="<?php echo $albumDetails[0]['albumeid']; ?>" data-cmd="album" type="album" target="album" color="album.color" style="background-color: rgb(47, 109, 107);float: left;"><?php echo $totalLike;?></div>
-         <div data-toggle="tooltip" title="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full <?php if($sessionid != ''){?>getTribute<?php } ?>" on-link-follow="$close()" content-type="album" content-id="61" comments-count="album.comments_count" color="album.color" style="background-color: rgb(47, 109, 107); margin-right: 5px;float: left;"  data-id="<?php echo $albumDetails[0]['albumeid']; ?>" data-cmd="album"><?php echo $totalTribute;?></div>
-         <?php if($sessionid == $albumDetails[0]['UID']) {?>
+         <div tooltip-placement="bottom" data-toggle="tooltip" title="Likes" class="e-like btn e-btn btn-round full <?php if($sessionid != ''){?>likeClick<?php } ?>" data-id="<?php echo @$albumDetails[0]['albumeid']; ?>" data-cmd="album" type="album" target="album" color="album.color" style="background-color: rgb(47, 109, 107);float: left;"><?php echo @$totalLike;?></div>
+         <div data-toggle="tooltip" title="Tributes" tooltip-placement="bottom" class="btn e-btn btn-brown btn-round full <?php if($sessionid != ''){?>getTribute<?php } ?>" on-link-follow="$close()" content-type="album" content-id="61" comments-count="album.comments_count" color="album.color" style="background-color: rgb(47, 109, 107); margin-right: 5px;float: left;"  data-id="<?php echo @$albumDetails[0]['albumeid']; ?>" data-cmd="album"><?php echo @$totalTribute;?></div>
+         <?php if(@$sessionid == @$albumDetails[0]['UID']) {?>
          <div  class="edit-menu-wrapper" style=" padding-top: 4px;">
             <div dropdown-toggle="" dropdown="" class="edit-menu edit-menu-album e-dropdown dropdown white-dropdown" style="background: rgb(47, 109, 107) none repeat scroll 0% 0%;">
                <i class="fa fa-cog cog-menu-icon"></i>

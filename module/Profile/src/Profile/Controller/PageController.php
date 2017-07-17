@@ -70,6 +70,13 @@ class PageController extends AbstractActionController {
         {
             $response['NoPage'] = 1;
         }
+        $response['sessionid'] = '';
+        if ($this->sessionid) {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+            $response['sessionid'] = $userDetails[0]['uniqueUser'];
+        }
+        
+        
         echo json_encode($response);exit;
     }
 

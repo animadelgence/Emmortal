@@ -71,10 +71,10 @@ class ProfileController extends AbstractActionController {
             }
         $this->layout()->setVariables(array('controller' => $controller, 'action' => $action, 'dynamicPath' => $dynamicPath,'sessionid'=>$this->sessionid,'LoggedInUserDetails'=>$LoggedInUserDetails, 'userDetails'=>$userDetails,'bgimg'=>$bgimgSend,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
         if(empty($likeDetailsArrays)){
-             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
+             return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'idOfUSer'=>$idOfUSer));
 
         } else{
-        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'likeDetailsArrays' =>$likeDetailsArrays,'loggedInUserUniqueId'=>$loggedInUserUniqueId));
+        return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails'=>$uploadDetails , 'pageDetails'=>$pageDetails , 'userDetails'=>$userDetails,'likeDetailsArrays' =>$likeDetailsArrays,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'idOfUSer'=>$idOfUSer));
     }
     }
     public function newsfeedAction(){

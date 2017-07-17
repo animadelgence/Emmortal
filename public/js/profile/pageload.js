@@ -39,7 +39,13 @@ $(function () {
     $("body").on("click", ".profile-paginator__click", function () {
         var getClickedId = $(this).attr("data-fetch-id"),
             prevSelection = $(".profile-paginator__click").parent('ul').find('.active').index(),
-            currentClicked = $(this).index();
+            currentClicked = $(this).index(),
+            pageUrl = window.location.href,
+            pageUrlarray = pageUrl.split("/"),
+            lastEl = pageUrlarray.slice(-1)[0];
+        if(lastEl == ""){
+                lastEl = "user";
+        }
         $("#currentPageId").val(getClickedId);
         if(currentClicked > prevSelection) {
                    $(".container-of-sections").addClass('classuptodownhide');
@@ -58,7 +64,10 @@ $(function () {
             success: function (result) {
                 var jsObject = JSON.parse(result),
                     i = 0,
-                    appendHtml = "";
+                    appendHtml = "",
+                    appendHtml1 = "",
+                    appendHtml2 = "",
+                    appendHtml3 = "";
 
 				if(currentClicked > prevSelection) {
 					appendHtml = "<div class='container-of-sections classuptodownvisible'>";
@@ -72,7 +81,13 @@ $(function () {
                     appendHtml += '<li class="user_profile_image_section no-resize" data-col="1" data-row="1" data-sizey="2" data-sizex="2"><img src="' + jsObject.profileImage + '"></li><li class="user_profile_name_section no-resize" data-col="1" data-row="1" data-sizey="1" data-sizex="2"><span>' + jsObject.DOB + '</span><br><span>' + jsObject.Name + '</span></li>';
                 }
                 if (jsObject.NoPage == 1) {
-                    appendHtml += '<li class="user_upload_part_section no-resize" data-col="1" data-row="1" data-sizex="2" data-sizey="1"><div  onclick="uploadmodalopen();" href="javascript:void(0);" class="fa fa-plus add-page-plus-icon"></div><div class=""><p>Add your Life moments: upload photos and videos.</p><p>Create Albums, Tributes and add valuable texts.</p><p>"Add" button is always accessible on right top menu.</p></div></li>';
+                    appendHtml1 += '<li class="user_upload_part_section no-resize" data-col="1" data-row="1" data-sizex="2" data-sizey="1"><div '
+                    if(jsObject.sessionid == lastEl) {
+                       appendHtml2 += 'onclick="uploadmodalopen();"';
+                    }
+                    
+                    appendHtml3 += 'href="javascript:void(0);" class="fa fa-plus add-page-plus-icon"></div><div class=""><p>Add your Life moments: upload photos and videos.</p><p>Create Albums, Tributes and add valuable texts.</p><p>"Add" button is always accessible on right top menu.</p></div></li>';
+                    appendHtml += appendHtml1 + appendHtml2 + appendHtml3;
                 } else {
                   // appendHtml += '<div class="user_upload_part_section_content">';
                     for (i = 0; i < jsObject.uploaddetails.length; i++) {

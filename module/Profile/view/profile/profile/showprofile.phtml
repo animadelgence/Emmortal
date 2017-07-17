@@ -65,7 +65,7 @@
                                        echo "</div>";
                                     }else{ ?>
                             <li class="gs-w user_upload_part_section vid-sec no-resize" data-col="1" data-row="1" data-sizey="1" data-sizex="2">
-                                <div onclick="uploadmodalopen();" href="javascript:void(0);" class="fa fa-plus add-page-plus-icon"></div>
+                                <div <?php if(@$idOfUSer == @$loggedInUserUniqueId) { ?>onclick="uploadmodalopen();" <?php } ?>href="javascript:void(0);" class="fa fa-plus add-page-plus-icon"></div>
                                 <div class="">
                                     <p>Add your Life moments: upload photos and videos.</p>
                                     <p>Create Albums, Tributes and add valuable texts.</p>

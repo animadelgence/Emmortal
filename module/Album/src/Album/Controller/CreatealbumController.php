@@ -264,7 +264,7 @@ class CreatealbumController extends AbstractActionController {
                  $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend,'sessionid'=>$sessionid));
             }
              
-            return new ViewModel(array('sessionid'=>$sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
+            return new ViewModel(array('sessionid'=>$sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid,'totalTribute'=>$totalTribute,'totalLike'=>$totalLike));
         }
        
     }

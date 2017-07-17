@@ -998,3 +998,10 @@ button[disabled], html input[disabled] {
   column-count:         1;
   }
 }
+
+/*
+.modal-backdrop.in{
+   opacity: 0.7 !important;
+}
+*/
+

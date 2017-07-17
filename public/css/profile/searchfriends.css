@@ -395,3 +395,10 @@ button, input, optgroup, select, textarea {
 .e-link:hover, .e-link:active, .e-link:focus {
     color: #aaa897;
 }
+
+/*custom right slider arrow portion */
+.carousel-control{
+    top: 280px !important;
+    bottom: 350px !important;
+    left: 875px !important;
+}

@@ -53,6 +53,7 @@ class FriendrequestsController extends AbstractActionController {
                     'profileimage'  => $sendfrndDetails[0]['profileimage'],
                     'friendslikes'  => $friendlikes,
                     'noOfTributes'  => $noOfTributes,
+                    'uniqueUser'    => $sendfrndDetails[0]['uniqueUser'],
                     'status'        => $sendfrndDetails[0]['relationshipstatus']
                 );
                 
@@ -93,7 +94,8 @@ class FriendrequestsController extends AbstractActionController {
                             'friendsid'     => $recfrndDetails[0]['userid'],
                             'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
                             'profileimage'  => $recfrndDetails[0]['profileimage'],
-                            'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'dbstatus'      => $recfrndDetails[0]['relationshipstatus'],
+                            'uniqueUser'    => $recfrndDetails[0]['uniqueUser'],
                             'friendslikes'  => $friendlikes,
                             'noOfTributes'  => $noOfTributes,
                             'status'        => 'incoming'
@@ -103,7 +105,8 @@ class FriendrequestsController extends AbstractActionController {
                             'friendsid'     => $recfrndDetails[0]['userid'],
                             'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
                             'profileimage'  => $recfrndDetails[0]['profileimage'],
-                            'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'dbstatus'      => $recfrndDetails[0]['relationshipstatus'],
+                            'uniqueUser'    => $recfrndDetails[0]['uniqueUser'],
                             'friendslikes'  => $friendlikes,
                             'noOfTributes'  => $noOfTributes,
                             'status'        => 'outgoing'
@@ -113,7 +116,8 @@ class FriendrequestsController extends AbstractActionController {
                             'friendsid'     => $recfrndDetails[0]['userid'],
                             'friendsname'   => $recfrndDetails[0]['firstname']." ".$recfrndDetails[0]['lastname'],
                             'profileimage'  => $recfrndDetails[0]['profileimage'],
-                            'dbstatus'  => $recfrndDetails[0]['relationshipstatus'],
+                            'dbstatus'      => $recfrndDetails[0]['relationshipstatus'],
+                            'uniqueUser'    => $recfrndDetails[0]['uniqueUser'],
                             'friendslikes'  => $friendlikes,
                             'noOfTributes'  => $noOfTributes,
                             'status'        => $recfrndDetails[0]['relationshipstatus']

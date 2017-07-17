@@ -410,6 +410,7 @@ class CreatealbumController extends AbstractActionController {
             $array[] = array(
                         "albumeid"=>$aResult['albumeid'],
                         "UID"=>$aResult['UID'],
+                        "albumimagepath"=>$aResult['albumimagepath'],
                         "title"=>$aResult['title'],
                         "uploadDetails"=>$uploadAlbumArray,
                         "totalLike"=>$totalLike,

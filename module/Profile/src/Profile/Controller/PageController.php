@@ -39,28 +39,31 @@ class PageController extends AbstractActionController {
     }
     public function selectpageAction(){
         $id = $_POST['pageid'];
-        $data = array("UID" => $this->sessionid ,"PID"=>$id);
-        $modelPlugin = $this->modelplugin();
-        $dynamicPath = $modelPlugin->dynamicPath();
+        $useid = $_POST['useid']; // check
+        $modelPlugin = $this->modelplugin(); // check
+        $dynamicPath = $modelPlugin->dynamicPath(); // check
+        $userDetails = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$useid)); // check
+        $userid = $userDetails[0]['userid']; // check
+        $data = array("UID" => $userid ,"PID"=>$id);
         $fetchDetailsOfPage = $modelPlugin->getuploadDetailsTable()->fetchall($data);
-        $pageData = array("UID" => $this->sessionid);
+        $pageData = array("UID" => $userid); // check
         $fetchFirstPage = $modelPlugin->getpagedetailsTable()->fetchall($pageData);
         $selectFirstPage = $fetchFirstPage[0]['pageid'];
         if($id==$selectFirstPage)
         {
-          $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
-          if (@getimagesize($userDetails[0]['profileimage'])) {
-                    $response['profileImage']  = 1;
-                } else {
+            $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$userid)); // check
+            if (@getimagesize($userDetails[0]['profileimage'])) {
+                $response['profileImage']  = 1;
+            } else {
                 $response['profileImage']  = $dynamicPath."/image/profile-deafult-avatar.jpg";
-                }
-          $response['DOB'] = $userDetails[0]['dateofbirth'];
-          $response['Name'] = $userDetails[0]['firstname']." ".$userDetails[0]['lastname'];
-          $response['defaultPage']  = 1;
+            }
+            $response['DOB'] = $userDetails[0]['dateofbirth'];
+            $response['Name'] = $userDetails[0]['firstname']." ".$userDetails[0]['lastname'];
+            $response['defaultPage']  = 1;
         }
         else
         {
-           $response['defaultPage']  = 0;
+            $response['defaultPage']  = 0;
         }
         if (count($fetchDetailsOfPage) > 0) {
             $response['NoPage'] = 0;

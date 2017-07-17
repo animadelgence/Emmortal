@@ -58,7 +58,8 @@ $(function () {
         $.ajax({
             type: "POST",
             data: {
-                pageid: getClickedId
+                pageid: getClickedId,
+                useid: lastEl //checking required
             },
             url: baseUrl + "/page/selectpage",
             success: function (result) {

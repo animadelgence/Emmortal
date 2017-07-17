@@ -105,10 +105,10 @@ class NotificationController extends AbstractActionController {
                 $html .='</div>';
                 $html .='<div class="action">';
                 
-                if($likeDetails[0]['FID']){
+                if(@$likeDetails[0]['FID']){
                     $html .='<span>liked your </span>';
                     $html .='<a class="e-link e-brown pointer">Relationship</a>';
-                } else if($likeDetails[0]['TID']){
+                } else if(@$likeDetails[0]['TID']){
                     $tribuiteDetails = $modelPlugin->gettributedetailsTable()->fetchall(array('tributesid'=>$likeDetails[0]['TID']));
                     if($tribuiteDetails[0]['UID'] == $notified_by){
                         $html .='<span>liked own </span>';
@@ -116,15 +116,15 @@ class NotificationController extends AbstractActionController {
                         $html .='<span>liked your </span>';
                     }
                     $html .='<a class="e-link e-brown pointer">Comment</a>';
-                } else if($likeDetails[0]['AID']){
+                } else if(@$likeDetails[0]['AID']){
                     $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall(array('albumeid'=>$likeDetails[0]['AID']));
-                    if($albumDetails[0]['UID'] == $notified_by){
+                    if(@$albumDetails[0]['UID'] == $notified_by){
                         $html .='<span>liked own </span>';
                     } else{
                         $html .='<span>liked your </span>';
                     }
                     $html .='<a class="e-link e-brown pointer">Album</a>';
-                } else if($likeDetails[0]['uploadId']){
+                } else if(@$likeDetails[0]['uploadId']){
                     $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall(array('uploadId'=>$likeDetails[0]['uploadId']));
                      if($uploadDetails[0]['UID'] == $notified_by){
                         $html .='<span>liked own </span>';

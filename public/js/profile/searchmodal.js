@@ -250,6 +250,7 @@ function friendlist() {
                 var chk = 0,
                     id = jsObject.userDetails[i].friendsid,
                     friendsname = jsObject.userDetails[i].friendsname,
+                    uniqueuser = jsObject.userDetails[i].uniqueUser,
                     frndname = friendsname.toLowerCase(),
                     formhtml = '',
                     buttonhtml = '',
@@ -276,7 +277,7 @@ function friendlist() {
                     formhtml +='<form name="requestform" id="requestform" action="/friendrequests/sendingrequest" method="POST" enctype="multipart/form-data">';
                     buttonhtml +='<div class="relationship-btn" user="client" data-folder-target-id="' + id + '"><button class="btnn e-btn btn-info sendFriendRequest" id="requestbtn' + id + '"><div class="fa fa-plus"></div> Connect</button></div>';
                 }
-                html += '<div class="user-field m-t-25 animated fadeIn '+jsObject.userDetails[i].status+'"><input type = "hidden" value = "'+friendsname+'">'+formhtml+'<div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" ><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3>'+extrahtml+'</div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+buttonhtml+'</div></form></div>';
+                html += '<div class="user-field m-t-25 animated fadeIn '+jsObject.userDetails[i].status+'"><input type = "hidden" value = "'+friendsname+'">'+formhtml+'<div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" href="/profile/showprofile/'+uniqueuser+'"><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3>'+extrahtml+'</div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+buttonhtml+'</div></form></div>';
                 $('#searchResults').html(html);
                 $('#tabResults').html(html);
             }

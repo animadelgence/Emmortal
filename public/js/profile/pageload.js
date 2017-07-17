@@ -37,6 +37,7 @@ $(function () {
         });
     });
     $("body").on("click", ".profile-paginator__click", function () {
+        $(".user_profile_section").html('');
         var getClickedId = $(this).attr("data-fetch-id"),
             prevSelection = $(".profile-paginator__click").parent('ul').find('.active').index(),
             currentClicked = $(this).index(),

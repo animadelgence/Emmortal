@@ -18,9 +18,9 @@
 						<small class="album-preview-location"></small>
 					</div>
 					<div class="action-btns">
-						<div class="e-like btn e-btn btn-round full likeClick" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalLike'])){ echo $albumDetails[0]['totalLike'];} else{ echo "0";}?></div>
-						<div class="btn e-btn btn-brown btn-round full getTribute" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalTribute'])){ echo $albumDetails[0]['totalTribute']; }  else{ echo "0";}?></div>
-						
+						<div class="e-like btn e-btn btn-round full <?php if($sessionid !=''){?>likeClick<?php } ?>" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalLike'])){ echo $albumDetails[0]['totalLike'];} else{ echo "0";}?></div>
+						<div class="btn e-btn btn-brown btn-round full <?php if($sessionid !=''){?>getTribute<?php }?>" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalTribute'])){ echo $albumDetails[0]['totalTribute']; }  else{ echo "0";}?></div>
+						<?php if($sessionid ==$albumDetails[0]['UID']){?>
 						<div class="edit-menu-wrapper">
 							<div class="edit-menu e-dropdown dropdown white-dropdown dropdown-toggle">
 								<i class="fa fa-cog cog-menu-icon" onclick="$(this).next().slideToggle();"></i>
@@ -28,13 +28,12 @@
 									<li><i class="fa fa-trash m-r-5"></i>Remove</li>
 									<li><i class="fa fa-pencil m-r-5"></i>Edit</li>
 									<li><i class="fa fa-thumb-tack m-r-5"></i>
-										<span class="font-bold e-red">Pinned</span>
 										<span>Pin</span>
 									</li>
 								</ul>
 							</div>
 						</div>
-						
+						<?php } ?>
 					</div>
 				</div>
 				<div class="album-preview-collection">
@@ -75,7 +74,8 @@
 					</div>
 					<div class="action-btns">
 						<div class="e-like btn e-btn btn-round full liked <?php if($sessionid !=''){?>likeClick<?php } ?>" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[$j]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalLike'])){ echo $albumDetails[0]['totalLike'];} else{echo "0";}?></div>
-						<div class="btn e-btn btn-brown btn-round full <?php if($sessionid !=''){?>getTribute<?php } ?>" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalTribute'])){ echo $albumDetails[$j]['totalTribute'];} else{echo "0";}?></div>
+						<div class="btn e-btn btn-brown btn-round full <?php if($sessionid !=''){?>getTribute<?php } ?>" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[$j]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalTribute'])){ echo $albumDetails[$j]['totalTribute'];} else{echo "0";}?></div>
+						<?php if($sessionid ==$albumDetails[$j]['UID']){?>
 						<div class="edit-menu-wrapper">
 							<div class="edit-menu e-dropdown dropdown white-dropdown dropdown-toggle"  style="background: rgb(180, 80, 78);">
 								<i class="fa fa-cog cog-menu-icon" onclick="$(this).next().slideToggle();"></i>
@@ -86,14 +86,14 @@
 									<li style="color: rgb(180, 80, 78);">
 										<i class="fa fa-pencil m-r-5"></i>Edit
 									</li>
-									<li style="color: rgb(180, 80, 78);">
+									<!--<li style="color: rgb(180, 80, 78);">
 										<i class="fa fa-thumb-tack m-r-5 font-bold e-red"></i>
-										<span class="font-bold e-red">Pinned</span>
 										<span  class="ng-hide">Pin</span>
-									</li>
+									</li>-->
 								</ul>
 							</div>
 						</div>
+						<?php } ?>
 					</div>
 				</div>
 				<div class="album-preview-collection">
@@ -103,16 +103,14 @@
                     ?>
 					<div class="image-wrapper">
 					<?php if($uResult['uploadType'] == 'image'){?>
-						<img class="img-responsive" src="<?php echo $uResult['uploadPath'];?>">
+						    <img class="img-responsive" src="<?php echo $uResult['uploadPath'];?>">
 						<?php } else if($uResult['uploadType'] == 'text'){ ?>
-                        <p> <?php echo $uResult['uploadDescription'];?></p>
+                            <p><?php echo $uResult['uploadDescription'];?></p>
                         <?php } else if($uResult['uploadType'] == 'video'){ ?>
-                        <video controls="controls" name="Video Name" id="" src="<?php echo $uResult['uploadPath'];?>" style="width:100%;height:100%;"></video>
+                            <video controls="controls" name="Video Name" id="" src="<?php echo $uResult['uploadPath'];?>" style="width:100%;height:100%;"></video>
 						<?php } ?>
 					</div>
-					<?php } 
-                        $i++;    
-                    } ?>
+					<?php } $i++; } ?>
 				</div>
 			</div>
 		</div>

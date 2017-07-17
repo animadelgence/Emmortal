@@ -58,8 +58,9 @@ $(document).ready(function (){
                 },
                 success: function (result) {
                 	//alert(result);return false;
-                	if(result == "live"){
-                		window.location.href = URL +"/profile/newsfeed";
+                    var jsObject = JSON.parse(result);
+                	if(jsObject.activationstatus == "live"){
+                		window.location.href = URL +"/profile/newsfeed/"+jsObject.uniqueId;
                 	}
                 	/*else if(result == "not activate"){
                 		$(".alertmesage_signin").css("color","Red");

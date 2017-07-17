@@ -176,6 +176,14 @@ class CreatealbumController extends AbstractActionController {
             $uploadQuery =  array('UID'=> $this->sessionid,'albumeid' =>$getid );
         }
         
+        $totalLike = 0;
+        $totalTribute = 0;
+        $albumTributeDetails = $modelPlugin->gettributedetailsTable()->fetchall(array('uploadId'=>$getid,'tribute_type'=>'album'));
+        $albumLikeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall(array('AID'=>$getid));
+        $totalLike           = count($albumLikeDetails);
+        $totalTribute        = count($albumTributeDetails);
+        
+        
         $albumDetails = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
         //print_r($albumDetails);exit;
         $friendsArray = explode(',',$albumDetails[0]['friendsid']);
@@ -227,7 +235,7 @@ class CreatealbumController extends AbstractActionController {
 
              $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend,'sessionid'=>$this->sessionid));
 
-            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid,'sessionid'=>$this->sessionid,'totalTribute'=>$totalTribute,'totalLike'=>$totalLike));
 
         } else {
               if($LoggedInUserDetails != ""){
@@ -252,7 +260,7 @@ class CreatealbumController extends AbstractActionController {
                  $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend,'sessionid'=>$this->sessionid));
             }
              
-            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid));
+            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid,'totalTribute'=>$totalTribute,'totalLike'=>$totalLike));
         }
        
     }

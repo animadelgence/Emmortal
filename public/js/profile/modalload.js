@@ -107,6 +107,11 @@ function relationshipsmodal()
 
                                 html += '<div class="user-field m-t-25 animated fadeIn"><input type = "hidden" value = "'+friendsname+'"><div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" href="/profile/showprofile/'+uniqueuser+'"><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3>'+extrahtml+'</div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+buttonhtml+'</div></form></div>';
                                 $('#tempResult').html(html);
+                                
+                            }
+                            if(html == '') {
+                                $('.displayTabTemp').show();
+                                $('#showTabMessageTemp').html('There are no relationships yet');
                             }
                         }
                     });

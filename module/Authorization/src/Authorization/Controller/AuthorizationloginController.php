@@ -52,7 +52,8 @@ class AuthorizationloginController extends AbstractActionController {
 
       	if($passcheck == 1 && $contentDetails[0]['activation'] == 1)
         {
-        	$value = "live"; 
+        	$value['activationstatus'] = "live"; 
+            $value['uniqueId'] = $contentDetails[0]['uniqueUser'];
             $user_session = new Container('userloginId');
             $user_session->userloginId = $usid;
             $user_session_temp = new Container('tempStoreName');
@@ -60,13 +61,15 @@ class AuthorizationloginController extends AbstractActionController {
         }
         else if($passcheck == 1 && $contentDetails[0]['activation'] == 0)
         {
-        	$value = "not activate";   
+        	$value['activationstatus'] = "not activate";   
+        	$value['uniqueId'] = $contentDetails[0]['uniqueUser'];
         }
         else if($passcheck == 0 && $contentDetails[0]['activation'] == 0)
         {
-        	$value = "deactivate";  
+        	$value['activationstatus'] = "deactivate";  
+        	$value['uniqueId'] = $contentDetails[0]['uniqueUser'];
         }
-        	echo $value;
+        	echo json_encode($value);
         	exit;
 
     }

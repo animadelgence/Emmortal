@@ -3,7 +3,7 @@
 		<span class="text-capitalize ng-binding" ng-bind="user.first_name"><?php echo $userDetails[0]['firstname'];?></span>'s Life Events
 	</h2>
 	<div class="ng-isolate-scope">
-	
+	<?php if(count($albumDetails)>0){?>
 		<div class="m-t-5">
 			<div class="album-preview">
 				<div class="album-preview-cover-wrapper m-r-10">
@@ -56,6 +56,7 @@
 				</div>
 			</div>
 		</div>
+		<?php }?>
 		<?php if(count($albumDetails)>1){
            for($j=1; $j<count($albumDetails);$j++){                 
         ?>

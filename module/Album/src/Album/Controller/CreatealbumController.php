@@ -377,6 +377,7 @@ class CreatealbumController extends AbstractActionController {
         $albumDetails           = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
         $totalLike = 0;
         $totalTribute = 0;
+        $array = array();
         foreach($albumDetails as $aResult){
             $userAlbumDetails    = $modelPlugin->getuploadDetailsTable()->fetchall(array('UID'=>$userDetails[0]['userid'],'AID'=>$aResult['albumeid']));
             $albumTributeDetails = $modelPlugin->gettributedetailsTable()->fetchall(array('uploadId'=>$aResult['albumeid'],'tribute_type'=>'album'));

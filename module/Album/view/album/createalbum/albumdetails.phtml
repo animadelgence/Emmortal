@@ -18,8 +18,9 @@
 						<small class="album-preview-location"></small>
 					</div>
 					<div class="action-btns">
-						<div class="e-like btn e-btn btn-round full likeClick" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php echo $albumDetails[0]['totalLike'];?></div>
-						<div class="btn e-btn btn-brown btn-round full getTribute" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php echo $albumDetails[0]['totalTribute'];?></div>
+						<div class="e-like btn e-btn btn-round full likeClick" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalLike'])){ echo $albumDetails[0]['totalLike'];} else{ echo "0";}?></div>
+						<div class="btn e-btn btn-brown btn-round full getTribute" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalTribute'])){ echo $albumDetails[0]['totalTribute']; }  else{ echo "0";}?></div>
+						
 						<div class="edit-menu-wrapper">
 							<div class="edit-menu e-dropdown dropdown white-dropdown dropdown-toggle">
 								<i class="fa fa-cog cog-menu-icon" onclick="$(this).next().slideToggle();"></i>
@@ -33,10 +34,13 @@
 								</ul>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 				<div class="album-preview-collection">
-				    <?php $i=0;
+				    <?php 
+                        if(count(@$albumDetails[0]['uploadDetails'])>0){
+                        $i=0;
                         foreach($albumDetails[0]['uploadDetails'] as $uResult){
                             if($i<=2){
                     ?>
@@ -51,7 +55,8 @@
 					</div>
 					<?php } 
                         $i++;    
-                    } ?>
+                    }
+                        }?>
 				</div>
 			</div>
 		</div>
@@ -69,8 +74,8 @@
 						<small class="album-preview-location"></small>
 					</div>
 					<div class="action-btns">
-						<div class="e-like btn e-btn btn-round full liked likeClick" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[$j]['albumeid'];?>" data-cmd="album"><?php echo $albumDetails[0]['totalLike'];?></div>
-						<div class="btn e-btn btn-brown btn-round full getTribute" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php echo $albumDetails[$j]['totalTribute'];?></div>
+						<div class="e-like btn e-btn btn-round full liked <?php if($sessionid !=''){?>likeClick<?php } ?>" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[$j]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalLike'])){ echo $albumDetails[0]['totalLike'];} else{echo "0";}?></div>
+						<div class="btn e-btn btn-brown btn-round full <?php if($sessionid !=''){?>getTribute<?php } ?>" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[0]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalTribute'])){ echo $albumDetails[$j]['totalTribute'];} else{echo "0";}?></div>
 						<div class="edit-menu-wrapper">
 							<div class="edit-menu e-dropdown dropdown white-dropdown dropdown-toggle"  style="background: rgb(180, 80, 78);">
 								<i class="fa fa-cog cog-menu-icon" onclick="$(this).next().slideToggle();"></i>

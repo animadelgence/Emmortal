@@ -184,6 +184,28 @@ class RedirectionController extends AbstractActionController {
              else if($tributeType == 'upload'){
                  count++;
 
+                   //--LIKE COUNT (start)--//
+//                $whereLike         = array('TID'=>$rSet['tributesid']);
+//                $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($whereLike);
+//                $like           = count($likeDetails);
+                //--LIKE COUNT (end)--//
+
+                 $whereUpload = array('uploadId' => $result['uploadId']);
+                    $uploadDet = $modelPlugin->getuploadDetailsTable()->fetchall($whereUpload);
+
+                    if(($uploadDet[0]['UID'] == $userId) && ($uploadDet[0]['UID'] != $result['UID'])){
+
+                        $array[]     = array(
+                                         'tributesid' => $result['tributesid'],
+                                         'friendsname' => $result['firstname']." ".$result['lastname'],
+                                         'profileimage'=>$result['profileimage'],
+                                         'description'=>$result['description'],
+                                         'friendsid'=>$result['friendsid'],
+                                         //'like'=>$like,
+                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
+                                    );
+
+
              }
         }//foreach
 

@@ -68,7 +68,8 @@ class AuthorizationsignupController extends AbstractActionController {
                 $albumUploadArray = array(
                                     'UID'=>$albumFolder,
                                     'uploadType'=>'album',
-                                    'uploadTitle'=>'My chronicle'
+                                    'uploadTitle'=>'My chronicle',
+                                    'AID' => $albumInsertDetails
                                 );
                 $albumUploadInsertDetails = $modelPlugin->getuploadDetailsTable()->insertData($albumUploadArray);
                 

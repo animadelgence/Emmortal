@@ -75,7 +75,7 @@
   
    <div class="content m-t-30 p-t-10" style="border-top: 1px solid #aaa897;">
       
-      <div class="row ng-scope">
+      <!--<div class="row ng-scope">
          <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12">
             <div class="album-tooltip">
                <h3 class="e-brown text-center"> Add photos, videos and texts to this album.</h3>
@@ -93,7 +93,27 @@
          <div sv-root="" sv-part="recordsLoader.items" sv-on-start="checkEditable()" sv-on-sort="updateWeights($item, $partFrom, $partTo, $indexFrom, $indexTo)" class="records-wrapper ng-scope">
            
          </div>
-      </div>
+      </div>-->
+       <div class="content m-t-30 p-t-10">
+           <div class="sortable-container">     
+               <div class="records-wrapper">
+                <?php //print_r($albumDet);exit; 
+                   if(count($albumuploadDetails)>0){
+                foreach($albumuploadDetails as $albumDet) {
+                   if($albumDet['uploadType'] != 'album') {?>
+                    <div class="record-wrapper">
+                       <div class="record pointer animated" style="border-color: rgb(179, 176, 77);">
+                           <div class="record-content">
+                               <input type = "hidden" class="imageid" value= "<?php echo $albumDet['uploadId']; ?>">
+                               <img class="img-responsive show-image" src="<?php echo $albumDet['uploadPath'];?>" onclick ='openImage(this)'>
+                           </div>
+                       </div>
+                    </div>              
+                    <?php } }
+                    }?>
+               </div>
+           </div>
+       </div>
    </div>
    
 </div>

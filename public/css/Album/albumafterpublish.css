@@ -1,0 +1,21 @@
+.record {
+    background: #fff none repeat scroll 0 0;
+    border: 2px solid #aaa897;
+    border-radius: 10px;
+    display: inline-block;
+    height: 153px;
+    padding: 5px;
+    position: relative;
+    width: 100%;
+}
+.records-wrapper .record-wrapper {
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    width: 16.6%;
+}
+.record .record-content {
+    border-radius: 5px;
+    height: 100%;
+    overflow: hidden;
+}

@@ -267,7 +267,6 @@ class TributeController extends AbstractActionController {
         exit;
      }
 
-    
-    
+
 }
 ?>

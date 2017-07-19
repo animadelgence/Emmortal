@@ -180,16 +180,28 @@ function tributedetailsmodal()
         var pageUrl = window.location.href;
         var pageUrlarray = pageUrl.split("/");
         var lastEl = pageUrlarray.slice(-1)[0];
-        if(lastEl == ""){
-            lastEl = "user";
-        }
+        var description = "";
+
+        //alert(lastEl); return false;;
         //console.log(lastEl); return false;
         $('body').append(result);
         // open modal
         $('#tributedetailsmodal').modal('show');
-        var name = $('.relationships').attr('data-name');
-        $(".firstName").html(name);
+        var name = $('.tributes').attr('data-name');
+        var encodeUploadIdStatic = btoa('1');
+        if(lastEl == ""){
+            lastEl = $('.tributes').attr('id');
+        }
+        //$(".firstName").html(name); //commented last
        // friendlist('AllFriend', '');
+        $.ajax({
+            type: "POST",
+            url: getUrl + '/redirection/tributesearch/'+lastEl,
+//            data : {uniqueUserId: uniqueUserId},
+            success: function (res) {
+                console.log(res);
+            }
+        });
 
     });
 }

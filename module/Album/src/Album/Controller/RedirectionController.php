@@ -93,4 +93,105 @@ class RedirectionController extends AbstractActionController {
         exit;
     }
 
+    public function tributesearchAction(){
+        //echo 1; exit;
+        $plugin                     = $this->routeplugin();
+        $modelPlugin                = $this->modelplugin();
+        $dynamicPath                = $plugin->dynamicPath();
+        $jsonArray                  = $plugin->jsondynamic();
+        $currentPageURL             = $plugin->curPageURL();
+        $href                       = explode("/", $currentPageURL);
+        $controller                 = @$href[3];
+        $action                     = @$href[4];
+//        $uniqueId                   = $_POST['uniqueUserId'];
+        $uniqueId    = $this->getEvent()->getRouteMatch()->getParam('id');
+        //echo $uniqueId; exit;
+        $where       = array('uniqueUser' => $uniqueId);
+        $fetchUserDetails = $modelPlugin->getuserTable()->fetchall($where);
+        $userId = $fetchUserDetails[0]['userid'];
+        //echo $userId ; exit;
+        //$userid = $this->sessionid;
+        $count = 0;
+        $where = array();
+        $condition = 'user.userid = tributedetails.UID';
+        $fetchDetails = $modelPlugin->gettributedetailsTable()->joinquery($where,$condition);
+        //print_r($fetchDetails); exit;
+        $tributeType = $fetchDetails[0]['tribute_type'];
+        //print_r($fetchDetails); exit;
+        $array = array();
+        foreach ($fetchDetails as $result){
+            if($tributeType == 'friend'){
+                count++;
+                echo "going inside friend [1st condition]";
+                if($fetchDetails[0]['friendsid'] == $uniqueId){
+                    $where          = array('TID'=>$rSet['tributesid']);
+                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+                    $array[]     = array(
+                                         'tributesid' => $fetchDetails[0]['tributesid'],
+                                         'UID' => $fetchDetails[0]['UID'], // this is wrong...change it
+                                         'friendsname' => $fetchDetails[0]['firstname']." ".$fetchDetails[0]['lastname'],
+                                         'profileimage'=>$fetchDetails[0]['profileimage'],
+                                         'description'=>$fetchDetails[0]['description'],
+                                         'friendsid'=>$fetchDetails[0]['friendsid'],
+                                         'like'=>$like,
+                                         'addeddate'=>date("m/d/Y",strtotime($fetchDetails[0]['addeddate']))
+                                    );
+
+                }
+            }
+
+            else if($tributeType == 'album'){
+                count++;
+
+                //--LIKE COUNT (start)--//
+//                $whereLike         = array('TID'=>$rSet['tributesid']);
+//                $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($whereLike);
+//                $like           = count($likeDetails);
+                //--LIKE COUNT (end)--//
+
+                    $whereAlbum = array('albumeid' => $result['uploadId']);
+                    $AlbumDet = $modelPlugin->getalbumdetailsTable()->fetchall($whereAlbum);
+
+                    if(($AlbumDet[0]['UID'] == $userId) && ($AlbumDet[0]['UID'] != $result['UID'])){
+
+                        $array[]     = array(
+                                         'tributesid' => $result['tributesid'],
+                                         'friendsname' => $result['firstname']." ".$result['lastname'],
+                                         'profileimage'=>$result['profileimage'],
+                                         'description'=>$result['description'],
+                                         'friendsid'=>$result['friendsid'],
+                                         //'like'=>$like,
+                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
+                                    );
+
+                    } //if within elseif
+             }//elseif
+             else if($tributeType == 'relationship'){
+                 count++;
+                 if($result['friendsid'] == $userId){
+                     $array[]     = array(
+                                         'tributesid' => $result['tributesid'],
+                                         'friendsname' => $result['firstname']." ".$result['lastname'],
+                                         'profileimage'=>$result['profileimage'],
+                                         'description'=>$result['description'],
+                                         'friendsid'=>$result['friendsid'],
+                                         //'like'=>$like,
+                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
+                                    );
+
+                 } //if within elseif
+             }//elseif
+             else if($tributeType == 'upload'){
+                 count++;
+
+             }
+        }//foreach
+
+
+        $res['tributeDetails']      = $array;
+        echo json_encode($res);
+        echo json_encode($count);
+        exit;
+    }
+
 }

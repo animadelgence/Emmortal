@@ -44,14 +44,87 @@ class AlbumController extends AbstractActionController {
         $href = explode("/", $currentPageURL);
         $controller = 'album';
 		$action = $this->params('action');
-        $uploadQuery = array();
-        $uploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall($uploadQuery);
+        //$value = 'album';
+        //$uploadQuery = "uploadType != '$value' && uploadPath IS NOT NULL";
+        $uploadQuery = "uploadPath IS NOT NULL";
+        //$uploadQuery = array();
+        $uploadDetailstemp = $modelPlugin->getuploadDetailsTable()->fetchalldatas($uploadQuery);
+        //print_r($uploadDetails);exit;
+        $uploadDetails = array();
         $userDetails = '';
-        foreach ($uploadDetails as $upload) {
+        foreach ($uploadDetailstemp as $upload) {
             $likeDetailsArrays = array();
             $uploadId = $upload['uploadId'];
             $uploadIdquery = array('uploadId' =>$uploadId);
             $likeDetails = $modelPlugin->getlikesdetailsTable()->countLike($uploadIdquery);
+            if($upload['sizeX']=="H") {
+                $sizeX = 1;$Height = "172px";
+            } else {
+                $sizeX = 2;$Height = "364px";
+            }
+            if($upload['sizeY']=="W") {
+                 $sizeY = 2;$Width = "364px";
+            } else {
+                 $sizeY = 1;$Width = "172px";
+            }
+            $albumUploadDetails = array();
+            if($upload['uploadType'] == 'album') {
+                $queryForAlbum =  array('AID' => $upload['AID']);
+                $uploadDetailstemporary = $modelPlugin->getuploadDetailsTable()->fetchalldatas($queryForAlbum);
+                $i = 0;
+                foreach($uploadDetailstemporary as $upDetTemp) {
+                    if($i<=2) {
+                        if($upDetTemp['uploadType'] != 'album'){
+                        if($upDetTemp['sizeX']=="H") {
+                            $sizeXTemp = 1;$HeightTemp = "172px";
+                        } else {
+                            $sizeXTemp = 2;$HeightTemp = "364px";
+                        }
+                        if($upDetTemp['sizeY']=="W") {
+                             $sizeYTemp = 2;$WidthTemp = "364px";
+                        } else {
+                             $sizeYTemp = 1;$WidthTemp = "172px";
+                        }
+                        $albumUploadDetails[] = array(
+                                                    'uploadId' => $upDetTemp['uploadId'],
+                                                    'UID' => $upDetTemp['UID'],
+                                                    'uploadPath'=>$upDetTemp['uploadPath'],
+                                                    'uploadTitle' => $upDetTemp['uploadTitle'],
+                                                    'uploadDescription' => $upDetTemp['uploadDescription'],
+                                                    'uploadType' => $upDetTemp['uploadType'],
+                                                    'albumcolor' => $upDetTemp['albumcolor'],
+                                                    'sizeX' => $sizeXTemp,
+                                                    'sizeY' => $sizeYTemp,
+                                                    'height'=>$HeightTemp,
+                                                    'width'=>$WidthTemp,
+                                                    'AID' => $upDetTemp['AID'],
+                                                    'FID' => $upDetTemp['FID'],
+                                                    'PID' => $upDetTemp['PID'],
+                                                    'TimeStamp' => $upDetTemp['TimeStamp']
+                                                    );
+                        }
+                    }
+                    $i++;
+                }
+            }
+            $uploadDetails[] = array(
+                                'uploadId' => $upload['uploadId'],
+                                'UID' => $upload['UID'],
+                                'uploadPath'=>$upload['uploadPath'],
+                                'uploadTitle' => $upload['uploadTitle'],
+                                'uploadDescription' => $upload['uploadDescription'],
+                                'uploadType' => $upload['uploadType'],
+                                'albumcolor' => $upload['albumcolor'],
+                                'sizeX' => $sizeX,
+                                'sizeY' => $sizeY,
+                                'height'=>$Height,
+                                'width'=>$Width,
+                                'AID' => $upload['AID'],
+                                'FID' => $upload['FID'],
+                                'PID' => $upload['PID'],
+                                'TimeStamp' => $upload['TimeStamp'],
+                                'albumUploadDetails' => $albumUploadDetails
+                                );
             
             $likeDetailsArray[$uploadId] = $likeDetails;
              array_push($likeDetailsArrays,$likeDetailsArray);

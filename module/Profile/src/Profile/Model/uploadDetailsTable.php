@@ -13,6 +13,36 @@
         {
             $this->tableGWay = $tableGateway;
         }
+        public function fetchalldatas($query)
+        {
+            $sql = new Sql($this->tableGWay->adapter);
+            $select = $sql->select();
+            $select->from($this->tableGWay->getTable())
+                    ->where($query);
+            $select->order('uploadId DESC');
+            $resultSet = $this->tableGWay->selectWith($select);
+
+            $array = array();
+            $array = array();
+            foreach ($resultSet as $rSet) {
+                $array[] = array(
+                    'uploadId' => $rSet->uploadId,
+                    'UID' => $rSet->UID,
+                    'uploadPath'=>$rSet->uploadPath,
+                    'uploadTitle' => $rSet->uploadTitle,
+                    'uploadDescription' => $rSet->uploadDescription,
+                    'uploadType' => $rSet->uploadType,
+                    'albumcolor' => $rSet->albumcolor,
+                    'sizeX' => $rSet->sizeX,
+                    'sizeY' => $rSet->sizeY,
+                    'AID' => $rSet->AID,
+                    'FID' => $rSet->FID,
+                    'PID' => $rSet->PID,
+                    'TimeStamp' => $rSet->TimeStamp
+                    );
+            }
+            return $array;
+        }
         public function fetchall($query=null)
         {
         $sql = new Sql($this->tableGWay->adapter);
@@ -54,8 +84,8 @@
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
                     'albumcolor' => $rSet->albumcolor,
-                    'sizeX' => $sizeX,
-                    'sizeY' => $sizeY,
+                    'sizeX' => $rSet->sizeX,
+                    'sizeY' => $rSet->sizeY,
                     'height'=>$Height,
                     'width'=>$Width,
                     'AID' => $rSet->AID,

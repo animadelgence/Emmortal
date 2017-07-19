@@ -60,10 +60,20 @@
                                               }
 
                                               echo ' <li class="gs-w albumid" data-sizey="'.$uploadDetails[$i]['sizeY'].'" data-sizex="'.$uploadDetails[$i]['sizeX'].'" data-col="1" data-row="1" data-cmd="album" id="'.$uploadAlbumId.'" data-id="'.$uploadDetails[$i]['uploadId'].'">
-                                              <span><img name="ImageName" src="'.$uploadedImage.'" style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div>
+                                              <span><img name="ImageName" src="'.$uploadedImage.'" ';
+                                                if(count($uploadDetails[$i]['albumUploadDetails']) > 0) {
+                                                    echo 'style="width:100%;height:50%;"></span><div class="inner-box" style="top:141px;"> '.$likeDetailsArrays[0][$uploadId].' </div><h4 style= "color: #579942;">'.$uploadDetails[$i]['uploadTitle'].'</h4><div style="height:38%">';
+                                                } else {
+                                                    echo 'style="width:100%;height:100%;"></span><div class="inner-box"> '.$likeDetailsArrays[0][$uploadId].' </div>';
+                                                }
+                                              foreach($uploadDetails[$i]['albumUploadDetails'] as $upload) {
+                                                  echo '<span><img name="ImageName" src="'.$upload['uploadPath'].'"style="border-radius:15px !important; height:100%; width:33%; padding:3px;"></span>';
+                                              }
+                                              if(count($uploadDetails[$i]['albumUploadDetails']) > 0) {
+                                                  echo '</div>';
+                                              }
 
-
-               </li>';
+              echo '</li>';
 
                                           }
                                            else if($uploadDetails[$i]['uploadType'] == "video"){

@@ -227,6 +227,10 @@ class CreatealbumController extends AbstractActionController {
         if($LoggedInUserDetails) {
             $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
         }
+        $albumuploadDetails =array();
+        $albumuploadDetails = $modelPlugin->getuploadDetailsTable()->fetchall(array('AID'=>$getid ));
+        
+        
         
         if($idOfUSer) {
              $bgimgSend = $bgimg[0]['bgimgpath'];
@@ -235,7 +239,7 @@ class CreatealbumController extends AbstractActionController {
 
              $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend,'sessionid'=>$this->sessionid));
 
-            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid,'sessionid'=>$this->sessionid,'totalTribute'=>$totalTribute,'totalLike'=>$totalLike));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid,'sessionid'=>$this->sessionid,'totalTribute'=>$totalTribute,'totalLike'=>$totalLike,'albumuploadDetails'=>$albumuploadDetails));
 
         } else {
               if($LoggedInUserDetails != ""){
@@ -260,7 +264,7 @@ class CreatealbumController extends AbstractActionController {
                  $this->layout()->setVariables(array('controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'jsonArray'=>$jsonArray,'bgimg'=>$bgimgSend,'sessionid'=>$this->sessionid));
             }
              
-            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid,'totalTribute'=>$totalTribute,'totalLike'=>$totalLike));
+            return new ViewModel(array('sessionid'=>$this->sessionid,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'albumDetails' =>$albumDetails,'friendsDetails'=>$friendsDetails,'getid'=>$getid,'totalTribute'=>$totalTribute,'totalLike'=>$totalLike,'albumuploadDetails'=>$albumuploadDetails));
         }
        
     }

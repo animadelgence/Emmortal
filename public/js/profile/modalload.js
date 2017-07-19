@@ -200,6 +200,10 @@ function tributedetailsmodal()
 //            data : {uniqueUserId: uniqueUserId},
             success: function (res) {
                 console.log(res);
+                var jsObject = JSON.parse(res);
+                for (i = 0; i < jsObject.tributeDetails.length; i++) {
+                    //content
+                }
             }
         });
 

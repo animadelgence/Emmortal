@@ -111,7 +111,6 @@ class RedirectionController extends AbstractActionController {
         $userId = $fetchUserDetails[0]['userid'];
         //echo $userId ; exit;
         //$userid = $this->sessionid;
-        $count = 0;
         $where = array();
         $condition = 'user.userid = tributedetails.UID';
         $fetchDetails = $modelPlugin->gettributedetailsTable()->joinquery($where,$condition);
@@ -121,7 +120,6 @@ class RedirectionController extends AbstractActionController {
         $array = array();
         foreach ($fetchDetails as $result){
             if($tributeType == 'friend'){
-                count++;
                 echo "going inside friend [1st condition]";
                 if($fetchDetails[0]['friendsid'] == $uniqueId){
                     $where          = array('TID'=>$rSet['tributesid']);
@@ -141,7 +139,6 @@ class RedirectionController extends AbstractActionController {
             }
 
             else if($tributeType == 'album'){
-                count++;
 
                 //--LIKE COUNT (start)--//
 //                $whereLike         = array('TID'=>$rSet['tributesid']);
@@ -167,7 +164,6 @@ class RedirectionController extends AbstractActionController {
                     } //if within elseif
              }//elseif
              else if($tributeType == 'relationship'){
-                 count++;
                  if($result['friendsid'] == $userId){
                      $array[]     = array(
                                          'tributesid' => $result['tributesid'],
@@ -182,7 +178,6 @@ class RedirectionController extends AbstractActionController {
                  } //if within elseif
              }//elseif
              else if($tributeType == 'upload'){
-                 count++;
 
                    //--LIKE COUNT (start)--//
 //                $whereLike         = array('TID'=>$rSet['tributesid']);
@@ -206,13 +201,13 @@ class RedirectionController extends AbstractActionController {
                                     );
 
 
-             }
+             } //if
+           }// elseif
         }//foreach
 
 
         $res['tributeDetails']      = $array;
         echo json_encode($res);
-        echo json_encode($count);
         exit;
     }
 

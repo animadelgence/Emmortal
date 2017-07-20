@@ -21,7 +21,7 @@
             <div class="h2 e-brown m-t-0"><span class="firstName"></span>'s Tributes</div>
 
 
-             <div class="ng-isolate-scope append_div">
+            <div class="ng-isolate-scope append_div"></div>
 <!--
             <div class="users-section animated fadeIn">
                 <div infinite-scroll="friendsLoader.nextPage()" >
@@ -40,4 +40,3 @@
         </div>
     </div>
 </div>
-

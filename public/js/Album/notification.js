@@ -38,7 +38,7 @@ $(document).ready(function () {
         var $this = $(this);
         $.ajax({
             type: "POST",
-            url: getUrl + '/notification/notificationupdate',
+            url: base_url_dynamic + '/notification/notificationupdate',
             data: {
                 notificationid : notificationid,
                 notificationupdate : "single"
@@ -51,7 +51,7 @@ $(document).ready(function () {
     $('body').on('click', '.all-seen', function () {
         $.ajax({
             type: "POST",
-            url: getUrl + '/notification/notificationupdate',
+            url: base_url_dynamic + '/notification/notificationupdate',
             data: {
                 notificationid : '',
                 notificationupdate : "all"
@@ -70,7 +70,7 @@ $(document).ready(function () {
     function getNotification(){
         $.ajax({
             type: "POST",
-            url: getUrl + '/notification/getnotification',
+            url: base_url_dynamic + '/notification/getnotification',
             data: {
             },
             success: function (res) {

@@ -231,8 +231,10 @@ function tributedetailsmodal()
             });//ajax
 
           }
-           $('.append_div').append(html);
-        }
+         //  $('.append_div').append(html);
+        //}
+
+
 //    });
 //        $(".firstName").html(name);
 //

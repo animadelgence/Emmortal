@@ -6,8 +6,8 @@
             <div class="m-b-10" type="text" placeholder="Type something to search..." >
                 <input type="text" placeholder="Type something to search..." class="form-control" id="searchText">
             </div>
-            <ul class="nav nav-pills nav-justified e-nav-pills">
-                <li class="active" id="li-allTab">
+            <ul class="nav nav-pills nav-justified e-nav-pills Tab">
+                <li class= "active" id="li-allTab">
                     <a class="e-brown pointer allTab" id="allTab">All</a>
                 </li>
                 <li id="li-relationshipTab">
@@ -24,15 +24,12 @@
                 <div infinite-scroll="friendsLoader.nextPage()" >
                     <div class="m-t-15 search-divider e-brown p-l-10 animated fadeIn" id="myRelationships">My Relationships
                     </div>
-                    <!--<h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="allTabShow">There are no relationships yet</h2>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="incomingTabShow">There are no incoming relationships requests</h2>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="outgoingTabshow">There are no outgoing relationships requests</h2>
-                    <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow">You have no relationships yet</h2>-->
+
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab" id="relationshipTabShow"></h2>
 
                     <h2 class="m-t-50 e-brown text-center animated fadeIn displayTab">
-                        <span></span>
-                        <span></span> has no relationships yet
+                        <!--<span>Rajyasree</span>-->
+                        <span id = "showTabMessage"></span> <!--has no relationships yet-->
                     </h2>
                     <div id="tabResults">
                     </div>

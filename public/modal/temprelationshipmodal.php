@@ -21,6 +21,9 @@
                         <span></span>
                         <span id = "showTabMessageTemp"></span> 
                     </h2>
+                    <div style="display:none;" id="loader">
+                        <img src ="/image/loading.gif"/ style=" height: 160px; padding-left: 450px;">
+                    </div>
                     <div id="tempResult">
                     </div>
                 </div>

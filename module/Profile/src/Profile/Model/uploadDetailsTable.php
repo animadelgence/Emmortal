@@ -23,7 +23,6 @@
             $resultSet = $this->tableGWay->selectWith($select);
 
             $array = array();
-            $array = array();
             foreach ($resultSet as $rSet) {
                 $array[] = array(
                     'uploadId' => $rSet->uploadId,
@@ -97,10 +96,11 @@
             return $array;
         }
 
-        public function fetchAllData($offsetvalues) {
+        public function fetchAllData($query,$offsetvalues) {
         $sql = new Sql($this->tableGWay->adapter);
         $select = $sql->select();
-        $select->from($this->tableGWay->getTable());
+        $select->from($this->tableGWay->getTable())
+                ->where($query);
         $select->order('uploadId DESC');
 
         if (!empty($offsetvalues)) {
@@ -110,7 +110,7 @@
         }
         $array = array();
         foreach ($result as $rSet) {
-            if($rSet->sizeX=="H")
+            /*if($rSet->sizeX=="H")
                 {
                     $sizeX = 1;$Height = "172px";
                 }
@@ -127,7 +127,7 @@
                 else
                    {
                          $sizeY = 1;$Width = "172px";
-                    }
+                    }*/
               $array[] = array(
                     'uploadId' => $rSet->uploadId,
                     'UID' => $rSet->UID,
@@ -136,8 +136,8 @@
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
                     'albumcolor' => $rSet->albumcolor,
-                    'sizeX' => $sizeX,
-                    'sizeY' => $sizeY,
+                    'sizeX' => $rSet->sizeX,
+                    'sizeY' => $rSet->sizeY,
                     'AID' => $rSet->AID,
                     'FID' => $rSet->FID,
                     'PID' => $rSet->PID,

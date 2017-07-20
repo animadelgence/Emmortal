@@ -81,6 +81,7 @@ function relationshipsmodal()
                     $('#temprelationshipmodal').modal('show');
                     var name = $('.relationships').attr('data-name');
                     $(".firstName").html(name);
+                    $('#loader').css('display', 'block');
                     $.ajax({
                         type: "POST",
                         data : {
@@ -106,6 +107,7 @@ function relationshipsmodal()
                                 extrahtml += '<a class="e-link pointer">View Relationship Page</a>';
 
                                 html += '<div class="user-field m-t-25 animated fadeIn"><input type = "hidden" value = "'+friendsname+'"><div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" href="/profile/showprofile/'+uniqueuser+'"><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3>'+extrahtml+'</div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+buttonhtml+'</div></form></div>';
+                                $('#loader').css('display', 'none');
                                 $('#tempResult').html(html);
                                 
                             }
@@ -117,12 +119,15 @@ function relationshipsmodal()
                     });
                 });
             } else {
-                $.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
+                searchmodalopen();
+                /*$.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
                     $('body').append(result);
                     $('#relationshipsmodal').modal('show');
                     var name = $('.relationships').attr('data-name');
                     $(".firstName").html(name);
                     //friendlist('AllFriend', '');
+                    $('#loader').css('display', 'block');
+                    
                     $.ajax({
                         type: "POST",
                         data : {
@@ -148,26 +153,16 @@ function relationshipsmodal()
                                 extrahtml += '<a class="e-link pointer">View Relationship Page</a>';
 
                                 html += '<div class="user-field m-t-25 animated fadeIn"><input type = "hidden" value = "'+friendsname+'"><div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" href="/profile/showprofile/'+uniqueuser+'"><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3>'+extrahtml+'</div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+buttonhtml+'</div></form></div>';
+                                $('#loader').css('display', 'none');
+                                
                                 $('#tabResults').html(html);
                             }
                         }
                     });
-                });
+                });*/
             }
         }
     });
-
-    /*$.get(getUrl+"/modal/relationshipsmodal.php?version="+RandomNumber, function (result) {
-        // append response to body
-        $('body').append(result);
-        // open modal
-        
-       /* $('#relationshipsmodal').modal('show');
-        var name = $('.relationships').attr('data-name');
-        $(".firstName").html(name);
-        friendlist('AllFriend', '');*/
-
-    //});*/
 }
 
 function tributedetailsmodal()

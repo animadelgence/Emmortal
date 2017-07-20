@@ -22,15 +22,15 @@ class LazyloadController extends AbstractActionController {
        
     }
     public function loadAction(){
-    	 $plugin = $this->routeplugin();
+        $plugin = $this->routeplugin();
         $modelPlugin = $this->modelplugin();
         $dynamicPath = $plugin->dynamicPath();
         $jsonArray = $plugin->jsondynamic();
         $currentPageURL = $plugin->curPageURL();
         $href = explode("/", $currentPageURL);
         $controller = 'album';
-		    $action = $this->params('action');
-		    $galleryStruct = "";
+        $action = $this->params('action');
+        $galleryStruct = "";
         $t = intval($_POST["counter"]);
         $uploadQuery = "uploadPath IS NOT NULL";
         $uploadDetailstemp = $modelPlugin->getuploadDetailsTable()->fetchAllData($uploadQuery,$t);

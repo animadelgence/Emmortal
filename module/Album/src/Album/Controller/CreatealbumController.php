@@ -378,13 +378,16 @@ class CreatealbumController extends AbstractActionController {
         $uniqueUser             = $this->getEvent()->getRouteMatch()->getParam('id');
         $bgimg                  = $modelPlugin->getbgimageTable()->fetchall();
         $userDetails            = $modelPlugin->getuserTable()->fetchall(array('uniqueUser'=>$uniqueUser));
+        $loggedInUserUniqueId = '';
         $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
         if(@getimagesize($userDetails[0]['backgroundimage'])){
             $bgimgSend          = $userDetails[0]['backgroundimage'];
         } else{
             $bgimgSend          = $bgimg[0]['bgimgpath'];
         }
-        $loggedInUserUniqueId   = $loggedInUserDetails[0]['userid'];
+        if($loggedInUserDetails) {
+            $loggedInUserUniqueId   = $loggedInUserDetails[0]['userid'];
+        }
         $uploadQuery            = array('UID'=> $userDetails[0]['userid']);
         $albumDetails           = $modelPlugin->getalbumdetailsTable()->fetchall($uploadQuery);
         $totalLike = 0;

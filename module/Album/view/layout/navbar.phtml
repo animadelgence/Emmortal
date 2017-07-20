@@ -129,7 +129,7 @@
                   </li> <!--javascript:void(0)" onclick="relationshipsmodal();"-->
 
 
-                  <li><a href="javascript:void(0);" onclick="tributedetailsmodal();" class="tributes" id="<?php echo $userDetails[0]['uniqueUser'];?>" data-name="<?php echo $userDetails[0]['firstname'].' '.$userDetails[0]['lastname'];?>">Tributes</a></li>
+                  <li><a href="<?php echo $dynamicPath;?>/redirection/tributesearch/<?php echo $userDetails[0]['uniqueUser'];?>" class="tributes" id="<?php echo $userDetails[0]['uniqueUser'];?>" data-name="<?php echo $userDetails[0]['firstname'].' '.$userDetails[0]['lastname'];?>">Tributes</a></li>
                </ul>
                <?php } ?>
             </div>

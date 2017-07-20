@@ -1,0 +1,69 @@
+<div class="" >
+<!--<div id="tributedetailsmodal">-->
+    <div class="container animated fadeIn p-t-100 p-b-100">
+        <div class="e-container relationships-page col-lg-12" id="mainContainer" style="border: 1px solid;">
+            <div class="tributes-page-header">
+                <div class="btn e-btn btn-round full btn-brown m-r-10"><?php echo $noOfTributes;?></div>
+                <span class="h2 e-brown m-t-0 firstName"><?php echo $fetchUserDetails[0]['firstname'].' '.$fetchUserDetails[0]['lastname'];?>'s Tributes</span>
+            </div>
+            <div class="append_div">
+                <?php if($userDetails) {
+                        foreach($userDetails as $userDet) {?>
+                <div class="col-md-6">
+                    <div class="tribute-wrapper">
+                        <div class="e-comment e-tribute" user="user" tribute="tribute" on-remove="removeFromList">
+                            <div class="e-comment-header m-b-10">
+                                <div class="e-tribute-likes-wrapper pull-right">
+                                    <div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full" type="tribute" target="tribute">0</div>
+                                </div>
+                                <div class="user-wrapper">
+                                    <img class="img-responsive m-r-5" src="<?php if(@getimagesize($userDet['profileimage'])) {
+                                        echo $userDet['profileimage'];
+                                    } else {
+                                        echo '/image/NoPhotoDefault.png';
+                                    }?>">
+                                </div>
+                                <div class="e-comment-title">
+                                    <a ui-sref="app.user.tribute({user_id: user.id, tribute_id: tribute.id})" class="e-link" href="javascript:void(0);">
+                                        <span>Tribute from</span>
+                                        <span class=""><?php echo $userDet['friendsname'];?></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="e-comment-body">
+                                <div class="e-comment-content">
+                                    <p><?php echo $userDet['description'];?><br></p>
+                                </div>
+                                <div class="e-comment-info">
+                                    <div class="btn e-btn btn-brown btn-round full">1
+                                    </div>
+                                    <?php if(@$sessionid == $fetchUserDetails[0]['userid']) {?>
+                                    <div class="edit-menu-wrapper m-t-10">
+                                        <div dropdown-toggle="" dropdown="" class="edit-menu e-dropdown dropdown white-dropdown  dropdown-toggle">
+                                            <i class="fa fa-cog cog-menu-icon"></i>
+                                            <ul stop-propagation="" role="menu" class="dropdown-menu text-left" aria-labelledby="single-button">
+                                                <li class="">
+                                                    <i class="fa fa-pencil m-r-5"></i>Edit
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                                <div class="clearfix">
+                                </div>
+                            </div>
+                            <div class="e-brown text-right m-t-20">
+                                <a class="e-link pointer f-24 m-r-15" href="/profile/showprofile/<?php echo $userDet['uniqueUser'];?>">View profile page</a>
+                                <small class=""><?php echo $userDet['addeddate'];?></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php } } else { ?>
+                <h3>There are no tributes yet...</h3>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>

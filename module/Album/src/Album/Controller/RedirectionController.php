@@ -94,6 +94,7 @@ class RedirectionController extends AbstractActionController {
     }
 
     public function tributesearchAction(){
+        $this->layout('layout/albumlayout.phtml');
         $plugin                     = $this->routeplugin();
         $modelPlugin                = $this->modelplugin();
         $dynamicPath                = $plugin->dynamicPath();
@@ -102,6 +103,18 @@ class RedirectionController extends AbstractActionController {
         $href                       = explode("/", $currentPageURL);
         $controller                 = @$href[3];
         $action                     = @$href[4];
+        $loggedInUserUniqueId = '';
+        $bgimg                  = $modelPlugin->getbgimageTable()->fetchall();
+        $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        if(@getimagesize($userDetails[0]['backgroundimage'])){
+            $bgimgSend          = $loggedInUserDetails[0]['backgroundimage'];
+        } else{
+            $bgimgSend          = $bgimg[0]['bgimgpath'];
+        }
+        if($loggedInUserDetails) {
+            $loggedInUserUniqueId   = $loggedInUserDetails[0]['userid'];
+        }
+        
         $uniqueId    = $this->getEvent()->getRouteMatch()->getParam('id');
         $where       = array('uniqueUser' => $uniqueId);
         $fetchUserDetails = $modelPlugin->getuserTable()->fetchall($where);
@@ -113,6 +126,7 @@ class RedirectionController extends AbstractActionController {
         //$tributeType = $fetchDetails[0]['tribute_type'];
         $array = array();
         foreach ($fetchDetails as $result){
+            //print_r($result);
             if($result['tribute_type'] == 'friend'){
                 echo "going inside friend [1st condition]";
                 if($fetchDetails[0]['friendsid'] == $uniqueId){
@@ -125,6 +139,7 @@ class RedirectionController extends AbstractActionController {
                                          'profileimage'=>$result['profileimage'],
                                          'description'=>$result['description'],
                                          'friendsid'=>$result['friendsid'],
+                                         'uniqueUser'=>$result['uniqueUser'],
 //                                         'like'=>$like,
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
@@ -143,6 +158,7 @@ class RedirectionController extends AbstractActionController {
                                          'profileimage'=>$result['profileimage'],
                                          'description'=>$result['description'],
                                          'friendsid'=>$result['friendsid'],
+                                         'uniqueUser'=>$result['uniqueUser'],
                                          //'like'=>$like,
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
@@ -156,6 +172,7 @@ class RedirectionController extends AbstractActionController {
                                          'profileimage'=>$result['profileimage'],
                                          'description'=>$result['description'],
                                          'friendsid'=>$result['friendsid'],
+                                         'uniqueUser'=>$result['uniqueUser'],
                                          //'like'=>$like,
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
@@ -173,6 +190,7 @@ class RedirectionController extends AbstractActionController {
                                          'profileimage'=>$result['profileimage'],
                                          'description'=>$result['description'],
                                          'friendsid'=>$result['friendsid'],
+                                         'uniqueUser'=>$result['uniqueUser'],
                                          //'like'=>$like,
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
@@ -180,11 +198,34 @@ class RedirectionController extends AbstractActionController {
 
              } 
            }
-        }
+        }//exit;
 //print_r($array); exit;
-        $res['tributeDetails']      = $array;
+        $this->layout()->setVariables(array(
+                                            'controller' => $controller,
+                                            'action' => $action,
+                                            'dynamicPath' => $dynamicPath,
+                                            'userDetails'=>$fetchUserDetails,
+                                            'loggedInUserUniqueId'=>$loggedInUserUniqueId,
+                                            'jsonArray'=>$jsonArray,
+                                            'bgimg'=>$bgimgSend,
+                                            'sessionid'=>$this->sessionid
+                                        )
+                                     );
+
+        return new ViewModel(array(
+                                'userDetails' => $array,
+                                'noOfTributes' =>count($array),
+                                'fetchUserDetails' => $fetchUserDetails,
+                                'dynamicPath' => $dynamicPath,
+                                'jsonArray'=>$jsonArray,
+                                'sessionid'=>$this->sessionid
+                                )
+                            );
+        
+        
+        /*$res['tributeDetails']      = $array;
         echo json_encode($res);
-        exit;
+        exit;*/
     }
 
 }

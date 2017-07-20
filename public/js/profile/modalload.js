@@ -167,7 +167,7 @@ function relationshipsmodal()
 
 function tributedetailsmodal()
 {
-    alert();
+    //alert();
     if($('#tributedetailsmodal').length) {
         $('#tributedetailsmodal').remove();
     }
@@ -195,17 +195,17 @@ function tributedetailsmodal()
             url: getUrl + '/redirection/tributesearch/'+lastEl,
 //            data : {uniqueUserId: uniqueUserId},
             success: function (res) {
-                console.log(res);
+                console.log(res);return false;
                 var jsObject = JSON.parse(res);
                 var   i = 0;
                 var buttonhtml = '',
                     extrahtml = '',
-                    html = '',
+                    html = '';
                 //var len = jsObject.tributeDetails.length;
 //                for (i = 0; i < jsObject.tributeDetails.length; i++) {
 //                    //content
 //                }
-                for (i = 0; i < jsObjectSecond.tributeDetails.length; i++) {
+                for(var i = 0; i < jsObjectSecond.tributeDetails.length; i++) {
                                 extrahtml = '',
                                 buttonhtml = '';
                                 var id = jsObjectSecond.userDetails[i].friendsid,
@@ -221,16 +221,16 @@ function tributedetailsmodal()
                                 extrahtml += '<a class="e-link pointer">View Relationship Page</a>';
 
                                 html += '<div class="user-field m-t-25 animated fadeIn"><input type = "hidden" value = "'+friendsname+'"><div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" href="/profile/showprofile/'+uniqueuser+'"><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3>'+extrahtml+'</div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+buttonhtml+'</div></form></div>';
-                                $('#tempResult').html(html);
+                                $('.append_div').html(html);
                             }
-                            if(html == '') {
+                            /*if(html == '') {
                                 $('.displayTabTemp').show();
                                 $('#showTabMessageTemp').html('There are no relationships yet');
-                            }
+                            }*/
                         }//success function(res)
             });//ajax
 
-          }
+          });
          //  $('.append_div').append(html);
         //}
 
@@ -243,7 +243,7 @@ function tributedetailsmodal()
 
 //            }
 
-        $(".firstName").html(name);
+        //$(".firstName").html(name);
 }
 
 

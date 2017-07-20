@@ -116,13 +116,13 @@ class RedirectionController extends AbstractActionController {
         $fetchDetails = $modelPlugin->gettributedetailsTable()->joinquery($where,$condition);
         //print_r($fetchDetails); exit;
         $tributeType = $fetchDetails[0]['tribute_type'];
-        //print_r($fetchDetails); exit;
+        print_r($fetchDetails); exit;
         $array = array();
         foreach ($fetchDetails as $result){
             if($tributeType == 'friend'){
                 echo "going inside friend [1st condition]";
                 if($fetchDetails[0]['friendsid'] == $uniqueId){
-                    $where          = array('TID'=>$rSet['tributesid']);
+                    $where          = array('TID'=>$result['tributesid']);
                     $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
                     $array[]     = array(
                                          'tributesid' => $result['tributesid'],
@@ -148,7 +148,9 @@ class RedirectionController extends AbstractActionController {
 
                     $whereAlbum = array('albumeid' => $result['uploadId']);
                     $AlbumDet = $modelPlugin->getalbumdetailsTable()->fetchall($whereAlbum);
-
+                //print_r($AlbumDet);
+                echo $AlbumDet[0]['UID'].'|||||'.$result['UID'];
+                echo '<br>';
                     if(($AlbumDet[0]['UID'] == $userId) && ($AlbumDet[0]['UID'] != $result['UID'])){
 
                         $array[]     = array(

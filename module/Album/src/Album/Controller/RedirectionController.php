@@ -94,7 +94,6 @@ class RedirectionController extends AbstractActionController {
     }
 
     public function tributesearchAction(){
-        //echo 1; exit;
         $plugin                     = $this->routeplugin();
         $modelPlugin                = $this->modelplugin();
         $dynamicPath                = $plugin->dynamicPath();
@@ -103,23 +102,18 @@ class RedirectionController extends AbstractActionController {
         $href                       = explode("/", $currentPageURL);
         $controller                 = @$href[3];
         $action                     = @$href[4];
-//        $uniqueId                   = $_POST['uniqueUserId'];
         $uniqueId    = $this->getEvent()->getRouteMatch()->getParam('id');
-        //echo $uniqueId; exit;
         $where       = array('uniqueUser' => $uniqueId);
         $fetchUserDetails = $modelPlugin->getuserTable()->fetchall($where);
         $userId = $fetchUserDetails[0]['userid'];
-        //echo $userId ; exit;
-        //$userid = $this->sessionid;
+        //$userId = 5;
         $where = array();
         $condition = 'user.userid = tributedetails.UID';
         $fetchDetails = $modelPlugin->gettributedetailsTable()->joinquery($where,$condition);
-        //print_r($fetchDetails); exit;
-        $tributeType = $fetchDetails[0]['tribute_type'];
-        print_r($fetchDetails); exit;
+        //$tributeType = $fetchDetails[0]['tribute_type'];
         $array = array();
         foreach ($fetchDetails as $result){
-            if($tributeType == 'friend'){
+            if($result['tribute_type'] == 'friend'){
                 echo "going inside friend [1st condition]";
                 if($fetchDetails[0]['friendsid'] == $uniqueId){
                     $where          = array('TID'=>$result['tributesid']);
@@ -138,19 +132,9 @@ class RedirectionController extends AbstractActionController {
                 }
             }
 
-            else if($tributeType == 'album'){
-
-                //--LIKE COUNT (start)--//
-//                $whereLike         = array('TID'=>$rSet['tributesid']);
-//                $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($whereLike);
-//                $like           = count($likeDetails);
-                //--LIKE COUNT (end)--//
-
+            else if($result['tribute_type'] == 'album'){
                     $whereAlbum = array('albumeid' => $result['uploadId']);
                     $AlbumDet = $modelPlugin->getalbumdetailsTable()->fetchall($whereAlbum);
-                //print_r($AlbumDet);
-                echo $AlbumDet[0]['UID'].'|||||'.$result['UID'];
-                echo '<br>';
                     if(($AlbumDet[0]['UID'] == $userId) && ($AlbumDet[0]['UID'] != $result['UID'])){
 
                         $array[]     = array(
@@ -163,9 +147,8 @@ class RedirectionController extends AbstractActionController {
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
 
-                    } //if within elseif
-             }//elseif
-             else if($tributeType == 'relationship'){
+                    } 
+             } else if($result['tribute_type'] == 'relationship'){
                  if($result['friendsid'] == $userId){
                      $array[]     = array(
                                          'tributesid' => $result['tributesid'],
@@ -177,17 +160,9 @@ class RedirectionController extends AbstractActionController {
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
 
-                 } //if within elseif
-             }//elseif
-             else if($tributeType == 'upload'){
-
-                   //--LIKE COUNT (start)--//
-//                $whereLike         = array('TID'=>$rSet['tributesid']);
-//                $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($whereLike);
-//                $like           = count($likeDetails);
-                //--LIKE COUNT (end)--//
-
-                 $whereUpload = array('uploadId' => $result['uploadId']);
+                 }
+             } else if($result['tribute_type'] == 'upload'){
+                    $whereUpload = array('uploadId' => $result['uploadId']);
                     $uploadDet = $modelPlugin->getuploadDetailsTable()->fetchall($whereUpload);
 
                     if(($uploadDet[0]['UID'] == $userId) && ($uploadDet[0]['UID'] != $result['UID'])){
@@ -203,11 +178,10 @@ class RedirectionController extends AbstractActionController {
                                     );
 
 
-             } //if
-           }// elseif
-        }//foreach
-
-
+             } 
+           }
+        }
+//print_r($array); exit;
         $res['tributeDetails']      = $array;
         echo json_encode($res);
         exit;

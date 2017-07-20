@@ -195,8 +195,8 @@ function tributedetailsmodal()
             url: getUrl + '/redirection/tributesearch/'+lastEl,
 //            data : {uniqueUserId: uniqueUserId},
             success: function (res) {
-                console.log(res);return false;
-                var jsObject = JSON.parse(res);
+                console.log(res);//return false;
+                var jsObjectSecond = JSON.parse(res);
                 var   i = 0;
                 var buttonhtml = '',
                     extrahtml = '',
@@ -208,12 +208,12 @@ function tributedetailsmodal()
                 for(var i = 0; i < jsObjectSecond.tributeDetails.length; i++) {
                                 extrahtml = '',
                                 buttonhtml = '';
-                                var id = jsObjectSecond.userDetails[i].friendsid,
-                                    friendsname = jsObjectSecond.userDetails[i].friendsname,
+                                var id = jsObjectSecond.tributeDetails[i].friendsid,
+                                    friendsname = jsObjectSecond.tributeDetails[i].friendsname,
                                     profileimage = "/image/bg-30f1579a38f9a4f9ee2786790691f8df.jpg",
-                                    uniqueuser = jsObjectSecond.userDetails[i].uniqueUser;
-                                if (jsObjectSecond.userDetails[i].profileimage != null) { // jshint ignore:line
-                                    profileimage = jsObjectSecond.userDetails[i].profileimage;
+                                    uniqueuser = jsObjectSecond.tributeDetails[i].uniqueUser;
+                                if (jsObjectSecond.tributeDetails[i].profileimage != null) { // jshint ignore:line
+                                    profileimage = jsObjectSecond.tributeDetails[i].profileimage;
                                 }
 
                                 buttonhtml +='<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="relationship">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';

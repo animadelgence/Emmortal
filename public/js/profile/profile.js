@@ -199,7 +199,7 @@ $(document).ready(function () {
 
 
  $('body').on('click', '.albumid', function () {
-   var albumid =  $(this).attr('id');
+   var albumid =  $(this).attr('albumid');
    var encodeUploadId = btoa(albumid);
     $.ajax({
                 type: "POST",

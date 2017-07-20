@@ -201,12 +201,40 @@ function tributedetailsmodal()
             success: function (res) {
                 console.log(res);
                 var jsObject = JSON.parse(res);
-                for (i = 0; i < jsObject.tributeDetails.length; i++) {
-                    //content
-                }
-            }
+                var   i = 0;
+                var   appendHtml = "";
+                var len = jsObject.tributeDetails.length;
+//                for (i = 0; i < jsObject.tributeDetails.length; i++) {
+//                    //content
+//                }
+                if(len){
+
+                                buttonhtml +='<div class="show-adds-btns" style="width:200px;" data-folder-target-id="' + id + '"><div class="inline btn e-btn btn-brown btn-round full getTribute" data-id="'+id+'" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-cmd="relationship">0</div><div class="btn e-btn btn-round full btn-brown likeClick" data-id="'+id+'" data-cmd="friend" data-toggle="tooltip" data-placement="bottom" title="Like">0</div><div class="inline e-like btn e-btn btn-round full">0</div></div>';
+
+                                extrahtml += '<a class="e-link pointer">View Relationship Page</a>';
+
+                                html += '<div class="user-field m-t-25 animated fadeIn"><input type = "hidden" value = "'+friendsname+'"><div class="media-left media-middle"><img class="media-object user-img" src="' + profileimage + '" class="img-circle frnd-image-class"></div><div class="media-body media-middle"><h3 class="m-t-0"><a class="e-brown e-link" href="/profile/showprofile/'+uniqueuser+'"><span class="friendsname">' + friendsname + '</span><input type="hidden" id="userid" name="userId" value="' + id + '"></a></h3>'+extrahtml+'</div><div class="media-right media-middle btn-section" id="btn-section'+ id + '" data-folder-target-id="' + id + '">'+buttonhtml+'</div></form></div>';
+                                $('#tempResult').html(html);
+
+                            }
+                            if(html == '') {
+                                $('.displayTabTemp').show();
+                                $('#showTabMessageTemp').html('There are no relationships yet');
+                            }
+
+          }
+           $('.append_div').append(appendHtml);
+        }
+//    });
+//        $(".firstName").html(name);
+//
+//    });
+
+
+//            }
         });
 
+        $(".firstName").html(name);
     });
 }
 

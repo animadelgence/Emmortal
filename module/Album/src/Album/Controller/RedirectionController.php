@@ -125,14 +125,14 @@ class RedirectionController extends AbstractActionController {
                     $where          = array('TID'=>$rSet['tributesid']);
                     $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
                     $array[]     = array(
-                                         'tributesid' => $fetchDetails[0]['tributesid'],
-                                         'UID' => $fetchDetails[0]['UID'], // this is wrong...change it
-                                         'friendsname' => $fetchDetails[0]['firstname']." ".$fetchDetails[0]['lastname'],
-                                         'profileimage'=>$fetchDetails[0]['profileimage'],
-                                         'description'=>$fetchDetails[0]['description'],
-                                         'friendsid'=>$fetchDetails[0]['friendsid'],
-                                         'like'=>$like,
-                                         'addeddate'=>date("m/d/Y",strtotime($fetchDetails[0]['addeddate']))
+                                         'tributesid' => $result['tributesid'],
+                                        // 'UID' => $result['UID'], // this is wrong...change it
+                                         'friendsname' => $result['firstname']." ".$result['lastname'],
+                                         'profileimage'=>$result['profileimage'],
+                                         'description'=>$result['description'],
+                                         'friendsid'=>$result['friendsid'],
+//                                         'like'=>$like,
+                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
 
                 }

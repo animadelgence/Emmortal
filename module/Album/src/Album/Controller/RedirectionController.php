@@ -128,7 +128,7 @@ class RedirectionController extends AbstractActionController {
         foreach ($fetchDetails as $result){
             //print_r($result);
             if($result['tribute_type'] == 'friend'){
-                echo "going inside friend [1st condition]";
+                //echo "going inside friend [1st condition]";
                 if($fetchDetails[0]['friendsid'] == $uniqueId){
                     $where          = array('TID'=>$result['tributesid']);
                     $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
@@ -232,6 +232,58 @@ class RedirectionController extends AbstractActionController {
         /*$res['tributeDetails']      = $array;
         echo json_encode($res);
         exit;*/
+    }
+    public function showtributeAction(){
+        $this->layout('layout/albumlayout.phtml');
+        $plugin                     = $this->routeplugin();
+        $modelPlugin                = $this->modelplugin();
+        $dynamicPath                = $plugin->dynamicPath();
+        $jsonArray                  = $plugin->jsondynamic();
+        $currentPageURL             = $plugin->curPageURL();
+        $href                       = explode("/", $currentPageURL);
+        $controller                 = @$href[3];
+        $action                     = @$href[4];
+
+        $idOfTribute    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $where = array('tributesid'=>$idOfTribute);
+        $fetchTribute = $modelPlugin->gettributedetailsTable()->fetchall($where);
+
+        $uniqueId    = $this->getEvent()->getRouteMatch()->getParam('pid');
+        $where       = array('uniqueUser' => $uniqueId);
+        $fetchUserDetails = $modelPlugin->getuserTable()->fetchall($where);
+        //$userId = $fetchUserDetails[0]['userid'];
+
+        $loggedInUserUniqueId = '';
+        $bgimg                  = $modelPlugin->getbgimageTable()->fetchall();
+        $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+
+        if(@getimagesize($userDetails[0]['backgroundimage'])){
+            $bgimgSend          = $loggedInUserDetails[0]['backgroundimage'];
+        } else{
+            $bgimgSend          = $bgimg[0]['bgimgpath'];
+        }
+        if($loggedInUserDetails) {
+            $loggedInUserUniqueId   = $loggedInUserDetails[0]['userid'];
+        }
+
+
+        $this->layout()->setVariables(array(
+                                            'controller' => $controller,
+                                            'action' => $action,
+                                            'dynamicPath' => $dynamicPath,
+                                            'bgimg'=>$bgimgSend,
+                                            'userDetails'=>$fetchUserDetails,
+                                            'loggedInUserUniqueId'=>$loggedInUserUniqueId,
+                                            'sessionid'=>$this->sessionid
+                                            )
+                                     );
+
+        return new ViewModel(array(
+                                    'fetchTribute'=>$fetchTribute,
+                                    'fetchUserDetails' => $fetchUserDetails
+                                   )
+                            );
+
     }
 
 }

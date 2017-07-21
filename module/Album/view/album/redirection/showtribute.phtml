@@ -1,0 +1,39 @@
+
+<div ui-view="" class="" style="padding: 76px 110px 0 110px;">
+    <div class="e-container tribute-page" style="height: 360px;">
+        <div class="e-brown m-b-25 album-title">
+            <div class="show-adds-btns pull-right">
+                <div class="m-r-5 e-like btn e-btn btn-round full" tooltip="Likes" tooltip-placement="bottom" target="tribute" type="tribute">0</div>
+                <div class="m-r-5 btn e-btn btn-brown btn-round full" tooltip-placement="bottom" tooltip="Tributes" comments="comments" content-id="<?php echo $fetchTribute[0]['tributesid'];?>" content-type="tribute" on-link-follow="$close()">0</div>
+                <div class="edit-menu-wrapper">
+                    <div class="edit-menu e-dropdown dropdown white-dropdown" dropdown="" dropdown-toggle="" can-edit="canEditTribute" can-pin="canPinRemoveTribute" can-remove="canPinRemoveTribute" content="tribute" on-edit="editTribute()" on-pin="pinTribute()" on-remove="removeTribute()" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-cog cog-menu-icon"></i>
+                        <ul aria-labelledby="single-button" class="dropdown-menu text-left" role="menu" stop-propagation="">
+                            <li class="ng-scope"><i class="fa fa-pencil m-r-5"></i>Edit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <h3 class="inline text-capitalize">
+                <span>Tribute for</span>
+                <span class="ng-binding"><?php echo $fetchUserDetails[0]['firstname'].' '.$fetchUserDetails[0]['lastname']; ?></span>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 text-center">
+                <div class="inline tribute-user-image-wrapper" style="height: 225px; background-color: #000; width: 225px;">
+                    <img class="img-responsive" src="<?php if(@getimagesize($fetchUserDetails[0]['profileimage'])) {
+                                        echo $fetchUserDetails[0]['profileimage'];
+                                    } else {
+                                        echo '/image/NoPhotoDefault.png';
+                                    }?>">
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-8">
+                <div class="tribute-description" style="margin-left: 5px">
+                    <p>tribute -&gt; when clicked on "add tribute" button under tributes of profile being viewed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

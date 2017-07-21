@@ -71,8 +71,8 @@
 						<small class="album-preview-location"></small>
 					</div>
 					<div class="action-btns">
-						<div class="e-like btn e-btn btn-round full liked <?php if(@$sessionid !=''){?>likeClick<?php } ?>" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[$j]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalLike'])){ echo $albumDetails[0]['totalLike'];} else{echo "0";}?></div>
-						<div class="btn e-btn btn-brown btn-round full <?php if(@$sessionid !=''){?>getTribute<?php } ?>" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[$j]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[0]['totalTribute'])){ echo $albumDetails[$j]['totalTribute'];} else{echo "0";}?></div>
+						<div class="e-like btn e-btn btn-round full liked <?php if(@$sessionid !=''){?>likeClick<?php } ?>" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Like" data-id="<?php echo $albumDetails[$j]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[$j]['totalLike'])){ echo $albumDetails[$j]['totalLike'];} else{echo "0";}?></div>
+						<div class="btn e-btn btn-brown btn-round full <?php if(@$sessionid !=''){?>getTribute<?php } ?>" style="background-color: rgb(180, 80, 78);" data-toggle="tooltip" data-placement="bottom" title="Tribute" data-id="<?php echo $albumDetails[$j]['albumeid'];?>" data-cmd="album"><?php if(!empty($albumDetails[$j]['totalTribute'])){ echo $albumDetails[$j]['totalTribute'];} else{echo "0";}?></div>
 						<?php if(@$sessionid ==$albumDetails[$j]['UID']){?>
 						<div class="edit-menu-wrapper">
 							<div class="edit-menu e-dropdown dropdown white-dropdown dropdown-toggle"  style="background: rgb(180, 80, 78);">

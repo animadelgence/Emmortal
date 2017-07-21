@@ -3,8 +3,9 @@
     <div class="e-container tribute-page" style="height: 360px;">
         <div class="e-brown m-b-25 album-title">
             <div class="show-adds-btns pull-right">
-                <div class="m-r-5 e-like btn e-btn btn-round full" tooltip="Likes" tooltip-placement="bottom" target="tribute" type="tribute">0</div>
-                <div class="m-r-5 btn e-btn btn-brown btn-round full" tooltip-placement="bottom" tooltip="Tributes" comments="comments" content-id="<?php echo $fetchTribute[0]['tributesid'];?>" content-type="tribute" on-link-follow="$close()">0</div>
+                <div class="m-r-5 e-like btn e-btn btn-round full" tooltip="Likes" tooltip-placement="bottom" target="tribute" type="tribute"><?php echo $likes; ?></div>
+                <div class="m-r-5 btn e-btn btn-brown btn-round full" tooltip-placement="bottom" tooltip="Tributes" comments="comments" content-id="" content-type="tribute" on-link-follow="$close()"><?php //echo "no. of replies to this tribute" ?></div>
+                <?php if(@$sessionid == $fetchTribute[0]['UID']) {?>
                 <div class="edit-menu-wrapper">
                     <div class="edit-menu e-dropdown dropdown white-dropdown" dropdown="" dropdown-toggle="" can-edit="canEditTribute" can-pin="canPinRemoveTribute" can-remove="canPinRemoveTribute" content="tribute" on-edit="editTribute()" on-pin="pinTribute()" on-remove="removeTribute()" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-cog cog-menu-icon"></i>
@@ -13,6 +14,7 @@
                         </ul>
                     </div>
                 </div>
+                <?php }?>
             </div>
             <h3 class="inline text-capitalize">
                 <span>Tribute for</span>

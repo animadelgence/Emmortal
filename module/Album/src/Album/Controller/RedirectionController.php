@@ -147,64 +147,64 @@ class RedirectionController extends AbstractActionController {
                 }
             }
 
-            else if($result['tribute_type'] == 'album'){
-                    $where          = array('TID'=>$result['tributesid']);
-                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
-                    $whereAlbum = array('albumeid' => $result['uploadId']);
-                    $AlbumDet = $modelPlugin->getalbumdetailsTable()->fetchall($whereAlbum);
-                    if(($AlbumDet[0]['UID'] == $userId) && ($AlbumDet[0]['UID'] != $result['UID'])){
-
-                        $array[]     = array(
-                                         'tributesid' => $result['tributesid'],
-                                         'friendsname' => $result['firstname']." ".$result['lastname'],
-                                         'profileimage'=>$result['profileimage'],
-                                         'description'=>$result['description'],
-                                         'friendsid'=>$result['friendsid'],
-                                         'uniqueUser'=>$result['uniqueUser'],
-                                         'like'=>count($likeDetails),
-                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
-                                    );
-
-                    } 
-             } else if($result['tribute_type'] == 'relationship'){
-                    $where          = array('TID'=>$result['tributesid']);
-                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
-                 if($result['friendsid'] == $userId){
-                     $array[]     = array(
-                                         'tributesid' => $result['tributesid'],
-                                         'friendsname' => $result['firstname']." ".$result['lastname'],
-                                         'profileimage'=>$result['profileimage'],
-                                         'description'=>$result['description'],
-                                         'friendsid'=>$result['friendsid'],
-                                         'uniqueUser'=>$result['uniqueUser'],
-                                         'like'=>count($likeDetails),
-                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
-                                    );
-
-                 }
-             } else if($result['tribute_type'] == 'upload'){
-                    $where          = array('TID'=>$result['tributesid']);
-                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
-                    $whereUpload = array('uploadId' => $result['uploadId']);
-                    $uploadDet = $modelPlugin->getuploadDetailsTable()->fetchall($whereUpload);
-
-                    if(($uploadDet[0]['UID'] == $userId) && ($uploadDet[0]['UID'] != $result['UID'])){
-
-                        $array[]     = array(
-                                         'tributesid' => $result['tributesid'],
-                                         'friendsname' => $result['firstname']." ".$result['lastname'],
-                                         'profileimage'=>$result['profileimage'],
-                                         'description'=>$result['description'],
-                                         'friendsid'=>$result['friendsid'],
-                                         'uniqueUser'=>$result['uniqueUser'],
-                                         'like'=>count($likeDetails),
-                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
-                                    );
-
-
-             } 
-           }
-        }//exit;
+//            else if($result['tribute_type'] == 'album'){
+//                    $where          = array('TID'=>$result['tributesid']);
+//                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+//                    $whereAlbum = array('albumeid' => $result['uploadId']);
+//                    $AlbumDet = $modelPlugin->getalbumdetailsTable()->fetchall($whereAlbum);
+//                    if(($AlbumDet[0]['UID'] == $userId) && ($AlbumDet[0]['UID'] != $result['UID'])){
+//
+//                        $array[]     = array(
+//                                         'tributesid' => $result['tributesid'],
+//                                         'friendsname' => $result['firstname']." ".$result['lastname'],
+//                                         'profileimage'=>$result['profileimage'],
+//                                         'description'=>$result['description'],
+//                                         'friendsid'=>$result['friendsid'],
+//                                         'uniqueUser'=>$result['uniqueUser'],
+//                                         'like'=>count($likeDetails),
+//                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
+//                                    );
+//
+//                    }
+//             } else if($result['tribute_type'] == 'relationship'){
+//                    $where          = array('TID'=>$result['tributesid']);
+//                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+//                 if($result['friendsid'] == $userId){
+//                     $array[]     = array(
+//                                         'tributesid' => $result['tributesid'],
+//                                         'friendsname' => $result['firstname']." ".$result['lastname'],
+//                                         'profileimage'=>$result['profileimage'],
+//                                         'description'=>$result['description'],
+//                                         'friendsid'=>$result['friendsid'],
+//                                         'uniqueUser'=>$result['uniqueUser'],
+//                                         'like'=>count($likeDetails),
+//                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
+//                                    );
+//
+//                 }
+//             } else if($result['tribute_type'] == 'upload'){
+//                    $where          = array('TID'=>$result['tributesid']);
+//                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+//                    $whereUpload = array('uploadId' => $result['uploadId']);
+//                    $uploadDet = $modelPlugin->getuploadDetailsTable()->fetchall($whereUpload);
+//
+//                    if(($uploadDet[0]['UID'] == $userId) && ($uploadDet[0]['UID'] != $result['UID'])){
+//
+//                        $array[]     = array(
+//                                         'tributesid' => $result['tributesid'],
+//                                         'friendsname' => $result['firstname']." ".$result['lastname'],
+//                                         'profileimage'=>$result['profileimage'],
+//                                         'description'=>$result['description'],
+//                                         'friendsid'=>$result['friendsid'],
+//                                         'uniqueUser'=>$result['uniqueUser'],
+//                                         'like'=>count($likeDetails),
+//                                         'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
+//                                    );
+//
+//
+//             }
+//           }
+        }//foreach;
 //print_r($array); exit;
         $this->layout()->setVariables(array(
                                             'controller' => $controller,
@@ -245,17 +245,20 @@ class RedirectionController extends AbstractActionController {
         $action                     = @$href[4];
 
         $idOfTribute    = $this->getEvent()->getRouteMatch()->getParam('id');
-        $where = array('tributesid'=>$idOfTribute);
-        $fetchTribute = $modelPlugin->gettributedetailsTable()->fetchall($where);
+        $where          = array('tributesid'=>$idOfTribute);
+        $fetchTribute   = $modelPlugin->gettributedetailsTable()->fetchall($where);
 
-        $uniqueId    = $this->getEvent()->getRouteMatch()->getParam('pid');
-        $where       = array('uniqueUser' => $uniqueId);
+        $uniqueId       = $this->getEvent()->getRouteMatch()->getParam('pid');
+        $where          = array('uniqueUser' => $uniqueId);
         $fetchUserDetails = $modelPlugin->getuserTable()->fetchall($where);
         //$userId = $fetchUserDetails[0]['userid'];
 
+        $where          = array('TID'=>$idOfTribute);
+        $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
+
         $loggedInUserUniqueId = '';
-        $bgimg                  = $modelPlugin->getbgimageTable()->fetchall();
-        $loggedInUserDetails    = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
+        $bgimg                = $modelPlugin->getbgimageTable()->fetchall();
+        $loggedInUserDetails  = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
 
         if(@getimagesize($userDetails[0]['backgroundimage'])){
             $bgimgSend          = $loggedInUserDetails[0]['backgroundimage'];
@@ -271,16 +274,18 @@ class RedirectionController extends AbstractActionController {
                                             'controller' => $controller,
                                             'action' => $action,
                                             'dynamicPath' => $dynamicPath,
-                                            'bgimg'=>$bgimgSend,
-                                            'userDetails'=>$fetchUserDetails,
-                                            'loggedInUserUniqueId'=>$loggedInUserUniqueId,
-                                            'sessionid'=>$this->sessionid
+                                            'bgimg'=> $bgimgSend,
+                                            'userDetails'=> $fetchUserDetails,
+                                            'loggedInUserUniqueId'=> $loggedInUserUniqueId,
+                                            'sessionid'=> $this->sessionid
                                             )
                                      );
 
         return new ViewModel(array(
-                                    'fetchTribute'=>$fetchTribute,
-                                    'fetchUserDetails' => $fetchUserDetails
+                                    'fetchTribute'=> $fetchTribute,
+                                    'fetchUserDetails' => $fetchUserDetails,
+                                    'likes' => count($likeDetails),
+                                    'sessionid'=> $this->sessionid
                                    )
                             );
 

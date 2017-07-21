@@ -7,14 +7,15 @@
                 <span class="h2 e-brown m-t-0 firstName"><?php echo $fetchUserDetails[0]['firstname'].' '.$fetchUserDetails[0]['lastname'];?>'s Tributes</span>
             </div>
             <div class="append_div">
-                <?php if($userDetails) {
+                <?php //print_r($userDetails);exit;
+                if($userDetails) {
                         foreach($userDetails as $userDet) {?>
                 <div class="col-md-6">
                     <div class="tribute-wrapper">
                         <div class="e-comment e-tribute" user="user" tribute="tribute" on-remove="removeFromList">
                             <div class="e-comment-header m-b-10">
                                 <div class="e-tribute-likes-wrapper pull-right">
-                                    <div tooltip-placement="bottom" tooltip="Likes" class="e-like btn e-btn btn-round full" type="tribute" target="tribute">0</div>
+                                    <div data-placement="top" title="Tributes" class="e-like btn e-btn btn-round full" type="tribute" target="tribute"  data-toggle="tooltip">0</div>
                                 </div>
                                 <div class="user-wrapper">
                                     <img class="img-responsive m-r-5" src="<?php if(@getimagesize($userDet['profileimage'])) {
@@ -24,7 +25,9 @@
                                     }?>">
                                 </div>
                                 <div class="e-comment-title">
-                                    <a ui-sref="app.user.tribute({user_id: user.id, tribute_id: tribute.id})" class="e-link" href="/redirection/showtribute/<?php echo $userDet['tributesid'];?>/<?php echo $fetchUserDetails[0]['uniqueUser'];?>">
+
+                                    <a class="e-link" href="/redirection/showtribute/<?php echo $userDet['tributesid'];?>/<?php echo $fetchUserDetails[0]['uniqueUser'];?>">
+
                                         <span>Tribute from</span>
                                         <span class=""><?php echo $userDet['friendsname'];?></span>
                                     </a><!-- tributesid -->
@@ -35,7 +38,7 @@
                                     <p><?php echo $userDet['description'];?><br></p>
                                 </div>
                                 <div class="e-comment-info">
-                                    <div class="btn e-btn btn-brown btn-round full">1
+                                    <div data-placement="top" class="btn e-btn btn-brown btn-round full" data-toggle="tooltip" title="Likes"><?php echo $userDet['like'];?>
                                     </div>
                                     <?php if(@$sessionid == $fetchUserDetails[0]['userid']) {?>
                                     <div class="edit-menu-wrapper m-t-10">

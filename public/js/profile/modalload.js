@@ -113,6 +113,7 @@ function relationshipsmodal()
                             }
                             if(html == '') {
                                 $('.displayTabTemp').show();
+                                $('#loader').css('display', 'none');
                                 $('#showTabMessageTemp').html('There are no relationships yet');
                             }
                         }
@@ -792,4 +793,5 @@ $(document).ready(function () {
         $("#tempResult").show();
         showtempmessage();
     });
+    $('[data-toggle="tooltip"]').tooltip();
 });

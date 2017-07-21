@@ -140,7 +140,7 @@ class RedirectionController extends AbstractActionController {
                                          'description'=>$result['description'],
                                          'friendsid'=>$result['friendsid'],
                                          'uniqueUser'=>$result['uniqueUser'],
-//                                         'like'=>$like,
+                                         'like'=>count($likeDetails),
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
 
@@ -148,6 +148,8 @@ class RedirectionController extends AbstractActionController {
             }
 
             else if($result['tribute_type'] == 'album'){
+                    $where          = array('TID'=>$result['tributesid']);
+                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
                     $whereAlbum = array('albumeid' => $result['uploadId']);
                     $AlbumDet = $modelPlugin->getalbumdetailsTable()->fetchall($whereAlbum);
                     if(($AlbumDet[0]['UID'] == $userId) && ($AlbumDet[0]['UID'] != $result['UID'])){
@@ -159,12 +161,14 @@ class RedirectionController extends AbstractActionController {
                                          'description'=>$result['description'],
                                          'friendsid'=>$result['friendsid'],
                                          'uniqueUser'=>$result['uniqueUser'],
-                                         //'like'=>$like,
+                                         'like'=>count($likeDetails),
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
 
                     } 
              } else if($result['tribute_type'] == 'relationship'){
+                    $where          = array('TID'=>$result['tributesid']);
+                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
                  if($result['friendsid'] == $userId){
                      $array[]     = array(
                                          'tributesid' => $result['tributesid'],
@@ -173,12 +177,14 @@ class RedirectionController extends AbstractActionController {
                                          'description'=>$result['description'],
                                          'friendsid'=>$result['friendsid'],
                                          'uniqueUser'=>$result['uniqueUser'],
-                                         //'like'=>$like,
+                                         'like'=>count($likeDetails),
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
 
                  }
              } else if($result['tribute_type'] == 'upload'){
+                    $where          = array('TID'=>$result['tributesid']);
+                    $likeDetails    = $modelPlugin->getlikesdetailsTable()->fetchall($where);
                     $whereUpload = array('uploadId' => $result['uploadId']);
                     $uploadDet = $modelPlugin->getuploadDetailsTable()->fetchall($whereUpload);
 
@@ -191,7 +197,7 @@ class RedirectionController extends AbstractActionController {
                                          'description'=>$result['description'],
                                          'friendsid'=>$result['friendsid'],
                                          'uniqueUser'=>$result['uniqueUser'],
-                                         //'like'=>$like,
+                                         'like'=>count($likeDetails),
                                          'addeddate'=>date("m/d/Y",strtotime($result['addeddate']))
                                     );
 

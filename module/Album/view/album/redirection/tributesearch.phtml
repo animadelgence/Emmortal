@@ -24,10 +24,10 @@
                                     }?>">
                                 </div>
                                 <div class="e-comment-title">
-                                    <a ui-sref="app.user.tribute({user_id: user.id, tribute_id: tribute.id})" class="e-link" href="javascript:void(0);">
+                                    <a ui-sref="app.user.tribute({user_id: user.id, tribute_id: tribute.id})" class="e-link" href="/redirection/showtribute/<?php echo $userDet['tributesid'];?>/<?php echo $fetchUserDetails[0]['uniqueUser'];?>">
                                         <span>Tribute from</span>
                                         <span class=""><?php echo $userDet['friendsname'];?></span>
-                                    </a>
+                                    </a><!-- tributesid -->
                                 </div>
                             </div>
                             <div class="e-comment-body">

@@ -1,0 +1,92 @@
+/*
+.p-b-100 {
+    padding-bottom: 100px !important;
+}
+.p-t-100 {
+    padding-top: 100px !important;
+}
+*/
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+/*
+.container {
+    width: 1170px;
+}
+*/
+.e-container {
+    padding: 15px !important;
+    color: #aaa897 !important;
+    background: #fff !important;
+    -webkit-animation-duration: 0.5s !important;
+    animation-duration: 0.5s !important;
+    -webkit-animation-fill-mode: both !important;
+    animation-fill-mode: both !important;
+    -webkit-animation-name: fadeIn !important;
+    animation-name: fadeIn !important;
+}
+.tribute-page {
+    position: relative;
+}
+.m-b-25 {
+    margin-bottom: 25px !important;
+}
+.e-brown {
+    color: #aaa897;
+}
+.show-adds-btns {
+    height: 60px;
+    margin-top: 4px;
+}
+.pull-right {
+    float: right !important;
+}
+.inline {
+    display: inline-block;
+}
+.text-capitalize {
+    text-transform: capitalize;
+}
+h3, .h3 {
+    font-size: 24px;
+}
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.text-center {
+    text-align: center;
+}
+.tribute-page .tribute-user-image-wrapper img {
+    width: 100%;
+}
+.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+img {
+    vertical-align: middle;
+}
+img {
+    border: 0;
+}
+
+

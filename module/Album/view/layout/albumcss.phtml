@@ -45,6 +45,15 @@ $this->headLink()
             break;
 		}
 		break;
+        case 'redirection':
+		switch ($action) {
+             case 'showtribute':
+                $this->headLink()
+                    ->prependStylesheet($this->basePath() . '/css/Album/showtribute.css?version=' . $t)
+                ;
+            break;
+		}
+		break;
 
 	default:
 		break;

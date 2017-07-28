@@ -83,8 +83,10 @@
                     'uploadDescription' => $rSet->uploadDescription,
                     'uploadType' => $rSet->uploadType,
                     'albumcolor' => $rSet->albumcolor,
-                    'sizeX' => $rSet->sizeX,
-                    'sizeY' => $rSet->sizeY,
+                    /*'sizeX' => $rSet->sizeX,
+                    'sizeY' => $rSet->sizeY,*/
+                    'sizeX' => $sizeX,
+                    'sizeY' => $sizeY,
                     'height'=>$Height,
                     'width'=>$Width,
                     'AID' => $rSet->AID,

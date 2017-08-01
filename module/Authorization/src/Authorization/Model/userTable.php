@@ -20,6 +20,7 @@
                     'emailid' => $rSet->emailid,
                     'password' => $rSet->password,
                     'forgetpassword' => $rSet->forgetpassword,
+                    'forgetPassloginTime' => $rSet->forgetPassloginTime,
                     'firstname' => $rSet->firstname,
                     'lastname' => $rSet->lastname,
                     'profileimage' => $rSet->profileimage,

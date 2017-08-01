@@ -135,28 +135,35 @@ class AlbumController extends AbstractActionController {
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
         
         $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
-        $pidOfUSer    = $this->getEvent()->getRouteMatch()->getParam('pId');
         $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
         $loggedInUserUniqueId = '';
         if($LoggedInUserDetails) {
             $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
         }
-        if($pidOfUSer) {
-            $userDetailsFetch = $modelPlugin->getuserTable()->fetchall(array('forgetpassword'=>$idOfUSer));
-           // print_r($userDetailsFetch);exit;
+        $pIdOfUSer    = $this->getEvent()->getRouteMatch()->getParam('pId');
+        if($pIdOfUSer) {
+            $userDetResetPass =$modelPlugin->getuserTable()->fetchall(array('forgetpassword'=>$pIdOfUSer)); 
+            $presentTime = strtotime(date("Y-m-d"));
+            $databaseDatetime = strtotime($userDetResetPass[0]['forgetPassloginTime']);
+            $all = $presentTime - $databaseDatetime;
+            $day = round(($all % 604800) / 86400);
+            $hours = round((($all % 604800) % 86400) / 3600);
+            $m = round(((($all % 604800) % 86400) % 3600) / 60);
+            if(!empty($userDetResetPass)) {
+                if($day > 3) {
+                    return $this->redirect()->toUrl($dynamicPath);
+                }
+            } else {
+                return $this->redirect()->toUrl($dynamicPath);
+            }
         }
         
-        if($idOfUSer && ($userDetailsFetch == ''))
+        if($idOfUSer)
         {
             $bgimgSend = $bgimg[0]['bgimgpath'];
             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'bgimg'=>$bgimgSend));
             return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArrays' =>$likeDetailsArrays));
 
-        } else if (($idOfUSer != '') && ($userDetailsFetch != '')) {
-            $bgimgSend = $bgimg[0]['bgimgpath'];
-            $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'jsonArray'=>$jsonArray, 'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'bgimg'=>$bgimgSend));
-            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArrays' =>$likeDetailsArrays));
-            
         } else{
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
 

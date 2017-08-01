@@ -10,6 +10,7 @@ class user
     public $emailid;
     public $password;
     public $forgetpassword;
+    public $forgetPassloginTime;
     public $firstname;
     public $lastname;
     public $dateofbirth;
@@ -40,6 +41,7 @@ class user
 		$this->emailid = (!empty($data['emailid'])) ? $data['emailid'] : null;
 		$this->password = (!empty($data['password'])) ? $data['password'] : null;
         $this->forgetpassword = (!empty($data['forgetpassword'])) ? $data['forgetpassword'] : null;
+        $this->forgetPassloginTime = (!empty($data['forgetPassloginTime'])) ? $data['forgetPassloginTime'] : null;
         $this->firstname = (!empty($data['firstname'])) ? $data['firstname'] : null;
         $this->lastname = (!empty($data['lastname'])) ? $data['lastname'] : null;
         $this->dateofbirth = (!empty($data['dateofbirth'])) ? $data['dateofbirth'] : null;

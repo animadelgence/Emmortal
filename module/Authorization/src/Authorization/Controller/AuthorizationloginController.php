@@ -102,7 +102,7 @@ class AuthorizationloginController extends AbstractActionController {
         $mailBody = str_replace("|FULLNAME|", $fullname, $mailLinkreplace);
         //print_r($mailBody);exit;
         $keyArray = array('userid' => $id);
-        $dataForForget = array('forgetpassword' => $arraypass);
+        $dataForForget = array('forgetpassword' => $arraypass,'forgetPassloginTime' => date('Y-m-d'));
         //print_r($dataForForget);exit;
         $updateUser = $modelPlugin->getuserTable()->updateuser($dataForForget, $keyArray);
         $fogetPasswordMail = $mailplugin->confirmationmail($recoveryemail, $from, $subject, $mailBody);

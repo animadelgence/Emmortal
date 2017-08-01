@@ -142,13 +142,11 @@ class AlbumController extends AbstractActionController {
         }
         $pIdOfUSer    = $this->getEvent()->getRouteMatch()->getParam('pId');
         if($pIdOfUSer) {
-            $userDetResetPass =$modelPlugin->getuserTable()->fetchall(array('forgetpassword'=>$pIdOfUSer)); 
+            $userDetResetPass =$modelPlugin->getuserTable()->fetchall(array('forgetpassword'=>$pIdOfUSer));
             $presentTime = strtotime(date("Y-m-d"));
-            $databaseDatetime = strtotime($userDetResetPass[0]['forgetPassloginTime']);
+            $databaseDatetime = strtotime($userDetResetPass[0]['forgetPassloginTime']); 
             $all = $presentTime - $databaseDatetime;
-            $day = round(($all % 604800) / 86400);
-            $hours = round((($all % 604800) % 86400) / 3600);
-            $m = round(((($all % 604800) % 86400) % 3600) / 60);
+            $day = floor($all / (60 * 60 * 24));
             if(!empty($userDetResetPass)) {
                 if($day > 3) {
                     return $this->redirect()->toUrl($dynamicPath);

@@ -46,7 +46,7 @@ class AuthorizationloginController extends AbstractActionController {
         $dataarrayforvalidation = array('emailid' => $loginemail);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
         $usid = $contentDetails[0]['userid'];
-        
+        $value ='';
 
         $passcheck = password_verify($loginpassword, $contentDetails[0]['password']);
 
@@ -87,8 +87,9 @@ class AuthorizationloginController extends AbstractActionController {
         //echo $id;exit;
         $fullname = $contentDetails[0]['firstname']." ".$contentDetails[0]['lastname'];
         $pass = password_hash($recoveryemail, PASSWORD_BCRYPT);
-
-        $buttonclick = $dynamicPath . "/profile/newsfeed/resetpassword/" . $pass;
+        $arraypass = str_replace('/', '', $pass);
+        //echo $arraypass;exit;
+        $buttonclick = $dynamicPath . "/album/showalbum/resetpassword/" . $pass;
         //echo $buttonclick;exit;
         $mail_link = "<a class='confirm-link' href='".$buttonclick."' style='text-decoration: none;'><div class='btn' style='width: 125px; padding: 12px 11px; background-color: #579942; border-radius: 5px; color: #fff; font-size: 14px; margin-top: 46px !important;'>Reset password</div></a>";
         $subject = "[Emmortal] Set your password";
@@ -117,14 +118,20 @@ class AuthorizationloginController extends AbstractActionController {
         $encryptedmailid = $_POST['encryptedmailid'];
         //echo $encryptedmailid;exit;
         //echo $_POST['forgetpassword'];exit;
-        $forgetpassword = password_hash($_POST['forgetpassword'], PASSWORD_BCRYPT);
+        $forgetpassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
         ////$key = '1234547890183420';
        // $decryptedmail = $this->decrypt($encryptedmailid, $key);
         $dataarrayforvalidation = array('forgetpassword' => $encryptedmailid);
         $contentDetails = $modelPlugin->getuserTable()->fetchall($dataarrayforvalidation);
         $id = $contentDetails[0]["userid"];
+        if($id) {
+            $user_session = new Container('userloginId');
+            $user_session->userloginId = $id;
+            $user_session_temp = new Container('tempStoreName');
+            $user_session_temp->tempStoreName = 'showMessage';
+        }
         $keyArray = array('userid' => $id);
-        $dataForForget = array('password' => $forgetpassword);
+        $dataForForget = array('password' => $forgetpassword,'forgetpassword' => '');
         $updateUser = $modelPlugin->getuserTable()->updateuser($dataForForget, $keyArray);
 
         echo $updateUser;exit;

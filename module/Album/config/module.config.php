@@ -43,7 +43,7 @@ return array(
              'Album' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/album[/:action][/:id]',
+                     'route'    => '/album[/:action][/:id][/:pId]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
                      ),

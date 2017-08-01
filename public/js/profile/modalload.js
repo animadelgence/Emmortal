@@ -273,6 +273,15 @@ function squarespaceModalemailopen()
 
     });
 }
+function squarespaceModalepasswordopen() {
+    $.get(getUrl+"/modal/recoverypasswordmodal.php?version="+RandomNumber, function (result) {
+        // append response to body
+        $('body').append(result);
+        // open modal
+        $('#squarespaceModalepassword').modal('show');
+
+    });
+}
 function tributemodalopen()
 {
     if($('#tributemodal').length) {

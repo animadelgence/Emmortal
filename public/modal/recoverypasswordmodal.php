@@ -8,23 +8,25 @@
     <div class="modal-body">
       
             <!-- content goes here -->
-      <form method="post" action="/authlogin/resetpassword" enctype="multipart/form-data" name="nameform" id="resetpassword_form">
+        <form method="post" action="/authlogin/resetpassword" enctype="multipart/form-data" name="nameform" id="resetpassword_form">
 <!--              </div>-->
                 <div class="form-group full-width">
-                <input type="password" class="form-control" id="forgetpassword" placeholder="Password">
+                <input type="password" class="form-control resetPass" id="forgetpassword" placeholder="Password">
+                <span id = "passwordErrorResetpass" class='error'>Should be at least 8 characters length</span>
               </div>
                 <div class="form-group full-width">
-                <input type="password" class="form-control" id="forgetconfirmPassword" placeholder="Confirm Password">
+                <input type="password" class="form-control resetPass" id="forgetconfirmPassword" placeholder="Confirm Password">
+                <span id = "confpasswordErrorResetpass" class='error'>Doesn't match Password</span>
               </div>
                
-                <button type="submit" value="Submit" style="display:none;"></button>
-      </form>
-            <div class="modal-footersec">
-                <div class="button-div">
-                  <a class="modal-button" id="savepassbutton">Save</a> 
-                  <div class="alertmesage_recoverypassword" style="display: none;"></div>
-                </div>
+                <button type="button" value="Submit" style="display:none;"></button>
+        </form>
+        <div class="modal-footersec">
+            <div class="button-div">
+              <button class="modal-button" id="savepassbutton" disabled="disabled" style="cursor:not-allowed;">Save</button> 
+              <!--<div class="alertmesage_recoverypassword" style="display: none;"></div>-->
             </div>
+        </div>
     </div>
   </div>
   </div>

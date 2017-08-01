@@ -135,21 +135,29 @@ class AlbumController extends AbstractActionController {
         $bgimg = $modelPlugin->getbgimageTable()->fetchall();
         
         $idOfUSer    = $this->getEvent()->getRouteMatch()->getParam('id');
+        $pidOfUSer    = $this->getEvent()->getRouteMatch()->getParam('pId');
         $LoggedInUserDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
         $loggedInUserUniqueId = '';
         if($LoggedInUserDetails) {
             $loggedInUserUniqueId = $LoggedInUserDetails[0]['uniqueUser'];
         }
+        if($pidOfUSer) {
+            $userDetailsFetch = $modelPlugin->getuserTable()->fetchall(array('forgetpassword'=>$idOfUSer));
+           // print_r($userDetailsFetch);exit;
+        }
         
-        
-        if($idOfUSer)
+        if($idOfUSer && ($userDetailsFetch == ''))
         {
             $bgimgSend = $bgimg[0]['bgimgpath'];
             $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'bgimg'=>$bgimgSend));
             return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArrays' =>$likeDetailsArrays));
 
-        }
-        else{
+        } else if (($idOfUSer != '') && ($userDetailsFetch != '')) {
+            $bgimgSend = $bgimg[0]['bgimgpath'];
+            $this->layout()->setVariables(array('sessionid'=> "",'controller' => $controller, 'action' => $action,'dynamicPath' => $dynamicPath, 'jsonArray'=>$jsonArray, 'userDetails'=>$userDetails,'loggedInUserUniqueId'=>$loggedInUserUniqueId,'bgimg'=>$bgimgSend));
+            return new ViewModel(array('dynamicPath' => $dynamicPath,'jsonArray'=>$jsonArray,'uploadDetails' =>$uploadDetails,'likeDetailsArrays' =>$likeDetailsArrays));
+            
+        } else{
             $userDetails = $modelPlugin->getuserTable()->fetchall(array('userid'=>$this->sessionid));
 
             if(@getimagesize($userDetails[0]['backgroundimage'])){
